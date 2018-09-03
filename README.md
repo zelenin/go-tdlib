@@ -6,6 +6,17 @@ Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) 
 
 ### Ubuntu 18.04 / Debian 9
 
+#### Precompiled
+
+```bash
+curl "https://repo.zelenin.pw/gpg.key" | apt-key add -
+echo "deb [arch=amd64] https://repo.zelenin.pw common contrib" > "/etc/apt/sources.list.d/tdlib.list"
+apt-get update -y
+apt-get install -y tdlib-dev
+```
+
+#### Manual compilation
+
 ```bash
 apt-get update -y
 apt-get install -y \
@@ -26,7 +37,6 @@ cmake -j$(getconf _NPROCESSORS_ONLN) --build .
 make -j$(getconf _NPROCESSORS_ONLN) install
 rm -rf ./../../tdlib-src
 ```
-
 
 ## Usage
 
