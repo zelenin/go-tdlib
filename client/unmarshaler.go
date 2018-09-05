@@ -207,6 +207,35 @@ func UnmarshalChatMemberStatus(data json.RawMessage) (ChatMemberStatus, error) {
     }
 }
 
+func UnmarshalChatMembersFilter(data json.RawMessage) (ChatMembersFilter, error) {
+    var meta meta
+
+    err := json.Unmarshal(data, &meta)
+    if err != nil {
+        return nil, err
+    }
+
+    switch meta.Type {
+    case TypeChatMembersFilterAdministrators:
+        return UnmarshalChatMembersFilterAdministrators(data)
+
+    case TypeChatMembersFilterMembers:
+        return UnmarshalChatMembersFilterMembers(data)
+
+    case TypeChatMembersFilterRestricted:
+        return UnmarshalChatMembersFilterRestricted(data)
+
+    case TypeChatMembersFilterBanned:
+        return UnmarshalChatMembersFilterBanned(data)
+
+    case TypeChatMembersFilterBots:
+        return UnmarshalChatMembersFilterBots(data)
+
+    default:
+        return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.Type)
+    }
+}
+
 func UnmarshalSupergroupMembersFilter(data json.RawMessage) (SupergroupMembersFilter, error) {
     var meta meta
 
@@ -311,17 +340,11 @@ func UnmarshalNotificationSettingsScope(data json.RawMessage) (NotificationSetti
     }
 
     switch meta.Type {
-    case TypeNotificationSettingsScopeChat:
-        return UnmarshalNotificationSettingsScopeChat(data)
-
     case TypeNotificationSettingsScopePrivateChats:
         return UnmarshalNotificationSettingsScopePrivateChats(data)
 
-    case TypeNotificationSettingsScopeBasicGroupChats:
-        return UnmarshalNotificationSettingsScopeBasicGroupChats(data)
-
-    case TypeNotificationSettingsScopeAllChats:
-        return UnmarshalNotificationSettingsScopeAllChats(data)
+    case TypeNotificationSettingsScopeGroupChats:
+        return UnmarshalNotificationSettingsScopeGroupChats(data)
 
     default:
         return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.Type)
@@ -582,6 +605,247 @@ func UnmarshalInputCredentials(data json.RawMessage) (InputCredentials, error) {
     }
 }
 
+func UnmarshalPassportElementType(data json.RawMessage) (PassportElementType, error) {
+    var meta meta
+
+    err := json.Unmarshal(data, &meta)
+    if err != nil {
+        return nil, err
+    }
+
+    switch meta.Type {
+    case TypePassportElementTypePersonalDetails:
+        return UnmarshalPassportElementTypePersonalDetails(data)
+
+    case TypePassportElementTypePassport:
+        return UnmarshalPassportElementTypePassport(data)
+
+    case TypePassportElementTypeDriverLicense:
+        return UnmarshalPassportElementTypeDriverLicense(data)
+
+    case TypePassportElementTypeIdentityCard:
+        return UnmarshalPassportElementTypeIdentityCard(data)
+
+    case TypePassportElementTypeInternalPassport:
+        return UnmarshalPassportElementTypeInternalPassport(data)
+
+    case TypePassportElementTypeAddress:
+        return UnmarshalPassportElementTypeAddress(data)
+
+    case TypePassportElementTypeUtilityBill:
+        return UnmarshalPassportElementTypeUtilityBill(data)
+
+    case TypePassportElementTypeBankStatement:
+        return UnmarshalPassportElementTypeBankStatement(data)
+
+    case TypePassportElementTypeRentalAgreement:
+        return UnmarshalPassportElementTypeRentalAgreement(data)
+
+    case TypePassportElementTypePassportRegistration:
+        return UnmarshalPassportElementTypePassportRegistration(data)
+
+    case TypePassportElementTypeTemporaryRegistration:
+        return UnmarshalPassportElementTypeTemporaryRegistration(data)
+
+    case TypePassportElementTypePhoneNumber:
+        return UnmarshalPassportElementTypePhoneNumber(data)
+
+    case TypePassportElementTypeEmailAddress:
+        return UnmarshalPassportElementTypeEmailAddress(data)
+
+    default:
+        return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.Type)
+    }
+}
+
+func UnmarshalPassportElement(data json.RawMessage) (PassportElement, error) {
+    var meta meta
+
+    err := json.Unmarshal(data, &meta)
+    if err != nil {
+        return nil, err
+    }
+
+    switch meta.Type {
+    case TypePassportElementPersonalDetails:
+        return UnmarshalPassportElementPersonalDetails(data)
+
+    case TypePassportElementPassport:
+        return UnmarshalPassportElementPassport(data)
+
+    case TypePassportElementDriverLicense:
+        return UnmarshalPassportElementDriverLicense(data)
+
+    case TypePassportElementIdentityCard:
+        return UnmarshalPassportElementIdentityCard(data)
+
+    case TypePassportElementInternalPassport:
+        return UnmarshalPassportElementInternalPassport(data)
+
+    case TypePassportElementAddress:
+        return UnmarshalPassportElementAddress(data)
+
+    case TypePassportElementUtilityBill:
+        return UnmarshalPassportElementUtilityBill(data)
+
+    case TypePassportElementBankStatement:
+        return UnmarshalPassportElementBankStatement(data)
+
+    case TypePassportElementRentalAgreement:
+        return UnmarshalPassportElementRentalAgreement(data)
+
+    case TypePassportElementPassportRegistration:
+        return UnmarshalPassportElementPassportRegistration(data)
+
+    case TypePassportElementTemporaryRegistration:
+        return UnmarshalPassportElementTemporaryRegistration(data)
+
+    case TypePassportElementPhoneNumber:
+        return UnmarshalPassportElementPhoneNumber(data)
+
+    case TypePassportElementEmailAddress:
+        return UnmarshalPassportElementEmailAddress(data)
+
+    default:
+        return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.Type)
+    }
+}
+
+func UnmarshalInputPassportElement(data json.RawMessage) (InputPassportElement, error) {
+    var meta meta
+
+    err := json.Unmarshal(data, &meta)
+    if err != nil {
+        return nil, err
+    }
+
+    switch meta.Type {
+    case TypeInputPassportElementPersonalDetails:
+        return UnmarshalInputPassportElementPersonalDetails(data)
+
+    case TypeInputPassportElementPassport:
+        return UnmarshalInputPassportElementPassport(data)
+
+    case TypeInputPassportElementDriverLicense:
+        return UnmarshalInputPassportElementDriverLicense(data)
+
+    case TypeInputPassportElementIdentityCard:
+        return UnmarshalInputPassportElementIdentityCard(data)
+
+    case TypeInputPassportElementInternalPassport:
+        return UnmarshalInputPassportElementInternalPassport(data)
+
+    case TypeInputPassportElementAddress:
+        return UnmarshalInputPassportElementAddress(data)
+
+    case TypeInputPassportElementUtilityBill:
+        return UnmarshalInputPassportElementUtilityBill(data)
+
+    case TypeInputPassportElementBankStatement:
+        return UnmarshalInputPassportElementBankStatement(data)
+
+    case TypeInputPassportElementRentalAgreement:
+        return UnmarshalInputPassportElementRentalAgreement(data)
+
+    case TypeInputPassportElementPassportRegistration:
+        return UnmarshalInputPassportElementPassportRegistration(data)
+
+    case TypeInputPassportElementTemporaryRegistration:
+        return UnmarshalInputPassportElementTemporaryRegistration(data)
+
+    case TypeInputPassportElementPhoneNumber:
+        return UnmarshalInputPassportElementPhoneNumber(data)
+
+    case TypeInputPassportElementEmailAddress:
+        return UnmarshalInputPassportElementEmailAddress(data)
+
+    default:
+        return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.Type)
+    }
+}
+
+func UnmarshalPassportElementErrorSource(data json.RawMessage) (PassportElementErrorSource, error) {
+    var meta meta
+
+    err := json.Unmarshal(data, &meta)
+    if err != nil {
+        return nil, err
+    }
+
+    switch meta.Type {
+    case TypePassportElementErrorSourceUnspecified:
+        return UnmarshalPassportElementErrorSourceUnspecified(data)
+
+    case TypePassportElementErrorSourceDataField:
+        return UnmarshalPassportElementErrorSourceDataField(data)
+
+    case TypePassportElementErrorSourceFrontSide:
+        return UnmarshalPassportElementErrorSourceFrontSide(data)
+
+    case TypePassportElementErrorSourceReverseSide:
+        return UnmarshalPassportElementErrorSourceReverseSide(data)
+
+    case TypePassportElementErrorSourceSelfie:
+        return UnmarshalPassportElementErrorSourceSelfie(data)
+
+    case TypePassportElementErrorSourceTranslationFile:
+        return UnmarshalPassportElementErrorSourceTranslationFile(data)
+
+    case TypePassportElementErrorSourceTranslationFiles:
+        return UnmarshalPassportElementErrorSourceTranslationFiles(data)
+
+    case TypePassportElementErrorSourceFile:
+        return UnmarshalPassportElementErrorSourceFile(data)
+
+    case TypePassportElementErrorSourceFiles:
+        return UnmarshalPassportElementErrorSourceFiles(data)
+
+    default:
+        return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.Type)
+    }
+}
+
+func UnmarshalInputPassportElementErrorSource(data json.RawMessage) (InputPassportElementErrorSource, error) {
+    var meta meta
+
+    err := json.Unmarshal(data, &meta)
+    if err != nil {
+        return nil, err
+    }
+
+    switch meta.Type {
+    case TypeInputPassportElementErrorSourceUnspecified:
+        return UnmarshalInputPassportElementErrorSourceUnspecified(data)
+
+    case TypeInputPassportElementErrorSourceDataField:
+        return UnmarshalInputPassportElementErrorSourceDataField(data)
+
+    case TypeInputPassportElementErrorSourceFrontSide:
+        return UnmarshalInputPassportElementErrorSourceFrontSide(data)
+
+    case TypeInputPassportElementErrorSourceReverseSide:
+        return UnmarshalInputPassportElementErrorSourceReverseSide(data)
+
+    case TypeInputPassportElementErrorSourceSelfie:
+        return UnmarshalInputPassportElementErrorSourceSelfie(data)
+
+    case TypeInputPassportElementErrorSourceTranslationFile:
+        return UnmarshalInputPassportElementErrorSourceTranslationFile(data)
+
+    case TypeInputPassportElementErrorSourceTranslationFiles:
+        return UnmarshalInputPassportElementErrorSourceTranslationFiles(data)
+
+    case TypeInputPassportElementErrorSourceFile:
+        return UnmarshalInputPassportElementErrorSourceFile(data)
+
+    case TypeInputPassportElementErrorSourceFiles:
+        return UnmarshalInputPassportElementErrorSourceFiles(data)
+
+    default:
+        return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.Type)
+    }
+}
+
 func UnmarshalMessageContent(data json.RawMessage) (MessageContent, error) {
     var meta meta
 
@@ -698,6 +962,12 @@ func UnmarshalMessageContent(data json.RawMessage) (MessageContent, error) {
 
     case TypeMessageWebsiteConnected:
         return UnmarshalMessageWebsiteConnected(data)
+
+    case TypeMessagePassportDataSent:
+        return UnmarshalMessagePassportDataSent(data)
+
+    case TypeMessagePassportDataReceived:
+        return UnmarshalMessagePassportDataReceived(data)
 
     case TypeMessageUnsupported:
         return UnmarshalMessageUnsupported(data)
@@ -1218,6 +1488,29 @@ func UnmarshalChatEventAction(data json.RawMessage) (ChatEventAction, error) {
     }
 }
 
+func UnmarshalLanguagePackStringValue(data json.RawMessage) (LanguagePackStringValue, error) {
+    var meta meta
+
+    err := json.Unmarshal(data, &meta)
+    if err != nil {
+        return nil, err
+    }
+
+    switch meta.Type {
+    case TypeLanguagePackStringValueOrdinary:
+        return UnmarshalLanguagePackStringValueOrdinary(data)
+
+    case TypeLanguagePackStringValuePluralized:
+        return UnmarshalLanguagePackStringValuePluralized(data)
+
+    case TypeLanguagePackStringValueDeleted:
+        return UnmarshalLanguagePackStringValueDeleted(data)
+
+    default:
+        return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.Type)
+    }
+}
+
 func UnmarshalDeviceToken(data json.RawMessage) (DeviceToken, error) {
     var meta meta
 
@@ -1393,6 +1686,9 @@ func UnmarshalChatReportReason(data json.RawMessage) (ChatReportReason, error) {
     case TypeChatReportReasonPornography:
         return UnmarshalChatReportReasonPornography(data)
 
+    case TypeChatReportReasonCopyright:
+        return UnmarshalChatReportReasonCopyright(data)
+
     case TypeChatReportReasonCustom:
         return UnmarshalChatReportReasonCustom(data)
 
@@ -1431,6 +1727,12 @@ func UnmarshalFileType(data json.RawMessage) (FileType, error) {
     case TypeFileTypeSecret:
         return UnmarshalFileTypeSecret(data)
 
+    case TypeFileTypeSecretThumbnail:
+        return UnmarshalFileTypeSecretThumbnail(data)
+
+    case TypeFileTypeSecure:
+        return UnmarshalFileTypeSecure(data)
+
     case TypeFileTypeSticker:
         return UnmarshalFileTypeSticker(data)
 
@@ -1451,9 +1753,6 @@ func UnmarshalFileType(data json.RawMessage) (FileType, error) {
 
     case TypeFileTypeWallpaper:
         return UnmarshalFileTypeWallpaper(data)
-
-    case TypeFileTypeSecretThumbnail:
-        return UnmarshalFileTypeSecretThumbnail(data)
 
     default:
         return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.Type)
@@ -1616,7 +1915,7 @@ func UnmarshalTextParseMode(data json.RawMessage) (TextParseMode, error) {
     }
 }
 
-func UnmarshalProxy(data json.RawMessage) (Proxy, error) {
+func UnmarshalProxyType(data json.RawMessage) (ProxyType, error) {
     var meta meta
 
     err := json.Unmarshal(data, &meta)
@@ -1625,11 +1924,14 @@ func UnmarshalProxy(data json.RawMessage) (Proxy, error) {
     }
 
     switch meta.Type {
-    case TypeProxyEmpty:
-        return UnmarshalProxyEmpty(data)
+    case TypeProxyTypeSocks5:
+        return UnmarshalProxyTypeSocks5(data)
 
-    case TypeProxySocks5:
-        return UnmarshalProxySocks5(data)
+    case TypeProxyTypeHttp:
+        return UnmarshalProxyTypeHttp(data)
+
+    case TypeProxyTypeMtproto:
+        return UnmarshalProxyTypeMtproto(data)
 
     default:
         return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.Type)
@@ -1693,6 +1995,15 @@ func UnmarshalUpdate(data json.RawMessage) (Update, error) {
     case TypeUpdateChatIsPinned:
         return UnmarshalUpdateChatIsPinned(data)
 
+    case TypeUpdateChatIsMarkedAsUnread:
+        return UnmarshalUpdateChatIsMarkedAsUnread(data)
+
+    case TypeUpdateChatIsSponsored:
+        return UnmarshalUpdateChatIsSponsored(data)
+
+    case TypeUpdateChatDefaultDisableNotification:
+        return UnmarshalUpdateChatDefaultDisableNotification(data)
+
     case TypeUpdateChatReadInbox:
         return UnmarshalUpdateChatReadInbox(data)
 
@@ -1702,8 +2013,11 @@ func UnmarshalUpdate(data json.RawMessage) (Update, error) {
     case TypeUpdateChatUnreadMentionCount:
         return UnmarshalUpdateChatUnreadMentionCount(data)
 
-    case TypeUpdateNotificationSettings:
-        return UnmarshalUpdateNotificationSettings(data)
+    case TypeUpdateChatNotificationSettings:
+        return UnmarshalUpdateChatNotificationSettings(data)
+
+    case TypeUpdateScopeNotificationSettings:
+        return UnmarshalUpdateScopeNotificationSettings(data)
 
     case TypeUpdateChatReplyMarkup:
         return UnmarshalUpdateChatReplyMarkup(data)
@@ -1762,6 +2076,9 @@ func UnmarshalUpdate(data json.RawMessage) (Update, error) {
     case TypeUpdateUnreadMessageCount:
         return UnmarshalUpdateUnreadMessageCount(data)
 
+    case TypeUpdateUnreadChatCount:
+        return UnmarshalUpdateUnreadChatCount(data)
+
     case TypeUpdateOption:
         return UnmarshalUpdateOption(data)
 
@@ -1780,8 +2097,14 @@ func UnmarshalUpdate(data json.RawMessage) (Update, error) {
     case TypeUpdateSavedAnimations:
         return UnmarshalUpdateSavedAnimations(data)
 
+    case TypeUpdateLanguagePackStrings:
+        return UnmarshalUpdateLanguagePackStrings(data)
+
     case TypeUpdateConnectionState:
         return UnmarshalUpdateConnectionState(data)
+
+    case TypeUpdateTermsOfService:
+        return UnmarshalUpdateTermsOfService(data)
 
     case TypeUpdateNewInlineQuery:
         return UnmarshalUpdateNewInlineQuery(data)
@@ -1876,6 +2199,46 @@ func UnmarshalAuthenticationCodeInfo(data json.RawMessage) (*AuthenticationCodeI
     return &resp, err
 }
 
+func UnmarshalEmailAddressAuthenticationCodeInfo(data json.RawMessage) (*EmailAddressAuthenticationCodeInfo, error) {
+    var resp EmailAddressAuthenticationCodeInfo
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalTextEntity(data json.RawMessage) (*TextEntity, error) {
+    var resp TextEntity
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalTextEntities(data json.RawMessage) (*TextEntities, error) {
+    var resp TextEntities
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalFormattedText(data json.RawMessage) (*FormattedText, error) {
+    var resp FormattedText
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalTermsOfService(data json.RawMessage) (*TermsOfService, error) {
+    var resp TermsOfService
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
 func UnmarshalAuthorizationStateWaitTdlibParameters(data json.RawMessage) (*AuthorizationStateWaitTdlibParameters, error) {
     var resp AuthorizationStateWaitTdlibParameters
 
@@ -1950,14 +2313,6 @@ func UnmarshalAuthorizationStateClosed(data json.RawMessage) (*AuthorizationStat
 
 func UnmarshalPasswordState(data json.RawMessage) (*PasswordState, error) {
     var resp PasswordState
-
-    err := json.Unmarshal(data, &resp)
-
-    return &resp, err
-}
-
-func UnmarshalPasswordRecoveryInfo(data json.RawMessage) (*PasswordRecoveryInfo, error) {
-    var resp PasswordRecoveryInfo
 
     err := json.Unmarshal(data, &resp)
 
@@ -2078,30 +2433,6 @@ func UnmarshalMaskPointChin(data json.RawMessage) (*MaskPointChin, error) {
 
 func UnmarshalMaskPosition(data json.RawMessage) (*MaskPosition, error) {
     var resp MaskPosition
-
-    err := json.Unmarshal(data, &resp)
-
-    return &resp, err
-}
-
-func UnmarshalTextEntity(data json.RawMessage) (*TextEntity, error) {
-    var resp TextEntity
-
-    err := json.Unmarshal(data, &resp)
-
-    return &resp, err
-}
-
-func UnmarshalTextEntities(data json.RawMessage) (*TextEntities, error) {
-    var resp TextEntities
-
-    err := json.Unmarshal(data, &resp)
-
-    return &resp, err
-}
-
-func UnmarshalFormattedText(data json.RawMessage) (*FormattedText, error) {
-    var resp FormattedText
 
     err := json.Unmarshal(data, &resp)
 
@@ -2388,6 +2719,46 @@ func UnmarshalChatMembers(data json.RawMessage) (*ChatMembers, error) {
     return &resp, err
 }
 
+func UnmarshalChatMembersFilterAdministrators(data json.RawMessage) (*ChatMembersFilterAdministrators, error) {
+    var resp ChatMembersFilterAdministrators
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalChatMembersFilterMembers(data json.RawMessage) (*ChatMembersFilterMembers, error) {
+    var resp ChatMembersFilterMembers
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalChatMembersFilterRestricted(data json.RawMessage) (*ChatMembersFilterRestricted, error) {
+    var resp ChatMembersFilterRestricted
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalChatMembersFilterBanned(data json.RawMessage) (*ChatMembersFilterBanned, error) {
+    var resp ChatMembersFilterBanned
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalChatMembersFilterBots(data json.RawMessage) (*ChatMembersFilterBots, error) {
+    var resp ChatMembersFilterBots
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
 func UnmarshalSupergroupMembersFilterRecent(data json.RawMessage) (*SupergroupMembersFilterRecent, error) {
     var resp SupergroupMembersFilterRecent
 
@@ -2556,14 +2927,6 @@ func UnmarshalFoundMessages(data json.RawMessage) (*FoundMessages, error) {
     return &resp, err
 }
 
-func UnmarshalNotificationSettingsScopeChat(data json.RawMessage) (*NotificationSettingsScopeChat, error) {
-    var resp NotificationSettingsScopeChat
-
-    err := json.Unmarshal(data, &resp)
-
-    return &resp, err
-}
-
 func UnmarshalNotificationSettingsScopePrivateChats(data json.RawMessage) (*NotificationSettingsScopePrivateChats, error) {
     var resp NotificationSettingsScopePrivateChats
 
@@ -2572,24 +2935,24 @@ func UnmarshalNotificationSettingsScopePrivateChats(data json.RawMessage) (*Noti
     return &resp, err
 }
 
-func UnmarshalNotificationSettingsScopeBasicGroupChats(data json.RawMessage) (*NotificationSettingsScopeBasicGroupChats, error) {
-    var resp NotificationSettingsScopeBasicGroupChats
+func UnmarshalNotificationSettingsScopeGroupChats(data json.RawMessage) (*NotificationSettingsScopeGroupChats, error) {
+    var resp NotificationSettingsScopeGroupChats
 
     err := json.Unmarshal(data, &resp)
 
     return &resp, err
 }
 
-func UnmarshalNotificationSettingsScopeAllChats(data json.RawMessage) (*NotificationSettingsScopeAllChats, error) {
-    var resp NotificationSettingsScopeAllChats
+func UnmarshalChatNotificationSettings(data json.RawMessage) (*ChatNotificationSettings, error) {
+    var resp ChatNotificationSettings
 
     err := json.Unmarshal(data, &resp)
 
     return &resp, err
 }
 
-func UnmarshalNotificationSettings(data json.RawMessage) (*NotificationSettings, error) {
-    var resp NotificationSettings
+func UnmarshalScopeNotificationSettings(data json.RawMessage) (*ScopeNotificationSettings, error) {
+    var resp ScopeNotificationSettings
 
     err := json.Unmarshal(data, &resp)
 
@@ -3052,6 +3415,14 @@ func UnmarshalWebPage(data json.RawMessage) (*WebPage, error) {
     return &resp, err
 }
 
+func UnmarshalAddress(data json.RawMessage) (*Address, error) {
+    var resp Address
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
 func UnmarshalLabeledPricePart(data json.RawMessage) (*LabeledPricePart, error) {
     var resp LabeledPricePart
 
@@ -3062,14 +3433,6 @@ func UnmarshalLabeledPricePart(data json.RawMessage) (*LabeledPricePart, error) 
 
 func UnmarshalInvoice(data json.RawMessage) (*Invoice, error) {
     var resp Invoice
-
-    err := json.Unmarshal(data, &resp)
-
-    return &resp, err
-}
-
-func UnmarshalShippingAddress(data json.RawMessage) (*ShippingAddress, error) {
-    var resp ShippingAddress
 
     err := json.Unmarshal(data, &resp)
 
@@ -3166,6 +3529,582 @@ func UnmarshalPaymentResult(data json.RawMessage) (*PaymentResult, error) {
 
 func UnmarshalPaymentReceipt(data json.RawMessage) (*PaymentReceipt, error) {
     var resp PaymentReceipt
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalDatedFile(data json.RawMessage) (*DatedFile, error) {
+    var resp DatedFile
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementTypePersonalDetails(data json.RawMessage) (*PassportElementTypePersonalDetails, error) {
+    var resp PassportElementTypePersonalDetails
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementTypePassport(data json.RawMessage) (*PassportElementTypePassport, error) {
+    var resp PassportElementTypePassport
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementTypeDriverLicense(data json.RawMessage) (*PassportElementTypeDriverLicense, error) {
+    var resp PassportElementTypeDriverLicense
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementTypeIdentityCard(data json.RawMessage) (*PassportElementTypeIdentityCard, error) {
+    var resp PassportElementTypeIdentityCard
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementTypeInternalPassport(data json.RawMessage) (*PassportElementTypeInternalPassport, error) {
+    var resp PassportElementTypeInternalPassport
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementTypeAddress(data json.RawMessage) (*PassportElementTypeAddress, error) {
+    var resp PassportElementTypeAddress
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementTypeUtilityBill(data json.RawMessage) (*PassportElementTypeUtilityBill, error) {
+    var resp PassportElementTypeUtilityBill
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementTypeBankStatement(data json.RawMessage) (*PassportElementTypeBankStatement, error) {
+    var resp PassportElementTypeBankStatement
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementTypeRentalAgreement(data json.RawMessage) (*PassportElementTypeRentalAgreement, error) {
+    var resp PassportElementTypeRentalAgreement
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementTypePassportRegistration(data json.RawMessage) (*PassportElementTypePassportRegistration, error) {
+    var resp PassportElementTypePassportRegistration
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementTypeTemporaryRegistration(data json.RawMessage) (*PassportElementTypeTemporaryRegistration, error) {
+    var resp PassportElementTypeTemporaryRegistration
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementTypePhoneNumber(data json.RawMessage) (*PassportElementTypePhoneNumber, error) {
+    var resp PassportElementTypePhoneNumber
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementTypeEmailAddress(data json.RawMessage) (*PassportElementTypeEmailAddress, error) {
+    var resp PassportElementTypeEmailAddress
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalDate(data json.RawMessage) (*Date, error) {
+    var resp Date
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPersonalDetails(data json.RawMessage) (*PersonalDetails, error) {
+    var resp PersonalDetails
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalIdentityDocument(data json.RawMessage) (*IdentityDocument, error) {
+    var resp IdentityDocument
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputIdentityDocument(data json.RawMessage) (*InputIdentityDocument, error) {
+    var resp InputIdentityDocument
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPersonalDocument(data json.RawMessage) (*PersonalDocument, error) {
+    var resp PersonalDocument
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPersonalDocument(data json.RawMessage) (*InputPersonalDocument, error) {
+    var resp InputPersonalDocument
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementPersonalDetails(data json.RawMessage) (*PassportElementPersonalDetails, error) {
+    var resp PassportElementPersonalDetails
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementPassport(data json.RawMessage) (*PassportElementPassport, error) {
+    var resp PassportElementPassport
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementDriverLicense(data json.RawMessage) (*PassportElementDriverLicense, error) {
+    var resp PassportElementDriverLicense
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementIdentityCard(data json.RawMessage) (*PassportElementIdentityCard, error) {
+    var resp PassportElementIdentityCard
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementInternalPassport(data json.RawMessage) (*PassportElementInternalPassport, error) {
+    var resp PassportElementInternalPassport
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementAddress(data json.RawMessage) (*PassportElementAddress, error) {
+    var resp PassportElementAddress
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementUtilityBill(data json.RawMessage) (*PassportElementUtilityBill, error) {
+    var resp PassportElementUtilityBill
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementBankStatement(data json.RawMessage) (*PassportElementBankStatement, error) {
+    var resp PassportElementBankStatement
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementRentalAgreement(data json.RawMessage) (*PassportElementRentalAgreement, error) {
+    var resp PassportElementRentalAgreement
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementPassportRegistration(data json.RawMessage) (*PassportElementPassportRegistration, error) {
+    var resp PassportElementPassportRegistration
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementTemporaryRegistration(data json.RawMessage) (*PassportElementTemporaryRegistration, error) {
+    var resp PassportElementTemporaryRegistration
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementPhoneNumber(data json.RawMessage) (*PassportElementPhoneNumber, error) {
+    var resp PassportElementPhoneNumber
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementEmailAddress(data json.RawMessage) (*PassportElementEmailAddress, error) {
+    var resp PassportElementEmailAddress
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementPersonalDetails(data json.RawMessage) (*InputPassportElementPersonalDetails, error) {
+    var resp InputPassportElementPersonalDetails
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementPassport(data json.RawMessage) (*InputPassportElementPassport, error) {
+    var resp InputPassportElementPassport
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementDriverLicense(data json.RawMessage) (*InputPassportElementDriverLicense, error) {
+    var resp InputPassportElementDriverLicense
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementIdentityCard(data json.RawMessage) (*InputPassportElementIdentityCard, error) {
+    var resp InputPassportElementIdentityCard
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementInternalPassport(data json.RawMessage) (*InputPassportElementInternalPassport, error) {
+    var resp InputPassportElementInternalPassport
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementAddress(data json.RawMessage) (*InputPassportElementAddress, error) {
+    var resp InputPassportElementAddress
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementUtilityBill(data json.RawMessage) (*InputPassportElementUtilityBill, error) {
+    var resp InputPassportElementUtilityBill
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementBankStatement(data json.RawMessage) (*InputPassportElementBankStatement, error) {
+    var resp InputPassportElementBankStatement
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementRentalAgreement(data json.RawMessage) (*InputPassportElementRentalAgreement, error) {
+    var resp InputPassportElementRentalAgreement
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementPassportRegistration(data json.RawMessage) (*InputPassportElementPassportRegistration, error) {
+    var resp InputPassportElementPassportRegistration
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementTemporaryRegistration(data json.RawMessage) (*InputPassportElementTemporaryRegistration, error) {
+    var resp InputPassportElementTemporaryRegistration
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementPhoneNumber(data json.RawMessage) (*InputPassportElementPhoneNumber, error) {
+    var resp InputPassportElementPhoneNumber
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementEmailAddress(data json.RawMessage) (*InputPassportElementEmailAddress, error) {
+    var resp InputPassportElementEmailAddress
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElements(data json.RawMessage) (*PassportElements, error) {
+    var resp PassportElements
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementErrorSourceUnspecified(data json.RawMessage) (*PassportElementErrorSourceUnspecified, error) {
+    var resp PassportElementErrorSourceUnspecified
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementErrorSourceDataField(data json.RawMessage) (*PassportElementErrorSourceDataField, error) {
+    var resp PassportElementErrorSourceDataField
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementErrorSourceFrontSide(data json.RawMessage) (*PassportElementErrorSourceFrontSide, error) {
+    var resp PassportElementErrorSourceFrontSide
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementErrorSourceReverseSide(data json.RawMessage) (*PassportElementErrorSourceReverseSide, error) {
+    var resp PassportElementErrorSourceReverseSide
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementErrorSourceSelfie(data json.RawMessage) (*PassportElementErrorSourceSelfie, error) {
+    var resp PassportElementErrorSourceSelfie
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementErrorSourceTranslationFile(data json.RawMessage) (*PassportElementErrorSourceTranslationFile, error) {
+    var resp PassportElementErrorSourceTranslationFile
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementErrorSourceTranslationFiles(data json.RawMessage) (*PassportElementErrorSourceTranslationFiles, error) {
+    var resp PassportElementErrorSourceTranslationFiles
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementErrorSourceFile(data json.RawMessage) (*PassportElementErrorSourceFile, error) {
+    var resp PassportElementErrorSourceFile
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementErrorSourceFiles(data json.RawMessage) (*PassportElementErrorSourceFiles, error) {
+    var resp PassportElementErrorSourceFiles
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportElementError(data json.RawMessage) (*PassportElementError, error) {
+    var resp PassportElementError
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportSuitableElement(data json.RawMessage) (*PassportSuitableElement, error) {
+    var resp PassportSuitableElement
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportRequiredElement(data json.RawMessage) (*PassportRequiredElement, error) {
+    var resp PassportRequiredElement
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalPassportAuthorizationForm(data json.RawMessage) (*PassportAuthorizationForm, error) {
+    var resp PassportAuthorizationForm
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalEncryptedCredentials(data json.RawMessage) (*EncryptedCredentials, error) {
+    var resp EncryptedCredentials
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalEncryptedPassportElement(data json.RawMessage) (*EncryptedPassportElement, error) {
+    var resp EncryptedPassportElement
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementErrorSourceUnspecified(data json.RawMessage) (*InputPassportElementErrorSourceUnspecified, error) {
+    var resp InputPassportElementErrorSourceUnspecified
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementErrorSourceDataField(data json.RawMessage) (*InputPassportElementErrorSourceDataField, error) {
+    var resp InputPassportElementErrorSourceDataField
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementErrorSourceFrontSide(data json.RawMessage) (*InputPassportElementErrorSourceFrontSide, error) {
+    var resp InputPassportElementErrorSourceFrontSide
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementErrorSourceReverseSide(data json.RawMessage) (*InputPassportElementErrorSourceReverseSide, error) {
+    var resp InputPassportElementErrorSourceReverseSide
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementErrorSourceSelfie(data json.RawMessage) (*InputPassportElementErrorSourceSelfie, error) {
+    var resp InputPassportElementErrorSourceSelfie
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementErrorSourceTranslationFile(data json.RawMessage) (*InputPassportElementErrorSourceTranslationFile, error) {
+    var resp InputPassportElementErrorSourceTranslationFile
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementErrorSourceTranslationFiles(data json.RawMessage) (*InputPassportElementErrorSourceTranslationFiles, error) {
+    var resp InputPassportElementErrorSourceTranslationFiles
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementErrorSourceFile(data json.RawMessage) (*InputPassportElementErrorSourceFile, error) {
+    var resp InputPassportElementErrorSourceFile
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementErrorSourceFiles(data json.RawMessage) (*InputPassportElementErrorSourceFiles, error) {
+    var resp InputPassportElementErrorSourceFiles
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalInputPassportElementError(data json.RawMessage) (*InputPassportElementError, error) {
+    var resp InputPassportElementError
 
     err := json.Unmarshal(data, &resp)
 
@@ -3454,6 +4393,22 @@ func UnmarshalMessageContactRegistered(data json.RawMessage) (*MessageContactReg
 
 func UnmarshalMessageWebsiteConnected(data json.RawMessage) (*MessageWebsiteConnected, error) {
     var resp MessageWebsiteConnected
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalMessagePassportDataSent(data json.RawMessage) (*MessagePassportDataSent, error) {
+    var resp MessagePassportDataSent
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalMessagePassportDataReceived(data json.RawMessage) (*MessagePassportDataReceived, error) {
+    var resp MessagePassportDataReceived
 
     err := json.Unmarshal(data, &resp)
 
@@ -4580,6 +5535,62 @@ func UnmarshalChatEventLogFilters(data json.RawMessage) (*ChatEventLogFilters, e
     return &resp, err
 }
 
+func UnmarshalLanguagePackStringValueOrdinary(data json.RawMessage) (*LanguagePackStringValueOrdinary, error) {
+    var resp LanguagePackStringValueOrdinary
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalLanguagePackStringValuePluralized(data json.RawMessage) (*LanguagePackStringValuePluralized, error) {
+    var resp LanguagePackStringValuePluralized
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalLanguagePackStringValueDeleted(data json.RawMessage) (*LanguagePackStringValueDeleted, error) {
+    var resp LanguagePackStringValueDeleted
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalLanguagePackString(data json.RawMessage) (*LanguagePackString, error) {
+    var resp LanguagePackString
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalLanguagePackStrings(data json.RawMessage) (*LanguagePackStrings, error) {
+    var resp LanguagePackStrings
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalLanguagePackInfo(data json.RawMessage) (*LanguagePackInfo, error) {
+    var resp LanguagePackInfo
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalLocalizationTargetInfo(data json.RawMessage) (*LocalizationTargetInfo, error) {
+    var resp LocalizationTargetInfo
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
 func UnmarshalDeviceTokenGoogleCloudMessaging(data json.RawMessage) (*DeviceTokenGoogleCloudMessaging, error) {
     var resp DeviceTokenGoogleCloudMessaging
 
@@ -4916,6 +5927,14 @@ func UnmarshalChatReportReasonPornography(data json.RawMessage) (*ChatReportReas
     return &resp, err
 }
 
+func UnmarshalChatReportReasonCopyright(data json.RawMessage) (*ChatReportReasonCopyright, error) {
+    var resp ChatReportReasonCopyright
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
 func UnmarshalChatReportReasonCustom(data json.RawMessage) (*ChatReportReasonCustom, error) {
     var resp ChatReportReasonCustom
 
@@ -4988,6 +6007,22 @@ func UnmarshalFileTypeSecret(data json.RawMessage) (*FileTypeSecret, error) {
     return &resp, err
 }
 
+func UnmarshalFileTypeSecretThumbnail(data json.RawMessage) (*FileTypeSecretThumbnail, error) {
+    var resp FileTypeSecretThumbnail
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalFileTypeSecure(data json.RawMessage) (*FileTypeSecure, error) {
+    var resp FileTypeSecure
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
 func UnmarshalFileTypeSticker(data json.RawMessage) (*FileTypeSticker, error) {
     var resp FileTypeSticker
 
@@ -5038,14 +6073,6 @@ func UnmarshalFileTypeVoiceNote(data json.RawMessage) (*FileTypeVoiceNote, error
 
 func UnmarshalFileTypeWallpaper(data json.RawMessage) (*FileTypeWallpaper, error) {
     var resp FileTypeWallpaper
-
-    err := json.Unmarshal(data, &resp)
-
-    return &resp, err
-}
-
-func UnmarshalFileTypeSecretThumbnail(data json.RawMessage) (*FileTypeSecretThumbnail, error) {
-    var resp FileTypeSecretThumbnail
 
     err := json.Unmarshal(data, &resp)
 
@@ -5300,6 +6327,22 @@ func UnmarshalText(data json.RawMessage) (*Text, error) {
     return &resp, err
 }
 
+func UnmarshalSeconds(data json.RawMessage) (*Seconds, error) {
+    var resp Seconds
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalDeepLinkInfo(data json.RawMessage) (*DeepLinkInfo, error) {
+    var resp DeepLinkInfo
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
 func UnmarshalTextParseModeMarkdown(data json.RawMessage) (*TextParseModeMarkdown, error) {
     var resp TextParseModeMarkdown
 
@@ -5316,16 +6359,40 @@ func UnmarshalTextParseModeHTML(data json.RawMessage) (*TextParseModeHTML, error
     return &resp, err
 }
 
-func UnmarshalProxyEmpty(data json.RawMessage) (*ProxyEmpty, error) {
-    var resp ProxyEmpty
+func UnmarshalProxyTypeSocks5(data json.RawMessage) (*ProxyTypeSocks5, error) {
+    var resp ProxyTypeSocks5
 
     err := json.Unmarshal(data, &resp)
 
     return &resp, err
 }
 
-func UnmarshalProxySocks5(data json.RawMessage) (*ProxySocks5, error) {
-    var resp ProxySocks5
+func UnmarshalProxyTypeHttp(data json.RawMessage) (*ProxyTypeHttp, error) {
+    var resp ProxyTypeHttp
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalProxyTypeMtproto(data json.RawMessage) (*ProxyTypeMtproto, error) {
+    var resp ProxyTypeMtproto
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalProxy(data json.RawMessage) (*Proxy, error) {
+    var resp Proxy
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalProxies(data json.RawMessage) (*Proxies, error) {
+    var resp Proxies
 
     err := json.Unmarshal(data, &resp)
 
@@ -5468,6 +6535,30 @@ func UnmarshalUpdateChatIsPinned(data json.RawMessage) (*UpdateChatIsPinned, err
     return &resp, err
 }
 
+func UnmarshalUpdateChatIsMarkedAsUnread(data json.RawMessage) (*UpdateChatIsMarkedAsUnread, error) {
+    var resp UpdateChatIsMarkedAsUnread
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalUpdateChatIsSponsored(data json.RawMessage) (*UpdateChatIsSponsored, error) {
+    var resp UpdateChatIsSponsored
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalUpdateChatDefaultDisableNotification(data json.RawMessage) (*UpdateChatDefaultDisableNotification, error) {
+    var resp UpdateChatDefaultDisableNotification
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
 func UnmarshalUpdateChatReadInbox(data json.RawMessage) (*UpdateChatReadInbox, error) {
     var resp UpdateChatReadInbox
 
@@ -5492,8 +6583,16 @@ func UnmarshalUpdateChatUnreadMentionCount(data json.RawMessage) (*UpdateChatUnr
     return &resp, err
 }
 
-func UnmarshalUpdateNotificationSettings(data json.RawMessage) (*UpdateNotificationSettings, error) {
-    var resp UpdateNotificationSettings
+func UnmarshalUpdateChatNotificationSettings(data json.RawMessage) (*UpdateChatNotificationSettings, error) {
+    var resp UpdateChatNotificationSettings
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalUpdateScopeNotificationSettings(data json.RawMessage) (*UpdateScopeNotificationSettings, error) {
+    var resp UpdateScopeNotificationSettings
 
     err := json.Unmarshal(data, &resp)
 
@@ -5652,6 +6751,14 @@ func UnmarshalUpdateUnreadMessageCount(data json.RawMessage) (*UpdateUnreadMessa
     return &resp, err
 }
 
+func UnmarshalUpdateUnreadChatCount(data json.RawMessage) (*UpdateUnreadChatCount, error) {
+    var resp UpdateUnreadChatCount
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
 func UnmarshalUpdateOption(data json.RawMessage) (*UpdateOption, error) {
     var resp UpdateOption
 
@@ -5700,8 +6807,24 @@ func UnmarshalUpdateSavedAnimations(data json.RawMessage) (*UpdateSavedAnimation
     return &resp, err
 }
 
+func UnmarshalUpdateLanguagePackStrings(data json.RawMessage) (*UpdateLanguagePackStrings, error) {
+    var resp UpdateLanguagePackStrings
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
 func UnmarshalUpdateConnectionState(data json.RawMessage) (*UpdateConnectionState, error) {
     var resp UpdateConnectionState
+
+    err := json.Unmarshal(data, &resp)
+
+    return &resp, err
+}
+
+func UnmarshalUpdateTermsOfService(data json.RawMessage) (*UpdateTermsOfService, error) {
+    var resp UpdateTermsOfService
 
     err := json.Unmarshal(data, &resp)
 
@@ -5861,6 +6984,21 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
     case TypeAuthenticationCodeInfo:
         return UnmarshalAuthenticationCodeInfo(data)
 
+    case TypeEmailAddressAuthenticationCodeInfo:
+        return UnmarshalEmailAddressAuthenticationCodeInfo(data)
+
+    case TypeTextEntity:
+        return UnmarshalTextEntity(data)
+
+    case TypeTextEntities:
+        return UnmarshalTextEntities(data)
+
+    case TypeFormattedText:
+        return UnmarshalFormattedText(data)
+
+    case TypeTermsOfService:
+        return UnmarshalTermsOfService(data)
+
     case TypeAuthorizationStateWaitTdlibParameters:
         return UnmarshalAuthorizationStateWaitTdlibParameters(data)
 
@@ -5890,9 +7028,6 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 
     case TypePasswordState:
         return UnmarshalPasswordState(data)
-
-    case TypePasswordRecoveryInfo:
-        return UnmarshalPasswordRecoveryInfo(data)
 
     case TypeRecoveryEmailAddress:
         return UnmarshalRecoveryEmailAddress(data)
@@ -5938,15 +7073,6 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 
     case TypeMaskPosition:
         return UnmarshalMaskPosition(data)
-
-    case TypeTextEntity:
-        return UnmarshalTextEntity(data)
-
-    case TypeTextEntities:
-        return UnmarshalTextEntities(data)
-
-    case TypeFormattedText:
-        return UnmarshalFormattedText(data)
 
     case TypeAnimation:
         return UnmarshalAnimation(data)
@@ -6053,6 +7179,21 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
     case TypeChatMembers:
         return UnmarshalChatMembers(data)
 
+    case TypeChatMembersFilterAdministrators:
+        return UnmarshalChatMembersFilterAdministrators(data)
+
+    case TypeChatMembersFilterMembers:
+        return UnmarshalChatMembersFilterMembers(data)
+
+    case TypeChatMembersFilterRestricted:
+        return UnmarshalChatMembersFilterRestricted(data)
+
+    case TypeChatMembersFilterBanned:
+        return UnmarshalChatMembersFilterBanned(data)
+
+    case TypeChatMembersFilterBots:
+        return UnmarshalChatMembersFilterBots(data)
+
     case TypeSupergroupMembersFilterRecent:
         return UnmarshalSupergroupMembersFilterRecent(data)
 
@@ -6116,20 +7257,17 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
     case TypeFoundMessages:
         return UnmarshalFoundMessages(data)
 
-    case TypeNotificationSettingsScopeChat:
-        return UnmarshalNotificationSettingsScopeChat(data)
-
     case TypeNotificationSettingsScopePrivateChats:
         return UnmarshalNotificationSettingsScopePrivateChats(data)
 
-    case TypeNotificationSettingsScopeBasicGroupChats:
-        return UnmarshalNotificationSettingsScopeBasicGroupChats(data)
+    case TypeNotificationSettingsScopeGroupChats:
+        return UnmarshalNotificationSettingsScopeGroupChats(data)
 
-    case TypeNotificationSettingsScopeAllChats:
-        return UnmarshalNotificationSettingsScopeAllChats(data)
+    case TypeChatNotificationSettings:
+        return UnmarshalChatNotificationSettings(data)
 
-    case TypeNotificationSettings:
-        return UnmarshalNotificationSettings(data)
+    case TypeScopeNotificationSettings:
+        return UnmarshalScopeNotificationSettings(data)
 
     case TypeDraftMessage:
         return UnmarshalDraftMessage(data)
@@ -6302,14 +7440,14 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
     case TypeWebPage:
         return UnmarshalWebPage(data)
 
+    case TypeAddress:
+        return UnmarshalAddress(data)
+
     case TypeLabeledPricePart:
         return UnmarshalLabeledPricePart(data)
 
     case TypeInvoice:
         return UnmarshalInvoice(data)
-
-    case TypeShippingAddress:
-        return UnmarshalShippingAddress(data)
 
     case TypeOrderInfo:
         return UnmarshalOrderInfo(data)
@@ -6346,6 +7484,222 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 
     case TypePaymentReceipt:
         return UnmarshalPaymentReceipt(data)
+
+    case TypeDatedFile:
+        return UnmarshalDatedFile(data)
+
+    case TypePassportElementTypePersonalDetails:
+        return UnmarshalPassportElementTypePersonalDetails(data)
+
+    case TypePassportElementTypePassport:
+        return UnmarshalPassportElementTypePassport(data)
+
+    case TypePassportElementTypeDriverLicense:
+        return UnmarshalPassportElementTypeDriverLicense(data)
+
+    case TypePassportElementTypeIdentityCard:
+        return UnmarshalPassportElementTypeIdentityCard(data)
+
+    case TypePassportElementTypeInternalPassport:
+        return UnmarshalPassportElementTypeInternalPassport(data)
+
+    case TypePassportElementTypeAddress:
+        return UnmarshalPassportElementTypeAddress(data)
+
+    case TypePassportElementTypeUtilityBill:
+        return UnmarshalPassportElementTypeUtilityBill(data)
+
+    case TypePassportElementTypeBankStatement:
+        return UnmarshalPassportElementTypeBankStatement(data)
+
+    case TypePassportElementTypeRentalAgreement:
+        return UnmarshalPassportElementTypeRentalAgreement(data)
+
+    case TypePassportElementTypePassportRegistration:
+        return UnmarshalPassportElementTypePassportRegistration(data)
+
+    case TypePassportElementTypeTemporaryRegistration:
+        return UnmarshalPassportElementTypeTemporaryRegistration(data)
+
+    case TypePassportElementTypePhoneNumber:
+        return UnmarshalPassportElementTypePhoneNumber(data)
+
+    case TypePassportElementTypeEmailAddress:
+        return UnmarshalPassportElementTypeEmailAddress(data)
+
+    case TypeDate:
+        return UnmarshalDate(data)
+
+    case TypePersonalDetails:
+        return UnmarshalPersonalDetails(data)
+
+    case TypeIdentityDocument:
+        return UnmarshalIdentityDocument(data)
+
+    case TypeInputIdentityDocument:
+        return UnmarshalInputIdentityDocument(data)
+
+    case TypePersonalDocument:
+        return UnmarshalPersonalDocument(data)
+
+    case TypeInputPersonalDocument:
+        return UnmarshalInputPersonalDocument(data)
+
+    case TypePassportElementPersonalDetails:
+        return UnmarshalPassportElementPersonalDetails(data)
+
+    case TypePassportElementPassport:
+        return UnmarshalPassportElementPassport(data)
+
+    case TypePassportElementDriverLicense:
+        return UnmarshalPassportElementDriverLicense(data)
+
+    case TypePassportElementIdentityCard:
+        return UnmarshalPassportElementIdentityCard(data)
+
+    case TypePassportElementInternalPassport:
+        return UnmarshalPassportElementInternalPassport(data)
+
+    case TypePassportElementAddress:
+        return UnmarshalPassportElementAddress(data)
+
+    case TypePassportElementUtilityBill:
+        return UnmarshalPassportElementUtilityBill(data)
+
+    case TypePassportElementBankStatement:
+        return UnmarshalPassportElementBankStatement(data)
+
+    case TypePassportElementRentalAgreement:
+        return UnmarshalPassportElementRentalAgreement(data)
+
+    case TypePassportElementPassportRegistration:
+        return UnmarshalPassportElementPassportRegistration(data)
+
+    case TypePassportElementTemporaryRegistration:
+        return UnmarshalPassportElementTemporaryRegistration(data)
+
+    case TypePassportElementPhoneNumber:
+        return UnmarshalPassportElementPhoneNumber(data)
+
+    case TypePassportElementEmailAddress:
+        return UnmarshalPassportElementEmailAddress(data)
+
+    case TypeInputPassportElementPersonalDetails:
+        return UnmarshalInputPassportElementPersonalDetails(data)
+
+    case TypeInputPassportElementPassport:
+        return UnmarshalInputPassportElementPassport(data)
+
+    case TypeInputPassportElementDriverLicense:
+        return UnmarshalInputPassportElementDriverLicense(data)
+
+    case TypeInputPassportElementIdentityCard:
+        return UnmarshalInputPassportElementIdentityCard(data)
+
+    case TypeInputPassportElementInternalPassport:
+        return UnmarshalInputPassportElementInternalPassport(data)
+
+    case TypeInputPassportElementAddress:
+        return UnmarshalInputPassportElementAddress(data)
+
+    case TypeInputPassportElementUtilityBill:
+        return UnmarshalInputPassportElementUtilityBill(data)
+
+    case TypeInputPassportElementBankStatement:
+        return UnmarshalInputPassportElementBankStatement(data)
+
+    case TypeInputPassportElementRentalAgreement:
+        return UnmarshalInputPassportElementRentalAgreement(data)
+
+    case TypeInputPassportElementPassportRegistration:
+        return UnmarshalInputPassportElementPassportRegistration(data)
+
+    case TypeInputPassportElementTemporaryRegistration:
+        return UnmarshalInputPassportElementTemporaryRegistration(data)
+
+    case TypeInputPassportElementPhoneNumber:
+        return UnmarshalInputPassportElementPhoneNumber(data)
+
+    case TypeInputPassportElementEmailAddress:
+        return UnmarshalInputPassportElementEmailAddress(data)
+
+    case TypePassportElements:
+        return UnmarshalPassportElements(data)
+
+    case TypePassportElementErrorSourceUnspecified:
+        return UnmarshalPassportElementErrorSourceUnspecified(data)
+
+    case TypePassportElementErrorSourceDataField:
+        return UnmarshalPassportElementErrorSourceDataField(data)
+
+    case TypePassportElementErrorSourceFrontSide:
+        return UnmarshalPassportElementErrorSourceFrontSide(data)
+
+    case TypePassportElementErrorSourceReverseSide:
+        return UnmarshalPassportElementErrorSourceReverseSide(data)
+
+    case TypePassportElementErrorSourceSelfie:
+        return UnmarshalPassportElementErrorSourceSelfie(data)
+
+    case TypePassportElementErrorSourceTranslationFile:
+        return UnmarshalPassportElementErrorSourceTranslationFile(data)
+
+    case TypePassportElementErrorSourceTranslationFiles:
+        return UnmarshalPassportElementErrorSourceTranslationFiles(data)
+
+    case TypePassportElementErrorSourceFile:
+        return UnmarshalPassportElementErrorSourceFile(data)
+
+    case TypePassportElementErrorSourceFiles:
+        return UnmarshalPassportElementErrorSourceFiles(data)
+
+    case TypePassportElementError:
+        return UnmarshalPassportElementError(data)
+
+    case TypePassportSuitableElement:
+        return UnmarshalPassportSuitableElement(data)
+
+    case TypePassportRequiredElement:
+        return UnmarshalPassportRequiredElement(data)
+
+    case TypePassportAuthorizationForm:
+        return UnmarshalPassportAuthorizationForm(data)
+
+    case TypeEncryptedCredentials:
+        return UnmarshalEncryptedCredentials(data)
+
+    case TypeEncryptedPassportElement:
+        return UnmarshalEncryptedPassportElement(data)
+
+    case TypeInputPassportElementErrorSourceUnspecified:
+        return UnmarshalInputPassportElementErrorSourceUnspecified(data)
+
+    case TypeInputPassportElementErrorSourceDataField:
+        return UnmarshalInputPassportElementErrorSourceDataField(data)
+
+    case TypeInputPassportElementErrorSourceFrontSide:
+        return UnmarshalInputPassportElementErrorSourceFrontSide(data)
+
+    case TypeInputPassportElementErrorSourceReverseSide:
+        return UnmarshalInputPassportElementErrorSourceReverseSide(data)
+
+    case TypeInputPassportElementErrorSourceSelfie:
+        return UnmarshalInputPassportElementErrorSourceSelfie(data)
+
+    case TypeInputPassportElementErrorSourceTranslationFile:
+        return UnmarshalInputPassportElementErrorSourceTranslationFile(data)
+
+    case TypeInputPassportElementErrorSourceTranslationFiles:
+        return UnmarshalInputPassportElementErrorSourceTranslationFiles(data)
+
+    case TypeInputPassportElementErrorSourceFile:
+        return UnmarshalInputPassportElementErrorSourceFile(data)
+
+    case TypeInputPassportElementErrorSourceFiles:
+        return UnmarshalInputPassportElementErrorSourceFiles(data)
+
+    case TypeInputPassportElementError:
+        return UnmarshalInputPassportElementError(data)
 
     case TypeMessageText:
         return UnmarshalMessageText(data)
@@ -6454,6 +7808,12 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 
     case TypeMessageWebsiteConnected:
         return UnmarshalMessageWebsiteConnected(data)
+
+    case TypeMessagePassportDataSent:
+        return UnmarshalMessagePassportDataSent(data)
+
+    case TypeMessagePassportDataReceived:
+        return UnmarshalMessagePassportDataReceived(data)
 
     case TypeMessageUnsupported:
         return UnmarshalMessageUnsupported(data)
@@ -6875,6 +8235,27 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
     case TypeChatEventLogFilters:
         return UnmarshalChatEventLogFilters(data)
 
+    case TypeLanguagePackStringValueOrdinary:
+        return UnmarshalLanguagePackStringValueOrdinary(data)
+
+    case TypeLanguagePackStringValuePluralized:
+        return UnmarshalLanguagePackStringValuePluralized(data)
+
+    case TypeLanguagePackStringValueDeleted:
+        return UnmarshalLanguagePackStringValueDeleted(data)
+
+    case TypeLanguagePackString:
+        return UnmarshalLanguagePackString(data)
+
+    case TypeLanguagePackStrings:
+        return UnmarshalLanguagePackStrings(data)
+
+    case TypeLanguagePackInfo:
+        return UnmarshalLanguagePackInfo(data)
+
+    case TypeLocalizationTargetInfo:
+        return UnmarshalLocalizationTargetInfo(data)
+
     case TypeDeviceTokenGoogleCloudMessaging:
         return UnmarshalDeviceTokenGoogleCloudMessaging(data)
 
@@ -7001,6 +8382,9 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
     case TypeChatReportReasonPornography:
         return UnmarshalChatReportReasonPornography(data)
 
+    case TypeChatReportReasonCopyright:
+        return UnmarshalChatReportReasonCopyright(data)
+
     case TypeChatReportReasonCustom:
         return UnmarshalChatReportReasonCustom(data)
 
@@ -7028,6 +8412,12 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
     case TypeFileTypeSecret:
         return UnmarshalFileTypeSecret(data)
 
+    case TypeFileTypeSecretThumbnail:
+        return UnmarshalFileTypeSecretThumbnail(data)
+
+    case TypeFileTypeSecure:
+        return UnmarshalFileTypeSecure(data)
+
     case TypeFileTypeSticker:
         return UnmarshalFileTypeSticker(data)
 
@@ -7048,9 +8438,6 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 
     case TypeFileTypeWallpaper:
         return UnmarshalFileTypeWallpaper(data)
-
-    case TypeFileTypeSecretThumbnail:
-        return UnmarshalFileTypeSecretThumbnail(data)
 
     case TypeStorageStatisticsByFileType:
         return UnmarshalStorageStatisticsByFileType(data)
@@ -7145,17 +8532,32 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
     case TypeText:
         return UnmarshalText(data)
 
+    case TypeSeconds:
+        return UnmarshalSeconds(data)
+
+    case TypeDeepLinkInfo:
+        return UnmarshalDeepLinkInfo(data)
+
     case TypeTextParseModeMarkdown:
         return UnmarshalTextParseModeMarkdown(data)
 
     case TypeTextParseModeHTML:
         return UnmarshalTextParseModeHTML(data)
 
-    case TypeProxyEmpty:
-        return UnmarshalProxyEmpty(data)
+    case TypeProxyTypeSocks5:
+        return UnmarshalProxyTypeSocks5(data)
 
-    case TypeProxySocks5:
-        return UnmarshalProxySocks5(data)
+    case TypeProxyTypeHttp:
+        return UnmarshalProxyTypeHttp(data)
+
+    case TypeProxyTypeMtproto:
+        return UnmarshalProxyTypeMtproto(data)
+
+    case TypeProxy:
+        return UnmarshalProxy(data)
+
+    case TypeProxies:
+        return UnmarshalProxies(data)
 
     case TypeInputSticker:
         return UnmarshalInputSticker(data)
@@ -7208,6 +8610,15 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
     case TypeUpdateChatIsPinned:
         return UnmarshalUpdateChatIsPinned(data)
 
+    case TypeUpdateChatIsMarkedAsUnread:
+        return UnmarshalUpdateChatIsMarkedAsUnread(data)
+
+    case TypeUpdateChatIsSponsored:
+        return UnmarshalUpdateChatIsSponsored(data)
+
+    case TypeUpdateChatDefaultDisableNotification:
+        return UnmarshalUpdateChatDefaultDisableNotification(data)
+
     case TypeUpdateChatReadInbox:
         return UnmarshalUpdateChatReadInbox(data)
 
@@ -7217,8 +8628,11 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
     case TypeUpdateChatUnreadMentionCount:
         return UnmarshalUpdateChatUnreadMentionCount(data)
 
-    case TypeUpdateNotificationSettings:
-        return UnmarshalUpdateNotificationSettings(data)
+    case TypeUpdateChatNotificationSettings:
+        return UnmarshalUpdateChatNotificationSettings(data)
+
+    case TypeUpdateScopeNotificationSettings:
+        return UnmarshalUpdateScopeNotificationSettings(data)
 
     case TypeUpdateChatReplyMarkup:
         return UnmarshalUpdateChatReplyMarkup(data)
@@ -7277,6 +8691,9 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
     case TypeUpdateUnreadMessageCount:
         return UnmarshalUpdateUnreadMessageCount(data)
 
+    case TypeUpdateUnreadChatCount:
+        return UnmarshalUpdateUnreadChatCount(data)
+
     case TypeUpdateOption:
         return UnmarshalUpdateOption(data)
 
@@ -7295,8 +8712,14 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
     case TypeUpdateSavedAnimations:
         return UnmarshalUpdateSavedAnimations(data)
 
+    case TypeUpdateLanguagePackStrings:
+        return UnmarshalUpdateLanguagePackStrings(data)
+
     case TypeUpdateConnectionState:
         return UnmarshalUpdateConnectionState(data)
+
+    case TypeUpdateTermsOfService:
+        return UnmarshalUpdateTermsOfService(data)
 
     case TypeUpdateNewInlineQuery:
         return UnmarshalUpdateNewInlineQuery(data)

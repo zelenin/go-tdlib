@@ -1,6 +1,6 @@
 # go-tdlib
 
-Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) with full support of TDLib v1.2.0
+Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) with full support of TDLib v1.3.0
 
 ## TDLib installation
 
@@ -20,6 +20,7 @@ apt-get install -y tdlib-dev
 ```bash
 apt-get update -y
 apt-get install -y \
+    bc \
     build-essential \
     ca-certificates \
     ccache \
@@ -29,12 +30,12 @@ apt-get install -y \
     libssl-dev \
     libreadline-dev \
     zlib1g-dev
-git clone --depth 1 -b "v1.2.0" "https://github.com/tdlib/td.git" ./tdlib-src
+git clone --depth 1 -b "v1.3.0" "https://github.com/tdlib/td.git" ./tdlib-src
 mkdir ./tdlib-src/build
 cd ./tdlib-src/build
-cmake -j$(getconf _NPROCESSORS_ONLN) -DCMAKE_BUILD_TYPE=Release ..
-cmake -j$(getconf _NPROCESSORS_ONLN) --build .
-make -j$(getconf _NPROCESSORS_ONLN) install
+cmake -j$(echo 'scale=0; ('$(getconf _NPROCESSORS_ONLN)'+1)*3/4' | bc) -DCMAKE_BUILD_TYPE=Release ..
+cmake -j$(echo 'scale=0; ('$(getconf _NPROCESSORS_ONLN)'+1)*3/4' | bc) --build .
+make -j$(echo 'scale=0; ('$(getconf _NPROCESSORS_ONLN)'+1)*3/4' | bc) install
 rm -rf ./../../tdlib-src
 ```
 

@@ -441,7 +441,7 @@ func (client *Client) SetRecoveryEmailAddress(password string, newRecoveryEmailA
 }
 
 // Requests to send a password recovery code to an email address that was previously set up
-func (client *Client) RequestPasswordRecovery() (*PasswordRecoveryInfo, error) {
+func (client *Client) RequestPasswordRecovery() (*EmailAddressAuthenticationCodeInfo, error) {
     result, err := client.Send(Request{
         meta: meta{
             Type: "requestPasswordRecovery",
@@ -456,7 +456,7 @@ func (client *Client) RequestPasswordRecovery() (*PasswordRecoveryInfo, error) {
         return nil, buildResponseError(result.Data)
     }
 
-    return UnmarshalPasswordRecoveryInfo(result.Data)
+    return UnmarshalEmailAddressAuthenticationCodeInfo(result.Data)
 }
 
 // Recovers the password using a recovery code sent to an email address that was previously set up
@@ -1230,7 +1230,7 @@ func (client *Client) GetGroupsInCommon(userId int32, offsetChatId int64, limit 
 // Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id). For optimal performance the number of returned messages is chosen by the library. This is an offline request if only_local is true
 //
 // @param chatId Chat identifier
-// @param fromMessageId Identifier of the message starting from which history must be fetched; use 0 to get results from the beginning (i.e., from oldest to newest)
+// @param fromMessageId Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
 // @param offset Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
 // @param limit The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
 // @param onlyLocal If true, returns only messages that are available locally without sending network requests
@@ -1288,7 +1288,7 @@ func (client *Client) DeleteChatHistory(chatId int64, removeFromChatList bool) (
 // @param chatId Identifier of the chat in which to search messages
 // @param query Query to search for
 // @param senderUserId If not 0, only messages sent by the specified user will be returned. Not supported in secret chats
-// @param fromMessageId Identifier of the message starting from which history must be fetched; use 0 to get results from the beginning
+// @param fromMessageId Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
 // @param offset Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
 // @param limit The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
 // @param filter Filter for message content in the search results
@@ -1321,7 +1321,7 @@ func (client *Client) SearchChatMessages(chatId int64, query string, senderUserI
 // Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)). For optimal performance the number of returned messages is chosen by the library
 //
 // @param query Query to search for
-// @param offsetDate The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the beginning
+// @param offsetDate The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the last message
 // @param offsetChatId The chat identifier of the last found message, or 0 for the first request
 // @param offsetMessageId The message identifier of the last found message, or 0 for the first request
 // @param limit The maximum number of messages to be returned, up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
@@ -1353,7 +1353,7 @@ func (client *Client) SearchMessages(query string, offsetDate int32, offsetChatI
 //
 // @param chatId Identifier of the chat in which to search. Specify 0 to search in all secret chats
 // @param query Query to search for. If empty, searchChatMessages should be used instead
-// @param fromSearchId The identifier from the result of a previous request, use 0 to get results from the beginning
+// @param fromSearchId The identifier from the result of a previous request, use 0 to get results from the last message
 // @param limit Maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
 // @param filter A filter for the content of messages in the search results
 func (client *Client) SearchSecretMessages(chatId int64, query string, fromSearchId JsonInt64, limit int32, filter SearchMessagesFilter) (*FoundMessages, error) {
@@ -1382,7 +1382,7 @@ func (client *Client) SearchSecretMessages(chatId int64, query string, fromSearc
 
 // Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance the number of returned messages is chosen by the library
 //
-// @param fromMessageId Identifier of the message from which to search; use 0 to get results from the beginning
+// @param fromMessageId Identifier of the message from which to search; use 0 to get results from the last message
 // @param limit The maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
 // @param onlyMissed If true, returns only messages with missed calls
 func (client *Client) SearchCallMessages(fromMessageId int64, limit int32, onlyMissed bool) (*Messages, error) {
@@ -1474,6 +1474,33 @@ func (client *Client) GetChatMessageByDate(chatId int64, date int32) (*Message, 
     }
 
     return UnmarshalMessage(result.Data)
+}
+
+// Returns approximate number of messages of the specified type in the chat
+//
+// @param chatId Identifier of the chat in which to count messages
+// @param filter Filter for message content; searchMessagesFilterEmpty is unsupported in this function
+// @param returnLocal If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown
+func (client *Client) GetChatMessageCount(chatId int64, filter SearchMessagesFilter, returnLocal bool) (*Count, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "getChatMessageCount",
+        },
+        Data: map[string]interface{}{
+            "chat_id": chatId,
+            "filter": filter,
+            "return_local": returnLocal,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalCount(result.Data)
 }
 
 // Returns a public HTTPS link to a message. Available only for messages in public supergroups and channels
@@ -1708,6 +1735,37 @@ func (client *Client) SendChatScreenshotTakenNotification(chatId int64) (*Ok, er
     return UnmarshalOk(result.Data)
 }
 
+// Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message
+//
+// @param chatId Target chat
+// @param senderUserId Identifier of the user who will be shown as the sender of the message; may be 0 for channel posts
+// @param replyToMessageId Identifier of the message to reply to or 0
+// @param disableNotification Pass true to disable notification for the message
+// @param inputMessageContent The content of the message to be added
+func (client *Client) AddLocalMessage(chatId int64, senderUserId int32, replyToMessageId int64, disableNotification bool, inputMessageContent InputMessageContent) (*Message, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "addLocalMessage",
+        },
+        Data: map[string]interface{}{
+            "chat_id": chatId,
+            "sender_user_id": senderUserId,
+            "reply_to_message_id": replyToMessageId,
+            "disable_notification": disableNotification,
+            "input_message_content": inputMessageContent,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalMessage(result.Data)
+}
+
 // Deletes messages
 //
 // @param chatId Chat identifier
@@ -1760,7 +1818,7 @@ func (client *Client) DeleteChatMessagesFromUser(chatId int64, userId int32) (*O
     return UnmarshalOk(result.Data)
 }
 
-// Edits the text of a message (or a text of a game message). Non-bot users can edit messages for a limited period of time. Returns the edited message after the edit is completed on the server side
+// Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
 //
 // @param chatId The chat the message belongs to
 // @param messageId Identifier of the message
@@ -1789,11 +1847,11 @@ func (client *Client) EditMessageText(chatId int64, messageId int64, replyMarkup
     return UnmarshalMessage(result.Data)
 }
 
-// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed server-side
+// Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
 //
 // @param chatId The chat the message belongs to
 // @param messageId Identifier of the message
-// @param replyMarkup Tew message reply markup; for bots only
+// @param replyMarkup The new message reply markup; for bots only
 // @param location New location content of the message; may be null. Pass null to stop sharing the live location
 func (client *Client) EditMessageLiveLocation(chatId int64, messageId int64, replyMarkup ReplyMarkup, location *Location) (*Message, error) {
     result, err := client.Send(Request{
@@ -1818,12 +1876,41 @@ func (client *Client) EditMessageLiveLocation(chatId int64, messageId int64, rep
     return UnmarshalMessage(result.Data)
 }
 
-// Edits the message content caption. Non-bots can edit messages for a limited period of time. Returns the edited message after the edit is completed server-side
+// Edits the content of a message with an animation, an audio, a document, a photo or a video. The media in the message can't be replaced if the message was set to self-destruct. Media can't be replaced by self-destructing media. Media in an album can be edited only to contain a photo or a video. Returns the edited message after the edit is completed on the server side
 //
 // @param chatId The chat the message belongs to
 // @param messageId Identifier of the message
 // @param replyMarkup The new message reply markup; for bots only
-// @param caption New message content caption; 0-200 characters
+// @param inputMessageContent New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
+func (client *Client) EditMessageMedia(chatId int64, messageId int64, replyMarkup ReplyMarkup, inputMessageContent InputMessageContent) (*Message, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "editMessageMedia",
+        },
+        Data: map[string]interface{}{
+            "chat_id": chatId,
+            "message_id": messageId,
+            "reply_markup": replyMarkup,
+            "input_message_content": inputMessageContent,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalMessage(result.Data)
+}
+
+// Edits the message content caption. Returns the edited message after the edit is completed on the server side
+//
+// @param chatId The chat the message belongs to
+// @param messageId Identifier of the message
+// @param replyMarkup The new message reply markup; for bots only
+// @param caption New message content caption; 0-GetOption("message_caption_length_max") characters
 func (client *Client) EditMessageCaption(chatId int64, messageId int64, replyMarkup ReplyMarkup, caption *FormattedText) (*Message, error) {
     result, err := client.Send(Request{
         meta: meta{
@@ -1847,11 +1934,11 @@ func (client *Client) EditMessageCaption(chatId int64, messageId int64, replyMar
     return UnmarshalMessage(result.Data)
 }
 
-// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed server-side
+// Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
 //
 // @param chatId The chat the message belongs to
 // @param messageId Identifier of the message
-// @param replyMarkup New message reply markup
+// @param replyMarkup The new message reply markup
 func (client *Client) EditMessageReplyMarkup(chatId int64, messageId int64, replyMarkup ReplyMarkup) (*Message, error) {
     result, err := client.Send(Request{
         meta: meta{
@@ -1877,7 +1964,7 @@ func (client *Client) EditMessageReplyMarkup(chatId int64, messageId int64, repl
 // Edits the text of an inline text or game message sent via a bot; for bots only
 //
 // @param inlineMessageId Inline message identifier
-// @param replyMarkup New message reply markup
+// @param replyMarkup The new message reply markup
 // @param inputMessageContent New text content of the message. Should be of type InputMessageText
 func (client *Client) EditInlineMessageText(inlineMessageId string, replyMarkup ReplyMarkup, inputMessageContent InputMessageContent) (*Ok, error) {
     result, err := client.Send(Request{
@@ -1904,7 +1991,7 @@ func (client *Client) EditInlineMessageText(inlineMessageId string, replyMarkup 
 // Edits the content of a live location in an inline message sent via a bot; for bots only
 //
 // @param inlineMessageId Inline message identifier
-// @param replyMarkup New message reply markup
+// @param replyMarkup The new message reply markup
 // @param location New location content of the message; may be null. Pass null to stop sharing the live location
 func (client *Client) EditInlineMessageLiveLocation(inlineMessageId string, replyMarkup ReplyMarkup, location *Location) (*Ok, error) {
     result, err := client.Send(Request{
@@ -1928,11 +2015,38 @@ func (client *Client) EditInlineMessageLiveLocation(inlineMessageId string, repl
     return UnmarshalOk(result.Data)
 }
 
+// Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only
+//
+// @param inlineMessageId Inline message identifier
+// @param replyMarkup The new message reply markup; for bots only
+// @param inputMessageContent New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
+func (client *Client) EditInlineMessageMedia(inlineMessageId string, replyMarkup ReplyMarkup, inputMessageContent InputMessageContent) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "editInlineMessageMedia",
+        },
+        Data: map[string]interface{}{
+            "inline_message_id": inlineMessageId,
+            "reply_markup": replyMarkup,
+            "input_message_content": inputMessageContent,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
 // Edits the caption of an inline message sent via a bot; for bots only
 //
 // @param inlineMessageId Inline message identifier
-// @param replyMarkup New message reply markup
-// @param caption New message content caption; 0-200 characters
+// @param replyMarkup The new message reply markup
+// @param caption New message content caption; 0-GetOption("message_caption_length_max") characters
 func (client *Client) EditInlineMessageCaption(inlineMessageId string, replyMarkup ReplyMarkup, caption *FormattedText) (*Ok, error) {
     result, err := client.Send(Request{
         meta: meta{
@@ -1958,7 +2072,7 @@ func (client *Client) EditInlineMessageCaption(inlineMessageId string, replyMark
 // Edits the reply markup of an inline message sent via a bot; for bots only
 //
 // @param inlineMessageId Inline message identifier
-// @param replyMarkup New message reply markup
+// @param replyMarkup The new message reply markup
 func (client *Client) EditInlineMessageReplyMarkup(inlineMessageId string, replyMarkup ReplyMarkup) (*Ok, error) {
     result, err := client.Send(Request{
         meta: meta{
@@ -2072,6 +2186,70 @@ func (client *Client) GetFileExtension(mimeType string) (*Text, error) {
     }
 
     return UnmarshalText(result.Data)
+}
+
+// Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. This is an offline method. Can be called before authorization. Can be called synchronously
+//
+// @param fileName File name or path to the file
+func (client *Client) CleanFileName(fileName string) (*Text, error) {
+    result, err := client.jsonClient.Execute(Request{
+        meta: meta{
+            Type: "cleanFileName",
+        },
+        Data: map[string]interface{}{
+            "file_name": fileName,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalText(result.Data)
+}
+
+// Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. This is an offline method. Can be called before authorization. Can be called synchronously
+//
+// @param languagePackDatabasePath Path to the language pack database in which strings are stored
+// @param localizationTarget Localization target to which the language pack belongs
+// @param languagePackId Language pack identifier
+// @param key Language pack key of the string to be returned
+func (client *Client) GetLanguagePackString(languagePackDatabasePath string, localizationTarget string, languagePackId string, key string) (LanguagePackStringValue, error) {
+    result, err := client.jsonClient.Execute(Request{
+        meta: meta{
+            Type: "getLanguagePackString",
+        },
+        Data: map[string]interface{}{
+            "language_pack_database_path": languagePackDatabasePath,
+            "localization_target": localizationTarget,
+            "language_pack_id": languagePackId,
+            "key": key,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    switch result.Type {
+    case TypeLanguagePackStringValueOrdinary:
+        return UnmarshalLanguagePackStringValueOrdinary(result.Data)
+
+    case TypeLanguagePackStringValuePluralized:
+        return UnmarshalLanguagePackStringValuePluralized(result.Data)
+
+    case TypeLanguagePackStringValueDeleted:
+        return UnmarshalLanguagePackStringValueDeleted(result.Data)
+
+    default:
+        return nil, errors.New("invalid type")
+   }
 }
 
 // Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires
@@ -2808,6 +2986,31 @@ func (client *Client) SetChatDraftMessage(chatId int64, draftMessage *DraftMessa
     return UnmarshalOk(result.Data)
 }
 
+// Changes the notification settings of a chat
+//
+// @param chatId Chat identifier
+// @param notificationSettings New notification settings for the chat
+func (client *Client) SetChatNotificationSettings(chatId int64, notificationSettings *ChatNotificationSettings) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "setChatNotificationSettings",
+        },
+        Data: map[string]interface{}{
+            "chat_id": chatId,
+            "notification_settings": notificationSettings,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
 // Changes the pinned state of a chat. You can pin up to GetOption("pinned_chat_count_max") non-secret chats and the same number of secret chats
 //
 // @param chatId Chat identifier
@@ -2833,6 +3036,56 @@ func (client *Client) ToggleChatIsPinned(chatId int64, isPinned bool) (*Ok, erro
     return UnmarshalOk(result.Data)
 }
 
+// Changes the marked as unread state of a chat
+//
+// @param chatId Chat identifier
+// @param isMarkedAsUnread New value of is_marked_as_unread
+func (client *Client) ToggleChatIsMarkedAsUnread(chatId int64, isMarkedAsUnread bool) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "toggleChatIsMarkedAsUnread",
+        },
+        Data: map[string]interface{}{
+            "chat_id": chatId,
+            "is_marked_as_unread": isMarkedAsUnread,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
+// Changes the value of the default disable_notification parameter, used when a message is sent to a chat
+//
+// @param chatId Chat identifier
+// @param defaultDisableNotification New value of default_disable_notification
+func (client *Client) ToggleChatDefaultDisableNotification(chatId int64, defaultDisableNotification bool) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "toggleChatDefaultDisableNotification",
+        },
+        Data: map[string]interface{}{
+            "chat_id": chatId,
+            "default_disable_notification": defaultDisableNotification,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
 // Changes client data associated with a chat
 //
 // @param chatId Chat identifier
@@ -2845,6 +3098,52 @@ func (client *Client) SetChatClientData(chatId int64, clientData string) (*Ok, e
         Data: map[string]interface{}{
             "chat_id": chatId,
             "client_data": clientData,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
+// Adds current user as a new member to a chat. Private and secret chats can't be joined using this method
+//
+// @param chatId Chat identifier
+func (client *Client) JoinChat(chatId int64) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "joinChat",
+        },
+        Data: map[string]interface{}{
+            "chat_id": chatId,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
+// Removes current user from chat members. Private and secret chats can't be left using this method
+//
+// @param chatId Chat identifier
+func (client *Client) LeaveChat(chatId int64) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "leaveChat",
+        },
+        Data: map[string]interface{}{
+            "chat_id": chatId,
         },
     })
     if err != nil {
@@ -2967,7 +3266,8 @@ func (client *Client) GetChatMember(chatId int64, userId int32) (*ChatMember, er
 // @param chatId Chat identifier
 // @param query Query to search for
 // @param limit The maximum number of users to be returned
-func (client *Client) SearchChatMembers(chatId int64, query string, limit int32) (*ChatMembers, error) {
+// @param filter The type of users to return. By default, chatMembersFilterMembers
+func (client *Client) SearchChatMembers(chatId int64, query string, limit int32, filter ChatMembersFilter) (*ChatMembers, error) {
     result, err := client.Send(Request{
         meta: meta{
             Type: "searchChatMembers",
@@ -2976,6 +3276,7 @@ func (client *Client) SearchChatMembers(chatId int64, query string, limit int32)
             "chat_id": chatId,
             "query": query,
             "limit": limit,
+            "filter": filter,
         },
     })
     if err != nil {
@@ -3010,6 +3311,96 @@ func (client *Client) GetChatAdministrators(chatId int64) (*Users, error) {
     }
 
     return UnmarshalUsers(result.Data)
+}
+
+// Clears draft messages in all chats
+//
+// @param excludeSecretChats If true, local draft messages in secret chats will not be cleared
+func (client *Client) ClearAllDraftMessages(excludeSecretChats bool) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "clearAllDraftMessages",
+        },
+        Data: map[string]interface{}{
+            "exclude_secret_chats": excludeSecretChats,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
+// Returns the notification settings for chats of a given type
+//
+// @param scope Types of chats for which to return the notification settings information
+func (client *Client) GetScopeNotificationSettings(scope NotificationSettingsScope) (*ScopeNotificationSettings, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "getScopeNotificationSettings",
+        },
+        Data: map[string]interface{}{
+            "scope": scope,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalScopeNotificationSettings(result.Data)
+}
+
+// Changes notification settings for chats of a given type
+//
+// @param scope Types of chats for which to change the notification settings
+// @param notificationSettings The new notification settings for the given scope
+func (client *Client) SetScopeNotificationSettings(scope NotificationSettingsScope, notificationSettings *ScopeNotificationSettings) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "setScopeNotificationSettings",
+        },
+        Data: map[string]interface{}{
+            "scope": scope,
+            "notification_settings": notificationSettings,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
+// Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to "default" and message previews are shown
+func (client *Client) ResetAllNotificationSettings() (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "resetAllNotificationSettings",
+        },
+        Data: map[string]interface{}{},
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
 }
 
 // Changes the order of pinned chats
@@ -3483,7 +3874,7 @@ func (client *Client) GetBlockedUsers(offset int32, limit int32) (*Users, error)
 
 // Adds new contacts or edits existing contacts; contacts' user identifiers are ignored
 //
-// @param contacts The list of contacts to import or edit
+// @param contacts The list of contacts to import or edit, contact's vCard are ignored and are not imported
 func (client *Client) ImportContacts(contacts []*Contact) (*ImportedContacts, error) {
     result, err := client.Send(Request{
         meta: meta{
@@ -3502,6 +3893,25 @@ func (client *Client) ImportContacts(contacts []*Contact) (*ImportedContacts, er
     }
 
     return UnmarshalImportedContacts(result.Data)
+}
+
+// Returns all user contacts
+func (client *Client) GetContacts() (*Users, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "getContacts",
+        },
+        Data: map[string]interface{}{},
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalUsers(result.Data)
 }
 
 // Searches for the specified query in the first names, last names and usernames of the known user contacts
@@ -3573,7 +3983,7 @@ func (client *Client) GetImportedContactCount() (*Count, error) {
 
 // Changes imported contacts using the list of current user contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts. Query result depends on the result of the previous query, so only one query is possible at the same time
 //
-// @param contacts The new list of contacts
+// @param contacts The new list of contacts, contact's vCard are ignored and are not imported
 func (client *Client) ChangeImportedContacts(contacts []*Contact) (*ImportedContacts, error) {
     result, err := client.Send(Request{
         meta: meta{
@@ -3594,7 +4004,7 @@ func (client *Client) ChangeImportedContacts(contacts []*Contact) (*ImportedCont
     return UnmarshalImportedContacts(result.Data)
 }
 
-// Clears all imported contacts
+// Clears all imported contacts, contacts list remains unchanged
 func (client *Client) ClearImportedContacts() (*Ok, error) {
     result, err := client.Send(Request{
         meta: meta{
@@ -4317,73 +4727,6 @@ func (client *Client) GetWebPageInstantView(url string, forceFull bool) (*WebPag
     return UnmarshalWebPageInstantView(result.Data)
 }
 
-// Returns the notification settings for a given scope
-//
-// @param scope Scope for which to return the notification settings information
-func (client *Client) GetNotificationSettings(scope NotificationSettingsScope) (*NotificationSettings, error) {
-    result, err := client.Send(Request{
-        meta: meta{
-            Type: "getNotificationSettings",
-        },
-        Data: map[string]interface{}{
-            "scope": scope,
-        },
-    })
-    if err != nil {
-        return nil, err
-    }
-
-    if result.Type == "error" {
-        return nil, buildResponseError(result.Data)
-    }
-
-    return UnmarshalNotificationSettings(result.Data)
-}
-
-// Changes notification settings for a given scope
-//
-// @param scope Scope for which to change the notification settings
-// @param notificationSettings The new notification settings for the given scope
-func (client *Client) SetNotificationSettings(scope NotificationSettingsScope, notificationSettings *NotificationSettings) (*Ok, error) {
-    result, err := client.Send(Request{
-        meta: meta{
-            Type: "setNotificationSettings",
-        },
-        Data: map[string]interface{}{
-            "scope": scope,
-            "notification_settings": notificationSettings,
-        },
-    })
-    if err != nil {
-        return nil, err
-    }
-
-    if result.Type == "error" {
-        return nil, buildResponseError(result.Data)
-    }
-
-    return UnmarshalOk(result.Data)
-}
-
-// Resets all notification settings to their default values. By default, the only muted chats are supergroups, the sound is set to "default" and message previews are shown
-func (client *Client) ResetAllNotificationSettings() (*Ok, error) {
-    result, err := client.Send(Request{
-        meta: meta{
-            Type: "resetAllNotificationSettings",
-        },
-        Data: map[string]interface{}{},
-    })
-    if err != nil {
-        return nil, err
-    }
-
-    if result.Type == "error" {
-        return nil, buildResponseError(result.Data)
-    }
-
-    return UnmarshalOk(result.Data)
-}
-
 // Uploads a new profile photo for the current user. If something changes, updateUser will be sent
 //
 // @param photo Profile photo to set. inputFileId and inputFileRemote may still be unsupported
@@ -4917,7 +5260,7 @@ func (client *Client) UnpinSupergroupMessage(supergroupId int32) (*Ok, error) {
     return UnmarshalOk(result.Data)
 }
 
-// Reports some messages from a user in a supergroup as spam
+// Reports some messages from a user in a supergroup as spam; requires administrator rights in the supergroup
 //
 // @param supergroupId Supergroup identifier
 // @param userId User identifier
@@ -5257,6 +5600,150 @@ func (client *Client) GetWallpapers() (*Wallpapers, error) {
     return UnmarshalWallpapers(result.Data)
 }
 
+// Returns information about the current localization target. This is an offline request if only_local is true
+//
+// @param onlyLocal If true, returns only locally available information without sending network requests
+func (client *Client) GetLocalizationTargetInfo(onlyLocal bool) (*LocalizationTargetInfo, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "getLocalizationTargetInfo",
+        },
+        Data: map[string]interface{}{
+            "only_local": onlyLocal,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalLocalizationTargetInfo(result.Data)
+}
+
+// Returns strings from a language pack in the current localization target by their keys
+//
+// @param languagePackId Language pack identifier of the strings to be returned
+// @param keys Language pack keys of the strings to be returned; leave empty to request all available strings
+func (client *Client) GetLanguagePackStrings(languagePackId string, keys []string) (*LanguagePackStrings, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "getLanguagePackStrings",
+        },
+        Data: map[string]interface{}{
+            "language_pack_id": languagePackId,
+            "keys": keys,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalLanguagePackStrings(result.Data)
+}
+
+// Adds or changes a custom language pack to the current localization target
+//
+// @param info Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters
+// @param strings Strings of the new language pack
+func (client *Client) SetCustomLanguagePack(info *LanguagePackInfo, strings []*LanguagePackString) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "setCustomLanguagePack",
+        },
+        Data: map[string]interface{}{
+            "info": info,
+            "strings": strings,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
+// Edits information about a custom language pack in the current localization target
+//
+// @param info New information about the custom language pack
+func (client *Client) EditCustomLanguagePackInfo(info *LanguagePackInfo) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "editCustomLanguagePackInfo",
+        },
+        Data: map[string]interface{}{
+            "info": info,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
+// Adds, edits or deletes a string in a custom language pack
+//
+// @param languagePackId Identifier of a previously added custom language pack in the current localization target
+// @param newString New language pack string
+func (client *Client) SetCustomLanguagePackString(languagePackId string, newString *LanguagePackString) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "setCustomLanguagePackString",
+        },
+        Data: map[string]interface{}{
+            "language_pack_id": languagePackId,
+            "new_string": newString,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
+// Deletes all information about a language pack in the current localization target. The language pack that is currently in use can't be deleted
+//
+// @param languagePackId Identifier of the language pack to delete
+func (client *Client) DeleteLanguagePack(languagePackId string) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "deleteLanguagePack",
+        },
+        Data: map[string]interface{}{
+            "language_pack_id": languagePackId,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
 // Registers the currently used device for receiving push notifications
 //
 // @param deviceToken Device token
@@ -5458,7 +5945,7 @@ func (client *Client) GetAccountTtl() (*AccountTtl, error) {
     return UnmarshalAccountTtl(result.Data)
 }
 
-// Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account
+// Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword
 //
 // @param reason The reason why the account was deleted; optional
 func (client *Client) DeleteAccount(reason string) (*Ok, error) {
@@ -5723,6 +6210,495 @@ func (client *Client) ResetNetworkStatistics() (*Ok, error) {
     return UnmarshalOk(result.Data)
 }
 
+// Returns one of the available Telegram Passport elements
+//
+// @param typeParam Telegram Passport element type
+// @param password Password of the current user
+func (client *Client) GetPassportElement(typeParam PassportElementType, password string) (PassportElement, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "getPassportElement",
+        },
+        Data: map[string]interface{}{
+            "type": typeParam,
+            "password": password,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    switch result.Type {
+    case TypePassportElementPersonalDetails:
+        return UnmarshalPassportElementPersonalDetails(result.Data)
+
+    case TypePassportElementPassport:
+        return UnmarshalPassportElementPassport(result.Data)
+
+    case TypePassportElementDriverLicense:
+        return UnmarshalPassportElementDriverLicense(result.Data)
+
+    case TypePassportElementIdentityCard:
+        return UnmarshalPassportElementIdentityCard(result.Data)
+
+    case TypePassportElementInternalPassport:
+        return UnmarshalPassportElementInternalPassport(result.Data)
+
+    case TypePassportElementAddress:
+        return UnmarshalPassportElementAddress(result.Data)
+
+    case TypePassportElementUtilityBill:
+        return UnmarshalPassportElementUtilityBill(result.Data)
+
+    case TypePassportElementBankStatement:
+        return UnmarshalPassportElementBankStatement(result.Data)
+
+    case TypePassportElementRentalAgreement:
+        return UnmarshalPassportElementRentalAgreement(result.Data)
+
+    case TypePassportElementPassportRegistration:
+        return UnmarshalPassportElementPassportRegistration(result.Data)
+
+    case TypePassportElementTemporaryRegistration:
+        return UnmarshalPassportElementTemporaryRegistration(result.Data)
+
+    case TypePassportElementPhoneNumber:
+        return UnmarshalPassportElementPhoneNumber(result.Data)
+
+    case TypePassportElementEmailAddress:
+        return UnmarshalPassportElementEmailAddress(result.Data)
+
+    default:
+        return nil, errors.New("invalid type")
+   }
+}
+
+// Returns all available Telegram Passport elements
+//
+// @param password Password of the current user
+func (client *Client) GetAllPassportElements(password string) (*PassportElements, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "getAllPassportElements",
+        },
+        Data: map[string]interface{}{
+            "password": password,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalPassportElements(result.Data)
+}
+
+// Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first
+//
+// @param element Input Telegram Passport element
+// @param password Password of the current user
+func (client *Client) SetPassportElement(element InputPassportElement, password string) (PassportElement, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "setPassportElement",
+        },
+        Data: map[string]interface{}{
+            "element": element,
+            "password": password,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    switch result.Type {
+    case TypePassportElementPersonalDetails:
+        return UnmarshalPassportElementPersonalDetails(result.Data)
+
+    case TypePassportElementPassport:
+        return UnmarshalPassportElementPassport(result.Data)
+
+    case TypePassportElementDriverLicense:
+        return UnmarshalPassportElementDriverLicense(result.Data)
+
+    case TypePassportElementIdentityCard:
+        return UnmarshalPassportElementIdentityCard(result.Data)
+
+    case TypePassportElementInternalPassport:
+        return UnmarshalPassportElementInternalPassport(result.Data)
+
+    case TypePassportElementAddress:
+        return UnmarshalPassportElementAddress(result.Data)
+
+    case TypePassportElementUtilityBill:
+        return UnmarshalPassportElementUtilityBill(result.Data)
+
+    case TypePassportElementBankStatement:
+        return UnmarshalPassportElementBankStatement(result.Data)
+
+    case TypePassportElementRentalAgreement:
+        return UnmarshalPassportElementRentalAgreement(result.Data)
+
+    case TypePassportElementPassportRegistration:
+        return UnmarshalPassportElementPassportRegistration(result.Data)
+
+    case TypePassportElementTemporaryRegistration:
+        return UnmarshalPassportElementTemporaryRegistration(result.Data)
+
+    case TypePassportElementPhoneNumber:
+        return UnmarshalPassportElementPhoneNumber(result.Data)
+
+    case TypePassportElementEmailAddress:
+        return UnmarshalPassportElementEmailAddress(result.Data)
+
+    default:
+        return nil, errors.New("invalid type")
+   }
+}
+
+// Deletes a Telegram Passport element
+//
+// @param typeParam Element type
+func (client *Client) DeletePassportElement(typeParam PassportElementType) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "deletePassportElement",
+        },
+        Data: map[string]interface{}{
+            "type": typeParam,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
+// Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed
+//
+// @param userId User identifier
+// @param errors The errors
+func (client *Client) SetPassportElementErrors(userId int32, errors []*InputPassportElementError) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "setPassportElementErrors",
+        },
+        Data: map[string]interface{}{
+            "user_id": userId,
+            "errors": errors,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
+// Returns an IETF language tag of the language preferred in the country, which should be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown
+//
+// @param countryCode A two-letter ISO 3166-1 alpha-2 country code
+func (client *Client) GetPreferredCountryLanguage(countryCode string) (*Text, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "getPreferredCountryLanguage",
+        },
+        Data: map[string]interface{}{
+            "country_code": countryCode,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalText(result.Data)
+}
+
+// Sends a code to verify a phone number to be added to a user's Telegram Passport
+//
+// @param phoneNumber The phone number of the user, in international format
+// @param allowFlashCall Pass true if the authentication code may be sent via flash call to the specified phone number
+// @param isCurrentPhoneNumber Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false
+func (client *Client) SendPhoneNumberVerificationCode(phoneNumber string, allowFlashCall bool, isCurrentPhoneNumber bool) (*AuthenticationCodeInfo, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "sendPhoneNumberVerificationCode",
+        },
+        Data: map[string]interface{}{
+            "phone_number": phoneNumber,
+            "allow_flash_call": allowFlashCall,
+            "is_current_phone_number": isCurrentPhoneNumber,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalAuthenticationCodeInfo(result.Data)
+}
+
+// Re-sends the code to verify a phone number to be added to a user's Telegram Passport
+func (client *Client) ResendPhoneNumberVerificationCode() (*AuthenticationCodeInfo, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "resendPhoneNumberVerificationCode",
+        },
+        Data: map[string]interface{}{},
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalAuthenticationCodeInfo(result.Data)
+}
+
+// Checks the phone number verification code for Telegram Passport
+//
+// @param code Verification code
+func (client *Client) CheckPhoneNumberVerificationCode(code string) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "checkPhoneNumberVerificationCode",
+        },
+        Data: map[string]interface{}{
+            "code": code,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
+// Sends a code to verify an email address to be added to a user's Telegram Passport
+//
+// @param emailAddress Email address
+func (client *Client) SendEmailAddressVerificationCode(emailAddress string) (*EmailAddressAuthenticationCodeInfo, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "sendEmailAddressVerificationCode",
+        },
+        Data: map[string]interface{}{
+            "email_address": emailAddress,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalEmailAddressAuthenticationCodeInfo(result.Data)
+}
+
+// Re-sends the code to verify an email address to be added to a user's Telegram Passport
+func (client *Client) ResendEmailAddressVerificationCode() (*EmailAddressAuthenticationCodeInfo, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "resendEmailAddressVerificationCode",
+        },
+        Data: map[string]interface{}{},
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalEmailAddressAuthenticationCodeInfo(result.Data)
+}
+
+// Checks the email address verification code for Telegram Passport
+//
+// @param code Verification code
+func (client *Client) CheckEmailAddressVerificationCode(code string) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "checkEmailAddressVerificationCode",
+        },
+        Data: map[string]interface{}{
+            "code": code,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
+// Returns a Telegram Passport authorization form for sharing data with a service
+//
+// @param botUserId User identifier of the service's bot
+// @param scope Telegram Passport element types requested by the service
+// @param publicKey Service's public_key
+// @param nonce Authorization form nonce provided by the service
+// @param password Password of the current user
+func (client *Client) GetPassportAuthorizationForm(botUserId int32, scope string, publicKey string, nonce string, password string) (*PassportAuthorizationForm, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "getPassportAuthorizationForm",
+        },
+        Data: map[string]interface{}{
+            "bot_user_id": botUserId,
+            "scope": scope,
+            "public_key": publicKey,
+            "nonce": nonce,
+            "password": password,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalPassportAuthorizationForm(result.Data)
+}
+
+// Sends a Telegram Passport authorization form, effectively sharing data with the service
+//
+// @param autorizationFormId Authorization form identifier
+// @param types Types of Telegram Passport elements chosen by user to complete the authorization form
+func (client *Client) SendPassportAuthorizationForm(autorizationFormId int32, types []PassportElementType) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "sendPassportAuthorizationForm",
+        },
+        Data: map[string]interface{}{
+            "autorization_form_id": autorizationFormId,
+            "types": types,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
+// Sends phone number confirmation code. Should be called when user presses "https://t.me/confirmphone?phone=*******&hash=**********" or "tg://confirmphone?phone=*******&hash=**********" link
+//
+// @param hash Value of the "hash" parameter from the link
+// @param phoneNumber Value of the "phone" parameter from the link
+// @param allowFlashCall Pass true if the authentication code may be sent via flash call to the specified phone number
+// @param isCurrentPhoneNumber Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false
+func (client *Client) SendPhoneNumberConfirmationCode(hash string, phoneNumber string, allowFlashCall bool, isCurrentPhoneNumber bool) (*AuthenticationCodeInfo, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "sendPhoneNumberConfirmationCode",
+        },
+        Data: map[string]interface{}{
+            "hash": hash,
+            "phone_number": phoneNumber,
+            "allow_flash_call": allowFlashCall,
+            "is_current_phone_number": isCurrentPhoneNumber,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalAuthenticationCodeInfo(result.Data)
+}
+
+// Resends phone number confirmation code
+func (client *Client) ResendPhoneNumberConfirmationCode() (*AuthenticationCodeInfo, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "resendPhoneNumberConfirmationCode",
+        },
+        Data: map[string]interface{}{},
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalAuthenticationCodeInfo(result.Data)
+}
+
+// Checks phone number confirmation code
+//
+// @param code The phone number confirmation code
+func (client *Client) CheckPhoneNumberConfirmationCode(code string) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "checkPhoneNumberConfirmationCode",
+        },
+        Data: map[string]interface{}{
+            "code": code,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
 // Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only
 //
 // @param pendingUpdateCount The number of pending updates
@@ -5879,6 +6855,62 @@ func (client *Client) RemoveStickerFromSet(sticker InputFile) (*Ok, error) {
     return UnmarshalOk(result.Data)
 }
 
+// Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
+//
+// @param location Location of the map center
+// @param zoom Map zoom level; 13-20
+// @param width Map width in pixels before applying scale; 16-1024
+// @param height Map height in pixels before applying scale; 16-1024
+// @param scale Map scale; 1-3
+// @param chatId Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
+func (client *Client) GetMapThumbnailFile(location *Location, zoom int32, width int32, height int32, scale int32, chatId int64) (*File, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "getMapThumbnailFile",
+        },
+        Data: map[string]interface{}{
+            "location": location,
+            "zoom": zoom,
+            "width": width,
+            "height": height,
+            "scale": scale,
+            "chat_id": chatId,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalFile(result.Data)
+}
+
+// Accepts Telegram terms of services
+//
+// @param termsOfServiceId Terms of service identifier
+func (client *Client) AcceptTermsOfService(termsOfServiceId string) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "acceptTermsOfService",
+        },
+        Data: map[string]interface{}{
+            "terms_of_service_id": termsOfServiceId,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
 // Sends a custom request; for bots only
 //
 // @param method The method name
@@ -5929,7 +6961,7 @@ func (client *Client) AnswerCustomQuery(customQueryId JsonInt64, data string) (*
     return UnmarshalOk(result.Data)
 }
 
-// Succeeds after a specified amount of time has passed. Can be called before authorization
+// Succeeds after a specified amount of time has passed. Can be called before authorization. Can be called before initialization
 //
 // @param seconds Number of seconds before the function returns
 func (client *Client) SetAlarm(seconds float64) (*Ok, error) {
@@ -5990,13 +7022,17 @@ func (client *Client) GetInviteText() (*Text, error) {
     return UnmarshalText(result.Data)
 }
 
-// Returns the terms of service. Can be called before authorization
-func (client *Client) GetTermsOfService() (*Text, error) {
+// Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for unknown links. Can be called before authorization
+//
+// @param link The link
+func (client *Client) GetDeepLinkInfo(link string) (*DeepLinkInfo, error) {
     result, err := client.Send(Request{
         meta: meta{
-            Type: "getTermsOfService",
+            Type: "getDeepLinkInfo",
         },
-        Data: map[string]interface{}{},
+        Data: map[string]interface{}{
+            "link": link,
+        },
     })
     if err != nil {
         return nil, err
@@ -6006,19 +7042,79 @@ func (client *Client) GetTermsOfService() (*Text, error) {
         return nil, buildResponseError(result.Data)
     }
 
-    return UnmarshalText(result.Data)
+    return UnmarshalDeepLinkInfo(result.Data)
 }
 
-// Sets the proxy server for network requests. Can be called before authorization
+// Adds a proxy server for network requests. Can be called before authorization
 //
-// @param proxy Proxy server to use. Specify null to remove the proxy server
-func (client *Client) SetProxy(proxy Proxy) (*Ok, error) {
+// @param server Proxy server IP address
+// @param port Proxy server port
+// @param enable True, if the proxy should be enabled
+// @param typeParam Proxy type
+func (client *Client) AddProxy(server string, port int32, enable bool, typeParam ProxyType) (*Proxy, error) {
     result, err := client.Send(Request{
         meta: meta{
-            Type: "setProxy",
+            Type: "addProxy",
         },
         Data: map[string]interface{}{
-            "proxy": proxy,
+            "server": server,
+            "port": port,
+            "enable": enable,
+            "type": typeParam,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalProxy(result.Data)
+}
+
+// Edits an existing proxy server for network requests. Can be called before authorization
+//
+// @param proxyId Proxy identifier
+// @param server Proxy server IP address
+// @param port Proxy server port
+// @param enable True, if the proxy should be enabled
+// @param typeParam Proxy type
+func (client *Client) EditProxy(proxyId int32, server string, port int32, enable bool, typeParam ProxyType) (*Proxy, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "editProxy",
+        },
+        Data: map[string]interface{}{
+            "proxy_id": proxyId,
+            "server": server,
+            "port": port,
+            "enable": enable,
+            "type": typeParam,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalProxy(result.Data)
+}
+
+// Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization
+//
+// @param proxyId Proxy identifier
+func (client *Client) EnableProxy(proxyId int32) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "enableProxy",
+        },
+        Data: map[string]interface{}{
+            "proxy_id": proxyId,
         },
     })
     if err != nil {
@@ -6032,11 +7128,11 @@ func (client *Client) SetProxy(proxy Proxy) (*Ok, error) {
     return UnmarshalOk(result.Data)
 }
 
-// Returns the proxy that is currently set up. Can be called before authorization
-func (client *Client) GetProxy() (Proxy, error) {
+// Disables the currently enabled proxy. Can be called before authorization
+func (client *Client) DisableProxy() (*Ok, error) {
     result, err := client.Send(Request{
         meta: meta{
-            Type: "getProxy",
+            Type: "disableProxy",
         },
         Data: map[string]interface{}{},
     })
@@ -6048,16 +7144,95 @@ func (client *Client) GetProxy() (Proxy, error) {
         return nil, buildResponseError(result.Data)
     }
 
-    switch result.Type {
-    case TypeProxyEmpty:
-        return UnmarshalProxyEmpty(result.Data)
+    return UnmarshalOk(result.Data)
+}
 
-    case TypeProxySocks5:
-        return UnmarshalProxySocks5(result.Data)
+// Removes a proxy server. Can be called before authorization
+//
+// @param proxyId Proxy identifier
+func (client *Client) RemoveProxy(proxyId int32) (*Ok, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "removeProxy",
+        },
+        Data: map[string]interface{}{
+            "proxy_id": proxyId,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
 
-    default:
-        return nil, errors.New("invalid type")
-   }
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalOk(result.Data)
+}
+
+// Returns list of proxies that are currently set up. Can be called before authorization
+func (client *Client) GetProxies() (*Proxies, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "getProxies",
+        },
+        Data: map[string]interface{}{},
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalProxies(result.Data)
+}
+
+// Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
+//
+// @param proxyId Proxy identifier
+func (client *Client) GetProxyLink(proxyId int32) (*Text, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "getProxyLink",
+        },
+        Data: map[string]interface{}{
+            "proxy_id": proxyId,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalText(result.Data)
+}
+
+// Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
+//
+// @param proxyId Proxy identifier. Use 0 to ping a Telegram server without a proxy
+func (client *Client) PingProxy(proxyId int32) (*Seconds, error) {
+    result, err := client.Send(Request{
+        meta: meta{
+            Type: "pingProxy",
+        },
+        Data: map[string]interface{}{
+            "proxy_id": proxyId,
+        },
+    })
+    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+    return UnmarshalSeconds(result.Data)
 }
 
 // Does nothing; for testing only
@@ -6343,6 +7518,15 @@ func (client *Client) TestUseUpdate() (Update, error) {
     case TypeUpdateChatIsPinned:
         return UnmarshalUpdateChatIsPinned(result.Data)
 
+    case TypeUpdateChatIsMarkedAsUnread:
+        return UnmarshalUpdateChatIsMarkedAsUnread(result.Data)
+
+    case TypeUpdateChatIsSponsored:
+        return UnmarshalUpdateChatIsSponsored(result.Data)
+
+    case TypeUpdateChatDefaultDisableNotification:
+        return UnmarshalUpdateChatDefaultDisableNotification(result.Data)
+
     case TypeUpdateChatReadInbox:
         return UnmarshalUpdateChatReadInbox(result.Data)
 
@@ -6352,8 +7536,11 @@ func (client *Client) TestUseUpdate() (Update, error) {
     case TypeUpdateChatUnreadMentionCount:
         return UnmarshalUpdateChatUnreadMentionCount(result.Data)
 
-    case TypeUpdateNotificationSettings:
-        return UnmarshalUpdateNotificationSettings(result.Data)
+    case TypeUpdateChatNotificationSettings:
+        return UnmarshalUpdateChatNotificationSettings(result.Data)
+
+    case TypeUpdateScopeNotificationSettings:
+        return UnmarshalUpdateScopeNotificationSettings(result.Data)
 
     case TypeUpdateChatReplyMarkup:
         return UnmarshalUpdateChatReplyMarkup(result.Data)
@@ -6412,6 +7599,9 @@ func (client *Client) TestUseUpdate() (Update, error) {
     case TypeUpdateUnreadMessageCount:
         return UnmarshalUpdateUnreadMessageCount(result.Data)
 
+    case TypeUpdateUnreadChatCount:
+        return UnmarshalUpdateUnreadChatCount(result.Data)
+
     case TypeUpdateOption:
         return UnmarshalUpdateOption(result.Data)
 
@@ -6430,8 +7620,14 @@ func (client *Client) TestUseUpdate() (Update, error) {
     case TypeUpdateSavedAnimations:
         return UnmarshalUpdateSavedAnimations(result.Data)
 
+    case TypeUpdateLanguagePackStrings:
+        return UnmarshalUpdateLanguagePackStrings(result.Data)
+
     case TypeUpdateConnectionState:
         return UnmarshalUpdateConnectionState(result.Data)
+
+    case TypeUpdateTermsOfService:
+        return UnmarshalUpdateTermsOfService(result.Data)
 
     case TypeUpdateNewInlineQuery:
         return UnmarshalUpdateNewInlineQuery(result.Data)

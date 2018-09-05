@@ -59,6 +59,23 @@ authenticationCodeTypeFlashCall pattern:string = AuthenticationCodeType;
 //@description Information about the authentication code that was sent @phone_number A phone number that is being authenticated @type Describes the way the code was sent to the user @next_type Describes the way the next code will be sent to the user; may be null @timeout Timeout before the code should be re-sent, in seconds
 authenticationCodeInfo phone_number:string type:AuthenticationCodeType next_type:AuthenticationCodeType timeout:int32 = AuthenticationCodeInfo;
 
+//@description Information about the email address authentication code that was sent @email_address_pattern Pattern of the email address to which an authentication code was sent @length Length of the code; 0 if unknown
+emailAddressAuthenticationCodeInfo email_address_pattern:string length:int32 = EmailAddressAuthenticationCodeInfo;
+
+
+//@description Represents a part of the text that needs to be formatted in some unusual way @offset Offset of the entity in UTF-16 code points @length Length of the entity, in UTF-16 code points @type Type of the entity
+textEntity offset:int32 length:int32 type:TextEntityType = TextEntity;
+
+//@description Contains a list of text entities @entities List of text entities
+textEntities entities:vector<textEntity> = TextEntities;
+
+//@description A text with some entities @text The text @entities Entities contained in the text
+formattedText text:string entities:vector<textEntity> = FormattedText;
+
+
+//@description Contains Telegram terms of service @text Text of the terms of service @min_user_age Mininum age of a user to be able to accept the terms; 0 if any @show_popup True, if a blocking popup with terms of service must be shown to the user
+termsOfService text:formattedText min_user_age:int32 show_popup:Bool = TermsOfService;
+
 
 //@class AuthorizationState @description Represents the current authorization state of the client
 
@@ -71,8 +88,8 @@ authorizationStateWaitEncryptionKey is_encrypted:Bool = AuthorizationState;
 //@description TDLib needs the user's phone number to authorize
 authorizationStateWaitPhoneNumber = AuthorizationState;
 
-//@description TDLib needs the user's authentication code to finalize authorization @is_registered True, if the user is already registered @code_info Information about the authorization code that was sent
-authorizationStateWaitCode is_registered:Bool code_info:authenticationCodeInfo = AuthorizationState;
+//@description TDLib needs the user's authentication code to finalize authorization @is_registered True, if the user is already registered @terms_of_service Telegram terms of service, which should be accepted before user can continue registration; may be null @code_info Information about the authorization code that was sent
+authorizationStateWaitCode is_registered:Bool terms_of_service:termsOfService code_info:authenticationCodeInfo = AuthorizationState;
 
 //@description The user has been authorized, but needs to enter a password to start using the application @password_hint Hint for the password; can be empty @has_recovery_email_address True if a recovery email address has been set up
 //@recovery_email_address_pattern Pattern of the email address to which the recovery email was sent; empty until a recovery email has been sent
@@ -92,11 +109,8 @@ authorizationStateClosing = AuthorizationState;
 authorizationStateClosed = AuthorizationState;
 
 
-//@description Represents the current state of 2-step verification @has_password True if a 2-step verification password has been set up @password_hint Hint for the password; can be empty @has_recovery_email_address True if a recovery email has been set up @unconfirmed_recovery_email_address_pattern Pattern of the email address to which a confirmation email was sent
-passwordState has_password:Bool password_hint:string has_recovery_email_address:Bool unconfirmed_recovery_email_address_pattern:string = PasswordState;
-
-//@description Contains information available to the user after requesting password recovery @recovery_email_address_pattern Pattern of the email address to which a recovery email was sent
-passwordRecoveryInfo recovery_email_address_pattern:string = PasswordRecoveryInfo;
+//@description Represents the current state of 2-step verification @has_password True if a 2-step verification password is set @password_hint Hint for the password; can be empty @has_recovery_email_address True if a recovery email is set @has_passport_data True if some Telegram Passport elements were saved @unconfirmed_recovery_email_address_pattern Pattern of the email address to which the confirmation email was sent
+passwordState has_password:Bool password_hint:string has_recovery_email_address:Bool has_passport_data:Bool unconfirmed_recovery_email_address_pattern:string = PasswordState;
 
 //@description Contains information about the current recovery email address @recovery_email_address Recovery email address
 recoveryEmailAddress recovery_email_address:string = RecoveryEmailAddress;
@@ -117,7 +131,7 @@ temporaryPasswordState has_password:Bool valid_for:int32 = TemporaryPasswordStat
 localFile path:string can_be_downloaded:Bool can_be_deleted:Bool is_downloading_active:Bool is_downloading_completed:Bool downloaded_prefix_size:int32 downloaded_size:int32 = LocalFile;
 
 //@description Represents a remote file
-//@id Remote file identifier, may be empty. Can be used across application restarts or even from other devices for the current user. If the ID starts with "http://" or "https://", it represents the HTTP URL of the file. TDLib is currently unable to download files if only their URL is known.
+//@id Remote file identifier; may be empty. Can be used across application restarts or even from other devices for the current user. If the ID starts with "http://" or "https://", it represents the HTTP URL of the file. TDLib is currently unable to download files if only their URL is known.
 //-If downloadFile is called on such a file or if it is sent to a secret chat, TDLib starts a file generation process by sending updateFileGenerationStart to the client with the HTTP URL in the original_path and "#url#" as the conversion string. Clients should generate the file by downloading it to the specified location
 //@is_uploading_active True, if the file is currently being uploaded (or a remote copy is being generated by some other means)
 //@is_uploading_completed True, if a remote copy is fully available
@@ -144,7 +158,7 @@ inputFileRemote id:string = InputFile;
 //@description A file defined by a local path @path Local path to the file
 inputFileLocal path:string = InputFile;
 
-//@description A file generated by the client @original_path Local path to a file from which the file is generated, may be empty if there is no such file @conversion String specifying the conversion applied to the original file; should be persistent across application restarts @expected_size Expected size of the generated file; 0 if unknown
+//@description A file generated by the client @original_path Local path to a file from which the file is generated; may be empty if there is no such file @conversion String specifying the conversion applied to the original file; should be persistent across application restarts @expected_size Expected size of the generated file; 0 if unknown
 inputFileGenerated original_path:string conversion:string expected_size:int32 = InputFile;
 
 
@@ -171,16 +185,6 @@ maskPointChin = MaskPoint;
 //@y_shift Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. (For example, 1.0 will place the mask just below the default mask position)
 //@scale Mask scaling coefficient. (For example, 2.0 means a doubled size)
 maskPosition point:MaskPoint x_shift:double y_shift:double scale:double = MaskPosition;
-
-
-//@description Represents a part of the text that needs to be formatted in some unusual way @offset Offset of the entity in UTF-16 code points @length Length of the entity, in UTF-16 code points @type Type of the entity
-textEntity offset:int32 length:int32 type:TextEntityType = TextEntity;
-
-//@description Contains a list of text entities @entities List of text entities
-textEntities entities:vector<textEntity> = TextEntities;
-
-//@description A text with some entities @text The text @entities Entities contained in the text
-formattedText text:string entities:vector<textEntity> = FormattedText;
 
 
 //@description Describes an animation file. The animation must be encoded in GIF or MPEG4 format @duration Duration of the animation, in seconds; as defined by the sender @width Width of the animation @height Height of the animation
@@ -214,15 +218,15 @@ videoNote duration:int32 length:int32 thumbnail:photoSize video:file = VideoNote
 //@waveform A waveform representation of the voice note in 5-bit format @mime_type MIME type of the file; as defined by the sender @voice File containing the voice note
 voiceNote duration:int32 waveform:bytes mime_type:string voice:file = VoiceNote;
 
-//@description Describes a user contact @phone_number Phone number of the user @first_name First name of the user; 1-255 characters in length @last_name Last name of the user @user_id Identifier of the user, if known; otherwise 0
-contact phone_number:string first_name:string last_name:string user_id:int32 = Contact;
+//@description Describes a user contact @phone_number Phone number of the user @first_name First name of the user; 1-255 characters in length @last_name Last name of the user @vcard Additional data about the user in a form of vCard; 0-2048 bytes in length @user_id Identifier of the user, if known; otherwise 0
+contact phone_number:string first_name:string last_name:string vcard:string user_id:int32 = Contact;
 
 //@description Describes a location on planet Earth @latitude Latitude of the location in degrees; as defined by the sender @longitude Longitude of the location, in degrees; as defined by the sender
 location latitude:double longitude:double = Location;
 
 //@description Describes a venue @location Venue location; as defined by the sender @title Venue name; as defined by the sender @address Venue address; as defined by the sender @provider Provider of the venue database; as defined by the sender. Currently only "foursquare" needs to be supported
-//@id Identifier of the venue in the provider database; as defined by the sender
-venue location:location title:string address:string provider:string id:string = Venue;
+//@id Identifier of the venue in the provider database; as defined by the sender @type Type of the venue in the provider database; as defined by the sender
+venue location:location title:string address:string provider:string id:string type:string = Venue;
 
 //@description Describes a game @id Game ID @short_name Game short name. To share a game use the URL https://t.me/{bot_username}?game={game_short_name} @title Game title @text Game text, usually containing scoreboards for a game
 //@param_description Game description @photo Game photo @animation Game animation; may be null
@@ -334,6 +338,24 @@ chatMember user_id:int32 inviter_user_id:int32 joined_chat_date:int32 status:Cha
 
 //@description Contains a list of chat members @total_count Approximate total count of chat members found @members A list of chat members
 chatMembers total_count:int32 members:vector<chatMember> = ChatMembers;
+
+
+//@class ChatMembersFilter @description Specifies the kind of chat members to return in searchChatMembers
+
+//@description Returns the creator and administrators
+chatMembersFilterAdministrators = ChatMembersFilter;
+
+//@description Returns all chat members, including restricted chat members
+chatMembersFilterMembers = ChatMembersFilter;
+
+//@description Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup
+chatMembersFilterRestricted = ChatMembersFilter;
+
+//@description Returns users banned from the chat; can be used only by administrators in a supergroup or in a channel
+chatMembersFilterBanned = ChatMembersFilter;
+
+//@description Returns bot members of the chat
+chatMembersFilterBots = ChatMembersFilter;
 
 
 //@class SupergroupMembersFilter @description Specifies the kind of chat members to return in getSupergroupMembers
@@ -450,7 +472,7 @@ messageSendingStateFailed = MessageSendingState;
 
 
 //@description Describes a message
-//@id Unique message identifier
+//@id Message identifier, unique for the chat to which the message belongs
 //@sender_user_id Identifier of the user who sent the message; 0 if unknown. It is unknown for channel posts
 //@chat_id Chat identifier
 //@sending_state Information about the sending state of the message; may be null
@@ -482,23 +504,24 @@ messages total_count:int32 messages:vector<message> = Messages;
 foundMessages messages:vector<message> next_from_search_id:int64 = FoundMessages;
 
 
-//@class NotificationSettingsScope @description Describes the types of chats for which notification settings are applied
+//@class NotificationSettingsScope @description Describes the types of chats to which notification settings are applied
 
-//@description Notification settings applied to a particular chat @chat_id Chat identifier
-notificationSettingsScopeChat chat_id:int53 = NotificationSettingsScope;
-
-//@description Notification settings applied to all private chats
+//@description Notification settings applied to all private and secret chats when the corresponding chat setting has a default value
 notificationSettingsScopePrivateChats = NotificationSettingsScope;
 
-//@description Notification settings applied to all basic groups and channels. (Supergroups have no common settings)
-notificationSettingsScopeBasicGroupChats = NotificationSettingsScope;
-
-//@description Notification settings applied to all chats
-notificationSettingsScopeAllChats = NotificationSettingsScope;
+//@description Notification settings applied to all basic groups, supergroups and channels when the corresponding chat setting has a default value
+notificationSettingsScopeGroupChats = NotificationSettingsScope;
 
 
-//@description Contains information about notification settings for a chat or several chats @mute_for Time left before notifications will be unmuted, in seconds @sound An audio file name for notification sounds; only applies to iOS applications @show_preview True, if message content should be displayed in notifications
-notificationSettings mute_for:int32 sound:string show_preview:Bool = NotificationSettings;
+//@description Contains information about notification settings for a chat
+//@use_default_mute_for If true, mute_for is ignored and the value for the relevant type of chat is used instead @mute_for Time left before notifications will be unmuted, in seconds
+//@use_default_sound If true, sound is ignored and the value for the relevant type of chat is used instead @sound The name of an audio file to be used for notification sounds; only applies to iOS applications
+//@use_default_show_preview If true, show_preview is ignored and the value for the relevant type of chat is used instead @show_preview True, if message content should be displayed in notifications
+chatNotificationSettings use_default_mute_for:Bool mute_for:int32 use_default_sound:Bool sound:string use_default_show_preview:Bool show_preview:Bool = ChatNotificationSettings;
+
+//@description Contains information about notification settings for several chats @mute_for Time left before notifications will be unmuted, in seconds
+//@sound The name of an audio file to be used for notification sounds; only applies to iOS applications @show_preview True, if message content should be displayed in notifications
+scopeNotificationSettings mute_for:int32 sound:string show_preview:Bool = ScopeNotificationSettings;
 
 
 //@description Contains information about a message draft @reply_to_message_id Identifier of the message to reply to; 0 if none @input_message_text Content of the message draft; this should always be of type inputMessageText
@@ -528,7 +551,10 @@ chatTypeSecret secret_chat_id:int32 user_id:int32 = ChatType;
 //@last_message Last message in the chat; may be null
 //@order Descending parameter by which chats are sorted in the main chat list. If the order number of two chats is the same, they must be sorted in descending order by ID. If 0, the position of the chat in the list is undetermined
 //@is_pinned True, if the chat is pinned
+//@is_marked_as_unread True, if the chat is marked as unread
+//@is_sponsored True, if the chat is sponsored by the user's MTProxy server
 //@can_be_reported True, if the chat can be reported to Telegram moderators through reportChat
+//@default_disable_notification Default value of the disable_notification parameter, used when a message is sent to the chat
 //@unread_count Number of unread messages in the chat
 //@last_read_inbox_message_id Identifier of the last read incoming message
 //@last_read_outbox_message_id Identifier of the last read outgoing message
@@ -537,7 +563,7 @@ chatTypeSecret secret_chat_id:int32 user_id:int32 = ChatType;
 //@reply_markup_message_id Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
 //@draft_message A draft of a message in the chat; may be null
 //@client_data Contains client-specific data associated with the chat. (For example, the chat position or local chat notification settings can be stored here.) Persistent if a message database is used
-chat id:int53 type:ChatType title:string photo:chatPhoto last_message:message order:int64 is_pinned:Bool can_be_reported:Bool unread_count:int32 last_read_inbox_message_id:int53 last_read_outbox_message_id:int53 unread_mention_count:int32 notification_settings:notificationSettings reply_markup_message_id:int53 draft_message:draftMessage client_data:string = Chat;
+chat id:int53 type:ChatType title:string photo:chatPhoto last_message:message order:int64 is_pinned:Bool is_marked_as_unread:Bool is_sponsored:Bool can_be_reported:Bool default_disable_notification:Bool unread_count:int32 last_read_inbox_message_id:int53 last_read_outbox_message_id:int53 unread_mention_count:int32 notification_settings:chatNotificationSettings reply_markup_message_id:int53 draft_message:draftMessage client_data:string = Chat;
 
 //@description Represents a list of chats @chat_ids List of chat identifiers
 chats chat_ids:vector<int53> = Chats;
@@ -575,7 +601,7 @@ keyboardButton text:string type:KeyboardButtonType = KeyboardButton;
 
 //@class InlineKeyboardButtonType @description Describes the type of an inline keyboard button
 
-//@description A button that opens a specified URL @url URL to open
+//@description A button that opens a specified URL @url HTTP or tg:// URL to open
 inlineKeyboardButtonTypeUrl url:string = InlineKeyboardButtonType;
 
 //@description A button that sends a special callback query to a bot @data Data to be sent to the bot via a callback query
@@ -744,6 +770,10 @@ webPageInstantView page_blocks:vector<PageBlock> is_full:Bool = WebPageInstantVi
 webPage url:string display_url:string type:string site_name:string title:string description:string photo:photo embed_url:string embed_type:string embed_width:int32 embed_height:int32 duration:int32 author:string animation:animation audio:audio document:document sticker:sticker video:video video_note:videoNote voice_note:voiceNote has_instant_view:Bool = WebPage;
 
 
+//@description Describes an address @country_code A two-letter ISO 3166-1 alpha-2 country code @state State, if applicable @city City @street_line1 First line of the address @street_line2 Second line of the address @postal_code Address postal code
+address country_code:string state:string city:string street_line1:string street_line2:string postal_code:string = Address;
+
+
 //@description Portion of the price of a product (e.g., "delivery cost", "tax amount") @label Label for this portion of the product price @amount Currency amount in minimal quantity of the currency
 labeledPricePart label:string amount:int53 = LabeledPricePart;
 
@@ -753,11 +783,8 @@ labeledPricePart label:string amount:int53 = LabeledPricePart;
 //@send_email_address_to_provider True, if the user's email address will be sent to the provider @is_flexible True, if the total price depends on the shipping method
 invoice currency:string price_parts:vector<labeledPricePart> is_test:Bool need_name:Bool need_phone_number:Bool need_email_address:Bool need_shipping_address:Bool send_phone_number_to_provider:Bool send_email_address_to_provider:Bool is_flexible:Bool = Invoice;
 
-//@description Describes a shipping address @country_code Two-letter ISO 3166-1 alpha-2 country code @state State, if applicable @city City @street_line1 First line of the address @street_line2 Second line of the address @postal_code Address postal code
-shippingAddress country_code:string state:string city:string street_line1:string street_line2:string postal_code:string = ShippingAddress;
-
 //@description Order information @name Name of the user @phone_number Phone number of the user @email_address Email address of the user @shipping_address Shipping address for this order; may be null
-orderInfo name:string phone_number:string email_address:string shipping_address:shippingAddress = OrderInfo;
+orderInfo name:string phone_number:string email_address:string shipping_address:address = OrderInfo;
 
 //@description One shipping option @id Shipping option identifier @title Option title @price_parts A list of objects used to calculate the total shipping costs
 shippingOption id:string title:string price_parts:vector<labeledPricePart> = ShippingOption;
@@ -795,6 +822,253 @@ paymentResult success:Bool verification_url:string = PaymentResult;
 //@description Contains information about a successful payment @date Point in time (Unix timestamp) when the payment was made @payments_provider_user_id User identifier of the payment provider bot @invoice Contains information about the invoice
 //@order_info Contains order information; may be null @shipping_option Chosen shipping option; may be null @credentials_title Title of the saved credentials
 paymentReceipt date:int32 payments_provider_user_id:int32 invoice:invoice order_info:orderInfo shipping_option:shippingOption credentials_title:string = PaymentReceipt;
+
+
+//@description File with the date it was uploaded @file The file @date Point in time (Unix timestamp) when the file was uploaded
+datedFile file:file date:int32 = DatedFile;
+
+
+//@class PassportElementType @description Contains the type of a Telegram Passport element
+
+//@description A Telegram Passport element containing the user's personal details
+passportElementTypePersonalDetails = PassportElementType;
+
+//@description A Telegram Passport element containing the user's passport
+passportElementTypePassport = PassportElementType;
+
+//@description A Telegram Passport element containing the user's driver license
+passportElementTypeDriverLicense = PassportElementType;
+
+//@description A Telegram Passport element containing the user's identity card
+passportElementTypeIdentityCard = PassportElementType;
+
+//@description A Telegram Passport element containing the user's internal passport
+passportElementTypeInternalPassport = PassportElementType;
+
+//@description A Telegram Passport element containing the user's address
+passportElementTypeAddress = PassportElementType;
+
+//@description A Telegram Passport element containing the user's utility bill
+passportElementTypeUtilityBill = PassportElementType;
+
+//@description A Telegram Passport element containing the user's bank statement
+passportElementTypeBankStatement = PassportElementType;
+
+//@description A Telegram Passport element containing the user's rental agreement
+passportElementTypeRentalAgreement = PassportElementType;
+
+//@description A Telegram Passport element containing the registration page of the user's passport
+passportElementTypePassportRegistration = PassportElementType;
+
+//@description A Telegram Passport element containing the user's temporary registration
+passportElementTypeTemporaryRegistration = PassportElementType;
+
+//@description A Telegram Passport element containing the user's phone number
+passportElementTypePhoneNumber = PassportElementType;
+
+//@description A Telegram Passport element containing the user's email address
+passportElementTypeEmailAddress = PassportElementType;
+
+
+//@description Represents a date according to the Gregorian calendar @day Day of the month, 1-31 @month Month, 1-12 @year Year, 1-9999
+date day:int32 month:int32 year:int32 = Date;
+
+//@description Contains the user's personal details
+//@first_name First name of the user written in English; 1-255 characters @middle_name Middle name of the user written in English; 0-255 characters @last_name Last name of the user written in English; 1-255 characters
+//@native_first_name Native first name of the user; 1-255 characters @native_middle_name Native middle name of the user; 0-255 characters @native_last_name Native last name of the user; 1-255 characters
+//@birthdate Birthdate of the user @gender Gender of the user, "male" or "female" @country_code A two-letter ISO 3166-1 alpha-2 country code of the user's country @residence_country_code A two-letter ISO 3166-1 alpha-2 country code of the user's residence country
+personalDetails first_name:string middle_name:string last_name:string native_first_name:string native_middle_name:string native_last_name:string birthdate:date gender:string country_code:string residence_country_code:string = PersonalDetails;
+
+//@description An identity document @number Document number; 1-24 characters @expiry_date Document expiry date; may be null @front_side Front side of the document
+//@reverse_side Reverse side of the document; only for driver license and identity card @selfie Selfie with the document; may be null @translation List of files containing a certified English translation of the document
+identityDocument number:string expiry_date:date front_side:datedFile reverse_side:datedFile selfie:datedFile translation:vector<datedFile> = IdentityDocument;
+
+//@description An identity document to be saved to Telegram Passport @number Document number; 1-24 characters @expiry_date Document expiry date, if available @front_side Front side of the document
+//@reverse_side Reverse side of the document; only for driver license and identity card @selfie Selfie with the document, if available @translation List of files containing a certified English translation of the document
+inputIdentityDocument number:string expiry_date:date front_side:InputFile reverse_side:InputFile selfie:InputFile translation:vector<InputFile> = InputIdentityDocument;
+
+//@description A personal document, containing some information about a user @files List of files containing the pages of the document @translation List of files containing a certified English translation of the document
+personalDocument files:vector<datedFile> translation:vector<datedFile> = PersonalDocument;
+
+//@description A personal document to be saved to Telegram Passport @files List of files containing the pages of the document @translation List of files containing a certified English translation of the document
+inputPersonalDocument files:vector<InputFile> translation:vector<InputFile> = InputPersonalDocument;
+
+
+//@class PassportElement @description Contains information about a Telegram Passport element
+
+//@description A Telegram Passport element containing the user's personal details @personal_details Personal details of the user
+passportElementPersonalDetails personal_details:personalDetails = PassportElement;
+
+//@description A Telegram Passport element containing the user's passport @passport Passport
+passportElementPassport passport:identityDocument = PassportElement;
+
+//@description A Telegram Passport element containing the user's driver license @driver_license Driver license
+passportElementDriverLicense driver_license:identityDocument = PassportElement;
+
+//@description A Telegram Passport element containing the user's identity card @identity_card Identity card
+passportElementIdentityCard identity_card:identityDocument = PassportElement;
+
+//@description A Telegram Passport element containing the user's internal passport @internal_passport Internal passport
+passportElementInternalPassport internal_passport:identityDocument = PassportElement;
+
+//@description A Telegram Passport element containing the user's address @address Address
+passportElementAddress address:address = PassportElement;
+
+//@description A Telegram Passport element containing the user's utility bill @utility_bill Utility bill
+passportElementUtilityBill utility_bill:personalDocument = PassportElement;
+
+//@description A Telegram Passport element containing the user's bank statement @bank_statement Bank statement
+passportElementBankStatement bank_statement:personalDocument = PassportElement;
+
+//@description A Telegram Passport element containing the user's rental agreement @rental_agreement Rental agreement
+passportElementRentalAgreement rental_agreement:personalDocument = PassportElement;
+
+//@description A Telegram Passport element containing the user's passport registration pages @passport_registration Passport registration pages
+passportElementPassportRegistration passport_registration:personalDocument = PassportElement;
+
+//@description A Telegram Passport element containing the user's temporary registration @temporary_registration Temporary registration
+passportElementTemporaryRegistration temporary_registration:personalDocument = PassportElement;
+
+//@description A Telegram Passport element containing the user's phone number @phone_number Phone number
+passportElementPhoneNumber phone_number:string = PassportElement;
+
+//@description A Telegram Passport element containing the user's email address @email_address Email address
+passportElementEmailAddress email_address:string = PassportElement;
+
+
+//@class InputPassportElement @description Contains information about a Telegram Passport element to be saved
+
+//@description A Telegram Passport element to be saved containing the user's personal details @personal_details Personal details of the user
+inputPassportElementPersonalDetails personal_details:personalDetails = InputPassportElement;
+
+//@description A Telegram Passport element to be saved containing the user's passport @passport The passport to be saved
+inputPassportElementPassport passport:inputIdentityDocument = InputPassportElement;
+
+//@description A Telegram Passport element to be saved containing the user's driver license @driver_license The driver license to be saved
+inputPassportElementDriverLicense driver_license:inputIdentityDocument = InputPassportElement;
+
+//@description A Telegram Passport element to be saved containing the user's identity card @identity_card The identity card to be saved
+inputPassportElementIdentityCard identity_card:inputIdentityDocument = InputPassportElement;
+
+//@description A Telegram Passport element to be saved containing the user's internal passport @internal_passport The internal passport to be saved
+inputPassportElementInternalPassport internal_passport:inputIdentityDocument = InputPassportElement;
+
+//@description A Telegram Passport element to be saved containing the user's address @address The address to be saved
+inputPassportElementAddress address:address = InputPassportElement;
+
+//@description A Telegram Passport element to be saved containing the user's utility bill @utility_bill The utility bill to be saved
+inputPassportElementUtilityBill utility_bill:inputPersonalDocument = InputPassportElement;
+
+//@description A Telegram Passport element to be saved containing the user's bank statement @bank_statement The bank statement to be saved
+inputPassportElementBankStatement bank_statement:inputPersonalDocument = InputPassportElement;
+
+//@description A Telegram Passport element to be saved containing the user's rental agreement @rental_agreement The rental agreement to be saved
+inputPassportElementRentalAgreement rental_agreement:inputPersonalDocument = InputPassportElement;
+
+//@description A Telegram Passport element to be saved containing the user's passport registration @passport_registration The passport registration page to be saved
+inputPassportElementPassportRegistration passport_registration:inputPersonalDocument = InputPassportElement;
+
+//@description A Telegram Passport element to be saved containing the user's temporary registration @temporary_registration The temporary registration document to be saved
+inputPassportElementTemporaryRegistration temporary_registration:inputPersonalDocument = InputPassportElement;
+
+//@description A Telegram Passport element to be saved containing the user's phone number @phone_number The phone number to be saved
+inputPassportElementPhoneNumber phone_number:string = InputPassportElement;
+
+//@description A Telegram Passport element to be saved containing the user's email address @email_address The email address to be saved
+inputPassportElementEmailAddress email_address:string = InputPassportElement;
+
+
+//@description Contains information about saved Telegram Passport elements @elements Telegram Passport elements
+passportElements elements:vector<PassportElement> = PassportElements;
+
+
+//@class PassportElementErrorSource @description Contains the description of an error in a Telegram Passport element
+
+//@description The element contains an error in an unspecified place. The error will be considered resolved when new data is added
+passportElementErrorSourceUnspecified = PassportElementErrorSource;
+
+//@description One of the data fields contains an error. The error will be considered resolved when the value of the field changes @field_name Field name
+passportElementErrorSourceDataField field_name:string = PassportElementErrorSource;
+
+//@description The front side of the document contains an error. The error will be considered resolved when the file with the front side changes
+passportElementErrorSourceFrontSide = PassportElementErrorSource;
+
+//@description The reverse side of the document contains an error. The error will be considered resolved when the file with the reverse side changes
+passportElementErrorSourceReverseSide = PassportElementErrorSource;
+
+//@description The selfie with the document contains an error. The error will be considered resolved when the file with the selfie changes
+passportElementErrorSourceSelfie = PassportElementErrorSource;
+
+//@description One of files with the translation of the document contains an error. The error will be considered resolved when the file changes
+passportElementErrorSourceTranslationFile = PassportElementErrorSource;
+
+//@description The translation of the document contains an error. The error will be considered resolved when the list of translation files changes
+passportElementErrorSourceTranslationFiles = PassportElementErrorSource;
+
+//@description The file contains an error. The error will be considered resolved when the file changes
+passportElementErrorSourceFile = PassportElementErrorSource;
+
+//@description The list of attached files contains an error. The error will be considered resolved when the list of files changes
+passportElementErrorSourceFiles = PassportElementErrorSource;
+
+
+//@description Contains the description of an error in a Telegram Passport element @type Type of the Telegram Passport element which has the error @message Error message @source Error source
+passportElementError type:PassportElementType message:string source:PassportElementErrorSource = PassportElementError;
+
+
+//@description Contains information about a Telegram Passport element that was requested by a service @type Type of the element @is_selfie_required True, if a selfie is required with the identity document
+//@is_translation_required True, if a certified English translation is required with the document @is_native_name_required True, if personal details must include the user's name in the language of their country of residence
+passportSuitableElement type:PassportElementType is_selfie_required:Bool is_translation_required:Bool is_native_name_required:Bool = PassportSuitableElement;
+
+//@description Contains a description of the required Telegram Passport element that was requested by a service @suitable_elements List of Telegram Passport elements any of which is enough to provide
+passportRequiredElement suitable_elements:vector<passportSuitableElement> = PassportRequiredElement;
+
+//@description Contains information about a Telegram Passport authorization form that was requested @id Unique identifier of the authorization form
+//@required_elements Information about the Telegram Passport elements that need to be provided to complete the form @elements Already available Telegram Passport elements
+//@errors Errors in the elements that are already available @privacy_policy_url URL for the privacy policy of the service; can be empty
+passportAuthorizationForm id:int32 required_elements:vector<passportRequiredElement> elements:vector<PassportElement> errors:vector<passportElementError> privacy_policy_url:string = PassportAuthorizationForm;
+
+
+//@description Contains encrypted Telegram Passport data credentials @data The encrypted credentials @hash The decrypted data hash @secret Secret for data decryption, encrypted with the service's public key
+encryptedCredentials data:bytes hash:bytes secret:bytes = EncryptedCredentials;
+
+
+//@description Contains information about an encrypted Telegram Passport element; for bots only @type Type of Telegram Passport element @data Encrypted JSON-encoded data about the user @front_side The front side of an identity document @reverse_side The reverse side of an identity document; may be null @selfie Selfie with the document; may be null @translation List of files containing a certified English translation of the document @files List of attached files @value Unencrypted data, phone number or email address @hash Hash of the entire element
+encryptedPassportElement type:PassportElementType data:bytes front_side:datedFile reverse_side:datedFile selfie:datedFile translation:vector<datedFile> files:vector<datedFile> value:string hash:string = EncryptedPassportElement;
+
+
+//@class InputPassportElementErrorSource @description Contains the description of an error in a Telegram Passport element; for bots only
+
+//@description The element contains an error in an unspecified place. The error will be considered resolved when new data is added @element_hash Current hash of the entire element
+inputPassportElementErrorSourceUnspecified element_hash:bytes = InputPassportElementErrorSource;
+
+//@description A data field contains an error. The error is considered resolved when the field's value changes @field_name Field name @data_hash Current data hash
+inputPassportElementErrorSourceDataField field_name:string data_hash:bytes = InputPassportElementErrorSource;
+
+//@description The front side of the document contains an error. The error is considered resolved when the file with the front side of the document changes @file_hash Current hash of the file containing the front side
+inputPassportElementErrorSourceFrontSide file_hash:bytes = InputPassportElementErrorSource;
+
+//@description The reverse side of the document contains an error. The error is considered resolved when the file with the reverse side of the document changes @file_hash Current hash of the file containing the reverse side
+inputPassportElementErrorSourceReverseSide file_hash:bytes = InputPassportElementErrorSource;
+
+//@description The selfie contains an error. The error is considered resolved when the file with the selfie changes @file_hash Current hash of the file containing the selfie
+inputPassportElementErrorSourceSelfie file_hash:bytes = InputPassportElementErrorSource;
+
+//@description One of the files containing the translation of the document contains an error. The error is considered resolved when the file with the translation changes @file_hash Current hash of the file containing the translation
+inputPassportElementErrorSourceTranslationFile file_hash:bytes = InputPassportElementErrorSource;
+
+//@description The translation of the document contains an error. The error is considered resolved when the list of files changes @file_hashes Current hashes of all files with the translation
+inputPassportElementErrorSourceTranslationFiles file_hashes:vector<bytes> = InputPassportElementErrorSource;
+
+//@description The file contains an error. The error is considered resolved when the file changes @file_hash Current hash of the file which has the error
+inputPassportElementErrorSourceFile file_hash:bytes = InputPassportElementErrorSource;
+
+//@description The list of attached files contains an error. The error is considered resolved when the file list changes @file_hashes Current hashes of all attached files
+inputPassportElementErrorSourceFiles file_hashes:vector<bytes> = InputPassportElementErrorSource;
+
+
+//@description Contains the description of an error in a Telegram Passport element; for bots only @type Type of Telegram Passport element that has the error @message Error message @source Error source
+inputPassportElementError type:PassportElementType message:string source:InputPassportElementErrorSource = InputPassportElementError;
 
 
 //@class MessageContent @description Contains the content of a message
@@ -902,7 +1176,7 @@ messageGameScore game_message_id:int53 game_id:int64 score:int32 = MessageConten
 messagePaymentSuccessful invoice_message_id:int53 currency:string total_amount:int53 = MessageContent;
 
 //@description A payment has been completed; for bots only @invoice_message_id Identifier of the message with the corresponding invoice; can be an identifier of a deleted message @currency Currency for price of the product
-//@total_amount Total price for the product, in the minimal quantity of the currency @invoice_payload Invoice payload @shipping_option_id Identifier of the shipping option chosen by the user, may be empty if not applicable @order_info Information about the order; may be null
+//@total_amount Total price for the product, in the minimal quantity of the currency @invoice_payload Invoice payload @shipping_option_id Identifier of the shipping option chosen by the user; may be empty if not applicable @order_info Information about the order; may be null
 //@telegram_payment_charge_id Telegram payment identifier @provider_payment_charge_id Provider payment identifier
 messagePaymentSuccessfulBot invoice_message_id:int53 currency:string total_amount:int53 invoice_payload:bytes shipping_option_id:string order_info:orderInfo telegram_payment_charge_id:string provider_payment_charge_id:string = MessageContent;
 
@@ -911,6 +1185,12 @@ messageContactRegistered = MessageContent;
 
 //@description The current user has connected a website by logging in using Telegram Login Widget on it @domain_name Domain name of the connected website
 messageWebsiteConnected domain_name:string = MessageContent;
+
+//@description Telegram Passport data has been sent @types List of Telegram Passport element types sent
+messagePassportDataSent types:vector<PassportElementType> = MessageContent;
+
+//@description Telegram Passport data has been received; for bots only @elements List of received Telegram Passport elements @credentials Encrypted data credentials
+messagePassportDataReceived elements:vector<encryptedPassportElement> credentials:encryptedCredentials = MessageContent;
 
 //@description Message content that is not supported by the client
 messageUnsupported = MessageContent;
@@ -951,7 +1231,7 @@ textEntityTypePre = TextEntityType;
 //@description Text that must be formatted as if inside pre, and code HTML tags @language Programming language of the code; as defined by the sender
 textEntityTypePreCode language:string = TextEntityType;
 
-//@description A text description shown instead of a raw URL @url URL to be opened when the link is clicked
+//@description A text description shown instead of a raw URL @url HTTP or tg:// URL to be opened when the link is clicked
 textEntityTypeTextUrl url:string = TextEntityType;
 
 //@description A text shows instead of a raw mention of the user (e.g., when the user has no username) @user_id Identifier of the mentioned user
@@ -968,21 +1248,21 @@ inputThumbnail thumbnail:InputFile width:int32 height:int32 = InputThumbnail;
 
 //@class InputMessageContent @description The content of a message to send
 
-//@description A text message @text Formatted text to be sent. Only Bold, Italic, Code, Pre, PreCode and TextUrl entities are allowed to be specified manually
+//@description A text message @text Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Code, Pre, PreCode and TextUrl entities are allowed to be specified manually
 //@disable_web_page_preview True, if rich web page previews for URLs in the message text should be disabled @clear_draft True, if a chat message draft should be deleted
 inputMessageText text:formattedText disable_web_page_preview:Bool clear_draft:Bool = InputMessageContent;
 
-//@description An animation message (GIF-style). @animation Animation file to be sent @thumbnail Animation thumbnail, if available @duration Duration of the animation, in seconds @width Width of the animation; may be replaced by the server @height Height of the animation; may be replaced by the server @caption Animation caption; 0-200 characters
+//@description An animation message (GIF-style). @animation Animation file to be sent @thumbnail Animation thumbnail, if available @duration Duration of the animation, in seconds @width Width of the animation; may be replaced by the server @height Height of the animation; may be replaced by the server @caption Animation caption; 0-GetOption("message_caption_length_max") characters
 inputMessageAnimation animation:InputFile thumbnail:inputThumbnail duration:int32 width:int32 height:int32 caption:formattedText = InputMessageContent;
 
 //@description An audio message @audio Audio file to be sent @album_cover_thumbnail Thumbnail of the cover for the album, if available @duration Duration of the audio, in seconds; may be replaced by the server @title Title of the audio; 0-64 characters; may be replaced by the server
-//@performer Performer of the audio; 0-64 characters, may be replaced by the server @caption Audio caption; 0-200 characters
+//@performer Performer of the audio; 0-64 characters, may be replaced by the server @caption Audio caption; 0-GetOption("message_caption_length_max") characters
 inputMessageAudio audio:InputFile album_cover_thumbnail:inputThumbnail duration:int32 title:string performer:string caption:formattedText = InputMessageContent;
 
-//@description A document message (general file) @document Document to be sent @thumbnail Document thumbnail, if available @caption Document caption; 0-200 characters
+//@description A document message (general file) @document Document to be sent @thumbnail Document thumbnail, if available @caption Document caption; 0-GetOption("message_caption_length_max") characters
 inputMessageDocument document:InputFile thumbnail:inputThumbnail caption:formattedText = InputMessageContent;
 
-//@description A photo message @photo Photo to send @thumbnail Photo thumbnail to be sent, this is sent to the other party in secret chats only @added_sticker_file_ids File identifiers of the stickers added to the photo, if applicable @width Photo width @height Photo height @caption Photo caption; 0-200 characters
+//@description A photo message @photo Photo to send @thumbnail Photo thumbnail to be sent, this is sent to the other party in secret chats only @added_sticker_file_ids File identifiers of the stickers added to the photo, if applicable @width Photo width @height Photo height @caption Photo caption; 0-GetOption("message_caption_length_max") characters
 //@ttl Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
 inputMessagePhoto photo:InputFile thumbnail:inputThumbnail added_sticker_file_ids:vector<int32> width:int32 height:int32 caption:formattedText ttl:int32 = InputMessageContent;
 
@@ -991,13 +1271,13 @@ inputMessageSticker sticker:InputFile thumbnail:inputThumbnail width:int32 heigh
 
 //@description A video message @video Video to be sent @thumbnail Video thumbnail, if available @added_sticker_file_ids File identifiers of the stickers added to the video, if applicable
 //@duration Duration of the video, in seconds @width Video width @height Video height @supports_streaming True, if the video should be tried to be streamed
-//@caption Video caption; 0-200 characters @ttl Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
+//@caption Video caption; 0-GetOption("message_caption_length_max") characters @ttl Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
 inputMessageVideo video:InputFile thumbnail:inputThumbnail added_sticker_file_ids:vector<int32> duration:int32 width:int32 height:int32 supports_streaming:Bool caption:formattedText ttl:int32 = InputMessageContent;
 
 //@description A video note message @video_note Video note to be sent @thumbnail Video thumbnail, if available @duration Duration of the video, in seconds @length Video width and height; must be positive and not greater than 640
 inputMessageVideoNote video_note:InputFile thumbnail:inputThumbnail duration:int32 length:int32 = InputMessageContent;
 
-//@description A voice note message @voice_note Voice note to be sent @duration Duration of the voice note, in seconds @waveform Waveform representation of the voice note, in 5-bit format @caption Voice note caption; 0-200 characters
+//@description A voice note message @voice_note Voice note to be sent @duration Duration of the voice note, in seconds @waveform Waveform representation of the voice note, in 5-bit format @caption Voice note caption; 0-GetOption("message_caption_length_max") characters
 inputMessageVoiceNote voice_note:InputFile duration:int32 waveform:bytes caption:formattedText = InputMessageContent;
 
 //@description A message with a location @location Location to be sent @live_period Period for which the location can be updated, in seconds; should bebetween 60 and 86400 for a live location and 0 otherwise
@@ -1423,40 +1703,66 @@ chatEvents events:vector<chatEvent> = ChatEvents;
 chatEventLogFilters message_edits:Bool message_deletions:Bool message_pins:Bool member_joins:Bool member_leaves:Bool member_invites:Bool member_promotions:Bool member_restrictions:Bool info_changes:Bool setting_changes:Bool = ChatEventLogFilters;
 
 
+//@class LanguagePackStringValue @description Represents the value of a string in a language pack
+
+//@description An ordinary language pack string @value String value
+languagePackStringValueOrdinary value:string = LanguagePackStringValue;
+
+//@description A language pack string which has different forms based on the number of some object it mentions @zero_value Value for zero objects @one_value Value for one object @two_value Value for two objects
+//@few_value Value for few objects @many_value Value for many objects @other_value Default value
+languagePackStringValuePluralized zero_value:string one_value:string two_value:string few_value:string many_value:string other_value:string = LanguagePackStringValue;
+
+//@description A deleted language pack string, the value should be taken from the built-in english language pack
+languagePackStringValueDeleted = LanguagePackStringValue;
+
+
+//@description Represents one language pack string @key String key @value String value
+languagePackString key:string value:LanguagePackStringValue = LanguagePackString;
+
+//@description Contains a list of language pack strings @strings A list of language pack strings
+languagePackStrings strings:vector<languagePackString> = LanguagePackStrings;
+
+//@description Contains information about a language pack @id Unique language pack identifier @name Language name @native_name Name of the language in that language @local_string_count Total number of non-deleted strings from the language pack available locally
+languagePackInfo id:string name:string native_name:string local_string_count:int32 = LanguagePackInfo;
+
+//@description Contains information about the current localization target @language_packs List of available language packs for this application
+localizationTargetInfo language_packs:vector<languagePackInfo> = LocalizationTargetInfo;
+
+
 //@class DeviceToken @description Represents a data needed to subscribe for push notifications. To use specific push notification service, you must specify the correct application platform and upload valid server authentication data at https://my.telegram.org
 
-//@description A token for Google Cloud Messaging @token Device registration token, may be empty to de-register a device
+//@description A token for Google Cloud Messaging @token Device registration token; may be empty to de-register a device
 deviceTokenGoogleCloudMessaging token:string = DeviceToken;
 
-//@description A token for Apple Push Notification service @device_token Device token, may be empty to de-register a device @is_app_sandbox True, if App Sandbox is enabled
+//@description A token for Apple Push Notification service @device_token Device token; may be empty to de-register a device @is_app_sandbox True, if App Sandbox is enabled
 deviceTokenApplePush device_token:string is_app_sandbox:Bool = DeviceToken;
 
-//@description A token for Apple Push Notification service VoIP notifications @device_token Device token, may be empty to de-register a device @is_app_sandbox True, if App Sandbox is enabled
+//@description A token for Apple Push Notification service VoIP notifications @device_token Device token; may be empty to de-register a device @is_app_sandbox True, if App Sandbox is enabled
 deviceTokenApplePushVoIP device_token:string is_app_sandbox:Bool = DeviceToken;
 
-//@description A token for Windows Push Notification Services @access_token The access token that will be used to send notifications, may be empty to de-register a device
+//@description A token for Windows Push Notification Services @access_token The access token that will be used to send notifications; may be empty to de-register a device
 deviceTokenWindowsPush access_token:string = DeviceToken;
 
-//@description A token for Microsoft Push Notification Service @channel_uri Push notification channel URI, may be empty to de-register a device
+//@description A token for Microsoft Push Notification Service @channel_uri Push notification channel URI; may be empty to de-register a device
 deviceTokenMicrosoftPush channel_uri:string = DeviceToken;
 
-//@description A token for Microsoft Push Notification Service VoIP channel @channel_uri Push notification channel URI, may be empty to de-register a device
+//@description A token for Microsoft Push Notification Service VoIP channel @channel_uri Push notification channel URI; may be empty to de-register a device
 deviceTokenMicrosoftPushVoIP channel_uri:string = DeviceToken;
 
-//@description A token for web Push API @endpoint Absolute URL exposed by the push service where the application server can send push messages, may be empty to de-register a device
+//@description A token for web Push API @endpoint Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
 //@p256dh_base64url Base64url-encoded P-256 elliptic curve Diffie-Hellman public key @auth_base64url Base64url-encoded authentication secret
 deviceTokenWebPush endpoint:string p256dh_base64url:string auth_base64url:string = DeviceToken;
 
-//@description A token for Simple Push API for Firefox OS @endpoint Absolute URL exposed by the push service where the application server can send push messages, may be empty to de-register a device
+//@description A token for Simple Push API for Firefox OS @endpoint Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
 deviceTokenSimplePush endpoint:string = DeviceToken;
 
-//@description A token for Ubuntu Push Client service @token Token, may be empty to de-register a device
+//@description A token for Ubuntu Push Client service @token Token; may be empty to de-register a device
 deviceTokenUbuntuPush token:string = DeviceToken;
 
-//@description A token for BlackBerry Push Service @token Token, may be empty to de-register a device
+//@description A token for BlackBerry Push Service @token Token; may be empty to de-register a device
 deviceTokenBlackBerryPush token:string = DeviceToken;
 
-//@description A token for Tizen Push Service @reg_id Push service registration identifier, may be empty to de-register a device
+//@description A token for Tizen Push Service @reg_id Push service registration identifier; may be empty to de-register a device
 deviceTokenTizenPush reg_id:string = DeviceToken;
 
 
@@ -1586,6 +1892,9 @@ chatReportReasonViolence = ChatReportReason;
 //@description The chat contains pornographic messages
 chatReportReasonPornography = ChatReportReason;
 
+//@description The chat contains copyrighted content
+chatReportReasonCopyright = ChatReportReason;
+
 //@description A custom reason provided by the user @text Report text
 chatReportReasonCustom text:string = ChatReportReason;
 
@@ -1617,6 +1926,12 @@ fileTypeProfilePhoto = FileType;
 //@description The file was sent to a secret chat (the file type is not known to the server)
 fileTypeSecret = FileType;
 
+//@description The file is a thumbnail of a file from a secret chat
+fileTypeSecretThumbnail = FileType;
+
+//@description The file is a file from Secure storage used for storing Telegram Passport files
+fileTypeSecure = FileType;
+
 //@description The file is a sticker
 fileTypeSticker = FileType;
 
@@ -1637,9 +1952,6 @@ fileTypeVoiceNote = FileType;
 
 //@description The file is a wallpaper
 fileTypeWallpaper = FileType;
-
-//@description The file is a thumbnail of a file from a secret chat
-fileTypeSecretThumbnail = FileType;
 
 
 //@description Contains the storage usage statistics for a specific file type @file_type File type @size Total size of the files @count Total number of files
@@ -1753,6 +2065,13 @@ count count:int32 = Count;
 //@description Contains some text @text Text
 text text:string = Text;
 
+//@description Contains a value representing a number of seconds @seconds Number of seconds
+seconds seconds:double = Seconds;
+
+
+//@description Contains information about a tg:// deep link @text Text to be shown to the user @need_update_application True, if user should be asked to update the application
+deepLinkInfo text:formattedText need_update_application:Bool = DeepLinkInfo;
+
 
 //@class TextParseMode @description Describes the way the text should be parsed for TextEntities
 
@@ -1763,13 +2082,23 @@ textParseModeMarkdown = TextParseMode;
 textParseModeHTML = TextParseMode;
 
 
-//@class Proxy @description Contains information about a proxy server
+//@class ProxyType @description Describes the type of the proxy server
 
-//@description An empty proxy server
-proxyEmpty = Proxy;
+//@description A SOCKS5 proxy server @username Username for logging in; may be empty @password Password for logging in; may be empty
+proxyTypeSocks5 username:string password:string = ProxyType;
 
-//@description A SOCKS5 proxy server @server Proxy server IP address @port Proxy server port @username Username for logging in @password Password for logging in
-proxySocks5 server:string port:int32 username:string password:string = Proxy;
+//@description A HTTP transparent proxy server @username Username for logging in; may be empty @password Password for logging in; may be empty @http_only Pass true, if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
+proxyTypeHttp username:string password:string http_only:Bool = ProxyType;
+
+//@description An MTProto proxy server @secret The proxy's secret in hexadecimal encoding
+proxyTypeMtproto secret:string = ProxyType;
+
+
+//@description Contains information about a proxy server @id Unique identifier of the proxy @server Proxy server IP address @port Proxy server port @last_used_date Point in time (Unix timestamp) when the proxy was last used; 0 if never @is_enabled True, if the proxy is enabled now @type Type of the proxy
+proxy id:int32 server:string port:int32 last_used_date:int32 is_enabled:Bool type:ProxyType = Proxy;
+
+//@description Represents a list of proxy servers @proxies List of proxy servers
+proxies proxies:vector<proxy> = Proxies;
 
 
 //@description Describes a sticker that should be added to a sticker set @png_sticker PNG image with the sticker; must be up to 512 kB in size and fit in a 512x512 square @emojis Emoji corresponding to the sticker @mask_position For masks, position where the mask should be placed; may be null
@@ -1828,6 +2157,15 @@ updateChatOrder chat_id:int53 order:int64 = Update;
 //@description A chat was pinned or unpinned @chat_id Chat identifier @is_pinned New value of is_pinned @order New value of the chat order
 updateChatIsPinned chat_id:int53 is_pinned:Bool order:int64 = Update;
 
+//@description A chat was marked as unread or was read @chat_id Chat identifier @is_marked_as_unread New value of is_marked_as_unread
+updateChatIsMarkedAsUnread chat_id:int53 is_marked_as_unread:Bool = Update;
+
+//@description A chat's is_sponsored field has changed @chat_id Chat identifier @is_sponsored New value of is_sponsored @order New value of chat order
+updateChatIsSponsored chat_id:int53 is_sponsored:Bool order:int64 = Update;
+
+//@description The value of the default disable_notification parameter, used when a message is sent to the chat, was changed @chat_id Chat identifier @default_disable_notification The new default_disable_notification value
+updateChatDefaultDisableNotification chat_id:int53 default_disable_notification:Bool = Update;
+
 //@description Incoming messages were read or number of unread messages has been changed @chat_id Chat identifier @last_read_inbox_message_id Identifier of the last read incoming message @unread_count The number of unread messages left in the chat
 updateChatReadInbox chat_id:int53 last_read_inbox_message_id:int53 unread_count:int32 = Update;
 
@@ -1837,14 +2175,17 @@ updateChatReadOutbox chat_id:int53 last_read_outbox_message_id:int53 = Update;
 //@description The chat unread_mention_count has changed @chat_id Chat identifier @unread_mention_count The number of unread mention messages left in the chat
 updateChatUnreadMentionCount chat_id:int53 unread_mention_count:int32 = Update;
 
-//@description Notification settings for some chats were updated @scope Types of chats for which notification settings were updated @notification_settings The new notification settings
-updateNotificationSettings scope:NotificationSettingsScope notification_settings:notificationSettings = Update;
+//@description Notification settings for a chat were changed @chat_id Chat identifier @notification_settings The new notification settings
+updateChatNotificationSettings chat_id:int53 notification_settings:chatNotificationSettings = Update;
+
+//@description Notification settings for some type of chats were updated @scope Types of chats for which notification settings were updated @notification_settings The new notification settings
+updateScopeNotificationSettings scope:NotificationSettingsScope notification_settings:scopeNotificationSettings = Update;
 
 //@description The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
 //@chat_id Chat identifier @reply_markup_message_id Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
 updateChatReplyMarkup chat_id:int53 reply_markup_message_id:int53 = Update;
 
-//@description A draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update shouldn't be applied @chat_id Chat identifier @draft_message The new draft message; may be null @order New value of the chat order
+//@description A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update shouldn't be applied @chat_id Chat identifier @draft_message The new draft message; may be null @order New value of the chat order
 updateChatDraftMessage chat_id:int53 draft_message:draftMessage order:int64 = Update;
 
 //@description Some messages were deleted @chat_id Chat identifier @message_ids Identifiers of the deleted messages
@@ -1879,7 +2220,9 @@ updateBasicGroupFullInfo basic_group_id:int32 basic_group_full_info:basicGroupFu
 //@description Some data from supergroupFullInfo has been changed @supergroup_id Identifier of the supergroup or channel @supergroup_full_info New full information about the supergroup
 updateSupergroupFullInfo supergroup_id:int32 supergroup_full_info:supergroupFullInfo = Update;
 
-//@description Service notification from the server. Upon receiving this the client must show a popup with the content of the notification @type Notification type @content Notification content
+//@description Service notification from the server. Upon receiving this the client must show a popup with the content of the notification
+//@type Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" should be shown under notification; if user presses the second, all local data should be destroyed using Destroy method
+//@content Notification content
 updateServiceNotification type:string content:MessageContent = Update;
 
 //@description Information about a file was updated @file New data about the file
@@ -1887,9 +2230,9 @@ updateFile file:file = Update;
 
 //@description The file generation process needs to be started by the client
 //@generation_id Unique identifier for the generation process
-//@original_path The path to a file from which a new file is generated, may be empty
+//@original_path The path to a file from which a new file is generated; may be empty
 //@destination_path The path to a file that should be created and where the new file should be generated
-//@conversion String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains a HTTP/HTTPS URL of a file, which should be downloaded by the client
+//@conversion String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which should be downloaded by the client
 updateFileGenerationStart generation_id:int64 original_path:string destination_path:string conversion:string = Update;
 
 //@description File generation is no longer needed @generation_id Unique identifier for the generation process
@@ -1903,6 +2246,11 @@ updateUserPrivacySettingRules setting:UserPrivacySetting rules:userPrivacySettin
 
 //@description Number of unread messages has changed. This update is sent only if a message database is used @unread_count Total number of unread messages @unread_unmuted_count Total number of unread messages in unmuted chats
 updateUnreadMessageCount unread_count:int32 unread_unmuted_count:int32 = Update;
+
+//@description Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if a message database is used
+//@unread_count Total number of unread chats @unread_unmuted_count Total number of unread unmuted chats
+//@marked_as_unread_count Total number of chats marked as unread @marked_as_unread_unmuted_count Total number of unmuted chats marked as unread
+updateUnreadChatCount unread_count:int32 unread_unmuted_count:int32 marked_as_unread_count:int32 marked_as_unread_unmuted_count:int32 = Update;
 
 //@description An option changed its value @name The option name @value The new option value
 updateOption name:string value:OptionValue = Update;
@@ -1922,8 +2270,14 @@ updateFavoriteStickers sticker_ids:vector<int32> = Update;
 //@description The list of saved animations was updated @animation_ids The new list of file identifiers of saved animations
 updateSavedAnimations animation_ids:vector<int32> = Update;
 
+//@description Some language pack strings have been updated @localization_target Localization target to which the language pack belongs @language_pack_id Identifier of the updated language pack @strings List of changed language pack strings
+updateLanguagePackStrings localization_target:string language_pack_id:string strings:vector<languagePackString> = Update;
+
 //@description The connection state has changed @state The new connection state
 updateConnectionState state:ConnectionState = Update;
+
+//@description New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method should be called with the reason "Decline ToS update" @terms_of_service_id Identifier of the terms of service @terms_of_service The new terms of service
+updateTermsOfService terms_of_service_id:string terms_of_service:termsOfService = Update;
 
 //@description A new incoming inline query; for bots only @id Unique query identifier @sender_user_id Identifier of the user who sent the query @user_location User location, provided by the client; may be null @query Text of the query @offset Offset of the first entry to return
 updateNewInlineQuery id:int64 sender_user_id:int32 user_location:location query:string offset:string = Update;
@@ -1940,7 +2294,7 @@ updateNewCallbackQuery id:int64 sender_user_id:int32 chat_id:int53 message_id:in
 updateNewInlineCallbackQuery id:int64 sender_user_id:int32 inline_message_id:string chat_instance:int64 payload:CallbackQueryPayload = Update;
 
 //@description A new incoming shipping query; for bots only. Only for invoices with flexible price @id Unique query identifier @sender_user_id Identifier of the user who sent the query @invoice_payload Invoice payload @shipping_address User shipping address
-updateNewShippingQuery id:int64 sender_user_id:int32 invoice_payload:string shipping_address:shippingAddress = Update;
+updateNewShippingQuery id:int64 sender_user_id:int32 invoice_payload:string shipping_address:address = Update;
 
 //@description A new incoming pre-checkout query; for bots only. Contains full information about a checkout @id Unique query identifier @sender_user_id Identifier of the user who sent the query @currency Currency for the product price @total_amount Total price for the product, in the minimal quantity of the currency
 //@invoice_payload Invoice payload @shipping_option_id Identifier of a shipping option chosen by the user; may be empty if not applicable @order_info Information about the order; may be null
@@ -2032,7 +2386,7 @@ getRecoveryEmailAddress password:string = RecoveryEmailAddress;
 setRecoveryEmailAddress password:string new_recovery_email_address:string = PasswordState;
 
 //@description Requests to send a password recovery code to an email address that was previously set up
-requestPasswordRecovery = PasswordRecoveryInfo;
+requestPasswordRecovery = EmailAddressAuthenticationCodeInfo;
 
 //@description Recovers the password using a recovery code sent to an email address that was previously set up @recovery_code Recovery code to check
 recoverPassword recovery_code:string = PasswordState;
@@ -2139,7 +2493,7 @@ getGroupsInCommon user_id:int32 offset_chat_id:int53 limit:int32 = Chats;
 //@description Returns messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id).
 //-For optimal performance the number of returned messages is chosen by the library. This is an offline request if only_local is true
 //@chat_id Chat identifier
-//@from_message_id Identifier of the message starting from which history must be fetched; use 0 to get results from the beginning (i.e., from oldest to newest)
+//@from_message_id Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
 //@offset Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
 //@limit The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
 //@only_local If true, returns only messages that are available locally without sending network requests
@@ -2153,7 +2507,7 @@ deleteChatHistory chat_id:int53 remove_from_chat_list:Bool = Ok;
 //@chat_id Identifier of the chat in which to search messages
 //@query Query to search for
 //@sender_user_id If not 0, only messages sent by the specified user will be returned. Not supported in secret chats
-//@from_message_id Identifier of the message starting from which history must be fetched; use 0 to get results from the beginning
+//@from_message_id Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
 //@offset Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
 //@limit The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
 //@filter Filter for message content in the search results
@@ -2162,7 +2516,7 @@ searchChatMessages chat_id:int53 query:string sender_user_id:int32 from_message_
 //@description Searches for messages in all chats except secret chats. Returns the results in reverse chronological order (i.e., in order of decreasing (date, chat_id, message_id)).
 //-For optimal performance the number of returned messages is chosen by the library
 //@query Query to search for
-//@offset_date The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the beginning
+//@offset_date The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the last message
 //@offset_chat_id The chat identifier of the last found message, or 0 for the first request
 //@offset_message_id The message identifier of the last found message, or 0 for the first request
 //@limit The maximum number of messages to be returned, up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
@@ -2170,13 +2524,13 @@ searchMessages query:string offset_date:int32 offset_chat_id:int53 offset_messag
 
 //@description Searches for messages in secret chats. Returns the results in reverse chronological order. For optimal performance the number of returned messages is chosen by the library
 //@chat_id Identifier of the chat in which to search. Specify 0 to search in all secret chats @query Query to search for. If empty, searchChatMessages should be used instead
-//@from_search_id The identifier from the result of a previous request, use 0 to get results from the beginning
+//@from_search_id The identifier from the result of a previous request, use 0 to get results from the last message
 //@limit Maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
 //@filter A filter for the content of messages in the search results
 searchSecretMessages chat_id:int53 query:string from_search_id:int64 limit:int32 filter:SearchMessagesFilter = FoundMessages;
 
 //@description Searches for call messages. Returns the results in reverse chronological order (i. e., in order of decreasing message_id). For optimal performance the number of returned messages is chosen by the library
-//@from_message_id Identifier of the message from which to search; use 0 to get results from the beginning
+//@from_message_id Identifier of the message from which to search; use 0 to get results from the last message
 //@limit The maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached @only_missed If true, returns only messages with missed calls
 searchCallMessages from_message_id:int53 limit:int32 only_missed:Bool = Messages;
 
@@ -2188,6 +2542,9 @@ getActiveLiveLocationMessages = Messages;
 
 //@description Returns the last message sent in a chat no later than the specified date @chat_id Chat identifier @date Point in time (Unix timestamp) relative to which to search for messages
 getChatMessageByDate chat_id:int53 date:int32 = Message;
+
+//@description Returns approximate number of messages of the specified type in the chat @chat_id Identifier of the chat in which to count messages @filter Filter for message content; searchMessagesFilterEmpty is unsupported in this function @return_local If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown
+getChatMessageCount chat_id:int53 filter:SearchMessagesFilter return_local:Bool = Count;
 
 
 //@description Returns a public HTTPS link to a message. Available only for messages in public supergroups and channels
@@ -2228,6 +2585,10 @@ sendChatSetTtlMessage chat_id:int53 ttl:int32 = Message;
 //@description Sends a notification about a screenshot taken in a chat. Supported only in private and secret chats @chat_id Chat identifier
 sendChatScreenshotTakenNotification chat_id:int53 = Ok;
 
+//@description Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message @chat_id Target chat @sender_user_id Identifier of the user who will be shown as the sender of the message; may be 0 for channel posts
+//@reply_to_message_id Identifier of the message to reply to or 0 @disable_notification Pass true to disable notification for the message @input_message_content The content of the message to be added
+addLocalMessage chat_id:int53 sender_user_id:int32 reply_to_message_id:int53 disable_notification:Bool input_message_content:InputMessageContent = Message;
+
 //@description Deletes messages @chat_id Chat identifier @message_ids Identifiers of the messages to be deleted @revoke Pass true to try to delete outgoing messages for all chat members (may fail if messages are too old). Always true for supergroups, channels and secret chats
 deleteMessages chat_id:int53 message_ids:vector<int53> revoke:Bool = Ok;
 
@@ -2235,32 +2596,40 @@ deleteMessages chat_id:int53 message_ids:vector<int53> revoke:Bool = Ok;
 deleteChatMessagesFromUser chat_id:int53 user_id:int32 = Ok;
 
 
-//@description Edits the text of a message (or a text of a game message). Non-bot users can edit messages for a limited period of time. Returns the edited message after the edit is completed on the server side
+//@description Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side
 //@chat_id The chat the message belongs to @message_id Identifier of the message @reply_markup The new message reply markup; for bots only @input_message_content New text content of the message. Should be of type InputMessageText
 editMessageText chat_id:int53 message_id:int53 reply_markup:ReplyMarkup input_message_content:InputMessageContent = Message;
 
-//@description Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed server-side
-//@chat_id The chat the message belongs to @message_id Identifier of the message @reply_markup Tew message reply markup; for bots only @location New location content of the message; may be null. Pass null to stop sharing the live location
+//@description Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side
+//@chat_id The chat the message belongs to @message_id Identifier of the message @reply_markup The new message reply markup; for bots only @location New location content of the message; may be null. Pass null to stop sharing the live location
 editMessageLiveLocation chat_id:int53 message_id:int53 reply_markup:ReplyMarkup location:location = Message;
 
-//@description Edits the message content caption. Non-bots can edit messages for a limited period of time. Returns the edited message after the edit is completed server-side
-//@chat_id The chat the message belongs to @message_id Identifier of the message @reply_markup The new message reply markup; for bots only @caption New message content caption; 0-200 characters
+//@description Edits the content of a message with an animation, an audio, a document, a photo or a video. The media in the message can't be replaced if the message was set to self-destruct. Media can't be replaced by self-destructing media. Media in an album can be edited only to contain a photo or a video. Returns the edited message after the edit is completed on the server side
+//@chat_id The chat the message belongs to @message_id Identifier of the message @reply_markup The new message reply markup; for bots only @input_message_content New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
+editMessageMedia chat_id:int53 message_id:int53 reply_markup:ReplyMarkup input_message_content:InputMessageContent = Message;
+
+//@description Edits the message content caption. Returns the edited message after the edit is completed on the server side
+//@chat_id The chat the message belongs to @message_id Identifier of the message @reply_markup The new message reply markup; for bots only @caption New message content caption; 0-GetOption("message_caption_length_max") characters
 editMessageCaption chat_id:int53 message_id:int53 reply_markup:ReplyMarkup caption:formattedText = Message;
 
-//@description Edits the message reply markup; for bots only. Returns the edited message after the edit is completed server-side
-//@chat_id The chat the message belongs to @message_id Identifier of the message @reply_markup New message reply markup
+//@description Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side
+//@chat_id The chat the message belongs to @message_id Identifier of the message @reply_markup The new message reply markup
 editMessageReplyMarkup chat_id:int53 message_id:int53 reply_markup:ReplyMarkup = Message;
 
-//@description Edits the text of an inline text or game message sent via a bot; for bots only @inline_message_id Inline message identifier @reply_markup New message reply markup @input_message_content New text content of the message. Should be of type InputMessageText
+//@description Edits the text of an inline text or game message sent via a bot; for bots only @inline_message_id Inline message identifier @reply_markup The new message reply markup @input_message_content New text content of the message. Should be of type InputMessageText
 editInlineMessageText inline_message_id:string reply_markup:ReplyMarkup input_message_content:InputMessageContent = Ok;
 
-//@description Edits the content of a live location in an inline message sent via a bot; for bots only @inline_message_id Inline message identifier @reply_markup New message reply markup @location New location content of the message; may be null. Pass null to stop sharing the live location
+//@description Edits the content of a live location in an inline message sent via a bot; for bots only @inline_message_id Inline message identifier @reply_markup The new message reply markup @location New location content of the message; may be null. Pass null to stop sharing the live location
 editInlineMessageLiveLocation inline_message_id:string reply_markup:ReplyMarkup location:location = Ok;
 
-//@description Edits the caption of an inline message sent via a bot; for bots only @inline_message_id Inline message identifier @reply_markup New message reply markup @caption New message content caption; 0-200 characters
+//@description Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only @inline_message_id Inline message identifier
+//@reply_markup The new message reply markup; for bots only @input_message_content New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
+editInlineMessageMedia inline_message_id:string reply_markup:ReplyMarkup input_message_content:InputMessageContent = Ok;
+
+//@description Edits the caption of an inline message sent via a bot; for bots only @inline_message_id Inline message identifier @reply_markup The new message reply markup @caption New message content caption; 0-GetOption("message_caption_length_max") characters
 editInlineMessageCaption inline_message_id:string reply_markup:ReplyMarkup caption:formattedText = Ok;
 
-//@description Edits the reply markup of an inline message sent via a bot; for bots only @inline_message_id Inline message identifier @reply_markup New message reply markup
+//@description Edits the reply markup of an inline message sent via a bot; for bots only @inline_message_id Inline message identifier @reply_markup The new message reply markup
 editInlineMessageReplyMarkup inline_message_id:string reply_markup:ReplyMarkup = Ok;
 
 
@@ -2275,6 +2644,13 @@ getFileMimeType file_name:string = Text;
 
 //@description Returns the extension of a file, guessed by its MIME type. Returns an empty string on failure. This is an offline method. Can be called before authorization. Can be called synchronously @mime_type The MIME type of the file
 getFileExtension mime_type:string = Text;
+
+//@description Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. This is an offline method. Can be called before authorization. Can be called synchronously @file_name File name or path to the file
+cleanFileName file_name:string = Text;
+
+//@description Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. This is an offline method. Can be called before authorization. Can be called synchronously
+//@language_pack_database_path Path to the language pack database in which strings are stored @localization_target Localization target to which the language pack belongs @language_pack_id Language pack identifier @key Language pack key of the string to be returned
+getLanguagePackString language_pack_database_path:string localization_target:string language_pack_id:string key:string = LanguagePackStringValue;
 
 
 //@description Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires @bot_user_id The identifier of the target bot
@@ -2379,11 +2755,26 @@ setChatPhoto chat_id:int53 photo:InputFile = Ok;
 //@description Changes the draft message in a chat @chat_id Chat identifier @draft_message New draft message; may be null
 setChatDraftMessage chat_id:int53 draft_message:draftMessage = Ok;
 
+//@description Changes the notification settings of a chat @chat_id Chat identifier @notification_settings New notification settings for the chat
+setChatNotificationSettings chat_id:int53 notification_settings:chatNotificationSettings = Ok;
+
 //@description Changes the pinned state of a chat. You can pin up to GetOption("pinned_chat_count_max") non-secret chats and the same number of secret chats @chat_id Chat identifier @is_pinned New value of is_pinned
 toggleChatIsPinned chat_id:int53 is_pinned:Bool = Ok;
 
+//@description Changes the marked as unread state of a chat @chat_id Chat identifier @is_marked_as_unread New value of is_marked_as_unread
+toggleChatIsMarkedAsUnread chat_id:int53 is_marked_as_unread:Bool = Ok;
+
+//@description Changes the value of the default disable_notification parameter, used when a message is sent to a chat @chat_id Chat identifier @default_disable_notification New value of default_disable_notification
+toggleChatDefaultDisableNotification chat_id:int53 default_disable_notification:Bool = Ok;
+
 //@description Changes client data associated with a chat @chat_id Chat identifier @client_data New value of client_data
 setChatClientData chat_id:int53 client_data:string = Ok;
+
+//@description Adds current user as a new member to a chat. Private and secret chats can't be joined using this method @chat_id Chat identifier
+joinChat chat_id:int53 = Ok;
+
+//@description Removes current user from chat members. Private and secret chats can't be left using this method @chat_id Chat identifier
+leaveChat chat_id:int53 = Ok;
 
 //@description Adds a new member to a chat. Members can't be added to private or secret chats. Members will not be added until the chat state has been synchronized with the server
 //@chat_id Chat identifier @user_id Identifier of the user @forward_limit The number of earlier messages from the chat to be forwarded to the new member; up to 300. Ignored for supergroups and channels
@@ -2400,11 +2791,25 @@ setChatMemberStatus chat_id:int53 user_id:int32 status:ChatMemberStatus = Ok;
 //@description Returns information about a single member of a chat @chat_id Chat identifier @user_id User identifier
 getChatMember chat_id:int53 user_id:int32 = ChatMember;
 
-//@description Searches for a specified query in the first name, last name and username of the members of a specified chat. Requires administrator rights in channels @chat_id Chat identifier @query Query to search for @limit The maximum number of users to be returned
-searchChatMembers chat_id:int53 query:string limit:int32 = ChatMembers;
+//@description Searches for a specified query in the first name, last name and username of the members of a specified chat. Requires administrator rights in channels @chat_id Chat identifier @query Query to search for @limit The maximum number of users to be returned @filter The type of users to return. By default, chatMembersFilterMembers
+searchChatMembers chat_id:int53 query:string limit:int32 filter:ChatMembersFilter = ChatMembers;
 
 //@description Returns a list of users who are administrators of the chat @chat_id Chat identifier
 getChatAdministrators chat_id:int53 = Users;
+
+
+//@description Clears draft messages in all chats @exclude_secret_chats If true, local draft messages in secret chats will not be cleared
+clearAllDraftMessages exclude_secret_chats:Bool = Ok;
+
+
+//@description Returns the notification settings for chats of a given type @scope Types of chats for which to return the notification settings information
+getScopeNotificationSettings scope:NotificationSettingsScope = ScopeNotificationSettings;
+
+//@description Changes notification settings for chats of a given type @scope Types of chats for which to change the notification settings @notification_settings The new notification settings for the given scope
+setScopeNotificationSettings scope:NotificationSettingsScope notification_settings:scopeNotificationSettings = Ok;
+
+//@description Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to "default" and message previews are shown
+resetAllNotificationSettings = Ok;
 
 
 //@description Changes the order of pinned chats @chat_ids The new list of pinned chats
@@ -2479,8 +2884,11 @@ unblockUser user_id:int32 = Ok;
 getBlockedUsers offset:int32 limit:int32 = Users;
 
 
-//@description Adds new contacts or edits existing contacts; contacts' user identifiers are ignored @contacts The list of contacts to import or edit
+//@description Adds new contacts or edits existing contacts; contacts' user identifiers are ignored @contacts The list of contacts to import or edit, contact's vCard are ignored and are not imported
 importContacts contacts:vector<contact> = ImportedContacts;
+
+//@description Returns all user contacts
+getContacts = Users;
 
 //@description Searches for the specified query in the first names, last names and usernames of the known user contacts @query Query to search for; can be empty to return all contacts @limit Maximum number of users to be returned
 searchContacts query:string limit:int32 = Users;
@@ -2492,10 +2900,10 @@ removeContacts user_ids:vector<int32> = Ok;
 getImportedContactCount = Count;
 
 //@description Changes imported contacts using the list of current user contacts saved on the device. Imports newly added contacts and, if at least the file database is enabled, deletes recently deleted contacts.
-//-Query result depends on the result of the previous query, so only one query is possible at the same time @contacts The new list of contacts
+//-Query result depends on the result of the previous query, so only one query is possible at the same time @contacts The new list of contacts, contact's vCard are ignored and are not imported
 changeImportedContacts contacts:vector<contact> = ImportedContacts;
 
-//@description Clears all imported contacts
+//@description Clears all imported contacts, contacts list remains unchanged
 clearImportedContacts = Ok;
 
 
@@ -2598,17 +3006,6 @@ getWebPagePreview text:formattedText = WebPage;
 getWebPageInstantView url:string force_full:Bool = WebPageInstantView;
 
 
-//@description Returns the notification settings for a given scope @scope Scope for which to return the notification settings information
-getNotificationSettings scope:NotificationSettingsScope = NotificationSettings;
-
-//@description Changes notification settings for a given scope @scope Scope for which to change the notification settings
-//@notification_settings The new notification settings for the given scope
-setNotificationSettings scope:NotificationSettingsScope notification_settings:notificationSettings = Ok;
-
-//@description Resets all notification settings to their default values. By default, the only muted chats are supergroups, the sound is set to "default" and message previews are shown
-resetAllNotificationSettings = Ok;
-
-
 //@description Uploads a new profile photo for the current user. If something changes, updateUser will be sent @photo Profile photo to set. inputFileId and inputFileRemote may still be unsupported
 setProfilePhoto photo:InputFile = Ok;
 
@@ -2683,7 +3080,7 @@ pinSupergroupMessage supergroup_id:int32 message_id:int53 disable_notification:B
 //@description Removes the pinned message from a supergroup or channel; requires appropriate administrator rights in the supergroup or channel @supergroup_id Identifier of the supergroup or channel
 unpinSupergroupMessage supergroup_id:int32 = Ok;
 
-//@description Reports some messages from a user in a supergroup as spam @supergroup_id Supergroup identifier @user_id User identifier @message_ids Identifiers of messages sent in the supergroup by the user. This list must be non-empty
+//@description Reports some messages from a user in a supergroup as spam; requires administrator rights in the supergroup @supergroup_id Supergroup identifier @user_id User identifier @message_ids Identifiers of messages sent in the supergroup by the user. This list must be non-empty
 reportSupergroupSpam supergroup_id:int32 user_id:int32 message_ids:vector<int53> = Ok;
 
 //@description Returns information about members or banned users in a supergroup or channel. Can be used only if SupergroupFullInfo.can_get_members == true; additionally, administrator privileges may be required for some filters @supergroup_id Identifier of the supergroup or channel
@@ -2734,6 +3131,25 @@ getSupportUser = User;
 getWallpapers = Wallpapers;
 
 
+//@description Returns information about the current localization target. This is an offline request if only_local is true @only_local If true, returns only locally available information without sending network requests
+getLocalizationTargetInfo only_local:Bool = LocalizationTargetInfo;
+
+//@description Returns strings from a language pack in the current localization target by their keys @language_pack_id Language pack identifier of the strings to be returned @keys Language pack keys of the strings to be returned; leave empty to request all available strings
+getLanguagePackStrings language_pack_id:string keys:vector<string> = LanguagePackStrings;
+
+//@description Adds or changes a custom language pack to the current localization target @info Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters @strings Strings of the new language pack
+setCustomLanguagePack info:languagePackInfo strings:vector<languagePackString> = Ok;
+
+//@description Edits information about a custom language pack in the current localization target @info New information about the custom language pack
+editCustomLanguagePackInfo info:languagePackInfo = Ok;
+
+//@description Adds, edits or deletes a string in a custom language pack @language_pack_id Identifier of a previously added custom language pack in the current localization target @new_string New language pack string
+setCustomLanguagePackString language_pack_id:string new_string:languagePackString = Ok;
+
+//@description Deletes all information about a language pack in the current localization target. The language pack that is currently in use can't be deleted @language_pack_id Identifier of the language pack to delete
+deleteLanguagePack language_pack_id:string = Ok;
+
+
 //@description Registers the currently used device for receiving push notifications @device_token Device token @other_user_ids List of at most 100 user identifiers of other users currently using the client
 registerDevice device_token:DeviceToken other_user_ids:vector<int32> = Ok;
 
@@ -2764,7 +3180,7 @@ setAccountTtl ttl:accountTtl = Ok;
 //@description Returns the period of inactivity after which the account of the current user will automatically be deleted
 getAccountTtl = AccountTtl;
 
-//@description Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account @reason The reason why the account was deleted; optional
+//@description Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword @reason The reason why the account was deleted; optional
 deleteAccount reason:string = Ok;
 
 
@@ -2810,6 +3226,65 @@ addNetworkStatistics entry:NetworkStatisticsEntry = Ok;
 resetNetworkStatistics = Ok;
 
 
+//@description Returns one of the available Telegram Passport elements @type Telegram Passport element type @password Password of the current user
+getPassportElement type:PassportElementType password:string = PassportElement;
+
+//@description Returns all available Telegram Passport elements @password Password of the current user
+getAllPassportElements password:string = PassportElements;
+
+//@description Adds an element to the user's Telegram Passport. May return an error with a message "PHONE_VERIFICATION_NEEDED" or "EMAIL_VERIFICATION_NEEDED" if the chosen phone number or the chosen email address must be verified first @element Input Telegram Passport element @password Password of the current user
+setPassportElement element:InputPassportElement password:string = PassportElement;
+
+//@description Deletes a Telegram Passport element @type Element type
+deletePassportElement type:PassportElementType = Ok;
+
+//@description Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed @user_id User identifier @errors The errors
+setPassportElementErrors user_id:int32 errors:vector<inputPassportElementError> = Ok;
+
+
+//@description Returns an IETF language tag of the language preferred in the country, which should be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown @country_code A two-letter ISO 3166-1 alpha-2 country code
+getPreferredCountryLanguage country_code:string = Text;
+
+
+//@description Sends a code to verify a phone number to be added to a user's Telegram Passport
+//@phone_number The phone number of the user, in international format @allow_flash_call Pass true if the authentication code may be sent via flash call to the specified phone number @is_current_phone_number Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false
+sendPhoneNumberVerificationCode phone_number:string allow_flash_call:Bool is_current_phone_number:Bool = AuthenticationCodeInfo;
+
+//@description Re-sends the code to verify a phone number to be added to a user's Telegram Passport
+resendPhoneNumberVerificationCode = AuthenticationCodeInfo;
+
+//@description Checks the phone number verification code for Telegram Passport @code Verification code
+checkPhoneNumberVerificationCode code:string = Ok;
+
+
+//@description Sends a code to verify an email address to be added to a user's Telegram Passport @email_address Email address
+sendEmailAddressVerificationCode email_address:string = EmailAddressAuthenticationCodeInfo;
+
+//@description Re-sends the code to verify an email address to be added to a user's Telegram Passport
+resendEmailAddressVerificationCode = EmailAddressAuthenticationCodeInfo;
+
+//@description Checks the email address verification code for Telegram Passport @code Verification code
+checkEmailAddressVerificationCode code:string = Ok;
+
+
+//@description Returns a Telegram Passport authorization form for sharing data with a service @bot_user_id User identifier of the service's bot @scope Telegram Passport element types requested by the service @public_key Service's public_key @nonce Authorization form nonce provided by the service @password Password of the current user
+getPassportAuthorizationForm bot_user_id:int32 scope:string public_key:string nonce:string password:string = PassportAuthorizationForm;
+
+//@description Sends a Telegram Passport authorization form, effectively sharing data with the service @autorization_form_id Authorization form identifier @types Types of Telegram Passport elements chosen by user to complete the authorization form
+sendPassportAuthorizationForm autorization_form_id:int32 types:vector<PassportElementType> = Ok;
+
+
+//@description Sends phone number confirmation code. Should be called when user presses "https://t.me/confirmphone?phone=*******&hash=**********" or "tg://confirmphone?phone=*******&hash=**********" link @hash Value of the "hash" parameter from the link
+//@phone_number Value of the "phone" parameter from the link @allow_flash_call Pass true if the authentication code may be sent via flash call to the specified phone number @is_current_phone_number Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false
+sendPhoneNumberConfirmationCode hash:string phone_number:string allow_flash_call:Bool is_current_phone_number:Bool = AuthenticationCodeInfo;
+
+//@description Resends phone number confirmation code
+resendPhoneNumberConfirmationCode = AuthenticationCodeInfo;
+
+//@description Checks phone number confirmation code @code The phone number confirmation code
+checkPhoneNumberConfirmationCode code:string = Ok;
+
+
 //@description Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only @pending_update_count The number of pending updates @error_message The last error message
 setBotUpdatesStatus pending_update_count:int32 error_message:string = Ok;
 
@@ -2831,6 +3306,14 @@ setStickerPositionInSet sticker:InputFile position:int32 = Ok;
 removeStickerFromSet sticker:InputFile = Ok;
 
 
+//@description Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded @location Location of the map center @zoom Map zoom level; 13-20 @width Map width in pixels before applying scale; 16-1024 @height Map height in pixels before applying scale; 16-1024 @scale Map scale; 1-3 @chat_id Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
+getMapThumbnailFile location:location zoom:int32 width:int32 height:int32 scale:int32 chat_id:int53 = File;
+
+
+//@description Accepts Telegram terms of services @terms_of_service_id Terms of service identifier
+acceptTermsOfService terms_of_service_id:string = Ok;
+
+
 //@description Sends a custom request; for bots only @method The method name @parameters JSON-serialized method parameters
 sendCustomRequest method:string parameters:string = CustomRequestResult;
 
@@ -2838,7 +3321,7 @@ sendCustomRequest method:string parameters:string = CustomRequestResult;
 answerCustomQuery custom_query_id:int64 data:string = Ok;
 
 
-//@description Succeeds after a specified amount of time has passed. Can be called before authorization @seconds Number of seconds before the function returns
+//@description Succeeds after a specified amount of time has passed. Can be called before authorization. Can be called before initialization @seconds Number of seconds before the function returns
 setAlarm seconds:double = Ok;
 
 
@@ -2848,15 +3331,33 @@ getCountryCode = Text;
 //@description Returns the default text for invitation messages to be used as a placeholder when the current user invites friends to Telegram
 getInviteText = Text;
 
-//@description Returns the terms of service. Can be called before authorization
-getTermsOfService = Text;
+//@description Returns information about a tg:// deep link. Use "tg://need_update_for_some_feature" or "tg:some_unsupported_feature" for testing. Returns a 404 error for unknown links. Can be called before authorization @link The link
+getDeepLinkInfo link:string = DeepLinkInfo;
 
 
-//@description Sets the proxy server for network requests. Can be called before authorization @proxy Proxy server to use. Specify null to remove the proxy server
-setProxy proxy:Proxy = Ok;
+//@description Adds a proxy server for network requests. Can be called before authorization @server Proxy server IP address @port Proxy server port @enable True, if the proxy should be enabled @type Proxy type
+addProxy server:string port:int32 enable:Bool type:ProxyType = Proxy;
 
-//@description Returns the proxy that is currently set up. Can be called before authorization
-getProxy = Proxy;
+//@description Edits an existing proxy server for network requests. Can be called before authorization @proxy_id Proxy identifier @server Proxy server IP address @port Proxy server port @enable True, if the proxy should be enabled @type Proxy type
+editProxy proxy_id:int32 server:string port:int32 enable:Bool type:ProxyType = Proxy;
+
+//@description Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization @proxy_id Proxy identifier
+enableProxy proxy_id:int32 = Ok;
+
+//@description Disables the currently enabled proxy. Can be called before authorization
+disableProxy = Ok;
+
+//@description Removes a proxy server. Can be called before authorization @proxy_id Proxy identifier
+removeProxy proxy_id:int32 = Ok;
+
+//@description Returns list of proxies that are currently set up. Can be called before authorization
+getProxies = Proxies;
+
+//@description Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization @proxy_id Proxy identifier
+getProxyLink proxy_id:int32 = Text;
+
+//@description Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization @proxy_id Proxy identifier. Use 0 to ping a Telegram server without a proxy
+pingProxy proxy_id:int32 = Seconds;
 
 
 //@description Does nothing; for testing only

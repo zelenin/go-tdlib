@@ -235,6 +235,96 @@
             ]
         },
         {
+            "name": "emailAddressAuthenticationCodeInfo",
+            "description": "Information about the email address authentication code that was sent",
+            "class": "EmailAddressAuthenticationCodeInfo",
+            "properties": [
+                {
+                    "name": "email_address_pattern",
+                    "type": "string",
+                    "description": "Pattern of the email address to which an authentication code was sent"
+                },
+                {
+                    "name": "length",
+                    "type": "int32",
+                    "description": "Length of the code; 0 if unknown"
+                }
+            ]
+        },
+        {
+            "name": "textEntity",
+            "description": "Represents a part of the text that needs to be formatted in some unusual way",
+            "class": "TextEntity",
+            "properties": [
+                {
+                    "name": "offset",
+                    "type": "int32",
+                    "description": "Offset of the entity in UTF-16 code points"
+                },
+                {
+                    "name": "length",
+                    "type": "int32",
+                    "description": "Length of the entity, in UTF-16 code points"
+                },
+                {
+                    "name": "type",
+                    "type": "TextEntityType",
+                    "description": "Type of the entity"
+                }
+            ]
+        },
+        {
+            "name": "textEntities",
+            "description": "Contains a list of text entities",
+            "class": "TextEntities",
+            "properties": [
+                {
+                    "name": "entities",
+                    "type": "vector\u003ctextEntity\u003e",
+                    "description": "List of text entities"
+                }
+            ]
+        },
+        {
+            "name": "formattedText",
+            "description": "A text with some entities",
+            "class": "FormattedText",
+            "properties": [
+                {
+                    "name": "text",
+                    "type": "string",
+                    "description": "The text"
+                },
+                {
+                    "name": "entities",
+                    "type": "vector\u003ctextEntity\u003e",
+                    "description": "Entities contained in the text"
+                }
+            ]
+        },
+        {
+            "name": "termsOfService",
+            "description": "Contains Telegram terms of service",
+            "class": "TermsOfService",
+            "properties": [
+                {
+                    "name": "text",
+                    "type": "formattedText",
+                    "description": "Text of the terms of service"
+                },
+                {
+                    "name": "min_user_age",
+                    "type": "int32",
+                    "description": "Mininum age of a user to be able to accept the terms; 0 if any"
+                },
+                {
+                    "name": "show_popup",
+                    "type": "Bool",
+                    "description": "True, if a blocking popup with terms of service must be shown to the user"
+                }
+            ]
+        },
+        {
             "name": "authorizationStateWaitTdlibParameters",
             "description": "TDLib needs TdlibParameters for initialization",
             "class": "AuthorizationState",
@@ -267,6 +357,11 @@
                     "name": "is_registered",
                     "type": "Bool",
                     "description": "True, if the user is already registered"
+                },
+                {
+                    "name": "terms_of_service",
+                    "type": "termsOfService",
+                    "description": "Telegram terms of service, which should be accepted before user can continue registration; may be null"
                 },
                 {
                     "name": "code_info",
@@ -329,7 +424,7 @@
                 {
                     "name": "has_password",
                     "type": "Bool",
-                    "description": "True if a 2-step verification password has been set up"
+                    "description": "True if a 2-step verification password is set"
                 },
                 {
                     "name": "password_hint",
@@ -339,24 +434,17 @@
                 {
                     "name": "has_recovery_email_address",
                     "type": "Bool",
-                    "description": "True if a recovery email has been set up"
+                    "description": "True if a recovery email is set"
+                },
+                {
+                    "name": "has_passport_data",
+                    "type": "Bool",
+                    "description": "True if some Telegram Passport elements were saved"
                 },
                 {
                     "name": "unconfirmed_recovery_email_address_pattern",
                     "type": "string",
-                    "description": "Pattern of the email address to which a confirmation email was sent"
-                }
-            ]
-        },
-        {
-            "name": "passwordRecoveryInfo",
-            "description": "Contains information available to the user after requesting password recovery",
-            "class": "PasswordRecoveryInfo",
-            "properties": [
-                {
-                    "name": "recovery_email_address_pattern",
-                    "type": "string",
-                    "description": "Pattern of the email address to which a recovery email was sent"
+                    "description": "Pattern of the email address to which the confirmation email was sent"
                 }
             ]
         },
@@ -439,7 +527,7 @@
                 {
                     "name": "id",
                     "type": "string",
-                    "description": "Remote file identifier, may be empty. Can be used across application restarts or even from other devices for the current user. If the ID starts with \"http://\" or \"https://\", it represents the HTTP URL of the file. TDLib is currently unable to download files if only their URL is known. If downloadFile is called on such a file or if it is sent to a secret chat, TDLib starts a file generation process by sending updateFileGenerationStart to the client with the HTTP URL in the original_path and \"#url#\" as the conversion string. Clients should generate the file by downloading it to the specified location"
+                    "description": "Remote file identifier; may be empty. Can be used across application restarts or even from other devices for the current user. If the ID starts with \"http://\" or \"https://\", it represents the HTTP URL of the file. TDLib is currently unable to download files if only their URL is known. If downloadFile is called on such a file or if it is sent to a secret chat, TDLib starts a file generation process by sending updateFileGenerationStart to the client with the HTTP URL in the original_path and \"#url#\" as the conversion string. Clients should generate the file by downloading it to the specified location"
                 },
                 {
                     "name": "is_uploading_active",
@@ -534,7 +622,7 @@
                 {
                     "name": "original_path",
                     "type": "string",
-                    "description": "Local path to a file from which the file is generated, may be empty if there is no such file"
+                    "description": "Local path to a file from which the file is generated; may be empty if there is no such file"
                 },
                 {
                     "name": "conversion",
@@ -623,57 +711,6 @@
                     "name": "scale",
                     "type": "double",
                     "description": "Mask scaling coefficient. (For example, 2.0 means a doubled size)"
-                }
-            ]
-        },
-        {
-            "name": "textEntity",
-            "description": "Represents a part of the text that needs to be formatted in some unusual way",
-            "class": "TextEntity",
-            "properties": [
-                {
-                    "name": "offset",
-                    "type": "int32",
-                    "description": "Offset of the entity in UTF-16 code points"
-                },
-                {
-                    "name": "length",
-                    "type": "int32",
-                    "description": "Length of the entity, in UTF-16 code points"
-                },
-                {
-                    "name": "type",
-                    "type": "TextEntityType",
-                    "description": "Type of the entity"
-                }
-            ]
-        },
-        {
-            "name": "textEntities",
-            "description": "Contains a list of text entities",
-            "class": "TextEntities",
-            "properties": [
-                {
-                    "name": "entities",
-                    "type": "vector\u003ctextEntity\u003e",
-                    "description": "List of text entities"
-                }
-            ]
-        },
-        {
-            "name": "formattedText",
-            "description": "A text with some entities",
-            "class": "FormattedText",
-            "properties": [
-                {
-                    "name": "text",
-                    "type": "string",
-                    "description": "The text"
-                },
-                {
-                    "name": "entities",
-                    "type": "vector\u003ctextEntity\u003e",
-                    "description": "Entities contained in the text"
                 }
             ]
         },
@@ -984,6 +1021,11 @@
                     "description": "Last name of the user"
                 },
                 {
+                    "name": "vcard",
+                    "type": "string",
+                    "description": "Additional data about the user in a form of vCard; 0-2048 bytes in length"
+                },
+                {
                     "name": "user_id",
                     "type": "int32",
                     "description": "Identifier of the user, if known; otherwise 0"
@@ -1036,6 +1078,11 @@
                     "name": "id",
                     "type": "string",
                     "description": "Identifier of the venue in the provider database; as defined by the sender"
+                },
+                {
+                    "name": "type",
+                    "type": "string",
+                    "description": "Type of the venue in the provider database; as defined by the sender"
                 }
             ]
         },
@@ -1550,6 +1597,36 @@
             ]
         },
         {
+            "name": "chatMembersFilterAdministrators",
+            "description": "Returns the creator and administrators",
+            "class": "ChatMembersFilter",
+            "properties": []
+        },
+        {
+            "name": "chatMembersFilterMembers",
+            "description": "Returns all chat members, including restricted chat members",
+            "class": "ChatMembersFilter",
+            "properties": []
+        },
+        {
+            "name": "chatMembersFilterRestricted",
+            "description": "Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup",
+            "class": "ChatMembersFilter",
+            "properties": []
+        },
+        {
+            "name": "chatMembersFilterBanned",
+            "description": "Returns users banned from the chat; can be used only by administrators in a supergroup or in a channel",
+            "class": "ChatMembersFilter",
+            "properties": []
+        },
+        {
+            "name": "chatMembersFilterBots",
+            "description": "Returns bot members of the chat",
+            "class": "ChatMembersFilter",
+            "properties": []
+        },
+        {
             "name": "supergroupMembersFilterRecent",
             "description": "Returns recently active users in reverse chronological order",
             "class": "SupergroupMembersFilter",
@@ -1940,7 +2017,7 @@
                 {
                     "name": "id",
                     "type": "int53",
-                    "description": "Unique message identifier"
+                    "description": "Message identifier, unique for the chat to which the message belongs"
                 },
                 {
                     "name": "sender_user_id",
@@ -2089,39 +2166,58 @@
             ]
         },
         {
-            "name": "notificationSettingsScopeChat",
-            "description": "Notification settings applied to a particular chat",
+            "name": "notificationSettingsScopePrivateChats",
+            "description": "Notification settings applied to all private and secret chats when the corresponding chat setting has a default value",
             "class": "NotificationSettingsScope",
+            "properties": []
+        },
+        {
+            "name": "notificationSettingsScopeGroupChats",
+            "description": "Notification settings applied to all basic groups, supergroups and channels when the corresponding chat setting has a default value",
+            "class": "NotificationSettingsScope",
+            "properties": []
+        },
+        {
+            "name": "chatNotificationSettings",
+            "description": "Contains information about notification settings for a chat",
+            "class": "ChatNotificationSettings",
             "properties": [
                 {
-                    "name": "chat_id",
-                    "type": "int53",
-                    "description": "Chat identifier"
+                    "name": "use_default_mute_for",
+                    "type": "Bool",
+                    "description": "If true, mute_for is ignored and the value for the relevant type of chat is used instead"
+                },
+                {
+                    "name": "mute_for",
+                    "type": "int32",
+                    "description": "Time left before notifications will be unmuted, in seconds"
+                },
+                {
+                    "name": "use_default_sound",
+                    "type": "Bool",
+                    "description": "If true, sound is ignored and the value for the relevant type of chat is used instead"
+                },
+                {
+                    "name": "sound",
+                    "type": "string",
+                    "description": "The name of an audio file to be used for notification sounds; only applies to iOS applications"
+                },
+                {
+                    "name": "use_default_show_preview",
+                    "type": "Bool",
+                    "description": "If true, show_preview is ignored and the value for the relevant type of chat is used instead"
+                },
+                {
+                    "name": "show_preview",
+                    "type": "Bool",
+                    "description": "True, if message content should be displayed in notifications"
                 }
             ]
         },
         {
-            "name": "notificationSettingsScopePrivateChats",
-            "description": "Notification settings applied to all private chats",
-            "class": "NotificationSettingsScope",
-            "properties": []
-        },
-        {
-            "name": "notificationSettingsScopeBasicGroupChats",
-            "description": "Notification settings applied to all basic groups and channels. (Supergroups have no common settings)",
-            "class": "NotificationSettingsScope",
-            "properties": []
-        },
-        {
-            "name": "notificationSettingsScopeAllChats",
-            "description": "Notification settings applied to all chats",
-            "class": "NotificationSettingsScope",
-            "properties": []
-        },
-        {
-            "name": "notificationSettings",
-            "description": "Contains information about notification settings for a chat or several chats",
-            "class": "NotificationSettings",
+            "name": "scopeNotificationSettings",
+            "description": "Contains information about notification settings for several chats",
+            "class": "ScopeNotificationSettings",
             "properties": [
                 {
                     "name": "mute_for",
@@ -2131,7 +2227,7 @@
                 {
                     "name": "sound",
                     "type": "string",
-                    "description": "An audio file name for notification sounds; only applies to iOS applications"
+                    "description": "The name of an audio file to be used for notification sounds; only applies to iOS applications"
                 },
                 {
                     "name": "show_preview",
@@ -2256,9 +2352,24 @@
                     "description": "True, if the chat is pinned"
                 },
                 {
+                    "name": "is_marked_as_unread",
+                    "type": "Bool",
+                    "description": "True, if the chat is marked as unread"
+                },
+                {
+                    "name": "is_sponsored",
+                    "type": "Bool",
+                    "description": "True, if the chat is sponsored by the user's MTProxy server"
+                },
+                {
                     "name": "can_be_reported",
                     "type": "Bool",
                     "description": "True, if the chat can be reported to Telegram moderators through reportChat"
+                },
+                {
+                    "name": "default_disable_notification",
+                    "type": "Bool",
+                    "description": "Default value of the disable_notification parameter, used when a message is sent to the chat"
                 },
                 {
                     "name": "unread_count",
@@ -2282,7 +2393,7 @@
                 },
                 {
                     "name": "notification_settings",
-                    "type": "notificationSettings",
+                    "type": "chatNotificationSettings",
                     "description": "Notification settings for this chat"
                 },
                 {
@@ -2411,7 +2522,7 @@
                 {
                     "name": "url",
                     "type": "string",
-                    "description": "URL to open"
+                    "description": "HTTP or tg:// URL to open"
                 }
             ]
         },
@@ -3194,6 +3305,43 @@
             ]
         },
         {
+            "name": "address",
+            "description": "Describes an address",
+            "class": "Address",
+            "properties": [
+                {
+                    "name": "country_code",
+                    "type": "string",
+                    "description": "A two-letter ISO 3166-1 alpha-2 country code"
+                },
+                {
+                    "name": "state",
+                    "type": "string",
+                    "description": "State, if applicable"
+                },
+                {
+                    "name": "city",
+                    "type": "string",
+                    "description": "City"
+                },
+                {
+                    "name": "street_line1",
+                    "type": "string",
+                    "description": "First line of the address"
+                },
+                {
+                    "name": "street_line2",
+                    "type": "string",
+                    "description": "Second line of the address"
+                },
+                {
+                    "name": "postal_code",
+                    "type": "string",
+                    "description": "Address postal code"
+                }
+            ]
+        },
+        {
             "name": "labeledPricePart",
             "description": "Portion of the price of a product (e.g., \"delivery cost\", \"tax amount\")",
             "class": "LabeledPricePart",
@@ -3268,43 +3416,6 @@
             ]
         },
         {
-            "name": "shippingAddress",
-            "description": "Describes a shipping address",
-            "class": "ShippingAddress",
-            "properties": [
-                {
-                    "name": "country_code",
-                    "type": "string",
-                    "description": "Two-letter ISO 3166-1 alpha-2 country code"
-                },
-                {
-                    "name": "state",
-                    "type": "string",
-                    "description": "State, if applicable"
-                },
-                {
-                    "name": "city",
-                    "type": "string",
-                    "description": "City"
-                },
-                {
-                    "name": "street_line1",
-                    "type": "string",
-                    "description": "First line of the address"
-                },
-                {
-                    "name": "street_line2",
-                    "type": "string",
-                    "description": "Second line of the address"
-                },
-                {
-                    "name": "postal_code",
-                    "type": "string",
-                    "description": "Address postal code"
-                }
-            ]
-        },
-        {
             "name": "orderInfo",
             "description": "Order information",
             "class": "OrderInfo",
@@ -3326,7 +3437,7 @@
                 },
                 {
                     "name": "shipping_address",
-                    "type": "shippingAddress",
+                    "type": "address",
                     "description": "Shipping address for this order; may be null"
                 }
             ]
@@ -3560,6 +3671,974 @@
                     "name": "credentials_title",
                     "type": "string",
                     "description": "Title of the saved credentials"
+                }
+            ]
+        },
+        {
+            "name": "datedFile",
+            "description": "File with the date it was uploaded",
+            "class": "DatedFile",
+            "properties": [
+                {
+                    "name": "file",
+                    "type": "file",
+                    "description": "The file"
+                },
+                {
+                    "name": "date",
+                    "type": "int32",
+                    "description": "Point in time (Unix timestamp) when the file was uploaded"
+                }
+            ]
+        },
+        {
+            "name": "passportElementTypePersonalDetails",
+            "description": "A Telegram Passport element containing the user's personal details",
+            "class": "PassportElementType",
+            "properties": []
+        },
+        {
+            "name": "passportElementTypePassport",
+            "description": "A Telegram Passport element containing the user's passport",
+            "class": "PassportElementType",
+            "properties": []
+        },
+        {
+            "name": "passportElementTypeDriverLicense",
+            "description": "A Telegram Passport element containing the user's driver license",
+            "class": "PassportElementType",
+            "properties": []
+        },
+        {
+            "name": "passportElementTypeIdentityCard",
+            "description": "A Telegram Passport element containing the user's identity card",
+            "class": "PassportElementType",
+            "properties": []
+        },
+        {
+            "name": "passportElementTypeInternalPassport",
+            "description": "A Telegram Passport element containing the user's internal passport",
+            "class": "PassportElementType",
+            "properties": []
+        },
+        {
+            "name": "passportElementTypeAddress",
+            "description": "A Telegram Passport element containing the user's address",
+            "class": "PassportElementType",
+            "properties": []
+        },
+        {
+            "name": "passportElementTypeUtilityBill",
+            "description": "A Telegram Passport element containing the user's utility bill",
+            "class": "PassportElementType",
+            "properties": []
+        },
+        {
+            "name": "passportElementTypeBankStatement",
+            "description": "A Telegram Passport element containing the user's bank statement",
+            "class": "PassportElementType",
+            "properties": []
+        },
+        {
+            "name": "passportElementTypeRentalAgreement",
+            "description": "A Telegram Passport element containing the user's rental agreement",
+            "class": "PassportElementType",
+            "properties": []
+        },
+        {
+            "name": "passportElementTypePassportRegistration",
+            "description": "A Telegram Passport element containing the registration page of the user's passport",
+            "class": "PassportElementType",
+            "properties": []
+        },
+        {
+            "name": "passportElementTypeTemporaryRegistration",
+            "description": "A Telegram Passport element containing the user's temporary registration",
+            "class": "PassportElementType",
+            "properties": []
+        },
+        {
+            "name": "passportElementTypePhoneNumber",
+            "description": "A Telegram Passport element containing the user's phone number",
+            "class": "PassportElementType",
+            "properties": []
+        },
+        {
+            "name": "passportElementTypeEmailAddress",
+            "description": "A Telegram Passport element containing the user's email address",
+            "class": "PassportElementType",
+            "properties": []
+        },
+        {
+            "name": "date",
+            "description": "Represents a date according to the Gregorian calendar",
+            "class": "Date",
+            "properties": [
+                {
+                    "name": "day",
+                    "type": "int32",
+                    "description": "Day of the month, 1-31"
+                },
+                {
+                    "name": "month",
+                    "type": "int32",
+                    "description": "Month, 1-12"
+                },
+                {
+                    "name": "year",
+                    "type": "int32",
+                    "description": "Year, 1-9999"
+                }
+            ]
+        },
+        {
+            "name": "personalDetails",
+            "description": "Contains the user's personal details",
+            "class": "PersonalDetails",
+            "properties": [
+                {
+                    "name": "first_name",
+                    "type": "string",
+                    "description": "First name of the user written in English; 1-255 characters"
+                },
+                {
+                    "name": "middle_name",
+                    "type": "string",
+                    "description": "Middle name of the user written in English; 0-255 characters"
+                },
+                {
+                    "name": "last_name",
+                    "type": "string",
+                    "description": "Last name of the user written in English; 1-255 characters"
+                },
+                {
+                    "name": "native_first_name",
+                    "type": "string",
+                    "description": "Native first name of the user; 1-255 characters"
+                },
+                {
+                    "name": "native_middle_name",
+                    "type": "string",
+                    "description": "Native middle name of the user; 0-255 characters"
+                },
+                {
+                    "name": "native_last_name",
+                    "type": "string",
+                    "description": "Native last name of the user; 1-255 characters"
+                },
+                {
+                    "name": "birthdate",
+                    "type": "date",
+                    "description": "Birthdate of the user"
+                },
+                {
+                    "name": "gender",
+                    "type": "string",
+                    "description": "Gender of the user, \"male\" or \"female\""
+                },
+                {
+                    "name": "country_code",
+                    "type": "string",
+                    "description": "A two-letter ISO 3166-1 alpha-2 country code of the user's country"
+                },
+                {
+                    "name": "residence_country_code",
+                    "type": "string",
+                    "description": "A two-letter ISO 3166-1 alpha-2 country code of the user's residence country"
+                }
+            ]
+        },
+        {
+            "name": "identityDocument",
+            "description": "An identity document",
+            "class": "IdentityDocument",
+            "properties": [
+                {
+                    "name": "number",
+                    "type": "string",
+                    "description": "Document number; 1-24 characters"
+                },
+                {
+                    "name": "expiry_date",
+                    "type": "date",
+                    "description": "Document expiry date; may be null"
+                },
+                {
+                    "name": "front_side",
+                    "type": "datedFile",
+                    "description": "Front side of the document"
+                },
+                {
+                    "name": "reverse_side",
+                    "type": "datedFile",
+                    "description": "Reverse side of the document; only for driver license and identity card"
+                },
+                {
+                    "name": "selfie",
+                    "type": "datedFile",
+                    "description": "Selfie with the document; may be null"
+                },
+                {
+                    "name": "translation",
+                    "type": "vector\u003cdatedFile\u003e",
+                    "description": "List of files containing a certified English translation of the document"
+                }
+            ]
+        },
+        {
+            "name": "inputIdentityDocument",
+            "description": "An identity document to be saved to Telegram Passport",
+            "class": "InputIdentityDocument",
+            "properties": [
+                {
+                    "name": "number",
+                    "type": "string",
+                    "description": "Document number; 1-24 characters"
+                },
+                {
+                    "name": "expiry_date",
+                    "type": "date",
+                    "description": "Document expiry date, if available"
+                },
+                {
+                    "name": "front_side",
+                    "type": "InputFile",
+                    "description": "Front side of the document"
+                },
+                {
+                    "name": "reverse_side",
+                    "type": "InputFile",
+                    "description": "Reverse side of the document; only for driver license and identity card"
+                },
+                {
+                    "name": "selfie",
+                    "type": "InputFile",
+                    "description": "Selfie with the document, if available"
+                },
+                {
+                    "name": "translation",
+                    "type": "vector\u003cInputFile\u003e",
+                    "description": "List of files containing a certified English translation of the document"
+                }
+            ]
+        },
+        {
+            "name": "personalDocument",
+            "description": "A personal document, containing some information about a user",
+            "class": "PersonalDocument",
+            "properties": [
+                {
+                    "name": "files",
+                    "type": "vector\u003cdatedFile\u003e",
+                    "description": "List of files containing the pages of the document"
+                },
+                {
+                    "name": "translation",
+                    "type": "vector\u003cdatedFile\u003e",
+                    "description": "List of files containing a certified English translation of the document"
+                }
+            ]
+        },
+        {
+            "name": "inputPersonalDocument",
+            "description": "A personal document to be saved to Telegram Passport",
+            "class": "InputPersonalDocument",
+            "properties": [
+                {
+                    "name": "files",
+                    "type": "vector\u003cInputFile\u003e",
+                    "description": "List of files containing the pages of the document"
+                },
+                {
+                    "name": "translation",
+                    "type": "vector\u003cInputFile\u003e",
+                    "description": "List of files containing a certified English translation of the document"
+                }
+            ]
+        },
+        {
+            "name": "passportElementPersonalDetails",
+            "description": "A Telegram Passport element containing the user's personal details",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "personal_details",
+                    "type": "personalDetails",
+                    "description": "Personal details of the user"
+                }
+            ]
+        },
+        {
+            "name": "passportElementPassport",
+            "description": "A Telegram Passport element containing the user's passport",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "passport",
+                    "type": "identityDocument",
+                    "description": "Passport"
+                }
+            ]
+        },
+        {
+            "name": "passportElementDriverLicense",
+            "description": "A Telegram Passport element containing the user's driver license",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "driver_license",
+                    "type": "identityDocument",
+                    "description": "Driver license"
+                }
+            ]
+        },
+        {
+            "name": "passportElementIdentityCard",
+            "description": "A Telegram Passport element containing the user's identity card",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "identity_card",
+                    "type": "identityDocument",
+                    "description": "Identity card"
+                }
+            ]
+        },
+        {
+            "name": "passportElementInternalPassport",
+            "description": "A Telegram Passport element containing the user's internal passport",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "internal_passport",
+                    "type": "identityDocument",
+                    "description": "Internal passport"
+                }
+            ]
+        },
+        {
+            "name": "passportElementAddress",
+            "description": "A Telegram Passport element containing the user's address",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "address",
+                    "type": "address",
+                    "description": "Address"
+                }
+            ]
+        },
+        {
+            "name": "passportElementUtilityBill",
+            "description": "A Telegram Passport element containing the user's utility bill",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "utility_bill",
+                    "type": "personalDocument",
+                    "description": "Utility bill"
+                }
+            ]
+        },
+        {
+            "name": "passportElementBankStatement",
+            "description": "A Telegram Passport element containing the user's bank statement",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "bank_statement",
+                    "type": "personalDocument",
+                    "description": "Bank statement"
+                }
+            ]
+        },
+        {
+            "name": "passportElementRentalAgreement",
+            "description": "A Telegram Passport element containing the user's rental agreement",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "rental_agreement",
+                    "type": "personalDocument",
+                    "description": "Rental agreement"
+                }
+            ]
+        },
+        {
+            "name": "passportElementPassportRegistration",
+            "description": "A Telegram Passport element containing the user's passport registration pages",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "passport_registration",
+                    "type": "personalDocument",
+                    "description": "Passport registration pages"
+                }
+            ]
+        },
+        {
+            "name": "passportElementTemporaryRegistration",
+            "description": "A Telegram Passport element containing the user's temporary registration",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "temporary_registration",
+                    "type": "personalDocument",
+                    "description": "Temporary registration"
+                }
+            ]
+        },
+        {
+            "name": "passportElementPhoneNumber",
+            "description": "A Telegram Passport element containing the user's phone number",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "phone_number",
+                    "type": "string",
+                    "description": "Phone number"
+                }
+            ]
+        },
+        {
+            "name": "passportElementEmailAddress",
+            "description": "A Telegram Passport element containing the user's email address",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "email_address",
+                    "type": "string",
+                    "description": "Email address"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementPersonalDetails",
+            "description": "A Telegram Passport element to be saved containing the user's personal details",
+            "class": "InputPassportElement",
+            "properties": [
+                {
+                    "name": "personal_details",
+                    "type": "personalDetails",
+                    "description": "Personal details of the user"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementPassport",
+            "description": "A Telegram Passport element to be saved containing the user's passport",
+            "class": "InputPassportElement",
+            "properties": [
+                {
+                    "name": "passport",
+                    "type": "inputIdentityDocument",
+                    "description": "The passport to be saved"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementDriverLicense",
+            "description": "A Telegram Passport element to be saved containing the user's driver license",
+            "class": "InputPassportElement",
+            "properties": [
+                {
+                    "name": "driver_license",
+                    "type": "inputIdentityDocument",
+                    "description": "The driver license to be saved"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementIdentityCard",
+            "description": "A Telegram Passport element to be saved containing the user's identity card",
+            "class": "InputPassportElement",
+            "properties": [
+                {
+                    "name": "identity_card",
+                    "type": "inputIdentityDocument",
+                    "description": "The identity card to be saved"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementInternalPassport",
+            "description": "A Telegram Passport element to be saved containing the user's internal passport",
+            "class": "InputPassportElement",
+            "properties": [
+                {
+                    "name": "internal_passport",
+                    "type": "inputIdentityDocument",
+                    "description": "The internal passport to be saved"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementAddress",
+            "description": "A Telegram Passport element to be saved containing the user's address",
+            "class": "InputPassportElement",
+            "properties": [
+                {
+                    "name": "address",
+                    "type": "address",
+                    "description": "The address to be saved"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementUtilityBill",
+            "description": "A Telegram Passport element to be saved containing the user's utility bill",
+            "class": "InputPassportElement",
+            "properties": [
+                {
+                    "name": "utility_bill",
+                    "type": "inputPersonalDocument",
+                    "description": "The utility bill to be saved"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementBankStatement",
+            "description": "A Telegram Passport element to be saved containing the user's bank statement",
+            "class": "InputPassportElement",
+            "properties": [
+                {
+                    "name": "bank_statement",
+                    "type": "inputPersonalDocument",
+                    "description": "The bank statement to be saved"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementRentalAgreement",
+            "description": "A Telegram Passport element to be saved containing the user's rental agreement",
+            "class": "InputPassportElement",
+            "properties": [
+                {
+                    "name": "rental_agreement",
+                    "type": "inputPersonalDocument",
+                    "description": "The rental agreement to be saved"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementPassportRegistration",
+            "description": "A Telegram Passport element to be saved containing the user's passport registration",
+            "class": "InputPassportElement",
+            "properties": [
+                {
+                    "name": "passport_registration",
+                    "type": "inputPersonalDocument",
+                    "description": "The passport registration page to be saved"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementTemporaryRegistration",
+            "description": "A Telegram Passport element to be saved containing the user's temporary registration",
+            "class": "InputPassportElement",
+            "properties": [
+                {
+                    "name": "temporary_registration",
+                    "type": "inputPersonalDocument",
+                    "description": "The temporary registration document to be saved"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementPhoneNumber",
+            "description": "A Telegram Passport element to be saved containing the user's phone number",
+            "class": "InputPassportElement",
+            "properties": [
+                {
+                    "name": "phone_number",
+                    "type": "string",
+                    "description": "The phone number to be saved"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementEmailAddress",
+            "description": "A Telegram Passport element to be saved containing the user's email address",
+            "class": "InputPassportElement",
+            "properties": [
+                {
+                    "name": "email_address",
+                    "type": "string",
+                    "description": "The email address to be saved"
+                }
+            ]
+        },
+        {
+            "name": "passportElements",
+            "description": "Contains information about saved Telegram Passport elements",
+            "class": "PassportElements",
+            "properties": [
+                {
+                    "name": "elements",
+                    "type": "vector\u003cPassportElement\u003e",
+                    "description": "Telegram Passport elements"
+                }
+            ]
+        },
+        {
+            "name": "passportElementErrorSourceUnspecified",
+            "description": "The element contains an error in an unspecified place. The error will be considered resolved when new data is added",
+            "class": "PassportElementErrorSource",
+            "properties": []
+        },
+        {
+            "name": "passportElementErrorSourceDataField",
+            "description": "One of the data fields contains an error. The error will be considered resolved when the value of the field changes",
+            "class": "PassportElementErrorSource",
+            "properties": [
+                {
+                    "name": "field_name",
+                    "type": "string",
+                    "description": "Field name"
+                }
+            ]
+        },
+        {
+            "name": "passportElementErrorSourceFrontSide",
+            "description": "The front side of the document contains an error. The error will be considered resolved when the file with the front side changes",
+            "class": "PassportElementErrorSource",
+            "properties": []
+        },
+        {
+            "name": "passportElementErrorSourceReverseSide",
+            "description": "The reverse side of the document contains an error. The error will be considered resolved when the file with the reverse side changes",
+            "class": "PassportElementErrorSource",
+            "properties": []
+        },
+        {
+            "name": "passportElementErrorSourceSelfie",
+            "description": "The selfie with the document contains an error. The error will be considered resolved when the file with the selfie changes",
+            "class": "PassportElementErrorSource",
+            "properties": []
+        },
+        {
+            "name": "passportElementErrorSourceTranslationFile",
+            "description": "One of files with the translation of the document contains an error. The error will be considered resolved when the file changes",
+            "class": "PassportElementErrorSource",
+            "properties": []
+        },
+        {
+            "name": "passportElementErrorSourceTranslationFiles",
+            "description": "The translation of the document contains an error. The error will be considered resolved when the list of translation files changes",
+            "class": "PassportElementErrorSource",
+            "properties": []
+        },
+        {
+            "name": "passportElementErrorSourceFile",
+            "description": "The file contains an error. The error will be considered resolved when the file changes",
+            "class": "PassportElementErrorSource",
+            "properties": []
+        },
+        {
+            "name": "passportElementErrorSourceFiles",
+            "description": "The list of attached files contains an error. The error will be considered resolved when the list of files changes",
+            "class": "PassportElementErrorSource",
+            "properties": []
+        },
+        {
+            "name": "passportElementError",
+            "description": "Contains the description of an error in a Telegram Passport element",
+            "class": "PassportElementError",
+            "properties": [
+                {
+                    "name": "type",
+                    "type": "PassportElementType",
+                    "description": "Type of the Telegram Passport element which has the error"
+                },
+                {
+                    "name": "message",
+                    "type": "string",
+                    "description": "Error message"
+                },
+                {
+                    "name": "source",
+                    "type": "PassportElementErrorSource",
+                    "description": "Error source"
+                }
+            ]
+        },
+        {
+            "name": "passportSuitableElement",
+            "description": "Contains information about a Telegram Passport element that was requested by a service",
+            "class": "PassportSuitableElement",
+            "properties": [
+                {
+                    "name": "type",
+                    "type": "PassportElementType",
+                    "description": "Type of the element"
+                },
+                {
+                    "name": "is_selfie_required",
+                    "type": "Bool",
+                    "description": "True, if a selfie is required with the identity document"
+                },
+                {
+                    "name": "is_translation_required",
+                    "type": "Bool",
+                    "description": "True, if a certified English translation is required with the document"
+                },
+                {
+                    "name": "is_native_name_required",
+                    "type": "Bool",
+                    "description": "True, if personal details must include the user's name in the language of their country of residence"
+                }
+            ]
+        },
+        {
+            "name": "passportRequiredElement",
+            "description": "Contains a description of the required Telegram Passport element that was requested by a service",
+            "class": "PassportRequiredElement",
+            "properties": [
+                {
+                    "name": "suitable_elements",
+                    "type": "vector\u003cpassportSuitableElement\u003e",
+                    "description": "List of Telegram Passport elements any of which is enough to provide"
+                }
+            ]
+        },
+        {
+            "name": "passportAuthorizationForm",
+            "description": "Contains information about a Telegram Passport authorization form that was requested",
+            "class": "PassportAuthorizationForm",
+            "properties": [
+                {
+                    "name": "id",
+                    "type": "int32",
+                    "description": "Unique identifier of the authorization form"
+                },
+                {
+                    "name": "required_elements",
+                    "type": "vector\u003cpassportRequiredElement\u003e",
+                    "description": "Information about the Telegram Passport elements that need to be provided to complete the form"
+                },
+                {
+                    "name": "elements",
+                    "type": "vector\u003cPassportElement\u003e",
+                    "description": "Already available Telegram Passport elements"
+                },
+                {
+                    "name": "errors",
+                    "type": "vector\u003cpassportElementError\u003e",
+                    "description": "Errors in the elements that are already available"
+                },
+                {
+                    "name": "privacy_policy_url",
+                    "type": "string",
+                    "description": "URL for the privacy policy of the service; can be empty"
+                }
+            ]
+        },
+        {
+            "name": "encryptedCredentials",
+            "description": "Contains encrypted Telegram Passport data credentials",
+            "class": "EncryptedCredentials",
+            "properties": [
+                {
+                    "name": "data",
+                    "type": "bytes",
+                    "description": "The encrypted credentials"
+                },
+                {
+                    "name": "hash",
+                    "type": "bytes",
+                    "description": "The decrypted data hash"
+                },
+                {
+                    "name": "secret",
+                    "type": "bytes",
+                    "description": "Secret for data decryption, encrypted with the service's public key"
+                }
+            ]
+        },
+        {
+            "name": "encryptedPassportElement",
+            "description": "Contains information about an encrypted Telegram Passport element; for bots only",
+            "class": "EncryptedPassportElement",
+            "properties": [
+                {
+                    "name": "type",
+                    "type": "PassportElementType",
+                    "description": "Type of Telegram Passport element"
+                },
+                {
+                    "name": "data",
+                    "type": "bytes",
+                    "description": "Encrypted JSON-encoded data about the user"
+                },
+                {
+                    "name": "front_side",
+                    "type": "datedFile",
+                    "description": "The front side of an identity document"
+                },
+                {
+                    "name": "reverse_side",
+                    "type": "datedFile",
+                    "description": "The reverse side of an identity document; may be null"
+                },
+                {
+                    "name": "selfie",
+                    "type": "datedFile",
+                    "description": "Selfie with the document; may be null"
+                },
+                {
+                    "name": "translation",
+                    "type": "vector\u003cdatedFile\u003e",
+                    "description": "List of files containing a certified English translation of the document"
+                },
+                {
+                    "name": "files",
+                    "type": "vector\u003cdatedFile\u003e",
+                    "description": "List of attached files"
+                },
+                {
+                    "name": "value",
+                    "type": "string",
+                    "description": "Unencrypted data, phone number or email address"
+                },
+                {
+                    "name": "hash",
+                    "type": "string",
+                    "description": "Hash of the entire element"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementErrorSourceUnspecified",
+            "description": "The element contains an error in an unspecified place. The error will be considered resolved when new data is added",
+            "class": "InputPassportElementErrorSource",
+            "properties": [
+                {
+                    "name": "element_hash",
+                    "type": "bytes",
+                    "description": "Current hash of the entire element"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementErrorSourceDataField",
+            "description": "A data field contains an error. The error is considered resolved when the field's value changes",
+            "class": "InputPassportElementErrorSource",
+            "properties": [
+                {
+                    "name": "field_name",
+                    "type": "string",
+                    "description": "Field name"
+                },
+                {
+                    "name": "data_hash",
+                    "type": "bytes",
+                    "description": "Current data hash"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementErrorSourceFrontSide",
+            "description": "The front side of the document contains an error. The error is considered resolved when the file with the front side of the document changes",
+            "class": "InputPassportElementErrorSource",
+            "properties": [
+                {
+                    "name": "file_hash",
+                    "type": "bytes",
+                    "description": "Current hash of the file containing the front side"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementErrorSourceReverseSide",
+            "description": "The reverse side of the document contains an error. The error is considered resolved when the file with the reverse side of the document changes",
+            "class": "InputPassportElementErrorSource",
+            "properties": [
+                {
+                    "name": "file_hash",
+                    "type": "bytes",
+                    "description": "Current hash of the file containing the reverse side"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementErrorSourceSelfie",
+            "description": "The selfie contains an error. The error is considered resolved when the file with the selfie changes",
+            "class": "InputPassportElementErrorSource",
+            "properties": [
+                {
+                    "name": "file_hash",
+                    "type": "bytes",
+                    "description": "Current hash of the file containing the selfie"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementErrorSourceTranslationFile",
+            "description": "One of the files containing the translation of the document contains an error. The error is considered resolved when the file with the translation changes",
+            "class": "InputPassportElementErrorSource",
+            "properties": [
+                {
+                    "name": "file_hash",
+                    "type": "bytes",
+                    "description": "Current hash of the file containing the translation"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementErrorSourceTranslationFiles",
+            "description": "The translation of the document contains an error. The error is considered resolved when the list of files changes",
+            "class": "InputPassportElementErrorSource",
+            "properties": [
+                {
+                    "name": "file_hashes",
+                    "type": "vector\u003cbytes\u003e",
+                    "description": "Current hashes of all files with the translation"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementErrorSourceFile",
+            "description": "The file contains an error. The error is considered resolved when the file changes",
+            "class": "InputPassportElementErrorSource",
+            "properties": [
+                {
+                    "name": "file_hash",
+                    "type": "bytes",
+                    "description": "Current hash of the file which has the error"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementErrorSourceFiles",
+            "description": "The list of attached files contains an error. The error is considered resolved when the file list changes",
+            "class": "InputPassportElementErrorSource",
+            "properties": [
+                {
+                    "name": "file_hashes",
+                    "type": "vector\u003cbytes\u003e",
+                    "description": "Current hashes of all attached files"
+                }
+            ]
+        },
+        {
+            "name": "inputPassportElementError",
+            "description": "Contains the description of an error in a Telegram Passport element; for bots only",
+            "class": "InputPassportElementError",
+            "properties": [
+                {
+                    "name": "type",
+                    "type": "PassportElementType",
+                    "description": "Type of Telegram Passport element that has the error"
+                },
+                {
+                    "name": "message",
+                    "type": "string",
+                    "description": "Error message"
+                },
+                {
+                    "name": "source",
+                    "type": "InputPassportElementErrorSource",
+                    "description": "Error source"
                 }
             ]
         },
@@ -4107,7 +5186,7 @@
                 {
                     "name": "shipping_option_id",
                     "type": "string",
-                    "description": "Identifier of the shipping option chosen by the user, may be empty if not applicable"
+                    "description": "Identifier of the shipping option chosen by the user; may be empty if not applicable"
                 },
                 {
                     "name": "order_info",
@@ -4141,6 +5220,35 @@
                     "name": "domain_name",
                     "type": "string",
                     "description": "Domain name of the connected website"
+                }
+            ]
+        },
+        {
+            "name": "messagePassportDataSent",
+            "description": "Telegram Passport data has been sent",
+            "class": "MessageContent",
+            "properties": [
+                {
+                    "name": "types",
+                    "type": "vector\u003cPassportElementType\u003e",
+                    "description": "List of Telegram Passport element types sent"
+                }
+            ]
+        },
+        {
+            "name": "messagePassportDataReceived",
+            "description": "Telegram Passport data has been received; for bots only",
+            "class": "MessageContent",
+            "properties": [
+                {
+                    "name": "elements",
+                    "type": "vector\u003cencryptedPassportElement\u003e",
+                    "description": "List of received Telegram Passport elements"
+                },
+                {
+                    "name": "credentials",
+                    "type": "encryptedCredentials",
+                    "description": "Encrypted data credentials"
                 }
             ]
         },
@@ -4230,7 +5338,7 @@
                 {
                     "name": "url",
                     "type": "string",
-                    "description": "URL to be opened when the link is clicked"
+                    "description": "HTTP or tg:// URL to be opened when the link is clicked"
                 }
             ]
         },
@@ -4282,7 +5390,7 @@
                 {
                     "name": "text",
                     "type": "formattedText",
-                    "description": "Formatted text to be sent. Only Bold, Italic, Code, Pre, PreCode and TextUrl entities are allowed to be specified manually"
+                    "description": "Formatted text to be sent; 1-GetOption(\"message_text_length_max\") characters. Only Bold, Italic, Code, Pre, PreCode and TextUrl entities are allowed to be specified manually"
                 },
                 {
                     "name": "disable_web_page_preview",
@@ -4329,7 +5437,7 @@
                 {
                     "name": "caption",
                     "type": "formattedText",
-                    "description": "Animation caption; 0-200 characters"
+                    "description": "Animation caption; 0-GetOption(\"message_caption_length_max\") characters"
                 }
             ]
         },
@@ -4366,7 +5474,7 @@
                 {
                     "name": "caption",
                     "type": "formattedText",
-                    "description": "Audio caption; 0-200 characters"
+                    "description": "Audio caption; 0-GetOption(\"message_caption_length_max\") characters"
                 }
             ]
         },
@@ -4388,7 +5496,7 @@
                 {
                     "name": "caption",
                     "type": "formattedText",
-                    "description": "Document caption; 0-200 characters"
+                    "description": "Document caption; 0-GetOption(\"message_caption_length_max\") characters"
                 }
             ]
         },
@@ -4425,7 +5533,7 @@
                 {
                     "name": "caption",
                     "type": "formattedText",
-                    "description": "Photo caption; 0-200 characters"
+                    "description": "Photo caption; 0-GetOption(\"message_caption_length_max\") characters"
                 },
                 {
                     "name": "ttl",
@@ -4504,7 +5612,7 @@
                 {
                     "name": "caption",
                     "type": "formattedText",
-                    "description": "Video caption; 0-200 characters"
+                    "description": "Video caption; 0-GetOption(\"message_caption_length_max\") characters"
                 },
                 {
                     "name": "ttl",
@@ -4563,7 +5671,7 @@
                 {
                     "name": "caption",
                     "type": "formattedText",
-                    "description": "Voice note caption; 0-200 characters"
+                    "description": "Voice note caption; 0-GetOption(\"message_caption_length_max\") characters"
                 }
             ]
         },
@@ -6725,6 +7833,129 @@
             ]
         },
         {
+            "name": "languagePackStringValueOrdinary",
+            "description": "An ordinary language pack string",
+            "class": "LanguagePackStringValue",
+            "properties": [
+                {
+                    "name": "value",
+                    "type": "string",
+                    "description": "String value"
+                }
+            ]
+        },
+        {
+            "name": "languagePackStringValuePluralized",
+            "description": "A language pack string which has different forms based on the number of some object it mentions",
+            "class": "LanguagePackStringValue",
+            "properties": [
+                {
+                    "name": "zero_value",
+                    "type": "string",
+                    "description": "Value for zero objects"
+                },
+                {
+                    "name": "one_value",
+                    "type": "string",
+                    "description": "Value for one object"
+                },
+                {
+                    "name": "two_value",
+                    "type": "string",
+                    "description": "Value for two objects"
+                },
+                {
+                    "name": "few_value",
+                    "type": "string",
+                    "description": "Value for few objects"
+                },
+                {
+                    "name": "many_value",
+                    "type": "string",
+                    "description": "Value for many objects"
+                },
+                {
+                    "name": "other_value",
+                    "type": "string",
+                    "description": "Default value"
+                }
+            ]
+        },
+        {
+            "name": "languagePackStringValueDeleted",
+            "description": "A deleted language pack string, the value should be taken from the built-in english language pack",
+            "class": "LanguagePackStringValue",
+            "properties": []
+        },
+        {
+            "name": "languagePackString",
+            "description": "Represents one language pack string",
+            "class": "LanguagePackString",
+            "properties": [
+                {
+                    "name": "key",
+                    "type": "string",
+                    "description": "String key"
+                },
+                {
+                    "name": "value",
+                    "type": "LanguagePackStringValue",
+                    "description": "String value"
+                }
+            ]
+        },
+        {
+            "name": "languagePackStrings",
+            "description": "Contains a list of language pack strings",
+            "class": "LanguagePackStrings",
+            "properties": [
+                {
+                    "name": "strings",
+                    "type": "vector\u003clanguagePackString\u003e",
+                    "description": "A list of language pack strings"
+                }
+            ]
+        },
+        {
+            "name": "languagePackInfo",
+            "description": "Contains information about a language pack",
+            "class": "LanguagePackInfo",
+            "properties": [
+                {
+                    "name": "id",
+                    "type": "string",
+                    "description": "Unique language pack identifier"
+                },
+                {
+                    "name": "name",
+                    "type": "string",
+                    "description": "Language name"
+                },
+                {
+                    "name": "native_name",
+                    "type": "string",
+                    "description": "Name of the language in that language"
+                },
+                {
+                    "name": "local_string_count",
+                    "type": "int32",
+                    "description": "Total number of non-deleted strings from the language pack available locally"
+                }
+            ]
+        },
+        {
+            "name": "localizationTargetInfo",
+            "description": "Contains information about the current localization target",
+            "class": "LocalizationTargetInfo",
+            "properties": [
+                {
+                    "name": "language_packs",
+                    "type": "vector\u003clanguagePackInfo\u003e",
+                    "description": "List of available language packs for this application"
+                }
+            ]
+        },
+        {
             "name": "deviceTokenGoogleCloudMessaging",
             "description": "A token for Google Cloud Messaging",
             "class": "DeviceToken",
@@ -6732,7 +7963,7 @@
                 {
                     "name": "token",
                     "type": "string",
-                    "description": "Device registration token, may be empty to de-register a device"
+                    "description": "Device registration token; may be empty to de-register a device"
                 }
             ]
         },
@@ -6744,7 +7975,7 @@
                 {
                     "name": "device_token",
                     "type": "string",
-                    "description": "Device token, may be empty to de-register a device"
+                    "description": "Device token; may be empty to de-register a device"
                 },
                 {
                     "name": "is_app_sandbox",
@@ -6761,7 +7992,7 @@
                 {
                     "name": "device_token",
                     "type": "string",
-                    "description": "Device token, may be empty to de-register a device"
+                    "description": "Device token; may be empty to de-register a device"
                 },
                 {
                     "name": "is_app_sandbox",
@@ -6778,7 +8009,7 @@
                 {
                     "name": "access_token",
                     "type": "string",
-                    "description": "The access token that will be used to send notifications, may be empty to de-register a device"
+                    "description": "The access token that will be used to send notifications; may be empty to de-register a device"
                 }
             ]
         },
@@ -6790,7 +8021,7 @@
                 {
                     "name": "channel_uri",
                     "type": "string",
-                    "description": "Push notification channel URI, may be empty to de-register a device"
+                    "description": "Push notification channel URI; may be empty to de-register a device"
                 }
             ]
         },
@@ -6802,7 +8033,7 @@
                 {
                     "name": "channel_uri",
                     "type": "string",
-                    "description": "Push notification channel URI, may be empty to de-register a device"
+                    "description": "Push notification channel URI; may be empty to de-register a device"
                 }
             ]
         },
@@ -6814,7 +8045,7 @@
                 {
                     "name": "endpoint",
                     "type": "string",
-                    "description": "Absolute URL exposed by the push service where the application server can send push messages, may be empty to de-register a device"
+                    "description": "Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device"
                 },
                 {
                     "name": "p256dh_base64url",
@@ -6836,7 +8067,7 @@
                 {
                     "name": "endpoint",
                     "type": "string",
-                    "description": "Absolute URL exposed by the push service where the application server can send push messages, may be empty to de-register a device"
+                    "description": "Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device"
                 }
             ]
         },
@@ -6848,7 +8079,7 @@
                 {
                     "name": "token",
                     "type": "string",
-                    "description": "Token, may be empty to de-register a device"
+                    "description": "Token; may be empty to de-register a device"
                 }
             ]
         },
@@ -6860,7 +8091,7 @@
                 {
                     "name": "token",
                     "type": "string",
-                    "description": "Token, may be empty to de-register a device"
+                    "description": "Token; may be empty to de-register a device"
                 }
             ]
         },
@@ -6872,7 +8103,7 @@
                 {
                     "name": "reg_id",
                     "type": "string",
-                    "description": "Push service registration identifier, may be empty to de-register a device"
+                    "description": "Push service registration identifier; may be empty to de-register a device"
                 }
             ]
         },
@@ -7268,6 +8499,12 @@
             "properties": []
         },
         {
+            "name": "chatReportReasonCopyright",
+            "description": "The chat contains copyrighted content",
+            "class": "ChatReportReason",
+            "properties": []
+        },
+        {
             "name": "chatReportReasonCustom",
             "description": "A custom reason provided by the user",
             "class": "ChatReportReason",
@@ -7339,6 +8576,18 @@
             "properties": []
         },
         {
+            "name": "fileTypeSecretThumbnail",
+            "description": "The file is a thumbnail of a file from a secret chat",
+            "class": "FileType",
+            "properties": []
+        },
+        {
+            "name": "fileTypeSecure",
+            "description": "The file is a file from Secure storage used for storing Telegram Passport files",
+            "class": "FileType",
+            "properties": []
+        },
+        {
             "name": "fileTypeSticker",
             "description": "The file is a sticker",
             "class": "FileType",
@@ -7377,12 +8626,6 @@
         {
             "name": "fileTypeWallpaper",
             "description": "The file is a wallpaper",
-            "class": "FileType",
-            "properties": []
-        },
-        {
-            "name": "fileTypeSecretThumbnail",
-            "description": "The file is a thumbnail of a file from a secret chat",
             "class": "FileType",
             "properties": []
         },
@@ -7748,6 +8991,35 @@
             ]
         },
         {
+            "name": "seconds",
+            "description": "Contains a value representing a number of seconds",
+            "class": "Seconds",
+            "properties": [
+                {
+                    "name": "seconds",
+                    "type": "double",
+                    "description": "Number of seconds"
+                }
+            ]
+        },
+        {
+            "name": "deepLinkInfo",
+            "description": "Contains information about a tg:// deep link",
+            "class": "DeepLinkInfo",
+            "properties": [
+                {
+                    "name": "text",
+                    "type": "formattedText",
+                    "description": "Text to be shown to the user"
+                },
+                {
+                    "name": "need_update_application",
+                    "type": "Bool",
+                    "description": "True, if user should be asked to update the application"
+                }
+            ]
+        },
+        {
             "name": "textParseModeMarkdown",
             "description": "The text should be parsed in markdown-style",
             "class": "TextParseMode",
@@ -7760,16 +9032,66 @@
             "properties": []
         },
         {
-            "name": "proxyEmpty",
-            "description": "An empty proxy server",
-            "class": "Proxy",
-            "properties": []
+            "name": "proxyTypeSocks5",
+            "description": "A SOCKS5 proxy server",
+            "class": "ProxyType",
+            "properties": [
+                {
+                    "name": "username",
+                    "type": "string",
+                    "description": "Username for logging in; may be empty"
+                },
+                {
+                    "name": "password",
+                    "type": "string",
+                    "description": "Password for logging in; may be empty"
+                }
+            ]
         },
         {
-            "name": "proxySocks5",
-            "description": "A SOCKS5 proxy server",
+            "name": "proxyTypeHttp",
+            "description": "A HTTP transparent proxy server",
+            "class": "ProxyType",
+            "properties": [
+                {
+                    "name": "username",
+                    "type": "string",
+                    "description": "Username for logging in; may be empty"
+                },
+                {
+                    "name": "password",
+                    "type": "string",
+                    "description": "Password for logging in; may be empty"
+                },
+                {
+                    "name": "http_only",
+                    "type": "Bool",
+                    "description": "Pass true, if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method"
+                }
+            ]
+        },
+        {
+            "name": "proxyTypeMtproto",
+            "description": "An MTProto proxy server",
+            "class": "ProxyType",
+            "properties": [
+                {
+                    "name": "secret",
+                    "type": "string",
+                    "description": "The proxy's secret in hexadecimal encoding"
+                }
+            ]
+        },
+        {
+            "name": "proxy",
+            "description": "Contains information about a proxy server",
             "class": "Proxy",
             "properties": [
+                {
+                    "name": "id",
+                    "type": "int32",
+                    "description": "Unique identifier of the proxy"
+                },
                 {
                     "name": "server",
                     "type": "string",
@@ -7781,14 +9103,31 @@
                     "description": "Proxy server port"
                 },
                 {
-                    "name": "username",
-                    "type": "string",
-                    "description": "Username for logging in"
+                    "name": "last_used_date",
+                    "type": "int32",
+                    "description": "Point in time (Unix timestamp) when the proxy was last used; 0 if never"
                 },
                 {
-                    "name": "password",
-                    "type": "string",
-                    "description": "Password for logging in"
+                    "name": "is_enabled",
+                    "type": "Bool",
+                    "description": "True, if the proxy is enabled now"
+                },
+                {
+                    "name": "type",
+                    "type": "ProxyType",
+                    "description": "Type of the proxy"
+                }
+            ]
+        },
+        {
+            "name": "proxies",
+            "description": "Represents a list of proxy servers",
+            "class": "Proxies",
+            "properties": [
+                {
+                    "name": "proxies",
+                    "type": "vector\u003cproxy\u003e",
+                    "description": "List of proxy servers"
                 }
             ]
         },
@@ -8127,6 +9466,62 @@
             ]
         },
         {
+            "name": "updateChatIsMarkedAsUnread",
+            "description": "A chat was marked as unread or was read",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "is_marked_as_unread",
+                    "type": "Bool",
+                    "description": "New value of is_marked_as_unread"
+                }
+            ]
+        },
+        {
+            "name": "updateChatIsSponsored",
+            "description": "A chat's is_sponsored field has changed",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "is_sponsored",
+                    "type": "Bool",
+                    "description": "New value of is_sponsored"
+                },
+                {
+                    "name": "order",
+                    "type": "int64",
+                    "description": "New value of chat order"
+                }
+            ]
+        },
+        {
+            "name": "updateChatDefaultDisableNotification",
+            "description": "The value of the default disable_notification parameter, used when a message is sent to the chat, was changed",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "default_disable_notification",
+                    "type": "Bool",
+                    "description": "The new default_disable_notification value"
+                }
+            ]
+        },
+        {
             "name": "updateChatReadInbox",
             "description": "Incoming messages were read or number of unread messages has been changed",
             "class": "Update",
@@ -8183,8 +9578,25 @@
             ]
         },
         {
-            "name": "updateNotificationSettings",
-            "description": "Notification settings for some chats were updated",
+            "name": "updateChatNotificationSettings",
+            "description": "Notification settings for a chat were changed",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "notification_settings",
+                    "type": "chatNotificationSettings",
+                    "description": "The new notification settings"
+                }
+            ]
+        },
+        {
+            "name": "updateScopeNotificationSettings",
+            "description": "Notification settings for some type of chats were updated",
             "class": "Update",
             "properties": [
                 {
@@ -8194,7 +9606,7 @@
                 },
                 {
                     "name": "notification_settings",
-                    "type": "notificationSettings",
+                    "type": "scopeNotificationSettings",
                     "description": "The new notification settings"
                 }
             ]
@@ -8218,7 +9630,7 @@
         },
         {
             "name": "updateChatDraftMessage",
-            "description": "A draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update shouldn't be applied",
+            "description": "A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update shouldn't be applied",
             "class": "Update",
             "properties": [
                 {
@@ -8411,7 +9823,7 @@
                 {
                     "name": "type",
                     "type": "string",
-                    "description": "Notification type"
+                    "description": "Notification type. If type begins with \"AUTH_KEY_DROP_\", then two buttons \"Cancel\" and \"Log out\" should be shown under notification; if user presses the second, all local data should be destroyed using Destroy method"
                 },
                 {
                     "name": "content",
@@ -8445,7 +9857,7 @@
                 {
                     "name": "original_path",
                     "type": "string",
-                    "description": "The path to a file from which a new file is generated, may be empty"
+                    "description": "The path to a file from which a new file is generated; may be empty"
                 },
                 {
                     "name": "destination_path",
@@ -8455,7 +9867,7 @@
                 {
                     "name": "conversion",
                     "type": "string",
-                    "description": "String specifying the conversion applied to the original file. If conversion is \"#url#\" than original_path contains a HTTP/HTTPS URL of a file, which should be downloaded by the client"
+                    "description": "String specifying the conversion applied to the original file. If conversion is \"#url#\" than original_path contains an HTTP/HTTPS URL of a file, which should be downloaded by the client"
                 }
             ]
         },
@@ -8514,6 +9926,33 @@
                     "name": "unread_unmuted_count",
                     "type": "int32",
                     "description": "Total number of unread messages in unmuted chats"
+                }
+            ]
+        },
+        {
+            "name": "updateUnreadChatCount",
+            "description": "Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if a message database is used",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "unread_count",
+                    "type": "int32",
+                    "description": "Total number of unread chats"
+                },
+                {
+                    "name": "unread_unmuted_count",
+                    "type": "int32",
+                    "description": "Total number of unread unmuted chats"
+                },
+                {
+                    "name": "marked_as_unread_count",
+                    "type": "int32",
+                    "description": "Total number of chats marked as unread"
+                },
+                {
+                    "name": "marked_as_unread_unmuted_count",
+                    "type": "int32",
+                    "description": "Total number of unmuted chats marked as unread"
                 }
             ]
         },
@@ -8605,6 +10044,28 @@
             ]
         },
         {
+            "name": "updateLanguagePackStrings",
+            "description": "Some language pack strings have been updated",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "localization_target",
+                    "type": "string",
+                    "description": "Localization target to which the language pack belongs"
+                },
+                {
+                    "name": "language_pack_id",
+                    "type": "string",
+                    "description": "Identifier of the updated language pack"
+                },
+                {
+                    "name": "strings",
+                    "type": "vector\u003clanguagePackString\u003e",
+                    "description": "List of changed language pack strings"
+                }
+            ]
+        },
+        {
             "name": "updateConnectionState",
             "description": "The connection state has changed",
             "class": "Update",
@@ -8613,6 +10074,23 @@
                     "name": "state",
                     "type": "ConnectionState",
                     "description": "The new connection state"
+                }
+            ]
+        },
+        {
+            "name": "updateTermsOfService",
+            "description": "New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method should be called with the reason \"Decline ToS update\"",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "terms_of_service_id",
+                    "type": "string",
+                    "description": "Identifier of the terms of service"
+                },
+                {
+                    "name": "terms_of_service",
+                    "type": "termsOfService",
+                    "description": "The new terms of service"
                 }
             ]
         },
@@ -8771,7 +10249,7 @@
                 },
                 {
                     "name": "shipping_address",
-                    "type": "shippingAddress",
+                    "type": "address",
                     "description": "User shipping address"
                 }
             ]
@@ -8967,6 +10445,10 @@
             "description": "Provides information about the status of a member in a chat"
         },
         {
+            "name": "ChatMembersFilter",
+            "description": "Specifies the kind of chat members to return in searchChatMembers"
+        },
+        {
             "name": "SupergroupMembersFilter",
             "description": "Specifies the kind of chat members to return in getSupergroupMembers"
         },
@@ -8984,7 +10466,7 @@
         },
         {
             "name": "NotificationSettingsScope",
-            "description": "Describes the types of chats for which notification settings are applied"
+            "description": "Describes the types of chats to which notification settings are applied"
         },
         {
             "name": "ChatType",
@@ -9013,6 +10495,26 @@
         {
             "name": "InputCredentials",
             "description": "Contains information about the payment method chosen by the user"
+        },
+        {
+            "name": "PassportElementType",
+            "description": "Contains the type of a Telegram Passport element"
+        },
+        {
+            "name": "PassportElement",
+            "description": "Contains information about a Telegram Passport element"
+        },
+        {
+            "name": "InputPassportElement",
+            "description": "Contains information about a Telegram Passport element to be saved"
+        },
+        {
+            "name": "PassportElementErrorSource",
+            "description": "Contains the description of an error in a Telegram Passport element"
+        },
+        {
+            "name": "InputPassportElementErrorSource",
+            "description": "Contains the description of an error in a Telegram Passport element; for bots only"
         },
         {
             "name": "MessageContent",
@@ -9061,6 +10563,10 @@
         {
             "name": "ChatEventAction",
             "description": "Represents a chat event"
+        },
+        {
+            "name": "LanguagePackStringValue",
+            "description": "Represents the value of a string in a language pack"
         },
         {
             "name": "DeviceToken",
@@ -9115,8 +10621,8 @@
             "description": "Describes the way the text should be parsed for TextEntities"
         },
         {
-            "name": "Proxy",
-            "description": "Contains information about a proxy server"
+            "name": "ProxyType",
+            "description": "Describes the type of the proxy server"
         },
         {
             "name": "Update",
@@ -9364,7 +10870,7 @@
         {
             "name": "requestPasswordRecovery",
             "description": "Requests to send a password recovery code to an email address that was previously set up",
-            "class": "PasswordRecoveryInfo",
+            "class": "EmailAddressAuthenticationCodeInfo",
             "properties": [],
             "is_synchronous": false
         },
@@ -9848,7 +11354,7 @@
                 {
                     "name": "from_message_id",
                     "type": "int53",
-                    "description": "Identifier of the message starting from which history must be fetched; use 0 to get results from the beginning (i.e., from oldest to newest)"
+                    "description": "Identifier of the message starting from which history must be fetched; use 0 to get results from the last message"
                 },
                 {
                     "name": "offset",
@@ -9909,7 +11415,7 @@
                 {
                     "name": "from_message_id",
                     "type": "int53",
-                    "description": "Identifier of the message starting from which history must be fetched; use 0 to get results from the beginning"
+                    "description": "Identifier of the message starting from which history must be fetched; use 0 to get results from the last message"
                 },
                 {
                     "name": "offset",
@@ -9942,7 +11448,7 @@
                 {
                     "name": "offset_date",
                     "type": "int32",
-                    "description": "The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the beginning"
+                    "description": "The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the last message"
                 },
                 {
                     "name": "offset_chat_id",
@@ -9980,7 +11486,7 @@
                 {
                     "name": "from_search_id",
                     "type": "int64",
-                    "description": "The identifier from the result of a previous request, use 0 to get results from the beginning"
+                    "description": "The identifier from the result of a previous request, use 0 to get results from the last message"
                 },
                 {
                     "name": "limit",
@@ -10003,7 +11509,7 @@
                 {
                     "name": "from_message_id",
                     "type": "int53",
-                    "description": "Identifier of the message from which to search; use 0 to get results from the beginning"
+                    "description": "Identifier of the message from which to search; use 0 to get results from the last message"
                 },
                 {
                     "name": "limit",
@@ -10057,6 +11563,29 @@
                     "name": "date",
                     "type": "int32",
                     "description": "Point in time (Unix timestamp) relative to which to search for messages"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "getChatMessageCount",
+            "description": "Returns approximate number of messages of the specified type in the chat",
+            "class": "Count",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat in which to count messages"
+                },
+                {
+                    "name": "filter",
+                    "type": "SearchMessagesFilter",
+                    "description": "Filter for message content; searchMessagesFilterEmpty is unsupported in this function"
+                },
+                {
+                    "name": "return_local",
+                    "type": "Bool",
+                    "description": "If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown"
                 }
             ],
             "is_synchronous": false
@@ -10286,6 +11815,39 @@
             "is_synchronous": false
         },
         {
+            "name": "addLocalMessage",
+            "description": "Adds a local message to a chat. The message is persistent across application restarts only if the message database is used. Returns the added message",
+            "class": "Message",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Target chat"
+                },
+                {
+                    "name": "sender_user_id",
+                    "type": "int32",
+                    "description": "Identifier of the user who will be shown as the sender of the message; may be 0 for channel posts"
+                },
+                {
+                    "name": "reply_to_message_id",
+                    "type": "int53",
+                    "description": "Identifier of the message to reply to or 0"
+                },
+                {
+                    "name": "disable_notification",
+                    "type": "Bool",
+                    "description": "Pass true to disable notification for the message"
+                },
+                {
+                    "name": "input_message_content",
+                    "type": "InputMessageContent",
+                    "description": "The content of the message to be added"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
             "name": "deleteMessages",
             "description": "Deletes messages",
             "class": "Ok",
@@ -10328,7 +11890,7 @@
         },
         {
             "name": "editMessageText",
-            "description": "Edits the text of a message (or a text of a game message). Non-bot users can edit messages for a limited period of time. Returns the edited message after the edit is completed on the server side",
+            "description": "Edits the text of a message (or a text of a game message). Returns the edited message after the edit is completed on the server side",
             "class": "Message",
             "properties": [
                 {
@@ -10356,7 +11918,7 @@
         },
         {
             "name": "editMessageLiveLocation",
-            "description": "Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed server-side",
+            "description": "Edits the message content of a live location. Messages can be edited for a limited period of time specified in the live location. Returns the edited message after the edit is completed on the server side",
             "class": "Message",
             "properties": [
                 {
@@ -10372,7 +11934,7 @@
                 {
                     "name": "reply_markup",
                     "type": "ReplyMarkup",
-                    "description": "Tew message reply markup; for bots only"
+                    "description": "The new message reply markup; for bots only"
                 },
                 {
                     "name": "location",
@@ -10383,8 +11945,36 @@
             "is_synchronous": false
         },
         {
+            "name": "editMessageMedia",
+            "description": "Edits the content of a message with an animation, an audio, a document, a photo or a video. The media in the message can't be replaced if the message was set to self-destruct. Media can't be replaced by self-destructing media. Media in an album can be edited only to contain a photo or a video. Returns the edited message after the edit is completed on the server side",
+            "class": "Message",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "The chat the message belongs to"
+                },
+                {
+                    "name": "message_id",
+                    "type": "int53",
+                    "description": "Identifier of the message"
+                },
+                {
+                    "name": "reply_markup",
+                    "type": "ReplyMarkup",
+                    "description": "The new message reply markup; for bots only"
+                },
+                {
+                    "name": "input_message_content",
+                    "type": "InputMessageContent",
+                    "description": "New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
             "name": "editMessageCaption",
-            "description": "Edits the message content caption. Non-bots can edit messages for a limited period of time. Returns the edited message after the edit is completed server-side",
+            "description": "Edits the message content caption. Returns the edited message after the edit is completed on the server side",
             "class": "Message",
             "properties": [
                 {
@@ -10405,14 +11995,14 @@
                 {
                     "name": "caption",
                     "type": "formattedText",
-                    "description": "New message content caption; 0-200 characters"
+                    "description": "New message content caption; 0-GetOption(\"message_caption_length_max\") characters"
                 }
             ],
             "is_synchronous": false
         },
         {
             "name": "editMessageReplyMarkup",
-            "description": "Edits the message reply markup; for bots only. Returns the edited message after the edit is completed server-side",
+            "description": "Edits the message reply markup; for bots only. Returns the edited message after the edit is completed on the server side",
             "class": "Message",
             "properties": [
                 {
@@ -10428,7 +12018,7 @@
                 {
                     "name": "reply_markup",
                     "type": "ReplyMarkup",
-                    "description": "New message reply markup"
+                    "description": "The new message reply markup"
                 }
             ],
             "is_synchronous": false
@@ -10446,7 +12036,7 @@
                 {
                     "name": "reply_markup",
                     "type": "ReplyMarkup",
-                    "description": "New message reply markup"
+                    "description": "The new message reply markup"
                 },
                 {
                     "name": "input_message_content",
@@ -10469,12 +12059,35 @@
                 {
                     "name": "reply_markup",
                     "type": "ReplyMarkup",
-                    "description": "New message reply markup"
+                    "description": "The new message reply markup"
                 },
                 {
                     "name": "location",
                     "type": "location",
                     "description": "New location content of the message; may be null. Pass null to stop sharing the live location"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "editInlineMessageMedia",
+            "description": "Edits the content of a message with an animation, an audio, a document, a photo or a video in an inline message sent via a bot; for bots only",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "inline_message_id",
+                    "type": "string",
+                    "description": "Inline message identifier"
+                },
+                {
+                    "name": "reply_markup",
+                    "type": "ReplyMarkup",
+                    "description": "The new message reply markup; for bots only"
+                },
+                {
+                    "name": "input_message_content",
+                    "type": "InputMessageContent",
+                    "description": "New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo"
                 }
             ],
             "is_synchronous": false
@@ -10492,12 +12105,12 @@
                 {
                     "name": "reply_markup",
                     "type": "ReplyMarkup",
-                    "description": "New message reply markup"
+                    "description": "The new message reply markup"
                 },
                 {
                     "name": "caption",
                     "type": "formattedText",
-                    "description": "New message content caption; 0-200 characters"
+                    "description": "New message content caption; 0-GetOption(\"message_caption_length_max\") characters"
                 }
             ],
             "is_synchronous": false
@@ -10515,7 +12128,7 @@
                 {
                     "name": "reply_markup",
                     "type": "ReplyMarkup",
-                    "description": "New message reply markup"
+                    "description": "The new message reply markup"
                 }
             ],
             "is_synchronous": false
@@ -10573,6 +12186,47 @@
                     "name": "mime_type",
                     "type": "string",
                     "description": "The MIME type of the file"
+                }
+            ],
+            "is_synchronous": true
+        },
+        {
+            "name": "cleanFileName",
+            "description": "Removes potentially dangerous characters from the name of a file. The encoding of the file name is supposed to be UTF-8. Returns an empty string on failure. This is an offline method. Can be called before authorization. Can be called synchronously",
+            "class": "Text",
+            "properties": [
+                {
+                    "name": "file_name",
+                    "type": "string",
+                    "description": "File name or path to the file"
+                }
+            ],
+            "is_synchronous": true
+        },
+        {
+            "name": "getLanguagePackString",
+            "description": "Returns a string stored in the local database from the specified localization target and language pack by its key. Returns a 404 error if the string is not found. This is an offline method. Can be called before authorization. Can be called synchronously",
+            "class": "LanguagePackStringValue",
+            "properties": [
+                {
+                    "name": "language_pack_database_path",
+                    "type": "string",
+                    "description": "Path to the language pack database in which strings are stored"
+                },
+                {
+                    "name": "localization_target",
+                    "type": "string",
+                    "description": "Localization target to which the language pack belongs"
+                },
+                {
+                    "name": "language_pack_id",
+                    "type": "string",
+                    "description": "Language pack identifier"
+                },
+                {
+                    "name": "key",
+                    "type": "string",
+                    "description": "Language pack key of the string to be returned"
                 }
             ],
             "is_synchronous": true
@@ -11167,6 +12821,24 @@
             "is_synchronous": false
         },
         {
+            "name": "setChatNotificationSettings",
+            "description": "Changes the notification settings of a chat",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "notification_settings",
+                    "type": "chatNotificationSettings",
+                    "description": "New notification settings for the chat"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
             "name": "toggleChatIsPinned",
             "description": "Changes the pinned state of a chat. You can pin up to GetOption(\"pinned_chat_count_max\") non-secret chats and the same number of secret chats",
             "class": "Ok",
@@ -11185,6 +12857,42 @@
             "is_synchronous": false
         },
         {
+            "name": "toggleChatIsMarkedAsUnread",
+            "description": "Changes the marked as unread state of a chat",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "is_marked_as_unread",
+                    "type": "Bool",
+                    "description": "New value of is_marked_as_unread"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "toggleChatDefaultDisableNotification",
+            "description": "Changes the value of the default disable_notification parameter, used when a message is sent to a chat",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "default_disable_notification",
+                    "type": "Bool",
+                    "description": "New value of default_disable_notification"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
             "name": "setChatClientData",
             "description": "Changes client data associated with a chat",
             "class": "Ok",
@@ -11198,6 +12906,32 @@
                     "name": "client_data",
                     "type": "string",
                     "description": "New value of client_data"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "joinChat",
+            "description": "Adds current user as a new member to a chat. Private and secret chats can't be joined using this method",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "leaveChat",
+            "description": "Removes current user from chat members. Private and secret chats can't be left using this method",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
                 }
             ],
             "is_synchronous": false
@@ -11303,6 +13037,11 @@
                     "name": "limit",
                     "type": "int32",
                     "description": "The maximum number of users to be returned"
+                },
+                {
+                    "name": "filter",
+                    "type": "ChatMembersFilter",
+                    "description": "The type of users to return. By default, chatMembersFilterMembers"
                 }
             ],
             "is_synchronous": false
@@ -11318,6 +13057,57 @@
                     "description": "Chat identifier"
                 }
             ],
+            "is_synchronous": false
+        },
+        {
+            "name": "clearAllDraftMessages",
+            "description": "Clears draft messages in all chats",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "exclude_secret_chats",
+                    "type": "Bool",
+                    "description": "If true, local draft messages in secret chats will not be cleared"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "getScopeNotificationSettings",
+            "description": "Returns the notification settings for chats of a given type",
+            "class": "ScopeNotificationSettings",
+            "properties": [
+                {
+                    "name": "scope",
+                    "type": "NotificationSettingsScope",
+                    "description": "Types of chats for which to return the notification settings information"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "setScopeNotificationSettings",
+            "description": "Changes notification settings for chats of a given type",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "scope",
+                    "type": "NotificationSettingsScope",
+                    "description": "Types of chats for which to change the notification settings"
+                },
+                {
+                    "name": "notification_settings",
+                    "type": "scopeNotificationSettings",
+                    "description": "The new notification settings for the given scope"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "resetAllNotificationSettings",
+            "description": "Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to \"default\" and message previews are shown",
+            "class": "Ok",
+            "properties": [],
             "is_synchronous": false
         },
         {
@@ -11655,9 +13445,16 @@
                 {
                     "name": "contacts",
                     "type": "vector\u003ccontact\u003e",
-                    "description": "The list of contacts to import or edit"
+                    "description": "The list of contacts to import or edit, contact's vCard are ignored and are not imported"
                 }
             ],
+            "is_synchronous": false
+        },
+        {
+            "name": "getContacts",
+            "description": "Returns all user contacts",
+            "class": "Users",
+            "properties": [],
             "is_synchronous": false
         },
         {
@@ -11706,14 +13503,14 @@
                 {
                     "name": "contacts",
                     "type": "vector\u003ccontact\u003e",
-                    "description": "The new list of contacts"
+                    "description": "The new list of contacts, contact's vCard are ignored and are not imported"
                 }
             ],
             "is_synchronous": false
         },
         {
             "name": "clearImportedContacts",
-            "description": "Clears all imported contacts",
+            "description": "Clears all imported contacts, contacts list remains unchanged",
             "class": "Ok",
             "properties": [],
             "is_synchronous": false
@@ -12160,44 +13957,6 @@
             "is_synchronous": false
         },
         {
-            "name": "getNotificationSettings",
-            "description": "Returns the notification settings for a given scope",
-            "class": "NotificationSettings",
-            "properties": [
-                {
-                    "name": "scope",
-                    "type": "NotificationSettingsScope",
-                    "description": "Scope for which to return the notification settings information"
-                }
-            ],
-            "is_synchronous": false
-        },
-        {
-            "name": "setNotificationSettings",
-            "description": "Changes notification settings for a given scope",
-            "class": "Ok",
-            "properties": [
-                {
-                    "name": "scope",
-                    "type": "NotificationSettingsScope",
-                    "description": "Scope for which to change the notification settings"
-                },
-                {
-                    "name": "notification_settings",
-                    "type": "notificationSettings",
-                    "description": "The new notification settings for the given scope"
-                }
-            ],
-            "is_synchronous": false
-        },
-        {
-            "name": "resetAllNotificationSettings",
-            "description": "Resets all notification settings to their default values. By default, the only muted chats are supergroups, the sound is set to \"default\" and message previews are shown",
-            "class": "Ok",
-            "properties": [],
-            "is_synchronous": false
-        },
-        {
             "name": "setProfilePhoto",
             "description": "Uploads a new profile photo for the current user. If something changes, updateUser will be sent",
             "class": "Ok",
@@ -12528,7 +14287,7 @@
         },
         {
             "name": "reportSupergroupSpam",
-            "description": "Reports some messages from a user in a supergroup as spam",
+            "description": "Reports some messages from a user in a supergroup as spam; requires administrator rights in the supergroup",
             "class": "Ok",
             "properties": [
                 {
@@ -12774,6 +14533,99 @@
             "is_synchronous": false
         },
         {
+            "name": "getLocalizationTargetInfo",
+            "description": "Returns information about the current localization target. This is an offline request if only_local is true",
+            "class": "LocalizationTargetInfo",
+            "properties": [
+                {
+                    "name": "only_local",
+                    "type": "Bool",
+                    "description": "If true, returns only locally available information without sending network requests"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "getLanguagePackStrings",
+            "description": "Returns strings from a language pack in the current localization target by their keys",
+            "class": "LanguagePackStrings",
+            "properties": [
+                {
+                    "name": "language_pack_id",
+                    "type": "string",
+                    "description": "Language pack identifier of the strings to be returned"
+                },
+                {
+                    "name": "keys",
+                    "type": "vector\u003cstring\u003e",
+                    "description": "Language pack keys of the strings to be returned; leave empty to request all available strings"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "setCustomLanguagePack",
+            "description": "Adds or changes a custom language pack to the current localization target",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "info",
+                    "type": "languagePackInfo",
+                    "description": "Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters"
+                },
+                {
+                    "name": "strings",
+                    "type": "vector\u003clanguagePackString\u003e",
+                    "description": "Strings of the new language pack"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "editCustomLanguagePackInfo",
+            "description": "Edits information about a custom language pack in the current localization target",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "info",
+                    "type": "languagePackInfo",
+                    "description": "New information about the custom language pack"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "setCustomLanguagePackString",
+            "description": "Adds, edits or deletes a string in a custom language pack",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "language_pack_id",
+                    "type": "string",
+                    "description": "Identifier of a previously added custom language pack in the current localization target"
+                },
+                {
+                    "name": "new_string",
+                    "type": "languagePackString",
+                    "description": "New language pack string"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "deleteLanguagePack",
+            "description": "Deletes all information about a language pack in the current localization target. The language pack that is currently in use can't be deleted",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "language_pack_id",
+                    "type": "string",
+                    "description": "Identifier of the language pack to delete"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
             "name": "registerDevice",
             "description": "Registers the currently used device for receiving push notifications",
             "class": "Ok",
@@ -12888,7 +14740,7 @@
         },
         {
             "name": "deleteAccount",
-            "description": "Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account",
+            "description": "Deletes the account of the current user, deleting all information associated with the user from the server. The phone number of the account can be used to create a new account. Can be called before authorization when the current authorization state is authorizationStateWaitPassword",
             "class": "Ok",
             "properties": [
                 {
@@ -13068,6 +14920,274 @@
             "is_synchronous": false
         },
         {
+            "name": "getPassportElement",
+            "description": "Returns one of the available Telegram Passport elements",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "type",
+                    "type": "PassportElementType",
+                    "description": "Telegram Passport element type"
+                },
+                {
+                    "name": "password",
+                    "type": "string",
+                    "description": "Password of the current user"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "getAllPassportElements",
+            "description": "Returns all available Telegram Passport elements",
+            "class": "PassportElements",
+            "properties": [
+                {
+                    "name": "password",
+                    "type": "string",
+                    "description": "Password of the current user"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "setPassportElement",
+            "description": "Adds an element to the user's Telegram Passport. May return an error with a message \"PHONE_VERIFICATION_NEEDED\" or \"EMAIL_VERIFICATION_NEEDED\" if the chosen phone number or the chosen email address must be verified first",
+            "class": "PassportElement",
+            "properties": [
+                {
+                    "name": "element",
+                    "type": "InputPassportElement",
+                    "description": "Input Telegram Passport element"
+                },
+                {
+                    "name": "password",
+                    "type": "string",
+                    "description": "Password of the current user"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "deletePassportElement",
+            "description": "Deletes a Telegram Passport element",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "type",
+                    "type": "PassportElementType",
+                    "description": "Element type"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "setPassportElementErrors",
+            "description": "Informs the user that some of the elements in their Telegram Passport contain errors; for bots only. The user will not be able to resend the elements, until the errors are fixed",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "user_id",
+                    "type": "int32",
+                    "description": "User identifier"
+                },
+                {
+                    "name": "errors",
+                    "type": "vector\u003cinputPassportElementError\u003e",
+                    "description": "The errors"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "getPreferredCountryLanguage",
+            "description": "Returns an IETF language tag of the language preferred in the country, which should be used to fill native fields in Telegram Passport personal details. Returns a 404 error if unknown",
+            "class": "Text",
+            "properties": [
+                {
+                    "name": "country_code",
+                    "type": "string",
+                    "description": "A two-letter ISO 3166-1 alpha-2 country code"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "sendPhoneNumberVerificationCode",
+            "description": "Sends a code to verify a phone number to be added to a user's Telegram Passport",
+            "class": "AuthenticationCodeInfo",
+            "properties": [
+                {
+                    "name": "phone_number",
+                    "type": "string",
+                    "description": "The phone number of the user, in international format"
+                },
+                {
+                    "name": "allow_flash_call",
+                    "type": "Bool",
+                    "description": "Pass true if the authentication code may be sent via flash call to the specified phone number"
+                },
+                {
+                    "name": "is_current_phone_number",
+                    "type": "Bool",
+                    "description": "Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "resendPhoneNumberVerificationCode",
+            "description": "Re-sends the code to verify a phone number to be added to a user's Telegram Passport",
+            "class": "AuthenticationCodeInfo",
+            "properties": [],
+            "is_synchronous": false
+        },
+        {
+            "name": "checkPhoneNumberVerificationCode",
+            "description": "Checks the phone number verification code for Telegram Passport",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "code",
+                    "type": "string",
+                    "description": "Verification code"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "sendEmailAddressVerificationCode",
+            "description": "Sends a code to verify an email address to be added to a user's Telegram Passport",
+            "class": "EmailAddressAuthenticationCodeInfo",
+            "properties": [
+                {
+                    "name": "email_address",
+                    "type": "string",
+                    "description": "Email address"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "resendEmailAddressVerificationCode",
+            "description": "Re-sends the code to verify an email address to be added to a user's Telegram Passport",
+            "class": "EmailAddressAuthenticationCodeInfo",
+            "properties": [],
+            "is_synchronous": false
+        },
+        {
+            "name": "checkEmailAddressVerificationCode",
+            "description": "Checks the email address verification code for Telegram Passport",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "code",
+                    "type": "string",
+                    "description": "Verification code"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "getPassportAuthorizationForm",
+            "description": "Returns a Telegram Passport authorization form for sharing data with a service",
+            "class": "PassportAuthorizationForm",
+            "properties": [
+                {
+                    "name": "bot_user_id",
+                    "type": "int32",
+                    "description": "User identifier of the service's bot"
+                },
+                {
+                    "name": "scope",
+                    "type": "string",
+                    "description": "Telegram Passport element types requested by the service"
+                },
+                {
+                    "name": "public_key",
+                    "type": "string",
+                    "description": "Service's public_key"
+                },
+                {
+                    "name": "nonce",
+                    "type": "string",
+                    "description": "Authorization form nonce provided by the service"
+                },
+                {
+                    "name": "password",
+                    "type": "string",
+                    "description": "Password of the current user"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "sendPassportAuthorizationForm",
+            "description": "Sends a Telegram Passport authorization form, effectively sharing data with the service",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "autorization_form_id",
+                    "type": "int32",
+                    "description": "Authorization form identifier"
+                },
+                {
+                    "name": "types",
+                    "type": "vector\u003cPassportElementType\u003e",
+                    "description": "Types of Telegram Passport elements chosen by user to complete the authorization form"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "sendPhoneNumberConfirmationCode",
+            "description": "Sends phone number confirmation code. Should be called when user presses \"https://t.me/confirmphone?phone=*******\u0026hash=**********\" or \"tg://confirmphone?phone=*******\u0026hash=**********\" link",
+            "class": "AuthenticationCodeInfo",
+            "properties": [
+                {
+                    "name": "hash",
+                    "type": "string",
+                    "description": "Value of the \"hash\" parameter from the link"
+                },
+                {
+                    "name": "phone_number",
+                    "type": "string",
+                    "description": "Value of the \"phone\" parameter from the link"
+                },
+                {
+                    "name": "allow_flash_call",
+                    "type": "Bool",
+                    "description": "Pass true if the authentication code may be sent via flash call to the specified phone number"
+                },
+                {
+                    "name": "is_current_phone_number",
+                    "type": "Bool",
+                    "description": "Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "resendPhoneNumberConfirmationCode",
+            "description": "Resends phone number confirmation code",
+            "class": "AuthenticationCodeInfo",
+            "properties": [],
+            "is_synchronous": false
+        },
+        {
+            "name": "checkPhoneNumberConfirmationCode",
+            "description": "Checks phone number confirmation code",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "code",
+                    "type": "string",
+                    "description": "The phone number confirmation code"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
             "name": "setBotUpdatesStatus",
             "description": "Informs the server about the number of pending bot updates if they haven't been processed for a long time; for bots only",
             "class": "Ok",
@@ -13191,6 +15311,57 @@
             "is_synchronous": false
         },
         {
+            "name": "getMapThumbnailFile",
+            "description": "Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded",
+            "class": "File",
+            "properties": [
+                {
+                    "name": "location",
+                    "type": "location",
+                    "description": "Location of the map center"
+                },
+                {
+                    "name": "zoom",
+                    "type": "int32",
+                    "description": "Map zoom level; 13-20"
+                },
+                {
+                    "name": "width",
+                    "type": "int32",
+                    "description": "Map width in pixels before applying scale; 16-1024"
+                },
+                {
+                    "name": "height",
+                    "type": "int32",
+                    "description": "Map height in pixels before applying scale; 16-1024"
+                },
+                {
+                    "name": "scale",
+                    "type": "int32",
+                    "description": "Map scale; 1-3"
+                },
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "acceptTermsOfService",
+            "description": "Accepts Telegram terms of services",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "terms_of_service_id",
+                    "type": "string",
+                    "description": "Terms of service identifier"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
             "name": "sendCustomRequest",
             "description": "Sends a custom request; for bots only",
             "class": "CustomRequestResult",
@@ -13228,7 +15399,7 @@
         },
         {
             "name": "setAlarm",
-            "description": "Succeeds after a specified amount of time has passed. Can be called before authorization",
+            "description": "Succeeds after a specified amount of time has passed. Can be called before authorization. Can be called before initialization",
             "class": "Ok",
             "properties": [
                 {
@@ -13254,30 +15425,143 @@
             "is_synchronous": false
         },
         {
-            "name": "getTermsOfService",
-            "description": "Returns the terms of service. Can be called before authorization",
-            "class": "Text",
-            "properties": [],
-            "is_synchronous": false
-        },
-        {
-            "name": "setProxy",
-            "description": "Sets the proxy server for network requests. Can be called before authorization",
-            "class": "Ok",
+            "name": "getDeepLinkInfo",
+            "description": "Returns information about a tg:// deep link. Use \"tg://need_update_for_some_feature\" or \"tg:some_unsupported_feature\" for testing. Returns a 404 error for unknown links. Can be called before authorization",
+            "class": "DeepLinkInfo",
             "properties": [
                 {
-                    "name": "proxy",
-                    "type": "Proxy",
-                    "description": "Proxy server to use. Specify null to remove the proxy server"
+                    "name": "link",
+                    "type": "string",
+                    "description": "The link"
                 }
             ],
             "is_synchronous": false
         },
         {
-            "name": "getProxy",
-            "description": "Returns the proxy that is currently set up. Can be called before authorization",
+            "name": "addProxy",
+            "description": "Adds a proxy server for network requests. Can be called before authorization",
             "class": "Proxy",
+            "properties": [
+                {
+                    "name": "server",
+                    "type": "string",
+                    "description": "Proxy server IP address"
+                },
+                {
+                    "name": "port",
+                    "type": "int32",
+                    "description": "Proxy server port"
+                },
+                {
+                    "name": "enable",
+                    "type": "Bool",
+                    "description": "True, if the proxy should be enabled"
+                },
+                {
+                    "name": "type",
+                    "type": "ProxyType",
+                    "description": "Proxy type"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "editProxy",
+            "description": "Edits an existing proxy server for network requests. Can be called before authorization",
+            "class": "Proxy",
+            "properties": [
+                {
+                    "name": "proxy_id",
+                    "type": "int32",
+                    "description": "Proxy identifier"
+                },
+                {
+                    "name": "server",
+                    "type": "string",
+                    "description": "Proxy server IP address"
+                },
+                {
+                    "name": "port",
+                    "type": "int32",
+                    "description": "Proxy server port"
+                },
+                {
+                    "name": "enable",
+                    "type": "Bool",
+                    "description": "True, if the proxy should be enabled"
+                },
+                {
+                    "name": "type",
+                    "type": "ProxyType",
+                    "description": "Proxy type"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "enableProxy",
+            "description": "Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "proxy_id",
+                    "type": "int32",
+                    "description": "Proxy identifier"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "disableProxy",
+            "description": "Disables the currently enabled proxy. Can be called before authorization",
+            "class": "Ok",
             "properties": [],
+            "is_synchronous": false
+        },
+        {
+            "name": "removeProxy",
+            "description": "Removes a proxy server. Can be called before authorization",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "proxy_id",
+                    "type": "int32",
+                    "description": "Proxy identifier"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "getProxies",
+            "description": "Returns list of proxies that are currently set up. Can be called before authorization",
+            "class": "Proxies",
+            "properties": [],
+            "is_synchronous": false
+        },
+        {
+            "name": "getProxyLink",
+            "description": "Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization",
+            "class": "Text",
+            "properties": [
+                {
+                    "name": "proxy_id",
+                    "type": "int32",
+                    "description": "Proxy identifier"
+                }
+            ],
+            "is_synchronous": false
+        },
+        {
+            "name": "pingProxy",
+            "description": "Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization",
+            "class": "Seconds",
+            "properties": [
+                {
+                    "name": "proxy_id",
+                    "type": "int32",
+                    "description": "Proxy identifier. Use 0 to ping a Telegram server without a proxy"
+                }
+            ],
             "is_synchronous": false
         },
         {
