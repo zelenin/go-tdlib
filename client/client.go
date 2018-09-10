@@ -10,7 +10,7 @@ type Client struct {
     jsonClient     *JsonClient
     extraGenerator ExtraGenerator
     catcher        chan *Response
-    listeners      []chan Type
+    listenerStore  *listenerStore
     catchersStore  *sync.Map
 }
 
@@ -22,19 +22,13 @@ func WithExtraGenerator(extraGenerator ExtraGenerator) Option {
     }
 }
 
-func WithListener(listener chan Type) Option {
-    return func(client *Client) {
-        client.listeners = append(client.listeners, listener)
-    }
-}
-
 func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...Option) (*Client, error) {
     catchersListener := make(chan *Response, 1000)
 
     client := &Client{
         jsonClient:    NewJsonClient(),
         catcher:       catchersListener,
-        listeners:     []chan Type{},
+        listenerStore: newListenerStore(),
         catchersStore: &sync.Map{},
     }
 
@@ -70,8 +64,16 @@ func (client *Client) receive() {
             continue
         }
 
-        for _, listener := range client.listeners {
-            listener <- typ
+        needGc := false
+        for _, listener := range client.listenerStore.Listeners() {
+            if listener.IsActive() {
+                listener.Updates <- typ
+            } else {
+                needGc = true
+            }
+        }
+        if needGc {
+            client.listenerStore.gc()
         }
     }
 }
@@ -108,4 +110,14 @@ func (client *Client) Send(req Request) (*Response, error) {
     case <-time.After(10 * time.Second):
         return nil, errors.New("timeout")
     }
+}
+
+func (client *Client) GetListener() *Listener {
+    listener := &Listener{
+        isActive: true,
+        Updates:  make(chan Type, 1000),
+    }
+    client.listenerStore.Add(listener)
+
+    return listener
 }

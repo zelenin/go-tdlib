@@ -107,15 +107,17 @@ func main() {
 ### Receive updates
 
 ```go
-responses := make(chan client.Type, 100)
-tdlibClient, err := client.NewClient(authorizer, client.WithListener(responses))
+tdlibClient, err := client.NewClient(authorizer)
 if err != nil {
     log.Fatalf("NewClient error: %s", err)
 }
 
-for response := range responses {
-    if response.GetClass() == client.ClassUpdate {
-        log.Printf("%#v", response)
+listener := tdlibClient.GetListener()
+defer listener.Close()
+ 
+for update := range listener.Updates {
+    if update.GetClass() == client.ClassUpdate {
+        log.Printf("%#v", update)
     }
 }
 ```
