@@ -1,6 +1,6 @@
 package client
 
-// #cgo linux LDFLAGS: -ltdjson_static -ltdjson_private -ltdclient -ltdcore -ltdactor -ltddb -ltdsqlite -ltdnet -ltdutils -lstdc++ -lssl -lcrypto -ldl -lz -lm
+// #cgo linux LDFLAGS: -ltdjson_static -ltdjson_private -ltdclient -ltdcore -ltdactor -ltddb -ltdsqlite -ltdnet -ltdutils -lstdc++ -lssl -lcrypto -lz -lm
 // #cgo darwin CFLAGS: -I/usr/local/include
 // #cgo windows CFLAGS: -IC:/src/td -IC:/src/td/build
 // #cgo darwin LDFLAGS: -L/usr/local/lib -L/usr/local/opt/openssl/lib -ltdjson_static -ltdjson_private -ltdclient -ltdcore -ltdactor -ltddb -ltdsqlite -ltdnet -ltdutils -lstdc++ -lssl -lcrypto -ldl -lz -lm
@@ -23,11 +23,9 @@ type JsonClient struct {
 }
 
 func NewJsonClient() *JsonClient {
-    jsonClient := &JsonClient{
+    return &JsonClient{
         jsonClient: C.td_json_client_create(),
     }
-
-    return jsonClient
 }
 
 // Sends request to the TDLib client. May be called from any thread.
@@ -147,7 +145,7 @@ type ResponseError struct {
 }
 
 func (responseError ResponseError) Error() string {
-    return fmt.Sprintf("Code: %d. Message: %s", responseError.Err.Code, responseError.Err.Message)
+    return fmt.Sprintf("%d %s", responseError.Err.Code, responseError.Err.Message)
 }
 
 func buildResponseError(data json.RawMessage) error {
