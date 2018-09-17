@@ -20,7 +20,6 @@ apt-get install -y tdlib-dev
 ```bash
 apt-get update -y
 apt-get install -y \
-    bc \
     build-essential \
     ca-certificates \
     ccache \
@@ -33,9 +32,9 @@ apt-get install -y \
 git clone --depth 1 -b "v1.3.0" "https://github.com/tdlib/td.git" ./tdlib-src
 mkdir ./tdlib-src/build
 cd ./tdlib-src/build
-cmake -j$(echo 'scale=0; ('$(getconf _NPROCESSORS_ONLN)'+1)*3/4' | bc) -DCMAKE_BUILD_TYPE=Release ..
-cmake -j$(echo 'scale=0; ('$(getconf _NPROCESSORS_ONLN)'+1)*3/4' | bc) --build .
-make -j$(echo 'scale=0; ('$(getconf _NPROCESSORS_ONLN)'+1)*3/4' | bc) install
+cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake --build .
+make install
 rm -rf ./../../tdlib-src
 ```
 
