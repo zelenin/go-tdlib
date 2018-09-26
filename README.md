@@ -8,11 +8,21 @@ Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) 
 
 #### Precompiled
 
+Debian:
 ```bash
+su
 curl "https://repo.zelenin.pw/gpg.key" | apt-key add -
-echo "deb [arch=amd64] https://repo.zelenin.pw common contrib" > "/etc/apt/sources.list.d/tdlib.list"
-apt-get update -y
-apt-get install -y tdlib-dev
+echo "deb [arch=amd64] https://repo.zelenin.pw common contrib" | tee "/etc/apt/sources.list.d/tdlib.list"
+apt update
+apt install -y tdlib-dev libssl-dev zlib1g-dev
+```
+
+Ubuntu:
+```bash
+curl "https://repo.zelenin.pw/gpg.key" | sudo apt-key add -
+echo "deb [arch=amd64] https://repo.zelenin.pw common contrib" | sudo tee "/etc/apt/sources.list.d/tdlib.list"
+sudo apt update
+sudo apt install -y tdlib-dev libssl-dev zlib1g-dev
 ```
 
 #### Manual compilation
