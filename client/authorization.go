@@ -37,6 +37,8 @@ type clientAuthorizer struct {
     PhoneNumber     chan string
     Code            chan string
     State           chan AuthorizationState
+    FirstName       chan string
+    LastName        chan string
 }
 
 func ClientAuthorizer() *clientAuthorizer {
@@ -45,6 +47,8 @@ func ClientAuthorizer() *clientAuthorizer {
         PhoneNumber:     make(chan string, 1),
         Code:            make(chan string, 1),
         State:           make(chan AuthorizationState, 10),
+        FirstName:       make(chan string, 1),
+        LastName:        make(chan string, 1),
     }
 }
 
@@ -65,7 +69,7 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
         return err
 
     case TypeAuthorizationStateWaitCode:
-        _, err := client.CheckAuthenticationCode(<-stateHandler.Code, "", "")
+        _, err := client.CheckAuthenticationCode(<-stateHandler.Code, <-stateHandler.FirstName, <-stateHandler.LastName)
         return err
 
     case TypeAuthorizationStateWaitPassword:
@@ -76,6 +80,8 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
         close(stateHandler.PhoneNumber)
         close(stateHandler.Code)
         close(stateHandler.State)
+        close(stateHandler.FirstName)
+        close(stateHandler.LastName)
 
         return nil
 
@@ -92,7 +98,7 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
     return ErrNotSupportedAuthorizationState
 }
 
-func CliInteractor(clientAuthorizer *clientAuthorizer) {
+func CliInteractor(clientAuthorizer *clientAuthorizer, registration bool) {
     for {
         select {
         case state := <-clientAuthorizer.State:
@@ -110,6 +116,20 @@ func CliInteractor(clientAuthorizer *clientAuthorizer) {
                 fmt.Scanln(&code)
 
                 clientAuthorizer.Code <- code
+
+                if registration {
+                    fmt.Println("Enter first name: ")
+                    var firstName string
+                    fmt.Scanln(&firstName)
+
+                    clientAuthorizer.FirstName <- firstName
+
+                    fmt.Println("Enter last name: ")
+                    var lastName string
+                    fmt.Scanln(&lastName)
+
+                    clientAuthorizer.LastName <- lastName
+                }
 
             case TypeAuthorizationStateReady:
                 return
