@@ -12,6 +12,7 @@ import (
     "errors"
     "fmt"
     "strconv"
+    "time"
     "unsafe"
 )
 
@@ -39,10 +40,10 @@ func (jsonClient *JsonClient) Send(req Request) {
 // shouldn't be called simultaneously from two different threads.
 // Returned pointer will be deallocated by TDLib during next call to td_json_client_receive or td_json_client_execute
 // in the same thread, so it can't be used after that.
-func (jsonClient *JsonClient) Receive(timeout float64) (*Response, error) {
-    result := C.td_json_client_receive(jsonClient.jsonClient, C.double(timeout))
+func (jsonClient *JsonClient) Receive(timeout time.Duration) (*Response, error) {
+    result := C.td_json_client_receive(jsonClient.jsonClient, C.double(float64(timeout)/float64(time.Second)))
     if result == nil {
-        return nil, errors.New("timeout")
+        return nil, errors.New("update receiving timeout")
     }
 
     data := []byte(C.GoString(result))

@@ -12,6 +12,8 @@ type Client struct {
     catcher        chan *Response
     listenerStore  *listenerStore
     catchersStore  *sync.Map
+    updatesTimeout time.Duration
+    catchTimeout   time.Duration
 }
 
 type Option func(*Client)
@@ -19,6 +21,18 @@ type Option func(*Client)
 func WithExtraGenerator(extraGenerator ExtraGenerator) Option {
     return func(client *Client) {
         client.extraGenerator = extraGenerator
+    }
+}
+
+func WithCatchTimeout(timeout time.Duration) Option {
+    return func(client *Client) {
+        client.catchTimeout = timeout
+    }
+}
+
+func WithUpdatesTimeout(timeout time.Duration) Option {
+    return func(client *Client) {
+        client.updatesTimeout = timeout
     }
 }
 
@@ -40,6 +54,14 @@ func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...O
         client.extraGenerator = UuidV4Generator()
     }
 
+    if client.catchTimeout == 0 {
+        client.catchTimeout = 60 * time.Second
+    }
+
+    if client.updatesTimeout == 0 {
+        client.updatesTimeout = 60 * time.Second
+    }
+
     go client.receive()
     go client.catch(catchersListener)
 
@@ -53,7 +75,7 @@ func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...O
 
 func (client *Client) receive() {
     for {
-        resp, err := client.jsonClient.Receive(10)
+        resp, err := client.jsonClient.Receive(client.updatesTimeout)
         if err != nil {
             continue
         }
@@ -107,8 +129,8 @@ func (client *Client) Send(req Request) (*Response, error) {
     case response := <-catcher:
         return response, nil
 
-    case <-time.After(10 * time.Second):
-        return nil, errors.New("timeout")
+    case <-time.After(client.catchTimeout):
+        return nil, errors.New("response catching timeout")
     }
 }
 
