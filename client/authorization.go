@@ -111,25 +111,24 @@ func CliInteractor(clientAuthorizer *clientAuthorizer, registration bool) {
                 clientAuthorizer.PhoneNumber <- phoneNumber
 
             case TypeAuthorizationStateWaitCode:
-                fmt.Println("Enter code: ")
                 var code string
-                fmt.Scanln(&code)
+                var firstName string
+                var lastName string
 
-                clientAuthorizer.Code <- code
+                fmt.Println("Enter code: ")
+                fmt.Scanln(&code)
 
                 if registration {
                     fmt.Println("Enter first name: ")
-                    var firstName string
                     fmt.Scanln(&firstName)
 
-                    clientAuthorizer.FirstName <- firstName
-
                     fmt.Println("Enter last name: ")
-                    var lastName string
                     fmt.Scanln(&lastName)
-
-                    clientAuthorizer.LastName <- lastName
                 }
+
+                clientAuthorizer.Code <- code
+                clientAuthorizer.FirstName <- firstName
+                clientAuthorizer.LastName <- lastName
 
             case TypeAuthorizationStateReady:
                 return
