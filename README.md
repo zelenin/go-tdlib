@@ -49,13 +49,13 @@ package main
 
 import (
     "log"
+    "path/filepath"
 
     "github.com/zelenin/go-tdlib/client"
 )
 
 func main() {
     client.SetLogVerbosityLevel(1)
-    client.SetLogFilePath("/dev/stderr")
     
     // client authorizer
     authorizer := client.ClientAuthorizer()
@@ -72,8 +72,8 @@ func main() {
 
     authorizer.TdlibParameters <- &client.TdlibParameters{
         UseTestDc:              false,
-        DatabaseDirectory:      "./.tdlib/database",
-        FilesDirectory:         "./.tdlib/files",
+        DatabaseDirectory:      filepath.Join(".tdlib", "database"),
+        FilesDirectory:         filepath.Join(".tdlib", "files"),
         UseFileDatabase:        true,
         UseChatInfoDatabase:    true,
         UseMessageDatabase:     true,
