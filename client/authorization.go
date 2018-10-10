@@ -98,7 +98,7 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
     return ErrNotSupportedAuthorizationState
 }
 
-func CliInteractor(clientAuthorizer *clientAuthorizer, registration bool) {
+func CliInteractor(clientAuthorizer *clientAuthorizer) {
     for {
         select {
         case state := <-clientAuthorizer.State:
@@ -118,7 +118,9 @@ func CliInteractor(clientAuthorizer *clientAuthorizer, registration bool) {
                 fmt.Println("Enter code: ")
                 fmt.Scanln(&code)
 
-                if registration {
+                if !state.(*AuthorizationStateWaitCode).IsRegistered {
+                    fmt.Println("Phone number is not registered.")
+
                     fmt.Println("Enter first name: ")
                     fmt.Scanln(&firstName)
 

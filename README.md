@@ -59,7 +59,7 @@ func main() {
     
     // client authorizer
     authorizer := client.ClientAuthorizer()
-    go client.CliInteractor(authorizer, false)
+    go client.CliInteractor(authorizer)
     
     // or bot authorizer
     botToken := "000000000:gsVCGG5YbikxYHC7bP5vRvmBqJ7Xz6vG6td"
