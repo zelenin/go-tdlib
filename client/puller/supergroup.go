@@ -26,7 +26,12 @@ func supergroupMembers(tdlibClient *client.Client, chatMemberChan chan *client.C
     var page int32 = 0
 
     for {
-        chatMembers, err := tdlibClient.GetSupergroupMembers(supergroupId, filter, page*limit+offset, limit)
+        chatMembers, err := tdlibClient.GetSupergroupMembers(&client.GetSupergroupMembersRequest{
+            SupergroupId: supergroupId,
+            Filter:       filter,
+            Offset:       page*limit + offset,
+            Limit:        limit,
+        })
         if err != nil {
             errChan <- err
 

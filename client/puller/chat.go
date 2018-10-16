@@ -24,7 +24,13 @@ func chatHistory(tdlibClient *client.Client, messageChan chan *client.Message, e
     }()
 
     for {
-        messages, err := tdlibClient.GetChatHistory(chatId, fromMessageId, offset, limit, onlyLocal)
+        messages, err := tdlibClient.GetChatHistory(&client.GetChatHistoryRequest{
+            ChatId:        chatId,
+            FromMessageId: fromMessageId,
+            Offset:        offset,
+            Limit:         limit,
+            OnlyLocal:     onlyLocal,
+        })
         if err != nil {
             errChan <- err
 

@@ -1,10 +1,10 @@
 package codegen
 
 import (
-    "github.com/zelenin/go-tdlib/tlparser"
-    "fmt"
-    "strings"
     "bytes"
+    "fmt"
+
+    "github.com/zelenin/go-tdlib/tlparser"
 )
 
 func GenerateFunctions(schema *tlparser.Schema, packageName string) []byte {
@@ -19,29 +19,31 @@ func GenerateFunctions(schema *tlparser.Schema, packageName string) []byte {
     buf.WriteString("\n")
 
     for _, function := range schema.Functions {
+        tdlibFunction := TdlibFunction(function.Name, schema)
+        tdlibFunctionReturn := TdlibFunctionReturn(function.Class, schema)
+
+        if len(function.Properties) > 0 {
+            buf.WriteString("\n")
+            buf.WriteString(fmt.Sprintf("type %sRequest struct { \n", tdlibFunction.ToGoName()))
+            for _, property := range function.Properties {
+                tdlibTypeProperty := TdlibTypeProperty(property.Name, property.Type, schema)
+
+                buf.WriteString(fmt.Sprintf("    // %s\n", property.Description))
+                buf.WriteString(fmt.Sprintf("    %s %s `json:\"%s\"`\n", tdlibTypeProperty.ToGoName(), tdlibTypeProperty.ToGoType(), property.Name))
+            }
+            buf.WriteString("}\n")
+        }
+
         buf.WriteString("\n")
         buf.WriteString("// " + function.Description)
         buf.WriteString("\n")
 
+        requestArgument := ""
         if len(function.Properties) > 0 {
-            buf.WriteString("//")
-            buf.WriteString("\n")
+            requestArgument = fmt.Sprintf("req *%sRequest", tdlibFunction.ToGoName())
         }
 
-        propertiesParts := []string{}
-        for _, property := range function.Properties {
-            tdlibFunctionProperty := TdlibFunctionProperty(property.Name, property.Type, schema)
-
-            buf.WriteString(fmt.Sprintf("// @param %s %s", tdlibFunctionProperty.ToGoName(), property.Description))
-            buf.WriteString("\n")
-
-            propertiesParts = append(propertiesParts, tdlibFunctionProperty.ToGoName()+" "+tdlibFunctionProperty.ToGoType())
-        }
-
-        tdlibFunction := TdlibFunction(function.Name, schema)
-        tdlibFunctionReturn := TdlibFunctionReturn(function.Class, schema)
-
-        buf.WriteString(fmt.Sprintf("func (client *Client) %s(%s) (%s, error) {\n", tdlibFunction.ToGoName(), strings.Join(propertiesParts, ", "), tdlibFunctionReturn.ToGoReturn()))
+        buf.WriteString(fmt.Sprintf("func (client *Client) %s(%s) (%s, error) {\n", tdlibFunction.ToGoName(), requestArgument, tdlibFunctionReturn.ToGoReturn()))
 
         sendMethod := "Send"
         if function.IsSynchronous {
@@ -57,8 +59,9 @@ func GenerateFunctions(schema *tlparser.Schema, packageName string) []byte {
 `, sendMethod, function.Name))
 
             for _, property := range function.Properties {
-                tdlibFunctionProperty := TdlibFunctionProperty(property.Name, property.Type, schema)
-                buf.WriteString(fmt.Sprintf("            \"%s\": %s,\n", property.Name, tdlibFunctionProperty.ToGoName()))
+                tdlibTypeProperty := TdlibTypeProperty(property.Name, property.Type, schema)
+
+                buf.WriteString(fmt.Sprintf("            \"%s\": req.%s,\n", property.Name, tdlibTypeProperty.ToGoName()))
             }
 
             buf.WriteString(`        },

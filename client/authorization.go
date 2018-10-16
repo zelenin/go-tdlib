@@ -57,19 +57,29 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 
     switch state.AuthorizationStateType() {
     case TypeAuthorizationStateWaitTdlibParameters:
-        _, err := client.SetTdlibParameters(<-stateHandler.TdlibParameters)
+        _, err := client.SetTdlibParameters(&SetTdlibParametersRequest{
+            Parameters: <-stateHandler.TdlibParameters,
+        })
         return err
 
     case TypeAuthorizationStateWaitEncryptionKey:
-        _, err := client.CheckDatabaseEncryptionKey(nil)
+        _, err := client.CheckDatabaseEncryptionKey(&CheckDatabaseEncryptionKeyRequest{})
         return err
 
     case TypeAuthorizationStateWaitPhoneNumber:
-        _, err := client.SetAuthenticationPhoneNumber(<-stateHandler.PhoneNumber, false, false)
+        _, err := client.SetAuthenticationPhoneNumber(&SetAuthenticationPhoneNumberRequest{
+            PhoneNumber:          <-stateHandler.PhoneNumber,
+            AllowFlashCall:       false,
+            IsCurrentPhoneNumber: false,
+        })
         return err
 
     case TypeAuthorizationStateWaitCode:
-        _, err := client.CheckAuthenticationCode(<-stateHandler.Code, <-stateHandler.FirstName, <-stateHandler.LastName)
+        _, err := client.CheckAuthenticationCode(&CheckAuthenticationCodeRequest{
+            Code:      <-stateHandler.Code,
+            FirstName: <-stateHandler.FirstName,
+            LastName:  <-stateHandler.LastName,
+        })
         return err
 
     case TypeAuthorizationStateWaitPassword:
@@ -162,15 +172,19 @@ func (stateHandler *botAuthorizer) Handle(client *Client, state AuthorizationSta
 
     switch state.AuthorizationStateType() {
     case TypeAuthorizationStateWaitTdlibParameters:
-        _, err := client.SetTdlibParameters(<-stateHandler.TdlibParameters)
+        _, err := client.SetTdlibParameters(&SetTdlibParametersRequest{
+            Parameters: <-stateHandler.TdlibParameters,
+        })
         return err
 
     case TypeAuthorizationStateWaitEncryptionKey:
-        _, err := client.CheckDatabaseEncryptionKey(nil)
+        _, err := client.CheckDatabaseEncryptionKey(&CheckDatabaseEncryptionKeyRequest{})
         return err
 
     case TypeAuthorizationStateWaitPhoneNumber:
-        _, err := client.CheckAuthenticationBotToken(<-stateHandler.Token)
+        _, err := client.CheckAuthenticationBotToken(&CheckAuthenticationBotTokenRequest{
+            Token: <-stateHandler.Token,
+        })
         return err
 
     case TypeAuthorizationStateWaitCode:

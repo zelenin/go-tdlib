@@ -26,7 +26,11 @@ func chats(tdlibClient *client.Client, chatChan chan *client.Chat, errChan chan 
     }()
 
     for {
-        chats, err := tdlibClient.GetChats(offsetOrder, offsetChatId, limit)
+        chats, err := tdlibClient.GetChats(&client.GetChatsRequest{
+            OffsetOrder:  offsetOrder,
+            OffsetChatId: offsetChatId,
+            Limit:        limit,
+        })
         if err != nil {
             errChan <- err
 
