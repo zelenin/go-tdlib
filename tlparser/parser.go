@@ -42,10 +42,12 @@ func Parse(reader io.Reader) (*Schema, error) {
             class := strings.TrimRight(bodyFields[len(bodyFields)-1], ";")
             if hitFunctions {
                 schema.Functions = append(schema.Functions, &Function{
-                    Name:        name,
-                    Description: "",
-                    Class:       class,
-                    Properties:  []*Property{},
+                    Name:          name,
+                    Description:   "",
+                    Class:         class,
+                    Properties:    []*Property{},
+                    IsSynchronous: false,
+                    Type:          FUNCTION_TYPE_UNKNOWN,
                 })
             } else {
                 if name == "vector" {
@@ -84,6 +86,7 @@ func parseFunction(firstLine string, scanner *bufio.Scanner) *Function {
         Class:         class,
         Properties:    properties,
         IsSynchronous: isSynchronous,
+        Type:          FUNCTION_TYPE_UNKNOWN,
     }
 }
 

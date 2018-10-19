@@ -5,12 +5,12 @@ schema-update:
 
 generate-json:
 	go run ./cmd/generate-json.go \
-		-input "./data/td_api.tl" \
+		-version "${TAG}" \
 		-output "./data/td_api.json"
 
 generate-code:
 	go run ./cmd/generate-code.go \
-		-schema "./data/td_api.tl" \
+		-version "${TAG}" \
 		-outputDir "./client" \
 		-package client \
 		-functionFile function.go \

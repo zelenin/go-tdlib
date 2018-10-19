@@ -10635,7 +10635,8 @@
             "description": "Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state",
             "class": "AuthorizationState",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "setTdlibParameters",
@@ -10648,7 +10649,8 @@
                     "description": "Parameters"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "checkDatabaseEncryptionKey",
@@ -10661,7 +10663,8 @@
                     "description": "Encryption key to check or set up"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "setAuthenticationPhoneNumber",
@@ -10684,14 +10687,16 @@
                     "description": "Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "resendAuthenticationCode",
             "description": "Re-sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitCode and the next_code_type of the result is not null",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "checkAuthenticationCode",
@@ -10714,7 +10719,8 @@
                     "description": "If the user is not yet registered; the last name of the user; optional; 0-255 characters"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "checkAuthenticationPassword",
@@ -10727,14 +10733,16 @@
                     "description": "The password to check"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "requestAuthenticationPasswordRecovery",
             "description": "Requests to send a password recovery code to an email address that was previously set up. Works only when the current authorization state is authorizationStateWaitPassword",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "recoverAuthenticationPassword",
@@ -10747,7 +10755,8 @@
                     "description": "Recovery code to check"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "checkAuthenticationBotToken",
@@ -10760,28 +10769,32 @@
                     "description": "The bot token"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "logOut",
             "description": "Closes the TDLib instance after a proper logout. Requires an available network connection. All local data will be destroyed. After the logout completes, updateAuthorizationState with authorizationStateClosed will be sent",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "close",
             "description": "Closes the TDLib instance. All databases will be flushed to disk and properly closed. After the close completes, updateAuthorizationState with authorizationStateClosed will be sent",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "destroy",
             "description": "Closes the TDLib instance, destroying all local data without a proper logout. The current user session will remain in the list of all active sessions. All local data will be destroyed. After the destruction completes updateAuthorizationState with authorizationStateClosed will be sent",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "setDatabaseEncryptionKey",
@@ -10794,14 +10807,16 @@
                     "description": "New encryption key"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getPasswordState",
             "description": "Returns the current state of 2-step verification",
             "class": "PasswordState",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setPassword",
@@ -10834,7 +10849,8 @@
                     "description": "New recovery email address; may be empty"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getRecoveryEmailAddress",
@@ -10847,7 +10863,8 @@
                     "description": "The password for the current user"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setRecoveryEmailAddress",
@@ -10865,14 +10882,16 @@
                     "description": "New recovery email address"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "requestPasswordRecovery",
             "description": "Requests to send a password recovery code to an email address that was previously set up",
             "class": "EmailAddressAuthenticationCodeInfo",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "recoverPassword",
@@ -10885,7 +10904,8 @@
                     "description": "Recovery code to check"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "createTemporaryPassword",
@@ -10903,14 +10923,16 @@
                     "description": "Time during which the temporary password will be valid, in seconds; should be between 60 and 86400"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getTemporaryPasswordState",
             "description": "Returns information about the current temporary password",
             "class": "TemporaryPasswordState",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "processDcUpdate",
@@ -10928,14 +10950,16 @@
                     "description": "Value of the \"addr\" parameter of the notification"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getMe",
             "description": "Returns the current user",
             "class": "User",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getUser",
@@ -10948,7 +10972,8 @@
                     "description": "User identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getUserFullInfo",
@@ -10961,7 +10986,8 @@
                     "description": "User identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getBasicGroup",
@@ -10974,7 +11000,8 @@
                     "description": "Basic group identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getBasicGroupFullInfo",
@@ -10987,7 +11014,8 @@
                     "description": "Basic group identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getSupergroup",
@@ -11000,7 +11028,8 @@
                     "description": "Supergroup or channel identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getSupergroupFullInfo",
@@ -11013,7 +11042,8 @@
                     "description": "Supergroup or channel identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getSecretChat",
@@ -11026,7 +11056,8 @@
                     "description": "Secret chat identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getChat",
@@ -11039,7 +11070,8 @@
                     "description": "Chat identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getMessage",
@@ -11057,7 +11089,8 @@
                     "description": "Identifier of the message to get"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getRepliedMessage",
@@ -11075,7 +11108,8 @@
                     "description": "Identifier of the message reply to which get"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getChatPinnedMessage",
@@ -11088,7 +11122,8 @@
                     "description": "Identifier of the chat the message belongs to"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getMessages",
@@ -11106,7 +11141,8 @@
                     "description": "Identifiers of the messages to get"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getFile",
@@ -11119,7 +11155,8 @@
                     "description": "Identifier of the file to get"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getRemoteFile",
@@ -11137,7 +11174,8 @@
                     "description": "File type, if known"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getChats",
@@ -11160,7 +11198,8 @@
                     "description": "The maximum number of chats to be returned. It is possible that fewer chats than the limit are returned even if the end of the list is not reached"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "searchPublicChat",
@@ -11173,7 +11212,8 @@
                     "description": "Username to be resolved"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "searchPublicChats",
@@ -11186,7 +11226,8 @@
                     "description": "Query to search for"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "searchChats",
@@ -11204,7 +11245,8 @@
                     "description": "Maximum number of chats to be returned"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "searchChatsOnServer",
@@ -11222,7 +11264,8 @@
                     "description": "Maximum number of chats to be returned"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getTopChats",
@@ -11240,7 +11283,8 @@
                     "description": "Maximum number of chats to be returned; up to 30"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "removeTopChat",
@@ -11258,7 +11302,8 @@
                     "description": "Chat identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "addRecentlyFoundChat",
@@ -11271,7 +11316,8 @@
                     "description": "Identifier of the chat to add"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "removeRecentlyFoundChat",
@@ -11284,14 +11330,16 @@
                     "description": "Identifier of the chat to be removed"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "clearRecentlyFoundChats",
             "description": "Clears the list of recently found chats",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "checkChatUsername",
@@ -11309,14 +11357,16 @@
                     "description": "Username to be checked"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getCreatedPublicChats",
             "description": "Returns a list of public chats created by the user",
             "class": "Chats",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getGroupsInCommon",
@@ -11339,7 +11389,8 @@
                     "description": "Maximum number of chats to be returned; up to 100"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getChatHistory",
@@ -11372,7 +11423,8 @@
                     "description": "If true, returns only messages that are available locally without sending network requests"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "deleteChatHistory",
@@ -11390,7 +11442,8 @@
                     "description": "Pass true if the chat should be removed from the chats list"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "searchChatMessages",
@@ -11433,7 +11486,8 @@
                     "description": "Filter for message content in the search results"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "searchMessages",
@@ -11466,7 +11520,8 @@
                     "description": "The maximum number of messages to be returned, up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "searchSecretMessages",
@@ -11499,7 +11554,8 @@
                     "description": "A filter for the content of messages in the search results"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "searchCallMessages",
@@ -11522,7 +11578,8 @@
                     "description": "If true, returns only messages with missed calls"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "searchChatRecentLocationMessages",
@@ -11540,14 +11597,16 @@
                     "description": "Maximum number of messages to be returned"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getActiveLiveLocationMessages",
             "description": "Returns all active live locations that should be updated by the client. The list is persistent across application restarts only if the message database is used",
             "class": "Messages",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getChatMessageByDate",
@@ -11565,7 +11624,8 @@
                     "description": "Point in time (Unix timestamp) relative to which to search for messages"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getChatMessageCount",
@@ -11588,7 +11648,8 @@
                     "description": "If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getPublicMessageLink",
@@ -11611,7 +11672,8 @@
                     "description": "Pass true if a link for a whole media album should be returned"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "sendMessage",
@@ -11649,7 +11711,8 @@
                     "description": "The content of the message to be sent"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "sendMessageAlbum",
@@ -11682,7 +11745,8 @@
                     "description": "Contents of messages to be sent"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "sendBotStartMessage",
@@ -11705,7 +11769,8 @@
                     "description": "A hidden parameter sent to the bot for deep linking purposes (https://api.telegram.org/bots#deep-linking)"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "sendInlineQueryResultMessage",
@@ -11743,7 +11808,8 @@
                     "description": "Identifier of the inline result"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "forwardMessages",
@@ -11781,7 +11847,8 @@
                     "description": "True, if the messages should be grouped into an album after forwarding. For this to work, no more than 10 messages may be forwarded, and all of them must be photo or video messages"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "sendChatSetTtlMessage",
@@ -11799,7 +11866,8 @@
                     "description": "New TTL value, in seconds"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "sendChatScreenshotTakenNotification",
@@ -11812,7 +11880,8 @@
                     "description": "Chat identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "addLocalMessage",
@@ -11845,7 +11914,8 @@
                     "description": "The content of the message to be added"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "deleteMessages",
@@ -11868,7 +11938,8 @@
                     "description": "Pass true to try to delete outgoing messages for all chat members (may fail if messages are too old). Always true for supergroups, channels and secret chats"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "deleteChatMessagesFromUser",
@@ -11886,7 +11957,8 @@
                     "description": "User identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "editMessageText",
@@ -11914,7 +11986,8 @@
                     "description": "New text content of the message. Should be of type InputMessageText"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "editMessageLiveLocation",
@@ -11942,7 +12015,8 @@
                     "description": "New location content of the message; may be null. Pass null to stop sharing the live location"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "editMessageMedia",
@@ -11970,7 +12044,8 @@
                     "description": "New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "editMessageCaption",
@@ -11998,7 +12073,8 @@
                     "description": "New message content caption; 0-GetOption(\"message_caption_length_max\") characters"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "editMessageReplyMarkup",
@@ -12021,7 +12097,8 @@
                     "description": "The new message reply markup"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "editInlineMessageText",
@@ -12044,7 +12121,8 @@
                     "description": "New text content of the message. Should be of type InputMessageText"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "editInlineMessageLiveLocation",
@@ -12067,7 +12145,8 @@
                     "description": "New location content of the message; may be null. Pass null to stop sharing the live location"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "editInlineMessageMedia",
@@ -12090,7 +12169,8 @@
                     "description": "New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "editInlineMessageCaption",
@@ -12113,7 +12193,8 @@
                     "description": "New message content caption; 0-GetOption(\"message_caption_length_max\") characters"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "editInlineMessageReplyMarkup",
@@ -12131,7 +12212,8 @@
                     "description": "The new message reply markup"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "getTextEntities",
@@ -12144,7 +12226,8 @@
                     "description": "The text in which to look for entites"
                 }
             ],
-            "is_synchronous": true
+            "is_synchronous": true,
+            "type": 1
         },
         {
             "name": "parseTextEntities",
@@ -12162,7 +12245,8 @@
                     "description": "Text parse mode"
                 }
             ],
-            "is_synchronous": true
+            "is_synchronous": true,
+            "type": 1
         },
         {
             "name": "getFileMimeType",
@@ -12175,7 +12259,8 @@
                     "description": "The name of the file or path to the file"
                 }
             ],
-            "is_synchronous": true
+            "is_synchronous": true,
+            "type": 1
         },
         {
             "name": "getFileExtension",
@@ -12188,7 +12273,8 @@
                     "description": "The MIME type of the file"
                 }
             ],
-            "is_synchronous": true
+            "is_synchronous": true,
+            "type": 1
         },
         {
             "name": "cleanFileName",
@@ -12201,7 +12287,8 @@
                     "description": "File name or path to the file"
                 }
             ],
-            "is_synchronous": true
+            "is_synchronous": true,
+            "type": 1
         },
         {
             "name": "getLanguagePackString",
@@ -12229,7 +12316,8 @@
                     "description": "Language pack key of the string to be returned"
                 }
             ],
-            "is_synchronous": true
+            "is_synchronous": true,
+            "type": 1
         },
         {
             "name": "getInlineQueryResults",
@@ -12262,7 +12350,8 @@
                     "description": "Offset of the first entry to return"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "answerInlineQuery",
@@ -12305,7 +12394,8 @@
                     "description": "The parameter for the bot start message"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "getCallbackQueryAnswer",
@@ -12328,7 +12418,8 @@
                     "description": "Query payload"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "answerCallbackQuery",
@@ -12361,7 +12452,8 @@
                     "description": "Time during which the result of the query can be cached, in seconds"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "answerShippingQuery",
@@ -12384,7 +12476,8 @@
                     "description": "An error message, empty on success"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "answerPreCheckoutQuery",
@@ -12402,7 +12495,8 @@
                     "description": "An error message, empty on success"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "setGameScore",
@@ -12440,7 +12534,8 @@
                     "description": "Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "setInlineGameScore",
@@ -12473,7 +12568,8 @@
                     "description": "Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "getGameHighScores",
@@ -12496,7 +12592,8 @@
                     "description": "User identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "getInlineGameHighScores",
@@ -12514,7 +12611,8 @@
                     "description": "User identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "deleteChatReplyMarkup",
@@ -12532,7 +12630,8 @@
                     "description": "The message identifier of the used keyboard"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "sendChatAction",
@@ -12550,7 +12649,8 @@
                     "description": "The action description"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "openChat",
@@ -12563,7 +12663,8 @@
                     "description": "Chat identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "closeChat",
@@ -12576,7 +12677,8 @@
                     "description": "Chat identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "viewMessages",
@@ -12599,7 +12701,8 @@
                     "description": "True, if messages in closed chats should be marked as read"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "openMessageContent",
@@ -12617,7 +12720,8 @@
                     "description": "Identifier of the message with the opened content"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "readAllChatMentions",
@@ -12630,7 +12734,8 @@
                     "description": "Chat identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "createPrivateChat",
@@ -12648,7 +12753,8 @@
                     "description": "If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "createBasicGroupChat",
@@ -12666,7 +12772,8 @@
                     "description": "If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "createSupergroupChat",
@@ -12684,7 +12791,8 @@
                     "description": "If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "createSecretChat",
@@ -12697,7 +12805,8 @@
                     "description": "Secret chat identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "createNewBasicGroupChat",
@@ -12715,7 +12824,8 @@
                     "description": "Title of the new basic group; 1-255 characters"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "createNewSupergroupChat",
@@ -12738,7 +12848,8 @@
                     "description": "Chat description; 0-255 characters"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "createNewSecretChat",
@@ -12751,7 +12862,8 @@
                     "description": "Identifier of the target user"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "upgradeBasicGroupChatToSupergroupChat",
@@ -12764,7 +12876,8 @@
                     "description": "Identifier of the chat to upgrade"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setChatTitle",
@@ -12782,7 +12895,8 @@
                     "description": "New title of the chat; 1-255 characters"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "setChatPhoto",
@@ -12800,7 +12914,8 @@
                     "description": "New chat photo. You can use a zero InputFileId to delete the chat photo. Files that are accessible only by HTTP URL are not acceptable"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "setChatDraftMessage",
@@ -12818,7 +12933,8 @@
                     "description": "New draft message; may be null"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setChatNotificationSettings",
@@ -12836,7 +12952,8 @@
                     "description": "New notification settings for the chat"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "toggleChatIsPinned",
@@ -12854,7 +12971,8 @@
                     "description": "New value of is_pinned"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "toggleChatIsMarkedAsUnread",
@@ -12872,7 +12990,8 @@
                     "description": "New value of is_marked_as_unread"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "toggleChatDefaultDisableNotification",
@@ -12890,7 +13009,8 @@
                     "description": "New value of default_disable_notification"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setChatClientData",
@@ -12908,7 +13028,8 @@
                     "description": "New value of client_data"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "joinChat",
@@ -12921,7 +13042,8 @@
                     "description": "Chat identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "leaveChat",
@@ -12934,7 +13056,8 @@
                     "description": "Chat identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "addChatMember",
@@ -12957,7 +13080,8 @@
                     "description": "The number of earlier messages from the chat to be forwarded to the new member; up to 300. Ignored for supergroups and channels"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "addChatMembers",
@@ -12975,7 +13099,8 @@
                     "description": "Identifiers of the users to be added to the chat"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setChatMemberStatus",
@@ -12998,7 +13123,8 @@
                     "description": "The new status of the member in the chat"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getChatMember",
@@ -13016,7 +13142,8 @@
                     "description": "User identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "searchChatMembers",
@@ -13044,7 +13171,8 @@
                     "description": "The type of users to return. By default, chatMembersFilterMembers"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getChatAdministrators",
@@ -13057,7 +13185,8 @@
                     "description": "Chat identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "clearAllDraftMessages",
@@ -13070,7 +13199,8 @@
                     "description": "If true, local draft messages in secret chats will not be cleared"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getScopeNotificationSettings",
@@ -13083,7 +13213,8 @@
                     "description": "Types of chats for which to return the notification settings information"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setScopeNotificationSettings",
@@ -13101,14 +13232,16 @@
                     "description": "The new notification settings for the given scope"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "resetAllNotificationSettings",
             "description": "Resets all notification settings to their default values. By default, all chats are unmuted, the sound is set to \"default\" and message previews are shown",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setPinnedChats",
@@ -13121,7 +13254,8 @@
                     "description": "The new list of pinned chats"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "downloadFile",
@@ -13139,7 +13273,8 @@
                     "description": "Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "cancelDownloadFile",
@@ -13157,7 +13292,8 @@
                     "description": "Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "uploadFile",
@@ -13180,7 +13316,8 @@
                     "description": "Priority of the upload (1-32). The higher the priority, the earlier the file will be uploaded. If the priorities of two files are equal, then the first one for which uploadFile was called will be uploaded first"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "cancelUploadFile",
@@ -13193,7 +13330,8 @@
                     "description": "Identifier of the file to stop uploading"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "setFileGenerationProgress",
@@ -13216,7 +13354,8 @@
                     "description": "The number of bytes already generated"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "finishFileGeneration",
@@ -13234,7 +13373,8 @@
                     "description": "If set, means that file generation has failed and should be terminated"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "deleteFile",
@@ -13247,7 +13387,8 @@
                     "description": "Identifier of the file to delete"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "generateChatInviteLink",
@@ -13260,7 +13401,8 @@
                     "description": "Chat identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "checkChatInviteLink",
@@ -13273,7 +13415,8 @@
                     "description": "Invite link to be checked; should begin with \"https://t.me/joinchat/\", \"https://telegram.me/joinchat/\", or \"https://telegram.dog/joinchat/\""
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "joinChatByInviteLink",
@@ -13286,7 +13429,8 @@
                     "description": "Invite link to import; should begin with \"https://t.me/joinchat/\", \"https://telegram.me/joinchat/\", or \"https://telegram.dog/joinchat/\""
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "createCall",
@@ -13304,7 +13448,8 @@
                     "description": "Description of the call protocols supported by the client"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "acceptCall",
@@ -13322,7 +13467,8 @@
                     "description": "Description of the call protocols supported by the client"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "discardCall",
@@ -13350,7 +13496,8 @@
                     "description": "Identifier of the connection used during the call"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "sendCallRating",
@@ -13373,7 +13520,8 @@
                     "description": "An optional user comment if the rating is less than 5"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "sendCallDebugInformation",
@@ -13391,7 +13539,8 @@
                     "description": "Debug information in application-specific format"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "blockUser",
@@ -13404,7 +13553,8 @@
                     "description": "User identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "unblockUser",
@@ -13417,7 +13567,8 @@
                     "description": "User identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getBlockedUsers",
@@ -13435,7 +13586,8 @@
                     "description": "Maximum number of users to return; up to 100"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "importContacts",
@@ -13448,14 +13600,16 @@
                     "description": "The list of contacts to import or edit, contact's vCard are ignored and are not imported"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getContacts",
             "description": "Returns all user contacts",
             "class": "Users",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "searchContacts",
@@ -13473,7 +13627,8 @@
                     "description": "Maximum number of users to be returned"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "removeContacts",
@@ -13486,14 +13641,16 @@
                     "description": "Identifiers of users to be deleted"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getImportedContactCount",
             "description": "Returns the total number of imported contacts",
             "class": "Count",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "changeImportedContacts",
@@ -13506,14 +13663,16 @@
                     "description": "The new list of contacts, contact's vCard are ignored and are not imported"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "clearImportedContacts",
             "description": "Clears all imported contacts, contacts list remains unchanged",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getUserProfilePhotos",
@@ -13536,7 +13695,8 @@
                     "description": "Maximum number of photos to be returned; up to 100"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getStickers",
@@ -13554,7 +13714,8 @@
                     "description": "Maximum number of stickers to be returned"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "searchStickers",
@@ -13572,7 +13733,8 @@
                     "description": "Maximum number of stickers to be returned"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getInstalledStickerSets",
@@ -13585,7 +13747,8 @@
                     "description": "Pass true to return mask sticker sets; pass false to return ordinary sticker sets"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getArchivedStickerSets",
@@ -13608,14 +13771,16 @@
                     "description": "Maximum number of sticker sets to return"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getTrendingStickerSets",
             "description": "Returns a list of trending sticker sets",
             "class": "StickerSets",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getAttachedStickerSets",
@@ -13628,7 +13793,8 @@
                     "description": "File identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getStickerSet",
@@ -13641,7 +13807,8 @@
                     "description": "Identifier of the sticker set"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "searchStickerSet",
@@ -13654,7 +13821,8 @@
                     "description": "Name of the sticker set"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "searchInstalledStickerSets",
@@ -13677,7 +13845,8 @@
                     "description": "Maximum number of sticker sets to return"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "searchStickerSets",
@@ -13690,7 +13859,8 @@
                     "description": "Query to search for"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "changeStickerSet",
@@ -13713,7 +13883,8 @@
                     "description": "The new value of is_archived. A sticker set can't be installed and archived simultaneously"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "viewTrendingStickerSets",
@@ -13726,7 +13897,8 @@
                     "description": "Identifiers of viewed trending sticker sets"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "reorderInstalledStickerSets",
@@ -13744,7 +13916,8 @@
                     "description": "Identifiers of installed sticker sets in the new correct order"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getRecentStickers",
@@ -13757,7 +13930,8 @@
                     "description": "Pass true to return stickers and masks that were recently attached to photos or video files; pass false to return recently sent stickers"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "addRecentSticker",
@@ -13775,7 +13949,8 @@
                     "description": "Sticker file to add"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "removeRecentSticker",
@@ -13793,7 +13968,8 @@
                     "description": "Sticker file to delete"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "clearRecentStickers",
@@ -13806,14 +13982,16 @@
                     "description": "Pass true to clear the list of stickers recently attached to photo or video files; pass false to clear the list of recently sent stickers"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getFavoriteStickers",
             "description": "Returns favorite stickers",
             "class": "Stickers",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "addFavoriteSticker",
@@ -13826,7 +14004,8 @@
                     "description": "Sticker file to add"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "removeFavoriteSticker",
@@ -13839,7 +14018,8 @@
                     "description": "Sticker file to delete from the list"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getStickerEmojis",
@@ -13852,14 +14032,16 @@
                     "description": "Sticker file identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getSavedAnimations",
             "description": "Returns saved animations",
             "class": "Animations",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "addSavedAnimation",
@@ -13872,7 +14054,8 @@
                     "description": "The animation file to be added. Only animations known to the server (i.e. successfully sent via a message) can be added to the list"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "removeSavedAnimation",
@@ -13885,14 +14068,16 @@
                     "description": "Animation file to be removed"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getRecentInlineBots",
             "description": "Returns up to 20 recently used inline bots in the order of their last usage",
             "class": "Users",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "searchHashtags",
@@ -13910,7 +14095,8 @@
                     "description": "Maximum number of hashtags to be returned"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "removeRecentHashtag",
@@ -13923,7 +14109,8 @@
                     "description": "Hashtag to delete"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getWebPagePreview",
@@ -13936,7 +14123,8 @@
                     "description": "Message text with formatting"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getWebPageInstantView",
@@ -13954,7 +14142,8 @@
                     "description": "If true, the full instant view for the web page will be returned"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setProfilePhoto",
@@ -13967,7 +14156,8 @@
                     "description": "Profile photo to set. inputFileId and inputFileRemote may still be unsupported"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "deleteProfilePhoto",
@@ -13980,7 +14170,8 @@
                     "description": "Identifier of the profile photo to delete"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setName",
@@ -13998,7 +14189,8 @@
                     "description": "The new value of the optional last name for the user; 0-255 characters"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setBio",
@@ -14011,7 +14203,8 @@
                     "description": "The new value of the user bio; 0-70 characters without line feeds"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setUsername",
@@ -14024,7 +14217,8 @@
                     "description": "The new value of the username. Use an empty string to remove the username"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "changePhoneNumber",
@@ -14047,14 +14241,16 @@
                     "description": "Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "resendChangePhoneNumberCode",
             "description": "Re-sends the authentication code sent to confirm a new phone number for the user. Works only if the previously received authenticationCodeInfo next_code_type was not null",
             "class": "AuthenticationCodeInfo",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "checkChangePhoneNumberCode",
@@ -14067,14 +14263,16 @@
                     "description": "Verification code received by SMS, phone call or flash call"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getActiveSessions",
             "description": "Returns all active sessions of the current user",
             "class": "Sessions",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "terminateSession",
@@ -14087,21 +14285,24 @@
                     "description": "Session identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "terminateAllOtherSessions",
             "description": "Terminates all other sessions of the current user",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getConnectedWebsites",
             "description": "Returns all website where the current user used Telegram to log in",
             "class": "ConnectedWebsites",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "disconnectWebsite",
@@ -14114,14 +14315,16 @@
                     "description": "Website identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "disconnectAllWebsites",
             "description": "Disconnects all websites from the current user's Telegram account",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "toggleBasicGroupAdministrators",
@@ -14139,7 +14342,8 @@
                     "description": "New value of everyone_is_administrator"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setSupergroupUsername",
@@ -14157,7 +14361,8 @@
                     "description": "New value of the username. Use an empty string to remove the username"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setSupergroupStickerSet",
@@ -14175,7 +14380,8 @@
                     "description": "New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "toggleSupergroupInvites",
@@ -14193,7 +14399,8 @@
                     "description": "New value of anyone_can_invite"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "toggleSupergroupSignMessages",
@@ -14211,7 +14418,8 @@
                     "description": "New value of sign_messages"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "toggleSupergroupIsAllHistoryAvailable",
@@ -14229,7 +14437,8 @@
                     "description": "The new value of is_all_history_available"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setSupergroupDescription",
@@ -14247,7 +14456,8 @@
                     "description": "New supergroup or channel description; 0-255 characters"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "pinSupergroupMessage",
@@ -14270,7 +14480,8 @@
                     "description": "True, if there should be no notification about the pinned message"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "unpinSupergroupMessage",
@@ -14283,7 +14494,8 @@
                     "description": "Identifier of the supergroup or channel"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "reportSupergroupSpam",
@@ -14306,7 +14518,8 @@
                     "description": "Identifiers of messages sent in the supergroup by the user. This list must be non-empty"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getSupergroupMembers",
@@ -14334,7 +14547,8 @@
                     "description": "The maximum number of users be returned; up to 200"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "deleteSupergroup",
@@ -14347,7 +14561,8 @@
                     "description": "Identifier of the supergroup or channel"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "closeSecretChat",
@@ -14360,7 +14575,8 @@
                     "description": "Secret chat identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getChatEventLog",
@@ -14398,7 +14614,8 @@
                     "description": "User identifiers by which to filter events. By default, events relating to all users will be returned"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getPaymentForm",
@@ -14416,7 +14633,8 @@
                     "description": "Message identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "validateOrderInfo",
@@ -14444,7 +14662,8 @@
                     "description": "True, if the order information can be saved"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "sendPaymentForm",
@@ -14477,7 +14696,8 @@
                     "description": "The credentials chosen by user for payment"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getPaymentReceipt",
@@ -14495,42 +14715,48 @@
                     "description": "Message identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getSavedOrderInfo",
             "description": "Returns saved order info, if any",
             "class": "OrderInfo",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "deleteSavedOrderInfo",
             "description": "Deletes saved order info",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "deleteSavedCredentials",
             "description": "Deletes saved credentials for all payment provider bots",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getSupportUser",
             "description": "Returns a user that can be contacted to get support",
             "class": "User",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getWallpapers",
             "description": "Returns background wallpapers",
             "class": "Wallpapers",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getLocalizationTargetInfo",
@@ -14543,7 +14769,8 @@
                     "description": "If true, returns only locally available information without sending network requests"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getLanguagePackStrings",
@@ -14561,7 +14788,8 @@
                     "description": "Language pack keys of the strings to be returned; leave empty to request all available strings"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setCustomLanguagePack",
@@ -14579,7 +14807,8 @@
                     "description": "Strings of the new language pack"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "editCustomLanguagePackInfo",
@@ -14592,7 +14821,8 @@
                     "description": "New information about the custom language pack"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setCustomLanguagePackString",
@@ -14610,7 +14840,8 @@
                     "description": "New language pack string"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "deleteLanguagePack",
@@ -14623,7 +14854,8 @@
                     "description": "Identifier of the language pack to delete"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "registerDevice",
@@ -14641,7 +14873,8 @@
                     "description": "List of at most 100 user identifiers of other users currently using the client"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getRecentlyVisitedTMeUrls",
@@ -14654,7 +14887,8 @@
                     "description": "Google Play referrer to identify the user"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setUserPrivacySettingRules",
@@ -14672,7 +14906,8 @@
                     "description": "The new privacy rules"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getUserPrivacySettingRules",
@@ -14685,7 +14920,8 @@
                     "description": "The privacy setting"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getOption",
@@ -14698,7 +14934,8 @@
                     "description": "The name of the option"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "setOption",
@@ -14716,7 +14953,8 @@
                     "description": "The new value of the option"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "setAccountTtl",
@@ -14729,14 +14967,16 @@
                     "description": "New account TTL"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getAccountTtl",
             "description": "Returns the period of inactivity after which the account of the current user will automatically be deleted",
             "class": "AccountTtl",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "deleteAccount",
@@ -14749,7 +14989,8 @@
                     "description": "The reason why the account was deleted; optional"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getChatReportSpamState",
@@ -14762,7 +15003,8 @@
                     "description": "Chat identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "changeChatReportSpamState",
@@ -14780,7 +15022,8 @@
                     "description": "If true, the chat will be reported as spam; otherwise it will be marked as not spam"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "reportChat",
@@ -14803,7 +15046,8 @@
                     "description": "Identifiers of reported messages, if any"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getStorageStatistics",
@@ -14816,14 +15060,16 @@
                     "description": "Maximum number of chats with the largest storage usage for which separate statistics should be returned. All other chats will be grouped in entries with chat_id == 0. If the chat info database is not used, the chat_limit is ignored and is always set to 0"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getStorageStatisticsFast",
             "description": "Quickly returns approximate storage usage statistics",
             "class": "StorageStatisticsFast",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "optimizeStorage",
@@ -14871,7 +15117,8 @@
                     "description": "Same as in getStorageStatistics. Affects only returned statistics"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "setNetworkType",
@@ -14884,7 +15131,8 @@
                     "description": "The new network type. By default, networkTypeOther"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getNetworkStatistics",
@@ -14897,7 +15145,8 @@
                     "description": "If true, returns only data for the current library launch"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "addNetworkStatistics",
@@ -14910,14 +15159,16 @@
                     "description": "The network statistics entry with the data to be added to statistics"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "resetNetworkStatistics",
             "description": "Resets all network data usage statistics to zero. Can be called before authorization",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getPassportElement",
@@ -14935,7 +15186,8 @@
                     "description": "Password of the current user"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getAllPassportElements",
@@ -14948,7 +15200,8 @@
                     "description": "Password of the current user"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setPassportElement",
@@ -14966,7 +15219,8 @@
                     "description": "Password of the current user"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "deletePassportElement",
@@ -14979,7 +15233,8 @@
                     "description": "Element type"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setPassportElementErrors",
@@ -14997,7 +15252,8 @@
                     "description": "The errors"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "getPreferredCountryLanguage",
@@ -15010,7 +15266,8 @@
                     "description": "A two-letter ISO 3166-1 alpha-2 country code"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "sendPhoneNumberVerificationCode",
@@ -15033,14 +15290,16 @@
                     "description": "Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "resendPhoneNumberVerificationCode",
             "description": "Re-sends the code to verify a phone number to be added to a user's Telegram Passport",
             "class": "AuthenticationCodeInfo",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "checkPhoneNumberVerificationCode",
@@ -15053,7 +15312,8 @@
                     "description": "Verification code"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "sendEmailAddressVerificationCode",
@@ -15066,14 +15326,16 @@
                     "description": "Email address"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "resendEmailAddressVerificationCode",
             "description": "Re-sends the code to verify an email address to be added to a user's Telegram Passport",
             "class": "EmailAddressAuthenticationCodeInfo",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "checkEmailAddressVerificationCode",
@@ -15086,7 +15348,8 @@
                     "description": "Verification code"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getPassportAuthorizationForm",
@@ -15119,7 +15382,8 @@
                     "description": "Password of the current user"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "sendPassportAuthorizationForm",
@@ -15137,7 +15401,8 @@
                     "description": "Types of Telegram Passport elements chosen by user to complete the authorization form"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "sendPhoneNumberConfirmationCode",
@@ -15165,14 +15430,16 @@
                     "description": "Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "resendPhoneNumberConfirmationCode",
             "description": "Resends phone number confirmation code",
             "class": "AuthenticationCodeInfo",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "checkPhoneNumberConfirmationCode",
@@ -15185,7 +15452,8 @@
                     "description": "The phone number confirmation code"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "setBotUpdatesStatus",
@@ -15203,7 +15471,8 @@
                     "description": "The last error message"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "uploadStickerFile",
@@ -15221,7 +15490,8 @@
                     "description": "PNG image with the sticker; must be up to 512 kB in size and fit in 512x512 square"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "createNewStickerSet",
@@ -15254,7 +15524,8 @@
                     "description": "List of stickers to be added to the set"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "addStickerToSet",
@@ -15277,7 +15548,8 @@
                     "description": "Sticker to add to the set"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "setStickerPositionInSet",
@@ -15295,7 +15567,8 @@
                     "description": "New position of the sticker in the set, zero-based"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "removeStickerFromSet",
@@ -15308,7 +15581,8 @@
                     "description": "Sticker"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "getMapThumbnailFile",
@@ -15346,7 +15620,8 @@
                     "description": "Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "acceptTermsOfService",
@@ -15359,7 +15634,8 @@
                     "description": "Terms of service identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "sendCustomRequest",
@@ -15377,7 +15653,8 @@
                     "description": "JSON-serialized method parameters"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "answerCustomQuery",
@@ -15395,7 +15672,8 @@
                     "description": "JSON-serialized answer to the query"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 3
         },
         {
             "name": "setAlarm",
@@ -15408,21 +15686,24 @@
                     "description": "Number of seconds before the function returns"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getCountryCode",
             "description": "Uses current user IP to found his country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization",
             "class": "Text",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getInviteText",
             "description": "Returns the default text for invitation messages to be used as a placeholder when the current user invites friends to Telegram",
             "class": "Text",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getDeepLinkInfo",
@@ -15435,7 +15716,8 @@
                     "description": "The link"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "addProxy",
@@ -15463,7 +15745,8 @@
                     "description": "Proxy type"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "editProxy",
@@ -15496,7 +15779,8 @@
                     "description": "Proxy type"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "enableProxy",
@@ -15509,14 +15793,16 @@
                     "description": "Proxy identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "disableProxy",
             "description": "Disables the currently enabled proxy. Can be called before authorization",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "removeProxy",
@@ -15529,14 +15815,16 @@
                     "description": "Proxy identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getProxies",
             "description": "Returns list of proxies that are currently set up. Can be called before authorization",
             "class": "Proxies",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "getProxyLink",
@@ -15549,7 +15837,8 @@
                     "description": "Proxy identifier"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "pingProxy",
@@ -15562,14 +15851,16 @@
                     "description": "Proxy identifier. Use 0 to ping a Telegram server without a proxy"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "testCallEmpty",
             "description": "Does nothing; for testing only",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "testCallString",
@@ -15582,7 +15873,8 @@
                     "description": "String to return"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "testCallBytes",
@@ -15595,7 +15887,8 @@
                     "description": "Bytes to return"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "testCallVectorInt",
@@ -15608,7 +15901,8 @@
                     "description": "Vector of numbers to return"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "testCallVectorIntObject",
@@ -15621,7 +15915,8 @@
                     "description": "Vector of objects to return"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "testCallVectorString",
@@ -15634,7 +15929,8 @@
                     "description": "Vector of strings to return"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "testCallVectorStringObject",
@@ -15647,7 +15943,8 @@
                     "description": "Vector of objects to return"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "testSquareInt",
@@ -15660,35 +15957,40 @@
                     "description": "Number to square"
                 }
             ],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "testNetwork",
             "description": "Sends a simple network request to the Telegram servers; for testing only",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "testGetDifference",
             "description": "Forces an updates.getDifference call to the Telegram servers; for testing only",
             "class": "Ok",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "testUseUpdate",
             "description": "Does nothing and ensures that the Update object is used; for testing only",
             "class": "Update",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "testUseError",
             "description": "Does nothing and ensures that the Error object is used; for testing only",
             "class": "Error",
             "properties": [],
-            "is_synchronous": false
+            "is_synchronous": false,
+            "type": 1
         }
     ]
 }

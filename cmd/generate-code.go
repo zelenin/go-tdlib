@@ -4,6 +4,7 @@ import (
     "bufio"
     "flag"
     "log"
+    "net/http"
     "os"
     "path/filepath"
 
@@ -12,7 +13,7 @@ import (
 )
 
 type config struct {
-    schemaFilePath      string
+    version             string
     outputDirPath       string
     packageName         string
     functionFileName    string
@@ -23,7 +24,7 @@ type config struct {
 func main() {
     var config config
 
-    flag.StringVar(&config.schemaFilePath, "schema", "./td_api.tl", ".tl schema file")
+    flag.StringVar(&config.version, "version", "", "TDLib version")
     flag.StringVar(&config.outputDirPath, "outputDir", "./tdlib", "output directory")
     flag.StringVar(&config.packageName, "package", "tdlib", "package name")
     flag.StringVar(&config.functionFileName, "functionFile", "function.go", "functions filename")
@@ -32,15 +33,17 @@ func main() {
 
     flag.Parse()
 
-    schemaFile, err := os.OpenFile(config.schemaFilePath, os.O_RDONLY, os.ModePerm)
+    resp, err := http.Get("https://raw.githubusercontent.com/tdlib/td/" + config.version + "/td/generate/scheme/td_api.tl")
     if err != nil {
-        log.Fatalf("schemaFile open error: %s", err)
+        log.Fatalf("http.Get error: %s", err)
+        return
     }
-    defer schemaFile.Close()
+    defer resp.Body.Close()
 
-    schema, err := tlparser.Parse(schemaFile)
+    schema, err := tlparser.Parse(resp.Body)
     if err != nil {
         log.Fatalf("schema parse error: %s", err)
+        return
     }
 
     err = os.MkdirAll(config.outputDirPath, 0755)
