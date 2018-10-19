@@ -44,7 +44,9 @@ func chats(tdlibClient *client.Client, chatChan chan *client.Chat, errChan chan 
         }
 
         for _, chatId := range chats.ChatIds {
-            chat, err := tdlibClient.GetChat(chatId)
+            chat, err := tdlibClient.GetChat(&client.GetChatRequest{
+                ChatId: chatId,
+            })
             if err != nil {
                 errChan <- err
 
