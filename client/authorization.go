@@ -39,6 +39,7 @@ type clientAuthorizer struct {
 	State           chan AuthorizationState
 	FirstName       chan string
 	LastName        chan string
+	Password        chan string
 }
 
 func ClientAuthorizer() *clientAuthorizer {
@@ -49,6 +50,7 @@ func ClientAuthorizer() *clientAuthorizer {
 		State:           make(chan AuthorizationState, 10),
 		FirstName:       make(chan string, 1),
 		LastName:        make(chan string, 1),
+		Password:        make(chan string, 1),
 	}
 }
 
@@ -83,7 +85,10 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 		return err
 
 	case TypeAuthorizationStateWaitPassword:
-		return ErrNotSupportedAuthorizationState
+		_, err := client.CheckAuthenticationPassword(&CheckAuthenticationPasswordRequest{
+			Password: <-stateHandler.Password,
+		})
+		return err
 
 	case TypeAuthorizationStateReady:
 		close(stateHandler.TdlibParameters)
@@ -92,6 +97,7 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 		close(stateHandler.State)
 		close(stateHandler.FirstName)
 		close(stateHandler.LastName)
+		close(stateHandler.Password)
 
 		return nil
 
@@ -141,6 +147,13 @@ func CliInteractor(clientAuthorizer *clientAuthorizer) {
 				clientAuthorizer.Code <- code
 				clientAuthorizer.FirstName <- firstName
 				clientAuthorizer.LastName <- lastName
+
+			case TypeAuthorizationStateWaitPassword:
+				fmt.Println("Enter password: ")
+				var password string
+				fmt.Scanln(&password)
+
+				clientAuthorizer.Password <- password
 
 			case TypeAuthorizationStateReady:
 				return
