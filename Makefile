@@ -16,3 +16,4 @@ generate-code:
 		-functionFile function.go \
 		-typeFile type.go \
 		-unmarshalerFile unmarshaler.go
+	go fmt ./client
