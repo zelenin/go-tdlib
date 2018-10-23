@@ -11,18 +11,22 @@ Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) 
 Debian:
 ```bash
 su
+apt update
+apt install -y apt-transport-https curl gnupg
 curl "https://repo.zelenin.pw/gpg.key" | apt-key add -
 echo "deb [arch=amd64] https://repo.zelenin.pw common contrib" | tee "/etc/apt/sources.list.d/tdlib.list"
 apt update
-apt install -y tdlib-dev libssl-dev zlib1g-dev
+apt install -y tdlib-dev
 ```
 
 Ubuntu:
 ```bash
+sudo apt update
+sudo apt install -y apt-transport-https curl gnupg
 curl "https://repo.zelenin.pw/gpg.key" | sudo apt-key add -
 echo "deb [arch=amd64] https://repo.zelenin.pw common contrib" | sudo tee "/etc/apt/sources.list.d/tdlib.list"
 sudo apt update
-sudo apt install -y tdlib-dev libssl-dev zlib1g-dev
+sudo apt install -y tdlib-dev
 ```
 
 #### Manual compilation
