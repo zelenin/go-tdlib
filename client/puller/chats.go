@@ -1,62 +1,62 @@
 package puller
 
 import (
-    "math"
+	"math"
 
-    "github.com/zelenin/go-tdlib/client"
+	"github.com/zelenin/go-tdlib/client"
 )
 
 func Chats(tdlibClient *client.Client) (chan *client.Chat, chan error) {
-    chatChan := make(chan *client.Chat, 10)
-    errChan := make(chan error, 1)
+	chatChan := make(chan *client.Chat, 10)
+	errChan := make(chan error, 1)
 
-    var offsetOrder client.JsonInt64 = math.MaxInt64
-    var offsetChatId int64 = 0
-    var limit int32 = 100
+	var offsetOrder client.JsonInt64 = math.MaxInt64
+	var offsetChatId int64 = 0
+	var limit int32 = 100
 
-    go chats(tdlibClient, chatChan, errChan, offsetOrder, offsetChatId, limit)
+	go chats(tdlibClient, chatChan, errChan, offsetOrder, offsetChatId, limit)
 
-    return chatChan, errChan
+	return chatChan, errChan
 }
 
 func chats(tdlibClient *client.Client, chatChan chan *client.Chat, errChan chan error, offsetOrder client.JsonInt64, offsetChatId int64, limit int32) {
-    defer func() {
-        close(chatChan)
-        close(errChan)
-    }()
+	defer func() {
+		close(chatChan)
+		close(errChan)
+	}()
 
-    for {
-        chats, err := tdlibClient.GetChats(&client.GetChatsRequest{
-            OffsetOrder:  offsetOrder,
-            OffsetChatId: offsetChatId,
-            Limit:        limit,
-        })
-        if err != nil {
-            errChan <- err
+	for {
+		chats, err := tdlibClient.GetChats(&client.GetChatsRequest{
+			OffsetOrder:  offsetOrder,
+			OffsetChatId: offsetChatId,
+			Limit:        limit,
+		})
+		if err != nil {
+			errChan <- err
 
-            return
-        }
+			return
+		}
 
-        if len(chats.ChatIds) == 0 {
-            errChan <- EOP
+		if len(chats.ChatIds) == 0 {
+			errChan <- EOP
 
-            break
-        }
+			break
+		}
 
-        for _, chatId := range chats.ChatIds {
-            chat, err := tdlibClient.GetChat(&client.GetChatRequest{
-                ChatId: chatId,
-            })
-            if err != nil {
-                errChan <- err
+		for _, chatId := range chats.ChatIds {
+			chat, err := tdlibClient.GetChat(&client.GetChatRequest{
+				ChatId: chatId,
+			})
+			if err != nil {
+				errChan <- err
 
-                return
-            }
+				return
+			}
 
-            offsetOrder = chat.Order
-            offsetChatId = chat.Id
+			offsetOrder = chat.Order
+			offsetChatId = chat.Id
 
-            chatChan <- chat
-        }
-    }
+			chatChan <- chat
+		}
+	}
 }

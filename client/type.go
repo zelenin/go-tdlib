@@ -3,20351 +3,20350 @@
 package client
 
 import (
-    "encoding/json"
+	"encoding/json"
 )
 
 const (
-    ClassAuthenticationCodeType = "AuthenticationCodeType"
-    ClassAuthorizationState = "AuthorizationState"
-    ClassInputFile = "InputFile"
-    ClassMaskPoint = "MaskPoint"
-    ClassLinkState = "LinkState"
-    ClassUserType = "UserType"
-    ClassChatMemberStatus = "ChatMemberStatus"
-    ClassChatMembersFilter = "ChatMembersFilter"
-    ClassSupergroupMembersFilter = "SupergroupMembersFilter"
-    ClassSecretChatState = "SecretChatState"
-    ClassMessageForwardInfo = "MessageForwardInfo"
-    ClassMessageSendingState = "MessageSendingState"
-    ClassNotificationSettingsScope = "NotificationSettingsScope"
-    ClassChatType = "ChatType"
-    ClassKeyboardButtonType = "KeyboardButtonType"
-    ClassInlineKeyboardButtonType = "InlineKeyboardButtonType"
-    ClassReplyMarkup = "ReplyMarkup"
-    ClassRichText = "RichText"
-    ClassPageBlock = "PageBlock"
-    ClassInputCredentials = "InputCredentials"
-    ClassPassportElementType = "PassportElementType"
-    ClassPassportElement = "PassportElement"
-    ClassInputPassportElement = "InputPassportElement"
-    ClassPassportElementErrorSource = "PassportElementErrorSource"
-    ClassInputPassportElementErrorSource = "InputPassportElementErrorSource"
-    ClassMessageContent = "MessageContent"
-    ClassTextEntityType = "TextEntityType"
-    ClassInputMessageContent = "InputMessageContent"
-    ClassSearchMessagesFilter = "SearchMessagesFilter"
-    ClassChatAction = "ChatAction"
-    ClassUserStatus = "UserStatus"
-    ClassCallDiscardReason = "CallDiscardReason"
-    ClassCallState = "CallState"
-    ClassInputInlineQueryResult = "InputInlineQueryResult"
-    ClassInlineQueryResult = "InlineQueryResult"
-    ClassCallbackQueryPayload = "CallbackQueryPayload"
-    ClassChatEventAction = "ChatEventAction"
-    ClassLanguagePackStringValue = "LanguagePackStringValue"
-    ClassDeviceToken = "DeviceToken"
-    ClassCheckChatUsernameResult = "CheckChatUsernameResult"
-    ClassOptionValue = "OptionValue"
-    ClassUserPrivacySettingRule = "UserPrivacySettingRule"
-    ClassUserPrivacySetting = "UserPrivacySetting"
-    ClassChatReportReason = "ChatReportReason"
-    ClassFileType = "FileType"
-    ClassNetworkType = "NetworkType"
-    ClassNetworkStatisticsEntry = "NetworkStatisticsEntry"
-    ClassConnectionState = "ConnectionState"
-    ClassTopChatCategory = "TopChatCategory"
-    ClassTMeUrlType = "TMeUrlType"
-    ClassTextParseMode = "TextParseMode"
-    ClassProxyType = "ProxyType"
-    ClassUpdate = "Update"
-    ClassError = "Error"
-    ClassOk = "Ok"
-    ClassTdlibParameters = "TdlibParameters"
-    ClassAuthenticationCodeInfo = "AuthenticationCodeInfo"
-    ClassEmailAddressAuthenticationCodeInfo = "EmailAddressAuthenticationCodeInfo"
-    ClassTextEntity = "TextEntity"
-    ClassTextEntities = "TextEntities"
-    ClassFormattedText = "FormattedText"
-    ClassTermsOfService = "TermsOfService"
-    ClassPasswordState = "PasswordState"
-    ClassRecoveryEmailAddress = "RecoveryEmailAddress"
-    ClassTemporaryPasswordState = "TemporaryPasswordState"
-    ClassLocalFile = "LocalFile"
-    ClassRemoteFile = "RemoteFile"
-    ClassFile = "File"
-    ClassPhotoSize = "PhotoSize"
-    ClassMaskPosition = "MaskPosition"
-    ClassAnimation = "Animation"
-    ClassAudio = "Audio"
-    ClassDocument = "Document"
-    ClassPhoto = "Photo"
-    ClassSticker = "Sticker"
-    ClassVideo = "Video"
-    ClassVideoNote = "VideoNote"
-    ClassVoiceNote = "VoiceNote"
-    ClassContact = "Contact"
-    ClassLocation = "Location"
-    ClassVenue = "Venue"
-    ClassGame = "Game"
-    ClassProfilePhoto = "ProfilePhoto"
-    ClassChatPhoto = "ChatPhoto"
-    ClassBotCommand = "BotCommand"
-    ClassBotInfo = "BotInfo"
-    ClassUser = "User"
-    ClassUserFullInfo = "UserFullInfo"
-    ClassUserProfilePhotos = "UserProfilePhotos"
-    ClassUsers = "Users"
-    ClassChatMember = "ChatMember"
-    ClassChatMembers = "ChatMembers"
-    ClassBasicGroup = "BasicGroup"
-    ClassBasicGroupFullInfo = "BasicGroupFullInfo"
-    ClassSupergroup = "Supergroup"
-    ClassSupergroupFullInfo = "SupergroupFullInfo"
-    ClassSecretChat = "SecretChat"
-    ClassMessage = "Message"
-    ClassMessages = "Messages"
-    ClassFoundMessages = "FoundMessages"
-    ClassChatNotificationSettings = "ChatNotificationSettings"
-    ClassScopeNotificationSettings = "ScopeNotificationSettings"
-    ClassDraftMessage = "DraftMessage"
-    ClassChat = "Chat"
-    ClassChats = "Chats"
-    ClassChatInviteLink = "ChatInviteLink"
-    ClassChatInviteLinkInfo = "ChatInviteLinkInfo"
-    ClassKeyboardButton = "KeyboardButton"
-    ClassInlineKeyboardButton = "InlineKeyboardButton"
-    ClassWebPageInstantView = "WebPageInstantView"
-    ClassWebPage = "WebPage"
-    ClassAddress = "Address"
-    ClassLabeledPricePart = "LabeledPricePart"
-    ClassInvoice = "Invoice"
-    ClassOrderInfo = "OrderInfo"
-    ClassShippingOption = "ShippingOption"
-    ClassSavedCredentials = "SavedCredentials"
-    ClassPaymentsProviderStripe = "PaymentsProviderStripe"
-    ClassPaymentForm = "PaymentForm"
-    ClassValidatedOrderInfo = "ValidatedOrderInfo"
-    ClassPaymentResult = "PaymentResult"
-    ClassPaymentReceipt = "PaymentReceipt"
-    ClassDatedFile = "DatedFile"
-    ClassDate = "Date"
-    ClassPersonalDetails = "PersonalDetails"
-    ClassIdentityDocument = "IdentityDocument"
-    ClassInputIdentityDocument = "InputIdentityDocument"
-    ClassPersonalDocument = "PersonalDocument"
-    ClassInputPersonalDocument = "InputPersonalDocument"
-    ClassPassportElements = "PassportElements"
-    ClassPassportElementError = "PassportElementError"
-    ClassPassportSuitableElement = "PassportSuitableElement"
-    ClassPassportRequiredElement = "PassportRequiredElement"
-    ClassPassportAuthorizationForm = "PassportAuthorizationForm"
-    ClassEncryptedCredentials = "EncryptedCredentials"
-    ClassEncryptedPassportElement = "EncryptedPassportElement"
-    ClassInputPassportElementError = "InputPassportElementError"
-    ClassInputThumbnail = "InputThumbnail"
-    ClassStickers = "Stickers"
-    ClassStickerEmojis = "StickerEmojis"
-    ClassStickerSet = "StickerSet"
-    ClassStickerSetInfo = "StickerSetInfo"
-    ClassStickerSets = "StickerSets"
-    ClassCallProtocol = "CallProtocol"
-    ClassCallConnection = "CallConnection"
-    ClassCallId = "CallId"
-    ClassCall = "Call"
-    ClassAnimations = "Animations"
-    ClassImportedContacts = "ImportedContacts"
-    ClassInlineQueryResults = "InlineQueryResults"
-    ClassCallbackQueryAnswer = "CallbackQueryAnswer"
-    ClassCustomRequestResult = "CustomRequestResult"
-    ClassGameHighScore = "GameHighScore"
-    ClassGameHighScores = "GameHighScores"
-    ClassChatEvent = "ChatEvent"
-    ClassChatEvents = "ChatEvents"
-    ClassChatEventLogFilters = "ChatEventLogFilters"
-    ClassLanguagePackString = "LanguagePackString"
-    ClassLanguagePackStrings = "LanguagePackStrings"
-    ClassLanguagePackInfo = "LanguagePackInfo"
-    ClassLocalizationTargetInfo = "LocalizationTargetInfo"
-    ClassWallpaper = "Wallpaper"
-    ClassWallpapers = "Wallpapers"
-    ClassHashtags = "Hashtags"
-    ClassUserPrivacySettingRules = "UserPrivacySettingRules"
-    ClassAccountTtl = "AccountTtl"
-    ClassSession = "Session"
-    ClassSessions = "Sessions"
-    ClassConnectedWebsite = "ConnectedWebsite"
-    ClassConnectedWebsites = "ConnectedWebsites"
-    ClassChatReportSpamState = "ChatReportSpamState"
-    ClassPublicMessageLink = "PublicMessageLink"
-    ClassStorageStatisticsByFileType = "StorageStatisticsByFileType"
-    ClassStorageStatisticsByChat = "StorageStatisticsByChat"
-    ClassStorageStatistics = "StorageStatistics"
-    ClassStorageStatisticsFast = "StorageStatisticsFast"
-    ClassNetworkStatistics = "NetworkStatistics"
-    ClassTMeUrl = "TMeUrl"
-    ClassTMeUrls = "TMeUrls"
-    ClassCount = "Count"
-    ClassText = "Text"
-    ClassSeconds = "Seconds"
-    ClassDeepLinkInfo = "DeepLinkInfo"
-    ClassProxy = "Proxy"
-    ClassProxies = "Proxies"
-    ClassInputSticker = "InputSticker"
-    ClassTestInt = "TestInt"
-    ClassTestString = "TestString"
-    ClassTestBytes = "TestBytes"
-    ClassTestVectorInt = "TestVectorInt"
-    ClassTestVectorIntObject = "TestVectorIntObject"
-    ClassTestVectorString = "TestVectorString"
-    ClassTestVectorStringObject = "TestVectorStringObject"
+	ClassAuthenticationCodeType             = "AuthenticationCodeType"
+	ClassAuthorizationState                 = "AuthorizationState"
+	ClassInputFile                          = "InputFile"
+	ClassMaskPoint                          = "MaskPoint"
+	ClassLinkState                          = "LinkState"
+	ClassUserType                           = "UserType"
+	ClassChatMemberStatus                   = "ChatMemberStatus"
+	ClassChatMembersFilter                  = "ChatMembersFilter"
+	ClassSupergroupMembersFilter            = "SupergroupMembersFilter"
+	ClassSecretChatState                    = "SecretChatState"
+	ClassMessageForwardInfo                 = "MessageForwardInfo"
+	ClassMessageSendingState                = "MessageSendingState"
+	ClassNotificationSettingsScope          = "NotificationSettingsScope"
+	ClassChatType                           = "ChatType"
+	ClassKeyboardButtonType                 = "KeyboardButtonType"
+	ClassInlineKeyboardButtonType           = "InlineKeyboardButtonType"
+	ClassReplyMarkup                        = "ReplyMarkup"
+	ClassRichText                           = "RichText"
+	ClassPageBlock                          = "PageBlock"
+	ClassInputCredentials                   = "InputCredentials"
+	ClassPassportElementType                = "PassportElementType"
+	ClassPassportElement                    = "PassportElement"
+	ClassInputPassportElement               = "InputPassportElement"
+	ClassPassportElementErrorSource         = "PassportElementErrorSource"
+	ClassInputPassportElementErrorSource    = "InputPassportElementErrorSource"
+	ClassMessageContent                     = "MessageContent"
+	ClassTextEntityType                     = "TextEntityType"
+	ClassInputMessageContent                = "InputMessageContent"
+	ClassSearchMessagesFilter               = "SearchMessagesFilter"
+	ClassChatAction                         = "ChatAction"
+	ClassUserStatus                         = "UserStatus"
+	ClassCallDiscardReason                  = "CallDiscardReason"
+	ClassCallState                          = "CallState"
+	ClassInputInlineQueryResult             = "InputInlineQueryResult"
+	ClassInlineQueryResult                  = "InlineQueryResult"
+	ClassCallbackQueryPayload               = "CallbackQueryPayload"
+	ClassChatEventAction                    = "ChatEventAction"
+	ClassLanguagePackStringValue            = "LanguagePackStringValue"
+	ClassDeviceToken                        = "DeviceToken"
+	ClassCheckChatUsernameResult            = "CheckChatUsernameResult"
+	ClassOptionValue                        = "OptionValue"
+	ClassUserPrivacySettingRule             = "UserPrivacySettingRule"
+	ClassUserPrivacySetting                 = "UserPrivacySetting"
+	ClassChatReportReason                   = "ChatReportReason"
+	ClassFileType                           = "FileType"
+	ClassNetworkType                        = "NetworkType"
+	ClassNetworkStatisticsEntry             = "NetworkStatisticsEntry"
+	ClassConnectionState                    = "ConnectionState"
+	ClassTopChatCategory                    = "TopChatCategory"
+	ClassTMeUrlType                         = "TMeUrlType"
+	ClassTextParseMode                      = "TextParseMode"
+	ClassProxyType                          = "ProxyType"
+	ClassUpdate                             = "Update"
+	ClassError                              = "Error"
+	ClassOk                                 = "Ok"
+	ClassTdlibParameters                    = "TdlibParameters"
+	ClassAuthenticationCodeInfo             = "AuthenticationCodeInfo"
+	ClassEmailAddressAuthenticationCodeInfo = "EmailAddressAuthenticationCodeInfo"
+	ClassTextEntity                         = "TextEntity"
+	ClassTextEntities                       = "TextEntities"
+	ClassFormattedText                      = "FormattedText"
+	ClassTermsOfService                     = "TermsOfService"
+	ClassPasswordState                      = "PasswordState"
+	ClassRecoveryEmailAddress               = "RecoveryEmailAddress"
+	ClassTemporaryPasswordState             = "TemporaryPasswordState"
+	ClassLocalFile                          = "LocalFile"
+	ClassRemoteFile                         = "RemoteFile"
+	ClassFile                               = "File"
+	ClassPhotoSize                          = "PhotoSize"
+	ClassMaskPosition                       = "MaskPosition"
+	ClassAnimation                          = "Animation"
+	ClassAudio                              = "Audio"
+	ClassDocument                           = "Document"
+	ClassPhoto                              = "Photo"
+	ClassSticker                            = "Sticker"
+	ClassVideo                              = "Video"
+	ClassVideoNote                          = "VideoNote"
+	ClassVoiceNote                          = "VoiceNote"
+	ClassContact                            = "Contact"
+	ClassLocation                           = "Location"
+	ClassVenue                              = "Venue"
+	ClassGame                               = "Game"
+	ClassProfilePhoto                       = "ProfilePhoto"
+	ClassChatPhoto                          = "ChatPhoto"
+	ClassBotCommand                         = "BotCommand"
+	ClassBotInfo                            = "BotInfo"
+	ClassUser                               = "User"
+	ClassUserFullInfo                       = "UserFullInfo"
+	ClassUserProfilePhotos                  = "UserProfilePhotos"
+	ClassUsers                              = "Users"
+	ClassChatMember                         = "ChatMember"
+	ClassChatMembers                        = "ChatMembers"
+	ClassBasicGroup                         = "BasicGroup"
+	ClassBasicGroupFullInfo                 = "BasicGroupFullInfo"
+	ClassSupergroup                         = "Supergroup"
+	ClassSupergroupFullInfo                 = "SupergroupFullInfo"
+	ClassSecretChat                         = "SecretChat"
+	ClassMessage                            = "Message"
+	ClassMessages                           = "Messages"
+	ClassFoundMessages                      = "FoundMessages"
+	ClassChatNotificationSettings           = "ChatNotificationSettings"
+	ClassScopeNotificationSettings          = "ScopeNotificationSettings"
+	ClassDraftMessage                       = "DraftMessage"
+	ClassChat                               = "Chat"
+	ClassChats                              = "Chats"
+	ClassChatInviteLink                     = "ChatInviteLink"
+	ClassChatInviteLinkInfo                 = "ChatInviteLinkInfo"
+	ClassKeyboardButton                     = "KeyboardButton"
+	ClassInlineKeyboardButton               = "InlineKeyboardButton"
+	ClassWebPageInstantView                 = "WebPageInstantView"
+	ClassWebPage                            = "WebPage"
+	ClassAddress                            = "Address"
+	ClassLabeledPricePart                   = "LabeledPricePart"
+	ClassInvoice                            = "Invoice"
+	ClassOrderInfo                          = "OrderInfo"
+	ClassShippingOption                     = "ShippingOption"
+	ClassSavedCredentials                   = "SavedCredentials"
+	ClassPaymentsProviderStripe             = "PaymentsProviderStripe"
+	ClassPaymentForm                        = "PaymentForm"
+	ClassValidatedOrderInfo                 = "ValidatedOrderInfo"
+	ClassPaymentResult                      = "PaymentResult"
+	ClassPaymentReceipt                     = "PaymentReceipt"
+	ClassDatedFile                          = "DatedFile"
+	ClassDate                               = "Date"
+	ClassPersonalDetails                    = "PersonalDetails"
+	ClassIdentityDocument                   = "IdentityDocument"
+	ClassInputIdentityDocument              = "InputIdentityDocument"
+	ClassPersonalDocument                   = "PersonalDocument"
+	ClassInputPersonalDocument              = "InputPersonalDocument"
+	ClassPassportElements                   = "PassportElements"
+	ClassPassportElementError               = "PassportElementError"
+	ClassPassportSuitableElement            = "PassportSuitableElement"
+	ClassPassportRequiredElement            = "PassportRequiredElement"
+	ClassPassportAuthorizationForm          = "PassportAuthorizationForm"
+	ClassEncryptedCredentials               = "EncryptedCredentials"
+	ClassEncryptedPassportElement           = "EncryptedPassportElement"
+	ClassInputPassportElementError          = "InputPassportElementError"
+	ClassInputThumbnail                     = "InputThumbnail"
+	ClassStickers                           = "Stickers"
+	ClassStickerEmojis                      = "StickerEmojis"
+	ClassStickerSet                         = "StickerSet"
+	ClassStickerSetInfo                     = "StickerSetInfo"
+	ClassStickerSets                        = "StickerSets"
+	ClassCallProtocol                       = "CallProtocol"
+	ClassCallConnection                     = "CallConnection"
+	ClassCallId                             = "CallId"
+	ClassCall                               = "Call"
+	ClassAnimations                         = "Animations"
+	ClassImportedContacts                   = "ImportedContacts"
+	ClassInlineQueryResults                 = "InlineQueryResults"
+	ClassCallbackQueryAnswer                = "CallbackQueryAnswer"
+	ClassCustomRequestResult                = "CustomRequestResult"
+	ClassGameHighScore                      = "GameHighScore"
+	ClassGameHighScores                     = "GameHighScores"
+	ClassChatEvent                          = "ChatEvent"
+	ClassChatEvents                         = "ChatEvents"
+	ClassChatEventLogFilters                = "ChatEventLogFilters"
+	ClassLanguagePackString                 = "LanguagePackString"
+	ClassLanguagePackStrings                = "LanguagePackStrings"
+	ClassLanguagePackInfo                   = "LanguagePackInfo"
+	ClassLocalizationTargetInfo             = "LocalizationTargetInfo"
+	ClassWallpaper                          = "Wallpaper"
+	ClassWallpapers                         = "Wallpapers"
+	ClassHashtags                           = "Hashtags"
+	ClassUserPrivacySettingRules            = "UserPrivacySettingRules"
+	ClassAccountTtl                         = "AccountTtl"
+	ClassSession                            = "Session"
+	ClassSessions                           = "Sessions"
+	ClassConnectedWebsite                   = "ConnectedWebsite"
+	ClassConnectedWebsites                  = "ConnectedWebsites"
+	ClassChatReportSpamState                = "ChatReportSpamState"
+	ClassPublicMessageLink                  = "PublicMessageLink"
+	ClassStorageStatisticsByFileType        = "StorageStatisticsByFileType"
+	ClassStorageStatisticsByChat            = "StorageStatisticsByChat"
+	ClassStorageStatistics                  = "StorageStatistics"
+	ClassStorageStatisticsFast              = "StorageStatisticsFast"
+	ClassNetworkStatistics                  = "NetworkStatistics"
+	ClassTMeUrl                             = "TMeUrl"
+	ClassTMeUrls                            = "TMeUrls"
+	ClassCount                              = "Count"
+	ClassText                               = "Text"
+	ClassSeconds                            = "Seconds"
+	ClassDeepLinkInfo                       = "DeepLinkInfo"
+	ClassProxy                              = "Proxy"
+	ClassProxies                            = "Proxies"
+	ClassInputSticker                       = "InputSticker"
+	ClassTestInt                            = "TestInt"
+	ClassTestString                         = "TestString"
+	ClassTestBytes                          = "TestBytes"
+	ClassTestVectorInt                      = "TestVectorInt"
+	ClassTestVectorIntObject                = "TestVectorIntObject"
+	ClassTestVectorString                   = "TestVectorString"
+	ClassTestVectorStringObject             = "TestVectorStringObject"
 )
 
 const (
-    TypeError = "error"
-    TypeOk = "ok"
-    TypeTdlibParameters = "tdlibParameters"
-    TypeAuthenticationCodeTypeTelegramMessage = "authenticationCodeTypeTelegramMessage"
-    TypeAuthenticationCodeTypeSms = "authenticationCodeTypeSms"
-    TypeAuthenticationCodeTypeCall = "authenticationCodeTypeCall"
-    TypeAuthenticationCodeTypeFlashCall = "authenticationCodeTypeFlashCall"
-    TypeAuthenticationCodeInfo = "authenticationCodeInfo"
-    TypeEmailAddressAuthenticationCodeInfo = "emailAddressAuthenticationCodeInfo"
-    TypeTextEntity = "textEntity"
-    TypeTextEntities = "textEntities"
-    TypeFormattedText = "formattedText"
-    TypeTermsOfService = "termsOfService"
-    TypeAuthorizationStateWaitTdlibParameters = "authorizationStateWaitTdlibParameters"
-    TypeAuthorizationStateWaitEncryptionKey = "authorizationStateWaitEncryptionKey"
-    TypeAuthorizationStateWaitPhoneNumber = "authorizationStateWaitPhoneNumber"
-    TypeAuthorizationStateWaitCode = "authorizationStateWaitCode"
-    TypeAuthorizationStateWaitPassword = "authorizationStateWaitPassword"
-    TypeAuthorizationStateReady = "authorizationStateReady"
-    TypeAuthorizationStateLoggingOut = "authorizationStateLoggingOut"
-    TypeAuthorizationStateClosing = "authorizationStateClosing"
-    TypeAuthorizationStateClosed = "authorizationStateClosed"
-    TypePasswordState = "passwordState"
-    TypeRecoveryEmailAddress = "recoveryEmailAddress"
-    TypeTemporaryPasswordState = "temporaryPasswordState"
-    TypeLocalFile = "localFile"
-    TypeRemoteFile = "remoteFile"
-    TypeFile = "file"
-    TypeInputFileId = "inputFileId"
-    TypeInputFileRemote = "inputFileRemote"
-    TypeInputFileLocal = "inputFileLocal"
-    TypeInputFileGenerated = "inputFileGenerated"
-    TypePhotoSize = "photoSize"
-    TypeMaskPointForehead = "maskPointForehead"
-    TypeMaskPointEyes = "maskPointEyes"
-    TypeMaskPointMouth = "maskPointMouth"
-    TypeMaskPointChin = "maskPointChin"
-    TypeMaskPosition = "maskPosition"
-    TypeAnimation = "animation"
-    TypeAudio = "audio"
-    TypeDocument = "document"
-    TypePhoto = "photo"
-    TypeSticker = "sticker"
-    TypeVideo = "video"
-    TypeVideoNote = "videoNote"
-    TypeVoiceNote = "voiceNote"
-    TypeContact = "contact"
-    TypeLocation = "location"
-    TypeVenue = "venue"
-    TypeGame = "game"
-    TypeProfilePhoto = "profilePhoto"
-    TypeChatPhoto = "chatPhoto"
-    TypeLinkStateNone = "linkStateNone"
-    TypeLinkStateKnowsPhoneNumber = "linkStateKnowsPhoneNumber"
-    TypeLinkStateIsContact = "linkStateIsContact"
-    TypeUserTypeRegular = "userTypeRegular"
-    TypeUserTypeDeleted = "userTypeDeleted"
-    TypeUserTypeBot = "userTypeBot"
-    TypeUserTypeUnknown = "userTypeUnknown"
-    TypeBotCommand = "botCommand"
-    TypeBotInfo = "botInfo"
-    TypeUser = "user"
-    TypeUserFullInfo = "userFullInfo"
-    TypeUserProfilePhotos = "userProfilePhotos"
-    TypeUsers = "users"
-    TypeChatMemberStatusCreator = "chatMemberStatusCreator"
-    TypeChatMemberStatusAdministrator = "chatMemberStatusAdministrator"
-    TypeChatMemberStatusMember = "chatMemberStatusMember"
-    TypeChatMemberStatusRestricted = "chatMemberStatusRestricted"
-    TypeChatMemberStatusLeft = "chatMemberStatusLeft"
-    TypeChatMemberStatusBanned = "chatMemberStatusBanned"
-    TypeChatMember = "chatMember"
-    TypeChatMembers = "chatMembers"
-    TypeChatMembersFilterAdministrators = "chatMembersFilterAdministrators"
-    TypeChatMembersFilterMembers = "chatMembersFilterMembers"
-    TypeChatMembersFilterRestricted = "chatMembersFilterRestricted"
-    TypeChatMembersFilterBanned = "chatMembersFilterBanned"
-    TypeChatMembersFilterBots = "chatMembersFilterBots"
-    TypeSupergroupMembersFilterRecent = "supergroupMembersFilterRecent"
-    TypeSupergroupMembersFilterAdministrators = "supergroupMembersFilterAdministrators"
-    TypeSupergroupMembersFilterSearch = "supergroupMembersFilterSearch"
-    TypeSupergroupMembersFilterRestricted = "supergroupMembersFilterRestricted"
-    TypeSupergroupMembersFilterBanned = "supergroupMembersFilterBanned"
-    TypeSupergroupMembersFilterBots = "supergroupMembersFilterBots"
-    TypeBasicGroup = "basicGroup"
-    TypeBasicGroupFullInfo = "basicGroupFullInfo"
-    TypeSupergroup = "supergroup"
-    TypeSupergroupFullInfo = "supergroupFullInfo"
-    TypeSecretChatStatePending = "secretChatStatePending"
-    TypeSecretChatStateReady = "secretChatStateReady"
-    TypeSecretChatStateClosed = "secretChatStateClosed"
-    TypeSecretChat = "secretChat"
-    TypeMessageForwardedFromUser = "messageForwardedFromUser"
-    TypeMessageForwardedPost = "messageForwardedPost"
-    TypeMessageSendingStatePending = "messageSendingStatePending"
-    TypeMessageSendingStateFailed = "messageSendingStateFailed"
-    TypeMessage = "message"
-    TypeMessages = "messages"
-    TypeFoundMessages = "foundMessages"
-    TypeNotificationSettingsScopePrivateChats = "notificationSettingsScopePrivateChats"
-    TypeNotificationSettingsScopeGroupChats = "notificationSettingsScopeGroupChats"
-    TypeChatNotificationSettings = "chatNotificationSettings"
-    TypeScopeNotificationSettings = "scopeNotificationSettings"
-    TypeDraftMessage = "draftMessage"
-    TypeChatTypePrivate = "chatTypePrivate"
-    TypeChatTypeBasicGroup = "chatTypeBasicGroup"
-    TypeChatTypeSupergroup = "chatTypeSupergroup"
-    TypeChatTypeSecret = "chatTypeSecret"
-    TypeChat = "chat"
-    TypeChats = "chats"
-    TypeChatInviteLink = "chatInviteLink"
-    TypeChatInviteLinkInfo = "chatInviteLinkInfo"
-    TypeKeyboardButtonTypeText = "keyboardButtonTypeText"
-    TypeKeyboardButtonTypeRequestPhoneNumber = "keyboardButtonTypeRequestPhoneNumber"
-    TypeKeyboardButtonTypeRequestLocation = "keyboardButtonTypeRequestLocation"
-    TypeKeyboardButton = "keyboardButton"
-    TypeInlineKeyboardButtonTypeUrl = "inlineKeyboardButtonTypeUrl"
-    TypeInlineKeyboardButtonTypeCallback = "inlineKeyboardButtonTypeCallback"
-    TypeInlineKeyboardButtonTypeCallbackGame = "inlineKeyboardButtonTypeCallbackGame"
-    TypeInlineKeyboardButtonTypeSwitchInline = "inlineKeyboardButtonTypeSwitchInline"
-    TypeInlineKeyboardButtonTypeBuy = "inlineKeyboardButtonTypeBuy"
-    TypeInlineKeyboardButton = "inlineKeyboardButton"
-    TypeReplyMarkupRemoveKeyboard = "replyMarkupRemoveKeyboard"
-    TypeReplyMarkupForceReply = "replyMarkupForceReply"
-    TypeReplyMarkupShowKeyboard = "replyMarkupShowKeyboard"
-    TypeReplyMarkupInlineKeyboard = "replyMarkupInlineKeyboard"
-    TypeRichTextPlain = "richTextPlain"
-    TypeRichTextBold = "richTextBold"
-    TypeRichTextItalic = "richTextItalic"
-    TypeRichTextUnderline = "richTextUnderline"
-    TypeRichTextStrikethrough = "richTextStrikethrough"
-    TypeRichTextFixed = "richTextFixed"
-    TypeRichTextUrl = "richTextUrl"
-    TypeRichTextEmailAddress = "richTextEmailAddress"
-    TypeRichTexts = "richTexts"
-    TypePageBlockTitle = "pageBlockTitle"
-    TypePageBlockSubtitle = "pageBlockSubtitle"
-    TypePageBlockAuthorDate = "pageBlockAuthorDate"
-    TypePageBlockHeader = "pageBlockHeader"
-    TypePageBlockSubheader = "pageBlockSubheader"
-    TypePageBlockParagraph = "pageBlockParagraph"
-    TypePageBlockPreformatted = "pageBlockPreformatted"
-    TypePageBlockFooter = "pageBlockFooter"
-    TypePageBlockDivider = "pageBlockDivider"
-    TypePageBlockAnchor = "pageBlockAnchor"
-    TypePageBlockList = "pageBlockList"
-    TypePageBlockBlockQuote = "pageBlockBlockQuote"
-    TypePageBlockPullQuote = "pageBlockPullQuote"
-    TypePageBlockAnimation = "pageBlockAnimation"
-    TypePageBlockAudio = "pageBlockAudio"
-    TypePageBlockPhoto = "pageBlockPhoto"
-    TypePageBlockVideo = "pageBlockVideo"
-    TypePageBlockCover = "pageBlockCover"
-    TypePageBlockEmbedded = "pageBlockEmbedded"
-    TypePageBlockEmbeddedPost = "pageBlockEmbeddedPost"
-    TypePageBlockCollage = "pageBlockCollage"
-    TypePageBlockSlideshow = "pageBlockSlideshow"
-    TypePageBlockChatLink = "pageBlockChatLink"
-    TypeWebPageInstantView = "webPageInstantView"
-    TypeWebPage = "webPage"
-    TypeAddress = "address"
-    TypeLabeledPricePart = "labeledPricePart"
-    TypeInvoice = "invoice"
-    TypeOrderInfo = "orderInfo"
-    TypeShippingOption = "shippingOption"
-    TypeSavedCredentials = "savedCredentials"
-    TypeInputCredentialsSaved = "inputCredentialsSaved"
-    TypeInputCredentialsNew = "inputCredentialsNew"
-    TypeInputCredentialsAndroidPay = "inputCredentialsAndroidPay"
-    TypeInputCredentialsApplePay = "inputCredentialsApplePay"
-    TypePaymentsProviderStripe = "paymentsProviderStripe"
-    TypePaymentForm = "paymentForm"
-    TypeValidatedOrderInfo = "validatedOrderInfo"
-    TypePaymentResult = "paymentResult"
-    TypePaymentReceipt = "paymentReceipt"
-    TypeDatedFile = "datedFile"
-    TypePassportElementTypePersonalDetails = "passportElementTypePersonalDetails"
-    TypePassportElementTypePassport = "passportElementTypePassport"
-    TypePassportElementTypeDriverLicense = "passportElementTypeDriverLicense"
-    TypePassportElementTypeIdentityCard = "passportElementTypeIdentityCard"
-    TypePassportElementTypeInternalPassport = "passportElementTypeInternalPassport"
-    TypePassportElementTypeAddress = "passportElementTypeAddress"
-    TypePassportElementTypeUtilityBill = "passportElementTypeUtilityBill"
-    TypePassportElementTypeBankStatement = "passportElementTypeBankStatement"
-    TypePassportElementTypeRentalAgreement = "passportElementTypeRentalAgreement"
-    TypePassportElementTypePassportRegistration = "passportElementTypePassportRegistration"
-    TypePassportElementTypeTemporaryRegistration = "passportElementTypeTemporaryRegistration"
-    TypePassportElementTypePhoneNumber = "passportElementTypePhoneNumber"
-    TypePassportElementTypeEmailAddress = "passportElementTypeEmailAddress"
-    TypeDate = "date"
-    TypePersonalDetails = "personalDetails"
-    TypeIdentityDocument = "identityDocument"
-    TypeInputIdentityDocument = "inputIdentityDocument"
-    TypePersonalDocument = "personalDocument"
-    TypeInputPersonalDocument = "inputPersonalDocument"
-    TypePassportElementPersonalDetails = "passportElementPersonalDetails"
-    TypePassportElementPassport = "passportElementPassport"
-    TypePassportElementDriverLicense = "passportElementDriverLicense"
-    TypePassportElementIdentityCard = "passportElementIdentityCard"
-    TypePassportElementInternalPassport = "passportElementInternalPassport"
-    TypePassportElementAddress = "passportElementAddress"
-    TypePassportElementUtilityBill = "passportElementUtilityBill"
-    TypePassportElementBankStatement = "passportElementBankStatement"
-    TypePassportElementRentalAgreement = "passportElementRentalAgreement"
-    TypePassportElementPassportRegistration = "passportElementPassportRegistration"
-    TypePassportElementTemporaryRegistration = "passportElementTemporaryRegistration"
-    TypePassportElementPhoneNumber = "passportElementPhoneNumber"
-    TypePassportElementEmailAddress = "passportElementEmailAddress"
-    TypeInputPassportElementPersonalDetails = "inputPassportElementPersonalDetails"
-    TypeInputPassportElementPassport = "inputPassportElementPassport"
-    TypeInputPassportElementDriverLicense = "inputPassportElementDriverLicense"
-    TypeInputPassportElementIdentityCard = "inputPassportElementIdentityCard"
-    TypeInputPassportElementInternalPassport = "inputPassportElementInternalPassport"
-    TypeInputPassportElementAddress = "inputPassportElementAddress"
-    TypeInputPassportElementUtilityBill = "inputPassportElementUtilityBill"
-    TypeInputPassportElementBankStatement = "inputPassportElementBankStatement"
-    TypeInputPassportElementRentalAgreement = "inputPassportElementRentalAgreement"
-    TypeInputPassportElementPassportRegistration = "inputPassportElementPassportRegistration"
-    TypeInputPassportElementTemporaryRegistration = "inputPassportElementTemporaryRegistration"
-    TypeInputPassportElementPhoneNumber = "inputPassportElementPhoneNumber"
-    TypeInputPassportElementEmailAddress = "inputPassportElementEmailAddress"
-    TypePassportElements = "passportElements"
-    TypePassportElementErrorSourceUnspecified = "passportElementErrorSourceUnspecified"
-    TypePassportElementErrorSourceDataField = "passportElementErrorSourceDataField"
-    TypePassportElementErrorSourceFrontSide = "passportElementErrorSourceFrontSide"
-    TypePassportElementErrorSourceReverseSide = "passportElementErrorSourceReverseSide"
-    TypePassportElementErrorSourceSelfie = "passportElementErrorSourceSelfie"
-    TypePassportElementErrorSourceTranslationFile = "passportElementErrorSourceTranslationFile"
-    TypePassportElementErrorSourceTranslationFiles = "passportElementErrorSourceTranslationFiles"
-    TypePassportElementErrorSourceFile = "passportElementErrorSourceFile"
-    TypePassportElementErrorSourceFiles = "passportElementErrorSourceFiles"
-    TypePassportElementError = "passportElementError"
-    TypePassportSuitableElement = "passportSuitableElement"
-    TypePassportRequiredElement = "passportRequiredElement"
-    TypePassportAuthorizationForm = "passportAuthorizationForm"
-    TypeEncryptedCredentials = "encryptedCredentials"
-    TypeEncryptedPassportElement = "encryptedPassportElement"
-    TypeInputPassportElementErrorSourceUnspecified = "inputPassportElementErrorSourceUnspecified"
-    TypeInputPassportElementErrorSourceDataField = "inputPassportElementErrorSourceDataField"
-    TypeInputPassportElementErrorSourceFrontSide = "inputPassportElementErrorSourceFrontSide"
-    TypeInputPassportElementErrorSourceReverseSide = "inputPassportElementErrorSourceReverseSide"
-    TypeInputPassportElementErrorSourceSelfie = "inputPassportElementErrorSourceSelfie"
-    TypeInputPassportElementErrorSourceTranslationFile = "inputPassportElementErrorSourceTranslationFile"
-    TypeInputPassportElementErrorSourceTranslationFiles = "inputPassportElementErrorSourceTranslationFiles"
-    TypeInputPassportElementErrorSourceFile = "inputPassportElementErrorSourceFile"
-    TypeInputPassportElementErrorSourceFiles = "inputPassportElementErrorSourceFiles"
-    TypeInputPassportElementError = "inputPassportElementError"
-    TypeMessageText = "messageText"
-    TypeMessageAnimation = "messageAnimation"
-    TypeMessageAudio = "messageAudio"
-    TypeMessageDocument = "messageDocument"
-    TypeMessagePhoto = "messagePhoto"
-    TypeMessageExpiredPhoto = "messageExpiredPhoto"
-    TypeMessageSticker = "messageSticker"
-    TypeMessageVideo = "messageVideo"
-    TypeMessageExpiredVideo = "messageExpiredVideo"
-    TypeMessageVideoNote = "messageVideoNote"
-    TypeMessageVoiceNote = "messageVoiceNote"
-    TypeMessageLocation = "messageLocation"
-    TypeMessageVenue = "messageVenue"
-    TypeMessageContact = "messageContact"
-    TypeMessageGame = "messageGame"
-    TypeMessageInvoice = "messageInvoice"
-    TypeMessageCall = "messageCall"
-    TypeMessageBasicGroupChatCreate = "messageBasicGroupChatCreate"
-    TypeMessageSupergroupChatCreate = "messageSupergroupChatCreate"
-    TypeMessageChatChangeTitle = "messageChatChangeTitle"
-    TypeMessageChatChangePhoto = "messageChatChangePhoto"
-    TypeMessageChatDeletePhoto = "messageChatDeletePhoto"
-    TypeMessageChatAddMembers = "messageChatAddMembers"
-    TypeMessageChatJoinByLink = "messageChatJoinByLink"
-    TypeMessageChatDeleteMember = "messageChatDeleteMember"
-    TypeMessageChatUpgradeTo = "messageChatUpgradeTo"
-    TypeMessageChatUpgradeFrom = "messageChatUpgradeFrom"
-    TypeMessagePinMessage = "messagePinMessage"
-    TypeMessageScreenshotTaken = "messageScreenshotTaken"
-    TypeMessageChatSetTtl = "messageChatSetTtl"
-    TypeMessageCustomServiceAction = "messageCustomServiceAction"
-    TypeMessageGameScore = "messageGameScore"
-    TypeMessagePaymentSuccessful = "messagePaymentSuccessful"
-    TypeMessagePaymentSuccessfulBot = "messagePaymentSuccessfulBot"
-    TypeMessageContactRegistered = "messageContactRegistered"
-    TypeMessageWebsiteConnected = "messageWebsiteConnected"
-    TypeMessagePassportDataSent = "messagePassportDataSent"
-    TypeMessagePassportDataReceived = "messagePassportDataReceived"
-    TypeMessageUnsupported = "messageUnsupported"
-    TypeTextEntityTypeMention = "textEntityTypeMention"
-    TypeTextEntityTypeHashtag = "textEntityTypeHashtag"
-    TypeTextEntityTypeCashtag = "textEntityTypeCashtag"
-    TypeTextEntityTypeBotCommand = "textEntityTypeBotCommand"
-    TypeTextEntityTypeUrl = "textEntityTypeUrl"
-    TypeTextEntityTypeEmailAddress = "textEntityTypeEmailAddress"
-    TypeTextEntityTypeBold = "textEntityTypeBold"
-    TypeTextEntityTypeItalic = "textEntityTypeItalic"
-    TypeTextEntityTypeCode = "textEntityTypeCode"
-    TypeTextEntityTypePre = "textEntityTypePre"
-    TypeTextEntityTypePreCode = "textEntityTypePreCode"
-    TypeTextEntityTypeTextUrl = "textEntityTypeTextUrl"
-    TypeTextEntityTypeMentionName = "textEntityTypeMentionName"
-    TypeTextEntityTypePhoneNumber = "textEntityTypePhoneNumber"
-    TypeInputThumbnail = "inputThumbnail"
-    TypeInputMessageText = "inputMessageText"
-    TypeInputMessageAnimation = "inputMessageAnimation"
-    TypeInputMessageAudio = "inputMessageAudio"
-    TypeInputMessageDocument = "inputMessageDocument"
-    TypeInputMessagePhoto = "inputMessagePhoto"
-    TypeInputMessageSticker = "inputMessageSticker"
-    TypeInputMessageVideo = "inputMessageVideo"
-    TypeInputMessageVideoNote = "inputMessageVideoNote"
-    TypeInputMessageVoiceNote = "inputMessageVoiceNote"
-    TypeInputMessageLocation = "inputMessageLocation"
-    TypeInputMessageVenue = "inputMessageVenue"
-    TypeInputMessageContact = "inputMessageContact"
-    TypeInputMessageGame = "inputMessageGame"
-    TypeInputMessageInvoice = "inputMessageInvoice"
-    TypeInputMessageForwarded = "inputMessageForwarded"
-    TypeSearchMessagesFilterEmpty = "searchMessagesFilterEmpty"
-    TypeSearchMessagesFilterAnimation = "searchMessagesFilterAnimation"
-    TypeSearchMessagesFilterAudio = "searchMessagesFilterAudio"
-    TypeSearchMessagesFilterDocument = "searchMessagesFilterDocument"
-    TypeSearchMessagesFilterPhoto = "searchMessagesFilterPhoto"
-    TypeSearchMessagesFilterVideo = "searchMessagesFilterVideo"
-    TypeSearchMessagesFilterVoiceNote = "searchMessagesFilterVoiceNote"
-    TypeSearchMessagesFilterPhotoAndVideo = "searchMessagesFilterPhotoAndVideo"
-    TypeSearchMessagesFilterUrl = "searchMessagesFilterUrl"
-    TypeSearchMessagesFilterChatPhoto = "searchMessagesFilterChatPhoto"
-    TypeSearchMessagesFilterCall = "searchMessagesFilterCall"
-    TypeSearchMessagesFilterMissedCall = "searchMessagesFilterMissedCall"
-    TypeSearchMessagesFilterVideoNote = "searchMessagesFilterVideoNote"
-    TypeSearchMessagesFilterVoiceAndVideoNote = "searchMessagesFilterVoiceAndVideoNote"
-    TypeSearchMessagesFilterMention = "searchMessagesFilterMention"
-    TypeSearchMessagesFilterUnreadMention = "searchMessagesFilterUnreadMention"
-    TypeChatActionTyping = "chatActionTyping"
-    TypeChatActionRecordingVideo = "chatActionRecordingVideo"
-    TypeChatActionUploadingVideo = "chatActionUploadingVideo"
-    TypeChatActionRecordingVoiceNote = "chatActionRecordingVoiceNote"
-    TypeChatActionUploadingVoiceNote = "chatActionUploadingVoiceNote"
-    TypeChatActionUploadingPhoto = "chatActionUploadingPhoto"
-    TypeChatActionUploadingDocument = "chatActionUploadingDocument"
-    TypeChatActionChoosingLocation = "chatActionChoosingLocation"
-    TypeChatActionChoosingContact = "chatActionChoosingContact"
-    TypeChatActionStartPlayingGame = "chatActionStartPlayingGame"
-    TypeChatActionRecordingVideoNote = "chatActionRecordingVideoNote"
-    TypeChatActionUploadingVideoNote = "chatActionUploadingVideoNote"
-    TypeChatActionCancel = "chatActionCancel"
-    TypeUserStatusEmpty = "userStatusEmpty"
-    TypeUserStatusOnline = "userStatusOnline"
-    TypeUserStatusOffline = "userStatusOffline"
-    TypeUserStatusRecently = "userStatusRecently"
-    TypeUserStatusLastWeek = "userStatusLastWeek"
-    TypeUserStatusLastMonth = "userStatusLastMonth"
-    TypeStickers = "stickers"
-    TypeStickerEmojis = "stickerEmojis"
-    TypeStickerSet = "stickerSet"
-    TypeStickerSetInfo = "stickerSetInfo"
-    TypeStickerSets = "stickerSets"
-    TypeCallDiscardReasonEmpty = "callDiscardReasonEmpty"
-    TypeCallDiscardReasonMissed = "callDiscardReasonMissed"
-    TypeCallDiscardReasonDeclined = "callDiscardReasonDeclined"
-    TypeCallDiscardReasonDisconnected = "callDiscardReasonDisconnected"
-    TypeCallDiscardReasonHungUp = "callDiscardReasonHungUp"
-    TypeCallProtocol = "callProtocol"
-    TypeCallConnection = "callConnection"
-    TypeCallId = "callId"
-    TypeCallStatePending = "callStatePending"
-    TypeCallStateExchangingKeys = "callStateExchangingKeys"
-    TypeCallStateReady = "callStateReady"
-    TypeCallStateHangingUp = "callStateHangingUp"
-    TypeCallStateDiscarded = "callStateDiscarded"
-    TypeCallStateError = "callStateError"
-    TypeCall = "call"
-    TypeAnimations = "animations"
-    TypeImportedContacts = "importedContacts"
-    TypeInputInlineQueryResultAnimatedGif = "inputInlineQueryResultAnimatedGif"
-    TypeInputInlineQueryResultAnimatedMpeg4 = "inputInlineQueryResultAnimatedMpeg4"
-    TypeInputInlineQueryResultArticle = "inputInlineQueryResultArticle"
-    TypeInputInlineQueryResultAudio = "inputInlineQueryResultAudio"
-    TypeInputInlineQueryResultContact = "inputInlineQueryResultContact"
-    TypeInputInlineQueryResultDocument = "inputInlineQueryResultDocument"
-    TypeInputInlineQueryResultGame = "inputInlineQueryResultGame"
-    TypeInputInlineQueryResultLocation = "inputInlineQueryResultLocation"
-    TypeInputInlineQueryResultPhoto = "inputInlineQueryResultPhoto"
-    TypeInputInlineQueryResultSticker = "inputInlineQueryResultSticker"
-    TypeInputInlineQueryResultVenue = "inputInlineQueryResultVenue"
-    TypeInputInlineQueryResultVideo = "inputInlineQueryResultVideo"
-    TypeInputInlineQueryResultVoiceNote = "inputInlineQueryResultVoiceNote"
-    TypeInlineQueryResultArticle = "inlineQueryResultArticle"
-    TypeInlineQueryResultContact = "inlineQueryResultContact"
-    TypeInlineQueryResultLocation = "inlineQueryResultLocation"
-    TypeInlineQueryResultVenue = "inlineQueryResultVenue"
-    TypeInlineQueryResultGame = "inlineQueryResultGame"
-    TypeInlineQueryResultAnimation = "inlineQueryResultAnimation"
-    TypeInlineQueryResultAudio = "inlineQueryResultAudio"
-    TypeInlineQueryResultDocument = "inlineQueryResultDocument"
-    TypeInlineQueryResultPhoto = "inlineQueryResultPhoto"
-    TypeInlineQueryResultSticker = "inlineQueryResultSticker"
-    TypeInlineQueryResultVideo = "inlineQueryResultVideo"
-    TypeInlineQueryResultVoiceNote = "inlineQueryResultVoiceNote"
-    TypeInlineQueryResults = "inlineQueryResults"
-    TypeCallbackQueryPayloadData = "callbackQueryPayloadData"
-    TypeCallbackQueryPayloadGame = "callbackQueryPayloadGame"
-    TypeCallbackQueryAnswer = "callbackQueryAnswer"
-    TypeCustomRequestResult = "customRequestResult"
-    TypeGameHighScore = "gameHighScore"
-    TypeGameHighScores = "gameHighScores"
-    TypeChatEventMessageEdited = "chatEventMessageEdited"
-    TypeChatEventMessageDeleted = "chatEventMessageDeleted"
-    TypeChatEventMessagePinned = "chatEventMessagePinned"
-    TypeChatEventMessageUnpinned = "chatEventMessageUnpinned"
-    TypeChatEventMemberJoined = "chatEventMemberJoined"
-    TypeChatEventMemberLeft = "chatEventMemberLeft"
-    TypeChatEventMemberInvited = "chatEventMemberInvited"
-    TypeChatEventMemberPromoted = "chatEventMemberPromoted"
-    TypeChatEventMemberRestricted = "chatEventMemberRestricted"
-    TypeChatEventTitleChanged = "chatEventTitleChanged"
-    TypeChatEventDescriptionChanged = "chatEventDescriptionChanged"
-    TypeChatEventUsernameChanged = "chatEventUsernameChanged"
-    TypeChatEventPhotoChanged = "chatEventPhotoChanged"
-    TypeChatEventInvitesToggled = "chatEventInvitesToggled"
-    TypeChatEventSignMessagesToggled = "chatEventSignMessagesToggled"
-    TypeChatEventStickerSetChanged = "chatEventStickerSetChanged"
-    TypeChatEventIsAllHistoryAvailableToggled = "chatEventIsAllHistoryAvailableToggled"
-    TypeChatEvent = "chatEvent"
-    TypeChatEvents = "chatEvents"
-    TypeChatEventLogFilters = "chatEventLogFilters"
-    TypeLanguagePackStringValueOrdinary = "languagePackStringValueOrdinary"
-    TypeLanguagePackStringValuePluralized = "languagePackStringValuePluralized"
-    TypeLanguagePackStringValueDeleted = "languagePackStringValueDeleted"
-    TypeLanguagePackString = "languagePackString"
-    TypeLanguagePackStrings = "languagePackStrings"
-    TypeLanguagePackInfo = "languagePackInfo"
-    TypeLocalizationTargetInfo = "localizationTargetInfo"
-    TypeDeviceTokenGoogleCloudMessaging = "deviceTokenGoogleCloudMessaging"
-    TypeDeviceTokenApplePush = "deviceTokenApplePush"
-    TypeDeviceTokenApplePushVoIP = "deviceTokenApplePushVoIP"
-    TypeDeviceTokenWindowsPush = "deviceTokenWindowsPush"
-    TypeDeviceTokenMicrosoftPush = "deviceTokenMicrosoftPush"
-    TypeDeviceTokenMicrosoftPushVoIP = "deviceTokenMicrosoftPushVoIP"
-    TypeDeviceTokenWebPush = "deviceTokenWebPush"
-    TypeDeviceTokenSimplePush = "deviceTokenSimplePush"
-    TypeDeviceTokenUbuntuPush = "deviceTokenUbuntuPush"
-    TypeDeviceTokenBlackBerryPush = "deviceTokenBlackBerryPush"
-    TypeDeviceTokenTizenPush = "deviceTokenTizenPush"
-    TypeWallpaper = "wallpaper"
-    TypeWallpapers = "wallpapers"
-    TypeHashtags = "hashtags"
-    TypeCheckChatUsernameResultOk = "checkChatUsernameResultOk"
-    TypeCheckChatUsernameResultUsernameInvalid = "checkChatUsernameResultUsernameInvalid"
-    TypeCheckChatUsernameResultUsernameOccupied = "checkChatUsernameResultUsernameOccupied"
-    TypeCheckChatUsernameResultPublicChatsTooMuch = "checkChatUsernameResultPublicChatsTooMuch"
-    TypeCheckChatUsernameResultPublicGroupsUnavailable = "checkChatUsernameResultPublicGroupsUnavailable"
-    TypeOptionValueBoolean = "optionValueBoolean"
-    TypeOptionValueEmpty = "optionValueEmpty"
-    TypeOptionValueInteger = "optionValueInteger"
-    TypeOptionValueString = "optionValueString"
-    TypeUserPrivacySettingRuleAllowAll = "userPrivacySettingRuleAllowAll"
-    TypeUserPrivacySettingRuleAllowContacts = "userPrivacySettingRuleAllowContacts"
-    TypeUserPrivacySettingRuleAllowUsers = "userPrivacySettingRuleAllowUsers"
-    TypeUserPrivacySettingRuleRestrictAll = "userPrivacySettingRuleRestrictAll"
-    TypeUserPrivacySettingRuleRestrictContacts = "userPrivacySettingRuleRestrictContacts"
-    TypeUserPrivacySettingRuleRestrictUsers = "userPrivacySettingRuleRestrictUsers"
-    TypeUserPrivacySettingRules = "userPrivacySettingRules"
-    TypeUserPrivacySettingShowStatus = "userPrivacySettingShowStatus"
-    TypeUserPrivacySettingAllowChatInvites = "userPrivacySettingAllowChatInvites"
-    TypeUserPrivacySettingAllowCalls = "userPrivacySettingAllowCalls"
-    TypeAccountTtl = "accountTtl"
-    TypeSession = "session"
-    TypeSessions = "sessions"
-    TypeConnectedWebsite = "connectedWebsite"
-    TypeConnectedWebsites = "connectedWebsites"
-    TypeChatReportSpamState = "chatReportSpamState"
-    TypeChatReportReasonSpam = "chatReportReasonSpam"
-    TypeChatReportReasonViolence = "chatReportReasonViolence"
-    TypeChatReportReasonPornography = "chatReportReasonPornography"
-    TypeChatReportReasonCopyright = "chatReportReasonCopyright"
-    TypeChatReportReasonCustom = "chatReportReasonCustom"
-    TypePublicMessageLink = "publicMessageLink"
-    TypeFileTypeNone = "fileTypeNone"
-    TypeFileTypeAnimation = "fileTypeAnimation"
-    TypeFileTypeAudio = "fileTypeAudio"
-    TypeFileTypeDocument = "fileTypeDocument"
-    TypeFileTypePhoto = "fileTypePhoto"
-    TypeFileTypeProfilePhoto = "fileTypeProfilePhoto"
-    TypeFileTypeSecret = "fileTypeSecret"
-    TypeFileTypeSecretThumbnail = "fileTypeSecretThumbnail"
-    TypeFileTypeSecure = "fileTypeSecure"
-    TypeFileTypeSticker = "fileTypeSticker"
-    TypeFileTypeThumbnail = "fileTypeThumbnail"
-    TypeFileTypeUnknown = "fileTypeUnknown"
-    TypeFileTypeVideo = "fileTypeVideo"
-    TypeFileTypeVideoNote = "fileTypeVideoNote"
-    TypeFileTypeVoiceNote = "fileTypeVoiceNote"
-    TypeFileTypeWallpaper = "fileTypeWallpaper"
-    TypeStorageStatisticsByFileType = "storageStatisticsByFileType"
-    TypeStorageStatisticsByChat = "storageStatisticsByChat"
-    TypeStorageStatistics = "storageStatistics"
-    TypeStorageStatisticsFast = "storageStatisticsFast"
-    TypeNetworkTypeNone = "networkTypeNone"
-    TypeNetworkTypeMobile = "networkTypeMobile"
-    TypeNetworkTypeMobileRoaming = "networkTypeMobileRoaming"
-    TypeNetworkTypeWiFi = "networkTypeWiFi"
-    TypeNetworkTypeOther = "networkTypeOther"
-    TypeNetworkStatisticsEntryFile = "networkStatisticsEntryFile"
-    TypeNetworkStatisticsEntryCall = "networkStatisticsEntryCall"
-    TypeNetworkStatistics = "networkStatistics"
-    TypeConnectionStateWaitingForNetwork = "connectionStateWaitingForNetwork"
-    TypeConnectionStateConnectingToProxy = "connectionStateConnectingToProxy"
-    TypeConnectionStateConnecting = "connectionStateConnecting"
-    TypeConnectionStateUpdating = "connectionStateUpdating"
-    TypeConnectionStateReady = "connectionStateReady"
-    TypeTopChatCategoryUsers = "topChatCategoryUsers"
-    TypeTopChatCategoryBots = "topChatCategoryBots"
-    TypeTopChatCategoryGroups = "topChatCategoryGroups"
-    TypeTopChatCategoryChannels = "topChatCategoryChannels"
-    TypeTopChatCategoryInlineBots = "topChatCategoryInlineBots"
-    TypeTopChatCategoryCalls = "topChatCategoryCalls"
-    TypeTMeUrlTypeUser = "tMeUrlTypeUser"
-    TypeTMeUrlTypeSupergroup = "tMeUrlTypeSupergroup"
-    TypeTMeUrlTypeChatInvite = "tMeUrlTypeChatInvite"
-    TypeTMeUrlTypeStickerSet = "tMeUrlTypeStickerSet"
-    TypeTMeUrl = "tMeUrl"
-    TypeTMeUrls = "tMeUrls"
-    TypeCount = "count"
-    TypeText = "text"
-    TypeSeconds = "seconds"
-    TypeDeepLinkInfo = "deepLinkInfo"
-    TypeTextParseModeMarkdown = "textParseModeMarkdown"
-    TypeTextParseModeHTML = "textParseModeHTML"
-    TypeProxyTypeSocks5 = "proxyTypeSocks5"
-    TypeProxyTypeHttp = "proxyTypeHttp"
-    TypeProxyTypeMtproto = "proxyTypeMtproto"
-    TypeProxy = "proxy"
-    TypeProxies = "proxies"
-    TypeInputSticker = "inputSticker"
-    TypeUpdateAuthorizationState = "updateAuthorizationState"
-    TypeUpdateNewMessage = "updateNewMessage"
-    TypeUpdateMessageSendAcknowledged = "updateMessageSendAcknowledged"
-    TypeUpdateMessageSendSucceeded = "updateMessageSendSucceeded"
-    TypeUpdateMessageSendFailed = "updateMessageSendFailed"
-    TypeUpdateMessageContent = "updateMessageContent"
-    TypeUpdateMessageEdited = "updateMessageEdited"
-    TypeUpdateMessageViews = "updateMessageViews"
-    TypeUpdateMessageContentOpened = "updateMessageContentOpened"
-    TypeUpdateMessageMentionRead = "updateMessageMentionRead"
-    TypeUpdateNewChat = "updateNewChat"
-    TypeUpdateChatTitle = "updateChatTitle"
-    TypeUpdateChatPhoto = "updateChatPhoto"
-    TypeUpdateChatLastMessage = "updateChatLastMessage"
-    TypeUpdateChatOrder = "updateChatOrder"
-    TypeUpdateChatIsPinned = "updateChatIsPinned"
-    TypeUpdateChatIsMarkedAsUnread = "updateChatIsMarkedAsUnread"
-    TypeUpdateChatIsSponsored = "updateChatIsSponsored"
-    TypeUpdateChatDefaultDisableNotification = "updateChatDefaultDisableNotification"
-    TypeUpdateChatReadInbox = "updateChatReadInbox"
-    TypeUpdateChatReadOutbox = "updateChatReadOutbox"
-    TypeUpdateChatUnreadMentionCount = "updateChatUnreadMentionCount"
-    TypeUpdateChatNotificationSettings = "updateChatNotificationSettings"
-    TypeUpdateScopeNotificationSettings = "updateScopeNotificationSettings"
-    TypeUpdateChatReplyMarkup = "updateChatReplyMarkup"
-    TypeUpdateChatDraftMessage = "updateChatDraftMessage"
-    TypeUpdateDeleteMessages = "updateDeleteMessages"
-    TypeUpdateUserChatAction = "updateUserChatAction"
-    TypeUpdateUserStatus = "updateUserStatus"
-    TypeUpdateUser = "updateUser"
-    TypeUpdateBasicGroup = "updateBasicGroup"
-    TypeUpdateSupergroup = "updateSupergroup"
-    TypeUpdateSecretChat = "updateSecretChat"
-    TypeUpdateUserFullInfo = "updateUserFullInfo"
-    TypeUpdateBasicGroupFullInfo = "updateBasicGroupFullInfo"
-    TypeUpdateSupergroupFullInfo = "updateSupergroupFullInfo"
-    TypeUpdateServiceNotification = "updateServiceNotification"
-    TypeUpdateFile = "updateFile"
-    TypeUpdateFileGenerationStart = "updateFileGenerationStart"
-    TypeUpdateFileGenerationStop = "updateFileGenerationStop"
-    TypeUpdateCall = "updateCall"
-    TypeUpdateUserPrivacySettingRules = "updateUserPrivacySettingRules"
-    TypeUpdateUnreadMessageCount = "updateUnreadMessageCount"
-    TypeUpdateUnreadChatCount = "updateUnreadChatCount"
-    TypeUpdateOption = "updateOption"
-    TypeUpdateInstalledStickerSets = "updateInstalledStickerSets"
-    TypeUpdateTrendingStickerSets = "updateTrendingStickerSets"
-    TypeUpdateRecentStickers = "updateRecentStickers"
-    TypeUpdateFavoriteStickers = "updateFavoriteStickers"
-    TypeUpdateSavedAnimations = "updateSavedAnimations"
-    TypeUpdateLanguagePackStrings = "updateLanguagePackStrings"
-    TypeUpdateConnectionState = "updateConnectionState"
-    TypeUpdateTermsOfService = "updateTermsOfService"
-    TypeUpdateNewInlineQuery = "updateNewInlineQuery"
-    TypeUpdateNewChosenInlineResult = "updateNewChosenInlineResult"
-    TypeUpdateNewCallbackQuery = "updateNewCallbackQuery"
-    TypeUpdateNewInlineCallbackQuery = "updateNewInlineCallbackQuery"
-    TypeUpdateNewShippingQuery = "updateNewShippingQuery"
-    TypeUpdateNewPreCheckoutQuery = "updateNewPreCheckoutQuery"
-    TypeUpdateNewCustomEvent = "updateNewCustomEvent"
-    TypeUpdateNewCustomQuery = "updateNewCustomQuery"
-    TypeTestInt = "testInt"
-    TypeTestString = "testString"
-    TypeTestBytes = "testBytes"
-    TypeTestVectorInt = "testVectorInt"
-    TypeTestVectorIntObject = "testVectorIntObject"
-    TypeTestVectorString = "testVectorString"
-    TypeTestVectorStringObject = "testVectorStringObject"
+	TypeError                                           = "error"
+	TypeOk                                              = "ok"
+	TypeTdlibParameters                                 = "tdlibParameters"
+	TypeAuthenticationCodeTypeTelegramMessage           = "authenticationCodeTypeTelegramMessage"
+	TypeAuthenticationCodeTypeSms                       = "authenticationCodeTypeSms"
+	TypeAuthenticationCodeTypeCall                      = "authenticationCodeTypeCall"
+	TypeAuthenticationCodeTypeFlashCall                 = "authenticationCodeTypeFlashCall"
+	TypeAuthenticationCodeInfo                          = "authenticationCodeInfo"
+	TypeEmailAddressAuthenticationCodeInfo              = "emailAddressAuthenticationCodeInfo"
+	TypeTextEntity                                      = "textEntity"
+	TypeTextEntities                                    = "textEntities"
+	TypeFormattedText                                   = "formattedText"
+	TypeTermsOfService                                  = "termsOfService"
+	TypeAuthorizationStateWaitTdlibParameters           = "authorizationStateWaitTdlibParameters"
+	TypeAuthorizationStateWaitEncryptionKey             = "authorizationStateWaitEncryptionKey"
+	TypeAuthorizationStateWaitPhoneNumber               = "authorizationStateWaitPhoneNumber"
+	TypeAuthorizationStateWaitCode                      = "authorizationStateWaitCode"
+	TypeAuthorizationStateWaitPassword                  = "authorizationStateWaitPassword"
+	TypeAuthorizationStateReady                         = "authorizationStateReady"
+	TypeAuthorizationStateLoggingOut                    = "authorizationStateLoggingOut"
+	TypeAuthorizationStateClosing                       = "authorizationStateClosing"
+	TypeAuthorizationStateClosed                        = "authorizationStateClosed"
+	TypePasswordState                                   = "passwordState"
+	TypeRecoveryEmailAddress                            = "recoveryEmailAddress"
+	TypeTemporaryPasswordState                          = "temporaryPasswordState"
+	TypeLocalFile                                       = "localFile"
+	TypeRemoteFile                                      = "remoteFile"
+	TypeFile                                            = "file"
+	TypeInputFileId                                     = "inputFileId"
+	TypeInputFileRemote                                 = "inputFileRemote"
+	TypeInputFileLocal                                  = "inputFileLocal"
+	TypeInputFileGenerated                              = "inputFileGenerated"
+	TypePhotoSize                                       = "photoSize"
+	TypeMaskPointForehead                               = "maskPointForehead"
+	TypeMaskPointEyes                                   = "maskPointEyes"
+	TypeMaskPointMouth                                  = "maskPointMouth"
+	TypeMaskPointChin                                   = "maskPointChin"
+	TypeMaskPosition                                    = "maskPosition"
+	TypeAnimation                                       = "animation"
+	TypeAudio                                           = "audio"
+	TypeDocument                                        = "document"
+	TypePhoto                                           = "photo"
+	TypeSticker                                         = "sticker"
+	TypeVideo                                           = "video"
+	TypeVideoNote                                       = "videoNote"
+	TypeVoiceNote                                       = "voiceNote"
+	TypeContact                                         = "contact"
+	TypeLocation                                        = "location"
+	TypeVenue                                           = "venue"
+	TypeGame                                            = "game"
+	TypeProfilePhoto                                    = "profilePhoto"
+	TypeChatPhoto                                       = "chatPhoto"
+	TypeLinkStateNone                                   = "linkStateNone"
+	TypeLinkStateKnowsPhoneNumber                       = "linkStateKnowsPhoneNumber"
+	TypeLinkStateIsContact                              = "linkStateIsContact"
+	TypeUserTypeRegular                                 = "userTypeRegular"
+	TypeUserTypeDeleted                                 = "userTypeDeleted"
+	TypeUserTypeBot                                     = "userTypeBot"
+	TypeUserTypeUnknown                                 = "userTypeUnknown"
+	TypeBotCommand                                      = "botCommand"
+	TypeBotInfo                                         = "botInfo"
+	TypeUser                                            = "user"
+	TypeUserFullInfo                                    = "userFullInfo"
+	TypeUserProfilePhotos                               = "userProfilePhotos"
+	TypeUsers                                           = "users"
+	TypeChatMemberStatusCreator                         = "chatMemberStatusCreator"
+	TypeChatMemberStatusAdministrator                   = "chatMemberStatusAdministrator"
+	TypeChatMemberStatusMember                          = "chatMemberStatusMember"
+	TypeChatMemberStatusRestricted                      = "chatMemberStatusRestricted"
+	TypeChatMemberStatusLeft                            = "chatMemberStatusLeft"
+	TypeChatMemberStatusBanned                          = "chatMemberStatusBanned"
+	TypeChatMember                                      = "chatMember"
+	TypeChatMembers                                     = "chatMembers"
+	TypeChatMembersFilterAdministrators                 = "chatMembersFilterAdministrators"
+	TypeChatMembersFilterMembers                        = "chatMembersFilterMembers"
+	TypeChatMembersFilterRestricted                     = "chatMembersFilterRestricted"
+	TypeChatMembersFilterBanned                         = "chatMembersFilterBanned"
+	TypeChatMembersFilterBots                           = "chatMembersFilterBots"
+	TypeSupergroupMembersFilterRecent                   = "supergroupMembersFilterRecent"
+	TypeSupergroupMembersFilterAdministrators           = "supergroupMembersFilterAdministrators"
+	TypeSupergroupMembersFilterSearch                   = "supergroupMembersFilterSearch"
+	TypeSupergroupMembersFilterRestricted               = "supergroupMembersFilterRestricted"
+	TypeSupergroupMembersFilterBanned                   = "supergroupMembersFilterBanned"
+	TypeSupergroupMembersFilterBots                     = "supergroupMembersFilterBots"
+	TypeBasicGroup                                      = "basicGroup"
+	TypeBasicGroupFullInfo                              = "basicGroupFullInfo"
+	TypeSupergroup                                      = "supergroup"
+	TypeSupergroupFullInfo                              = "supergroupFullInfo"
+	TypeSecretChatStatePending                          = "secretChatStatePending"
+	TypeSecretChatStateReady                            = "secretChatStateReady"
+	TypeSecretChatStateClosed                           = "secretChatStateClosed"
+	TypeSecretChat                                      = "secretChat"
+	TypeMessageForwardedFromUser                        = "messageForwardedFromUser"
+	TypeMessageForwardedPost                            = "messageForwardedPost"
+	TypeMessageSendingStatePending                      = "messageSendingStatePending"
+	TypeMessageSendingStateFailed                       = "messageSendingStateFailed"
+	TypeMessage                                         = "message"
+	TypeMessages                                        = "messages"
+	TypeFoundMessages                                   = "foundMessages"
+	TypeNotificationSettingsScopePrivateChats           = "notificationSettingsScopePrivateChats"
+	TypeNotificationSettingsScopeGroupChats             = "notificationSettingsScopeGroupChats"
+	TypeChatNotificationSettings                        = "chatNotificationSettings"
+	TypeScopeNotificationSettings                       = "scopeNotificationSettings"
+	TypeDraftMessage                                    = "draftMessage"
+	TypeChatTypePrivate                                 = "chatTypePrivate"
+	TypeChatTypeBasicGroup                              = "chatTypeBasicGroup"
+	TypeChatTypeSupergroup                              = "chatTypeSupergroup"
+	TypeChatTypeSecret                                  = "chatTypeSecret"
+	TypeChat                                            = "chat"
+	TypeChats                                           = "chats"
+	TypeChatInviteLink                                  = "chatInviteLink"
+	TypeChatInviteLinkInfo                              = "chatInviteLinkInfo"
+	TypeKeyboardButtonTypeText                          = "keyboardButtonTypeText"
+	TypeKeyboardButtonTypeRequestPhoneNumber            = "keyboardButtonTypeRequestPhoneNumber"
+	TypeKeyboardButtonTypeRequestLocation               = "keyboardButtonTypeRequestLocation"
+	TypeKeyboardButton                                  = "keyboardButton"
+	TypeInlineKeyboardButtonTypeUrl                     = "inlineKeyboardButtonTypeUrl"
+	TypeInlineKeyboardButtonTypeCallback                = "inlineKeyboardButtonTypeCallback"
+	TypeInlineKeyboardButtonTypeCallbackGame            = "inlineKeyboardButtonTypeCallbackGame"
+	TypeInlineKeyboardButtonTypeSwitchInline            = "inlineKeyboardButtonTypeSwitchInline"
+	TypeInlineKeyboardButtonTypeBuy                     = "inlineKeyboardButtonTypeBuy"
+	TypeInlineKeyboardButton                            = "inlineKeyboardButton"
+	TypeReplyMarkupRemoveKeyboard                       = "replyMarkupRemoveKeyboard"
+	TypeReplyMarkupForceReply                           = "replyMarkupForceReply"
+	TypeReplyMarkupShowKeyboard                         = "replyMarkupShowKeyboard"
+	TypeReplyMarkupInlineKeyboard                       = "replyMarkupInlineKeyboard"
+	TypeRichTextPlain                                   = "richTextPlain"
+	TypeRichTextBold                                    = "richTextBold"
+	TypeRichTextItalic                                  = "richTextItalic"
+	TypeRichTextUnderline                               = "richTextUnderline"
+	TypeRichTextStrikethrough                           = "richTextStrikethrough"
+	TypeRichTextFixed                                   = "richTextFixed"
+	TypeRichTextUrl                                     = "richTextUrl"
+	TypeRichTextEmailAddress                            = "richTextEmailAddress"
+	TypeRichTexts                                       = "richTexts"
+	TypePageBlockTitle                                  = "pageBlockTitle"
+	TypePageBlockSubtitle                               = "pageBlockSubtitle"
+	TypePageBlockAuthorDate                             = "pageBlockAuthorDate"
+	TypePageBlockHeader                                 = "pageBlockHeader"
+	TypePageBlockSubheader                              = "pageBlockSubheader"
+	TypePageBlockParagraph                              = "pageBlockParagraph"
+	TypePageBlockPreformatted                           = "pageBlockPreformatted"
+	TypePageBlockFooter                                 = "pageBlockFooter"
+	TypePageBlockDivider                                = "pageBlockDivider"
+	TypePageBlockAnchor                                 = "pageBlockAnchor"
+	TypePageBlockList                                   = "pageBlockList"
+	TypePageBlockBlockQuote                             = "pageBlockBlockQuote"
+	TypePageBlockPullQuote                              = "pageBlockPullQuote"
+	TypePageBlockAnimation                              = "pageBlockAnimation"
+	TypePageBlockAudio                                  = "pageBlockAudio"
+	TypePageBlockPhoto                                  = "pageBlockPhoto"
+	TypePageBlockVideo                                  = "pageBlockVideo"
+	TypePageBlockCover                                  = "pageBlockCover"
+	TypePageBlockEmbedded                               = "pageBlockEmbedded"
+	TypePageBlockEmbeddedPost                           = "pageBlockEmbeddedPost"
+	TypePageBlockCollage                                = "pageBlockCollage"
+	TypePageBlockSlideshow                              = "pageBlockSlideshow"
+	TypePageBlockChatLink                               = "pageBlockChatLink"
+	TypeWebPageInstantView                              = "webPageInstantView"
+	TypeWebPage                                         = "webPage"
+	TypeAddress                                         = "address"
+	TypeLabeledPricePart                                = "labeledPricePart"
+	TypeInvoice                                         = "invoice"
+	TypeOrderInfo                                       = "orderInfo"
+	TypeShippingOption                                  = "shippingOption"
+	TypeSavedCredentials                                = "savedCredentials"
+	TypeInputCredentialsSaved                           = "inputCredentialsSaved"
+	TypeInputCredentialsNew                             = "inputCredentialsNew"
+	TypeInputCredentialsAndroidPay                      = "inputCredentialsAndroidPay"
+	TypeInputCredentialsApplePay                        = "inputCredentialsApplePay"
+	TypePaymentsProviderStripe                          = "paymentsProviderStripe"
+	TypePaymentForm                                     = "paymentForm"
+	TypeValidatedOrderInfo                              = "validatedOrderInfo"
+	TypePaymentResult                                   = "paymentResult"
+	TypePaymentReceipt                                  = "paymentReceipt"
+	TypeDatedFile                                       = "datedFile"
+	TypePassportElementTypePersonalDetails              = "passportElementTypePersonalDetails"
+	TypePassportElementTypePassport                     = "passportElementTypePassport"
+	TypePassportElementTypeDriverLicense                = "passportElementTypeDriverLicense"
+	TypePassportElementTypeIdentityCard                 = "passportElementTypeIdentityCard"
+	TypePassportElementTypeInternalPassport             = "passportElementTypeInternalPassport"
+	TypePassportElementTypeAddress                      = "passportElementTypeAddress"
+	TypePassportElementTypeUtilityBill                  = "passportElementTypeUtilityBill"
+	TypePassportElementTypeBankStatement                = "passportElementTypeBankStatement"
+	TypePassportElementTypeRentalAgreement              = "passportElementTypeRentalAgreement"
+	TypePassportElementTypePassportRegistration         = "passportElementTypePassportRegistration"
+	TypePassportElementTypeTemporaryRegistration        = "passportElementTypeTemporaryRegistration"
+	TypePassportElementTypePhoneNumber                  = "passportElementTypePhoneNumber"
+	TypePassportElementTypeEmailAddress                 = "passportElementTypeEmailAddress"
+	TypeDate                                            = "date"
+	TypePersonalDetails                                 = "personalDetails"
+	TypeIdentityDocument                                = "identityDocument"
+	TypeInputIdentityDocument                           = "inputIdentityDocument"
+	TypePersonalDocument                                = "personalDocument"
+	TypeInputPersonalDocument                           = "inputPersonalDocument"
+	TypePassportElementPersonalDetails                  = "passportElementPersonalDetails"
+	TypePassportElementPassport                         = "passportElementPassport"
+	TypePassportElementDriverLicense                    = "passportElementDriverLicense"
+	TypePassportElementIdentityCard                     = "passportElementIdentityCard"
+	TypePassportElementInternalPassport                 = "passportElementInternalPassport"
+	TypePassportElementAddress                          = "passportElementAddress"
+	TypePassportElementUtilityBill                      = "passportElementUtilityBill"
+	TypePassportElementBankStatement                    = "passportElementBankStatement"
+	TypePassportElementRentalAgreement                  = "passportElementRentalAgreement"
+	TypePassportElementPassportRegistration             = "passportElementPassportRegistration"
+	TypePassportElementTemporaryRegistration            = "passportElementTemporaryRegistration"
+	TypePassportElementPhoneNumber                      = "passportElementPhoneNumber"
+	TypePassportElementEmailAddress                     = "passportElementEmailAddress"
+	TypeInputPassportElementPersonalDetails             = "inputPassportElementPersonalDetails"
+	TypeInputPassportElementPassport                    = "inputPassportElementPassport"
+	TypeInputPassportElementDriverLicense               = "inputPassportElementDriverLicense"
+	TypeInputPassportElementIdentityCard                = "inputPassportElementIdentityCard"
+	TypeInputPassportElementInternalPassport            = "inputPassportElementInternalPassport"
+	TypeInputPassportElementAddress                     = "inputPassportElementAddress"
+	TypeInputPassportElementUtilityBill                 = "inputPassportElementUtilityBill"
+	TypeInputPassportElementBankStatement               = "inputPassportElementBankStatement"
+	TypeInputPassportElementRentalAgreement             = "inputPassportElementRentalAgreement"
+	TypeInputPassportElementPassportRegistration        = "inputPassportElementPassportRegistration"
+	TypeInputPassportElementTemporaryRegistration       = "inputPassportElementTemporaryRegistration"
+	TypeInputPassportElementPhoneNumber                 = "inputPassportElementPhoneNumber"
+	TypeInputPassportElementEmailAddress                = "inputPassportElementEmailAddress"
+	TypePassportElements                                = "passportElements"
+	TypePassportElementErrorSourceUnspecified           = "passportElementErrorSourceUnspecified"
+	TypePassportElementErrorSourceDataField             = "passportElementErrorSourceDataField"
+	TypePassportElementErrorSourceFrontSide             = "passportElementErrorSourceFrontSide"
+	TypePassportElementErrorSourceReverseSide           = "passportElementErrorSourceReverseSide"
+	TypePassportElementErrorSourceSelfie                = "passportElementErrorSourceSelfie"
+	TypePassportElementErrorSourceTranslationFile       = "passportElementErrorSourceTranslationFile"
+	TypePassportElementErrorSourceTranslationFiles      = "passportElementErrorSourceTranslationFiles"
+	TypePassportElementErrorSourceFile                  = "passportElementErrorSourceFile"
+	TypePassportElementErrorSourceFiles                 = "passportElementErrorSourceFiles"
+	TypePassportElementError                            = "passportElementError"
+	TypePassportSuitableElement                         = "passportSuitableElement"
+	TypePassportRequiredElement                         = "passportRequiredElement"
+	TypePassportAuthorizationForm                       = "passportAuthorizationForm"
+	TypeEncryptedCredentials                            = "encryptedCredentials"
+	TypeEncryptedPassportElement                        = "encryptedPassportElement"
+	TypeInputPassportElementErrorSourceUnspecified      = "inputPassportElementErrorSourceUnspecified"
+	TypeInputPassportElementErrorSourceDataField        = "inputPassportElementErrorSourceDataField"
+	TypeInputPassportElementErrorSourceFrontSide        = "inputPassportElementErrorSourceFrontSide"
+	TypeInputPassportElementErrorSourceReverseSide      = "inputPassportElementErrorSourceReverseSide"
+	TypeInputPassportElementErrorSourceSelfie           = "inputPassportElementErrorSourceSelfie"
+	TypeInputPassportElementErrorSourceTranslationFile  = "inputPassportElementErrorSourceTranslationFile"
+	TypeInputPassportElementErrorSourceTranslationFiles = "inputPassportElementErrorSourceTranslationFiles"
+	TypeInputPassportElementErrorSourceFile             = "inputPassportElementErrorSourceFile"
+	TypeInputPassportElementErrorSourceFiles            = "inputPassportElementErrorSourceFiles"
+	TypeInputPassportElementError                       = "inputPassportElementError"
+	TypeMessageText                                     = "messageText"
+	TypeMessageAnimation                                = "messageAnimation"
+	TypeMessageAudio                                    = "messageAudio"
+	TypeMessageDocument                                 = "messageDocument"
+	TypeMessagePhoto                                    = "messagePhoto"
+	TypeMessageExpiredPhoto                             = "messageExpiredPhoto"
+	TypeMessageSticker                                  = "messageSticker"
+	TypeMessageVideo                                    = "messageVideo"
+	TypeMessageExpiredVideo                             = "messageExpiredVideo"
+	TypeMessageVideoNote                                = "messageVideoNote"
+	TypeMessageVoiceNote                                = "messageVoiceNote"
+	TypeMessageLocation                                 = "messageLocation"
+	TypeMessageVenue                                    = "messageVenue"
+	TypeMessageContact                                  = "messageContact"
+	TypeMessageGame                                     = "messageGame"
+	TypeMessageInvoice                                  = "messageInvoice"
+	TypeMessageCall                                     = "messageCall"
+	TypeMessageBasicGroupChatCreate                     = "messageBasicGroupChatCreate"
+	TypeMessageSupergroupChatCreate                     = "messageSupergroupChatCreate"
+	TypeMessageChatChangeTitle                          = "messageChatChangeTitle"
+	TypeMessageChatChangePhoto                          = "messageChatChangePhoto"
+	TypeMessageChatDeletePhoto                          = "messageChatDeletePhoto"
+	TypeMessageChatAddMembers                           = "messageChatAddMembers"
+	TypeMessageChatJoinByLink                           = "messageChatJoinByLink"
+	TypeMessageChatDeleteMember                         = "messageChatDeleteMember"
+	TypeMessageChatUpgradeTo                            = "messageChatUpgradeTo"
+	TypeMessageChatUpgradeFrom                          = "messageChatUpgradeFrom"
+	TypeMessagePinMessage                               = "messagePinMessage"
+	TypeMessageScreenshotTaken                          = "messageScreenshotTaken"
+	TypeMessageChatSetTtl                               = "messageChatSetTtl"
+	TypeMessageCustomServiceAction                      = "messageCustomServiceAction"
+	TypeMessageGameScore                                = "messageGameScore"
+	TypeMessagePaymentSuccessful                        = "messagePaymentSuccessful"
+	TypeMessagePaymentSuccessfulBot                     = "messagePaymentSuccessfulBot"
+	TypeMessageContactRegistered                        = "messageContactRegistered"
+	TypeMessageWebsiteConnected                         = "messageWebsiteConnected"
+	TypeMessagePassportDataSent                         = "messagePassportDataSent"
+	TypeMessagePassportDataReceived                     = "messagePassportDataReceived"
+	TypeMessageUnsupported                              = "messageUnsupported"
+	TypeTextEntityTypeMention                           = "textEntityTypeMention"
+	TypeTextEntityTypeHashtag                           = "textEntityTypeHashtag"
+	TypeTextEntityTypeCashtag                           = "textEntityTypeCashtag"
+	TypeTextEntityTypeBotCommand                        = "textEntityTypeBotCommand"
+	TypeTextEntityTypeUrl                               = "textEntityTypeUrl"
+	TypeTextEntityTypeEmailAddress                      = "textEntityTypeEmailAddress"
+	TypeTextEntityTypeBold                              = "textEntityTypeBold"
+	TypeTextEntityTypeItalic                            = "textEntityTypeItalic"
+	TypeTextEntityTypeCode                              = "textEntityTypeCode"
+	TypeTextEntityTypePre                               = "textEntityTypePre"
+	TypeTextEntityTypePreCode                           = "textEntityTypePreCode"
+	TypeTextEntityTypeTextUrl                           = "textEntityTypeTextUrl"
+	TypeTextEntityTypeMentionName                       = "textEntityTypeMentionName"
+	TypeTextEntityTypePhoneNumber                       = "textEntityTypePhoneNumber"
+	TypeInputThumbnail                                  = "inputThumbnail"
+	TypeInputMessageText                                = "inputMessageText"
+	TypeInputMessageAnimation                           = "inputMessageAnimation"
+	TypeInputMessageAudio                               = "inputMessageAudio"
+	TypeInputMessageDocument                            = "inputMessageDocument"
+	TypeInputMessagePhoto                               = "inputMessagePhoto"
+	TypeInputMessageSticker                             = "inputMessageSticker"
+	TypeInputMessageVideo                               = "inputMessageVideo"
+	TypeInputMessageVideoNote                           = "inputMessageVideoNote"
+	TypeInputMessageVoiceNote                           = "inputMessageVoiceNote"
+	TypeInputMessageLocation                            = "inputMessageLocation"
+	TypeInputMessageVenue                               = "inputMessageVenue"
+	TypeInputMessageContact                             = "inputMessageContact"
+	TypeInputMessageGame                                = "inputMessageGame"
+	TypeInputMessageInvoice                             = "inputMessageInvoice"
+	TypeInputMessageForwarded                           = "inputMessageForwarded"
+	TypeSearchMessagesFilterEmpty                       = "searchMessagesFilterEmpty"
+	TypeSearchMessagesFilterAnimation                   = "searchMessagesFilterAnimation"
+	TypeSearchMessagesFilterAudio                       = "searchMessagesFilterAudio"
+	TypeSearchMessagesFilterDocument                    = "searchMessagesFilterDocument"
+	TypeSearchMessagesFilterPhoto                       = "searchMessagesFilterPhoto"
+	TypeSearchMessagesFilterVideo                       = "searchMessagesFilterVideo"
+	TypeSearchMessagesFilterVoiceNote                   = "searchMessagesFilterVoiceNote"
+	TypeSearchMessagesFilterPhotoAndVideo               = "searchMessagesFilterPhotoAndVideo"
+	TypeSearchMessagesFilterUrl                         = "searchMessagesFilterUrl"
+	TypeSearchMessagesFilterChatPhoto                   = "searchMessagesFilterChatPhoto"
+	TypeSearchMessagesFilterCall                        = "searchMessagesFilterCall"
+	TypeSearchMessagesFilterMissedCall                  = "searchMessagesFilterMissedCall"
+	TypeSearchMessagesFilterVideoNote                   = "searchMessagesFilterVideoNote"
+	TypeSearchMessagesFilterVoiceAndVideoNote           = "searchMessagesFilterVoiceAndVideoNote"
+	TypeSearchMessagesFilterMention                     = "searchMessagesFilterMention"
+	TypeSearchMessagesFilterUnreadMention               = "searchMessagesFilterUnreadMention"
+	TypeChatActionTyping                                = "chatActionTyping"
+	TypeChatActionRecordingVideo                        = "chatActionRecordingVideo"
+	TypeChatActionUploadingVideo                        = "chatActionUploadingVideo"
+	TypeChatActionRecordingVoiceNote                    = "chatActionRecordingVoiceNote"
+	TypeChatActionUploadingVoiceNote                    = "chatActionUploadingVoiceNote"
+	TypeChatActionUploadingPhoto                        = "chatActionUploadingPhoto"
+	TypeChatActionUploadingDocument                     = "chatActionUploadingDocument"
+	TypeChatActionChoosingLocation                      = "chatActionChoosingLocation"
+	TypeChatActionChoosingContact                       = "chatActionChoosingContact"
+	TypeChatActionStartPlayingGame                      = "chatActionStartPlayingGame"
+	TypeChatActionRecordingVideoNote                    = "chatActionRecordingVideoNote"
+	TypeChatActionUploadingVideoNote                    = "chatActionUploadingVideoNote"
+	TypeChatActionCancel                                = "chatActionCancel"
+	TypeUserStatusEmpty                                 = "userStatusEmpty"
+	TypeUserStatusOnline                                = "userStatusOnline"
+	TypeUserStatusOffline                               = "userStatusOffline"
+	TypeUserStatusRecently                              = "userStatusRecently"
+	TypeUserStatusLastWeek                              = "userStatusLastWeek"
+	TypeUserStatusLastMonth                             = "userStatusLastMonth"
+	TypeStickers                                        = "stickers"
+	TypeStickerEmojis                                   = "stickerEmojis"
+	TypeStickerSet                                      = "stickerSet"
+	TypeStickerSetInfo                                  = "stickerSetInfo"
+	TypeStickerSets                                     = "stickerSets"
+	TypeCallDiscardReasonEmpty                          = "callDiscardReasonEmpty"
+	TypeCallDiscardReasonMissed                         = "callDiscardReasonMissed"
+	TypeCallDiscardReasonDeclined                       = "callDiscardReasonDeclined"
+	TypeCallDiscardReasonDisconnected                   = "callDiscardReasonDisconnected"
+	TypeCallDiscardReasonHungUp                         = "callDiscardReasonHungUp"
+	TypeCallProtocol                                    = "callProtocol"
+	TypeCallConnection                                  = "callConnection"
+	TypeCallId                                          = "callId"
+	TypeCallStatePending                                = "callStatePending"
+	TypeCallStateExchangingKeys                         = "callStateExchangingKeys"
+	TypeCallStateReady                                  = "callStateReady"
+	TypeCallStateHangingUp                              = "callStateHangingUp"
+	TypeCallStateDiscarded                              = "callStateDiscarded"
+	TypeCallStateError                                  = "callStateError"
+	TypeCall                                            = "call"
+	TypeAnimations                                      = "animations"
+	TypeImportedContacts                                = "importedContacts"
+	TypeInputInlineQueryResultAnimatedGif               = "inputInlineQueryResultAnimatedGif"
+	TypeInputInlineQueryResultAnimatedMpeg4             = "inputInlineQueryResultAnimatedMpeg4"
+	TypeInputInlineQueryResultArticle                   = "inputInlineQueryResultArticle"
+	TypeInputInlineQueryResultAudio                     = "inputInlineQueryResultAudio"
+	TypeInputInlineQueryResultContact                   = "inputInlineQueryResultContact"
+	TypeInputInlineQueryResultDocument                  = "inputInlineQueryResultDocument"
+	TypeInputInlineQueryResultGame                      = "inputInlineQueryResultGame"
+	TypeInputInlineQueryResultLocation                  = "inputInlineQueryResultLocation"
+	TypeInputInlineQueryResultPhoto                     = "inputInlineQueryResultPhoto"
+	TypeInputInlineQueryResultSticker                   = "inputInlineQueryResultSticker"
+	TypeInputInlineQueryResultVenue                     = "inputInlineQueryResultVenue"
+	TypeInputInlineQueryResultVideo                     = "inputInlineQueryResultVideo"
+	TypeInputInlineQueryResultVoiceNote                 = "inputInlineQueryResultVoiceNote"
+	TypeInlineQueryResultArticle                        = "inlineQueryResultArticle"
+	TypeInlineQueryResultContact                        = "inlineQueryResultContact"
+	TypeInlineQueryResultLocation                       = "inlineQueryResultLocation"
+	TypeInlineQueryResultVenue                          = "inlineQueryResultVenue"
+	TypeInlineQueryResultGame                           = "inlineQueryResultGame"
+	TypeInlineQueryResultAnimation                      = "inlineQueryResultAnimation"
+	TypeInlineQueryResultAudio                          = "inlineQueryResultAudio"
+	TypeInlineQueryResultDocument                       = "inlineQueryResultDocument"
+	TypeInlineQueryResultPhoto                          = "inlineQueryResultPhoto"
+	TypeInlineQueryResultSticker                        = "inlineQueryResultSticker"
+	TypeInlineQueryResultVideo                          = "inlineQueryResultVideo"
+	TypeInlineQueryResultVoiceNote                      = "inlineQueryResultVoiceNote"
+	TypeInlineQueryResults                              = "inlineQueryResults"
+	TypeCallbackQueryPayloadData                        = "callbackQueryPayloadData"
+	TypeCallbackQueryPayloadGame                        = "callbackQueryPayloadGame"
+	TypeCallbackQueryAnswer                             = "callbackQueryAnswer"
+	TypeCustomRequestResult                             = "customRequestResult"
+	TypeGameHighScore                                   = "gameHighScore"
+	TypeGameHighScores                                  = "gameHighScores"
+	TypeChatEventMessageEdited                          = "chatEventMessageEdited"
+	TypeChatEventMessageDeleted                         = "chatEventMessageDeleted"
+	TypeChatEventMessagePinned                          = "chatEventMessagePinned"
+	TypeChatEventMessageUnpinned                        = "chatEventMessageUnpinned"
+	TypeChatEventMemberJoined                           = "chatEventMemberJoined"
+	TypeChatEventMemberLeft                             = "chatEventMemberLeft"
+	TypeChatEventMemberInvited                          = "chatEventMemberInvited"
+	TypeChatEventMemberPromoted                         = "chatEventMemberPromoted"
+	TypeChatEventMemberRestricted                       = "chatEventMemberRestricted"
+	TypeChatEventTitleChanged                           = "chatEventTitleChanged"
+	TypeChatEventDescriptionChanged                     = "chatEventDescriptionChanged"
+	TypeChatEventUsernameChanged                        = "chatEventUsernameChanged"
+	TypeChatEventPhotoChanged                           = "chatEventPhotoChanged"
+	TypeChatEventInvitesToggled                         = "chatEventInvitesToggled"
+	TypeChatEventSignMessagesToggled                    = "chatEventSignMessagesToggled"
+	TypeChatEventStickerSetChanged                      = "chatEventStickerSetChanged"
+	TypeChatEventIsAllHistoryAvailableToggled           = "chatEventIsAllHistoryAvailableToggled"
+	TypeChatEvent                                       = "chatEvent"
+	TypeChatEvents                                      = "chatEvents"
+	TypeChatEventLogFilters                             = "chatEventLogFilters"
+	TypeLanguagePackStringValueOrdinary                 = "languagePackStringValueOrdinary"
+	TypeLanguagePackStringValuePluralized               = "languagePackStringValuePluralized"
+	TypeLanguagePackStringValueDeleted                  = "languagePackStringValueDeleted"
+	TypeLanguagePackString                              = "languagePackString"
+	TypeLanguagePackStrings                             = "languagePackStrings"
+	TypeLanguagePackInfo                                = "languagePackInfo"
+	TypeLocalizationTargetInfo                          = "localizationTargetInfo"
+	TypeDeviceTokenGoogleCloudMessaging                 = "deviceTokenGoogleCloudMessaging"
+	TypeDeviceTokenApplePush                            = "deviceTokenApplePush"
+	TypeDeviceTokenApplePushVoIP                        = "deviceTokenApplePushVoIP"
+	TypeDeviceTokenWindowsPush                          = "deviceTokenWindowsPush"
+	TypeDeviceTokenMicrosoftPush                        = "deviceTokenMicrosoftPush"
+	TypeDeviceTokenMicrosoftPushVoIP                    = "deviceTokenMicrosoftPushVoIP"
+	TypeDeviceTokenWebPush                              = "deviceTokenWebPush"
+	TypeDeviceTokenSimplePush                           = "deviceTokenSimplePush"
+	TypeDeviceTokenUbuntuPush                           = "deviceTokenUbuntuPush"
+	TypeDeviceTokenBlackBerryPush                       = "deviceTokenBlackBerryPush"
+	TypeDeviceTokenTizenPush                            = "deviceTokenTizenPush"
+	TypeWallpaper                                       = "wallpaper"
+	TypeWallpapers                                      = "wallpapers"
+	TypeHashtags                                        = "hashtags"
+	TypeCheckChatUsernameResultOk                       = "checkChatUsernameResultOk"
+	TypeCheckChatUsernameResultUsernameInvalid          = "checkChatUsernameResultUsernameInvalid"
+	TypeCheckChatUsernameResultUsernameOccupied         = "checkChatUsernameResultUsernameOccupied"
+	TypeCheckChatUsernameResultPublicChatsTooMuch       = "checkChatUsernameResultPublicChatsTooMuch"
+	TypeCheckChatUsernameResultPublicGroupsUnavailable  = "checkChatUsernameResultPublicGroupsUnavailable"
+	TypeOptionValueBoolean                              = "optionValueBoolean"
+	TypeOptionValueEmpty                                = "optionValueEmpty"
+	TypeOptionValueInteger                              = "optionValueInteger"
+	TypeOptionValueString                               = "optionValueString"
+	TypeUserPrivacySettingRuleAllowAll                  = "userPrivacySettingRuleAllowAll"
+	TypeUserPrivacySettingRuleAllowContacts             = "userPrivacySettingRuleAllowContacts"
+	TypeUserPrivacySettingRuleAllowUsers                = "userPrivacySettingRuleAllowUsers"
+	TypeUserPrivacySettingRuleRestrictAll               = "userPrivacySettingRuleRestrictAll"
+	TypeUserPrivacySettingRuleRestrictContacts          = "userPrivacySettingRuleRestrictContacts"
+	TypeUserPrivacySettingRuleRestrictUsers             = "userPrivacySettingRuleRestrictUsers"
+	TypeUserPrivacySettingRules                         = "userPrivacySettingRules"
+	TypeUserPrivacySettingShowStatus                    = "userPrivacySettingShowStatus"
+	TypeUserPrivacySettingAllowChatInvites              = "userPrivacySettingAllowChatInvites"
+	TypeUserPrivacySettingAllowCalls                    = "userPrivacySettingAllowCalls"
+	TypeAccountTtl                                      = "accountTtl"
+	TypeSession                                         = "session"
+	TypeSessions                                        = "sessions"
+	TypeConnectedWebsite                                = "connectedWebsite"
+	TypeConnectedWebsites                               = "connectedWebsites"
+	TypeChatReportSpamState                             = "chatReportSpamState"
+	TypeChatReportReasonSpam                            = "chatReportReasonSpam"
+	TypeChatReportReasonViolence                        = "chatReportReasonViolence"
+	TypeChatReportReasonPornography                     = "chatReportReasonPornography"
+	TypeChatReportReasonCopyright                       = "chatReportReasonCopyright"
+	TypeChatReportReasonCustom                          = "chatReportReasonCustom"
+	TypePublicMessageLink                               = "publicMessageLink"
+	TypeFileTypeNone                                    = "fileTypeNone"
+	TypeFileTypeAnimation                               = "fileTypeAnimation"
+	TypeFileTypeAudio                                   = "fileTypeAudio"
+	TypeFileTypeDocument                                = "fileTypeDocument"
+	TypeFileTypePhoto                                   = "fileTypePhoto"
+	TypeFileTypeProfilePhoto                            = "fileTypeProfilePhoto"
+	TypeFileTypeSecret                                  = "fileTypeSecret"
+	TypeFileTypeSecretThumbnail                         = "fileTypeSecretThumbnail"
+	TypeFileTypeSecure                                  = "fileTypeSecure"
+	TypeFileTypeSticker                                 = "fileTypeSticker"
+	TypeFileTypeThumbnail                               = "fileTypeThumbnail"
+	TypeFileTypeUnknown                                 = "fileTypeUnknown"
+	TypeFileTypeVideo                                   = "fileTypeVideo"
+	TypeFileTypeVideoNote                               = "fileTypeVideoNote"
+	TypeFileTypeVoiceNote                               = "fileTypeVoiceNote"
+	TypeFileTypeWallpaper                               = "fileTypeWallpaper"
+	TypeStorageStatisticsByFileType                     = "storageStatisticsByFileType"
+	TypeStorageStatisticsByChat                         = "storageStatisticsByChat"
+	TypeStorageStatistics                               = "storageStatistics"
+	TypeStorageStatisticsFast                           = "storageStatisticsFast"
+	TypeNetworkTypeNone                                 = "networkTypeNone"
+	TypeNetworkTypeMobile                               = "networkTypeMobile"
+	TypeNetworkTypeMobileRoaming                        = "networkTypeMobileRoaming"
+	TypeNetworkTypeWiFi                                 = "networkTypeWiFi"
+	TypeNetworkTypeOther                                = "networkTypeOther"
+	TypeNetworkStatisticsEntryFile                      = "networkStatisticsEntryFile"
+	TypeNetworkStatisticsEntryCall                      = "networkStatisticsEntryCall"
+	TypeNetworkStatistics                               = "networkStatistics"
+	TypeConnectionStateWaitingForNetwork                = "connectionStateWaitingForNetwork"
+	TypeConnectionStateConnectingToProxy                = "connectionStateConnectingToProxy"
+	TypeConnectionStateConnecting                       = "connectionStateConnecting"
+	TypeConnectionStateUpdating                         = "connectionStateUpdating"
+	TypeConnectionStateReady                            = "connectionStateReady"
+	TypeTopChatCategoryUsers                            = "topChatCategoryUsers"
+	TypeTopChatCategoryBots                             = "topChatCategoryBots"
+	TypeTopChatCategoryGroups                           = "topChatCategoryGroups"
+	TypeTopChatCategoryChannels                         = "topChatCategoryChannels"
+	TypeTopChatCategoryInlineBots                       = "topChatCategoryInlineBots"
+	TypeTopChatCategoryCalls                            = "topChatCategoryCalls"
+	TypeTMeUrlTypeUser                                  = "tMeUrlTypeUser"
+	TypeTMeUrlTypeSupergroup                            = "tMeUrlTypeSupergroup"
+	TypeTMeUrlTypeChatInvite                            = "tMeUrlTypeChatInvite"
+	TypeTMeUrlTypeStickerSet                            = "tMeUrlTypeStickerSet"
+	TypeTMeUrl                                          = "tMeUrl"
+	TypeTMeUrls                                         = "tMeUrls"
+	TypeCount                                           = "count"
+	TypeText                                            = "text"
+	TypeSeconds                                         = "seconds"
+	TypeDeepLinkInfo                                    = "deepLinkInfo"
+	TypeTextParseModeMarkdown                           = "textParseModeMarkdown"
+	TypeTextParseModeHTML                               = "textParseModeHTML"
+	TypeProxyTypeSocks5                                 = "proxyTypeSocks5"
+	TypeProxyTypeHttp                                   = "proxyTypeHttp"
+	TypeProxyTypeMtproto                                = "proxyTypeMtproto"
+	TypeProxy                                           = "proxy"
+	TypeProxies                                         = "proxies"
+	TypeInputSticker                                    = "inputSticker"
+	TypeUpdateAuthorizationState                        = "updateAuthorizationState"
+	TypeUpdateNewMessage                                = "updateNewMessage"
+	TypeUpdateMessageSendAcknowledged                   = "updateMessageSendAcknowledged"
+	TypeUpdateMessageSendSucceeded                      = "updateMessageSendSucceeded"
+	TypeUpdateMessageSendFailed                         = "updateMessageSendFailed"
+	TypeUpdateMessageContent                            = "updateMessageContent"
+	TypeUpdateMessageEdited                             = "updateMessageEdited"
+	TypeUpdateMessageViews                              = "updateMessageViews"
+	TypeUpdateMessageContentOpened                      = "updateMessageContentOpened"
+	TypeUpdateMessageMentionRead                        = "updateMessageMentionRead"
+	TypeUpdateNewChat                                   = "updateNewChat"
+	TypeUpdateChatTitle                                 = "updateChatTitle"
+	TypeUpdateChatPhoto                                 = "updateChatPhoto"
+	TypeUpdateChatLastMessage                           = "updateChatLastMessage"
+	TypeUpdateChatOrder                                 = "updateChatOrder"
+	TypeUpdateChatIsPinned                              = "updateChatIsPinned"
+	TypeUpdateChatIsMarkedAsUnread                      = "updateChatIsMarkedAsUnread"
+	TypeUpdateChatIsSponsored                           = "updateChatIsSponsored"
+	TypeUpdateChatDefaultDisableNotification            = "updateChatDefaultDisableNotification"
+	TypeUpdateChatReadInbox                             = "updateChatReadInbox"
+	TypeUpdateChatReadOutbox                            = "updateChatReadOutbox"
+	TypeUpdateChatUnreadMentionCount                    = "updateChatUnreadMentionCount"
+	TypeUpdateChatNotificationSettings                  = "updateChatNotificationSettings"
+	TypeUpdateScopeNotificationSettings                 = "updateScopeNotificationSettings"
+	TypeUpdateChatReplyMarkup                           = "updateChatReplyMarkup"
+	TypeUpdateChatDraftMessage                          = "updateChatDraftMessage"
+	TypeUpdateDeleteMessages                            = "updateDeleteMessages"
+	TypeUpdateUserChatAction                            = "updateUserChatAction"
+	TypeUpdateUserStatus                                = "updateUserStatus"
+	TypeUpdateUser                                      = "updateUser"
+	TypeUpdateBasicGroup                                = "updateBasicGroup"
+	TypeUpdateSupergroup                                = "updateSupergroup"
+	TypeUpdateSecretChat                                = "updateSecretChat"
+	TypeUpdateUserFullInfo                              = "updateUserFullInfo"
+	TypeUpdateBasicGroupFullInfo                        = "updateBasicGroupFullInfo"
+	TypeUpdateSupergroupFullInfo                        = "updateSupergroupFullInfo"
+	TypeUpdateServiceNotification                       = "updateServiceNotification"
+	TypeUpdateFile                                      = "updateFile"
+	TypeUpdateFileGenerationStart                       = "updateFileGenerationStart"
+	TypeUpdateFileGenerationStop                        = "updateFileGenerationStop"
+	TypeUpdateCall                                      = "updateCall"
+	TypeUpdateUserPrivacySettingRules                   = "updateUserPrivacySettingRules"
+	TypeUpdateUnreadMessageCount                        = "updateUnreadMessageCount"
+	TypeUpdateUnreadChatCount                           = "updateUnreadChatCount"
+	TypeUpdateOption                                    = "updateOption"
+	TypeUpdateInstalledStickerSets                      = "updateInstalledStickerSets"
+	TypeUpdateTrendingStickerSets                       = "updateTrendingStickerSets"
+	TypeUpdateRecentStickers                            = "updateRecentStickers"
+	TypeUpdateFavoriteStickers                          = "updateFavoriteStickers"
+	TypeUpdateSavedAnimations                           = "updateSavedAnimations"
+	TypeUpdateLanguagePackStrings                       = "updateLanguagePackStrings"
+	TypeUpdateConnectionState                           = "updateConnectionState"
+	TypeUpdateTermsOfService                            = "updateTermsOfService"
+	TypeUpdateNewInlineQuery                            = "updateNewInlineQuery"
+	TypeUpdateNewChosenInlineResult                     = "updateNewChosenInlineResult"
+	TypeUpdateNewCallbackQuery                          = "updateNewCallbackQuery"
+	TypeUpdateNewInlineCallbackQuery                    = "updateNewInlineCallbackQuery"
+	TypeUpdateNewShippingQuery                          = "updateNewShippingQuery"
+	TypeUpdateNewPreCheckoutQuery                       = "updateNewPreCheckoutQuery"
+	TypeUpdateNewCustomEvent                            = "updateNewCustomEvent"
+	TypeUpdateNewCustomQuery                            = "updateNewCustomQuery"
+	TypeTestInt                                         = "testInt"
+	TypeTestString                                      = "testString"
+	TypeTestBytes                                       = "testBytes"
+	TypeTestVectorInt                                   = "testVectorInt"
+	TypeTestVectorIntObject                             = "testVectorIntObject"
+	TypeTestVectorString                                = "testVectorString"
+	TypeTestVectorStringObject                          = "testVectorStringObject"
 )
 
 // Provides information about the method by which an authentication code is delivered to the user
 type AuthenticationCodeType interface {
-    AuthenticationCodeTypeType() string
+	AuthenticationCodeTypeType() string
 }
 
 // Represents the current authorization state of the client
 type AuthorizationState interface {
-    AuthorizationStateType() string
+	AuthorizationStateType() string
 }
 
 // Points to a file
 type InputFile interface {
-    InputFileType() string
+	InputFileType() string
 }
 
 // Part of the face, relative to which a mask should be placed
 type MaskPoint interface {
-    MaskPointType() string
+	MaskPointType() string
 }
 
 // Represents the relationship between user A and user B. For incoming_link, user A is the current user; for outgoing_link, user B is the current user
 type LinkState interface {
-    LinkStateType() string
+	LinkStateType() string
 }
 
 // Represents the type of the user. The following types are possible: regular users, deleted users and bots
 type UserType interface {
-    UserTypeType() string
+	UserTypeType() string
 }
 
 // Provides information about the status of a member in a chat
 type ChatMemberStatus interface {
-    ChatMemberStatusType() string
+	ChatMemberStatusType() string
 }
 
 // Specifies the kind of chat members to return in searchChatMembers
 type ChatMembersFilter interface {
-    ChatMembersFilterType() string
+	ChatMembersFilterType() string
 }
 
 // Specifies the kind of chat members to return in getSupergroupMembers
 type SupergroupMembersFilter interface {
-    SupergroupMembersFilterType() string
+	SupergroupMembersFilterType() string
 }
 
 // Describes the current secret chat state
 type SecretChatState interface {
-    SecretChatStateType() string
+	SecretChatStateType() string
 }
 
 // Contains information about the initial sender of a forwarded message
 type MessageForwardInfo interface {
-    MessageForwardInfoType() string
+	MessageForwardInfoType() string
 }
 
 // Contains information about the sending state of the message
 type MessageSendingState interface {
-    MessageSendingStateType() string
+	MessageSendingStateType() string
 }
 
 // Describes the types of chats to which notification settings are applied
 type NotificationSettingsScope interface {
-    NotificationSettingsScopeType() string
+	NotificationSettingsScopeType() string
 }
 
 // Describes the type of a chat
 type ChatType interface {
-    ChatTypeType() string
+	ChatTypeType() string
 }
 
 // Describes a keyboard button type
 type KeyboardButtonType interface {
-    KeyboardButtonTypeType() string
+	KeyboardButtonTypeType() string
 }
 
 // Describes the type of an inline keyboard button
 type InlineKeyboardButtonType interface {
-    InlineKeyboardButtonTypeType() string
+	InlineKeyboardButtonTypeType() string
 }
 
 // Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots
 type ReplyMarkup interface {
-    ReplyMarkupType() string
+	ReplyMarkupType() string
 }
 
 // Describes a text object inside an instant-view web page
 type RichText interface {
-    RichTextType() string
+	RichTextType() string
 }
 
 // Describes a block of an instant view web page
 type PageBlock interface {
-    PageBlockType() string
+	PageBlockType() string
 }
 
 // Contains information about the payment method chosen by the user
 type InputCredentials interface {
-    InputCredentialsType() string
+	InputCredentialsType() string
 }
 
 // Contains the type of a Telegram Passport element
 type PassportElementType interface {
-    PassportElementTypeType() string
+	PassportElementTypeType() string
 }
 
 // Contains information about a Telegram Passport element
 type PassportElement interface {
-    PassportElementType() string
+	PassportElementType() string
 }
 
 // Contains information about a Telegram Passport element to be saved
 type InputPassportElement interface {
-    InputPassportElementType() string
+	InputPassportElementType() string
 }
 
 // Contains the description of an error in a Telegram Passport element
 type PassportElementErrorSource interface {
-    PassportElementErrorSourceType() string
+	PassportElementErrorSourceType() string
 }
 
 // Contains the description of an error in a Telegram Passport element; for bots only
 type InputPassportElementErrorSource interface {
-    InputPassportElementErrorSourceType() string
+	InputPassportElementErrorSourceType() string
 }
 
 // Contains the content of a message
 type MessageContent interface {
-    MessageContentType() string
+	MessageContentType() string
 }
 
 // Represents a part of the text which must be formatted differently
 type TextEntityType interface {
-    TextEntityTypeType() string
+	TextEntityTypeType() string
 }
 
 // The content of a message to send
 type InputMessageContent interface {
-    InputMessageContentType() string
+	InputMessageContentType() string
 }
 
 // Represents a filter for message search results
 type SearchMessagesFilter interface {
-    SearchMessagesFilterType() string
+	SearchMessagesFilterType() string
 }
 
 // Describes the different types of activity in a chat
 type ChatAction interface {
-    ChatActionType() string
+	ChatActionType() string
 }
 
 // Describes the last time the user was online
 type UserStatus interface {
-    UserStatusType() string
+	UserStatusType() string
 }
 
 // Describes the reason why a call was discarded
 type CallDiscardReason interface {
-    CallDiscardReasonType() string
+	CallDiscardReasonType() string
 }
 
 // Describes the current call state
 type CallState interface {
-    CallStateType() string
+	CallStateType() string
 }
 
 // Represents a single result of an inline query; for bots only
 type InputInlineQueryResult interface {
-    InputInlineQueryResultType() string
+	InputInlineQueryResultType() string
 }
 
 // Represents a single result of an inline query
 type InlineQueryResult interface {
-    InlineQueryResultType() string
+	InlineQueryResultType() string
 }
 
 // Represents a payload of a callback query
 type CallbackQueryPayload interface {
-    CallbackQueryPayloadType() string
+	CallbackQueryPayloadType() string
 }
 
 // Represents a chat event
 type ChatEventAction interface {
-    ChatEventActionType() string
+	ChatEventActionType() string
 }
 
 // Represents the value of a string in a language pack
 type LanguagePackStringValue interface {
-    LanguagePackStringValueType() string
+	LanguagePackStringValueType() string
 }
 
 // Represents a data needed to subscribe for push notifications. To use specific push notification service, you must specify the correct application platform and upload valid server authentication data at https://my.telegram.org
 type DeviceToken interface {
-    DeviceTokenType() string
+	DeviceTokenType() string
 }
 
 // Represents result of checking whether a username can be set for a chat
 type CheckChatUsernameResult interface {
-    CheckChatUsernameResultType() string
+	CheckChatUsernameResultType() string
 }
 
 // Represents the value of an option
 type OptionValue interface {
-    OptionValueType() string
+	OptionValueType() string
 }
 
 // Represents a single rule for managing privacy settings
 type UserPrivacySettingRule interface {
-    UserPrivacySettingRuleType() string
+	UserPrivacySettingRuleType() string
 }
 
 // Describes available user privacy settings
 type UserPrivacySetting interface {
-    UserPrivacySettingType() string
+	UserPrivacySettingType() string
 }
 
 // Describes the reason why a chat is reported
 type ChatReportReason interface {
-    ChatReportReasonType() string
+	ChatReportReasonType() string
 }
 
 // Represents the type of a file
 type FileType interface {
-    FileTypeType() string
+	FileTypeType() string
 }
 
 // Represents the type of a network
 type NetworkType interface {
-    NetworkTypeType() string
+	NetworkTypeType() string
 }
 
 // Contains statistics about network usage
 type NetworkStatisticsEntry interface {
-    NetworkStatisticsEntryType() string
+	NetworkStatisticsEntryType() string
 }
 
 // Describes the current state of the connection to Telegram servers
 type ConnectionState interface {
-    ConnectionStateType() string
+	ConnectionStateType() string
 }
 
 // Represents the categories of chats for which a list of frequently used chats can be retrieved
 type TopChatCategory interface {
-    TopChatCategoryType() string
+	TopChatCategoryType() string
 }
 
 // Describes the type of a URL linking to an internal Telegram entity
 type TMeUrlType interface {
-    TMeUrlTypeType() string
+	TMeUrlTypeType() string
 }
 
 // Describes the way the text should be parsed for TextEntities
 type TextParseMode interface {
-    TextParseModeType() string
+	TextParseModeType() string
 }
 
 // Describes the type of the proxy server
 type ProxyType interface {
-    ProxyTypeType() string
+	ProxyTypeType() string
 }
 
 // Contains notifications about data changes
 type Update interface {
-    UpdateType() string
+	UpdateType() string
 }
 
 // An object of this type can be returned on every function call, in case of an error
 type Error struct {
-    meta
-    // Error code; subject to future changes. If the error code is 406, the error message must not be processed in any way and must not be displayed to the user
-    Code int32 `json:"code"`
-    // Error message; subject to future changes
-    Message string `json:"message"`
+	meta
+	// Error code; subject to future changes. If the error code is 406, the error message must not be processed in any way and must not be displayed to the user
+	Code int32 `json:"code"`
+	// Error message; subject to future changes
+	Message string `json:"message"`
 }
 
 func (entity *Error) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Error
+	type stub Error
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Error) GetClass() string {
-    return ClassError
+	return ClassError
 }
 
 func (*Error) GetType() string {
-    return TypeError
+	return TypeError
 }
 
 // An object of this type is returned on a successful function call for certain functions
-type Ok struct{
-    meta
+type Ok struct {
+	meta
 }
 
 func (entity *Ok) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Ok
+	type stub Ok
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Ok) GetClass() string {
-    return ClassOk
+	return ClassOk
 }
 
 func (*Ok) GetType() string {
-    return TypeOk
+	return TypeOk
 }
 
 // Contains parameters for TDLib initialization
 type TdlibParameters struct {
-    meta
-    // If set to true, the Telegram test environment will be used instead of the production environment
-    UseTestDc bool `json:"use_test_dc"`
-    // The path to the directory for the persistent database; if empty, the current working directory will be used
-    DatabaseDirectory string `json:"database_directory"`
-    // The path to the directory for storing files; if empty, database_directory will be used
-    FilesDirectory string `json:"files_directory"`
-    // If set to true, information about downloaded and uploaded files will be saved between application restarts
-    UseFileDatabase bool `json:"use_file_database"`
-    // If set to true, the library will maintain a cache of users, basic groups, supergroups, channels and secret chats. Implies use_file_database
-    UseChatInfoDatabase bool `json:"use_chat_info_database"`
-    // If set to true, the library will maintain a cache of chats and messages. Implies use_chat_info_database
-    UseMessageDatabase bool `json:"use_message_database"`
-    // If set to true, support for secret chats will be enabled
-    UseSecretChats bool `json:"use_secret_chats"`
-    // Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
-    ApiId int32 `json:"api_id"`
-    // Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
-    ApiHash string `json:"api_hash"`
-    // IETF language tag of the user's operating system language; must be non-empty
-    SystemLanguageCode string `json:"system_language_code"`
-    // Model of the device the application is being run on; must be non-empty
-    DeviceModel string `json:"device_model"`
-    // Version of the operating system the application is being run on; must be non-empty
-    SystemVersion string `json:"system_version"`
-    // Application version; must be non-empty
-    ApplicationVersion string `json:"application_version"`
-    // If set to true, old files will automatically be deleted
-    EnableStorageOptimizer bool `json:"enable_storage_optimizer"`
-    // If set to true, original file names will be ignored. Otherwise, downloaded files will be saved under names as close as possible to the original name
-    IgnoreFileNames bool `json:"ignore_file_names"`
+	meta
+	// If set to true, the Telegram test environment will be used instead of the production environment
+	UseTestDc bool `json:"use_test_dc"`
+	// The path to the directory for the persistent database; if empty, the current working directory will be used
+	DatabaseDirectory string `json:"database_directory"`
+	// The path to the directory for storing files; if empty, database_directory will be used
+	FilesDirectory string `json:"files_directory"`
+	// If set to true, information about downloaded and uploaded files will be saved between application restarts
+	UseFileDatabase bool `json:"use_file_database"`
+	// If set to true, the library will maintain a cache of users, basic groups, supergroups, channels and secret chats. Implies use_file_database
+	UseChatInfoDatabase bool `json:"use_chat_info_database"`
+	// If set to true, the library will maintain a cache of chats and messages. Implies use_chat_info_database
+	UseMessageDatabase bool `json:"use_message_database"`
+	// If set to true, support for secret chats will be enabled
+	UseSecretChats bool `json:"use_secret_chats"`
+	// Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
+	ApiId int32 `json:"api_id"`
+	// Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
+	ApiHash string `json:"api_hash"`
+	// IETF language tag of the user's operating system language; must be non-empty
+	SystemLanguageCode string `json:"system_language_code"`
+	// Model of the device the application is being run on; must be non-empty
+	DeviceModel string `json:"device_model"`
+	// Version of the operating system the application is being run on; must be non-empty
+	SystemVersion string `json:"system_version"`
+	// Application version; must be non-empty
+	ApplicationVersion string `json:"application_version"`
+	// If set to true, old files will automatically be deleted
+	EnableStorageOptimizer bool `json:"enable_storage_optimizer"`
+	// If set to true, original file names will be ignored. Otherwise, downloaded files will be saved under names as close as possible to the original name
+	IgnoreFileNames bool `json:"ignore_file_names"`
 }
 
 func (entity *TdlibParameters) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TdlibParameters
+	type stub TdlibParameters
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TdlibParameters) GetClass() string {
-    return ClassTdlibParameters
+	return ClassTdlibParameters
 }
 
 func (*TdlibParameters) GetType() string {
-    return TypeTdlibParameters
+	return TypeTdlibParameters
 }
 
 // An authentication code is delivered via a private Telegram message, which can be viewed in another client
 type AuthenticationCodeTypeTelegramMessage struct {
-    meta
-    // Length of the code
-    Length int32 `json:"length"`
+	meta
+	// Length of the code
+	Length int32 `json:"length"`
 }
 
 func (entity *AuthenticationCodeTypeTelegramMessage) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AuthenticationCodeTypeTelegramMessage
+	type stub AuthenticationCodeTypeTelegramMessage
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AuthenticationCodeTypeTelegramMessage) GetClass() string {
-    return ClassAuthenticationCodeType
+	return ClassAuthenticationCodeType
 }
 
 func (*AuthenticationCodeTypeTelegramMessage) GetType() string {
-    return TypeAuthenticationCodeTypeTelegramMessage
+	return TypeAuthenticationCodeTypeTelegramMessage
 }
 
 func (*AuthenticationCodeTypeTelegramMessage) AuthenticationCodeTypeType() string {
-    return TypeAuthenticationCodeTypeTelegramMessage
+	return TypeAuthenticationCodeTypeTelegramMessage
 }
 
 // An authentication code is delivered via an SMS message to the specified phone number
 type AuthenticationCodeTypeSms struct {
-    meta
-    // Length of the code
-    Length int32 `json:"length"`
+	meta
+	// Length of the code
+	Length int32 `json:"length"`
 }
 
 func (entity *AuthenticationCodeTypeSms) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AuthenticationCodeTypeSms
+	type stub AuthenticationCodeTypeSms
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AuthenticationCodeTypeSms) GetClass() string {
-    return ClassAuthenticationCodeType
+	return ClassAuthenticationCodeType
 }
 
 func (*AuthenticationCodeTypeSms) GetType() string {
-    return TypeAuthenticationCodeTypeSms
+	return TypeAuthenticationCodeTypeSms
 }
 
 func (*AuthenticationCodeTypeSms) AuthenticationCodeTypeType() string {
-    return TypeAuthenticationCodeTypeSms
+	return TypeAuthenticationCodeTypeSms
 }
 
 // An authentication code is delivered via a phone call to the specified phone number
 type AuthenticationCodeTypeCall struct {
-    meta
-    // Length of the code
-    Length int32 `json:"length"`
+	meta
+	// Length of the code
+	Length int32 `json:"length"`
 }
 
 func (entity *AuthenticationCodeTypeCall) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AuthenticationCodeTypeCall
+	type stub AuthenticationCodeTypeCall
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AuthenticationCodeTypeCall) GetClass() string {
-    return ClassAuthenticationCodeType
+	return ClassAuthenticationCodeType
 }
 
 func (*AuthenticationCodeTypeCall) GetType() string {
-    return TypeAuthenticationCodeTypeCall
+	return TypeAuthenticationCodeTypeCall
 }
 
 func (*AuthenticationCodeTypeCall) AuthenticationCodeTypeType() string {
-    return TypeAuthenticationCodeTypeCall
+	return TypeAuthenticationCodeTypeCall
 }
 
 // An authentication code is delivered by an immediately cancelled call to the specified phone number. The number from which the call was made is the code
 type AuthenticationCodeTypeFlashCall struct {
-    meta
-    // Pattern of the phone number from which the call will be made
-    Pattern string `json:"pattern"`
+	meta
+	// Pattern of the phone number from which the call will be made
+	Pattern string `json:"pattern"`
 }
 
 func (entity *AuthenticationCodeTypeFlashCall) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AuthenticationCodeTypeFlashCall
+	type stub AuthenticationCodeTypeFlashCall
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AuthenticationCodeTypeFlashCall) GetClass() string {
-    return ClassAuthenticationCodeType
+	return ClassAuthenticationCodeType
 }
 
 func (*AuthenticationCodeTypeFlashCall) GetType() string {
-    return TypeAuthenticationCodeTypeFlashCall
+	return TypeAuthenticationCodeTypeFlashCall
 }
 
 func (*AuthenticationCodeTypeFlashCall) AuthenticationCodeTypeType() string {
-    return TypeAuthenticationCodeTypeFlashCall
+	return TypeAuthenticationCodeTypeFlashCall
 }
 
 // Information about the authentication code that was sent
 type AuthenticationCodeInfo struct {
-    meta
-    // A phone number that is being authenticated
-    PhoneNumber string `json:"phone_number"`
-    // Describes the way the code was sent to the user
-    Type AuthenticationCodeType `json:"type"`
-    // Describes the way the next code will be sent to the user; may be null
-    NextType AuthenticationCodeType `json:"next_type"`
-    // Timeout before the code should be re-sent, in seconds
-    Timeout int32 `json:"timeout"`
+	meta
+	// A phone number that is being authenticated
+	PhoneNumber string `json:"phone_number"`
+	// Describes the way the code was sent to the user
+	Type AuthenticationCodeType `json:"type"`
+	// Describes the way the next code will be sent to the user; may be null
+	NextType AuthenticationCodeType `json:"next_type"`
+	// Timeout before the code should be re-sent, in seconds
+	Timeout int32 `json:"timeout"`
 }
 
 func (entity *AuthenticationCodeInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AuthenticationCodeInfo
+	type stub AuthenticationCodeInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AuthenticationCodeInfo) GetClass() string {
-    return ClassAuthenticationCodeInfo
+	return ClassAuthenticationCodeInfo
 }
 
 func (*AuthenticationCodeInfo) GetType() string {
-    return TypeAuthenticationCodeInfo
+	return TypeAuthenticationCodeInfo
 }
 
 func (authenticationCodeInfo *AuthenticationCodeInfo) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        PhoneNumber string `json:"phone_number"`
-        Type json.RawMessage `json:"type"`
-        NextType json.RawMessage `json:"next_type"`
-        Timeout int32 `json:"timeout"`
-    }
+	var tmp struct {
+		PhoneNumber string          `json:"phone_number"`
+		Type        json.RawMessage `json:"type"`
+		NextType    json.RawMessage `json:"next_type"`
+		Timeout     int32           `json:"timeout"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    authenticationCodeInfo.PhoneNumber = tmp.PhoneNumber
-    authenticationCodeInfo.Timeout = tmp.Timeout
+	authenticationCodeInfo.PhoneNumber = tmp.PhoneNumber
+	authenticationCodeInfo.Timeout = tmp.Timeout
 
-    fieldType, _ := UnmarshalAuthenticationCodeType(tmp.Type)
-    authenticationCodeInfo.Type = fieldType
+	fieldType, _ := UnmarshalAuthenticationCodeType(tmp.Type)
+	authenticationCodeInfo.Type = fieldType
 
-    fieldNextType, _ := UnmarshalAuthenticationCodeType(tmp.NextType)
-    authenticationCodeInfo.NextType = fieldNextType
+	fieldNextType, _ := UnmarshalAuthenticationCodeType(tmp.NextType)
+	authenticationCodeInfo.NextType = fieldNextType
 
-    return nil
+	return nil
 }
 
 // Information about the email address authentication code that was sent
 type EmailAddressAuthenticationCodeInfo struct {
-    meta
-    // Pattern of the email address to which an authentication code was sent
-    EmailAddressPattern string `json:"email_address_pattern"`
-    // Length of the code; 0 if unknown
-    Length int32 `json:"length"`
+	meta
+	// Pattern of the email address to which an authentication code was sent
+	EmailAddressPattern string `json:"email_address_pattern"`
+	// Length of the code; 0 if unknown
+	Length int32 `json:"length"`
 }
 
 func (entity *EmailAddressAuthenticationCodeInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub EmailAddressAuthenticationCodeInfo
+	type stub EmailAddressAuthenticationCodeInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*EmailAddressAuthenticationCodeInfo) GetClass() string {
-    return ClassEmailAddressAuthenticationCodeInfo
+	return ClassEmailAddressAuthenticationCodeInfo
 }
 
 func (*EmailAddressAuthenticationCodeInfo) GetType() string {
-    return TypeEmailAddressAuthenticationCodeInfo
+	return TypeEmailAddressAuthenticationCodeInfo
 }
 
 // Represents a part of the text that needs to be formatted in some unusual way
 type TextEntity struct {
-    meta
-    // Offset of the entity in UTF-16 code points
-    Offset int32 `json:"offset"`
-    // Length of the entity, in UTF-16 code points
-    Length int32 `json:"length"`
-    // Type of the entity
-    Type TextEntityType `json:"type"`
+	meta
+	// Offset of the entity in UTF-16 code points
+	Offset int32 `json:"offset"`
+	// Length of the entity, in UTF-16 code points
+	Length int32 `json:"length"`
+	// Type of the entity
+	Type TextEntityType `json:"type"`
 }
 
 func (entity *TextEntity) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntity
+	type stub TextEntity
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntity) GetClass() string {
-    return ClassTextEntity
+	return ClassTextEntity
 }
 
 func (*TextEntity) GetType() string {
-    return TypeTextEntity
+	return TypeTextEntity
 }
 
 func (textEntity *TextEntity) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Offset int32 `json:"offset"`
-        Length int32 `json:"length"`
-        Type json.RawMessage `json:"type"`
-    }
+	var tmp struct {
+		Offset int32           `json:"offset"`
+		Length int32           `json:"length"`
+		Type   json.RawMessage `json:"type"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    textEntity.Offset = tmp.Offset
-    textEntity.Length = tmp.Length
+	textEntity.Offset = tmp.Offset
+	textEntity.Length = tmp.Length
 
-    fieldType, _ := UnmarshalTextEntityType(tmp.Type)
-    textEntity.Type = fieldType
+	fieldType, _ := UnmarshalTextEntityType(tmp.Type)
+	textEntity.Type = fieldType
 
-    return nil
+	return nil
 }
 
 // Contains a list of text entities
 type TextEntities struct {
-    meta
-    // List of text entities
-    Entities []*TextEntity `json:"entities"`
+	meta
+	// List of text entities
+	Entities []*TextEntity `json:"entities"`
 }
 
 func (entity *TextEntities) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntities
+	type stub TextEntities
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntities) GetClass() string {
-    return ClassTextEntities
+	return ClassTextEntities
 }
 
 func (*TextEntities) GetType() string {
-    return TypeTextEntities
+	return TypeTextEntities
 }
 
 // A text with some entities
 type FormattedText struct {
-    meta
-    // The text
-    Text string `json:"text"`
-    // Entities contained in the text
-    Entities []*TextEntity `json:"entities"`
+	meta
+	// The text
+	Text string `json:"text"`
+	// Entities contained in the text
+	Entities []*TextEntity `json:"entities"`
 }
 
 func (entity *FormattedText) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FormattedText
+	type stub FormattedText
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FormattedText) GetClass() string {
-    return ClassFormattedText
+	return ClassFormattedText
 }
 
 func (*FormattedText) GetType() string {
-    return TypeFormattedText
+	return TypeFormattedText
 }
 
 // Contains Telegram terms of service
 type TermsOfService struct {
-    meta
-    // Text of the terms of service
-    Text *FormattedText `json:"text"`
-    // Mininum age of a user to be able to accept the terms; 0 if any
-    MinUserAge int32 `json:"min_user_age"`
-    // True, if a blocking popup with terms of service must be shown to the user
-    ShowPopup bool `json:"show_popup"`
+	meta
+	// Text of the terms of service
+	Text *FormattedText `json:"text"`
+	// Mininum age of a user to be able to accept the terms; 0 if any
+	MinUserAge int32 `json:"min_user_age"`
+	// True, if a blocking popup with terms of service must be shown to the user
+	ShowPopup bool `json:"show_popup"`
 }
 
 func (entity *TermsOfService) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TermsOfService
+	type stub TermsOfService
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TermsOfService) GetClass() string {
-    return ClassTermsOfService
+	return ClassTermsOfService
 }
 
 func (*TermsOfService) GetType() string {
-    return TypeTermsOfService
+	return TypeTermsOfService
 }
 
 // TDLib needs TdlibParameters for initialization
-type AuthorizationStateWaitTdlibParameters struct{
-    meta
+type AuthorizationStateWaitTdlibParameters struct {
+	meta
 }
 
 func (entity *AuthorizationStateWaitTdlibParameters) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AuthorizationStateWaitTdlibParameters
+	type stub AuthorizationStateWaitTdlibParameters
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AuthorizationStateWaitTdlibParameters) GetClass() string {
-    return ClassAuthorizationState
+	return ClassAuthorizationState
 }
 
 func (*AuthorizationStateWaitTdlibParameters) GetType() string {
-    return TypeAuthorizationStateWaitTdlibParameters
+	return TypeAuthorizationStateWaitTdlibParameters
 }
 
 func (*AuthorizationStateWaitTdlibParameters) AuthorizationStateType() string {
-    return TypeAuthorizationStateWaitTdlibParameters
+	return TypeAuthorizationStateWaitTdlibParameters
 }
 
 // TDLib needs an encryption key to decrypt the local database
 type AuthorizationStateWaitEncryptionKey struct {
-    meta
-    // True, if the database is currently encrypted
-    IsEncrypted bool `json:"is_encrypted"`
+	meta
+	// True, if the database is currently encrypted
+	IsEncrypted bool `json:"is_encrypted"`
 }
 
 func (entity *AuthorizationStateWaitEncryptionKey) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AuthorizationStateWaitEncryptionKey
+	type stub AuthorizationStateWaitEncryptionKey
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AuthorizationStateWaitEncryptionKey) GetClass() string {
-    return ClassAuthorizationState
+	return ClassAuthorizationState
 }
 
 func (*AuthorizationStateWaitEncryptionKey) GetType() string {
-    return TypeAuthorizationStateWaitEncryptionKey
+	return TypeAuthorizationStateWaitEncryptionKey
 }
 
 func (*AuthorizationStateWaitEncryptionKey) AuthorizationStateType() string {
-    return TypeAuthorizationStateWaitEncryptionKey
+	return TypeAuthorizationStateWaitEncryptionKey
 }
 
 // TDLib needs the user's phone number to authorize
-type AuthorizationStateWaitPhoneNumber struct{
-    meta
+type AuthorizationStateWaitPhoneNumber struct {
+	meta
 }
 
 func (entity *AuthorizationStateWaitPhoneNumber) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AuthorizationStateWaitPhoneNumber
+	type stub AuthorizationStateWaitPhoneNumber
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AuthorizationStateWaitPhoneNumber) GetClass() string {
-    return ClassAuthorizationState
+	return ClassAuthorizationState
 }
 
 func (*AuthorizationStateWaitPhoneNumber) GetType() string {
-    return TypeAuthorizationStateWaitPhoneNumber
+	return TypeAuthorizationStateWaitPhoneNumber
 }
 
 func (*AuthorizationStateWaitPhoneNumber) AuthorizationStateType() string {
-    return TypeAuthorizationStateWaitPhoneNumber
+	return TypeAuthorizationStateWaitPhoneNumber
 }
 
 // TDLib needs the user's authentication code to finalize authorization
 type AuthorizationStateWaitCode struct {
-    meta
-    // True, if the user is already registered
-    IsRegistered bool `json:"is_registered"`
-    // Telegram terms of service, which should be accepted before user can continue registration; may be null
-    TermsOfService *TermsOfService `json:"terms_of_service"`
-    // Information about the authorization code that was sent
-    CodeInfo *AuthenticationCodeInfo `json:"code_info"`
+	meta
+	// True, if the user is already registered
+	IsRegistered bool `json:"is_registered"`
+	// Telegram terms of service, which should be accepted before user can continue registration; may be null
+	TermsOfService *TermsOfService `json:"terms_of_service"`
+	// Information about the authorization code that was sent
+	CodeInfo *AuthenticationCodeInfo `json:"code_info"`
 }
 
 func (entity *AuthorizationStateWaitCode) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AuthorizationStateWaitCode
+	type stub AuthorizationStateWaitCode
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AuthorizationStateWaitCode) GetClass() string {
-    return ClassAuthorizationState
+	return ClassAuthorizationState
 }
 
 func (*AuthorizationStateWaitCode) GetType() string {
-    return TypeAuthorizationStateWaitCode
+	return TypeAuthorizationStateWaitCode
 }
 
 func (*AuthorizationStateWaitCode) AuthorizationStateType() string {
-    return TypeAuthorizationStateWaitCode
+	return TypeAuthorizationStateWaitCode
 }
 
 // The user has been authorized, but needs to enter a password to start using the application
 type AuthorizationStateWaitPassword struct {
-    meta
-    // Hint for the password; can be empty
-    PasswordHint string `json:"password_hint"`
-    // True if a recovery email address has been set up
-    HasRecoveryEmailAddress bool `json:"has_recovery_email_address"`
-    // Pattern of the email address to which the recovery email was sent; empty until a recovery email has been sent
-    RecoveryEmailAddressPattern string `json:"recovery_email_address_pattern"`
+	meta
+	// Hint for the password; can be empty
+	PasswordHint string `json:"password_hint"`
+	// True if a recovery email address has been set up
+	HasRecoveryEmailAddress bool `json:"has_recovery_email_address"`
+	// Pattern of the email address to which the recovery email was sent; empty until a recovery email has been sent
+	RecoveryEmailAddressPattern string `json:"recovery_email_address_pattern"`
 }
 
 func (entity *AuthorizationStateWaitPassword) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AuthorizationStateWaitPassword
+	type stub AuthorizationStateWaitPassword
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AuthorizationStateWaitPassword) GetClass() string {
-    return ClassAuthorizationState
+	return ClassAuthorizationState
 }
 
 func (*AuthorizationStateWaitPassword) GetType() string {
-    return TypeAuthorizationStateWaitPassword
+	return TypeAuthorizationStateWaitPassword
 }
 
 func (*AuthorizationStateWaitPassword) AuthorizationStateType() string {
-    return TypeAuthorizationStateWaitPassword
+	return TypeAuthorizationStateWaitPassword
 }
 
 // The user has been successfully authorized. TDLib is now ready to answer queries
-type AuthorizationStateReady struct{
-    meta
+type AuthorizationStateReady struct {
+	meta
 }
 
 func (entity *AuthorizationStateReady) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AuthorizationStateReady
+	type stub AuthorizationStateReady
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AuthorizationStateReady) GetClass() string {
-    return ClassAuthorizationState
+	return ClassAuthorizationState
 }
 
 func (*AuthorizationStateReady) GetType() string {
-    return TypeAuthorizationStateReady
+	return TypeAuthorizationStateReady
 }
 
 func (*AuthorizationStateReady) AuthorizationStateType() string {
-    return TypeAuthorizationStateReady
+	return TypeAuthorizationStateReady
 }
 
 // The user is currently logging out
-type AuthorizationStateLoggingOut struct{
-    meta
+type AuthorizationStateLoggingOut struct {
+	meta
 }
 
 func (entity *AuthorizationStateLoggingOut) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AuthorizationStateLoggingOut
+	type stub AuthorizationStateLoggingOut
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AuthorizationStateLoggingOut) GetClass() string {
-    return ClassAuthorizationState
+	return ClassAuthorizationState
 }
 
 func (*AuthorizationStateLoggingOut) GetType() string {
-    return TypeAuthorizationStateLoggingOut
+	return TypeAuthorizationStateLoggingOut
 }
 
 func (*AuthorizationStateLoggingOut) AuthorizationStateType() string {
-    return TypeAuthorizationStateLoggingOut
+	return TypeAuthorizationStateLoggingOut
 }
 
 // TDLib is closing, all subsequent queries will be answered with the error 500. Note that closing TDLib can take a while. All resources will be freed only after authorizationStateClosed has been received
-type AuthorizationStateClosing struct{
-    meta
+type AuthorizationStateClosing struct {
+	meta
 }
 
 func (entity *AuthorizationStateClosing) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AuthorizationStateClosing
+	type stub AuthorizationStateClosing
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AuthorizationStateClosing) GetClass() string {
-    return ClassAuthorizationState
+	return ClassAuthorizationState
 }
 
 func (*AuthorizationStateClosing) GetType() string {
-    return TypeAuthorizationStateClosing
+	return TypeAuthorizationStateClosing
 }
 
 func (*AuthorizationStateClosing) AuthorizationStateType() string {
-    return TypeAuthorizationStateClosing
+	return TypeAuthorizationStateClosing
 }
 
 // TDLib client is in its final state. All databases are closed and all resources are released. No other updates will be received after this. All queries will be responded to with error code 500. To continue working, one should create a new instance of the TDLib client
-type AuthorizationStateClosed struct{
-    meta
+type AuthorizationStateClosed struct {
+	meta
 }
 
 func (entity *AuthorizationStateClosed) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AuthorizationStateClosed
+	type stub AuthorizationStateClosed
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AuthorizationStateClosed) GetClass() string {
-    return ClassAuthorizationState
+	return ClassAuthorizationState
 }
 
 func (*AuthorizationStateClosed) GetType() string {
-    return TypeAuthorizationStateClosed
+	return TypeAuthorizationStateClosed
 }
 
 func (*AuthorizationStateClosed) AuthorizationStateType() string {
-    return TypeAuthorizationStateClosed
+	return TypeAuthorizationStateClosed
 }
 
 // Represents the current state of 2-step verification
 type PasswordState struct {
-    meta
-    // True if a 2-step verification password is set
-    HasPassword bool `json:"has_password"`
-    // Hint for the password; can be empty
-    PasswordHint string `json:"password_hint"`
-    // True if a recovery email is set
-    HasRecoveryEmailAddress bool `json:"has_recovery_email_address"`
-    // True if some Telegram Passport elements were saved
-    HasPassportData bool `json:"has_passport_data"`
-    // Pattern of the email address to which the confirmation email was sent
-    UnconfirmedRecoveryEmailAddressPattern string `json:"unconfirmed_recovery_email_address_pattern"`
+	meta
+	// True if a 2-step verification password is set
+	HasPassword bool `json:"has_password"`
+	// Hint for the password; can be empty
+	PasswordHint string `json:"password_hint"`
+	// True if a recovery email is set
+	HasRecoveryEmailAddress bool `json:"has_recovery_email_address"`
+	// True if some Telegram Passport elements were saved
+	HasPassportData bool `json:"has_passport_data"`
+	// Pattern of the email address to which the confirmation email was sent
+	UnconfirmedRecoveryEmailAddressPattern string `json:"unconfirmed_recovery_email_address_pattern"`
 }
 
 func (entity *PasswordState) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PasswordState
+	type stub PasswordState
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PasswordState) GetClass() string {
-    return ClassPasswordState
+	return ClassPasswordState
 }
 
 func (*PasswordState) GetType() string {
-    return TypePasswordState
+	return TypePasswordState
 }
 
 // Contains information about the current recovery email address
 type RecoveryEmailAddress struct {
-    meta
-    // Recovery email address
-    RecoveryEmailAddress string `json:"recovery_email_address"`
+	meta
+	// Recovery email address
+	RecoveryEmailAddress string `json:"recovery_email_address"`
 }
 
 func (entity *RecoveryEmailAddress) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub RecoveryEmailAddress
+	type stub RecoveryEmailAddress
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*RecoveryEmailAddress) GetClass() string {
-    return ClassRecoveryEmailAddress
+	return ClassRecoveryEmailAddress
 }
 
 func (*RecoveryEmailAddress) GetType() string {
-    return TypeRecoveryEmailAddress
+	return TypeRecoveryEmailAddress
 }
 
 // Returns information about the availability of a temporary password, which can be used for payments
 type TemporaryPasswordState struct {
-    meta
-    // True, if a temporary password is available
-    HasPassword bool `json:"has_password"`
-    // Time left before the temporary password expires, in seconds
-    ValidFor int32 `json:"valid_for"`
+	meta
+	// True, if a temporary password is available
+	HasPassword bool `json:"has_password"`
+	// Time left before the temporary password expires, in seconds
+	ValidFor int32 `json:"valid_for"`
 }
 
 func (entity *TemporaryPasswordState) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TemporaryPasswordState
+	type stub TemporaryPasswordState
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TemporaryPasswordState) GetClass() string {
-    return ClassTemporaryPasswordState
+	return ClassTemporaryPasswordState
 }
 
 func (*TemporaryPasswordState) GetType() string {
-    return TypeTemporaryPasswordState
+	return TypeTemporaryPasswordState
 }
 
 // Represents a local file
 type LocalFile struct {
-    meta
-    // Local path to the locally available file part; may be empty
-    Path string `json:"path"`
-    // True, if it is possible to try to download or generate the file
-    CanBeDownloaded bool `json:"can_be_downloaded"`
-    // True, if the file can be deleted
-    CanBeDeleted bool `json:"can_be_deleted"`
-    // True, if the file is currently being downloaded (or a local copy is being generated by some other means)
-    IsDownloadingActive bool `json:"is_downloading_active"`
-    // True, if the local copy is fully available
-    IsDownloadingCompleted bool `json:"is_downloading_completed"`
-    // If is_downloading_completed is false, then only some prefix of the file is ready to be read. downloaded_prefix_size is the size of that prefix
-    DownloadedPrefixSize int32 `json:"downloaded_prefix_size"`
-    // Total downloaded file bytes. Should be used only for calculating download progress. The actual file size may be bigger, and some parts of it may contain garbage
-    DownloadedSize int32 `json:"downloaded_size"`
+	meta
+	// Local path to the locally available file part; may be empty
+	Path string `json:"path"`
+	// True, if it is possible to try to download or generate the file
+	CanBeDownloaded bool `json:"can_be_downloaded"`
+	// True, if the file can be deleted
+	CanBeDeleted bool `json:"can_be_deleted"`
+	// True, if the file is currently being downloaded (or a local copy is being generated by some other means)
+	IsDownloadingActive bool `json:"is_downloading_active"`
+	// True, if the local copy is fully available
+	IsDownloadingCompleted bool `json:"is_downloading_completed"`
+	// If is_downloading_completed is false, then only some prefix of the file is ready to be read. downloaded_prefix_size is the size of that prefix
+	DownloadedPrefixSize int32 `json:"downloaded_prefix_size"`
+	// Total downloaded file bytes. Should be used only for calculating download progress. The actual file size may be bigger, and some parts of it may contain garbage
+	DownloadedSize int32 `json:"downloaded_size"`
 }
 
 func (entity *LocalFile) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub LocalFile
+	type stub LocalFile
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*LocalFile) GetClass() string {
-    return ClassLocalFile
+	return ClassLocalFile
 }
 
 func (*LocalFile) GetType() string {
-    return TypeLocalFile
+	return TypeLocalFile
 }
 
 // Represents a remote file
 type RemoteFile struct {
-    meta
-    // Remote file identifier; may be empty. Can be used across application restarts or even from other devices for the current user. If the ID starts with "http://" or "https://", it represents the HTTP URL of the file. TDLib is currently unable to download files if only their URL is known. If downloadFile is called on such a file or if it is sent to a secret chat, TDLib starts a file generation process by sending updateFileGenerationStart to the client with the HTTP URL in the original_path and "#url#" as the conversion string. Clients should generate the file by downloading it to the specified location
-    Id string `json:"id"`
-    // True, if the file is currently being uploaded (or a remote copy is being generated by some other means)
-    IsUploadingActive bool `json:"is_uploading_active"`
-    // True, if a remote copy is fully available
-    IsUploadingCompleted bool `json:"is_uploading_completed"`
-    // Size of the remote available part of the file; 0 if unknown
-    UploadedSize int32 `json:"uploaded_size"`
+	meta
+	// Remote file identifier; may be empty. Can be used across application restarts or even from other devices for the current user. If the ID starts with "http://" or "https://", it represents the HTTP URL of the file. TDLib is currently unable to download files if only their URL is known. If downloadFile is called on such a file or if it is sent to a secret chat, TDLib starts a file generation process by sending updateFileGenerationStart to the client with the HTTP URL in the original_path and "#url#" as the conversion string. Clients should generate the file by downloading it to the specified location
+	Id string `json:"id"`
+	// True, if the file is currently being uploaded (or a remote copy is being generated by some other means)
+	IsUploadingActive bool `json:"is_uploading_active"`
+	// True, if a remote copy is fully available
+	IsUploadingCompleted bool `json:"is_uploading_completed"`
+	// Size of the remote available part of the file; 0 if unknown
+	UploadedSize int32 `json:"uploaded_size"`
 }
 
 func (entity *RemoteFile) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub RemoteFile
+	type stub RemoteFile
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*RemoteFile) GetClass() string {
-    return ClassRemoteFile
+	return ClassRemoteFile
 }
 
 func (*RemoteFile) GetType() string {
-    return TypeRemoteFile
+	return TypeRemoteFile
 }
 
 // Represents a file
 type File struct {
-    meta
-    // Unique file identifier
-    Id int32 `json:"id"`
-    // File size; 0 if unknown
-    Size int32 `json:"size"`
-    // Expected file size in case the exact file size is unknown, but an approximate size is known. Can be used to show download/upload progress
-    ExpectedSize int32 `json:"expected_size"`
-    // Information about the local copy of the file
-    Local *LocalFile `json:"local"`
-    // Information about the remote copy of the file
-    Remote *RemoteFile `json:"remote"`
+	meta
+	// Unique file identifier
+	Id int32 `json:"id"`
+	// File size; 0 if unknown
+	Size int32 `json:"size"`
+	// Expected file size in case the exact file size is unknown, but an approximate size is known. Can be used to show download/upload progress
+	ExpectedSize int32 `json:"expected_size"`
+	// Information about the local copy of the file
+	Local *LocalFile `json:"local"`
+	// Information about the remote copy of the file
+	Remote *RemoteFile `json:"remote"`
 }
 
 func (entity *File) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub File
+	type stub File
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*File) GetClass() string {
-    return ClassFile
+	return ClassFile
 }
 
 func (*File) GetType() string {
-    return TypeFile
+	return TypeFile
 }
 
 // A file defined by its unique ID
 type InputFileId struct {
-    meta
-    // Unique file identifier
-    Id int32 `json:"id"`
+	meta
+	// Unique file identifier
+	Id int32 `json:"id"`
 }
 
 func (entity *InputFileId) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputFileId
+	type stub InputFileId
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputFileId) GetClass() string {
-    return ClassInputFile
+	return ClassInputFile
 }
 
 func (*InputFileId) GetType() string {
-    return TypeInputFileId
+	return TypeInputFileId
 }
 
 func (*InputFileId) InputFileType() string {
-    return TypeInputFileId
+	return TypeInputFileId
 }
 
 // A file defined by its remote ID
 type InputFileRemote struct {
-    meta
-    // Remote file identifier
-    Id string `json:"id"`
+	meta
+	// Remote file identifier
+	Id string `json:"id"`
 }
 
 func (entity *InputFileRemote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputFileRemote
+	type stub InputFileRemote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputFileRemote) GetClass() string {
-    return ClassInputFile
+	return ClassInputFile
 }
 
 func (*InputFileRemote) GetType() string {
-    return TypeInputFileRemote
+	return TypeInputFileRemote
 }
 
 func (*InputFileRemote) InputFileType() string {
-    return TypeInputFileRemote
+	return TypeInputFileRemote
 }
 
 // A file defined by a local path
 type InputFileLocal struct {
-    meta
-    // Local path to the file
-    Path string `json:"path"`
+	meta
+	// Local path to the file
+	Path string `json:"path"`
 }
 
 func (entity *InputFileLocal) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputFileLocal
+	type stub InputFileLocal
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputFileLocal) GetClass() string {
-    return ClassInputFile
+	return ClassInputFile
 }
 
 func (*InputFileLocal) GetType() string {
-    return TypeInputFileLocal
+	return TypeInputFileLocal
 }
 
 func (*InputFileLocal) InputFileType() string {
-    return TypeInputFileLocal
+	return TypeInputFileLocal
 }
 
 // A file generated by the client
 type InputFileGenerated struct {
-    meta
-    // Local path to a file from which the file is generated; may be empty if there is no such file
-    OriginalPath string `json:"original_path"`
-    // String specifying the conversion applied to the original file; should be persistent across application restarts
-    Conversion string `json:"conversion"`
-    // Expected size of the generated file; 0 if unknown
-    ExpectedSize int32 `json:"expected_size"`
+	meta
+	// Local path to a file from which the file is generated; may be empty if there is no such file
+	OriginalPath string `json:"original_path"`
+	// String specifying the conversion applied to the original file; should be persistent across application restarts
+	Conversion string `json:"conversion"`
+	// Expected size of the generated file; 0 if unknown
+	ExpectedSize int32 `json:"expected_size"`
 }
 
 func (entity *InputFileGenerated) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputFileGenerated
+	type stub InputFileGenerated
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputFileGenerated) GetClass() string {
-    return ClassInputFile
+	return ClassInputFile
 }
 
 func (*InputFileGenerated) GetType() string {
-    return TypeInputFileGenerated
+	return TypeInputFileGenerated
 }
 
 func (*InputFileGenerated) InputFileType() string {
-    return TypeInputFileGenerated
+	return TypeInputFileGenerated
 }
 
 // Photo description
 type PhotoSize struct {
-    meta
-    // Thumbnail type (see https://core.telegram.org/constructor/photoSize)
-    Type string `json:"type"`
-    // Information about the photo file
-    Photo *File `json:"photo"`
-    // Photo width
-    Width int32 `json:"width"`
-    // Photo height
-    Height int32 `json:"height"`
+	meta
+	// Thumbnail type (see https://core.telegram.org/constructor/photoSize)
+	Type string `json:"type"`
+	// Information about the photo file
+	Photo *File `json:"photo"`
+	// Photo width
+	Width int32 `json:"width"`
+	// Photo height
+	Height int32 `json:"height"`
 }
 
 func (entity *PhotoSize) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PhotoSize
+	type stub PhotoSize
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PhotoSize) GetClass() string {
-    return ClassPhotoSize
+	return ClassPhotoSize
 }
 
 func (*PhotoSize) GetType() string {
-    return TypePhotoSize
+	return TypePhotoSize
 }
 
 // A mask should be placed relatively to the forehead
-type MaskPointForehead struct{
-    meta
+type MaskPointForehead struct {
+	meta
 }
 
 func (entity *MaskPointForehead) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MaskPointForehead
+	type stub MaskPointForehead
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MaskPointForehead) GetClass() string {
-    return ClassMaskPoint
+	return ClassMaskPoint
 }
 
 func (*MaskPointForehead) GetType() string {
-    return TypeMaskPointForehead
+	return TypeMaskPointForehead
 }
 
 func (*MaskPointForehead) MaskPointType() string {
-    return TypeMaskPointForehead
+	return TypeMaskPointForehead
 }
 
 // A mask should be placed relatively to the eyes
-type MaskPointEyes struct{
-    meta
+type MaskPointEyes struct {
+	meta
 }
 
 func (entity *MaskPointEyes) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MaskPointEyes
+	type stub MaskPointEyes
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MaskPointEyes) GetClass() string {
-    return ClassMaskPoint
+	return ClassMaskPoint
 }
 
 func (*MaskPointEyes) GetType() string {
-    return TypeMaskPointEyes
+	return TypeMaskPointEyes
 }
 
 func (*MaskPointEyes) MaskPointType() string {
-    return TypeMaskPointEyes
+	return TypeMaskPointEyes
 }
 
 // A mask should be placed relatively to the mouth
-type MaskPointMouth struct{
-    meta
+type MaskPointMouth struct {
+	meta
 }
 
 func (entity *MaskPointMouth) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MaskPointMouth
+	type stub MaskPointMouth
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MaskPointMouth) GetClass() string {
-    return ClassMaskPoint
+	return ClassMaskPoint
 }
 
 func (*MaskPointMouth) GetType() string {
-    return TypeMaskPointMouth
+	return TypeMaskPointMouth
 }
 
 func (*MaskPointMouth) MaskPointType() string {
-    return TypeMaskPointMouth
+	return TypeMaskPointMouth
 }
 
 // A mask should be placed relatively to the chin
-type MaskPointChin struct{
-    meta
+type MaskPointChin struct {
+	meta
 }
 
 func (entity *MaskPointChin) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MaskPointChin
+	type stub MaskPointChin
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MaskPointChin) GetClass() string {
-    return ClassMaskPoint
+	return ClassMaskPoint
 }
 
 func (*MaskPointChin) GetType() string {
-    return TypeMaskPointChin
+	return TypeMaskPointChin
 }
 
 func (*MaskPointChin) MaskPointType() string {
-    return TypeMaskPointChin
+	return TypeMaskPointChin
 }
 
 // Position on a photo where a mask should be placed
 type MaskPosition struct {
-    meta
-    // Part of the face, relative to which the mask should be placed
-    Point MaskPoint `json:"point"`
-    // Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. (For example, -1.0 will place the mask just to the left of the default mask position)
-    XShift float64 `json:"x_shift"`
-    // Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. (For example, 1.0 will place the mask just below the default mask position)
-    YShift float64 `json:"y_shift"`
-    // Mask scaling coefficient. (For example, 2.0 means a doubled size)
-    Scale float64 `json:"scale"`
+	meta
+	// Part of the face, relative to which the mask should be placed
+	Point MaskPoint `json:"point"`
+	// Shift by X-axis measured in widths of the mask scaled to the face size, from left to right. (For example, -1.0 will place the mask just to the left of the default mask position)
+	XShift float64 `json:"x_shift"`
+	// Shift by Y-axis measured in heights of the mask scaled to the face size, from top to bottom. (For example, 1.0 will place the mask just below the default mask position)
+	YShift float64 `json:"y_shift"`
+	// Mask scaling coefficient. (For example, 2.0 means a doubled size)
+	Scale float64 `json:"scale"`
 }
 
 func (entity *MaskPosition) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MaskPosition
+	type stub MaskPosition
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MaskPosition) GetClass() string {
-    return ClassMaskPosition
+	return ClassMaskPosition
 }
 
 func (*MaskPosition) GetType() string {
-    return TypeMaskPosition
+	return TypeMaskPosition
 }
 
 func (maskPosition *MaskPosition) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Point json.RawMessage `json:"point"`
-        XShift float64 `json:"x_shift"`
-        YShift float64 `json:"y_shift"`
-        Scale float64 `json:"scale"`
-    }
+	var tmp struct {
+		Point  json.RawMessage `json:"point"`
+		XShift float64         `json:"x_shift"`
+		YShift float64         `json:"y_shift"`
+		Scale  float64         `json:"scale"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    maskPosition.XShift = tmp.XShift
-    maskPosition.YShift = tmp.YShift
-    maskPosition.Scale = tmp.Scale
+	maskPosition.XShift = tmp.XShift
+	maskPosition.YShift = tmp.YShift
+	maskPosition.Scale = tmp.Scale
 
-    fieldPoint, _ := UnmarshalMaskPoint(tmp.Point)
-    maskPosition.Point = fieldPoint
+	fieldPoint, _ := UnmarshalMaskPoint(tmp.Point)
+	maskPosition.Point = fieldPoint
 
-    return nil
+	return nil
 }
 
 // Describes an animation file. The animation must be encoded in GIF or MPEG4 format
 type Animation struct {
-    meta
-    // Duration of the animation, in seconds; as defined by the sender
-    Duration int32 `json:"duration"`
-    // Width of the animation
-    Width int32 `json:"width"`
-    // Height of the animation
-    Height int32 `json:"height"`
-    // Original name of the file; as defined by the sender
-    FileName string `json:"file_name"`
-    // MIME type of the file, usually "image/gif" or "video/mp4"
-    MimeType string `json:"mime_type"`
-    // Animation thumbnail; may be null
-    Thumbnail *PhotoSize `json:"thumbnail"`
-    // File containing the animation
-    Animation *File `json:"animation"`
+	meta
+	// Duration of the animation, in seconds; as defined by the sender
+	Duration int32 `json:"duration"`
+	// Width of the animation
+	Width int32 `json:"width"`
+	// Height of the animation
+	Height int32 `json:"height"`
+	// Original name of the file; as defined by the sender
+	FileName string `json:"file_name"`
+	// MIME type of the file, usually "image/gif" or "video/mp4"
+	MimeType string `json:"mime_type"`
+	// Animation thumbnail; may be null
+	Thumbnail *PhotoSize `json:"thumbnail"`
+	// File containing the animation
+	Animation *File `json:"animation"`
 }
 
 func (entity *Animation) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Animation
+	type stub Animation
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Animation) GetClass() string {
-    return ClassAnimation
+	return ClassAnimation
 }
 
 func (*Animation) GetType() string {
-    return TypeAnimation
+	return TypeAnimation
 }
 
 // Describes an audio file. Audio is usually in MP3 format
 type Audio struct {
-    meta
-    // Duration of the audio, in seconds; as defined by the sender
-    Duration int32 `json:"duration"`
-    // Title of the audio; as defined by the sender
-    Title string `json:"title"`
-    // Performer of the audio; as defined by the sender
-    Performer string `json:"performer"`
-    // Original name of the file; as defined by the sender
-    FileName string `json:"file_name"`
-    // The MIME type of the file; as defined by the sender
-    MimeType string `json:"mime_type"`
-    // The thumbnail of the album cover; as defined by the sender. The full size thumbnail should be extracted from the downloaded file; may be null
-    AlbumCoverThumbnail *PhotoSize `json:"album_cover_thumbnail"`
-    // File containing the audio
-    Audio *File `json:"audio"`
+	meta
+	// Duration of the audio, in seconds; as defined by the sender
+	Duration int32 `json:"duration"`
+	// Title of the audio; as defined by the sender
+	Title string `json:"title"`
+	// Performer of the audio; as defined by the sender
+	Performer string `json:"performer"`
+	// Original name of the file; as defined by the sender
+	FileName string `json:"file_name"`
+	// The MIME type of the file; as defined by the sender
+	MimeType string `json:"mime_type"`
+	// The thumbnail of the album cover; as defined by the sender. The full size thumbnail should be extracted from the downloaded file; may be null
+	AlbumCoverThumbnail *PhotoSize `json:"album_cover_thumbnail"`
+	// File containing the audio
+	Audio *File `json:"audio"`
 }
 
 func (entity *Audio) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Audio
+	type stub Audio
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Audio) GetClass() string {
-    return ClassAudio
+	return ClassAudio
 }
 
 func (*Audio) GetType() string {
-    return TypeAudio
+	return TypeAudio
 }
 
 // Describes a document of any type
 type Document struct {
-    meta
-    // Original name of the file; as defined by the sender
-    FileName string `json:"file_name"`
-    // MIME type of the file; as defined by the sender
-    MimeType string `json:"mime_type"`
-    // Document thumbnail; as defined by the sender; may be null
-    Thumbnail *PhotoSize `json:"thumbnail"`
-    // File containing the document
-    Document *File `json:"document"`
+	meta
+	// Original name of the file; as defined by the sender
+	FileName string `json:"file_name"`
+	// MIME type of the file; as defined by the sender
+	MimeType string `json:"mime_type"`
+	// Document thumbnail; as defined by the sender; may be null
+	Thumbnail *PhotoSize `json:"thumbnail"`
+	// File containing the document
+	Document *File `json:"document"`
 }
 
 func (entity *Document) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Document
+	type stub Document
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Document) GetClass() string {
-    return ClassDocument
+	return ClassDocument
 }
 
 func (*Document) GetType() string {
-    return TypeDocument
+	return TypeDocument
 }
 
 // Describes a photo
 type Photo struct {
-    meta
-    // Photo identifier; 0 for deleted photos
-    Id JsonInt64 `json:"id"`
-    // True, if stickers were added to the photo
-    HasStickers bool `json:"has_stickers"`
-    // Available variants of the photo, in different sizes
-    Sizes []*PhotoSize `json:"sizes"`
+	meta
+	// Photo identifier; 0 for deleted photos
+	Id JsonInt64 `json:"id"`
+	// True, if stickers were added to the photo
+	HasStickers bool `json:"has_stickers"`
+	// Available variants of the photo, in different sizes
+	Sizes []*PhotoSize `json:"sizes"`
 }
 
 func (entity *Photo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Photo
+	type stub Photo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Photo) GetClass() string {
-    return ClassPhoto
+	return ClassPhoto
 }
 
 func (*Photo) GetType() string {
-    return TypePhoto
+	return TypePhoto
 }
 
 // Describes a sticker
 type Sticker struct {
-    meta
-    // The identifier of the sticker set to which the sticker belongs; 0 if none
-    SetId JsonInt64 `json:"set_id"`
-    // Sticker width; as defined by the sender
-    Width int32 `json:"width"`
-    // Sticker height; as defined by the sender
-    Height int32 `json:"height"`
-    // Emoji corresponding to the sticker
-    Emoji string `json:"emoji"`
-    // True, if the sticker is a mask
-    IsMask bool `json:"is_mask"`
-    // Position where the mask should be placed; may be null
-    MaskPosition *MaskPosition `json:"mask_position"`
-    // Sticker thumbnail in WEBP or JPEG format; may be null
-    Thumbnail *PhotoSize `json:"thumbnail"`
-    // File containing the sticker
-    Sticker *File `json:"sticker"`
+	meta
+	// The identifier of the sticker set to which the sticker belongs; 0 if none
+	SetId JsonInt64 `json:"set_id"`
+	// Sticker width; as defined by the sender
+	Width int32 `json:"width"`
+	// Sticker height; as defined by the sender
+	Height int32 `json:"height"`
+	// Emoji corresponding to the sticker
+	Emoji string `json:"emoji"`
+	// True, if the sticker is a mask
+	IsMask bool `json:"is_mask"`
+	// Position where the mask should be placed; may be null
+	MaskPosition *MaskPosition `json:"mask_position"`
+	// Sticker thumbnail in WEBP or JPEG format; may be null
+	Thumbnail *PhotoSize `json:"thumbnail"`
+	// File containing the sticker
+	Sticker *File `json:"sticker"`
 }
 
 func (entity *Sticker) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Sticker
+	type stub Sticker
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Sticker) GetClass() string {
-    return ClassSticker
+	return ClassSticker
 }
 
 func (*Sticker) GetType() string {
-    return TypeSticker
+	return TypeSticker
 }
 
 // Describes a video file
 type Video struct {
-    meta
-    // Duration of the video, in seconds; as defined by the sender
-    Duration int32 `json:"duration"`
-    // Video width; as defined by the sender
-    Width int32 `json:"width"`
-    // Video height; as defined by the sender
-    Height int32 `json:"height"`
-    // Original name of the file; as defined by the sender
-    FileName string `json:"file_name"`
-    // MIME type of the file; as defined by the sender
-    MimeType string `json:"mime_type"`
-    // True, if stickers were added to the photo
-    HasStickers bool `json:"has_stickers"`
-    // True, if the video should be tried to be streamed
-    SupportsStreaming bool `json:"supports_streaming"`
-    // Video thumbnail; as defined by the sender; may be null
-    Thumbnail *PhotoSize `json:"thumbnail"`
-    // File containing the video
-    Video *File `json:"video"`
+	meta
+	// Duration of the video, in seconds; as defined by the sender
+	Duration int32 `json:"duration"`
+	// Video width; as defined by the sender
+	Width int32 `json:"width"`
+	// Video height; as defined by the sender
+	Height int32 `json:"height"`
+	// Original name of the file; as defined by the sender
+	FileName string `json:"file_name"`
+	// MIME type of the file; as defined by the sender
+	MimeType string `json:"mime_type"`
+	// True, if stickers were added to the photo
+	HasStickers bool `json:"has_stickers"`
+	// True, if the video should be tried to be streamed
+	SupportsStreaming bool `json:"supports_streaming"`
+	// Video thumbnail; as defined by the sender; may be null
+	Thumbnail *PhotoSize `json:"thumbnail"`
+	// File containing the video
+	Video *File `json:"video"`
 }
 
 func (entity *Video) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Video
+	type stub Video
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Video) GetClass() string {
-    return ClassVideo
+	return ClassVideo
 }
 
 func (*Video) GetType() string {
-    return TypeVideo
+	return TypeVideo
 }
 
 // Describes a video note. The video must be equal in width and height, cropped to a circle, and stored in MPEG4 format
 type VideoNote struct {
-    meta
-    // Duration of the video, in seconds; as defined by the sender
-    Duration int32 `json:"duration"`
-    // Video width and height; as defined by the sender
-    Length int32 `json:"length"`
-    // Video thumbnail; as defined by the sender; may be null
-    Thumbnail *PhotoSize `json:"thumbnail"`
-    // File containing the video
-    Video *File `json:"video"`
+	meta
+	// Duration of the video, in seconds; as defined by the sender
+	Duration int32 `json:"duration"`
+	// Video width and height; as defined by the sender
+	Length int32 `json:"length"`
+	// Video thumbnail; as defined by the sender; may be null
+	Thumbnail *PhotoSize `json:"thumbnail"`
+	// File containing the video
+	Video *File `json:"video"`
 }
 
 func (entity *VideoNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub VideoNote
+	type stub VideoNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*VideoNote) GetClass() string {
-    return ClassVideoNote
+	return ClassVideoNote
 }
 
 func (*VideoNote) GetType() string {
-    return TypeVideoNote
+	return TypeVideoNote
 }
 
 // Describes a voice note. The voice note must be encoded with the Opus codec, and stored inside an OGG container. Voice notes can have only a single audio channel
 type VoiceNote struct {
-    meta
-    // Duration of the voice note, in seconds; as defined by the sender
-    Duration int32 `json:"duration"`
-    // A waveform representation of the voice note in 5-bit format
-    Waveform []byte `json:"waveform"`
-    // MIME type of the file; as defined by the sender
-    MimeType string `json:"mime_type"`
-    // File containing the voice note
-    Voice *File `json:"voice"`
+	meta
+	// Duration of the voice note, in seconds; as defined by the sender
+	Duration int32 `json:"duration"`
+	// A waveform representation of the voice note in 5-bit format
+	Waveform []byte `json:"waveform"`
+	// MIME type of the file; as defined by the sender
+	MimeType string `json:"mime_type"`
+	// File containing the voice note
+	Voice *File `json:"voice"`
 }
 
 func (entity *VoiceNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub VoiceNote
+	type stub VoiceNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*VoiceNote) GetClass() string {
-    return ClassVoiceNote
+	return ClassVoiceNote
 }
 
 func (*VoiceNote) GetType() string {
-    return TypeVoiceNote
+	return TypeVoiceNote
 }
 
 // Describes a user contact
 type Contact struct {
-    meta
-    // Phone number of the user
-    PhoneNumber string `json:"phone_number"`
-    // First name of the user; 1-255 characters in length
-    FirstName string `json:"first_name"`
-    // Last name of the user
-    LastName string `json:"last_name"`
-    // Additional data about the user in a form of vCard; 0-2048 bytes in length
-    Vcard string `json:"vcard"`
-    // Identifier of the user, if known; otherwise 0
-    UserId int32 `json:"user_id"`
+	meta
+	// Phone number of the user
+	PhoneNumber string `json:"phone_number"`
+	// First name of the user; 1-255 characters in length
+	FirstName string `json:"first_name"`
+	// Last name of the user
+	LastName string `json:"last_name"`
+	// Additional data about the user in a form of vCard; 0-2048 bytes in length
+	Vcard string `json:"vcard"`
+	// Identifier of the user, if known; otherwise 0
+	UserId int32 `json:"user_id"`
 }
 
 func (entity *Contact) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Contact
+	type stub Contact
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Contact) GetClass() string {
-    return ClassContact
+	return ClassContact
 }
 
 func (*Contact) GetType() string {
-    return TypeContact
+	return TypeContact
 }
 
 // Describes a location on planet Earth
 type Location struct {
-    meta
-    // Latitude of the location in degrees; as defined by the sender
-    Latitude float64 `json:"latitude"`
-    // Longitude of the location, in degrees; as defined by the sender
-    Longitude float64 `json:"longitude"`
+	meta
+	// Latitude of the location in degrees; as defined by the sender
+	Latitude float64 `json:"latitude"`
+	// Longitude of the location, in degrees; as defined by the sender
+	Longitude float64 `json:"longitude"`
 }
 
 func (entity *Location) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Location
+	type stub Location
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Location) GetClass() string {
-    return ClassLocation
+	return ClassLocation
 }
 
 func (*Location) GetType() string {
-    return TypeLocation
+	return TypeLocation
 }
 
 // Describes a venue
 type Venue struct {
-    meta
-    // Venue location; as defined by the sender
-    Location *Location `json:"location"`
-    // Venue name; as defined by the sender
-    Title string `json:"title"`
-    // Venue address; as defined by the sender
-    Address string `json:"address"`
-    // Provider of the venue database; as defined by the sender. Currently only "foursquare" needs to be supported
-    Provider string `json:"provider"`
-    // Identifier of the venue in the provider database; as defined by the sender
-    Id string `json:"id"`
-    // Type of the venue in the provider database; as defined by the sender
-    Type string `json:"type"`
+	meta
+	// Venue location; as defined by the sender
+	Location *Location `json:"location"`
+	// Venue name; as defined by the sender
+	Title string `json:"title"`
+	// Venue address; as defined by the sender
+	Address string `json:"address"`
+	// Provider of the venue database; as defined by the sender. Currently only "foursquare" needs to be supported
+	Provider string `json:"provider"`
+	// Identifier of the venue in the provider database; as defined by the sender
+	Id string `json:"id"`
+	// Type of the venue in the provider database; as defined by the sender
+	Type string `json:"type"`
 }
 
 func (entity *Venue) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Venue
+	type stub Venue
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Venue) GetClass() string {
-    return ClassVenue
+	return ClassVenue
 }
 
 func (*Venue) GetType() string {
-    return TypeVenue
+	return TypeVenue
 }
 
 // Describes a game
 type Game struct {
-    meta
-    // Game ID
-    Id JsonInt64 `json:"id"`
-    // Game short name. To share a game use the URL https://t.me/{bot_username}?game={game_short_name}
-    ShortName string `json:"short_name"`
-    // Game title
-    Title string `json:"title"`
-    // Game text, usually containing scoreboards for a game
-    Text *FormattedText `json:"text"`
-    // Game description
-    Description string `json:"description"`
-    // Game photo
-    Photo *Photo `json:"photo"`
-    // Game animation; may be null
-    Animation *Animation `json:"animation"`
+	meta
+	// Game ID
+	Id JsonInt64 `json:"id"`
+	// Game short name. To share a game use the URL https://t.me/{bot_username}?game={game_short_name}
+	ShortName string `json:"short_name"`
+	// Game title
+	Title string `json:"title"`
+	// Game text, usually containing scoreboards for a game
+	Text *FormattedText `json:"text"`
+	// Game description
+	Description string `json:"description"`
+	// Game photo
+	Photo *Photo `json:"photo"`
+	// Game animation; may be null
+	Animation *Animation `json:"animation"`
 }
 
 func (entity *Game) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Game
+	type stub Game
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Game) GetClass() string {
-    return ClassGame
+	return ClassGame
 }
 
 func (*Game) GetType() string {
-    return TypeGame
+	return TypeGame
 }
 
 // Describes a user profile photo
 type ProfilePhoto struct {
-    meta
-    // Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of userProfilePhotos
-    Id JsonInt64 `json:"id"`
-    // A small (160x160) user profile photo
-    Small *File `json:"small"`
-    // A big (640x640) user profile photo
-    Big *File `json:"big"`
+	meta
+	// Photo identifier; 0 for an empty photo. Can be used to find a photo in a list of userProfilePhotos
+	Id JsonInt64 `json:"id"`
+	// A small (160x160) user profile photo
+	Small *File `json:"small"`
+	// A big (640x640) user profile photo
+	Big *File `json:"big"`
 }
 
 func (entity *ProfilePhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ProfilePhoto
+	type stub ProfilePhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ProfilePhoto) GetClass() string {
-    return ClassProfilePhoto
+	return ClassProfilePhoto
 }
 
 func (*ProfilePhoto) GetType() string {
-    return TypeProfilePhoto
+	return TypeProfilePhoto
 }
 
 // Describes the photo of a chat
 type ChatPhoto struct {
-    meta
-    // A small (160x160) chat photo
-    Small *File `json:"small"`
-    // A big (640x640) chat photo
-    Big *File `json:"big"`
+	meta
+	// A small (160x160) chat photo
+	Small *File `json:"small"`
+	// A big (640x640) chat photo
+	Big *File `json:"big"`
 }
 
 func (entity *ChatPhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatPhoto
+	type stub ChatPhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatPhoto) GetClass() string {
-    return ClassChatPhoto
+	return ClassChatPhoto
 }
 
 func (*ChatPhoto) GetType() string {
-    return TypeChatPhoto
+	return TypeChatPhoto
 }
 
 // The phone number of user A is not known to user B
-type LinkStateNone struct{
-    meta
+type LinkStateNone struct {
+	meta
 }
 
 func (entity *LinkStateNone) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub LinkStateNone
+	type stub LinkStateNone
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*LinkStateNone) GetClass() string {
-    return ClassLinkState
+	return ClassLinkState
 }
 
 func (*LinkStateNone) GetType() string {
-    return TypeLinkStateNone
+	return TypeLinkStateNone
 }
 
 func (*LinkStateNone) LinkStateType() string {
-    return TypeLinkStateNone
+	return TypeLinkStateNone
 }
 
 // The phone number of user A is known but that number has not been saved to the contacts list of user B
-type LinkStateKnowsPhoneNumber struct{
-    meta
+type LinkStateKnowsPhoneNumber struct {
+	meta
 }
 
 func (entity *LinkStateKnowsPhoneNumber) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub LinkStateKnowsPhoneNumber
+	type stub LinkStateKnowsPhoneNumber
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*LinkStateKnowsPhoneNumber) GetClass() string {
-    return ClassLinkState
+	return ClassLinkState
 }
 
 func (*LinkStateKnowsPhoneNumber) GetType() string {
-    return TypeLinkStateKnowsPhoneNumber
+	return TypeLinkStateKnowsPhoneNumber
 }
 
 func (*LinkStateKnowsPhoneNumber) LinkStateType() string {
-    return TypeLinkStateKnowsPhoneNumber
+	return TypeLinkStateKnowsPhoneNumber
 }
 
 // The phone number of user A has been saved to the contacts list of user B
-type LinkStateIsContact struct{
-    meta
+type LinkStateIsContact struct {
+	meta
 }
 
 func (entity *LinkStateIsContact) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub LinkStateIsContact
+	type stub LinkStateIsContact
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*LinkStateIsContact) GetClass() string {
-    return ClassLinkState
+	return ClassLinkState
 }
 
 func (*LinkStateIsContact) GetType() string {
-    return TypeLinkStateIsContact
+	return TypeLinkStateIsContact
 }
 
 func (*LinkStateIsContact) LinkStateType() string {
-    return TypeLinkStateIsContact
+	return TypeLinkStateIsContact
 }
 
 // A regular user
-type UserTypeRegular struct{
-    meta
+type UserTypeRegular struct {
+	meta
 }
 
 func (entity *UserTypeRegular) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserTypeRegular
+	type stub UserTypeRegular
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserTypeRegular) GetClass() string {
-    return ClassUserType
+	return ClassUserType
 }
 
 func (*UserTypeRegular) GetType() string {
-    return TypeUserTypeRegular
+	return TypeUserTypeRegular
 }
 
 func (*UserTypeRegular) UserTypeType() string {
-    return TypeUserTypeRegular
+	return TypeUserTypeRegular
 }
 
 // A deleted user or deleted bot. No information on the user besides the user_id is available. It is not possible to perform any active actions on this type of user
-type UserTypeDeleted struct{
-    meta
+type UserTypeDeleted struct {
+	meta
 }
 
 func (entity *UserTypeDeleted) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserTypeDeleted
+	type stub UserTypeDeleted
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserTypeDeleted) GetClass() string {
-    return ClassUserType
+	return ClassUserType
 }
 
 func (*UserTypeDeleted) GetType() string {
-    return TypeUserTypeDeleted
+	return TypeUserTypeDeleted
 }
 
 func (*UserTypeDeleted) UserTypeType() string {
-    return TypeUserTypeDeleted
+	return TypeUserTypeDeleted
 }
 
 // A bot (see https://core.telegram.org/bots)
 type UserTypeBot struct {
-    meta
-    // True, if the bot can be invited to basic group and supergroup chats
-    CanJoinGroups bool `json:"can_join_groups"`
-    // True, if the bot can read all messages in basic group or supergroup chats and not just those addressed to the bot. In private and channel chats a bot can always read all messages
-    CanReadAllGroupMessages bool `json:"can_read_all_group_messages"`
-    // True, if the bot supports inline queries
-    IsInline bool `json:"is_inline"`
-    // Placeholder for inline queries (displayed on the client input field)
-    InlineQueryPlaceholder string `json:"inline_query_placeholder"`
-    // True, if the location of the user should be sent with every inline query to this bot
-    NeedLocation bool `json:"need_location"`
+	meta
+	// True, if the bot can be invited to basic group and supergroup chats
+	CanJoinGroups bool `json:"can_join_groups"`
+	// True, if the bot can read all messages in basic group or supergroup chats and not just those addressed to the bot. In private and channel chats a bot can always read all messages
+	CanReadAllGroupMessages bool `json:"can_read_all_group_messages"`
+	// True, if the bot supports inline queries
+	IsInline bool `json:"is_inline"`
+	// Placeholder for inline queries (displayed on the client input field)
+	InlineQueryPlaceholder string `json:"inline_query_placeholder"`
+	// True, if the location of the user should be sent with every inline query to this bot
+	NeedLocation bool `json:"need_location"`
 }
 
 func (entity *UserTypeBot) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserTypeBot
+	type stub UserTypeBot
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserTypeBot) GetClass() string {
-    return ClassUserType
+	return ClassUserType
 }
 
 func (*UserTypeBot) GetType() string {
-    return TypeUserTypeBot
+	return TypeUserTypeBot
 }
 
 func (*UserTypeBot) UserTypeType() string {
-    return TypeUserTypeBot
+	return TypeUserTypeBot
 }
 
 // No information on the user besides the user_id is available, yet this user has not been deleted. This object is extremely rare and must be handled like a deleted user. It is not possible to perform any actions on users of this type
-type UserTypeUnknown struct{
-    meta
+type UserTypeUnknown struct {
+	meta
 }
 
 func (entity *UserTypeUnknown) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserTypeUnknown
+	type stub UserTypeUnknown
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserTypeUnknown) GetClass() string {
-    return ClassUserType
+	return ClassUserType
 }
 
 func (*UserTypeUnknown) GetType() string {
-    return TypeUserTypeUnknown
+	return TypeUserTypeUnknown
 }
 
 func (*UserTypeUnknown) UserTypeType() string {
-    return TypeUserTypeUnknown
+	return TypeUserTypeUnknown
 }
 
 // Represents commands supported by a bot
 type BotCommand struct {
-    meta
-    // Text of the bot command
-    Command string `json:"command"`
-    // Description of the bot command
-    Description string `json:"description"`
+	meta
+	// Text of the bot command
+	Command string `json:"command"`
+	// Description of the bot command
+	Description string `json:"description"`
 }
 
 func (entity *BotCommand) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub BotCommand
+	type stub BotCommand
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*BotCommand) GetClass() string {
-    return ClassBotCommand
+	return ClassBotCommand
 }
 
 func (*BotCommand) GetType() string {
-    return TypeBotCommand
+	return TypeBotCommand
 }
 
 // Provides information about a bot and its supported commands
 type BotInfo struct {
-    meta
-    // Long description shown on the user info page
-    Description string `json:"description"`
-    // A list of commands supported by the bot
-    Commands []*BotCommand `json:"commands"`
+	meta
+	// Long description shown on the user info page
+	Description string `json:"description"`
+	// A list of commands supported by the bot
+	Commands []*BotCommand `json:"commands"`
 }
 
 func (entity *BotInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub BotInfo
+	type stub BotInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*BotInfo) GetClass() string {
-    return ClassBotInfo
+	return ClassBotInfo
 }
 
 func (*BotInfo) GetType() string {
-    return TypeBotInfo
+	return TypeBotInfo
 }
 
 // Represents a user
 type User struct {
-    meta
-    // User identifier
-    Id int32 `json:"id"`
-    // First name of the user
-    FirstName string `json:"first_name"`
-    // Last name of the user
-    LastName string `json:"last_name"`
-    // Username of the user
-    Username string `json:"username"`
-    // Phone number of the user
-    PhoneNumber string `json:"phone_number"`
-    // Current online status of the user
-    Status UserStatus `json:"status"`
-    // Profile photo of the user; may be null
-    ProfilePhoto *ProfilePhoto `json:"profile_photo"`
-    // Relationship from the current user to the other user
-    OutgoingLink LinkState `json:"outgoing_link"`
-    // Relationship from the other user to the current user
-    IncomingLink LinkState `json:"incoming_link"`
-    // True, if the user is verified
-    IsVerified bool `json:"is_verified"`
-    // If non-empty, it contains the reason why access to this user must be restricted. The format of the string is "{type}: {description}". {type} contains the type of the restriction and at least one of the suffixes "-all", "-ios", "-android", or "-wp", which describe the platforms on which access should be restricted. (For example, "terms-ios-android". {description} contains a human-readable description of the restriction, which can be shown to the user)
-    RestrictionReason string `json:"restriction_reason"`
-    // If false, the user is inaccessible, and the only information known about the user is inside this class. It can't be passed to any method except GetUser
-    HaveAccess bool `json:"have_access"`
-    // Type of the user
-    Type UserType `json:"type"`
-    // IETF language tag of the user's language; only available to bots
-    LanguageCode string `json:"language_code"`
+	meta
+	// User identifier
+	Id int32 `json:"id"`
+	// First name of the user
+	FirstName string `json:"first_name"`
+	// Last name of the user
+	LastName string `json:"last_name"`
+	// Username of the user
+	Username string `json:"username"`
+	// Phone number of the user
+	PhoneNumber string `json:"phone_number"`
+	// Current online status of the user
+	Status UserStatus `json:"status"`
+	// Profile photo of the user; may be null
+	ProfilePhoto *ProfilePhoto `json:"profile_photo"`
+	// Relationship from the current user to the other user
+	OutgoingLink LinkState `json:"outgoing_link"`
+	// Relationship from the other user to the current user
+	IncomingLink LinkState `json:"incoming_link"`
+	// True, if the user is verified
+	IsVerified bool `json:"is_verified"`
+	// If non-empty, it contains the reason why access to this user must be restricted. The format of the string is "{type}: {description}". {type} contains the type of the restriction and at least one of the suffixes "-all", "-ios", "-android", or "-wp", which describe the platforms on which access should be restricted. (For example, "terms-ios-android". {description} contains a human-readable description of the restriction, which can be shown to the user)
+	RestrictionReason string `json:"restriction_reason"`
+	// If false, the user is inaccessible, and the only information known about the user is inside this class. It can't be passed to any method except GetUser
+	HaveAccess bool `json:"have_access"`
+	// Type of the user
+	Type UserType `json:"type"`
+	// IETF language tag of the user's language; only available to bots
+	LanguageCode string `json:"language_code"`
 }
 
 func (entity *User) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub User
+	type stub User
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*User) GetClass() string {
-    return ClassUser
+	return ClassUser
 }
 
 func (*User) GetType() string {
-    return TypeUser
+	return TypeUser
 }
 
 func (user *User) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id int32 `json:"id"`
-        FirstName string `json:"first_name"`
-        LastName string `json:"last_name"`
-        Username string `json:"username"`
-        PhoneNumber string `json:"phone_number"`
-        Status json.RawMessage `json:"status"`
-        ProfilePhoto *ProfilePhoto `json:"profile_photo"`
-        OutgoingLink json.RawMessage `json:"outgoing_link"`
-        IncomingLink json.RawMessage `json:"incoming_link"`
-        IsVerified bool `json:"is_verified"`
-        RestrictionReason string `json:"restriction_reason"`
-        HaveAccess bool `json:"have_access"`
-        Type json.RawMessage `json:"type"`
-        LanguageCode string `json:"language_code"`
-    }
+	var tmp struct {
+		Id                int32           `json:"id"`
+		FirstName         string          `json:"first_name"`
+		LastName          string          `json:"last_name"`
+		Username          string          `json:"username"`
+		PhoneNumber       string          `json:"phone_number"`
+		Status            json.RawMessage `json:"status"`
+		ProfilePhoto      *ProfilePhoto   `json:"profile_photo"`
+		OutgoingLink      json.RawMessage `json:"outgoing_link"`
+		IncomingLink      json.RawMessage `json:"incoming_link"`
+		IsVerified        bool            `json:"is_verified"`
+		RestrictionReason string          `json:"restriction_reason"`
+		HaveAccess        bool            `json:"have_access"`
+		Type              json.RawMessage `json:"type"`
+		LanguageCode      string          `json:"language_code"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    user.Id = tmp.Id
-    user.FirstName = tmp.FirstName
-    user.LastName = tmp.LastName
-    user.Username = tmp.Username
-    user.PhoneNumber = tmp.PhoneNumber
-    user.ProfilePhoto = tmp.ProfilePhoto
-    user.IsVerified = tmp.IsVerified
-    user.RestrictionReason = tmp.RestrictionReason
-    user.HaveAccess = tmp.HaveAccess
-    user.LanguageCode = tmp.LanguageCode
+	user.Id = tmp.Id
+	user.FirstName = tmp.FirstName
+	user.LastName = tmp.LastName
+	user.Username = tmp.Username
+	user.PhoneNumber = tmp.PhoneNumber
+	user.ProfilePhoto = tmp.ProfilePhoto
+	user.IsVerified = tmp.IsVerified
+	user.RestrictionReason = tmp.RestrictionReason
+	user.HaveAccess = tmp.HaveAccess
+	user.LanguageCode = tmp.LanguageCode
 
-    fieldStatus, _ := UnmarshalUserStatus(tmp.Status)
-    user.Status = fieldStatus
+	fieldStatus, _ := UnmarshalUserStatus(tmp.Status)
+	user.Status = fieldStatus
 
-    fieldOutgoingLink, _ := UnmarshalLinkState(tmp.OutgoingLink)
-    user.OutgoingLink = fieldOutgoingLink
+	fieldOutgoingLink, _ := UnmarshalLinkState(tmp.OutgoingLink)
+	user.OutgoingLink = fieldOutgoingLink
 
-    fieldIncomingLink, _ := UnmarshalLinkState(tmp.IncomingLink)
-    user.IncomingLink = fieldIncomingLink
+	fieldIncomingLink, _ := UnmarshalLinkState(tmp.IncomingLink)
+	user.IncomingLink = fieldIncomingLink
 
-    fieldType, _ := UnmarshalUserType(tmp.Type)
-    user.Type = fieldType
+	fieldType, _ := UnmarshalUserType(tmp.Type)
+	user.Type = fieldType
 
-    return nil
+	return nil
 }
 
 // Contains full information about a user (except the full list of profile photos)
 type UserFullInfo struct {
-    meta
-    // True, if the user is blacklisted by the current user
-    IsBlocked bool `json:"is_blocked"`
-    // True, if the user can be called
-    CanBeCalled bool `json:"can_be_called"`
-    // True, if the user can't be called due to their privacy settings
-    HasPrivateCalls bool `json:"has_private_calls"`
-    // A short user bio
-    Bio string `json:"bio"`
-    // For bots, the text that is included with the link when users share the bot
-    ShareText string `json:"share_text"`
-    // Number of group chats where both the other user and the current user are a member; 0 for the current user
-    GroupInCommonCount int32 `json:"group_in_common_count"`
-    // If the user is a bot, information about the bot; may be null
-    BotInfo *BotInfo `json:"bot_info"`
+	meta
+	// True, if the user is blacklisted by the current user
+	IsBlocked bool `json:"is_blocked"`
+	// True, if the user can be called
+	CanBeCalled bool `json:"can_be_called"`
+	// True, if the user can't be called due to their privacy settings
+	HasPrivateCalls bool `json:"has_private_calls"`
+	// A short user bio
+	Bio string `json:"bio"`
+	// For bots, the text that is included with the link when users share the bot
+	ShareText string `json:"share_text"`
+	// Number of group chats where both the other user and the current user are a member; 0 for the current user
+	GroupInCommonCount int32 `json:"group_in_common_count"`
+	// If the user is a bot, information about the bot; may be null
+	BotInfo *BotInfo `json:"bot_info"`
 }
 
 func (entity *UserFullInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserFullInfo
+	type stub UserFullInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserFullInfo) GetClass() string {
-    return ClassUserFullInfo
+	return ClassUserFullInfo
 }
 
 func (*UserFullInfo) GetType() string {
-    return TypeUserFullInfo
+	return TypeUserFullInfo
 }
 
 // Contains part of the list of user photos
 type UserProfilePhotos struct {
-    meta
-    // Total number of user profile photos
-    TotalCount int32 `json:"total_count"`
-    // A list of photos
-    Photos []*Photo `json:"photos"`
+	meta
+	// Total number of user profile photos
+	TotalCount int32 `json:"total_count"`
+	// A list of photos
+	Photos []*Photo `json:"photos"`
 }
 
 func (entity *UserProfilePhotos) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserProfilePhotos
+	type stub UserProfilePhotos
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserProfilePhotos) GetClass() string {
-    return ClassUserProfilePhotos
+	return ClassUserProfilePhotos
 }
 
 func (*UserProfilePhotos) GetType() string {
-    return TypeUserProfilePhotos
+	return TypeUserProfilePhotos
 }
 
 // Represents a list of users
 type Users struct {
-    meta
-    // Approximate total count of users found
-    TotalCount int32 `json:"total_count"`
-    // A list of user identifiers
-    UserIds []int32 `json:"user_ids"`
+	meta
+	// Approximate total count of users found
+	TotalCount int32 `json:"total_count"`
+	// A list of user identifiers
+	UserIds []int32 `json:"user_ids"`
 }
 
 func (entity *Users) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Users
+	type stub Users
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Users) GetClass() string {
-    return ClassUsers
+	return ClassUsers
 }
 
 func (*Users) GetType() string {
-    return TypeUsers
+	return TypeUsers
 }
 
 // The user is the creator of a chat and has all the administrator privileges
 type ChatMemberStatusCreator struct {
-    meta
-    // True, if the user is a member of the chat
-    IsMember bool `json:"is_member"`
+	meta
+	// True, if the user is a member of the chat
+	IsMember bool `json:"is_member"`
 }
 
 func (entity *ChatMemberStatusCreator) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatMemberStatusCreator
+	type stub ChatMemberStatusCreator
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatMemberStatusCreator) GetClass() string {
-    return ClassChatMemberStatus
+	return ClassChatMemberStatus
 }
 
 func (*ChatMemberStatusCreator) GetType() string {
-    return TypeChatMemberStatusCreator
+	return TypeChatMemberStatusCreator
 }
 
 func (*ChatMemberStatusCreator) ChatMemberStatusType() string {
-    return TypeChatMemberStatusCreator
+	return TypeChatMemberStatusCreator
 }
 
 // The user is a member of a chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, and ban unprivileged members. In supergroups and channels, there are more detailed options for administrator privileges
 type ChatMemberStatusAdministrator struct {
-    meta
-    // True, if the current user can edit the administrator privileges for the called user
-    CanBeEdited bool `json:"can_be_edited"`
-    // True, if the administrator can change the chat title, photo, and other settings
-    CanChangeInfo bool `json:"can_change_info"`
-    // True, if the administrator can create channel posts; applicable to channels only
-    CanPostMessages bool `json:"can_post_messages"`
-    // True, if the administrator can edit messages of other users and pin messages; applicable to channels only
-    CanEditMessages bool `json:"can_edit_messages"`
-    // True, if the administrator can delete messages of other users
-    CanDeleteMessages bool `json:"can_delete_messages"`
-    // True, if the administrator can invite new users to the chat
-    CanInviteUsers bool `json:"can_invite_users"`
-    // True, if the administrator can restrict, ban, or unban chat members
-    CanRestrictMembers bool `json:"can_restrict_members"`
-    // True, if the administrator can pin messages; applicable to supergroups only
-    CanPinMessages bool `json:"can_pin_messages"`
-    // True, if the administrator can add new administrators with a subset of his own privileges or demote administrators that were directly or indirectly promoted by him
-    CanPromoteMembers bool `json:"can_promote_members"`
+	meta
+	// True, if the current user can edit the administrator privileges for the called user
+	CanBeEdited bool `json:"can_be_edited"`
+	// True, if the administrator can change the chat title, photo, and other settings
+	CanChangeInfo bool `json:"can_change_info"`
+	// True, if the administrator can create channel posts; applicable to channels only
+	CanPostMessages bool `json:"can_post_messages"`
+	// True, if the administrator can edit messages of other users and pin messages; applicable to channels only
+	CanEditMessages bool `json:"can_edit_messages"`
+	// True, if the administrator can delete messages of other users
+	CanDeleteMessages bool `json:"can_delete_messages"`
+	// True, if the administrator can invite new users to the chat
+	CanInviteUsers bool `json:"can_invite_users"`
+	// True, if the administrator can restrict, ban, or unban chat members
+	CanRestrictMembers bool `json:"can_restrict_members"`
+	// True, if the administrator can pin messages; applicable to supergroups only
+	CanPinMessages bool `json:"can_pin_messages"`
+	// True, if the administrator can add new administrators with a subset of his own privileges or demote administrators that were directly or indirectly promoted by him
+	CanPromoteMembers bool `json:"can_promote_members"`
 }
 
 func (entity *ChatMemberStatusAdministrator) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatMemberStatusAdministrator
+	type stub ChatMemberStatusAdministrator
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatMemberStatusAdministrator) GetClass() string {
-    return ClassChatMemberStatus
+	return ClassChatMemberStatus
 }
 
 func (*ChatMemberStatusAdministrator) GetType() string {
-    return TypeChatMemberStatusAdministrator
+	return TypeChatMemberStatusAdministrator
 }
 
 func (*ChatMemberStatusAdministrator) ChatMemberStatusType() string {
-    return TypeChatMemberStatusAdministrator
+	return TypeChatMemberStatusAdministrator
 }
 
 // The user is a member of a chat, without any additional privileges or restrictions
-type ChatMemberStatusMember struct{
-    meta
+type ChatMemberStatusMember struct {
+	meta
 }
 
 func (entity *ChatMemberStatusMember) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatMemberStatusMember
+	type stub ChatMemberStatusMember
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatMemberStatusMember) GetClass() string {
-    return ClassChatMemberStatus
+	return ClassChatMemberStatus
 }
 
 func (*ChatMemberStatusMember) GetType() string {
-    return TypeChatMemberStatusMember
+	return TypeChatMemberStatusMember
 }
 
 func (*ChatMemberStatusMember) ChatMemberStatusType() string {
-    return TypeChatMemberStatusMember
+	return TypeChatMemberStatusMember
 }
 
 // The user is under certain restrictions in the chat. Not supported in basic groups and channels
 type ChatMemberStatusRestricted struct {
-    meta
-    // True, if the user is a member of the chat
-    IsMember bool `json:"is_member"`
-    // Point in time (Unix timestamp) when restrictions will be lifted from the user; 0 if never. If the user is restricted for more than 366 days or for less than 30 seconds from the current time, the user is considered to be restricted forever
-    RestrictedUntilDate int32 `json:"restricted_until_date"`
-    // True, if the user can send text messages, contacts, locations, and venues
-    CanSendMessages bool `json:"can_send_messages"`
-    // True, if the user can send audio files, documents, photos, videos, video notes, and voice notes. Implies can_send_messages permissions
-    CanSendMediaMessages bool `json:"can_send_media_messages"`
-    // True, if the user can send animations, games, and stickers and use inline bots. Implies can_send_media_messages permissions
-    CanSendOtherMessages bool `json:"can_send_other_messages"`
-    // True, if the user may add a web page preview to his messages. Implies can_send_messages permissions
-    CanAddWebPagePreviews bool `json:"can_add_web_page_previews"`
+	meta
+	// True, if the user is a member of the chat
+	IsMember bool `json:"is_member"`
+	// Point in time (Unix timestamp) when restrictions will be lifted from the user; 0 if never. If the user is restricted for more than 366 days or for less than 30 seconds from the current time, the user is considered to be restricted forever
+	RestrictedUntilDate int32 `json:"restricted_until_date"`
+	// True, if the user can send text messages, contacts, locations, and venues
+	CanSendMessages bool `json:"can_send_messages"`
+	// True, if the user can send audio files, documents, photos, videos, video notes, and voice notes. Implies can_send_messages permissions
+	CanSendMediaMessages bool `json:"can_send_media_messages"`
+	// True, if the user can send animations, games, and stickers and use inline bots. Implies can_send_media_messages permissions
+	CanSendOtherMessages bool `json:"can_send_other_messages"`
+	// True, if the user may add a web page preview to his messages. Implies can_send_messages permissions
+	CanAddWebPagePreviews bool `json:"can_add_web_page_previews"`
 }
 
 func (entity *ChatMemberStatusRestricted) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatMemberStatusRestricted
+	type stub ChatMemberStatusRestricted
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatMemberStatusRestricted) GetClass() string {
-    return ClassChatMemberStatus
+	return ClassChatMemberStatus
 }
 
 func (*ChatMemberStatusRestricted) GetType() string {
-    return TypeChatMemberStatusRestricted
+	return TypeChatMemberStatusRestricted
 }
 
 func (*ChatMemberStatusRestricted) ChatMemberStatusType() string {
-    return TypeChatMemberStatusRestricted
+	return TypeChatMemberStatusRestricted
 }
 
 // The user is not a chat member
-type ChatMemberStatusLeft struct{
-    meta
+type ChatMemberStatusLeft struct {
+	meta
 }
 
 func (entity *ChatMemberStatusLeft) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatMemberStatusLeft
+	type stub ChatMemberStatusLeft
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatMemberStatusLeft) GetClass() string {
-    return ClassChatMemberStatus
+	return ClassChatMemberStatus
 }
 
 func (*ChatMemberStatusLeft) GetType() string {
-    return TypeChatMemberStatusLeft
+	return TypeChatMemberStatusLeft
 }
 
 func (*ChatMemberStatusLeft) ChatMemberStatusType() string {
-    return TypeChatMemberStatusLeft
+	return TypeChatMemberStatusLeft
 }
 
 // The user was banned (and hence is not a member of the chat). Implies the user can't return to the chat or view messages
 type ChatMemberStatusBanned struct {
-    meta
-    // Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever
-    BannedUntilDate int32 `json:"banned_until_date"`
+	meta
+	// Point in time (Unix timestamp) when the user will be unbanned; 0 if never. If the user is banned for more than 366 days or for less than 30 seconds from the current time, the user is considered to be banned forever
+	BannedUntilDate int32 `json:"banned_until_date"`
 }
 
 func (entity *ChatMemberStatusBanned) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatMemberStatusBanned
+	type stub ChatMemberStatusBanned
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatMemberStatusBanned) GetClass() string {
-    return ClassChatMemberStatus
+	return ClassChatMemberStatus
 }
 
 func (*ChatMemberStatusBanned) GetType() string {
-    return TypeChatMemberStatusBanned
+	return TypeChatMemberStatusBanned
 }
 
 func (*ChatMemberStatusBanned) ChatMemberStatusType() string {
-    return TypeChatMemberStatusBanned
+	return TypeChatMemberStatusBanned
 }
 
 // A user with information about joining/leaving a chat
 type ChatMember struct {
-    meta
-    // User identifier of the chat member
-    UserId int32 `json:"user_id"`
-    // Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown
-    InviterUserId int32 `json:"inviter_user_id"`
-    // Point in time (Unix timestamp) when the user joined a chat
-    JoinedChatDate int32 `json:"joined_chat_date"`
-    // Status of the member in the chat
-    Status ChatMemberStatus `json:"status"`
-    // If the user is a bot, information about the bot; may be null. Can be null even for a bot if the bot is not a chat member
-    BotInfo *BotInfo `json:"bot_info"`
+	meta
+	// User identifier of the chat member
+	UserId int32 `json:"user_id"`
+	// Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown
+	InviterUserId int32 `json:"inviter_user_id"`
+	// Point in time (Unix timestamp) when the user joined a chat
+	JoinedChatDate int32 `json:"joined_chat_date"`
+	// Status of the member in the chat
+	Status ChatMemberStatus `json:"status"`
+	// If the user is a bot, information about the bot; may be null. Can be null even for a bot if the bot is not a chat member
+	BotInfo *BotInfo `json:"bot_info"`
 }
 
 func (entity *ChatMember) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatMember
+	type stub ChatMember
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatMember) GetClass() string {
-    return ClassChatMember
+	return ClassChatMember
 }
 
 func (*ChatMember) GetType() string {
-    return TypeChatMember
+	return TypeChatMember
 }
 
 func (chatMember *ChatMember) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        UserId int32 `json:"user_id"`
-        InviterUserId int32 `json:"inviter_user_id"`
-        JoinedChatDate int32 `json:"joined_chat_date"`
-        Status json.RawMessage `json:"status"`
-        BotInfo *BotInfo `json:"bot_info"`
-    }
+	var tmp struct {
+		UserId         int32           `json:"user_id"`
+		InviterUserId  int32           `json:"inviter_user_id"`
+		JoinedChatDate int32           `json:"joined_chat_date"`
+		Status         json.RawMessage `json:"status"`
+		BotInfo        *BotInfo        `json:"bot_info"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    chatMember.UserId = tmp.UserId
-    chatMember.InviterUserId = tmp.InviterUserId
-    chatMember.JoinedChatDate = tmp.JoinedChatDate
-    chatMember.BotInfo = tmp.BotInfo
+	chatMember.UserId = tmp.UserId
+	chatMember.InviterUserId = tmp.InviterUserId
+	chatMember.JoinedChatDate = tmp.JoinedChatDate
+	chatMember.BotInfo = tmp.BotInfo
 
-    fieldStatus, _ := UnmarshalChatMemberStatus(tmp.Status)
-    chatMember.Status = fieldStatus
+	fieldStatus, _ := UnmarshalChatMemberStatus(tmp.Status)
+	chatMember.Status = fieldStatus
 
-    return nil
+	return nil
 }
 
 // Contains a list of chat members
 type ChatMembers struct {
-    meta
-    // Approximate total count of chat members found
-    TotalCount int32 `json:"total_count"`
-    // A list of chat members
-    Members []*ChatMember `json:"members"`
+	meta
+	// Approximate total count of chat members found
+	TotalCount int32 `json:"total_count"`
+	// A list of chat members
+	Members []*ChatMember `json:"members"`
 }
 
 func (entity *ChatMembers) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatMembers
+	type stub ChatMembers
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatMembers) GetClass() string {
-    return ClassChatMembers
+	return ClassChatMembers
 }
 
 func (*ChatMembers) GetType() string {
-    return TypeChatMembers
+	return TypeChatMembers
 }
 
 // Returns the creator and administrators
-type ChatMembersFilterAdministrators struct{
-    meta
+type ChatMembersFilterAdministrators struct {
+	meta
 }
 
 func (entity *ChatMembersFilterAdministrators) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatMembersFilterAdministrators
+	type stub ChatMembersFilterAdministrators
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatMembersFilterAdministrators) GetClass() string {
-    return ClassChatMembersFilter
+	return ClassChatMembersFilter
 }
 
 func (*ChatMembersFilterAdministrators) GetType() string {
-    return TypeChatMembersFilterAdministrators
+	return TypeChatMembersFilterAdministrators
 }
 
 func (*ChatMembersFilterAdministrators) ChatMembersFilterType() string {
-    return TypeChatMembersFilterAdministrators
+	return TypeChatMembersFilterAdministrators
 }
 
 // Returns all chat members, including restricted chat members
-type ChatMembersFilterMembers struct{
-    meta
+type ChatMembersFilterMembers struct {
+	meta
 }
 
 func (entity *ChatMembersFilterMembers) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatMembersFilterMembers
+	type stub ChatMembersFilterMembers
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatMembersFilterMembers) GetClass() string {
-    return ClassChatMembersFilter
+	return ClassChatMembersFilter
 }
 
 func (*ChatMembersFilterMembers) GetType() string {
-    return TypeChatMembersFilterMembers
+	return TypeChatMembersFilterMembers
 }
 
 func (*ChatMembersFilterMembers) ChatMembersFilterType() string {
-    return TypeChatMembersFilterMembers
+	return TypeChatMembersFilterMembers
 }
 
 // Returns users under certain restrictions in the chat; can be used only by administrators in a supergroup
-type ChatMembersFilterRestricted struct{
-    meta
+type ChatMembersFilterRestricted struct {
+	meta
 }
 
 func (entity *ChatMembersFilterRestricted) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatMembersFilterRestricted
+	type stub ChatMembersFilterRestricted
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatMembersFilterRestricted) GetClass() string {
-    return ClassChatMembersFilter
+	return ClassChatMembersFilter
 }
 
 func (*ChatMembersFilterRestricted) GetType() string {
-    return TypeChatMembersFilterRestricted
+	return TypeChatMembersFilterRestricted
 }
 
 func (*ChatMembersFilterRestricted) ChatMembersFilterType() string {
-    return TypeChatMembersFilterRestricted
+	return TypeChatMembersFilterRestricted
 }
 
 // Returns users banned from the chat; can be used only by administrators in a supergroup or in a channel
-type ChatMembersFilterBanned struct{
-    meta
+type ChatMembersFilterBanned struct {
+	meta
 }
 
 func (entity *ChatMembersFilterBanned) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatMembersFilterBanned
+	type stub ChatMembersFilterBanned
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatMembersFilterBanned) GetClass() string {
-    return ClassChatMembersFilter
+	return ClassChatMembersFilter
 }
 
 func (*ChatMembersFilterBanned) GetType() string {
-    return TypeChatMembersFilterBanned
+	return TypeChatMembersFilterBanned
 }
 
 func (*ChatMembersFilterBanned) ChatMembersFilterType() string {
-    return TypeChatMembersFilterBanned
+	return TypeChatMembersFilterBanned
 }
 
 // Returns bot members of the chat
-type ChatMembersFilterBots struct{
-    meta
+type ChatMembersFilterBots struct {
+	meta
 }
 
 func (entity *ChatMembersFilterBots) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatMembersFilterBots
+	type stub ChatMembersFilterBots
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatMembersFilterBots) GetClass() string {
-    return ClassChatMembersFilter
+	return ClassChatMembersFilter
 }
 
 func (*ChatMembersFilterBots) GetType() string {
-    return TypeChatMembersFilterBots
+	return TypeChatMembersFilterBots
 }
 
 func (*ChatMembersFilterBots) ChatMembersFilterType() string {
-    return TypeChatMembersFilterBots
+	return TypeChatMembersFilterBots
 }
 
 // Returns recently active users in reverse chronological order
-type SupergroupMembersFilterRecent struct{
-    meta
+type SupergroupMembersFilterRecent struct {
+	meta
 }
 
 func (entity *SupergroupMembersFilterRecent) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SupergroupMembersFilterRecent
+	type stub SupergroupMembersFilterRecent
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SupergroupMembersFilterRecent) GetClass() string {
-    return ClassSupergroupMembersFilter
+	return ClassSupergroupMembersFilter
 }
 
 func (*SupergroupMembersFilterRecent) GetType() string {
-    return TypeSupergroupMembersFilterRecent
+	return TypeSupergroupMembersFilterRecent
 }
 
 func (*SupergroupMembersFilterRecent) SupergroupMembersFilterType() string {
-    return TypeSupergroupMembersFilterRecent
+	return TypeSupergroupMembersFilterRecent
 }
 
 // Returns the creator and administrators
-type SupergroupMembersFilterAdministrators struct{
-    meta
+type SupergroupMembersFilterAdministrators struct {
+	meta
 }
 
 func (entity *SupergroupMembersFilterAdministrators) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SupergroupMembersFilterAdministrators
+	type stub SupergroupMembersFilterAdministrators
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SupergroupMembersFilterAdministrators) GetClass() string {
-    return ClassSupergroupMembersFilter
+	return ClassSupergroupMembersFilter
 }
 
 func (*SupergroupMembersFilterAdministrators) GetType() string {
-    return TypeSupergroupMembersFilterAdministrators
+	return TypeSupergroupMembersFilterAdministrators
 }
 
 func (*SupergroupMembersFilterAdministrators) SupergroupMembersFilterType() string {
-    return TypeSupergroupMembersFilterAdministrators
+	return TypeSupergroupMembersFilterAdministrators
 }
 
 // Used to search for supergroup or channel members via a (string) query
 type SupergroupMembersFilterSearch struct {
-    meta
-    // Query to search for
-    Query string `json:"query"`
+	meta
+	// Query to search for
+	Query string `json:"query"`
 }
 
 func (entity *SupergroupMembersFilterSearch) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SupergroupMembersFilterSearch
+	type stub SupergroupMembersFilterSearch
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SupergroupMembersFilterSearch) GetClass() string {
-    return ClassSupergroupMembersFilter
+	return ClassSupergroupMembersFilter
 }
 
 func (*SupergroupMembersFilterSearch) GetType() string {
-    return TypeSupergroupMembersFilterSearch
+	return TypeSupergroupMembersFilterSearch
 }
 
 func (*SupergroupMembersFilterSearch) SupergroupMembersFilterType() string {
-    return TypeSupergroupMembersFilterSearch
+	return TypeSupergroupMembersFilterSearch
 }
 
 // Returns restricted supergroup members; can be used only by administrators
 type SupergroupMembersFilterRestricted struct {
-    meta
-    // Query to search for
-    Query string `json:"query"`
+	meta
+	// Query to search for
+	Query string `json:"query"`
 }
 
 func (entity *SupergroupMembersFilterRestricted) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SupergroupMembersFilterRestricted
+	type stub SupergroupMembersFilterRestricted
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SupergroupMembersFilterRestricted) GetClass() string {
-    return ClassSupergroupMembersFilter
+	return ClassSupergroupMembersFilter
 }
 
 func (*SupergroupMembersFilterRestricted) GetType() string {
-    return TypeSupergroupMembersFilterRestricted
+	return TypeSupergroupMembersFilterRestricted
 }
 
 func (*SupergroupMembersFilterRestricted) SupergroupMembersFilterType() string {
-    return TypeSupergroupMembersFilterRestricted
+	return TypeSupergroupMembersFilterRestricted
 }
 
 // Returns users banned from the supergroup or channel; can be used only by administrators
 type SupergroupMembersFilterBanned struct {
-    meta
-    // Query to search for
-    Query string `json:"query"`
+	meta
+	// Query to search for
+	Query string `json:"query"`
 }
 
 func (entity *SupergroupMembersFilterBanned) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SupergroupMembersFilterBanned
+	type stub SupergroupMembersFilterBanned
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SupergroupMembersFilterBanned) GetClass() string {
-    return ClassSupergroupMembersFilter
+	return ClassSupergroupMembersFilter
 }
 
 func (*SupergroupMembersFilterBanned) GetType() string {
-    return TypeSupergroupMembersFilterBanned
+	return TypeSupergroupMembersFilterBanned
 }
 
 func (*SupergroupMembersFilterBanned) SupergroupMembersFilterType() string {
-    return TypeSupergroupMembersFilterBanned
+	return TypeSupergroupMembersFilterBanned
 }
 
 // Returns bot members of the supergroup or channel
-type SupergroupMembersFilterBots struct{
-    meta
+type SupergroupMembersFilterBots struct {
+	meta
 }
 
 func (entity *SupergroupMembersFilterBots) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SupergroupMembersFilterBots
+	type stub SupergroupMembersFilterBots
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SupergroupMembersFilterBots) GetClass() string {
-    return ClassSupergroupMembersFilter
+	return ClassSupergroupMembersFilter
 }
 
 func (*SupergroupMembersFilterBots) GetType() string {
-    return TypeSupergroupMembersFilterBots
+	return TypeSupergroupMembersFilterBots
 }
 
 func (*SupergroupMembersFilterBots) SupergroupMembersFilterType() string {
-    return TypeSupergroupMembersFilterBots
+	return TypeSupergroupMembersFilterBots
 }
 
 // Represents a basic group of 0-200 users (must be upgraded to a supergroup to accommodate more than 200 users)
 type BasicGroup struct {
-    meta
-    // Group identifier
-    Id int32 `json:"id"`
-    // Number of members in the group
-    MemberCount int32 `json:"member_count"`
-    // Status of the current user in the group
-    Status ChatMemberStatus `json:"status"`
-    // True, if all members have been granted administrator rights in the group
-    EveryoneIsAdministrator bool `json:"everyone_is_administrator"`
-    // True, if the group is active
-    IsActive bool `json:"is_active"`
-    // Identifier of the supergroup to which this group was upgraded; 0 if none
-    UpgradedToSupergroupId int32 `json:"upgraded_to_supergroup_id"`
+	meta
+	// Group identifier
+	Id int32 `json:"id"`
+	// Number of members in the group
+	MemberCount int32 `json:"member_count"`
+	// Status of the current user in the group
+	Status ChatMemberStatus `json:"status"`
+	// True, if all members have been granted administrator rights in the group
+	EveryoneIsAdministrator bool `json:"everyone_is_administrator"`
+	// True, if the group is active
+	IsActive bool `json:"is_active"`
+	// Identifier of the supergroup to which this group was upgraded; 0 if none
+	UpgradedToSupergroupId int32 `json:"upgraded_to_supergroup_id"`
 }
 
 func (entity *BasicGroup) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub BasicGroup
+	type stub BasicGroup
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*BasicGroup) GetClass() string {
-    return ClassBasicGroup
+	return ClassBasicGroup
 }
 
 func (*BasicGroup) GetType() string {
-    return TypeBasicGroup
+	return TypeBasicGroup
 }
 
 func (basicGroup *BasicGroup) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id int32 `json:"id"`
-        MemberCount int32 `json:"member_count"`
-        Status json.RawMessage `json:"status"`
-        EveryoneIsAdministrator bool `json:"everyone_is_administrator"`
-        IsActive bool `json:"is_active"`
-        UpgradedToSupergroupId int32 `json:"upgraded_to_supergroup_id"`
-    }
+	var tmp struct {
+		Id                      int32           `json:"id"`
+		MemberCount             int32           `json:"member_count"`
+		Status                  json.RawMessage `json:"status"`
+		EveryoneIsAdministrator bool            `json:"everyone_is_administrator"`
+		IsActive                bool            `json:"is_active"`
+		UpgradedToSupergroupId  int32           `json:"upgraded_to_supergroup_id"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    basicGroup.Id = tmp.Id
-    basicGroup.MemberCount = tmp.MemberCount
-    basicGroup.EveryoneIsAdministrator = tmp.EveryoneIsAdministrator
-    basicGroup.IsActive = tmp.IsActive
-    basicGroup.UpgradedToSupergroupId = tmp.UpgradedToSupergroupId
+	basicGroup.Id = tmp.Id
+	basicGroup.MemberCount = tmp.MemberCount
+	basicGroup.EveryoneIsAdministrator = tmp.EveryoneIsAdministrator
+	basicGroup.IsActive = tmp.IsActive
+	basicGroup.UpgradedToSupergroupId = tmp.UpgradedToSupergroupId
 
-    fieldStatus, _ := UnmarshalChatMemberStatus(tmp.Status)
-    basicGroup.Status = fieldStatus
+	fieldStatus, _ := UnmarshalChatMemberStatus(tmp.Status)
+	basicGroup.Status = fieldStatus
 
-    return nil
+	return nil
 }
 
 // Contains full information about a basic group
 type BasicGroupFullInfo struct {
-    meta
-    // User identifier of the creator of the group; 0 if unknown
-    CreatorUserId int32 `json:"creator_user_id"`
-    // Group members
-    Members []*ChatMember `json:"members"`
-    // Invite link for this group; available only for the group creator and only after it has been generated at least once
-    InviteLink string `json:"invite_link"`
+	meta
+	// User identifier of the creator of the group; 0 if unknown
+	CreatorUserId int32 `json:"creator_user_id"`
+	// Group members
+	Members []*ChatMember `json:"members"`
+	// Invite link for this group; available only for the group creator and only after it has been generated at least once
+	InviteLink string `json:"invite_link"`
 }
 
 func (entity *BasicGroupFullInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub BasicGroupFullInfo
+	type stub BasicGroupFullInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*BasicGroupFullInfo) GetClass() string {
-    return ClassBasicGroupFullInfo
+	return ClassBasicGroupFullInfo
 }
 
 func (*BasicGroupFullInfo) GetType() string {
-    return TypeBasicGroupFullInfo
+	return TypeBasicGroupFullInfo
 }
 
 // Represents a supergroup or channel with zero or more members (subscribers in the case of channels). From the point of view of the system, a channel is a special kind of a supergroup: only administrators can post and see the list of members, and posts from all administrators use the name and photo of the channel instead of individual names and profile photos. Unlike supergroups, channels can have an unlimited number of subscribers
 type Supergroup struct {
-    meta
-    // Supergroup or channel identifier
-    Id int32 `json:"id"`
-    // Username of the supergroup or channel; empty for private supergroups or channels
-    Username string `json:"username"`
-    // Point in time (Unix timestamp) when the current user joined, or the point in time when the supergroup or channel was created, in case the user is not a member
-    Date int32 `json:"date"`
-    // Status of the current user in the supergroup or channel
-    Status ChatMemberStatus `json:"status"`
-    // Member count; 0 if unknown. Currently it is guaranteed to be known only if the supergroup or channel was found through SearchPublicChats
-    MemberCount int32 `json:"member_count"`
-    // True, if any member of the supergroup can invite other members. This field has no meaning for channels
-    AnyoneCanInvite bool `json:"anyone_can_invite"`
-    // True, if messages sent to the channel should contain information about the sender. This field is only applicable to channels
-    SignMessages bool `json:"sign_messages"`
-    // True, if the supergroup is a channel
-    IsChannel bool `json:"is_channel"`
-    // True, if the supergroup or channel is verified
-    IsVerified bool `json:"is_verified"`
-    // If non-empty, contains the reason why access to this supergroup or channel must be restricted. Format of the string is "{type}: {description}". {type} Contains the type of the restriction and at least one of the suffixes "-all", "-ios", "-android", or "-wp", which describe the platforms on which access should be restricted. (For example, "terms-ios-android". {description} contains a human-readable description of the restriction, which can be shown to the user)
-    RestrictionReason string `json:"restriction_reason"`
+	meta
+	// Supergroup or channel identifier
+	Id int32 `json:"id"`
+	// Username of the supergroup or channel; empty for private supergroups or channels
+	Username string `json:"username"`
+	// Point in time (Unix timestamp) when the current user joined, or the point in time when the supergroup or channel was created, in case the user is not a member
+	Date int32 `json:"date"`
+	// Status of the current user in the supergroup or channel
+	Status ChatMemberStatus `json:"status"`
+	// Member count; 0 if unknown. Currently it is guaranteed to be known only if the supergroup or channel was found through SearchPublicChats
+	MemberCount int32 `json:"member_count"`
+	// True, if any member of the supergroup can invite other members. This field has no meaning for channels
+	AnyoneCanInvite bool `json:"anyone_can_invite"`
+	// True, if messages sent to the channel should contain information about the sender. This field is only applicable to channels
+	SignMessages bool `json:"sign_messages"`
+	// True, if the supergroup is a channel
+	IsChannel bool `json:"is_channel"`
+	// True, if the supergroup or channel is verified
+	IsVerified bool `json:"is_verified"`
+	// If non-empty, contains the reason why access to this supergroup or channel must be restricted. Format of the string is "{type}: {description}". {type} Contains the type of the restriction and at least one of the suffixes "-all", "-ios", "-android", or "-wp", which describe the platforms on which access should be restricted. (For example, "terms-ios-android". {description} contains a human-readable description of the restriction, which can be shown to the user)
+	RestrictionReason string `json:"restriction_reason"`
 }
 
 func (entity *Supergroup) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Supergroup
+	type stub Supergroup
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Supergroup) GetClass() string {
-    return ClassSupergroup
+	return ClassSupergroup
 }
 
 func (*Supergroup) GetType() string {
-    return TypeSupergroup
+	return TypeSupergroup
 }
 
 func (supergroup *Supergroup) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id int32 `json:"id"`
-        Username string `json:"username"`
-        Date int32 `json:"date"`
-        Status json.RawMessage `json:"status"`
-        MemberCount int32 `json:"member_count"`
-        AnyoneCanInvite bool `json:"anyone_can_invite"`
-        SignMessages bool `json:"sign_messages"`
-        IsChannel bool `json:"is_channel"`
-        IsVerified bool `json:"is_verified"`
-        RestrictionReason string `json:"restriction_reason"`
-    }
+	var tmp struct {
+		Id                int32           `json:"id"`
+		Username          string          `json:"username"`
+		Date              int32           `json:"date"`
+		Status            json.RawMessage `json:"status"`
+		MemberCount       int32           `json:"member_count"`
+		AnyoneCanInvite   bool            `json:"anyone_can_invite"`
+		SignMessages      bool            `json:"sign_messages"`
+		IsChannel         bool            `json:"is_channel"`
+		IsVerified        bool            `json:"is_verified"`
+		RestrictionReason string          `json:"restriction_reason"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    supergroup.Id = tmp.Id
-    supergroup.Username = tmp.Username
-    supergroup.Date = tmp.Date
-    supergroup.MemberCount = tmp.MemberCount
-    supergroup.AnyoneCanInvite = tmp.AnyoneCanInvite
-    supergroup.SignMessages = tmp.SignMessages
-    supergroup.IsChannel = tmp.IsChannel
-    supergroup.IsVerified = tmp.IsVerified
-    supergroup.RestrictionReason = tmp.RestrictionReason
+	supergroup.Id = tmp.Id
+	supergroup.Username = tmp.Username
+	supergroup.Date = tmp.Date
+	supergroup.MemberCount = tmp.MemberCount
+	supergroup.AnyoneCanInvite = tmp.AnyoneCanInvite
+	supergroup.SignMessages = tmp.SignMessages
+	supergroup.IsChannel = tmp.IsChannel
+	supergroup.IsVerified = tmp.IsVerified
+	supergroup.RestrictionReason = tmp.RestrictionReason
 
-    fieldStatus, _ := UnmarshalChatMemberStatus(tmp.Status)
-    supergroup.Status = fieldStatus
+	fieldStatus, _ := UnmarshalChatMemberStatus(tmp.Status)
+	supergroup.Status = fieldStatus
 
-    return nil
+	return nil
 }
 
 // Contains full information about a supergroup or channel
 type SupergroupFullInfo struct {
-    meta
-    // Supergroup or channel description
-    Description string `json:"description"`
-    // Number of members in the supergroup or channel; 0 if unknown
-    MemberCount int32 `json:"member_count"`
-    // Number of privileged users in the supergroup or channel; 0 if unknown
-    AdministratorCount int32 `json:"administrator_count"`
-    // Number of restricted users in the supergroup; 0 if unknown
-    RestrictedCount int32 `json:"restricted_count"`
-    // Number of users banned from chat; 0 if unknown
-    BannedCount int32 `json:"banned_count"`
-    // True, if members of the chat can be retrieved
-    CanGetMembers bool `json:"can_get_members"`
-    // True, if the chat can be made public
-    CanSetUsername bool `json:"can_set_username"`
-    // True, if the supergroup sticker set can be changed
-    CanSetStickerSet bool `json:"can_set_sticker_set"`
-    // True, if new chat members will have access to old messages. In public supergroups and both public and private channels, old messages are always available, so this option affects only private supergroups. The value of this field is only available for chat administrators
-    IsAllHistoryAvailable bool `json:"is_all_history_available"`
-    // Identifier of the supergroup sticker set; 0 if none
-    StickerSetId JsonInt64 `json:"sticker_set_id"`
-    // Invite link for this chat
-    InviteLink string `json:"invite_link"`
-    // Identifier of the pinned message in the chat; 0 if none
-    PinnedMessageId int64 `json:"pinned_message_id"`
-    // Identifier of the basic group from which supergroup was upgraded; 0 if none
-    UpgradedFromBasicGroupId int32 `json:"upgraded_from_basic_group_id"`
-    // Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none
-    UpgradedFromMaxMessageId int64 `json:"upgraded_from_max_message_id"`
+	meta
+	// Supergroup or channel description
+	Description string `json:"description"`
+	// Number of members in the supergroup or channel; 0 if unknown
+	MemberCount int32 `json:"member_count"`
+	// Number of privileged users in the supergroup or channel; 0 if unknown
+	AdministratorCount int32 `json:"administrator_count"`
+	// Number of restricted users in the supergroup; 0 if unknown
+	RestrictedCount int32 `json:"restricted_count"`
+	// Number of users banned from chat; 0 if unknown
+	BannedCount int32 `json:"banned_count"`
+	// True, if members of the chat can be retrieved
+	CanGetMembers bool `json:"can_get_members"`
+	// True, if the chat can be made public
+	CanSetUsername bool `json:"can_set_username"`
+	// True, if the supergroup sticker set can be changed
+	CanSetStickerSet bool `json:"can_set_sticker_set"`
+	// True, if new chat members will have access to old messages. In public supergroups and both public and private channels, old messages are always available, so this option affects only private supergroups. The value of this field is only available for chat administrators
+	IsAllHistoryAvailable bool `json:"is_all_history_available"`
+	// Identifier of the supergroup sticker set; 0 if none
+	StickerSetId JsonInt64 `json:"sticker_set_id"`
+	// Invite link for this chat
+	InviteLink string `json:"invite_link"`
+	// Identifier of the pinned message in the chat; 0 if none
+	PinnedMessageId int64 `json:"pinned_message_id"`
+	// Identifier of the basic group from which supergroup was upgraded; 0 if none
+	UpgradedFromBasicGroupId int32 `json:"upgraded_from_basic_group_id"`
+	// Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none
+	UpgradedFromMaxMessageId int64 `json:"upgraded_from_max_message_id"`
 }
 
 func (entity *SupergroupFullInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SupergroupFullInfo
+	type stub SupergroupFullInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SupergroupFullInfo) GetClass() string {
-    return ClassSupergroupFullInfo
+	return ClassSupergroupFullInfo
 }
 
 func (*SupergroupFullInfo) GetType() string {
-    return TypeSupergroupFullInfo
+	return TypeSupergroupFullInfo
 }
 
 // The secret chat is not yet created; waiting for the other user to get online
-type SecretChatStatePending struct{
-    meta
+type SecretChatStatePending struct {
+	meta
 }
 
 func (entity *SecretChatStatePending) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SecretChatStatePending
+	type stub SecretChatStatePending
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SecretChatStatePending) GetClass() string {
-    return ClassSecretChatState
+	return ClassSecretChatState
 }
 
 func (*SecretChatStatePending) GetType() string {
-    return TypeSecretChatStatePending
+	return TypeSecretChatStatePending
 }
 
 func (*SecretChatStatePending) SecretChatStateType() string {
-    return TypeSecretChatStatePending
+	return TypeSecretChatStatePending
 }
 
 // The secret chat is ready to use
-type SecretChatStateReady struct{
-    meta
+type SecretChatStateReady struct {
+	meta
 }
 
 func (entity *SecretChatStateReady) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SecretChatStateReady
+	type stub SecretChatStateReady
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SecretChatStateReady) GetClass() string {
-    return ClassSecretChatState
+	return ClassSecretChatState
 }
 
 func (*SecretChatStateReady) GetType() string {
-    return TypeSecretChatStateReady
+	return TypeSecretChatStateReady
 }
 
 func (*SecretChatStateReady) SecretChatStateType() string {
-    return TypeSecretChatStateReady
+	return TypeSecretChatStateReady
 }
 
 // The secret chat is closed
-type SecretChatStateClosed struct{
-    meta
+type SecretChatStateClosed struct {
+	meta
 }
 
 func (entity *SecretChatStateClosed) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SecretChatStateClosed
+	type stub SecretChatStateClosed
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SecretChatStateClosed) GetClass() string {
-    return ClassSecretChatState
+	return ClassSecretChatState
 }
 
 func (*SecretChatStateClosed) GetType() string {
-    return TypeSecretChatStateClosed
+	return TypeSecretChatStateClosed
 }
 
 func (*SecretChatStateClosed) SecretChatStateType() string {
-    return TypeSecretChatStateClosed
+	return TypeSecretChatStateClosed
 }
 
 // Represents a secret chat
 type SecretChat struct {
-    meta
-    // Secret chat identifier
-    Id int32 `json:"id"`
-    // Identifier of the chat partner
-    UserId int32 `json:"user_id"`
-    // State of the secret chat
-    State SecretChatState `json:"state"`
-    // True, if the chat was created by the current user; otherwise false
-    IsOutbound bool `json:"is_outbound"`
-    // Current message Time To Live setting (self-destruct timer) for the chat, in seconds
-    Ttl int32 `json:"ttl"`
-    // Hash of the currently used key for comparison with the hash of the chat partner's key. This is a string of 36 bytes, which must be used to make a 12x12 square image with a color depth of 4. The first 16 bytes should be used to make a central 8x8 square, while the remaining 20 bytes should be used to construct a 2-pixel-wide border around that square. Alternatively, the first 32 bytes of the hash can be converted to the hexadecimal format and printed as 32 2-digit hex numbers
-    KeyHash []byte `json:"key_hash"`
-    // Secret chat layer; determines features supported by the other client. Video notes are supported if the layer >= 66
-    Layer int32 `json:"layer"`
+	meta
+	// Secret chat identifier
+	Id int32 `json:"id"`
+	// Identifier of the chat partner
+	UserId int32 `json:"user_id"`
+	// State of the secret chat
+	State SecretChatState `json:"state"`
+	// True, if the chat was created by the current user; otherwise false
+	IsOutbound bool `json:"is_outbound"`
+	// Current message Time To Live setting (self-destruct timer) for the chat, in seconds
+	Ttl int32 `json:"ttl"`
+	// Hash of the currently used key for comparison with the hash of the chat partner's key. This is a string of 36 bytes, which must be used to make a 12x12 square image with a color depth of 4. The first 16 bytes should be used to make a central 8x8 square, while the remaining 20 bytes should be used to construct a 2-pixel-wide border around that square. Alternatively, the first 32 bytes of the hash can be converted to the hexadecimal format and printed as 32 2-digit hex numbers
+	KeyHash []byte `json:"key_hash"`
+	// Secret chat layer; determines features supported by the other client. Video notes are supported if the layer >= 66
+	Layer int32 `json:"layer"`
 }
 
 func (entity *SecretChat) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SecretChat
+	type stub SecretChat
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SecretChat) GetClass() string {
-    return ClassSecretChat
+	return ClassSecretChat
 }
 
 func (*SecretChat) GetType() string {
-    return TypeSecretChat
+	return TypeSecretChat
 }
 
 func (secretChat *SecretChat) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id int32 `json:"id"`
-        UserId int32 `json:"user_id"`
-        State json.RawMessage `json:"state"`
-        IsOutbound bool `json:"is_outbound"`
-        Ttl int32 `json:"ttl"`
-        KeyHash []byte `json:"key_hash"`
-        Layer int32 `json:"layer"`
-    }
+	var tmp struct {
+		Id         int32           `json:"id"`
+		UserId     int32           `json:"user_id"`
+		State      json.RawMessage `json:"state"`
+		IsOutbound bool            `json:"is_outbound"`
+		Ttl        int32           `json:"ttl"`
+		KeyHash    []byte          `json:"key_hash"`
+		Layer      int32           `json:"layer"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    secretChat.Id = tmp.Id
-    secretChat.UserId = tmp.UserId
-    secretChat.IsOutbound = tmp.IsOutbound
-    secretChat.Ttl = tmp.Ttl
-    secretChat.KeyHash = tmp.KeyHash
-    secretChat.Layer = tmp.Layer
+	secretChat.Id = tmp.Id
+	secretChat.UserId = tmp.UserId
+	secretChat.IsOutbound = tmp.IsOutbound
+	secretChat.Ttl = tmp.Ttl
+	secretChat.KeyHash = tmp.KeyHash
+	secretChat.Layer = tmp.Layer
 
-    fieldState, _ := UnmarshalSecretChatState(tmp.State)
-    secretChat.State = fieldState
+	fieldState, _ := UnmarshalSecretChatState(tmp.State)
+	secretChat.State = fieldState
 
-    return nil
+	return nil
 }
 
 // The message was originally written by a known user
 type MessageForwardedFromUser struct {
-    meta
-    // Identifier of the user that originally sent this message
-    SenderUserId int32 `json:"sender_user_id"`
-    // Point in time (Unix timestamp) when the message was originally sent
-    Date int32 `json:"date"`
-    // For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded; 0 if unknown
-    ForwardedFromChatId int64 `json:"forwarded_from_chat_id"`
-    // For messages forwarded to the chat with the current user (saved messages) the identifier of the original message from which the new message was forwarded; 0 if unknown
-    ForwardedFromMessageId int64 `json:"forwarded_from_message_id"`
+	meta
+	// Identifier of the user that originally sent this message
+	SenderUserId int32 `json:"sender_user_id"`
+	// Point in time (Unix timestamp) when the message was originally sent
+	Date int32 `json:"date"`
+	// For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded; 0 if unknown
+	ForwardedFromChatId int64 `json:"forwarded_from_chat_id"`
+	// For messages forwarded to the chat with the current user (saved messages) the identifier of the original message from which the new message was forwarded; 0 if unknown
+	ForwardedFromMessageId int64 `json:"forwarded_from_message_id"`
 }
 
 func (entity *MessageForwardedFromUser) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageForwardedFromUser
+	type stub MessageForwardedFromUser
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageForwardedFromUser) GetClass() string {
-    return ClassMessageForwardInfo
+	return ClassMessageForwardInfo
 }
 
 func (*MessageForwardedFromUser) GetType() string {
-    return TypeMessageForwardedFromUser
+	return TypeMessageForwardedFromUser
 }
 
 func (*MessageForwardedFromUser) MessageForwardInfoType() string {
-    return TypeMessageForwardedFromUser
+	return TypeMessageForwardedFromUser
 }
 
 // The message was originally a post in a channel
 type MessageForwardedPost struct {
-    meta
-    // Identifier of the chat from which the message was forwarded
-    ChatId int64 `json:"chat_id"`
-    // Post author signature
-    AuthorSignature string `json:"author_signature"`
-    // Point in time (Unix timestamp) when the message was originally sent
-    Date int32 `json:"date"`
-    // Message identifier of the original message from which the new message was forwarded; 0 if unknown
-    MessageId int64 `json:"message_id"`
-    // For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded; 0 if unknown
-    ForwardedFromChatId int64 `json:"forwarded_from_chat_id"`
-    // For messages forwarded to the chat with the current user (saved messages), the identifier of the original message from which the new message was forwarded; 0 if unknown
-    ForwardedFromMessageId int64 `json:"forwarded_from_message_id"`
+	meta
+	// Identifier of the chat from which the message was forwarded
+	ChatId int64 `json:"chat_id"`
+	// Post author signature
+	AuthorSignature string `json:"author_signature"`
+	// Point in time (Unix timestamp) when the message was originally sent
+	Date int32 `json:"date"`
+	// Message identifier of the original message from which the new message was forwarded; 0 if unknown
+	MessageId int64 `json:"message_id"`
+	// For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded; 0 if unknown
+	ForwardedFromChatId int64 `json:"forwarded_from_chat_id"`
+	// For messages forwarded to the chat with the current user (saved messages), the identifier of the original message from which the new message was forwarded; 0 if unknown
+	ForwardedFromMessageId int64 `json:"forwarded_from_message_id"`
 }
 
 func (entity *MessageForwardedPost) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageForwardedPost
+	type stub MessageForwardedPost
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageForwardedPost) GetClass() string {
-    return ClassMessageForwardInfo
+	return ClassMessageForwardInfo
 }
 
 func (*MessageForwardedPost) GetType() string {
-    return TypeMessageForwardedPost
+	return TypeMessageForwardedPost
 }
 
 func (*MessageForwardedPost) MessageForwardInfoType() string {
-    return TypeMessageForwardedPost
+	return TypeMessageForwardedPost
 }
 
 // The message is being sent now, but has not yet been delivered to the server
-type MessageSendingStatePending struct{
-    meta
+type MessageSendingStatePending struct {
+	meta
 }
 
 func (entity *MessageSendingStatePending) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageSendingStatePending
+	type stub MessageSendingStatePending
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageSendingStatePending) GetClass() string {
-    return ClassMessageSendingState
+	return ClassMessageSendingState
 }
 
 func (*MessageSendingStatePending) GetType() string {
-    return TypeMessageSendingStatePending
+	return TypeMessageSendingStatePending
 }
 
 func (*MessageSendingStatePending) MessageSendingStateType() string {
-    return TypeMessageSendingStatePending
+	return TypeMessageSendingStatePending
 }
 
 // The message failed to be sent
-type MessageSendingStateFailed struct{
-    meta
+type MessageSendingStateFailed struct {
+	meta
 }
 
 func (entity *MessageSendingStateFailed) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageSendingStateFailed
+	type stub MessageSendingStateFailed
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageSendingStateFailed) GetClass() string {
-    return ClassMessageSendingState
+	return ClassMessageSendingState
 }
 
 func (*MessageSendingStateFailed) GetType() string {
-    return TypeMessageSendingStateFailed
+	return TypeMessageSendingStateFailed
 }
 
 func (*MessageSendingStateFailed) MessageSendingStateType() string {
-    return TypeMessageSendingStateFailed
+	return TypeMessageSendingStateFailed
 }
 
 // Describes a message
 type Message struct {
-    meta
-    // Message identifier, unique for the chat to which the message belongs
-    Id int64 `json:"id"`
-    // Identifier of the user who sent the message; 0 if unknown. It is unknown for channel posts
-    SenderUserId int32 `json:"sender_user_id"`
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // Information about the sending state of the message; may be null
-    SendingState MessageSendingState `json:"sending_state"`
-    // True, if the message is outgoing
-    IsOutgoing bool `json:"is_outgoing"`
-    // True, if the message can be edited
-    CanBeEdited bool `json:"can_be_edited"`
-    // True, if the message can be forwarded
-    CanBeForwarded bool `json:"can_be_forwarded"`
-    // True, if the message can be deleted only for the current user while other users will continue to see it
-    CanBeDeletedOnlyForSelf bool `json:"can_be_deleted_only_for_self"`
-    // True, if the message can be deleted for all users
-    CanBeDeletedForAllUsers bool `json:"can_be_deleted_for_all_users"`
-    // True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
-    IsChannelPost bool `json:"is_channel_post"`
-    // True, if the message contains an unread mention for the current user
-    ContainsUnreadMention bool `json:"contains_unread_mention"`
-    // Point in time (Unix timestamp) when the message was sent
-    Date int32 `json:"date"`
-    // Point in time (Unix timestamp) when the message was last edited
-    EditDate int32 `json:"edit_date"`
-    // Information about the initial message sender; may be null
-    ForwardInfo MessageForwardInfo `json:"forward_info"`
-    // If non-zero, the identifier of the message this message is replying to; can be the identifier of a deleted message
-    ReplyToMessageId int64 `json:"reply_to_message_id"`
-    // For self-destructing messages, the message's TTL (Time To Live), in seconds; 0 if none. TDLib will send updateDeleteMessages or updateMessageContent once the TTL expires
-    Ttl int32 `json:"ttl"`
-    // Time left before the message expires, in seconds
-    TtlExpiresIn float64 `json:"ttl_expires_in"`
-    // If non-zero, the user identifier of the bot through which this message was sent
-    ViaBotUserId int32 `json:"via_bot_user_id"`
-    // For channel posts, optional author signature
-    AuthorSignature string `json:"author_signature"`
-    // Number of times this message was viewed
-    Views int32 `json:"views"`
-    // Unique identifier of an album this message belongs to. Only photos and videos can be grouped together in albums
-    MediaAlbumId JsonInt64 `json:"media_album_id"`
-    // Content of the message
-    Content MessageContent `json:"content"`
-    // Reply markup for the message; may be null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	meta
+	// Message identifier, unique for the chat to which the message belongs
+	Id int64 `json:"id"`
+	// Identifier of the user who sent the message; 0 if unknown. It is unknown for channel posts
+	SenderUserId int32 `json:"sender_user_id"`
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Information about the sending state of the message; may be null
+	SendingState MessageSendingState `json:"sending_state"`
+	// True, if the message is outgoing
+	IsOutgoing bool `json:"is_outgoing"`
+	// True, if the message can be edited
+	CanBeEdited bool `json:"can_be_edited"`
+	// True, if the message can be forwarded
+	CanBeForwarded bool `json:"can_be_forwarded"`
+	// True, if the message can be deleted only for the current user while other users will continue to see it
+	CanBeDeletedOnlyForSelf bool `json:"can_be_deleted_only_for_self"`
+	// True, if the message can be deleted for all users
+	CanBeDeletedForAllUsers bool `json:"can_be_deleted_for_all_users"`
+	// True, if the message is a channel post. All messages to channels are channel posts, all other messages are not channel posts
+	IsChannelPost bool `json:"is_channel_post"`
+	// True, if the message contains an unread mention for the current user
+	ContainsUnreadMention bool `json:"contains_unread_mention"`
+	// Point in time (Unix timestamp) when the message was sent
+	Date int32 `json:"date"`
+	// Point in time (Unix timestamp) when the message was last edited
+	EditDate int32 `json:"edit_date"`
+	// Information about the initial message sender; may be null
+	ForwardInfo MessageForwardInfo `json:"forward_info"`
+	// If non-zero, the identifier of the message this message is replying to; can be the identifier of a deleted message
+	ReplyToMessageId int64 `json:"reply_to_message_id"`
+	// For self-destructing messages, the message's TTL (Time To Live), in seconds; 0 if none. TDLib will send updateDeleteMessages or updateMessageContent once the TTL expires
+	Ttl int32 `json:"ttl"`
+	// Time left before the message expires, in seconds
+	TtlExpiresIn float64 `json:"ttl_expires_in"`
+	// If non-zero, the user identifier of the bot through which this message was sent
+	ViaBotUserId int32 `json:"via_bot_user_id"`
+	// For channel posts, optional author signature
+	AuthorSignature string `json:"author_signature"`
+	// Number of times this message was viewed
+	Views int32 `json:"views"`
+	// Unique identifier of an album this message belongs to. Only photos and videos can be grouped together in albums
+	MediaAlbumId JsonInt64 `json:"media_album_id"`
+	// Content of the message
+	Content MessageContent `json:"content"`
+	// Reply markup for the message; may be null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
 }
 
 func (entity *Message) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Message
+	type stub Message
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Message) GetClass() string {
-    return ClassMessage
+	return ClassMessage
 }
 
 func (*Message) GetType() string {
-    return TypeMessage
+	return TypeMessage
 }
 
 func (message *Message) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id int64 `json:"id"`
-        SenderUserId int32 `json:"sender_user_id"`
-        ChatId int64 `json:"chat_id"`
-        SendingState json.RawMessage `json:"sending_state"`
-        IsOutgoing bool `json:"is_outgoing"`
-        CanBeEdited bool `json:"can_be_edited"`
-        CanBeForwarded bool `json:"can_be_forwarded"`
-        CanBeDeletedOnlyForSelf bool `json:"can_be_deleted_only_for_self"`
-        CanBeDeletedForAllUsers bool `json:"can_be_deleted_for_all_users"`
-        IsChannelPost bool `json:"is_channel_post"`
-        ContainsUnreadMention bool `json:"contains_unread_mention"`
-        Date int32 `json:"date"`
-        EditDate int32 `json:"edit_date"`
-        ForwardInfo json.RawMessage `json:"forward_info"`
-        ReplyToMessageId int64 `json:"reply_to_message_id"`
-        Ttl int32 `json:"ttl"`
-        TtlExpiresIn float64 `json:"ttl_expires_in"`
-        ViaBotUserId int32 `json:"via_bot_user_id"`
-        AuthorSignature string `json:"author_signature"`
-        Views int32 `json:"views"`
-        MediaAlbumId JsonInt64 `json:"media_album_id"`
-        Content json.RawMessage `json:"content"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-    }
+	var tmp struct {
+		Id                      int64           `json:"id"`
+		SenderUserId            int32           `json:"sender_user_id"`
+		ChatId                  int64           `json:"chat_id"`
+		SendingState            json.RawMessage `json:"sending_state"`
+		IsOutgoing              bool            `json:"is_outgoing"`
+		CanBeEdited             bool            `json:"can_be_edited"`
+		CanBeForwarded          bool            `json:"can_be_forwarded"`
+		CanBeDeletedOnlyForSelf bool            `json:"can_be_deleted_only_for_self"`
+		CanBeDeletedForAllUsers bool            `json:"can_be_deleted_for_all_users"`
+		IsChannelPost           bool            `json:"is_channel_post"`
+		ContainsUnreadMention   bool            `json:"contains_unread_mention"`
+		Date                    int32           `json:"date"`
+		EditDate                int32           `json:"edit_date"`
+		ForwardInfo             json.RawMessage `json:"forward_info"`
+		ReplyToMessageId        int64           `json:"reply_to_message_id"`
+		Ttl                     int32           `json:"ttl"`
+		TtlExpiresIn            float64         `json:"ttl_expires_in"`
+		ViaBotUserId            int32           `json:"via_bot_user_id"`
+		AuthorSignature         string          `json:"author_signature"`
+		Views                   int32           `json:"views"`
+		MediaAlbumId            JsonInt64       `json:"media_album_id"`
+		Content                 json.RawMessage `json:"content"`
+		ReplyMarkup             json.RawMessage `json:"reply_markup"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    message.Id = tmp.Id
-    message.SenderUserId = tmp.SenderUserId
-    message.ChatId = tmp.ChatId
-    message.IsOutgoing = tmp.IsOutgoing
-    message.CanBeEdited = tmp.CanBeEdited
-    message.CanBeForwarded = tmp.CanBeForwarded
-    message.CanBeDeletedOnlyForSelf = tmp.CanBeDeletedOnlyForSelf
-    message.CanBeDeletedForAllUsers = tmp.CanBeDeletedForAllUsers
-    message.IsChannelPost = tmp.IsChannelPost
-    message.ContainsUnreadMention = tmp.ContainsUnreadMention
-    message.Date = tmp.Date
-    message.EditDate = tmp.EditDate
-    message.ReplyToMessageId = tmp.ReplyToMessageId
-    message.Ttl = tmp.Ttl
-    message.TtlExpiresIn = tmp.TtlExpiresIn
-    message.ViaBotUserId = tmp.ViaBotUserId
-    message.AuthorSignature = tmp.AuthorSignature
-    message.Views = tmp.Views
-    message.MediaAlbumId = tmp.MediaAlbumId
+	message.Id = tmp.Id
+	message.SenderUserId = tmp.SenderUserId
+	message.ChatId = tmp.ChatId
+	message.IsOutgoing = tmp.IsOutgoing
+	message.CanBeEdited = tmp.CanBeEdited
+	message.CanBeForwarded = tmp.CanBeForwarded
+	message.CanBeDeletedOnlyForSelf = tmp.CanBeDeletedOnlyForSelf
+	message.CanBeDeletedForAllUsers = tmp.CanBeDeletedForAllUsers
+	message.IsChannelPost = tmp.IsChannelPost
+	message.ContainsUnreadMention = tmp.ContainsUnreadMention
+	message.Date = tmp.Date
+	message.EditDate = tmp.EditDate
+	message.ReplyToMessageId = tmp.ReplyToMessageId
+	message.Ttl = tmp.Ttl
+	message.TtlExpiresIn = tmp.TtlExpiresIn
+	message.ViaBotUserId = tmp.ViaBotUserId
+	message.AuthorSignature = tmp.AuthorSignature
+	message.Views = tmp.Views
+	message.MediaAlbumId = tmp.MediaAlbumId
 
-    fieldSendingState, _ := UnmarshalMessageSendingState(tmp.SendingState)
-    message.SendingState = fieldSendingState
+	fieldSendingState, _ := UnmarshalMessageSendingState(tmp.SendingState)
+	message.SendingState = fieldSendingState
 
-    fieldForwardInfo, _ := UnmarshalMessageForwardInfo(tmp.ForwardInfo)
-    message.ForwardInfo = fieldForwardInfo
+	fieldForwardInfo, _ := UnmarshalMessageForwardInfo(tmp.ForwardInfo)
+	message.ForwardInfo = fieldForwardInfo
 
-    fieldContent, _ := UnmarshalMessageContent(tmp.Content)
-    message.Content = fieldContent
+	fieldContent, _ := UnmarshalMessageContent(tmp.Content)
+	message.Content = fieldContent
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    message.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	message.ReplyMarkup = fieldReplyMarkup
 
-    return nil
+	return nil
 }
 
 // Contains a list of messages
 type Messages struct {
-    meta
-    // Approximate total count of messages found
-    TotalCount int32 `json:"total_count"`
-    // List of messages; messages may be null
-    Messages []*Message `json:"messages"`
+	meta
+	// Approximate total count of messages found
+	TotalCount int32 `json:"total_count"`
+	// List of messages; messages may be null
+	Messages []*Message `json:"messages"`
 }
 
 func (entity *Messages) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Messages
+	type stub Messages
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Messages) GetClass() string {
-    return ClassMessages
+	return ClassMessages
 }
 
 func (*Messages) GetType() string {
-    return TypeMessages
+	return TypeMessages
 }
 
 // Contains a list of messages found by a search
 type FoundMessages struct {
-    meta
-    // List of messages
-    Messages []*Message `json:"messages"`
-    // Value to pass as from_search_id to get more results
-    NextFromSearchId JsonInt64 `json:"next_from_search_id"`
+	meta
+	// List of messages
+	Messages []*Message `json:"messages"`
+	// Value to pass as from_search_id to get more results
+	NextFromSearchId JsonInt64 `json:"next_from_search_id"`
 }
 
 func (entity *FoundMessages) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FoundMessages
+	type stub FoundMessages
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FoundMessages) GetClass() string {
-    return ClassFoundMessages
+	return ClassFoundMessages
 }
 
 func (*FoundMessages) GetType() string {
-    return TypeFoundMessages
+	return TypeFoundMessages
 }
 
 // Notification settings applied to all private and secret chats when the corresponding chat setting has a default value
-type NotificationSettingsScopePrivateChats struct{
-    meta
+type NotificationSettingsScopePrivateChats struct {
+	meta
 }
 
 func (entity *NotificationSettingsScopePrivateChats) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub NotificationSettingsScopePrivateChats
+	type stub NotificationSettingsScopePrivateChats
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*NotificationSettingsScopePrivateChats) GetClass() string {
-    return ClassNotificationSettingsScope
+	return ClassNotificationSettingsScope
 }
 
 func (*NotificationSettingsScopePrivateChats) GetType() string {
-    return TypeNotificationSettingsScopePrivateChats
+	return TypeNotificationSettingsScopePrivateChats
 }
 
 func (*NotificationSettingsScopePrivateChats) NotificationSettingsScopeType() string {
-    return TypeNotificationSettingsScopePrivateChats
+	return TypeNotificationSettingsScopePrivateChats
 }
 
 // Notification settings applied to all basic groups, supergroups and channels when the corresponding chat setting has a default value
-type NotificationSettingsScopeGroupChats struct{
-    meta
+type NotificationSettingsScopeGroupChats struct {
+	meta
 }
 
 func (entity *NotificationSettingsScopeGroupChats) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub NotificationSettingsScopeGroupChats
+	type stub NotificationSettingsScopeGroupChats
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*NotificationSettingsScopeGroupChats) GetClass() string {
-    return ClassNotificationSettingsScope
+	return ClassNotificationSettingsScope
 }
 
 func (*NotificationSettingsScopeGroupChats) GetType() string {
-    return TypeNotificationSettingsScopeGroupChats
+	return TypeNotificationSettingsScopeGroupChats
 }
 
 func (*NotificationSettingsScopeGroupChats) NotificationSettingsScopeType() string {
-    return TypeNotificationSettingsScopeGroupChats
+	return TypeNotificationSettingsScopeGroupChats
 }
 
 // Contains information about notification settings for a chat
 type ChatNotificationSettings struct {
-    meta
-    // If true, mute_for is ignored and the value for the relevant type of chat is used instead
-    UseDefaultMuteFor bool `json:"use_default_mute_for"`
-    // Time left before notifications will be unmuted, in seconds
-    MuteFor int32 `json:"mute_for"`
-    // If true, sound is ignored and the value for the relevant type of chat is used instead
-    UseDefaultSound bool `json:"use_default_sound"`
-    // The name of an audio file to be used for notification sounds; only applies to iOS applications
-    Sound string `json:"sound"`
-    // If true, show_preview is ignored and the value for the relevant type of chat is used instead
-    UseDefaultShowPreview bool `json:"use_default_show_preview"`
-    // True, if message content should be displayed in notifications
-    ShowPreview bool `json:"show_preview"`
+	meta
+	// If true, mute_for is ignored and the value for the relevant type of chat is used instead
+	UseDefaultMuteFor bool `json:"use_default_mute_for"`
+	// Time left before notifications will be unmuted, in seconds
+	MuteFor int32 `json:"mute_for"`
+	// If true, sound is ignored and the value for the relevant type of chat is used instead
+	UseDefaultSound bool `json:"use_default_sound"`
+	// The name of an audio file to be used for notification sounds; only applies to iOS applications
+	Sound string `json:"sound"`
+	// If true, show_preview is ignored and the value for the relevant type of chat is used instead
+	UseDefaultShowPreview bool `json:"use_default_show_preview"`
+	// True, if message content should be displayed in notifications
+	ShowPreview bool `json:"show_preview"`
 }
 
 func (entity *ChatNotificationSettings) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatNotificationSettings
+	type stub ChatNotificationSettings
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatNotificationSettings) GetClass() string {
-    return ClassChatNotificationSettings
+	return ClassChatNotificationSettings
 }
 
 func (*ChatNotificationSettings) GetType() string {
-    return TypeChatNotificationSettings
+	return TypeChatNotificationSettings
 }
 
 // Contains information about notification settings for several chats
 type ScopeNotificationSettings struct {
-    meta
-    // Time left before notifications will be unmuted, in seconds
-    MuteFor int32 `json:"mute_for"`
-    // The name of an audio file to be used for notification sounds; only applies to iOS applications
-    Sound string `json:"sound"`
-    // True, if message content should be displayed in notifications
-    ShowPreview bool `json:"show_preview"`
+	meta
+	// Time left before notifications will be unmuted, in seconds
+	MuteFor int32 `json:"mute_for"`
+	// The name of an audio file to be used for notification sounds; only applies to iOS applications
+	Sound string `json:"sound"`
+	// True, if message content should be displayed in notifications
+	ShowPreview bool `json:"show_preview"`
 }
 
 func (entity *ScopeNotificationSettings) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ScopeNotificationSettings
+	type stub ScopeNotificationSettings
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ScopeNotificationSettings) GetClass() string {
-    return ClassScopeNotificationSettings
+	return ClassScopeNotificationSettings
 }
 
 func (*ScopeNotificationSettings) GetType() string {
-    return TypeScopeNotificationSettings
+	return TypeScopeNotificationSettings
 }
 
 // Contains information about a message draft
 type DraftMessage struct {
-    meta
-    // Identifier of the message to reply to; 0 if none
-    ReplyToMessageId int64 `json:"reply_to_message_id"`
-    // Content of the message draft; this should always be of type inputMessageText
-    InputMessageText InputMessageContent `json:"input_message_text"`
+	meta
+	// Identifier of the message to reply to; 0 if none
+	ReplyToMessageId int64 `json:"reply_to_message_id"`
+	// Content of the message draft; this should always be of type inputMessageText
+	InputMessageText InputMessageContent `json:"input_message_text"`
 }
 
 func (entity *DraftMessage) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub DraftMessage
+	type stub DraftMessage
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*DraftMessage) GetClass() string {
-    return ClassDraftMessage
+	return ClassDraftMessage
 }
 
 func (*DraftMessage) GetType() string {
-    return TypeDraftMessage
+	return TypeDraftMessage
 }
 
 func (draftMessage *DraftMessage) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        ReplyToMessageId int64 `json:"reply_to_message_id"`
-        InputMessageText json.RawMessage `json:"input_message_text"`
-    }
+	var tmp struct {
+		ReplyToMessageId int64           `json:"reply_to_message_id"`
+		InputMessageText json.RawMessage `json:"input_message_text"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    draftMessage.ReplyToMessageId = tmp.ReplyToMessageId
+	draftMessage.ReplyToMessageId = tmp.ReplyToMessageId
 
-    fieldInputMessageText, _ := UnmarshalInputMessageContent(tmp.InputMessageText)
-    draftMessage.InputMessageText = fieldInputMessageText
+	fieldInputMessageText, _ := UnmarshalInputMessageContent(tmp.InputMessageText)
+	draftMessage.InputMessageText = fieldInputMessageText
 
-    return nil
+	return nil
 }
 
 // An ordinary chat with a user
 type ChatTypePrivate struct {
-    meta
-    // User identifier
-    UserId int32 `json:"user_id"`
+	meta
+	// User identifier
+	UserId int32 `json:"user_id"`
 }
 
 func (entity *ChatTypePrivate) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatTypePrivate
+	type stub ChatTypePrivate
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatTypePrivate) GetClass() string {
-    return ClassChatType
+	return ClassChatType
 }
 
 func (*ChatTypePrivate) GetType() string {
-    return TypeChatTypePrivate
+	return TypeChatTypePrivate
 }
 
 func (*ChatTypePrivate) ChatTypeType() string {
-    return TypeChatTypePrivate
+	return TypeChatTypePrivate
 }
 
 // A basic group (i.e., a chat with 0-200 other users)
 type ChatTypeBasicGroup struct {
-    meta
-    // Basic group identifier
-    BasicGroupId int32 `json:"basic_group_id"`
+	meta
+	// Basic group identifier
+	BasicGroupId int32 `json:"basic_group_id"`
 }
 
 func (entity *ChatTypeBasicGroup) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatTypeBasicGroup
+	type stub ChatTypeBasicGroup
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatTypeBasicGroup) GetClass() string {
-    return ClassChatType
+	return ClassChatType
 }
 
 func (*ChatTypeBasicGroup) GetType() string {
-    return TypeChatTypeBasicGroup
+	return TypeChatTypeBasicGroup
 }
 
 func (*ChatTypeBasicGroup) ChatTypeType() string {
-    return TypeChatTypeBasicGroup
+	return TypeChatTypeBasicGroup
 }
 
 // A supergroup (i.e. a chat with up to GetOption("supergroup_max_size") other users), or channel (with unlimited members)
 type ChatTypeSupergroup struct {
-    meta
-    // Supergroup or channel identifier
-    SupergroupId int32 `json:"supergroup_id"`
-    // True, if the supergroup is a channel
-    IsChannel bool `json:"is_channel"`
+	meta
+	// Supergroup or channel identifier
+	SupergroupId int32 `json:"supergroup_id"`
+	// True, if the supergroup is a channel
+	IsChannel bool `json:"is_channel"`
 }
 
 func (entity *ChatTypeSupergroup) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatTypeSupergroup
+	type stub ChatTypeSupergroup
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatTypeSupergroup) GetClass() string {
-    return ClassChatType
+	return ClassChatType
 }
 
 func (*ChatTypeSupergroup) GetType() string {
-    return TypeChatTypeSupergroup
+	return TypeChatTypeSupergroup
 }
 
 func (*ChatTypeSupergroup) ChatTypeType() string {
-    return TypeChatTypeSupergroup
+	return TypeChatTypeSupergroup
 }
 
 // A secret chat with a user
 type ChatTypeSecret struct {
-    meta
-    // Secret chat identifier
-    SecretChatId int32 `json:"secret_chat_id"`
-    // User identifier of the secret chat peer
-    UserId int32 `json:"user_id"`
+	meta
+	// Secret chat identifier
+	SecretChatId int32 `json:"secret_chat_id"`
+	// User identifier of the secret chat peer
+	UserId int32 `json:"user_id"`
 }
 
 func (entity *ChatTypeSecret) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatTypeSecret
+	type stub ChatTypeSecret
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatTypeSecret) GetClass() string {
-    return ClassChatType
+	return ClassChatType
 }
 
 func (*ChatTypeSecret) GetType() string {
-    return TypeChatTypeSecret
+	return TypeChatTypeSecret
 }
 
 func (*ChatTypeSecret) ChatTypeType() string {
-    return TypeChatTypeSecret
+	return TypeChatTypeSecret
 }
 
 // A chat. (Can be a private chat, basic group, supergroup, or secret chat)
 type Chat struct {
-    meta
-    // Chat unique identifier
-    Id int64 `json:"id"`
-    // Type of the chat
-    Type ChatType `json:"type"`
-    // Chat title
-    Title string `json:"title"`
-    // Chat photo; may be null
-    Photo *ChatPhoto `json:"photo"`
-    // Last message in the chat; may be null
-    LastMessage *Message `json:"last_message"`
-    // Descending parameter by which chats are sorted in the main chat list. If the order number of two chats is the same, they must be sorted in descending order by ID. If 0, the position of the chat in the list is undetermined
-    Order JsonInt64 `json:"order"`
-    // True, if the chat is pinned
-    IsPinned bool `json:"is_pinned"`
-    // True, if the chat is marked as unread
-    IsMarkedAsUnread bool `json:"is_marked_as_unread"`
-    // True, if the chat is sponsored by the user's MTProxy server
-    IsSponsored bool `json:"is_sponsored"`
-    // True, if the chat can be reported to Telegram moderators through reportChat
-    CanBeReported bool `json:"can_be_reported"`
-    // Default value of the disable_notification parameter, used when a message is sent to the chat
-    DefaultDisableNotification bool `json:"default_disable_notification"`
-    // Number of unread messages in the chat
-    UnreadCount int32 `json:"unread_count"`
-    // Identifier of the last read incoming message
-    LastReadInboxMessageId int64 `json:"last_read_inbox_message_id"`
-    // Identifier of the last read outgoing message
-    LastReadOutboxMessageId int64 `json:"last_read_outbox_message_id"`
-    // Number of unread messages with a mention/reply in the chat
-    UnreadMentionCount int32 `json:"unread_mention_count"`
-    // Notification settings for this chat
-    NotificationSettings *ChatNotificationSettings `json:"notification_settings"`
-    // Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
-    ReplyMarkupMessageId int64 `json:"reply_markup_message_id"`
-    // A draft of a message in the chat; may be null
-    DraftMessage *DraftMessage `json:"draft_message"`
-    // Contains client-specific data associated with the chat. (For example, the chat position or local chat notification settings can be stored here.) Persistent if a message database is used
-    ClientData string `json:"client_data"`
+	meta
+	// Chat unique identifier
+	Id int64 `json:"id"`
+	// Type of the chat
+	Type ChatType `json:"type"`
+	// Chat title
+	Title string `json:"title"`
+	// Chat photo; may be null
+	Photo *ChatPhoto `json:"photo"`
+	// Last message in the chat; may be null
+	LastMessage *Message `json:"last_message"`
+	// Descending parameter by which chats are sorted in the main chat list. If the order number of two chats is the same, they must be sorted in descending order by ID. If 0, the position of the chat in the list is undetermined
+	Order JsonInt64 `json:"order"`
+	// True, if the chat is pinned
+	IsPinned bool `json:"is_pinned"`
+	// True, if the chat is marked as unread
+	IsMarkedAsUnread bool `json:"is_marked_as_unread"`
+	// True, if the chat is sponsored by the user's MTProxy server
+	IsSponsored bool `json:"is_sponsored"`
+	// True, if the chat can be reported to Telegram moderators through reportChat
+	CanBeReported bool `json:"can_be_reported"`
+	// Default value of the disable_notification parameter, used when a message is sent to the chat
+	DefaultDisableNotification bool `json:"default_disable_notification"`
+	// Number of unread messages in the chat
+	UnreadCount int32 `json:"unread_count"`
+	// Identifier of the last read incoming message
+	LastReadInboxMessageId int64 `json:"last_read_inbox_message_id"`
+	// Identifier of the last read outgoing message
+	LastReadOutboxMessageId int64 `json:"last_read_outbox_message_id"`
+	// Number of unread messages with a mention/reply in the chat
+	UnreadMentionCount int32 `json:"unread_mention_count"`
+	// Notification settings for this chat
+	NotificationSettings *ChatNotificationSettings `json:"notification_settings"`
+	// Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
+	ReplyMarkupMessageId int64 `json:"reply_markup_message_id"`
+	// A draft of a message in the chat; may be null
+	DraftMessage *DraftMessage `json:"draft_message"`
+	// Contains client-specific data associated with the chat. (For example, the chat position or local chat notification settings can be stored here.) Persistent if a message database is used
+	ClientData string `json:"client_data"`
 }
 
 func (entity *Chat) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Chat
+	type stub Chat
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Chat) GetClass() string {
-    return ClassChat
+	return ClassChat
 }
 
 func (*Chat) GetType() string {
-    return TypeChat
+	return TypeChat
 }
 
 func (chat *Chat) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id int64 `json:"id"`
-        Type json.RawMessage `json:"type"`
-        Title string `json:"title"`
-        Photo *ChatPhoto `json:"photo"`
-        LastMessage *Message `json:"last_message"`
-        Order JsonInt64 `json:"order"`
-        IsPinned bool `json:"is_pinned"`
-        IsMarkedAsUnread bool `json:"is_marked_as_unread"`
-        IsSponsored bool `json:"is_sponsored"`
-        CanBeReported bool `json:"can_be_reported"`
-        DefaultDisableNotification bool `json:"default_disable_notification"`
-        UnreadCount int32 `json:"unread_count"`
-        LastReadInboxMessageId int64 `json:"last_read_inbox_message_id"`
-        LastReadOutboxMessageId int64 `json:"last_read_outbox_message_id"`
-        UnreadMentionCount int32 `json:"unread_mention_count"`
-        NotificationSettings *ChatNotificationSettings `json:"notification_settings"`
-        ReplyMarkupMessageId int64 `json:"reply_markup_message_id"`
-        DraftMessage *DraftMessage `json:"draft_message"`
-        ClientData string `json:"client_data"`
-    }
+	var tmp struct {
+		Id                         int64                     `json:"id"`
+		Type                       json.RawMessage           `json:"type"`
+		Title                      string                    `json:"title"`
+		Photo                      *ChatPhoto                `json:"photo"`
+		LastMessage                *Message                  `json:"last_message"`
+		Order                      JsonInt64                 `json:"order"`
+		IsPinned                   bool                      `json:"is_pinned"`
+		IsMarkedAsUnread           bool                      `json:"is_marked_as_unread"`
+		IsSponsored                bool                      `json:"is_sponsored"`
+		CanBeReported              bool                      `json:"can_be_reported"`
+		DefaultDisableNotification bool                      `json:"default_disable_notification"`
+		UnreadCount                int32                     `json:"unread_count"`
+		LastReadInboxMessageId     int64                     `json:"last_read_inbox_message_id"`
+		LastReadOutboxMessageId    int64                     `json:"last_read_outbox_message_id"`
+		UnreadMentionCount         int32                     `json:"unread_mention_count"`
+		NotificationSettings       *ChatNotificationSettings `json:"notification_settings"`
+		ReplyMarkupMessageId       int64                     `json:"reply_markup_message_id"`
+		DraftMessage               *DraftMessage             `json:"draft_message"`
+		ClientData                 string                    `json:"client_data"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    chat.Id = tmp.Id
-    chat.Title = tmp.Title
-    chat.Photo = tmp.Photo
-    chat.LastMessage = tmp.LastMessage
-    chat.Order = tmp.Order
-    chat.IsPinned = tmp.IsPinned
-    chat.IsMarkedAsUnread = tmp.IsMarkedAsUnread
-    chat.IsSponsored = tmp.IsSponsored
-    chat.CanBeReported = tmp.CanBeReported
-    chat.DefaultDisableNotification = tmp.DefaultDisableNotification
-    chat.UnreadCount = tmp.UnreadCount
-    chat.LastReadInboxMessageId = tmp.LastReadInboxMessageId
-    chat.LastReadOutboxMessageId = tmp.LastReadOutboxMessageId
-    chat.UnreadMentionCount = tmp.UnreadMentionCount
-    chat.NotificationSettings = tmp.NotificationSettings
-    chat.ReplyMarkupMessageId = tmp.ReplyMarkupMessageId
-    chat.DraftMessage = tmp.DraftMessage
-    chat.ClientData = tmp.ClientData
+	chat.Id = tmp.Id
+	chat.Title = tmp.Title
+	chat.Photo = tmp.Photo
+	chat.LastMessage = tmp.LastMessage
+	chat.Order = tmp.Order
+	chat.IsPinned = tmp.IsPinned
+	chat.IsMarkedAsUnread = tmp.IsMarkedAsUnread
+	chat.IsSponsored = tmp.IsSponsored
+	chat.CanBeReported = tmp.CanBeReported
+	chat.DefaultDisableNotification = tmp.DefaultDisableNotification
+	chat.UnreadCount = tmp.UnreadCount
+	chat.LastReadInboxMessageId = tmp.LastReadInboxMessageId
+	chat.LastReadOutboxMessageId = tmp.LastReadOutboxMessageId
+	chat.UnreadMentionCount = tmp.UnreadMentionCount
+	chat.NotificationSettings = tmp.NotificationSettings
+	chat.ReplyMarkupMessageId = tmp.ReplyMarkupMessageId
+	chat.DraftMessage = tmp.DraftMessage
+	chat.ClientData = tmp.ClientData
 
-    fieldType, _ := UnmarshalChatType(tmp.Type)
-    chat.Type = fieldType
+	fieldType, _ := UnmarshalChatType(tmp.Type)
+	chat.Type = fieldType
 
-    return nil
+	return nil
 }
 
 // Represents a list of chats
 type Chats struct {
-    meta
-    // List of chat identifiers
-    ChatIds []int64 `json:"chat_ids"`
+	meta
+	// List of chat identifiers
+	ChatIds []int64 `json:"chat_ids"`
 }
 
 func (entity *Chats) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Chats
+	type stub Chats
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Chats) GetClass() string {
-    return ClassChats
+	return ClassChats
 }
 
 func (*Chats) GetType() string {
-    return TypeChats
+	return TypeChats
 }
 
 // Contains a chat invite link
 type ChatInviteLink struct {
-    meta
-    // Chat invite link
-    InviteLink string `json:"invite_link"`
+	meta
+	// Chat invite link
+	InviteLink string `json:"invite_link"`
 }
 
 func (entity *ChatInviteLink) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatInviteLink
+	type stub ChatInviteLink
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatInviteLink) GetClass() string {
-    return ClassChatInviteLink
+	return ClassChatInviteLink
 }
 
 func (*ChatInviteLink) GetType() string {
-    return TypeChatInviteLink
+	return TypeChatInviteLink
 }
 
 // Contains information about a chat invite link
 type ChatInviteLinkInfo struct {
-    meta
-    // Chat identifier of the invite link; 0 if the user is not a member of this chat
-    ChatId int64 `json:"chat_id"`
-    // Contains information about the type of the chat
-    Type ChatType `json:"type"`
-    // Title of the chat
-    Title string `json:"title"`
-    // Chat photo; may be null
-    Photo *ChatPhoto `json:"photo"`
-    // Number of members
-    MemberCount int32 `json:"member_count"`
-    // User identifiers of some chat members that may be known to the current user
-    MemberUserIds []int32 `json:"member_user_ids"`
-    // True, if the chat is a public supergroup or channel with a username
-    IsPublic bool `json:"is_public"`
+	meta
+	// Chat identifier of the invite link; 0 if the user is not a member of this chat
+	ChatId int64 `json:"chat_id"`
+	// Contains information about the type of the chat
+	Type ChatType `json:"type"`
+	// Title of the chat
+	Title string `json:"title"`
+	// Chat photo; may be null
+	Photo *ChatPhoto `json:"photo"`
+	// Number of members
+	MemberCount int32 `json:"member_count"`
+	// User identifiers of some chat members that may be known to the current user
+	MemberUserIds []int32 `json:"member_user_ids"`
+	// True, if the chat is a public supergroup or channel with a username
+	IsPublic bool `json:"is_public"`
 }
 
 func (entity *ChatInviteLinkInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatInviteLinkInfo
+	type stub ChatInviteLinkInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatInviteLinkInfo) GetClass() string {
-    return ClassChatInviteLinkInfo
+	return ClassChatInviteLinkInfo
 }
 
 func (*ChatInviteLinkInfo) GetType() string {
-    return TypeChatInviteLinkInfo
+	return TypeChatInviteLinkInfo
 }
 
 func (chatInviteLinkInfo *ChatInviteLinkInfo) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        ChatId int64 `json:"chat_id"`
-        Type json.RawMessage `json:"type"`
-        Title string `json:"title"`
-        Photo *ChatPhoto `json:"photo"`
-        MemberCount int32 `json:"member_count"`
-        MemberUserIds []int32 `json:"member_user_ids"`
-        IsPublic bool `json:"is_public"`
-    }
+	var tmp struct {
+		ChatId        int64           `json:"chat_id"`
+		Type          json.RawMessage `json:"type"`
+		Title         string          `json:"title"`
+		Photo         *ChatPhoto      `json:"photo"`
+		MemberCount   int32           `json:"member_count"`
+		MemberUserIds []int32         `json:"member_user_ids"`
+		IsPublic      bool            `json:"is_public"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    chatInviteLinkInfo.ChatId = tmp.ChatId
-    chatInviteLinkInfo.Title = tmp.Title
-    chatInviteLinkInfo.Photo = tmp.Photo
-    chatInviteLinkInfo.MemberCount = tmp.MemberCount
-    chatInviteLinkInfo.MemberUserIds = tmp.MemberUserIds
-    chatInviteLinkInfo.IsPublic = tmp.IsPublic
+	chatInviteLinkInfo.ChatId = tmp.ChatId
+	chatInviteLinkInfo.Title = tmp.Title
+	chatInviteLinkInfo.Photo = tmp.Photo
+	chatInviteLinkInfo.MemberCount = tmp.MemberCount
+	chatInviteLinkInfo.MemberUserIds = tmp.MemberUserIds
+	chatInviteLinkInfo.IsPublic = tmp.IsPublic
 
-    fieldType, _ := UnmarshalChatType(tmp.Type)
-    chatInviteLinkInfo.Type = fieldType
+	fieldType, _ := UnmarshalChatType(tmp.Type)
+	chatInviteLinkInfo.Type = fieldType
 
-    return nil
+	return nil
 }
 
 // A simple button, with text that should be sent when the button is pressed
-type KeyboardButtonTypeText struct{
-    meta
+type KeyboardButtonTypeText struct {
+	meta
 }
 
 func (entity *KeyboardButtonTypeText) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub KeyboardButtonTypeText
+	type stub KeyboardButtonTypeText
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*KeyboardButtonTypeText) GetClass() string {
-    return ClassKeyboardButtonType
+	return ClassKeyboardButtonType
 }
 
 func (*KeyboardButtonTypeText) GetType() string {
-    return TypeKeyboardButtonTypeText
+	return TypeKeyboardButtonTypeText
 }
 
 func (*KeyboardButtonTypeText) KeyboardButtonTypeType() string {
-    return TypeKeyboardButtonTypeText
+	return TypeKeyboardButtonTypeText
 }
 
 // A button that sends the user's phone number when pressed; available only in private chats
-type KeyboardButtonTypeRequestPhoneNumber struct{
-    meta
+type KeyboardButtonTypeRequestPhoneNumber struct {
+	meta
 }
 
 func (entity *KeyboardButtonTypeRequestPhoneNumber) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub KeyboardButtonTypeRequestPhoneNumber
+	type stub KeyboardButtonTypeRequestPhoneNumber
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*KeyboardButtonTypeRequestPhoneNumber) GetClass() string {
-    return ClassKeyboardButtonType
+	return ClassKeyboardButtonType
 }
 
 func (*KeyboardButtonTypeRequestPhoneNumber) GetType() string {
-    return TypeKeyboardButtonTypeRequestPhoneNumber
+	return TypeKeyboardButtonTypeRequestPhoneNumber
 }
 
 func (*KeyboardButtonTypeRequestPhoneNumber) KeyboardButtonTypeType() string {
-    return TypeKeyboardButtonTypeRequestPhoneNumber
+	return TypeKeyboardButtonTypeRequestPhoneNumber
 }
 
 // A button that sends the user's location when pressed; available only in private chats
-type KeyboardButtonTypeRequestLocation struct{
-    meta
+type KeyboardButtonTypeRequestLocation struct {
+	meta
 }
 
 func (entity *KeyboardButtonTypeRequestLocation) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub KeyboardButtonTypeRequestLocation
+	type stub KeyboardButtonTypeRequestLocation
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*KeyboardButtonTypeRequestLocation) GetClass() string {
-    return ClassKeyboardButtonType
+	return ClassKeyboardButtonType
 }
 
 func (*KeyboardButtonTypeRequestLocation) GetType() string {
-    return TypeKeyboardButtonTypeRequestLocation
+	return TypeKeyboardButtonTypeRequestLocation
 }
 
 func (*KeyboardButtonTypeRequestLocation) KeyboardButtonTypeType() string {
-    return TypeKeyboardButtonTypeRequestLocation
+	return TypeKeyboardButtonTypeRequestLocation
 }
 
 // Represents a single button in a bot keyboard
 type KeyboardButton struct {
-    meta
-    // Text of the button
-    Text string `json:"text"`
-    // Type of the button
-    Type KeyboardButtonType `json:"type"`
+	meta
+	// Text of the button
+	Text string `json:"text"`
+	// Type of the button
+	Type KeyboardButtonType `json:"type"`
 }
 
 func (entity *KeyboardButton) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub KeyboardButton
+	type stub KeyboardButton
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*KeyboardButton) GetClass() string {
-    return ClassKeyboardButton
+	return ClassKeyboardButton
 }
 
 func (*KeyboardButton) GetType() string {
-    return TypeKeyboardButton
+	return TypeKeyboardButton
 }
 
 func (keyboardButton *KeyboardButton) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Text string `json:"text"`
-        Type json.RawMessage `json:"type"`
-    }
+	var tmp struct {
+		Text string          `json:"text"`
+		Type json.RawMessage `json:"type"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    keyboardButton.Text = tmp.Text
+	keyboardButton.Text = tmp.Text
 
-    fieldType, _ := UnmarshalKeyboardButtonType(tmp.Type)
-    keyboardButton.Type = fieldType
+	fieldType, _ := UnmarshalKeyboardButtonType(tmp.Type)
+	keyboardButton.Type = fieldType
 
-    return nil
+	return nil
 }
 
 // A button that opens a specified URL
 type InlineKeyboardButtonTypeUrl struct {
-    meta
-    // HTTP or tg:// URL to open
-    Url string `json:"url"`
+	meta
+	// HTTP or tg:// URL to open
+	Url string `json:"url"`
 }
 
 func (entity *InlineKeyboardButtonTypeUrl) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineKeyboardButtonTypeUrl
+	type stub InlineKeyboardButtonTypeUrl
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineKeyboardButtonTypeUrl) GetClass() string {
-    return ClassInlineKeyboardButtonType
+	return ClassInlineKeyboardButtonType
 }
 
 func (*InlineKeyboardButtonTypeUrl) GetType() string {
-    return TypeInlineKeyboardButtonTypeUrl
+	return TypeInlineKeyboardButtonTypeUrl
 }
 
 func (*InlineKeyboardButtonTypeUrl) InlineKeyboardButtonTypeType() string {
-    return TypeInlineKeyboardButtonTypeUrl
+	return TypeInlineKeyboardButtonTypeUrl
 }
 
 // A button that sends a special callback query to a bot
 type InlineKeyboardButtonTypeCallback struct {
-    meta
-    // Data to be sent to the bot via a callback query
-    Data []byte `json:"data"`
+	meta
+	// Data to be sent to the bot via a callback query
+	Data []byte `json:"data"`
 }
 
 func (entity *InlineKeyboardButtonTypeCallback) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineKeyboardButtonTypeCallback
+	type stub InlineKeyboardButtonTypeCallback
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineKeyboardButtonTypeCallback) GetClass() string {
-    return ClassInlineKeyboardButtonType
+	return ClassInlineKeyboardButtonType
 }
 
 func (*InlineKeyboardButtonTypeCallback) GetType() string {
-    return TypeInlineKeyboardButtonTypeCallback
+	return TypeInlineKeyboardButtonTypeCallback
 }
 
 func (*InlineKeyboardButtonTypeCallback) InlineKeyboardButtonTypeType() string {
-    return TypeInlineKeyboardButtonTypeCallback
+	return TypeInlineKeyboardButtonTypeCallback
 }
 
 // A button with a game that sends a special callback query to a bot. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageGame
-type InlineKeyboardButtonTypeCallbackGame struct{
-    meta
+type InlineKeyboardButtonTypeCallbackGame struct {
+	meta
 }
 
 func (entity *InlineKeyboardButtonTypeCallbackGame) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineKeyboardButtonTypeCallbackGame
+	type stub InlineKeyboardButtonTypeCallbackGame
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineKeyboardButtonTypeCallbackGame) GetClass() string {
-    return ClassInlineKeyboardButtonType
+	return ClassInlineKeyboardButtonType
 }
 
 func (*InlineKeyboardButtonTypeCallbackGame) GetType() string {
-    return TypeInlineKeyboardButtonTypeCallbackGame
+	return TypeInlineKeyboardButtonTypeCallbackGame
 }
 
 func (*InlineKeyboardButtonTypeCallbackGame) InlineKeyboardButtonTypeType() string {
-    return TypeInlineKeyboardButtonTypeCallbackGame
+	return TypeInlineKeyboardButtonTypeCallbackGame
 }
 
 // A button that forces an inline query to the bot to be inserted in the input field
 type InlineKeyboardButtonTypeSwitchInline struct {
-    meta
-    // Inline query to be sent to the bot
-    Query string `json:"query"`
-    // True, if the inline query should be sent from the current chat
-    InCurrentChat bool `json:"in_current_chat"`
+	meta
+	// Inline query to be sent to the bot
+	Query string `json:"query"`
+	// True, if the inline query should be sent from the current chat
+	InCurrentChat bool `json:"in_current_chat"`
 }
 
 func (entity *InlineKeyboardButtonTypeSwitchInline) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineKeyboardButtonTypeSwitchInline
+	type stub InlineKeyboardButtonTypeSwitchInline
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineKeyboardButtonTypeSwitchInline) GetClass() string {
-    return ClassInlineKeyboardButtonType
+	return ClassInlineKeyboardButtonType
 }
 
 func (*InlineKeyboardButtonTypeSwitchInline) GetType() string {
-    return TypeInlineKeyboardButtonTypeSwitchInline
+	return TypeInlineKeyboardButtonTypeSwitchInline
 }
 
 func (*InlineKeyboardButtonTypeSwitchInline) InlineKeyboardButtonTypeType() string {
-    return TypeInlineKeyboardButtonTypeSwitchInline
+	return TypeInlineKeyboardButtonTypeSwitchInline
 }
 
 // A button to buy something. This button must be in the first column and row of the keyboard and can be attached only to a message with content of the type messageInvoice
-type InlineKeyboardButtonTypeBuy struct{
-    meta
+type InlineKeyboardButtonTypeBuy struct {
+	meta
 }
 
 func (entity *InlineKeyboardButtonTypeBuy) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineKeyboardButtonTypeBuy
+	type stub InlineKeyboardButtonTypeBuy
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineKeyboardButtonTypeBuy) GetClass() string {
-    return ClassInlineKeyboardButtonType
+	return ClassInlineKeyboardButtonType
 }
 
 func (*InlineKeyboardButtonTypeBuy) GetType() string {
-    return TypeInlineKeyboardButtonTypeBuy
+	return TypeInlineKeyboardButtonTypeBuy
 }
 
 func (*InlineKeyboardButtonTypeBuy) InlineKeyboardButtonTypeType() string {
-    return TypeInlineKeyboardButtonTypeBuy
+	return TypeInlineKeyboardButtonTypeBuy
 }
 
 // Represents a single button in an inline keyboard
 type InlineKeyboardButton struct {
-    meta
-    // Text of the button
-    Text string `json:"text"`
-    // Type of the button
-    Type InlineKeyboardButtonType `json:"type"`
+	meta
+	// Text of the button
+	Text string `json:"text"`
+	// Type of the button
+	Type InlineKeyboardButtonType `json:"type"`
 }
 
 func (entity *InlineKeyboardButton) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineKeyboardButton
+	type stub InlineKeyboardButton
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineKeyboardButton) GetClass() string {
-    return ClassInlineKeyboardButton
+	return ClassInlineKeyboardButton
 }
 
 func (*InlineKeyboardButton) GetType() string {
-    return TypeInlineKeyboardButton
+	return TypeInlineKeyboardButton
 }
 
 func (inlineKeyboardButton *InlineKeyboardButton) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Text string `json:"text"`
-        Type json.RawMessage `json:"type"`
-    }
+	var tmp struct {
+		Text string          `json:"text"`
+		Type json.RawMessage `json:"type"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inlineKeyboardButton.Text = tmp.Text
+	inlineKeyboardButton.Text = tmp.Text
 
-    fieldType, _ := UnmarshalInlineKeyboardButtonType(tmp.Type)
-    inlineKeyboardButton.Type = fieldType
+	fieldType, _ := UnmarshalInlineKeyboardButtonType(tmp.Type)
+	inlineKeyboardButton.Type = fieldType
 
-    return nil
+	return nil
 }
 
 // Instructs clients to remove the keyboard once this message has been received. This kind of keyboard can't be received in an incoming message; instead, UpdateChatReplyMarkup with message_id == 0 will be sent
 type ReplyMarkupRemoveKeyboard struct {
-    meta
-    // True, if the keyboard is removed only for the mentioned users or the target user of a reply
-    IsPersonal bool `json:"is_personal"`
+	meta
+	// True, if the keyboard is removed only for the mentioned users or the target user of a reply
+	IsPersonal bool `json:"is_personal"`
 }
 
 func (entity *ReplyMarkupRemoveKeyboard) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ReplyMarkupRemoveKeyboard
+	type stub ReplyMarkupRemoveKeyboard
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ReplyMarkupRemoveKeyboard) GetClass() string {
-    return ClassReplyMarkup
+	return ClassReplyMarkup
 }
 
 func (*ReplyMarkupRemoveKeyboard) GetType() string {
-    return TypeReplyMarkupRemoveKeyboard
+	return TypeReplyMarkupRemoveKeyboard
 }
 
 func (*ReplyMarkupRemoveKeyboard) ReplyMarkupType() string {
-    return TypeReplyMarkupRemoveKeyboard
+	return TypeReplyMarkupRemoveKeyboard
 }
 
 // Instructs clients to force a reply to this message
 type ReplyMarkupForceReply struct {
-    meta
-    // True, if a forced reply must automatically be shown to the current user. For outgoing messages, specify true to show the forced reply only for the mentioned users and for the target user of a reply
-    IsPersonal bool `json:"is_personal"`
+	meta
+	// True, if a forced reply must automatically be shown to the current user. For outgoing messages, specify true to show the forced reply only for the mentioned users and for the target user of a reply
+	IsPersonal bool `json:"is_personal"`
 }
 
 func (entity *ReplyMarkupForceReply) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ReplyMarkupForceReply
+	type stub ReplyMarkupForceReply
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ReplyMarkupForceReply) GetClass() string {
-    return ClassReplyMarkup
+	return ClassReplyMarkup
 }
 
 func (*ReplyMarkupForceReply) GetType() string {
-    return TypeReplyMarkupForceReply
+	return TypeReplyMarkupForceReply
 }
 
 func (*ReplyMarkupForceReply) ReplyMarkupType() string {
-    return TypeReplyMarkupForceReply
+	return TypeReplyMarkupForceReply
 }
 
 // Contains a custom keyboard layout to quickly reply to bots
 type ReplyMarkupShowKeyboard struct {
-    meta
-    // A list of rows of bot keyboard buttons
-    Rows [][]*KeyboardButton `json:"rows"`
-    // True, if the client needs to resize the keyboard vertically
-    ResizeKeyboard bool `json:"resize_keyboard"`
-    // True, if the client needs to hide the keyboard after use
-    OneTime bool `json:"one_time"`
-    // True, if the keyboard must automatically be shown to the current user. For outgoing messages, specify true to show the keyboard only for the mentioned users and for the target user of a reply
-    IsPersonal bool `json:"is_personal"`
+	meta
+	// A list of rows of bot keyboard buttons
+	Rows [][]*KeyboardButton `json:"rows"`
+	// True, if the client needs to resize the keyboard vertically
+	ResizeKeyboard bool `json:"resize_keyboard"`
+	// True, if the client needs to hide the keyboard after use
+	OneTime bool `json:"one_time"`
+	// True, if the keyboard must automatically be shown to the current user. For outgoing messages, specify true to show the keyboard only for the mentioned users and for the target user of a reply
+	IsPersonal bool `json:"is_personal"`
 }
 
 func (entity *ReplyMarkupShowKeyboard) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ReplyMarkupShowKeyboard
+	type stub ReplyMarkupShowKeyboard
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ReplyMarkupShowKeyboard) GetClass() string {
-    return ClassReplyMarkup
+	return ClassReplyMarkup
 }
 
 func (*ReplyMarkupShowKeyboard) GetType() string {
-    return TypeReplyMarkupShowKeyboard
+	return TypeReplyMarkupShowKeyboard
 }
 
 func (*ReplyMarkupShowKeyboard) ReplyMarkupType() string {
-    return TypeReplyMarkupShowKeyboard
+	return TypeReplyMarkupShowKeyboard
 }
 
 // Contains an inline keyboard layout
 type ReplyMarkupInlineKeyboard struct {
-    meta
-    // A list of rows of inline keyboard buttons
-    Rows [][]*InlineKeyboardButton `json:"rows"`
+	meta
+	// A list of rows of inline keyboard buttons
+	Rows [][]*InlineKeyboardButton `json:"rows"`
 }
 
 func (entity *ReplyMarkupInlineKeyboard) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ReplyMarkupInlineKeyboard
+	type stub ReplyMarkupInlineKeyboard
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ReplyMarkupInlineKeyboard) GetClass() string {
-    return ClassReplyMarkup
+	return ClassReplyMarkup
 }
 
 func (*ReplyMarkupInlineKeyboard) GetType() string {
-    return TypeReplyMarkupInlineKeyboard
+	return TypeReplyMarkupInlineKeyboard
 }
 
 func (*ReplyMarkupInlineKeyboard) ReplyMarkupType() string {
-    return TypeReplyMarkupInlineKeyboard
+	return TypeReplyMarkupInlineKeyboard
 }
 
 // A plain text
 type RichTextPlain struct {
-    meta
-    // Text
-    Text string `json:"text"`
+	meta
+	// Text
+	Text string `json:"text"`
 }
 
 func (entity *RichTextPlain) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub RichTextPlain
+	type stub RichTextPlain
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*RichTextPlain) GetClass() string {
-    return ClassRichText
+	return ClassRichText
 }
 
 func (*RichTextPlain) GetType() string {
-    return TypeRichTextPlain
+	return TypeRichTextPlain
 }
 
 func (*RichTextPlain) RichTextType() string {
-    return TypeRichTextPlain
+	return TypeRichTextPlain
 }
 
 // A bold rich text
 type RichTextBold struct {
-    meta
-    // Text
-    Text RichText `json:"text"`
+	meta
+	// Text
+	Text RichText `json:"text"`
 }
 
 func (entity *RichTextBold) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub RichTextBold
+	type stub RichTextBold
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*RichTextBold) GetClass() string {
-    return ClassRichText
+	return ClassRichText
 }
 
 func (*RichTextBold) GetType() string {
-    return TypeRichTextBold
+	return TypeRichTextBold
 }
 
 func (*RichTextBold) RichTextType() string {
-    return TypeRichTextBold
+	return TypeRichTextBold
 }
 
 func (richTextBold *RichTextBold) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Text json.RawMessage `json:"text"`
-    }
+	var tmp struct {
+		Text json.RawMessage `json:"text"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldText, _ := UnmarshalRichText(tmp.Text)
-    richTextBold.Text = fieldText
+	fieldText, _ := UnmarshalRichText(tmp.Text)
+	richTextBold.Text = fieldText
 
-    return nil
+	return nil
 }
 
 // An italicized rich text
 type RichTextItalic struct {
-    meta
-    // Text
-    Text RichText `json:"text"`
+	meta
+	// Text
+	Text RichText `json:"text"`
 }
 
 func (entity *RichTextItalic) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub RichTextItalic
+	type stub RichTextItalic
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*RichTextItalic) GetClass() string {
-    return ClassRichText
+	return ClassRichText
 }
 
 func (*RichTextItalic) GetType() string {
-    return TypeRichTextItalic
+	return TypeRichTextItalic
 }
 
 func (*RichTextItalic) RichTextType() string {
-    return TypeRichTextItalic
+	return TypeRichTextItalic
 }
 
 func (richTextItalic *RichTextItalic) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Text json.RawMessage `json:"text"`
-    }
+	var tmp struct {
+		Text json.RawMessage `json:"text"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldText, _ := UnmarshalRichText(tmp.Text)
-    richTextItalic.Text = fieldText
+	fieldText, _ := UnmarshalRichText(tmp.Text)
+	richTextItalic.Text = fieldText
 
-    return nil
+	return nil
 }
 
 // An underlined rich text
 type RichTextUnderline struct {
-    meta
-    // Text
-    Text RichText `json:"text"`
+	meta
+	// Text
+	Text RichText `json:"text"`
 }
 
 func (entity *RichTextUnderline) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub RichTextUnderline
+	type stub RichTextUnderline
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*RichTextUnderline) GetClass() string {
-    return ClassRichText
+	return ClassRichText
 }
 
 func (*RichTextUnderline) GetType() string {
-    return TypeRichTextUnderline
+	return TypeRichTextUnderline
 }
 
 func (*RichTextUnderline) RichTextType() string {
-    return TypeRichTextUnderline
+	return TypeRichTextUnderline
 }
 
 func (richTextUnderline *RichTextUnderline) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Text json.RawMessage `json:"text"`
-    }
+	var tmp struct {
+		Text json.RawMessage `json:"text"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldText, _ := UnmarshalRichText(tmp.Text)
-    richTextUnderline.Text = fieldText
+	fieldText, _ := UnmarshalRichText(tmp.Text)
+	richTextUnderline.Text = fieldText
 
-    return nil
+	return nil
 }
 
 // A strike-through rich text
 type RichTextStrikethrough struct {
-    meta
-    // Text
-    Text RichText `json:"text"`
+	meta
+	// Text
+	Text RichText `json:"text"`
 }
 
 func (entity *RichTextStrikethrough) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub RichTextStrikethrough
+	type stub RichTextStrikethrough
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*RichTextStrikethrough) GetClass() string {
-    return ClassRichText
+	return ClassRichText
 }
 
 func (*RichTextStrikethrough) GetType() string {
-    return TypeRichTextStrikethrough
+	return TypeRichTextStrikethrough
 }
 
 func (*RichTextStrikethrough) RichTextType() string {
-    return TypeRichTextStrikethrough
+	return TypeRichTextStrikethrough
 }
 
 func (richTextStrikethrough *RichTextStrikethrough) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Text json.RawMessage `json:"text"`
-    }
+	var tmp struct {
+		Text json.RawMessage `json:"text"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldText, _ := UnmarshalRichText(tmp.Text)
-    richTextStrikethrough.Text = fieldText
+	fieldText, _ := UnmarshalRichText(tmp.Text)
+	richTextStrikethrough.Text = fieldText
 
-    return nil
+	return nil
 }
 
 // A fixed-width rich text
 type RichTextFixed struct {
-    meta
-    // Text
-    Text RichText `json:"text"`
+	meta
+	// Text
+	Text RichText `json:"text"`
 }
 
 func (entity *RichTextFixed) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub RichTextFixed
+	type stub RichTextFixed
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*RichTextFixed) GetClass() string {
-    return ClassRichText
+	return ClassRichText
 }
 
 func (*RichTextFixed) GetType() string {
-    return TypeRichTextFixed
+	return TypeRichTextFixed
 }
 
 func (*RichTextFixed) RichTextType() string {
-    return TypeRichTextFixed
+	return TypeRichTextFixed
 }
 
 func (richTextFixed *RichTextFixed) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Text json.RawMessage `json:"text"`
-    }
+	var tmp struct {
+		Text json.RawMessage `json:"text"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldText, _ := UnmarshalRichText(tmp.Text)
-    richTextFixed.Text = fieldText
+	fieldText, _ := UnmarshalRichText(tmp.Text)
+	richTextFixed.Text = fieldText
 
-    return nil
+	return nil
 }
 
 // A rich text URL link
 type RichTextUrl struct {
-    meta
-    // Text
-    Text RichText `json:"text"`
-    // URL
-    Url string `json:"url"`
+	meta
+	// Text
+	Text RichText `json:"text"`
+	// URL
+	Url string `json:"url"`
 }
 
 func (entity *RichTextUrl) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub RichTextUrl
+	type stub RichTextUrl
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*RichTextUrl) GetClass() string {
-    return ClassRichText
+	return ClassRichText
 }
 
 func (*RichTextUrl) GetType() string {
-    return TypeRichTextUrl
+	return TypeRichTextUrl
 }
 
 func (*RichTextUrl) RichTextType() string {
-    return TypeRichTextUrl
+	return TypeRichTextUrl
 }
 
 func (richTextUrl *RichTextUrl) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Text json.RawMessage `json:"text"`
-        Url string `json:"url"`
-    }
+	var tmp struct {
+		Text json.RawMessage `json:"text"`
+		Url  string          `json:"url"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    richTextUrl.Url = tmp.Url
+	richTextUrl.Url = tmp.Url
 
-    fieldText, _ := UnmarshalRichText(tmp.Text)
-    richTextUrl.Text = fieldText
+	fieldText, _ := UnmarshalRichText(tmp.Text)
+	richTextUrl.Text = fieldText
 
-    return nil
+	return nil
 }
 
 // A rich text email link
 type RichTextEmailAddress struct {
-    meta
-    // Text
-    Text RichText `json:"text"`
-    // Email address
-    EmailAddress string `json:"email_address"`
+	meta
+	// Text
+	Text RichText `json:"text"`
+	// Email address
+	EmailAddress string `json:"email_address"`
 }
 
 func (entity *RichTextEmailAddress) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub RichTextEmailAddress
+	type stub RichTextEmailAddress
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*RichTextEmailAddress) GetClass() string {
-    return ClassRichText
+	return ClassRichText
 }
 
 func (*RichTextEmailAddress) GetType() string {
-    return TypeRichTextEmailAddress
+	return TypeRichTextEmailAddress
 }
 
 func (*RichTextEmailAddress) RichTextType() string {
-    return TypeRichTextEmailAddress
+	return TypeRichTextEmailAddress
 }
 
 func (richTextEmailAddress *RichTextEmailAddress) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Text json.RawMessage `json:"text"`
-        EmailAddress string `json:"email_address"`
-    }
+	var tmp struct {
+		Text         json.RawMessage `json:"text"`
+		EmailAddress string          `json:"email_address"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    richTextEmailAddress.EmailAddress = tmp.EmailAddress
+	richTextEmailAddress.EmailAddress = tmp.EmailAddress
 
-    fieldText, _ := UnmarshalRichText(tmp.Text)
-    richTextEmailAddress.Text = fieldText
+	fieldText, _ := UnmarshalRichText(tmp.Text)
+	richTextEmailAddress.Text = fieldText
 
-    return nil
+	return nil
 }
 
 // A concatenation of rich texts
 type RichTexts struct {
-    meta
-    // Texts
-    Texts []RichText `json:"texts"`
+	meta
+	// Texts
+	Texts []RichText `json:"texts"`
 }
 
 func (entity *RichTexts) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub RichTexts
+	type stub RichTexts
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*RichTexts) GetClass() string {
-    return ClassRichText
+	return ClassRichText
 }
 
 func (*RichTexts) GetType() string {
-    return TypeRichTexts
+	return TypeRichTexts
 }
 
 func (*RichTexts) RichTextType() string {
-    return TypeRichTexts
+	return TypeRichTexts
 }
 
 // The title of a page
 type PageBlockTitle struct {
-    meta
-    // Title
-    Title RichText `json:"title"`
+	meta
+	// Title
+	Title RichText `json:"title"`
 }
 
 func (entity *PageBlockTitle) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockTitle
+	type stub PageBlockTitle
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockTitle) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockTitle) GetType() string {
-    return TypePageBlockTitle
+	return TypePageBlockTitle
 }
 
 func (*PageBlockTitle) PageBlockType() string {
-    return TypePageBlockTitle
+	return TypePageBlockTitle
 }
 
 func (pageBlockTitle *PageBlockTitle) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Title json.RawMessage `json:"title"`
-    }
+	var tmp struct {
+		Title json.RawMessage `json:"title"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldTitle, _ := UnmarshalRichText(tmp.Title)
-    pageBlockTitle.Title = fieldTitle
+	fieldTitle, _ := UnmarshalRichText(tmp.Title)
+	pageBlockTitle.Title = fieldTitle
 
-    return nil
+	return nil
 }
 
 // The subtitle of a page
 type PageBlockSubtitle struct {
-    meta
-    // Subtitle
-    Subtitle RichText `json:"subtitle"`
+	meta
+	// Subtitle
+	Subtitle RichText `json:"subtitle"`
 }
 
 func (entity *PageBlockSubtitle) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockSubtitle
+	type stub PageBlockSubtitle
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockSubtitle) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockSubtitle) GetType() string {
-    return TypePageBlockSubtitle
+	return TypePageBlockSubtitle
 }
 
 func (*PageBlockSubtitle) PageBlockType() string {
-    return TypePageBlockSubtitle
+	return TypePageBlockSubtitle
 }
 
 func (pageBlockSubtitle *PageBlockSubtitle) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Subtitle json.RawMessage `json:"subtitle"`
-    }
+	var tmp struct {
+		Subtitle json.RawMessage `json:"subtitle"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldSubtitle, _ := UnmarshalRichText(tmp.Subtitle)
-    pageBlockSubtitle.Subtitle = fieldSubtitle
+	fieldSubtitle, _ := UnmarshalRichText(tmp.Subtitle)
+	pageBlockSubtitle.Subtitle = fieldSubtitle
 
-    return nil
+	return nil
 }
 
 // The author and publishing date of a page
 type PageBlockAuthorDate struct {
-    meta
-    // Author
-    Author RichText `json:"author"`
-    // Point in time (Unix timestamp) when the article was published; 0 if unknown
-    PublishDate int32 `json:"publish_date"`
+	meta
+	// Author
+	Author RichText `json:"author"`
+	// Point in time (Unix timestamp) when the article was published; 0 if unknown
+	PublishDate int32 `json:"publish_date"`
 }
 
 func (entity *PageBlockAuthorDate) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockAuthorDate
+	type stub PageBlockAuthorDate
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockAuthorDate) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockAuthorDate) GetType() string {
-    return TypePageBlockAuthorDate
+	return TypePageBlockAuthorDate
 }
 
 func (*PageBlockAuthorDate) PageBlockType() string {
-    return TypePageBlockAuthorDate
+	return TypePageBlockAuthorDate
 }
 
 func (pageBlockAuthorDate *PageBlockAuthorDate) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Author json.RawMessage `json:"author"`
-        PublishDate int32 `json:"publish_date"`
-    }
+	var tmp struct {
+		Author      json.RawMessage `json:"author"`
+		PublishDate int32           `json:"publish_date"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    pageBlockAuthorDate.PublishDate = tmp.PublishDate
+	pageBlockAuthorDate.PublishDate = tmp.PublishDate
 
-    fieldAuthor, _ := UnmarshalRichText(tmp.Author)
-    pageBlockAuthorDate.Author = fieldAuthor
+	fieldAuthor, _ := UnmarshalRichText(tmp.Author)
+	pageBlockAuthorDate.Author = fieldAuthor
 
-    return nil
+	return nil
 }
 
 // A header
 type PageBlockHeader struct {
-    meta
-    // Header
-    Header RichText `json:"header"`
+	meta
+	// Header
+	Header RichText `json:"header"`
 }
 
 func (entity *PageBlockHeader) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockHeader
+	type stub PageBlockHeader
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockHeader) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockHeader) GetType() string {
-    return TypePageBlockHeader
+	return TypePageBlockHeader
 }
 
 func (*PageBlockHeader) PageBlockType() string {
-    return TypePageBlockHeader
+	return TypePageBlockHeader
 }
 
 func (pageBlockHeader *PageBlockHeader) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Header json.RawMessage `json:"header"`
-    }
+	var tmp struct {
+		Header json.RawMessage `json:"header"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldHeader, _ := UnmarshalRichText(tmp.Header)
-    pageBlockHeader.Header = fieldHeader
+	fieldHeader, _ := UnmarshalRichText(tmp.Header)
+	pageBlockHeader.Header = fieldHeader
 
-    return nil
+	return nil
 }
 
 // A subheader
 type PageBlockSubheader struct {
-    meta
-    // Subheader
-    Subheader RichText `json:"subheader"`
+	meta
+	// Subheader
+	Subheader RichText `json:"subheader"`
 }
 
 func (entity *PageBlockSubheader) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockSubheader
+	type stub PageBlockSubheader
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockSubheader) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockSubheader) GetType() string {
-    return TypePageBlockSubheader
+	return TypePageBlockSubheader
 }
 
 func (*PageBlockSubheader) PageBlockType() string {
-    return TypePageBlockSubheader
+	return TypePageBlockSubheader
 }
 
 func (pageBlockSubheader *PageBlockSubheader) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Subheader json.RawMessage `json:"subheader"`
-    }
+	var tmp struct {
+		Subheader json.RawMessage `json:"subheader"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldSubheader, _ := UnmarshalRichText(tmp.Subheader)
-    pageBlockSubheader.Subheader = fieldSubheader
+	fieldSubheader, _ := UnmarshalRichText(tmp.Subheader)
+	pageBlockSubheader.Subheader = fieldSubheader
 
-    return nil
+	return nil
 }
 
 // A text paragraph
 type PageBlockParagraph struct {
-    meta
-    // Paragraph text
-    Text RichText `json:"text"`
+	meta
+	// Paragraph text
+	Text RichText `json:"text"`
 }
 
 func (entity *PageBlockParagraph) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockParagraph
+	type stub PageBlockParagraph
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockParagraph) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockParagraph) GetType() string {
-    return TypePageBlockParagraph
+	return TypePageBlockParagraph
 }
 
 func (*PageBlockParagraph) PageBlockType() string {
-    return TypePageBlockParagraph
+	return TypePageBlockParagraph
 }
 
 func (pageBlockParagraph *PageBlockParagraph) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Text json.RawMessage `json:"text"`
-    }
+	var tmp struct {
+		Text json.RawMessage `json:"text"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldText, _ := UnmarshalRichText(tmp.Text)
-    pageBlockParagraph.Text = fieldText
+	fieldText, _ := UnmarshalRichText(tmp.Text)
+	pageBlockParagraph.Text = fieldText
 
-    return nil
+	return nil
 }
 
 // A preformatted text paragraph
 type PageBlockPreformatted struct {
-    meta
-    // Paragraph text
-    Text RichText `json:"text"`
-    // Programming language for which the text should be formatted
-    Language string `json:"language"`
+	meta
+	// Paragraph text
+	Text RichText `json:"text"`
+	// Programming language for which the text should be formatted
+	Language string `json:"language"`
 }
 
 func (entity *PageBlockPreformatted) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockPreformatted
+	type stub PageBlockPreformatted
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockPreformatted) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockPreformatted) GetType() string {
-    return TypePageBlockPreformatted
+	return TypePageBlockPreformatted
 }
 
 func (*PageBlockPreformatted) PageBlockType() string {
-    return TypePageBlockPreformatted
+	return TypePageBlockPreformatted
 }
 
 func (pageBlockPreformatted *PageBlockPreformatted) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Text json.RawMessage `json:"text"`
-        Language string `json:"language"`
-    }
+	var tmp struct {
+		Text     json.RawMessage `json:"text"`
+		Language string          `json:"language"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    pageBlockPreformatted.Language = tmp.Language
+	pageBlockPreformatted.Language = tmp.Language
 
-    fieldText, _ := UnmarshalRichText(tmp.Text)
-    pageBlockPreformatted.Text = fieldText
+	fieldText, _ := UnmarshalRichText(tmp.Text)
+	pageBlockPreformatted.Text = fieldText
 
-    return nil
+	return nil
 }
 
 // The footer of a page
 type PageBlockFooter struct {
-    meta
-    // Footer
-    Footer RichText `json:"footer"`
+	meta
+	// Footer
+	Footer RichText `json:"footer"`
 }
 
 func (entity *PageBlockFooter) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockFooter
+	type stub PageBlockFooter
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockFooter) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockFooter) GetType() string {
-    return TypePageBlockFooter
+	return TypePageBlockFooter
 }
 
 func (*PageBlockFooter) PageBlockType() string {
-    return TypePageBlockFooter
+	return TypePageBlockFooter
 }
 
 func (pageBlockFooter *PageBlockFooter) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Footer json.RawMessage `json:"footer"`
-    }
+	var tmp struct {
+		Footer json.RawMessage `json:"footer"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldFooter, _ := UnmarshalRichText(tmp.Footer)
-    pageBlockFooter.Footer = fieldFooter
+	fieldFooter, _ := UnmarshalRichText(tmp.Footer)
+	pageBlockFooter.Footer = fieldFooter
 
-    return nil
+	return nil
 }
 
 // An empty block separating a page
-type PageBlockDivider struct{
-    meta
+type PageBlockDivider struct {
+	meta
 }
 
 func (entity *PageBlockDivider) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockDivider
+	type stub PageBlockDivider
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockDivider) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockDivider) GetType() string {
-    return TypePageBlockDivider
+	return TypePageBlockDivider
 }
 
 func (*PageBlockDivider) PageBlockType() string {
-    return TypePageBlockDivider
+	return TypePageBlockDivider
 }
 
 // An invisible anchor on a page, which can be used in a URL to open the page from the specified anchor
 type PageBlockAnchor struct {
-    meta
-    // Name of the anchor
-    Name string `json:"name"`
+	meta
+	// Name of the anchor
+	Name string `json:"name"`
 }
 
 func (entity *PageBlockAnchor) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockAnchor
+	type stub PageBlockAnchor
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockAnchor) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockAnchor) GetType() string {
-    return TypePageBlockAnchor
+	return TypePageBlockAnchor
 }
 
 func (*PageBlockAnchor) PageBlockType() string {
-    return TypePageBlockAnchor
+	return TypePageBlockAnchor
 }
 
 // A list of texts
 type PageBlockList struct {
-    meta
-    // Texts
-    Items []RichText `json:"items"`
-    // True, if the items should be marked with numbers
-    IsOrdered bool `json:"is_ordered"`
+	meta
+	// Texts
+	Items []RichText `json:"items"`
+	// True, if the items should be marked with numbers
+	IsOrdered bool `json:"is_ordered"`
 }
 
 func (entity *PageBlockList) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockList
+	type stub PageBlockList
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockList) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockList) GetType() string {
-    return TypePageBlockList
+	return TypePageBlockList
 }
 
 func (*PageBlockList) PageBlockType() string {
-    return TypePageBlockList
+	return TypePageBlockList
 }
 
 // A block quote
 type PageBlockBlockQuote struct {
-    meta
-    // Quote text
-    Text RichText `json:"text"`
-    // Quote caption
-    Caption RichText `json:"caption"`
+	meta
+	// Quote text
+	Text RichText `json:"text"`
+	// Quote caption
+	Caption RichText `json:"caption"`
 }
 
 func (entity *PageBlockBlockQuote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockBlockQuote
+	type stub PageBlockBlockQuote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockBlockQuote) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockBlockQuote) GetType() string {
-    return TypePageBlockBlockQuote
+	return TypePageBlockBlockQuote
 }
 
 func (*PageBlockBlockQuote) PageBlockType() string {
-    return TypePageBlockBlockQuote
+	return TypePageBlockBlockQuote
 }
 
 func (pageBlockBlockQuote *PageBlockBlockQuote) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Text json.RawMessage `json:"text"`
-        Caption json.RawMessage `json:"caption"`
-    }
+	var tmp struct {
+		Text    json.RawMessage `json:"text"`
+		Caption json.RawMessage `json:"caption"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldText, _ := UnmarshalRichText(tmp.Text)
-    pageBlockBlockQuote.Text = fieldText
+	fieldText, _ := UnmarshalRichText(tmp.Text)
+	pageBlockBlockQuote.Text = fieldText
 
-    fieldCaption, _ := UnmarshalRichText(tmp.Caption)
-    pageBlockBlockQuote.Caption = fieldCaption
+	fieldCaption, _ := UnmarshalRichText(tmp.Caption)
+	pageBlockBlockQuote.Caption = fieldCaption
 
-    return nil
+	return nil
 }
 
 // A pull quote
 type PageBlockPullQuote struct {
-    meta
-    // Quote text
-    Text RichText `json:"text"`
-    // Quote caption
-    Caption RichText `json:"caption"`
+	meta
+	// Quote text
+	Text RichText `json:"text"`
+	// Quote caption
+	Caption RichText `json:"caption"`
 }
 
 func (entity *PageBlockPullQuote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockPullQuote
+	type stub PageBlockPullQuote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockPullQuote) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockPullQuote) GetType() string {
-    return TypePageBlockPullQuote
+	return TypePageBlockPullQuote
 }
 
 func (*PageBlockPullQuote) PageBlockType() string {
-    return TypePageBlockPullQuote
+	return TypePageBlockPullQuote
 }
 
 func (pageBlockPullQuote *PageBlockPullQuote) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Text json.RawMessage `json:"text"`
-        Caption json.RawMessage `json:"caption"`
-    }
+	var tmp struct {
+		Text    json.RawMessage `json:"text"`
+		Caption json.RawMessage `json:"caption"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldText, _ := UnmarshalRichText(tmp.Text)
-    pageBlockPullQuote.Text = fieldText
+	fieldText, _ := UnmarshalRichText(tmp.Text)
+	pageBlockPullQuote.Text = fieldText
 
-    fieldCaption, _ := UnmarshalRichText(tmp.Caption)
-    pageBlockPullQuote.Caption = fieldCaption
+	fieldCaption, _ := UnmarshalRichText(tmp.Caption)
+	pageBlockPullQuote.Caption = fieldCaption
 
-    return nil
+	return nil
 }
 
 // An animation
 type PageBlockAnimation struct {
-    meta
-    // Animation file; may be null
-    Animation *Animation `json:"animation"`
-    // Animation caption
-    Caption RichText `json:"caption"`
-    // True, if the animation should be played automatically
-    NeedAutoplay bool `json:"need_autoplay"`
+	meta
+	// Animation file; may be null
+	Animation *Animation `json:"animation"`
+	// Animation caption
+	Caption RichText `json:"caption"`
+	// True, if the animation should be played automatically
+	NeedAutoplay bool `json:"need_autoplay"`
 }
 
 func (entity *PageBlockAnimation) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockAnimation
+	type stub PageBlockAnimation
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockAnimation) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockAnimation) GetType() string {
-    return TypePageBlockAnimation
+	return TypePageBlockAnimation
 }
 
 func (*PageBlockAnimation) PageBlockType() string {
-    return TypePageBlockAnimation
+	return TypePageBlockAnimation
 }
 
 func (pageBlockAnimation *PageBlockAnimation) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Animation *Animation `json:"animation"`
-        Caption json.RawMessage `json:"caption"`
-        NeedAutoplay bool `json:"need_autoplay"`
-    }
+	var tmp struct {
+		Animation    *Animation      `json:"animation"`
+		Caption      json.RawMessage `json:"caption"`
+		NeedAutoplay bool            `json:"need_autoplay"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    pageBlockAnimation.Animation = tmp.Animation
-    pageBlockAnimation.NeedAutoplay = tmp.NeedAutoplay
+	pageBlockAnimation.Animation = tmp.Animation
+	pageBlockAnimation.NeedAutoplay = tmp.NeedAutoplay
 
-    fieldCaption, _ := UnmarshalRichText(tmp.Caption)
-    pageBlockAnimation.Caption = fieldCaption
+	fieldCaption, _ := UnmarshalRichText(tmp.Caption)
+	pageBlockAnimation.Caption = fieldCaption
 
-    return nil
+	return nil
 }
 
 // An audio file
 type PageBlockAudio struct {
-    meta
-    // Audio file; may be null
-    Audio *Audio `json:"audio"`
-    // Audio file caption
-    Caption RichText `json:"caption"`
+	meta
+	// Audio file; may be null
+	Audio *Audio `json:"audio"`
+	// Audio file caption
+	Caption RichText `json:"caption"`
 }
 
 func (entity *PageBlockAudio) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockAudio
+	type stub PageBlockAudio
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockAudio) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockAudio) GetType() string {
-    return TypePageBlockAudio
+	return TypePageBlockAudio
 }
 
 func (*PageBlockAudio) PageBlockType() string {
-    return TypePageBlockAudio
+	return TypePageBlockAudio
 }
 
 func (pageBlockAudio *PageBlockAudio) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Audio *Audio `json:"audio"`
-        Caption json.RawMessage `json:"caption"`
-    }
+	var tmp struct {
+		Audio   *Audio          `json:"audio"`
+		Caption json.RawMessage `json:"caption"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    pageBlockAudio.Audio = tmp.Audio
+	pageBlockAudio.Audio = tmp.Audio
 
-    fieldCaption, _ := UnmarshalRichText(tmp.Caption)
-    pageBlockAudio.Caption = fieldCaption
+	fieldCaption, _ := UnmarshalRichText(tmp.Caption)
+	pageBlockAudio.Caption = fieldCaption
 
-    return nil
+	return nil
 }
 
 // A photo
 type PageBlockPhoto struct {
-    meta
-    // Photo file; may be null
-    Photo *Photo `json:"photo"`
-    // Photo caption
-    Caption RichText `json:"caption"`
+	meta
+	// Photo file; may be null
+	Photo *Photo `json:"photo"`
+	// Photo caption
+	Caption RichText `json:"caption"`
 }
 
 func (entity *PageBlockPhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockPhoto
+	type stub PageBlockPhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockPhoto) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockPhoto) GetType() string {
-    return TypePageBlockPhoto
+	return TypePageBlockPhoto
 }
 
 func (*PageBlockPhoto) PageBlockType() string {
-    return TypePageBlockPhoto
+	return TypePageBlockPhoto
 }
 
 func (pageBlockPhoto *PageBlockPhoto) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Photo *Photo `json:"photo"`
-        Caption json.RawMessage `json:"caption"`
-    }
+	var tmp struct {
+		Photo   *Photo          `json:"photo"`
+		Caption json.RawMessage `json:"caption"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    pageBlockPhoto.Photo = tmp.Photo
+	pageBlockPhoto.Photo = tmp.Photo
 
-    fieldCaption, _ := UnmarshalRichText(tmp.Caption)
-    pageBlockPhoto.Caption = fieldCaption
+	fieldCaption, _ := UnmarshalRichText(tmp.Caption)
+	pageBlockPhoto.Caption = fieldCaption
 
-    return nil
+	return nil
 }
 
 // A video
 type PageBlockVideo struct {
-    meta
-    // Video file; may be null
-    Video *Video `json:"video"`
-    // Video caption
-    Caption RichText `json:"caption"`
-    // True, if the video should be played automatically
-    NeedAutoplay bool `json:"need_autoplay"`
-    // True, if the video should be looped
-    IsLooped bool `json:"is_looped"`
+	meta
+	// Video file; may be null
+	Video *Video `json:"video"`
+	// Video caption
+	Caption RichText `json:"caption"`
+	// True, if the video should be played automatically
+	NeedAutoplay bool `json:"need_autoplay"`
+	// True, if the video should be looped
+	IsLooped bool `json:"is_looped"`
 }
 
 func (entity *PageBlockVideo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockVideo
+	type stub PageBlockVideo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockVideo) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockVideo) GetType() string {
-    return TypePageBlockVideo
+	return TypePageBlockVideo
 }
 
 func (*PageBlockVideo) PageBlockType() string {
-    return TypePageBlockVideo
+	return TypePageBlockVideo
 }
 
 func (pageBlockVideo *PageBlockVideo) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Video *Video `json:"video"`
-        Caption json.RawMessage `json:"caption"`
-        NeedAutoplay bool `json:"need_autoplay"`
-        IsLooped bool `json:"is_looped"`
-    }
+	var tmp struct {
+		Video        *Video          `json:"video"`
+		Caption      json.RawMessage `json:"caption"`
+		NeedAutoplay bool            `json:"need_autoplay"`
+		IsLooped     bool            `json:"is_looped"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    pageBlockVideo.Video = tmp.Video
-    pageBlockVideo.NeedAutoplay = tmp.NeedAutoplay
-    pageBlockVideo.IsLooped = tmp.IsLooped
+	pageBlockVideo.Video = tmp.Video
+	pageBlockVideo.NeedAutoplay = tmp.NeedAutoplay
+	pageBlockVideo.IsLooped = tmp.IsLooped
 
-    fieldCaption, _ := UnmarshalRichText(tmp.Caption)
-    pageBlockVideo.Caption = fieldCaption
+	fieldCaption, _ := UnmarshalRichText(tmp.Caption)
+	pageBlockVideo.Caption = fieldCaption
 
-    return nil
+	return nil
 }
 
 // A page cover
 type PageBlockCover struct {
-    meta
-    // Cover
-    Cover PageBlock `json:"cover"`
+	meta
+	// Cover
+	Cover PageBlock `json:"cover"`
 }
 
 func (entity *PageBlockCover) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockCover
+	type stub PageBlockCover
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockCover) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockCover) GetType() string {
-    return TypePageBlockCover
+	return TypePageBlockCover
 }
 
 func (*PageBlockCover) PageBlockType() string {
-    return TypePageBlockCover
+	return TypePageBlockCover
 }
 
 func (pageBlockCover *PageBlockCover) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Cover json.RawMessage `json:"cover"`
-    }
+	var tmp struct {
+		Cover json.RawMessage `json:"cover"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldCover, _ := UnmarshalPageBlock(tmp.Cover)
-    pageBlockCover.Cover = fieldCover
+	fieldCover, _ := UnmarshalPageBlock(tmp.Cover)
+	pageBlockCover.Cover = fieldCover
 
-    return nil
+	return nil
 }
 
 // An embedded web page
 type PageBlockEmbedded struct {
-    meta
-    // Web page URL, if available
-    Url string `json:"url"`
-    // HTML-markup of the embedded page
-    Html string `json:"html"`
-    // Poster photo, if available; may be null
-    PosterPhoto *Photo `json:"poster_photo"`
-    // Block width
-    Width int32 `json:"width"`
-    // Block height
-    Height int32 `json:"height"`
-    // Block caption
-    Caption RichText `json:"caption"`
-    // True, if the block should be full width
-    IsFullWidth bool `json:"is_full_width"`
-    // True, if scrolling should be allowed
-    AllowScrolling bool `json:"allow_scrolling"`
+	meta
+	// Web page URL, if available
+	Url string `json:"url"`
+	// HTML-markup of the embedded page
+	Html string `json:"html"`
+	// Poster photo, if available; may be null
+	PosterPhoto *Photo `json:"poster_photo"`
+	// Block width
+	Width int32 `json:"width"`
+	// Block height
+	Height int32 `json:"height"`
+	// Block caption
+	Caption RichText `json:"caption"`
+	// True, if the block should be full width
+	IsFullWidth bool `json:"is_full_width"`
+	// True, if scrolling should be allowed
+	AllowScrolling bool `json:"allow_scrolling"`
 }
 
 func (entity *PageBlockEmbedded) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockEmbedded
+	type stub PageBlockEmbedded
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockEmbedded) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockEmbedded) GetType() string {
-    return TypePageBlockEmbedded
+	return TypePageBlockEmbedded
 }
 
 func (*PageBlockEmbedded) PageBlockType() string {
-    return TypePageBlockEmbedded
+	return TypePageBlockEmbedded
 }
 
 func (pageBlockEmbedded *PageBlockEmbedded) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Url string `json:"url"`
-        Html string `json:"html"`
-        PosterPhoto *Photo `json:"poster_photo"`
-        Width int32 `json:"width"`
-        Height int32 `json:"height"`
-        Caption json.RawMessage `json:"caption"`
-        IsFullWidth bool `json:"is_full_width"`
-        AllowScrolling bool `json:"allow_scrolling"`
-    }
+	var tmp struct {
+		Url            string          `json:"url"`
+		Html           string          `json:"html"`
+		PosterPhoto    *Photo          `json:"poster_photo"`
+		Width          int32           `json:"width"`
+		Height         int32           `json:"height"`
+		Caption        json.RawMessage `json:"caption"`
+		IsFullWidth    bool            `json:"is_full_width"`
+		AllowScrolling bool            `json:"allow_scrolling"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    pageBlockEmbedded.Url = tmp.Url
-    pageBlockEmbedded.Html = tmp.Html
-    pageBlockEmbedded.PosterPhoto = tmp.PosterPhoto
-    pageBlockEmbedded.Width = tmp.Width
-    pageBlockEmbedded.Height = tmp.Height
-    pageBlockEmbedded.IsFullWidth = tmp.IsFullWidth
-    pageBlockEmbedded.AllowScrolling = tmp.AllowScrolling
+	pageBlockEmbedded.Url = tmp.Url
+	pageBlockEmbedded.Html = tmp.Html
+	pageBlockEmbedded.PosterPhoto = tmp.PosterPhoto
+	pageBlockEmbedded.Width = tmp.Width
+	pageBlockEmbedded.Height = tmp.Height
+	pageBlockEmbedded.IsFullWidth = tmp.IsFullWidth
+	pageBlockEmbedded.AllowScrolling = tmp.AllowScrolling
 
-    fieldCaption, _ := UnmarshalRichText(tmp.Caption)
-    pageBlockEmbedded.Caption = fieldCaption
+	fieldCaption, _ := UnmarshalRichText(tmp.Caption)
+	pageBlockEmbedded.Caption = fieldCaption
 
-    return nil
+	return nil
 }
 
 // An embedded post
 type PageBlockEmbeddedPost struct {
-    meta
-    // Web page URL
-    Url string `json:"url"`
-    // Post author
-    Author string `json:"author"`
-    // Post author photo
-    AuthorPhoto *Photo `json:"author_photo"`
-    // Point in time (Unix timestamp) when the post was created; 0 if unknown
-    Date int32 `json:"date"`
-    // Post content
-    PageBlocks []PageBlock `json:"page_blocks"`
-    // Post caption
-    Caption RichText `json:"caption"`
+	meta
+	// Web page URL
+	Url string `json:"url"`
+	// Post author
+	Author string `json:"author"`
+	// Post author photo
+	AuthorPhoto *Photo `json:"author_photo"`
+	// Point in time (Unix timestamp) when the post was created; 0 if unknown
+	Date int32 `json:"date"`
+	// Post content
+	PageBlocks []PageBlock `json:"page_blocks"`
+	// Post caption
+	Caption RichText `json:"caption"`
 }
 
 func (entity *PageBlockEmbeddedPost) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockEmbeddedPost
+	type stub PageBlockEmbeddedPost
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockEmbeddedPost) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockEmbeddedPost) GetType() string {
-    return TypePageBlockEmbeddedPost
+	return TypePageBlockEmbeddedPost
 }
 
 func (*PageBlockEmbeddedPost) PageBlockType() string {
-    return TypePageBlockEmbeddedPost
+	return TypePageBlockEmbeddedPost
 }
 
 func (pageBlockEmbeddedPost *PageBlockEmbeddedPost) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Url string `json:"url"`
-        Author string `json:"author"`
-        AuthorPhoto *Photo `json:"author_photo"`
-        Date int32 `json:"date"`
-        PageBlocks []PageBlock `json:"page_blocks"`
-        Caption json.RawMessage `json:"caption"`
-    }
+	var tmp struct {
+		Url         string          `json:"url"`
+		Author      string          `json:"author"`
+		AuthorPhoto *Photo          `json:"author_photo"`
+		Date        int32           `json:"date"`
+		PageBlocks  []PageBlock     `json:"page_blocks"`
+		Caption     json.RawMessage `json:"caption"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    pageBlockEmbeddedPost.Url = tmp.Url
-    pageBlockEmbeddedPost.Author = tmp.Author
-    pageBlockEmbeddedPost.AuthorPhoto = tmp.AuthorPhoto
-    pageBlockEmbeddedPost.Date = tmp.Date
-    pageBlockEmbeddedPost.PageBlocks = tmp.PageBlocks
+	pageBlockEmbeddedPost.Url = tmp.Url
+	pageBlockEmbeddedPost.Author = tmp.Author
+	pageBlockEmbeddedPost.AuthorPhoto = tmp.AuthorPhoto
+	pageBlockEmbeddedPost.Date = tmp.Date
+	pageBlockEmbeddedPost.PageBlocks = tmp.PageBlocks
 
-    fieldCaption, _ := UnmarshalRichText(tmp.Caption)
-    pageBlockEmbeddedPost.Caption = fieldCaption
+	fieldCaption, _ := UnmarshalRichText(tmp.Caption)
+	pageBlockEmbeddedPost.Caption = fieldCaption
 
-    return nil
+	return nil
 }
 
 // A collage
 type PageBlockCollage struct {
-    meta
-    // Collage item contents
-    PageBlocks []PageBlock `json:"page_blocks"`
-    // Block caption
-    Caption RichText `json:"caption"`
+	meta
+	// Collage item contents
+	PageBlocks []PageBlock `json:"page_blocks"`
+	// Block caption
+	Caption RichText `json:"caption"`
 }
 
 func (entity *PageBlockCollage) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockCollage
+	type stub PageBlockCollage
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockCollage) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockCollage) GetType() string {
-    return TypePageBlockCollage
+	return TypePageBlockCollage
 }
 
 func (*PageBlockCollage) PageBlockType() string {
-    return TypePageBlockCollage
+	return TypePageBlockCollage
 }
 
 func (pageBlockCollage *PageBlockCollage) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        PageBlocks []PageBlock `json:"page_blocks"`
-        Caption json.RawMessage `json:"caption"`
-    }
+	var tmp struct {
+		PageBlocks []PageBlock     `json:"page_blocks"`
+		Caption    json.RawMessage `json:"caption"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    pageBlockCollage.PageBlocks = tmp.PageBlocks
+	pageBlockCollage.PageBlocks = tmp.PageBlocks
 
-    fieldCaption, _ := UnmarshalRichText(tmp.Caption)
-    pageBlockCollage.Caption = fieldCaption
+	fieldCaption, _ := UnmarshalRichText(tmp.Caption)
+	pageBlockCollage.Caption = fieldCaption
 
-    return nil
+	return nil
 }
 
 // A slideshow
 type PageBlockSlideshow struct {
-    meta
-    // Slideshow item contents
-    PageBlocks []PageBlock `json:"page_blocks"`
-    // Block caption
-    Caption RichText `json:"caption"`
+	meta
+	// Slideshow item contents
+	PageBlocks []PageBlock `json:"page_blocks"`
+	// Block caption
+	Caption RichText `json:"caption"`
 }
 
 func (entity *PageBlockSlideshow) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockSlideshow
+	type stub PageBlockSlideshow
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockSlideshow) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockSlideshow) GetType() string {
-    return TypePageBlockSlideshow
+	return TypePageBlockSlideshow
 }
 
 func (*PageBlockSlideshow) PageBlockType() string {
-    return TypePageBlockSlideshow
+	return TypePageBlockSlideshow
 }
 
 func (pageBlockSlideshow *PageBlockSlideshow) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        PageBlocks []PageBlock `json:"page_blocks"`
-        Caption json.RawMessage `json:"caption"`
-    }
+	var tmp struct {
+		PageBlocks []PageBlock     `json:"page_blocks"`
+		Caption    json.RawMessage `json:"caption"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    pageBlockSlideshow.PageBlocks = tmp.PageBlocks
+	pageBlockSlideshow.PageBlocks = tmp.PageBlocks
 
-    fieldCaption, _ := UnmarshalRichText(tmp.Caption)
-    pageBlockSlideshow.Caption = fieldCaption
+	fieldCaption, _ := UnmarshalRichText(tmp.Caption)
+	pageBlockSlideshow.Caption = fieldCaption
 
-    return nil
+	return nil
 }
 
 // A link to a chat
 type PageBlockChatLink struct {
-    meta
-    // Chat title
-    Title string `json:"title"`
-    // Chat photo; may be null
-    Photo *ChatPhoto `json:"photo"`
-    // Chat username, by which all other information about the chat should be resolved
-    Username string `json:"username"`
+	meta
+	// Chat title
+	Title string `json:"title"`
+	// Chat photo; may be null
+	Photo *ChatPhoto `json:"photo"`
+	// Chat username, by which all other information about the chat should be resolved
+	Username string `json:"username"`
 }
 
 func (entity *PageBlockChatLink) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PageBlockChatLink
+	type stub PageBlockChatLink
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PageBlockChatLink) GetClass() string {
-    return ClassPageBlock
+	return ClassPageBlock
 }
 
 func (*PageBlockChatLink) GetType() string {
-    return TypePageBlockChatLink
+	return TypePageBlockChatLink
 }
 
 func (*PageBlockChatLink) PageBlockType() string {
-    return TypePageBlockChatLink
+	return TypePageBlockChatLink
 }
 
 // Describes an instant view page for a web page
 type WebPageInstantView struct {
-    meta
-    // Content of the web page
-    PageBlocks []PageBlock `json:"page_blocks"`
-    // True, if the instant view contains the full page. A network request might be needed to get the full web page instant view
-    IsFull bool `json:"is_full"`
+	meta
+	// Content of the web page
+	PageBlocks []PageBlock `json:"page_blocks"`
+	// True, if the instant view contains the full page. A network request might be needed to get the full web page instant view
+	IsFull bool `json:"is_full"`
 }
 
 func (entity *WebPageInstantView) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub WebPageInstantView
+	type stub WebPageInstantView
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*WebPageInstantView) GetClass() string {
-    return ClassWebPageInstantView
+	return ClassWebPageInstantView
 }
 
 func (*WebPageInstantView) GetType() string {
-    return TypeWebPageInstantView
+	return TypeWebPageInstantView
 }
 
 // Describes a web page preview
 type WebPage struct {
-    meta
-    // Original URL of the link
-    Url string `json:"url"`
-    // URL to display
-    DisplayUrl string `json:"display_url"`
-    // Type of the web page. Can be: article, photo, audio, video, document, profile, app, or something else
-    Type string `json:"type"`
-    // Short name of the site (e.g., Google Docs, App Store)
-    SiteName string `json:"site_name"`
-    // Title of the content
-    Title string `json:"title"`
-    // Description of the content
-    Description string `json:"description"`
-    // Image representing the content; may be null
-    Photo *Photo `json:"photo"`
-    // URL to show in the embedded preview
-    EmbedUrl string `json:"embed_url"`
-    // MIME type of the embedded preview, (e.g., text/html or video/mp4)
-    EmbedType string `json:"embed_type"`
-    // Width of the embedded preview
-    EmbedWidth int32 `json:"embed_width"`
-    // Height of the embedded preview
-    EmbedHeight int32 `json:"embed_height"`
-    // Duration of the content, in seconds
-    Duration int32 `json:"duration"`
-    // Author of the content
-    Author string `json:"author"`
-    // Preview of the content as an animation, if available; may be null
-    Animation *Animation `json:"animation"`
-    // Preview of the content as an audio file, if available; may be null
-    Audio *Audio `json:"audio"`
-    // Preview of the content as a document, if available (currently only available for small PDF files and ZIP archives); may be null
-    Document *Document `json:"document"`
-    // Preview of the content as a sticker for small WEBP files, if available; may be null
-    Sticker *Sticker `json:"sticker"`
-    // Preview of the content as a video, if available; may be null
-    Video *Video `json:"video"`
-    // Preview of the content as a video note, if available; may be null
-    VideoNote *VideoNote `json:"video_note"`
-    // Preview of the content as a voice note, if available; may be null
-    VoiceNote *VoiceNote `json:"voice_note"`
-    // True, if the web page has an instant view
-    HasInstantView bool `json:"has_instant_view"`
+	meta
+	// Original URL of the link
+	Url string `json:"url"`
+	// URL to display
+	DisplayUrl string `json:"display_url"`
+	// Type of the web page. Can be: article, photo, audio, video, document, profile, app, or something else
+	Type string `json:"type"`
+	// Short name of the site (e.g., Google Docs, App Store)
+	SiteName string `json:"site_name"`
+	// Title of the content
+	Title string `json:"title"`
+	// Description of the content
+	Description string `json:"description"`
+	// Image representing the content; may be null
+	Photo *Photo `json:"photo"`
+	// URL to show in the embedded preview
+	EmbedUrl string `json:"embed_url"`
+	// MIME type of the embedded preview, (e.g., text/html or video/mp4)
+	EmbedType string `json:"embed_type"`
+	// Width of the embedded preview
+	EmbedWidth int32 `json:"embed_width"`
+	// Height of the embedded preview
+	EmbedHeight int32 `json:"embed_height"`
+	// Duration of the content, in seconds
+	Duration int32 `json:"duration"`
+	// Author of the content
+	Author string `json:"author"`
+	// Preview of the content as an animation, if available; may be null
+	Animation *Animation `json:"animation"`
+	// Preview of the content as an audio file, if available; may be null
+	Audio *Audio `json:"audio"`
+	// Preview of the content as a document, if available (currently only available for small PDF files and ZIP archives); may be null
+	Document *Document `json:"document"`
+	// Preview of the content as a sticker for small WEBP files, if available; may be null
+	Sticker *Sticker `json:"sticker"`
+	// Preview of the content as a video, if available; may be null
+	Video *Video `json:"video"`
+	// Preview of the content as a video note, if available; may be null
+	VideoNote *VideoNote `json:"video_note"`
+	// Preview of the content as a voice note, if available; may be null
+	VoiceNote *VoiceNote `json:"voice_note"`
+	// True, if the web page has an instant view
+	HasInstantView bool `json:"has_instant_view"`
 }
 
 func (entity *WebPage) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub WebPage
+	type stub WebPage
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*WebPage) GetClass() string {
-    return ClassWebPage
+	return ClassWebPage
 }
 
 func (*WebPage) GetType() string {
-    return TypeWebPage
+	return TypeWebPage
 }
 
 // Describes an address
 type Address struct {
-    meta
-    // A two-letter ISO 3166-1 alpha-2 country code
-    CountryCode string `json:"country_code"`
-    // State, if applicable
-    State string `json:"state"`
-    // City
-    City string `json:"city"`
-    // First line of the address
-    StreetLine1 string `json:"street_line1"`
-    // Second line of the address
-    StreetLine2 string `json:"street_line2"`
-    // Address postal code
-    PostalCode string `json:"postal_code"`
+	meta
+	// A two-letter ISO 3166-1 alpha-2 country code
+	CountryCode string `json:"country_code"`
+	// State, if applicable
+	State string `json:"state"`
+	// City
+	City string `json:"city"`
+	// First line of the address
+	StreetLine1 string `json:"street_line1"`
+	// Second line of the address
+	StreetLine2 string `json:"street_line2"`
+	// Address postal code
+	PostalCode string `json:"postal_code"`
 }
 
 func (entity *Address) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Address
+	type stub Address
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Address) GetClass() string {
-    return ClassAddress
+	return ClassAddress
 }
 
 func (*Address) GetType() string {
-    return TypeAddress
+	return TypeAddress
 }
 
 // Portion of the price of a product (e.g., "delivery cost", "tax amount")
 type LabeledPricePart struct {
-    meta
-    // Label for this portion of the product price
-    Label string `json:"label"`
-    // Currency amount in minimal quantity of the currency
-    Amount int64 `json:"amount"`
+	meta
+	// Label for this portion of the product price
+	Label string `json:"label"`
+	// Currency amount in minimal quantity of the currency
+	Amount int64 `json:"amount"`
 }
 
 func (entity *LabeledPricePart) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub LabeledPricePart
+	type stub LabeledPricePart
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*LabeledPricePart) GetClass() string {
-    return ClassLabeledPricePart
+	return ClassLabeledPricePart
 }
 
 func (*LabeledPricePart) GetType() string {
-    return TypeLabeledPricePart
+	return TypeLabeledPricePart
 }
 
 // Product invoice
 type Invoice struct {
-    meta
-    // ISO 4217 currency code
-    Currency string `json:"currency"`
-    // A list of objects used to calculate the total price of the product
-    PriceParts []*LabeledPricePart `json:"price_parts"`
-    // True, if the payment is a test payment
-    IsTest bool `json:"is_test"`
-    // True, if the user's name is needed for payment
-    NeedName bool `json:"need_name"`
-    // True, if the user's phone number is needed for payment
-    NeedPhoneNumber bool `json:"need_phone_number"`
-    // True, if the user's email address is needed for payment
-    NeedEmailAddress bool `json:"need_email_address"`
-    // True, if the user's shipping address is needed for payment
-    NeedShippingAddress bool `json:"need_shipping_address"`
-    // True, if the user's phone number will be sent to the provider
-    SendPhoneNumberToProvider bool `json:"send_phone_number_to_provider"`
-    // True, if the user's email address will be sent to the provider
-    SendEmailAddressToProvider bool `json:"send_email_address_to_provider"`
-    // True, if the total price depends on the shipping method
-    IsFlexible bool `json:"is_flexible"`
+	meta
+	// ISO 4217 currency code
+	Currency string `json:"currency"`
+	// A list of objects used to calculate the total price of the product
+	PriceParts []*LabeledPricePart `json:"price_parts"`
+	// True, if the payment is a test payment
+	IsTest bool `json:"is_test"`
+	// True, if the user's name is needed for payment
+	NeedName bool `json:"need_name"`
+	// True, if the user's phone number is needed for payment
+	NeedPhoneNumber bool `json:"need_phone_number"`
+	// True, if the user's email address is needed for payment
+	NeedEmailAddress bool `json:"need_email_address"`
+	// True, if the user's shipping address is needed for payment
+	NeedShippingAddress bool `json:"need_shipping_address"`
+	// True, if the user's phone number will be sent to the provider
+	SendPhoneNumberToProvider bool `json:"send_phone_number_to_provider"`
+	// True, if the user's email address will be sent to the provider
+	SendEmailAddressToProvider bool `json:"send_email_address_to_provider"`
+	// True, if the total price depends on the shipping method
+	IsFlexible bool `json:"is_flexible"`
 }
 
 func (entity *Invoice) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Invoice
+	type stub Invoice
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Invoice) GetClass() string {
-    return ClassInvoice
+	return ClassInvoice
 }
 
 func (*Invoice) GetType() string {
-    return TypeInvoice
+	return TypeInvoice
 }
 
 // Order information
 type OrderInfo struct {
-    meta
-    // Name of the user
-    Name string `json:"name"`
-    // Phone number of the user
-    PhoneNumber string `json:"phone_number"`
-    // Email address of the user
-    EmailAddress string `json:"email_address"`
-    // Shipping address for this order; may be null
-    ShippingAddress *Address `json:"shipping_address"`
+	meta
+	// Name of the user
+	Name string `json:"name"`
+	// Phone number of the user
+	PhoneNumber string `json:"phone_number"`
+	// Email address of the user
+	EmailAddress string `json:"email_address"`
+	// Shipping address for this order; may be null
+	ShippingAddress *Address `json:"shipping_address"`
 }
 
 func (entity *OrderInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub OrderInfo
+	type stub OrderInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*OrderInfo) GetClass() string {
-    return ClassOrderInfo
+	return ClassOrderInfo
 }
 
 func (*OrderInfo) GetType() string {
-    return TypeOrderInfo
+	return TypeOrderInfo
 }
 
 // One shipping option
 type ShippingOption struct {
-    meta
-    // Shipping option identifier
-    Id string `json:"id"`
-    // Option title
-    Title string `json:"title"`
-    // A list of objects used to calculate the total shipping costs
-    PriceParts []*LabeledPricePart `json:"price_parts"`
+	meta
+	// Shipping option identifier
+	Id string `json:"id"`
+	// Option title
+	Title string `json:"title"`
+	// A list of objects used to calculate the total shipping costs
+	PriceParts []*LabeledPricePart `json:"price_parts"`
 }
 
 func (entity *ShippingOption) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ShippingOption
+	type stub ShippingOption
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ShippingOption) GetClass() string {
-    return ClassShippingOption
+	return ClassShippingOption
 }
 
 func (*ShippingOption) GetType() string {
-    return TypeShippingOption
+	return TypeShippingOption
 }
 
 // Contains information about saved card credentials
 type SavedCredentials struct {
-    meta
-    // Unique identifier of the saved credentials
-    Id string `json:"id"`
-    // Title of the saved credentials
-    Title string `json:"title"`
+	meta
+	// Unique identifier of the saved credentials
+	Id string `json:"id"`
+	// Title of the saved credentials
+	Title string `json:"title"`
 }
 
 func (entity *SavedCredentials) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SavedCredentials
+	type stub SavedCredentials
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SavedCredentials) GetClass() string {
-    return ClassSavedCredentials
+	return ClassSavedCredentials
 }
 
 func (*SavedCredentials) GetType() string {
-    return TypeSavedCredentials
+	return TypeSavedCredentials
 }
 
 // Applies if a user chooses some previously saved payment credentials. To use their previously saved credentials, the user must have a valid temporary password
 type InputCredentialsSaved struct {
-    meta
-    // Identifier of the saved credentials
-    SavedCredentialsId string `json:"saved_credentials_id"`
+	meta
+	// Identifier of the saved credentials
+	SavedCredentialsId string `json:"saved_credentials_id"`
 }
 
 func (entity *InputCredentialsSaved) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputCredentialsSaved
+	type stub InputCredentialsSaved
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputCredentialsSaved) GetClass() string {
-    return ClassInputCredentials
+	return ClassInputCredentials
 }
 
 func (*InputCredentialsSaved) GetType() string {
-    return TypeInputCredentialsSaved
+	return TypeInputCredentialsSaved
 }
 
 func (*InputCredentialsSaved) InputCredentialsType() string {
-    return TypeInputCredentialsSaved
+	return TypeInputCredentialsSaved
 }
 
 // Applies if a user enters new credentials on a payment provider website
 type InputCredentialsNew struct {
-    meta
-    // Contains JSON-encoded data with a credential identifier from the payment provider
-    Data string `json:"data"`
-    // True, if the credential identifier can be saved on the server side
-    AllowSave bool `json:"allow_save"`
+	meta
+	// Contains JSON-encoded data with a credential identifier from the payment provider
+	Data string `json:"data"`
+	// True, if the credential identifier can be saved on the server side
+	AllowSave bool `json:"allow_save"`
 }
 
 func (entity *InputCredentialsNew) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputCredentialsNew
+	type stub InputCredentialsNew
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputCredentialsNew) GetClass() string {
-    return ClassInputCredentials
+	return ClassInputCredentials
 }
 
 func (*InputCredentialsNew) GetType() string {
-    return TypeInputCredentialsNew
+	return TypeInputCredentialsNew
 }
 
 func (*InputCredentialsNew) InputCredentialsType() string {
-    return TypeInputCredentialsNew
+	return TypeInputCredentialsNew
 }
 
 // Applies if a user enters new credentials using Android Pay
 type InputCredentialsAndroidPay struct {
-    meta
-    // JSON-encoded data with the credential identifier
-    Data string `json:"data"`
+	meta
+	// JSON-encoded data with the credential identifier
+	Data string `json:"data"`
 }
 
 func (entity *InputCredentialsAndroidPay) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputCredentialsAndroidPay
+	type stub InputCredentialsAndroidPay
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputCredentialsAndroidPay) GetClass() string {
-    return ClassInputCredentials
+	return ClassInputCredentials
 }
 
 func (*InputCredentialsAndroidPay) GetType() string {
-    return TypeInputCredentialsAndroidPay
+	return TypeInputCredentialsAndroidPay
 }
 
 func (*InputCredentialsAndroidPay) InputCredentialsType() string {
-    return TypeInputCredentialsAndroidPay
+	return TypeInputCredentialsAndroidPay
 }
 
 // Applies if a user enters new credentials using Apple Pay
 type InputCredentialsApplePay struct {
-    meta
-    // JSON-encoded data with the credential identifier
-    Data string `json:"data"`
+	meta
+	// JSON-encoded data with the credential identifier
+	Data string `json:"data"`
 }
 
 func (entity *InputCredentialsApplePay) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputCredentialsApplePay
+	type stub InputCredentialsApplePay
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputCredentialsApplePay) GetClass() string {
-    return ClassInputCredentials
+	return ClassInputCredentials
 }
 
 func (*InputCredentialsApplePay) GetType() string {
-    return TypeInputCredentialsApplePay
+	return TypeInputCredentialsApplePay
 }
 
 func (*InputCredentialsApplePay) InputCredentialsType() string {
-    return TypeInputCredentialsApplePay
+	return TypeInputCredentialsApplePay
 }
 
 // Stripe payment provider
 type PaymentsProviderStripe struct {
-    meta
-    // Stripe API publishable key
-    PublishableKey string `json:"publishable_key"`
-    // True, if the user country must be provided
-    NeedCountry bool `json:"need_country"`
-    // True, if the user ZIP/postal code must be provided
-    NeedPostalCode bool `json:"need_postal_code"`
-    // True, if the cardholder name must be provided
-    NeedCardholderName bool `json:"need_cardholder_name"`
+	meta
+	// Stripe API publishable key
+	PublishableKey string `json:"publishable_key"`
+	// True, if the user country must be provided
+	NeedCountry bool `json:"need_country"`
+	// True, if the user ZIP/postal code must be provided
+	NeedPostalCode bool `json:"need_postal_code"`
+	// True, if the cardholder name must be provided
+	NeedCardholderName bool `json:"need_cardholder_name"`
 }
 
 func (entity *PaymentsProviderStripe) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PaymentsProviderStripe
+	type stub PaymentsProviderStripe
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PaymentsProviderStripe) GetClass() string {
-    return ClassPaymentsProviderStripe
+	return ClassPaymentsProviderStripe
 }
 
 func (*PaymentsProviderStripe) GetType() string {
-    return TypePaymentsProviderStripe
+	return TypePaymentsProviderStripe
 }
 
 // Contains information about an invoice payment form
 type PaymentForm struct {
-    meta
-    // Full information of the invoice
-    Invoice *Invoice `json:"invoice"`
-    // Payment form URL
-    Url string `json:"url"`
-    // Contains information about the payment provider, if available, to support it natively without the need for opening the URL; may be null
-    PaymentsProvider *PaymentsProviderStripe `json:"payments_provider"`
-    // Saved server-side order information; may be null
-    SavedOrderInfo *OrderInfo `json:"saved_order_info"`
-    // Contains information about saved card credentials; may be null
-    SavedCredentials *SavedCredentials `json:"saved_credentials"`
-    // True, if the user can choose to save credentials
-    CanSaveCredentials bool `json:"can_save_credentials"`
-    // True, if the user will be able to save credentials protected by a password they set up
-    NeedPassword bool `json:"need_password"`
+	meta
+	// Full information of the invoice
+	Invoice *Invoice `json:"invoice"`
+	// Payment form URL
+	Url string `json:"url"`
+	// Contains information about the payment provider, if available, to support it natively without the need for opening the URL; may be null
+	PaymentsProvider *PaymentsProviderStripe `json:"payments_provider"`
+	// Saved server-side order information; may be null
+	SavedOrderInfo *OrderInfo `json:"saved_order_info"`
+	// Contains information about saved card credentials; may be null
+	SavedCredentials *SavedCredentials `json:"saved_credentials"`
+	// True, if the user can choose to save credentials
+	CanSaveCredentials bool `json:"can_save_credentials"`
+	// True, if the user will be able to save credentials protected by a password they set up
+	NeedPassword bool `json:"need_password"`
 }
 
 func (entity *PaymentForm) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PaymentForm
+	type stub PaymentForm
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PaymentForm) GetClass() string {
-    return ClassPaymentForm
+	return ClassPaymentForm
 }
 
 func (*PaymentForm) GetType() string {
-    return TypePaymentForm
+	return TypePaymentForm
 }
 
 // Contains a temporary identifier of validated order information, which is stored for one hour. Also contains the available shipping options
 type ValidatedOrderInfo struct {
-    meta
-    // Temporary identifier of the order information
-    OrderInfoId string `json:"order_info_id"`
-    // Available shipping options
-    ShippingOptions []*ShippingOption `json:"shipping_options"`
+	meta
+	// Temporary identifier of the order information
+	OrderInfoId string `json:"order_info_id"`
+	// Available shipping options
+	ShippingOptions []*ShippingOption `json:"shipping_options"`
 }
 
 func (entity *ValidatedOrderInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ValidatedOrderInfo
+	type stub ValidatedOrderInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ValidatedOrderInfo) GetClass() string {
-    return ClassValidatedOrderInfo
+	return ClassValidatedOrderInfo
 }
 
 func (*ValidatedOrderInfo) GetType() string {
-    return TypeValidatedOrderInfo
+	return TypeValidatedOrderInfo
 }
 
 // Contains the result of a payment request
 type PaymentResult struct {
-    meta
-    // True, if the payment request was successful; otherwise the verification_url will be not empty
-    Success bool `json:"success"`
-    // URL for additional payment credentials verification
-    VerificationUrl string `json:"verification_url"`
+	meta
+	// True, if the payment request was successful; otherwise the verification_url will be not empty
+	Success bool `json:"success"`
+	// URL for additional payment credentials verification
+	VerificationUrl string `json:"verification_url"`
 }
 
 func (entity *PaymentResult) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PaymentResult
+	type stub PaymentResult
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PaymentResult) GetClass() string {
-    return ClassPaymentResult
+	return ClassPaymentResult
 }
 
 func (*PaymentResult) GetType() string {
-    return TypePaymentResult
+	return TypePaymentResult
 }
 
 // Contains information about a successful payment
 type PaymentReceipt struct {
-    meta
-    // Point in time (Unix timestamp) when the payment was made
-    Date int32 `json:"date"`
-    // User identifier of the payment provider bot
-    PaymentsProviderUserId int32 `json:"payments_provider_user_id"`
-    // Contains information about the invoice
-    Invoice *Invoice `json:"invoice"`
-    // Contains order information; may be null
-    OrderInfo *OrderInfo `json:"order_info"`
-    // Chosen shipping option; may be null
-    ShippingOption *ShippingOption `json:"shipping_option"`
-    // Title of the saved credentials
-    CredentialsTitle string `json:"credentials_title"`
+	meta
+	// Point in time (Unix timestamp) when the payment was made
+	Date int32 `json:"date"`
+	// User identifier of the payment provider bot
+	PaymentsProviderUserId int32 `json:"payments_provider_user_id"`
+	// Contains information about the invoice
+	Invoice *Invoice `json:"invoice"`
+	// Contains order information; may be null
+	OrderInfo *OrderInfo `json:"order_info"`
+	// Chosen shipping option; may be null
+	ShippingOption *ShippingOption `json:"shipping_option"`
+	// Title of the saved credentials
+	CredentialsTitle string `json:"credentials_title"`
 }
 
 func (entity *PaymentReceipt) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PaymentReceipt
+	type stub PaymentReceipt
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PaymentReceipt) GetClass() string {
-    return ClassPaymentReceipt
+	return ClassPaymentReceipt
 }
 
 func (*PaymentReceipt) GetType() string {
-    return TypePaymentReceipt
+	return TypePaymentReceipt
 }
 
 // File with the date it was uploaded
 type DatedFile struct {
-    meta
-    // The file
-    File *File `json:"file"`
-    // Point in time (Unix timestamp) when the file was uploaded
-    Date int32 `json:"date"`
+	meta
+	// The file
+	File *File `json:"file"`
+	// Point in time (Unix timestamp) when the file was uploaded
+	Date int32 `json:"date"`
 }
 
 func (entity *DatedFile) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub DatedFile
+	type stub DatedFile
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*DatedFile) GetClass() string {
-    return ClassDatedFile
+	return ClassDatedFile
 }
 
 func (*DatedFile) GetType() string {
-    return TypeDatedFile
+	return TypeDatedFile
 }
 
 // A Telegram Passport element containing the user's personal details
-type PassportElementTypePersonalDetails struct{
-    meta
+type PassportElementTypePersonalDetails struct {
+	meta
 }
 
 func (entity *PassportElementTypePersonalDetails) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementTypePersonalDetails
+	type stub PassportElementTypePersonalDetails
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementTypePersonalDetails) GetClass() string {
-    return ClassPassportElementType
+	return ClassPassportElementType
 }
 
 func (*PassportElementTypePersonalDetails) GetType() string {
-    return TypePassportElementTypePersonalDetails
+	return TypePassportElementTypePersonalDetails
 }
 
 func (*PassportElementTypePersonalDetails) PassportElementTypeType() string {
-    return TypePassportElementTypePersonalDetails
+	return TypePassportElementTypePersonalDetails
 }
 
 // A Telegram Passport element containing the user's passport
-type PassportElementTypePassport struct{
-    meta
+type PassportElementTypePassport struct {
+	meta
 }
 
 func (entity *PassportElementTypePassport) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementTypePassport
+	type stub PassportElementTypePassport
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementTypePassport) GetClass() string {
-    return ClassPassportElementType
+	return ClassPassportElementType
 }
 
 func (*PassportElementTypePassport) GetType() string {
-    return TypePassportElementTypePassport
+	return TypePassportElementTypePassport
 }
 
 func (*PassportElementTypePassport) PassportElementTypeType() string {
-    return TypePassportElementTypePassport
+	return TypePassportElementTypePassport
 }
 
 // A Telegram Passport element containing the user's driver license
-type PassportElementTypeDriverLicense struct{
-    meta
+type PassportElementTypeDriverLicense struct {
+	meta
 }
 
 func (entity *PassportElementTypeDriverLicense) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementTypeDriverLicense
+	type stub PassportElementTypeDriverLicense
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementTypeDriverLicense) GetClass() string {
-    return ClassPassportElementType
+	return ClassPassportElementType
 }
 
 func (*PassportElementTypeDriverLicense) GetType() string {
-    return TypePassportElementTypeDriverLicense
+	return TypePassportElementTypeDriverLicense
 }
 
 func (*PassportElementTypeDriverLicense) PassportElementTypeType() string {
-    return TypePassportElementTypeDriverLicense
+	return TypePassportElementTypeDriverLicense
 }
 
 // A Telegram Passport element containing the user's identity card
-type PassportElementTypeIdentityCard struct{
-    meta
+type PassportElementTypeIdentityCard struct {
+	meta
 }
 
 func (entity *PassportElementTypeIdentityCard) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementTypeIdentityCard
+	type stub PassportElementTypeIdentityCard
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementTypeIdentityCard) GetClass() string {
-    return ClassPassportElementType
+	return ClassPassportElementType
 }
 
 func (*PassportElementTypeIdentityCard) GetType() string {
-    return TypePassportElementTypeIdentityCard
+	return TypePassportElementTypeIdentityCard
 }
 
 func (*PassportElementTypeIdentityCard) PassportElementTypeType() string {
-    return TypePassportElementTypeIdentityCard
+	return TypePassportElementTypeIdentityCard
 }
 
 // A Telegram Passport element containing the user's internal passport
-type PassportElementTypeInternalPassport struct{
-    meta
+type PassportElementTypeInternalPassport struct {
+	meta
 }
 
 func (entity *PassportElementTypeInternalPassport) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementTypeInternalPassport
+	type stub PassportElementTypeInternalPassport
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementTypeInternalPassport) GetClass() string {
-    return ClassPassportElementType
+	return ClassPassportElementType
 }
 
 func (*PassportElementTypeInternalPassport) GetType() string {
-    return TypePassportElementTypeInternalPassport
+	return TypePassportElementTypeInternalPassport
 }
 
 func (*PassportElementTypeInternalPassport) PassportElementTypeType() string {
-    return TypePassportElementTypeInternalPassport
+	return TypePassportElementTypeInternalPassport
 }
 
 // A Telegram Passport element containing the user's address
-type PassportElementTypeAddress struct{
-    meta
+type PassportElementTypeAddress struct {
+	meta
 }
 
 func (entity *PassportElementTypeAddress) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementTypeAddress
+	type stub PassportElementTypeAddress
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementTypeAddress) GetClass() string {
-    return ClassPassportElementType
+	return ClassPassportElementType
 }
 
 func (*PassportElementTypeAddress) GetType() string {
-    return TypePassportElementTypeAddress
+	return TypePassportElementTypeAddress
 }
 
 func (*PassportElementTypeAddress) PassportElementTypeType() string {
-    return TypePassportElementTypeAddress
+	return TypePassportElementTypeAddress
 }
 
 // A Telegram Passport element containing the user's utility bill
-type PassportElementTypeUtilityBill struct{
-    meta
+type PassportElementTypeUtilityBill struct {
+	meta
 }
 
 func (entity *PassportElementTypeUtilityBill) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementTypeUtilityBill
+	type stub PassportElementTypeUtilityBill
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementTypeUtilityBill) GetClass() string {
-    return ClassPassportElementType
+	return ClassPassportElementType
 }
 
 func (*PassportElementTypeUtilityBill) GetType() string {
-    return TypePassportElementTypeUtilityBill
+	return TypePassportElementTypeUtilityBill
 }
 
 func (*PassportElementTypeUtilityBill) PassportElementTypeType() string {
-    return TypePassportElementTypeUtilityBill
+	return TypePassportElementTypeUtilityBill
 }
 
 // A Telegram Passport element containing the user's bank statement
-type PassportElementTypeBankStatement struct{
-    meta
+type PassportElementTypeBankStatement struct {
+	meta
 }
 
 func (entity *PassportElementTypeBankStatement) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementTypeBankStatement
+	type stub PassportElementTypeBankStatement
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementTypeBankStatement) GetClass() string {
-    return ClassPassportElementType
+	return ClassPassportElementType
 }
 
 func (*PassportElementTypeBankStatement) GetType() string {
-    return TypePassportElementTypeBankStatement
+	return TypePassportElementTypeBankStatement
 }
 
 func (*PassportElementTypeBankStatement) PassportElementTypeType() string {
-    return TypePassportElementTypeBankStatement
+	return TypePassportElementTypeBankStatement
 }
 
 // A Telegram Passport element containing the user's rental agreement
-type PassportElementTypeRentalAgreement struct{
-    meta
+type PassportElementTypeRentalAgreement struct {
+	meta
 }
 
 func (entity *PassportElementTypeRentalAgreement) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementTypeRentalAgreement
+	type stub PassportElementTypeRentalAgreement
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementTypeRentalAgreement) GetClass() string {
-    return ClassPassportElementType
+	return ClassPassportElementType
 }
 
 func (*PassportElementTypeRentalAgreement) GetType() string {
-    return TypePassportElementTypeRentalAgreement
+	return TypePassportElementTypeRentalAgreement
 }
 
 func (*PassportElementTypeRentalAgreement) PassportElementTypeType() string {
-    return TypePassportElementTypeRentalAgreement
+	return TypePassportElementTypeRentalAgreement
 }
 
 // A Telegram Passport element containing the registration page of the user's passport
-type PassportElementTypePassportRegistration struct{
-    meta
+type PassportElementTypePassportRegistration struct {
+	meta
 }
 
 func (entity *PassportElementTypePassportRegistration) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementTypePassportRegistration
+	type stub PassportElementTypePassportRegistration
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementTypePassportRegistration) GetClass() string {
-    return ClassPassportElementType
+	return ClassPassportElementType
 }
 
 func (*PassportElementTypePassportRegistration) GetType() string {
-    return TypePassportElementTypePassportRegistration
+	return TypePassportElementTypePassportRegistration
 }
 
 func (*PassportElementTypePassportRegistration) PassportElementTypeType() string {
-    return TypePassportElementTypePassportRegistration
+	return TypePassportElementTypePassportRegistration
 }
 
 // A Telegram Passport element containing the user's temporary registration
-type PassportElementTypeTemporaryRegistration struct{
-    meta
+type PassportElementTypeTemporaryRegistration struct {
+	meta
 }
 
 func (entity *PassportElementTypeTemporaryRegistration) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementTypeTemporaryRegistration
+	type stub PassportElementTypeTemporaryRegistration
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementTypeTemporaryRegistration) GetClass() string {
-    return ClassPassportElementType
+	return ClassPassportElementType
 }
 
 func (*PassportElementTypeTemporaryRegistration) GetType() string {
-    return TypePassportElementTypeTemporaryRegistration
+	return TypePassportElementTypeTemporaryRegistration
 }
 
 func (*PassportElementTypeTemporaryRegistration) PassportElementTypeType() string {
-    return TypePassportElementTypeTemporaryRegistration
+	return TypePassportElementTypeTemporaryRegistration
 }
 
 // A Telegram Passport element containing the user's phone number
-type PassportElementTypePhoneNumber struct{
-    meta
+type PassportElementTypePhoneNumber struct {
+	meta
 }
 
 func (entity *PassportElementTypePhoneNumber) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementTypePhoneNumber
+	type stub PassportElementTypePhoneNumber
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementTypePhoneNumber) GetClass() string {
-    return ClassPassportElementType
+	return ClassPassportElementType
 }
 
 func (*PassportElementTypePhoneNumber) GetType() string {
-    return TypePassportElementTypePhoneNumber
+	return TypePassportElementTypePhoneNumber
 }
 
 func (*PassportElementTypePhoneNumber) PassportElementTypeType() string {
-    return TypePassportElementTypePhoneNumber
+	return TypePassportElementTypePhoneNumber
 }
 
 // A Telegram Passport element containing the user's email address
-type PassportElementTypeEmailAddress struct{
-    meta
+type PassportElementTypeEmailAddress struct {
+	meta
 }
 
 func (entity *PassportElementTypeEmailAddress) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementTypeEmailAddress
+	type stub PassportElementTypeEmailAddress
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementTypeEmailAddress) GetClass() string {
-    return ClassPassportElementType
+	return ClassPassportElementType
 }
 
 func (*PassportElementTypeEmailAddress) GetType() string {
-    return TypePassportElementTypeEmailAddress
+	return TypePassportElementTypeEmailAddress
 }
 
 func (*PassportElementTypeEmailAddress) PassportElementTypeType() string {
-    return TypePassportElementTypeEmailAddress
+	return TypePassportElementTypeEmailAddress
 }
 
 // Represents a date according to the Gregorian calendar
 type Date struct {
-    meta
-    // Day of the month, 1-31
-    Day int32 `json:"day"`
-    // Month, 1-12
-    Month int32 `json:"month"`
-    // Year, 1-9999
-    Year int32 `json:"year"`
+	meta
+	// Day of the month, 1-31
+	Day int32 `json:"day"`
+	// Month, 1-12
+	Month int32 `json:"month"`
+	// Year, 1-9999
+	Year int32 `json:"year"`
 }
 
 func (entity *Date) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Date
+	type stub Date
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Date) GetClass() string {
-    return ClassDate
+	return ClassDate
 }
 
 func (*Date) GetType() string {
-    return TypeDate
+	return TypeDate
 }
 
 // Contains the user's personal details
 type PersonalDetails struct {
-    meta
-    // First name of the user written in English; 1-255 characters
-    FirstName string `json:"first_name"`
-    // Middle name of the user written in English; 0-255 characters
-    MiddleName string `json:"middle_name"`
-    // Last name of the user written in English; 1-255 characters
-    LastName string `json:"last_name"`
-    // Native first name of the user; 1-255 characters
-    NativeFirstName string `json:"native_first_name"`
-    // Native middle name of the user; 0-255 characters
-    NativeMiddleName string `json:"native_middle_name"`
-    // Native last name of the user; 1-255 characters
-    NativeLastName string `json:"native_last_name"`
-    // Birthdate of the user
-    Birthdate *Date `json:"birthdate"`
-    // Gender of the user, "male" or "female"
-    Gender string `json:"gender"`
-    // A two-letter ISO 3166-1 alpha-2 country code of the user's country
-    CountryCode string `json:"country_code"`
-    // A two-letter ISO 3166-1 alpha-2 country code of the user's residence country
-    ResidenceCountryCode string `json:"residence_country_code"`
+	meta
+	// First name of the user written in English; 1-255 characters
+	FirstName string `json:"first_name"`
+	// Middle name of the user written in English; 0-255 characters
+	MiddleName string `json:"middle_name"`
+	// Last name of the user written in English; 1-255 characters
+	LastName string `json:"last_name"`
+	// Native first name of the user; 1-255 characters
+	NativeFirstName string `json:"native_first_name"`
+	// Native middle name of the user; 0-255 characters
+	NativeMiddleName string `json:"native_middle_name"`
+	// Native last name of the user; 1-255 characters
+	NativeLastName string `json:"native_last_name"`
+	// Birthdate of the user
+	Birthdate *Date `json:"birthdate"`
+	// Gender of the user, "male" or "female"
+	Gender string `json:"gender"`
+	// A two-letter ISO 3166-1 alpha-2 country code of the user's country
+	CountryCode string `json:"country_code"`
+	// A two-letter ISO 3166-1 alpha-2 country code of the user's residence country
+	ResidenceCountryCode string `json:"residence_country_code"`
 }
 
 func (entity *PersonalDetails) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PersonalDetails
+	type stub PersonalDetails
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PersonalDetails) GetClass() string {
-    return ClassPersonalDetails
+	return ClassPersonalDetails
 }
 
 func (*PersonalDetails) GetType() string {
-    return TypePersonalDetails
+	return TypePersonalDetails
 }
 
 // An identity document
 type IdentityDocument struct {
-    meta
-    // Document number; 1-24 characters
-    Number string `json:"number"`
-    // Document expiry date; may be null
-    ExpiryDate *Date `json:"expiry_date"`
-    // Front side of the document
-    FrontSide *DatedFile `json:"front_side"`
-    // Reverse side of the document; only for driver license and identity card
-    ReverseSide *DatedFile `json:"reverse_side"`
-    // Selfie with the document; may be null
-    Selfie *DatedFile `json:"selfie"`
-    // List of files containing a certified English translation of the document
-    Translation []*DatedFile `json:"translation"`
+	meta
+	// Document number; 1-24 characters
+	Number string `json:"number"`
+	// Document expiry date; may be null
+	ExpiryDate *Date `json:"expiry_date"`
+	// Front side of the document
+	FrontSide *DatedFile `json:"front_side"`
+	// Reverse side of the document; only for driver license and identity card
+	ReverseSide *DatedFile `json:"reverse_side"`
+	// Selfie with the document; may be null
+	Selfie *DatedFile `json:"selfie"`
+	// List of files containing a certified English translation of the document
+	Translation []*DatedFile `json:"translation"`
 }
 
 func (entity *IdentityDocument) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub IdentityDocument
+	type stub IdentityDocument
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*IdentityDocument) GetClass() string {
-    return ClassIdentityDocument
+	return ClassIdentityDocument
 }
 
 func (*IdentityDocument) GetType() string {
-    return TypeIdentityDocument
+	return TypeIdentityDocument
 }
 
 // An identity document to be saved to Telegram Passport
 type InputIdentityDocument struct {
-    meta
-    // Document number; 1-24 characters
-    Number string `json:"number"`
-    // Document expiry date, if available
-    ExpiryDate *Date `json:"expiry_date"`
-    // Front side of the document
-    FrontSide InputFile `json:"front_side"`
-    // Reverse side of the document; only for driver license and identity card
-    ReverseSide InputFile `json:"reverse_side"`
-    // Selfie with the document, if available
-    Selfie InputFile `json:"selfie"`
-    // List of files containing a certified English translation of the document
-    Translation []InputFile `json:"translation"`
+	meta
+	// Document number; 1-24 characters
+	Number string `json:"number"`
+	// Document expiry date, if available
+	ExpiryDate *Date `json:"expiry_date"`
+	// Front side of the document
+	FrontSide InputFile `json:"front_side"`
+	// Reverse side of the document; only for driver license and identity card
+	ReverseSide InputFile `json:"reverse_side"`
+	// Selfie with the document, if available
+	Selfie InputFile `json:"selfie"`
+	// List of files containing a certified English translation of the document
+	Translation []InputFile `json:"translation"`
 }
 
 func (entity *InputIdentityDocument) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputIdentityDocument
+	type stub InputIdentityDocument
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputIdentityDocument) GetClass() string {
-    return ClassInputIdentityDocument
+	return ClassInputIdentityDocument
 }
 
 func (*InputIdentityDocument) GetType() string {
-    return TypeInputIdentityDocument
+	return TypeInputIdentityDocument
 }
 
 func (inputIdentityDocument *InputIdentityDocument) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Number string `json:"number"`
-        ExpiryDate *Date `json:"expiry_date"`
-        FrontSide json.RawMessage `json:"front_side"`
-        ReverseSide json.RawMessage `json:"reverse_side"`
-        Selfie json.RawMessage `json:"selfie"`
-        Translation []InputFile `json:"translation"`
-    }
+	var tmp struct {
+		Number      string          `json:"number"`
+		ExpiryDate  *Date           `json:"expiry_date"`
+		FrontSide   json.RawMessage `json:"front_side"`
+		ReverseSide json.RawMessage `json:"reverse_side"`
+		Selfie      json.RawMessage `json:"selfie"`
+		Translation []InputFile     `json:"translation"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputIdentityDocument.Number = tmp.Number
-    inputIdentityDocument.ExpiryDate = tmp.ExpiryDate
-    inputIdentityDocument.Translation = tmp.Translation
+	inputIdentityDocument.Number = tmp.Number
+	inputIdentityDocument.ExpiryDate = tmp.ExpiryDate
+	inputIdentityDocument.Translation = tmp.Translation
 
-    fieldFrontSide, _ := UnmarshalInputFile(tmp.FrontSide)
-    inputIdentityDocument.FrontSide = fieldFrontSide
+	fieldFrontSide, _ := UnmarshalInputFile(tmp.FrontSide)
+	inputIdentityDocument.FrontSide = fieldFrontSide
 
-    fieldReverseSide, _ := UnmarshalInputFile(tmp.ReverseSide)
-    inputIdentityDocument.ReverseSide = fieldReverseSide
+	fieldReverseSide, _ := UnmarshalInputFile(tmp.ReverseSide)
+	inputIdentityDocument.ReverseSide = fieldReverseSide
 
-    fieldSelfie, _ := UnmarshalInputFile(tmp.Selfie)
-    inputIdentityDocument.Selfie = fieldSelfie
+	fieldSelfie, _ := UnmarshalInputFile(tmp.Selfie)
+	inputIdentityDocument.Selfie = fieldSelfie
 
-    return nil
+	return nil
 }
 
 // A personal document, containing some information about a user
 type PersonalDocument struct {
-    meta
-    // List of files containing the pages of the document
-    Files []*DatedFile `json:"files"`
-    // List of files containing a certified English translation of the document
-    Translation []*DatedFile `json:"translation"`
+	meta
+	// List of files containing the pages of the document
+	Files []*DatedFile `json:"files"`
+	// List of files containing a certified English translation of the document
+	Translation []*DatedFile `json:"translation"`
 }
 
 func (entity *PersonalDocument) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PersonalDocument
+	type stub PersonalDocument
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PersonalDocument) GetClass() string {
-    return ClassPersonalDocument
+	return ClassPersonalDocument
 }
 
 func (*PersonalDocument) GetType() string {
-    return TypePersonalDocument
+	return TypePersonalDocument
 }
 
 // A personal document to be saved to Telegram Passport
 type InputPersonalDocument struct {
-    meta
-    // List of files containing the pages of the document
-    Files []InputFile `json:"files"`
-    // List of files containing a certified English translation of the document
-    Translation []InputFile `json:"translation"`
+	meta
+	// List of files containing the pages of the document
+	Files []InputFile `json:"files"`
+	// List of files containing a certified English translation of the document
+	Translation []InputFile `json:"translation"`
 }
 
 func (entity *InputPersonalDocument) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPersonalDocument
+	type stub InputPersonalDocument
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPersonalDocument) GetClass() string {
-    return ClassInputPersonalDocument
+	return ClassInputPersonalDocument
 }
 
 func (*InputPersonalDocument) GetType() string {
-    return TypeInputPersonalDocument
+	return TypeInputPersonalDocument
 }
 
 // A Telegram Passport element containing the user's personal details
 type PassportElementPersonalDetails struct {
-    meta
-    // Personal details of the user
-    PersonalDetails *PersonalDetails `json:"personal_details"`
+	meta
+	// Personal details of the user
+	PersonalDetails *PersonalDetails `json:"personal_details"`
 }
 
 func (entity *PassportElementPersonalDetails) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementPersonalDetails
+	type stub PassportElementPersonalDetails
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementPersonalDetails) GetClass() string {
-    return ClassPassportElement
+	return ClassPassportElement
 }
 
 func (*PassportElementPersonalDetails) GetType() string {
-    return TypePassportElementPersonalDetails
+	return TypePassportElementPersonalDetails
 }
 
 func (*PassportElementPersonalDetails) PassportElementType() string {
-    return TypePassportElementPersonalDetails
+	return TypePassportElementPersonalDetails
 }
 
 // A Telegram Passport element containing the user's passport
 type PassportElementPassport struct {
-    meta
-    // Passport
-    Passport *IdentityDocument `json:"passport"`
+	meta
+	// Passport
+	Passport *IdentityDocument `json:"passport"`
 }
 
 func (entity *PassportElementPassport) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementPassport
+	type stub PassportElementPassport
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementPassport) GetClass() string {
-    return ClassPassportElement
+	return ClassPassportElement
 }
 
 func (*PassportElementPassport) GetType() string {
-    return TypePassportElementPassport
+	return TypePassportElementPassport
 }
 
 func (*PassportElementPassport) PassportElementType() string {
-    return TypePassportElementPassport
+	return TypePassportElementPassport
 }
 
 // A Telegram Passport element containing the user's driver license
 type PassportElementDriverLicense struct {
-    meta
-    // Driver license
-    DriverLicense *IdentityDocument `json:"driver_license"`
+	meta
+	// Driver license
+	DriverLicense *IdentityDocument `json:"driver_license"`
 }
 
 func (entity *PassportElementDriverLicense) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementDriverLicense
+	type stub PassportElementDriverLicense
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementDriverLicense) GetClass() string {
-    return ClassPassportElement
+	return ClassPassportElement
 }
 
 func (*PassportElementDriverLicense) GetType() string {
-    return TypePassportElementDriverLicense
+	return TypePassportElementDriverLicense
 }
 
 func (*PassportElementDriverLicense) PassportElementType() string {
-    return TypePassportElementDriverLicense
+	return TypePassportElementDriverLicense
 }
 
 // A Telegram Passport element containing the user's identity card
 type PassportElementIdentityCard struct {
-    meta
-    // Identity card
-    IdentityCard *IdentityDocument `json:"identity_card"`
+	meta
+	// Identity card
+	IdentityCard *IdentityDocument `json:"identity_card"`
 }
 
 func (entity *PassportElementIdentityCard) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementIdentityCard
+	type stub PassportElementIdentityCard
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementIdentityCard) GetClass() string {
-    return ClassPassportElement
+	return ClassPassportElement
 }
 
 func (*PassportElementIdentityCard) GetType() string {
-    return TypePassportElementIdentityCard
+	return TypePassportElementIdentityCard
 }
 
 func (*PassportElementIdentityCard) PassportElementType() string {
-    return TypePassportElementIdentityCard
+	return TypePassportElementIdentityCard
 }
 
 // A Telegram Passport element containing the user's internal passport
 type PassportElementInternalPassport struct {
-    meta
-    // Internal passport
-    InternalPassport *IdentityDocument `json:"internal_passport"`
+	meta
+	// Internal passport
+	InternalPassport *IdentityDocument `json:"internal_passport"`
 }
 
 func (entity *PassportElementInternalPassport) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementInternalPassport
+	type stub PassportElementInternalPassport
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementInternalPassport) GetClass() string {
-    return ClassPassportElement
+	return ClassPassportElement
 }
 
 func (*PassportElementInternalPassport) GetType() string {
-    return TypePassportElementInternalPassport
+	return TypePassportElementInternalPassport
 }
 
 func (*PassportElementInternalPassport) PassportElementType() string {
-    return TypePassportElementInternalPassport
+	return TypePassportElementInternalPassport
 }
 
 // A Telegram Passport element containing the user's address
 type PassportElementAddress struct {
-    meta
-    // Address
-    Address *Address `json:"address"`
+	meta
+	// Address
+	Address *Address `json:"address"`
 }
 
 func (entity *PassportElementAddress) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementAddress
+	type stub PassportElementAddress
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementAddress) GetClass() string {
-    return ClassPassportElement
+	return ClassPassportElement
 }
 
 func (*PassportElementAddress) GetType() string {
-    return TypePassportElementAddress
+	return TypePassportElementAddress
 }
 
 func (*PassportElementAddress) PassportElementType() string {
-    return TypePassportElementAddress
+	return TypePassportElementAddress
 }
 
 // A Telegram Passport element containing the user's utility bill
 type PassportElementUtilityBill struct {
-    meta
-    // Utility bill
-    UtilityBill *PersonalDocument `json:"utility_bill"`
+	meta
+	// Utility bill
+	UtilityBill *PersonalDocument `json:"utility_bill"`
 }
 
 func (entity *PassportElementUtilityBill) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementUtilityBill
+	type stub PassportElementUtilityBill
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementUtilityBill) GetClass() string {
-    return ClassPassportElement
+	return ClassPassportElement
 }
 
 func (*PassportElementUtilityBill) GetType() string {
-    return TypePassportElementUtilityBill
+	return TypePassportElementUtilityBill
 }
 
 func (*PassportElementUtilityBill) PassportElementType() string {
-    return TypePassportElementUtilityBill
+	return TypePassportElementUtilityBill
 }
 
 // A Telegram Passport element containing the user's bank statement
 type PassportElementBankStatement struct {
-    meta
-    // Bank statement
-    BankStatement *PersonalDocument `json:"bank_statement"`
+	meta
+	// Bank statement
+	BankStatement *PersonalDocument `json:"bank_statement"`
 }
 
 func (entity *PassportElementBankStatement) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementBankStatement
+	type stub PassportElementBankStatement
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementBankStatement) GetClass() string {
-    return ClassPassportElement
+	return ClassPassportElement
 }
 
 func (*PassportElementBankStatement) GetType() string {
-    return TypePassportElementBankStatement
+	return TypePassportElementBankStatement
 }
 
 func (*PassportElementBankStatement) PassportElementType() string {
-    return TypePassportElementBankStatement
+	return TypePassportElementBankStatement
 }
 
 // A Telegram Passport element containing the user's rental agreement
 type PassportElementRentalAgreement struct {
-    meta
-    // Rental agreement
-    RentalAgreement *PersonalDocument `json:"rental_agreement"`
+	meta
+	// Rental agreement
+	RentalAgreement *PersonalDocument `json:"rental_agreement"`
 }
 
 func (entity *PassportElementRentalAgreement) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementRentalAgreement
+	type stub PassportElementRentalAgreement
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementRentalAgreement) GetClass() string {
-    return ClassPassportElement
+	return ClassPassportElement
 }
 
 func (*PassportElementRentalAgreement) GetType() string {
-    return TypePassportElementRentalAgreement
+	return TypePassportElementRentalAgreement
 }
 
 func (*PassportElementRentalAgreement) PassportElementType() string {
-    return TypePassportElementRentalAgreement
+	return TypePassportElementRentalAgreement
 }
 
 // A Telegram Passport element containing the user's passport registration pages
 type PassportElementPassportRegistration struct {
-    meta
-    // Passport registration pages
-    PassportRegistration *PersonalDocument `json:"passport_registration"`
+	meta
+	// Passport registration pages
+	PassportRegistration *PersonalDocument `json:"passport_registration"`
 }
 
 func (entity *PassportElementPassportRegistration) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementPassportRegistration
+	type stub PassportElementPassportRegistration
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementPassportRegistration) GetClass() string {
-    return ClassPassportElement
+	return ClassPassportElement
 }
 
 func (*PassportElementPassportRegistration) GetType() string {
-    return TypePassportElementPassportRegistration
+	return TypePassportElementPassportRegistration
 }
 
 func (*PassportElementPassportRegistration) PassportElementType() string {
-    return TypePassportElementPassportRegistration
+	return TypePassportElementPassportRegistration
 }
 
 // A Telegram Passport element containing the user's temporary registration
 type PassportElementTemporaryRegistration struct {
-    meta
-    // Temporary registration
-    TemporaryRegistration *PersonalDocument `json:"temporary_registration"`
+	meta
+	// Temporary registration
+	TemporaryRegistration *PersonalDocument `json:"temporary_registration"`
 }
 
 func (entity *PassportElementTemporaryRegistration) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementTemporaryRegistration
+	type stub PassportElementTemporaryRegistration
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementTemporaryRegistration) GetClass() string {
-    return ClassPassportElement
+	return ClassPassportElement
 }
 
 func (*PassportElementTemporaryRegistration) GetType() string {
-    return TypePassportElementTemporaryRegistration
+	return TypePassportElementTemporaryRegistration
 }
 
 func (*PassportElementTemporaryRegistration) PassportElementType() string {
-    return TypePassportElementTemporaryRegistration
+	return TypePassportElementTemporaryRegistration
 }
 
 // A Telegram Passport element containing the user's phone number
 type PassportElementPhoneNumber struct {
-    meta
-    // Phone number
-    PhoneNumber string `json:"phone_number"`
+	meta
+	// Phone number
+	PhoneNumber string `json:"phone_number"`
 }
 
 func (entity *PassportElementPhoneNumber) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementPhoneNumber
+	type stub PassportElementPhoneNumber
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementPhoneNumber) GetClass() string {
-    return ClassPassportElement
+	return ClassPassportElement
 }
 
 func (*PassportElementPhoneNumber) GetType() string {
-    return TypePassportElementPhoneNumber
+	return TypePassportElementPhoneNumber
 }
 
 func (*PassportElementPhoneNumber) PassportElementType() string {
-    return TypePassportElementPhoneNumber
+	return TypePassportElementPhoneNumber
 }
 
 // A Telegram Passport element containing the user's email address
 type PassportElementEmailAddress struct {
-    meta
-    // Email address
-    EmailAddress string `json:"email_address"`
+	meta
+	// Email address
+	EmailAddress string `json:"email_address"`
 }
 
 func (entity *PassportElementEmailAddress) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementEmailAddress
+	type stub PassportElementEmailAddress
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementEmailAddress) GetClass() string {
-    return ClassPassportElement
+	return ClassPassportElement
 }
 
 func (*PassportElementEmailAddress) GetType() string {
-    return TypePassportElementEmailAddress
+	return TypePassportElementEmailAddress
 }
 
 func (*PassportElementEmailAddress) PassportElementType() string {
-    return TypePassportElementEmailAddress
+	return TypePassportElementEmailAddress
 }
 
 // A Telegram Passport element to be saved containing the user's personal details
 type InputPassportElementPersonalDetails struct {
-    meta
-    // Personal details of the user
-    PersonalDetails *PersonalDetails `json:"personal_details"`
+	meta
+	// Personal details of the user
+	PersonalDetails *PersonalDetails `json:"personal_details"`
 }
 
 func (entity *InputPassportElementPersonalDetails) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementPersonalDetails
+	type stub InputPassportElementPersonalDetails
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementPersonalDetails) GetClass() string {
-    return ClassInputPassportElement
+	return ClassInputPassportElement
 }
 
 func (*InputPassportElementPersonalDetails) GetType() string {
-    return TypeInputPassportElementPersonalDetails
+	return TypeInputPassportElementPersonalDetails
 }
 
 func (*InputPassportElementPersonalDetails) InputPassportElementType() string {
-    return TypeInputPassportElementPersonalDetails
+	return TypeInputPassportElementPersonalDetails
 }
 
 // A Telegram Passport element to be saved containing the user's passport
 type InputPassportElementPassport struct {
-    meta
-    // The passport to be saved
-    Passport *InputIdentityDocument `json:"passport"`
+	meta
+	// The passport to be saved
+	Passport *InputIdentityDocument `json:"passport"`
 }
 
 func (entity *InputPassportElementPassport) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementPassport
+	type stub InputPassportElementPassport
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementPassport) GetClass() string {
-    return ClassInputPassportElement
+	return ClassInputPassportElement
 }
 
 func (*InputPassportElementPassport) GetType() string {
-    return TypeInputPassportElementPassport
+	return TypeInputPassportElementPassport
 }
 
 func (*InputPassportElementPassport) InputPassportElementType() string {
-    return TypeInputPassportElementPassport
+	return TypeInputPassportElementPassport
 }
 
 // A Telegram Passport element to be saved containing the user's driver license
 type InputPassportElementDriverLicense struct {
-    meta
-    // The driver license to be saved
-    DriverLicense *InputIdentityDocument `json:"driver_license"`
+	meta
+	// The driver license to be saved
+	DriverLicense *InputIdentityDocument `json:"driver_license"`
 }
 
 func (entity *InputPassportElementDriverLicense) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementDriverLicense
+	type stub InputPassportElementDriverLicense
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementDriverLicense) GetClass() string {
-    return ClassInputPassportElement
+	return ClassInputPassportElement
 }
 
 func (*InputPassportElementDriverLicense) GetType() string {
-    return TypeInputPassportElementDriverLicense
+	return TypeInputPassportElementDriverLicense
 }
 
 func (*InputPassportElementDriverLicense) InputPassportElementType() string {
-    return TypeInputPassportElementDriverLicense
+	return TypeInputPassportElementDriverLicense
 }
 
 // A Telegram Passport element to be saved containing the user's identity card
 type InputPassportElementIdentityCard struct {
-    meta
-    // The identity card to be saved
-    IdentityCard *InputIdentityDocument `json:"identity_card"`
+	meta
+	// The identity card to be saved
+	IdentityCard *InputIdentityDocument `json:"identity_card"`
 }
 
 func (entity *InputPassportElementIdentityCard) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementIdentityCard
+	type stub InputPassportElementIdentityCard
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementIdentityCard) GetClass() string {
-    return ClassInputPassportElement
+	return ClassInputPassportElement
 }
 
 func (*InputPassportElementIdentityCard) GetType() string {
-    return TypeInputPassportElementIdentityCard
+	return TypeInputPassportElementIdentityCard
 }
 
 func (*InputPassportElementIdentityCard) InputPassportElementType() string {
-    return TypeInputPassportElementIdentityCard
+	return TypeInputPassportElementIdentityCard
 }
 
 // A Telegram Passport element to be saved containing the user's internal passport
 type InputPassportElementInternalPassport struct {
-    meta
-    // The internal passport to be saved
-    InternalPassport *InputIdentityDocument `json:"internal_passport"`
+	meta
+	// The internal passport to be saved
+	InternalPassport *InputIdentityDocument `json:"internal_passport"`
 }
 
 func (entity *InputPassportElementInternalPassport) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementInternalPassport
+	type stub InputPassportElementInternalPassport
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementInternalPassport) GetClass() string {
-    return ClassInputPassportElement
+	return ClassInputPassportElement
 }
 
 func (*InputPassportElementInternalPassport) GetType() string {
-    return TypeInputPassportElementInternalPassport
+	return TypeInputPassportElementInternalPassport
 }
 
 func (*InputPassportElementInternalPassport) InputPassportElementType() string {
-    return TypeInputPassportElementInternalPassport
+	return TypeInputPassportElementInternalPassport
 }
 
 // A Telegram Passport element to be saved containing the user's address
 type InputPassportElementAddress struct {
-    meta
-    // The address to be saved
-    Address *Address `json:"address"`
+	meta
+	// The address to be saved
+	Address *Address `json:"address"`
 }
 
 func (entity *InputPassportElementAddress) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementAddress
+	type stub InputPassportElementAddress
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementAddress) GetClass() string {
-    return ClassInputPassportElement
+	return ClassInputPassportElement
 }
 
 func (*InputPassportElementAddress) GetType() string {
-    return TypeInputPassportElementAddress
+	return TypeInputPassportElementAddress
 }
 
 func (*InputPassportElementAddress) InputPassportElementType() string {
-    return TypeInputPassportElementAddress
+	return TypeInputPassportElementAddress
 }
 
 // A Telegram Passport element to be saved containing the user's utility bill
 type InputPassportElementUtilityBill struct {
-    meta
-    // The utility bill to be saved
-    UtilityBill *InputPersonalDocument `json:"utility_bill"`
+	meta
+	// The utility bill to be saved
+	UtilityBill *InputPersonalDocument `json:"utility_bill"`
 }
 
 func (entity *InputPassportElementUtilityBill) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementUtilityBill
+	type stub InputPassportElementUtilityBill
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementUtilityBill) GetClass() string {
-    return ClassInputPassportElement
+	return ClassInputPassportElement
 }
 
 func (*InputPassportElementUtilityBill) GetType() string {
-    return TypeInputPassportElementUtilityBill
+	return TypeInputPassportElementUtilityBill
 }
 
 func (*InputPassportElementUtilityBill) InputPassportElementType() string {
-    return TypeInputPassportElementUtilityBill
+	return TypeInputPassportElementUtilityBill
 }
 
 // A Telegram Passport element to be saved containing the user's bank statement
 type InputPassportElementBankStatement struct {
-    meta
-    // The bank statement to be saved
-    BankStatement *InputPersonalDocument `json:"bank_statement"`
+	meta
+	// The bank statement to be saved
+	BankStatement *InputPersonalDocument `json:"bank_statement"`
 }
 
 func (entity *InputPassportElementBankStatement) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementBankStatement
+	type stub InputPassportElementBankStatement
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementBankStatement) GetClass() string {
-    return ClassInputPassportElement
+	return ClassInputPassportElement
 }
 
 func (*InputPassportElementBankStatement) GetType() string {
-    return TypeInputPassportElementBankStatement
+	return TypeInputPassportElementBankStatement
 }
 
 func (*InputPassportElementBankStatement) InputPassportElementType() string {
-    return TypeInputPassportElementBankStatement
+	return TypeInputPassportElementBankStatement
 }
 
 // A Telegram Passport element to be saved containing the user's rental agreement
 type InputPassportElementRentalAgreement struct {
-    meta
-    // The rental agreement to be saved
-    RentalAgreement *InputPersonalDocument `json:"rental_agreement"`
+	meta
+	// The rental agreement to be saved
+	RentalAgreement *InputPersonalDocument `json:"rental_agreement"`
 }
 
 func (entity *InputPassportElementRentalAgreement) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementRentalAgreement
+	type stub InputPassportElementRentalAgreement
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementRentalAgreement) GetClass() string {
-    return ClassInputPassportElement
+	return ClassInputPassportElement
 }
 
 func (*InputPassportElementRentalAgreement) GetType() string {
-    return TypeInputPassportElementRentalAgreement
+	return TypeInputPassportElementRentalAgreement
 }
 
 func (*InputPassportElementRentalAgreement) InputPassportElementType() string {
-    return TypeInputPassportElementRentalAgreement
+	return TypeInputPassportElementRentalAgreement
 }
 
 // A Telegram Passport element to be saved containing the user's passport registration
 type InputPassportElementPassportRegistration struct {
-    meta
-    // The passport registration page to be saved
-    PassportRegistration *InputPersonalDocument `json:"passport_registration"`
+	meta
+	// The passport registration page to be saved
+	PassportRegistration *InputPersonalDocument `json:"passport_registration"`
 }
 
 func (entity *InputPassportElementPassportRegistration) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementPassportRegistration
+	type stub InputPassportElementPassportRegistration
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementPassportRegistration) GetClass() string {
-    return ClassInputPassportElement
+	return ClassInputPassportElement
 }
 
 func (*InputPassportElementPassportRegistration) GetType() string {
-    return TypeInputPassportElementPassportRegistration
+	return TypeInputPassportElementPassportRegistration
 }
 
 func (*InputPassportElementPassportRegistration) InputPassportElementType() string {
-    return TypeInputPassportElementPassportRegistration
+	return TypeInputPassportElementPassportRegistration
 }
 
 // A Telegram Passport element to be saved containing the user's temporary registration
 type InputPassportElementTemporaryRegistration struct {
-    meta
-    // The temporary registration document to be saved
-    TemporaryRegistration *InputPersonalDocument `json:"temporary_registration"`
+	meta
+	// The temporary registration document to be saved
+	TemporaryRegistration *InputPersonalDocument `json:"temporary_registration"`
 }
 
 func (entity *InputPassportElementTemporaryRegistration) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementTemporaryRegistration
+	type stub InputPassportElementTemporaryRegistration
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementTemporaryRegistration) GetClass() string {
-    return ClassInputPassportElement
+	return ClassInputPassportElement
 }
 
 func (*InputPassportElementTemporaryRegistration) GetType() string {
-    return TypeInputPassportElementTemporaryRegistration
+	return TypeInputPassportElementTemporaryRegistration
 }
 
 func (*InputPassportElementTemporaryRegistration) InputPassportElementType() string {
-    return TypeInputPassportElementTemporaryRegistration
+	return TypeInputPassportElementTemporaryRegistration
 }
 
 // A Telegram Passport element to be saved containing the user's phone number
 type InputPassportElementPhoneNumber struct {
-    meta
-    // The phone number to be saved
-    PhoneNumber string `json:"phone_number"`
+	meta
+	// The phone number to be saved
+	PhoneNumber string `json:"phone_number"`
 }
 
 func (entity *InputPassportElementPhoneNumber) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementPhoneNumber
+	type stub InputPassportElementPhoneNumber
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementPhoneNumber) GetClass() string {
-    return ClassInputPassportElement
+	return ClassInputPassportElement
 }
 
 func (*InputPassportElementPhoneNumber) GetType() string {
-    return TypeInputPassportElementPhoneNumber
+	return TypeInputPassportElementPhoneNumber
 }
 
 func (*InputPassportElementPhoneNumber) InputPassportElementType() string {
-    return TypeInputPassportElementPhoneNumber
+	return TypeInputPassportElementPhoneNumber
 }
 
 // A Telegram Passport element to be saved containing the user's email address
 type InputPassportElementEmailAddress struct {
-    meta
-    // The email address to be saved
-    EmailAddress string `json:"email_address"`
+	meta
+	// The email address to be saved
+	EmailAddress string `json:"email_address"`
 }
 
 func (entity *InputPassportElementEmailAddress) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementEmailAddress
+	type stub InputPassportElementEmailAddress
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementEmailAddress) GetClass() string {
-    return ClassInputPassportElement
+	return ClassInputPassportElement
 }
 
 func (*InputPassportElementEmailAddress) GetType() string {
-    return TypeInputPassportElementEmailAddress
+	return TypeInputPassportElementEmailAddress
 }
 
 func (*InputPassportElementEmailAddress) InputPassportElementType() string {
-    return TypeInputPassportElementEmailAddress
+	return TypeInputPassportElementEmailAddress
 }
 
 // Contains information about saved Telegram Passport elements
 type PassportElements struct {
-    meta
-    // Telegram Passport elements
-    Elements []PassportElement `json:"elements"`
+	meta
+	// Telegram Passport elements
+	Elements []PassportElement `json:"elements"`
 }
 
 func (entity *PassportElements) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElements
+	type stub PassportElements
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElements) GetClass() string {
-    return ClassPassportElements
+	return ClassPassportElements
 }
 
 func (*PassportElements) GetType() string {
-    return TypePassportElements
+	return TypePassportElements
 }
 
 // The element contains an error in an unspecified place. The error will be considered resolved when new data is added
-type PassportElementErrorSourceUnspecified struct{
-    meta
+type PassportElementErrorSourceUnspecified struct {
+	meta
 }
 
 func (entity *PassportElementErrorSourceUnspecified) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementErrorSourceUnspecified
+	type stub PassportElementErrorSourceUnspecified
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementErrorSourceUnspecified) GetClass() string {
-    return ClassPassportElementErrorSource
+	return ClassPassportElementErrorSource
 }
 
 func (*PassportElementErrorSourceUnspecified) GetType() string {
-    return TypePassportElementErrorSourceUnspecified
+	return TypePassportElementErrorSourceUnspecified
 }
 
 func (*PassportElementErrorSourceUnspecified) PassportElementErrorSourceType() string {
-    return TypePassportElementErrorSourceUnspecified
+	return TypePassportElementErrorSourceUnspecified
 }
 
 // One of the data fields contains an error. The error will be considered resolved when the value of the field changes
 type PassportElementErrorSourceDataField struct {
-    meta
-    // Field name
-    FieldName string `json:"field_name"`
+	meta
+	// Field name
+	FieldName string `json:"field_name"`
 }
 
 func (entity *PassportElementErrorSourceDataField) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementErrorSourceDataField
+	type stub PassportElementErrorSourceDataField
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementErrorSourceDataField) GetClass() string {
-    return ClassPassportElementErrorSource
+	return ClassPassportElementErrorSource
 }
 
 func (*PassportElementErrorSourceDataField) GetType() string {
-    return TypePassportElementErrorSourceDataField
+	return TypePassportElementErrorSourceDataField
 }
 
 func (*PassportElementErrorSourceDataField) PassportElementErrorSourceType() string {
-    return TypePassportElementErrorSourceDataField
+	return TypePassportElementErrorSourceDataField
 }
 
 // The front side of the document contains an error. The error will be considered resolved when the file with the front side changes
-type PassportElementErrorSourceFrontSide struct{
-    meta
+type PassportElementErrorSourceFrontSide struct {
+	meta
 }
 
 func (entity *PassportElementErrorSourceFrontSide) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementErrorSourceFrontSide
+	type stub PassportElementErrorSourceFrontSide
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementErrorSourceFrontSide) GetClass() string {
-    return ClassPassportElementErrorSource
+	return ClassPassportElementErrorSource
 }
 
 func (*PassportElementErrorSourceFrontSide) GetType() string {
-    return TypePassportElementErrorSourceFrontSide
+	return TypePassportElementErrorSourceFrontSide
 }
 
 func (*PassportElementErrorSourceFrontSide) PassportElementErrorSourceType() string {
-    return TypePassportElementErrorSourceFrontSide
+	return TypePassportElementErrorSourceFrontSide
 }
 
 // The reverse side of the document contains an error. The error will be considered resolved when the file with the reverse side changes
-type PassportElementErrorSourceReverseSide struct{
-    meta
+type PassportElementErrorSourceReverseSide struct {
+	meta
 }
 
 func (entity *PassportElementErrorSourceReverseSide) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementErrorSourceReverseSide
+	type stub PassportElementErrorSourceReverseSide
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementErrorSourceReverseSide) GetClass() string {
-    return ClassPassportElementErrorSource
+	return ClassPassportElementErrorSource
 }
 
 func (*PassportElementErrorSourceReverseSide) GetType() string {
-    return TypePassportElementErrorSourceReverseSide
+	return TypePassportElementErrorSourceReverseSide
 }
 
 func (*PassportElementErrorSourceReverseSide) PassportElementErrorSourceType() string {
-    return TypePassportElementErrorSourceReverseSide
+	return TypePassportElementErrorSourceReverseSide
 }
 
 // The selfie with the document contains an error. The error will be considered resolved when the file with the selfie changes
-type PassportElementErrorSourceSelfie struct{
-    meta
+type PassportElementErrorSourceSelfie struct {
+	meta
 }
 
 func (entity *PassportElementErrorSourceSelfie) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementErrorSourceSelfie
+	type stub PassportElementErrorSourceSelfie
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementErrorSourceSelfie) GetClass() string {
-    return ClassPassportElementErrorSource
+	return ClassPassportElementErrorSource
 }
 
 func (*PassportElementErrorSourceSelfie) GetType() string {
-    return TypePassportElementErrorSourceSelfie
+	return TypePassportElementErrorSourceSelfie
 }
 
 func (*PassportElementErrorSourceSelfie) PassportElementErrorSourceType() string {
-    return TypePassportElementErrorSourceSelfie
+	return TypePassportElementErrorSourceSelfie
 }
 
 // One of files with the translation of the document contains an error. The error will be considered resolved when the file changes
-type PassportElementErrorSourceTranslationFile struct{
-    meta
+type PassportElementErrorSourceTranslationFile struct {
+	meta
 }
 
 func (entity *PassportElementErrorSourceTranslationFile) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementErrorSourceTranslationFile
+	type stub PassportElementErrorSourceTranslationFile
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementErrorSourceTranslationFile) GetClass() string {
-    return ClassPassportElementErrorSource
+	return ClassPassportElementErrorSource
 }
 
 func (*PassportElementErrorSourceTranslationFile) GetType() string {
-    return TypePassportElementErrorSourceTranslationFile
+	return TypePassportElementErrorSourceTranslationFile
 }
 
 func (*PassportElementErrorSourceTranslationFile) PassportElementErrorSourceType() string {
-    return TypePassportElementErrorSourceTranslationFile
+	return TypePassportElementErrorSourceTranslationFile
 }
 
 // The translation of the document contains an error. The error will be considered resolved when the list of translation files changes
-type PassportElementErrorSourceTranslationFiles struct{
-    meta
+type PassportElementErrorSourceTranslationFiles struct {
+	meta
 }
 
 func (entity *PassportElementErrorSourceTranslationFiles) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementErrorSourceTranslationFiles
+	type stub PassportElementErrorSourceTranslationFiles
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementErrorSourceTranslationFiles) GetClass() string {
-    return ClassPassportElementErrorSource
+	return ClassPassportElementErrorSource
 }
 
 func (*PassportElementErrorSourceTranslationFiles) GetType() string {
-    return TypePassportElementErrorSourceTranslationFiles
+	return TypePassportElementErrorSourceTranslationFiles
 }
 
 func (*PassportElementErrorSourceTranslationFiles) PassportElementErrorSourceType() string {
-    return TypePassportElementErrorSourceTranslationFiles
+	return TypePassportElementErrorSourceTranslationFiles
 }
 
 // The file contains an error. The error will be considered resolved when the file changes
-type PassportElementErrorSourceFile struct{
-    meta
+type PassportElementErrorSourceFile struct {
+	meta
 }
 
 func (entity *PassportElementErrorSourceFile) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementErrorSourceFile
+	type stub PassportElementErrorSourceFile
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementErrorSourceFile) GetClass() string {
-    return ClassPassportElementErrorSource
+	return ClassPassportElementErrorSource
 }
 
 func (*PassportElementErrorSourceFile) GetType() string {
-    return TypePassportElementErrorSourceFile
+	return TypePassportElementErrorSourceFile
 }
 
 func (*PassportElementErrorSourceFile) PassportElementErrorSourceType() string {
-    return TypePassportElementErrorSourceFile
+	return TypePassportElementErrorSourceFile
 }
 
 // The list of attached files contains an error. The error will be considered resolved when the list of files changes
-type PassportElementErrorSourceFiles struct{
-    meta
+type PassportElementErrorSourceFiles struct {
+	meta
 }
 
 func (entity *PassportElementErrorSourceFiles) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementErrorSourceFiles
+	type stub PassportElementErrorSourceFiles
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementErrorSourceFiles) GetClass() string {
-    return ClassPassportElementErrorSource
+	return ClassPassportElementErrorSource
 }
 
 func (*PassportElementErrorSourceFiles) GetType() string {
-    return TypePassportElementErrorSourceFiles
+	return TypePassportElementErrorSourceFiles
 }
 
 func (*PassportElementErrorSourceFiles) PassportElementErrorSourceType() string {
-    return TypePassportElementErrorSourceFiles
+	return TypePassportElementErrorSourceFiles
 }
 
 // Contains the description of an error in a Telegram Passport element
 type PassportElementError struct {
-    meta
-    // Type of the Telegram Passport element which has the error
-    Type PassportElementType `json:"type"`
-    // Error message
-    Message string `json:"message"`
-    // Error source
-    Source PassportElementErrorSource `json:"source"`
+	meta
+	// Type of the Telegram Passport element which has the error
+	Type PassportElementType `json:"type"`
+	// Error message
+	Message string `json:"message"`
+	// Error source
+	Source PassportElementErrorSource `json:"source"`
 }
 
 func (entity *PassportElementError) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportElementError
+	type stub PassportElementError
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportElementError) GetClass() string {
-    return ClassPassportElementError
+	return ClassPassportElementError
 }
 
 func (*PassportElementError) GetType() string {
-    return TypePassportElementError
+	return TypePassportElementError
 }
 
 func (passportElementError *PassportElementError) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Type json.RawMessage `json:"type"`
-        Message string `json:"message"`
-        Source json.RawMessage `json:"source"`
-    }
+	var tmp struct {
+		Type    json.RawMessage `json:"type"`
+		Message string          `json:"message"`
+		Source  json.RawMessage `json:"source"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    passportElementError.Message = tmp.Message
+	passportElementError.Message = tmp.Message
 
-    fieldType, _ := UnmarshalPassportElementType(tmp.Type)
-    passportElementError.Type = fieldType
+	fieldType, _ := UnmarshalPassportElementType(tmp.Type)
+	passportElementError.Type = fieldType
 
-    fieldSource, _ := UnmarshalPassportElementErrorSource(tmp.Source)
-    passportElementError.Source = fieldSource
+	fieldSource, _ := UnmarshalPassportElementErrorSource(tmp.Source)
+	passportElementError.Source = fieldSource
 
-    return nil
+	return nil
 }
 
 // Contains information about a Telegram Passport element that was requested by a service
 type PassportSuitableElement struct {
-    meta
-    // Type of the element
-    Type PassportElementType `json:"type"`
-    // True, if a selfie is required with the identity document
-    IsSelfieRequired bool `json:"is_selfie_required"`
-    // True, if a certified English translation is required with the document
-    IsTranslationRequired bool `json:"is_translation_required"`
-    // True, if personal details must include the user's name in the language of their country of residence
-    IsNativeNameRequired bool `json:"is_native_name_required"`
+	meta
+	// Type of the element
+	Type PassportElementType `json:"type"`
+	// True, if a selfie is required with the identity document
+	IsSelfieRequired bool `json:"is_selfie_required"`
+	// True, if a certified English translation is required with the document
+	IsTranslationRequired bool `json:"is_translation_required"`
+	// True, if personal details must include the user's name in the language of their country of residence
+	IsNativeNameRequired bool `json:"is_native_name_required"`
 }
 
 func (entity *PassportSuitableElement) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportSuitableElement
+	type stub PassportSuitableElement
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportSuitableElement) GetClass() string {
-    return ClassPassportSuitableElement
+	return ClassPassportSuitableElement
 }
 
 func (*PassportSuitableElement) GetType() string {
-    return TypePassportSuitableElement
+	return TypePassportSuitableElement
 }
 
 func (passportSuitableElement *PassportSuitableElement) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Type json.RawMessage `json:"type"`
-        IsSelfieRequired bool `json:"is_selfie_required"`
-        IsTranslationRequired bool `json:"is_translation_required"`
-        IsNativeNameRequired bool `json:"is_native_name_required"`
-    }
+	var tmp struct {
+		Type                  json.RawMessage `json:"type"`
+		IsSelfieRequired      bool            `json:"is_selfie_required"`
+		IsTranslationRequired bool            `json:"is_translation_required"`
+		IsNativeNameRequired  bool            `json:"is_native_name_required"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    passportSuitableElement.IsSelfieRequired = tmp.IsSelfieRequired
-    passportSuitableElement.IsTranslationRequired = tmp.IsTranslationRequired
-    passportSuitableElement.IsNativeNameRequired = tmp.IsNativeNameRequired
+	passportSuitableElement.IsSelfieRequired = tmp.IsSelfieRequired
+	passportSuitableElement.IsTranslationRequired = tmp.IsTranslationRequired
+	passportSuitableElement.IsNativeNameRequired = tmp.IsNativeNameRequired
 
-    fieldType, _ := UnmarshalPassportElementType(tmp.Type)
-    passportSuitableElement.Type = fieldType
+	fieldType, _ := UnmarshalPassportElementType(tmp.Type)
+	passportSuitableElement.Type = fieldType
 
-    return nil
+	return nil
 }
 
 // Contains a description of the required Telegram Passport element that was requested by a service
 type PassportRequiredElement struct {
-    meta
-    // List of Telegram Passport elements any of which is enough to provide
-    SuitableElements []*PassportSuitableElement `json:"suitable_elements"`
+	meta
+	// List of Telegram Passport elements any of which is enough to provide
+	SuitableElements []*PassportSuitableElement `json:"suitable_elements"`
 }
 
 func (entity *PassportRequiredElement) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportRequiredElement
+	type stub PassportRequiredElement
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportRequiredElement) GetClass() string {
-    return ClassPassportRequiredElement
+	return ClassPassportRequiredElement
 }
 
 func (*PassportRequiredElement) GetType() string {
-    return TypePassportRequiredElement
+	return TypePassportRequiredElement
 }
 
 // Contains information about a Telegram Passport authorization form that was requested
 type PassportAuthorizationForm struct {
-    meta
-    // Unique identifier of the authorization form
-    Id int32 `json:"id"`
-    // Information about the Telegram Passport elements that need to be provided to complete the form
-    RequiredElements []*PassportRequiredElement `json:"required_elements"`
-    // Already available Telegram Passport elements
-    Elements []PassportElement `json:"elements"`
-    // Errors in the elements that are already available
-    Errors []*PassportElementError `json:"errors"`
-    // URL for the privacy policy of the service; can be empty
-    PrivacyPolicyUrl string `json:"privacy_policy_url"`
+	meta
+	// Unique identifier of the authorization form
+	Id int32 `json:"id"`
+	// Information about the Telegram Passport elements that need to be provided to complete the form
+	RequiredElements []*PassportRequiredElement `json:"required_elements"`
+	// Already available Telegram Passport elements
+	Elements []PassportElement `json:"elements"`
+	// Errors in the elements that are already available
+	Errors []*PassportElementError `json:"errors"`
+	// URL for the privacy policy of the service; can be empty
+	PrivacyPolicyUrl string `json:"privacy_policy_url"`
 }
 
 func (entity *PassportAuthorizationForm) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PassportAuthorizationForm
+	type stub PassportAuthorizationForm
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PassportAuthorizationForm) GetClass() string {
-    return ClassPassportAuthorizationForm
+	return ClassPassportAuthorizationForm
 }
 
 func (*PassportAuthorizationForm) GetType() string {
-    return TypePassportAuthorizationForm
+	return TypePassportAuthorizationForm
 }
 
 // Contains encrypted Telegram Passport data credentials
 type EncryptedCredentials struct {
-    meta
-    // The encrypted credentials
-    Data []byte `json:"data"`
-    // The decrypted data hash
-    Hash []byte `json:"hash"`
-    // Secret for data decryption, encrypted with the service's public key
-    Secret []byte `json:"secret"`
+	meta
+	// The encrypted credentials
+	Data []byte `json:"data"`
+	// The decrypted data hash
+	Hash []byte `json:"hash"`
+	// Secret for data decryption, encrypted with the service's public key
+	Secret []byte `json:"secret"`
 }
 
 func (entity *EncryptedCredentials) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub EncryptedCredentials
+	type stub EncryptedCredentials
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*EncryptedCredentials) GetClass() string {
-    return ClassEncryptedCredentials
+	return ClassEncryptedCredentials
 }
 
 func (*EncryptedCredentials) GetType() string {
-    return TypeEncryptedCredentials
+	return TypeEncryptedCredentials
 }
 
 // Contains information about an encrypted Telegram Passport element; for bots only
 type EncryptedPassportElement struct {
-    meta
-    // Type of Telegram Passport element
-    Type PassportElementType `json:"type"`
-    // Encrypted JSON-encoded data about the user
-    Data []byte `json:"data"`
-    // The front side of an identity document
-    FrontSide *DatedFile `json:"front_side"`
-    // The reverse side of an identity document; may be null
-    ReverseSide *DatedFile `json:"reverse_side"`
-    // Selfie with the document; may be null
-    Selfie *DatedFile `json:"selfie"`
-    // List of files containing a certified English translation of the document
-    Translation []*DatedFile `json:"translation"`
-    // List of attached files
-    Files []*DatedFile `json:"files"`
-    // Unencrypted data, phone number or email address
-    Value string `json:"value"`
-    // Hash of the entire element
-    Hash string `json:"hash"`
+	meta
+	// Type of Telegram Passport element
+	Type PassportElementType `json:"type"`
+	// Encrypted JSON-encoded data about the user
+	Data []byte `json:"data"`
+	// The front side of an identity document
+	FrontSide *DatedFile `json:"front_side"`
+	// The reverse side of an identity document; may be null
+	ReverseSide *DatedFile `json:"reverse_side"`
+	// Selfie with the document; may be null
+	Selfie *DatedFile `json:"selfie"`
+	// List of files containing a certified English translation of the document
+	Translation []*DatedFile `json:"translation"`
+	// List of attached files
+	Files []*DatedFile `json:"files"`
+	// Unencrypted data, phone number or email address
+	Value string `json:"value"`
+	// Hash of the entire element
+	Hash string `json:"hash"`
 }
 
 func (entity *EncryptedPassportElement) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub EncryptedPassportElement
+	type stub EncryptedPassportElement
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*EncryptedPassportElement) GetClass() string {
-    return ClassEncryptedPassportElement
+	return ClassEncryptedPassportElement
 }
 
 func (*EncryptedPassportElement) GetType() string {
-    return TypeEncryptedPassportElement
+	return TypeEncryptedPassportElement
 }
 
 func (encryptedPassportElement *EncryptedPassportElement) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Type json.RawMessage `json:"type"`
-        Data []byte `json:"data"`
-        FrontSide *DatedFile `json:"front_side"`
-        ReverseSide *DatedFile `json:"reverse_side"`
-        Selfie *DatedFile `json:"selfie"`
-        Translation []*DatedFile `json:"translation"`
-        Files []*DatedFile `json:"files"`
-        Value string `json:"value"`
-        Hash string `json:"hash"`
-    }
+	var tmp struct {
+		Type        json.RawMessage `json:"type"`
+		Data        []byte          `json:"data"`
+		FrontSide   *DatedFile      `json:"front_side"`
+		ReverseSide *DatedFile      `json:"reverse_side"`
+		Selfie      *DatedFile      `json:"selfie"`
+		Translation []*DatedFile    `json:"translation"`
+		Files       []*DatedFile    `json:"files"`
+		Value       string          `json:"value"`
+		Hash        string          `json:"hash"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    encryptedPassportElement.Data = tmp.Data
-    encryptedPassportElement.FrontSide = tmp.FrontSide
-    encryptedPassportElement.ReverseSide = tmp.ReverseSide
-    encryptedPassportElement.Selfie = tmp.Selfie
-    encryptedPassportElement.Translation = tmp.Translation
-    encryptedPassportElement.Files = tmp.Files
-    encryptedPassportElement.Value = tmp.Value
-    encryptedPassportElement.Hash = tmp.Hash
+	encryptedPassportElement.Data = tmp.Data
+	encryptedPassportElement.FrontSide = tmp.FrontSide
+	encryptedPassportElement.ReverseSide = tmp.ReverseSide
+	encryptedPassportElement.Selfie = tmp.Selfie
+	encryptedPassportElement.Translation = tmp.Translation
+	encryptedPassportElement.Files = tmp.Files
+	encryptedPassportElement.Value = tmp.Value
+	encryptedPassportElement.Hash = tmp.Hash
 
-    fieldType, _ := UnmarshalPassportElementType(tmp.Type)
-    encryptedPassportElement.Type = fieldType
+	fieldType, _ := UnmarshalPassportElementType(tmp.Type)
+	encryptedPassportElement.Type = fieldType
 
-    return nil
+	return nil
 }
 
 // The element contains an error in an unspecified place. The error will be considered resolved when new data is added
 type InputPassportElementErrorSourceUnspecified struct {
-    meta
-    // Current hash of the entire element
-    ElementHash []byte `json:"element_hash"`
+	meta
+	// Current hash of the entire element
+	ElementHash []byte `json:"element_hash"`
 }
 
 func (entity *InputPassportElementErrorSourceUnspecified) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementErrorSourceUnspecified
+	type stub InputPassportElementErrorSourceUnspecified
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementErrorSourceUnspecified) GetClass() string {
-    return ClassInputPassportElementErrorSource
+	return ClassInputPassportElementErrorSource
 }
 
 func (*InputPassportElementErrorSourceUnspecified) GetType() string {
-    return TypeInputPassportElementErrorSourceUnspecified
+	return TypeInputPassportElementErrorSourceUnspecified
 }
 
 func (*InputPassportElementErrorSourceUnspecified) InputPassportElementErrorSourceType() string {
-    return TypeInputPassportElementErrorSourceUnspecified
+	return TypeInputPassportElementErrorSourceUnspecified
 }
 
 // A data field contains an error. The error is considered resolved when the field's value changes
 type InputPassportElementErrorSourceDataField struct {
-    meta
-    // Field name
-    FieldName string `json:"field_name"`
-    // Current data hash
-    DataHash []byte `json:"data_hash"`
+	meta
+	// Field name
+	FieldName string `json:"field_name"`
+	// Current data hash
+	DataHash []byte `json:"data_hash"`
 }
 
 func (entity *InputPassportElementErrorSourceDataField) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementErrorSourceDataField
+	type stub InputPassportElementErrorSourceDataField
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementErrorSourceDataField) GetClass() string {
-    return ClassInputPassportElementErrorSource
+	return ClassInputPassportElementErrorSource
 }
 
 func (*InputPassportElementErrorSourceDataField) GetType() string {
-    return TypeInputPassportElementErrorSourceDataField
+	return TypeInputPassportElementErrorSourceDataField
 }
 
 func (*InputPassportElementErrorSourceDataField) InputPassportElementErrorSourceType() string {
-    return TypeInputPassportElementErrorSourceDataField
+	return TypeInputPassportElementErrorSourceDataField
 }
 
 // The front side of the document contains an error. The error is considered resolved when the file with the front side of the document changes
 type InputPassportElementErrorSourceFrontSide struct {
-    meta
-    // Current hash of the file containing the front side
-    FileHash []byte `json:"file_hash"`
+	meta
+	// Current hash of the file containing the front side
+	FileHash []byte `json:"file_hash"`
 }
 
 func (entity *InputPassportElementErrorSourceFrontSide) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementErrorSourceFrontSide
+	type stub InputPassportElementErrorSourceFrontSide
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementErrorSourceFrontSide) GetClass() string {
-    return ClassInputPassportElementErrorSource
+	return ClassInputPassportElementErrorSource
 }
 
 func (*InputPassportElementErrorSourceFrontSide) GetType() string {
-    return TypeInputPassportElementErrorSourceFrontSide
+	return TypeInputPassportElementErrorSourceFrontSide
 }
 
 func (*InputPassportElementErrorSourceFrontSide) InputPassportElementErrorSourceType() string {
-    return TypeInputPassportElementErrorSourceFrontSide
+	return TypeInputPassportElementErrorSourceFrontSide
 }
 
 // The reverse side of the document contains an error. The error is considered resolved when the file with the reverse side of the document changes
 type InputPassportElementErrorSourceReverseSide struct {
-    meta
-    // Current hash of the file containing the reverse side
-    FileHash []byte `json:"file_hash"`
+	meta
+	// Current hash of the file containing the reverse side
+	FileHash []byte `json:"file_hash"`
 }
 
 func (entity *InputPassportElementErrorSourceReverseSide) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementErrorSourceReverseSide
+	type stub InputPassportElementErrorSourceReverseSide
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementErrorSourceReverseSide) GetClass() string {
-    return ClassInputPassportElementErrorSource
+	return ClassInputPassportElementErrorSource
 }
 
 func (*InputPassportElementErrorSourceReverseSide) GetType() string {
-    return TypeInputPassportElementErrorSourceReverseSide
+	return TypeInputPassportElementErrorSourceReverseSide
 }
 
 func (*InputPassportElementErrorSourceReverseSide) InputPassportElementErrorSourceType() string {
-    return TypeInputPassportElementErrorSourceReverseSide
+	return TypeInputPassportElementErrorSourceReverseSide
 }
 
 // The selfie contains an error. The error is considered resolved when the file with the selfie changes
 type InputPassportElementErrorSourceSelfie struct {
-    meta
-    // Current hash of the file containing the selfie
-    FileHash []byte `json:"file_hash"`
+	meta
+	// Current hash of the file containing the selfie
+	FileHash []byte `json:"file_hash"`
 }
 
 func (entity *InputPassportElementErrorSourceSelfie) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementErrorSourceSelfie
+	type stub InputPassportElementErrorSourceSelfie
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementErrorSourceSelfie) GetClass() string {
-    return ClassInputPassportElementErrorSource
+	return ClassInputPassportElementErrorSource
 }
 
 func (*InputPassportElementErrorSourceSelfie) GetType() string {
-    return TypeInputPassportElementErrorSourceSelfie
+	return TypeInputPassportElementErrorSourceSelfie
 }
 
 func (*InputPassportElementErrorSourceSelfie) InputPassportElementErrorSourceType() string {
-    return TypeInputPassportElementErrorSourceSelfie
+	return TypeInputPassportElementErrorSourceSelfie
 }
 
 // One of the files containing the translation of the document contains an error. The error is considered resolved when the file with the translation changes
 type InputPassportElementErrorSourceTranslationFile struct {
-    meta
-    // Current hash of the file containing the translation
-    FileHash []byte `json:"file_hash"`
+	meta
+	// Current hash of the file containing the translation
+	FileHash []byte `json:"file_hash"`
 }
 
 func (entity *InputPassportElementErrorSourceTranslationFile) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementErrorSourceTranslationFile
+	type stub InputPassportElementErrorSourceTranslationFile
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementErrorSourceTranslationFile) GetClass() string {
-    return ClassInputPassportElementErrorSource
+	return ClassInputPassportElementErrorSource
 }
 
 func (*InputPassportElementErrorSourceTranslationFile) GetType() string {
-    return TypeInputPassportElementErrorSourceTranslationFile
+	return TypeInputPassportElementErrorSourceTranslationFile
 }
 
 func (*InputPassportElementErrorSourceTranslationFile) InputPassportElementErrorSourceType() string {
-    return TypeInputPassportElementErrorSourceTranslationFile
+	return TypeInputPassportElementErrorSourceTranslationFile
 }
 
 // The translation of the document contains an error. The error is considered resolved when the list of files changes
 type InputPassportElementErrorSourceTranslationFiles struct {
-    meta
-    // Current hashes of all files with the translation
-    FileHashes [][]byte `json:"file_hashes"`
+	meta
+	// Current hashes of all files with the translation
+	FileHashes [][]byte `json:"file_hashes"`
 }
 
 func (entity *InputPassportElementErrorSourceTranslationFiles) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementErrorSourceTranslationFiles
+	type stub InputPassportElementErrorSourceTranslationFiles
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementErrorSourceTranslationFiles) GetClass() string {
-    return ClassInputPassportElementErrorSource
+	return ClassInputPassportElementErrorSource
 }
 
 func (*InputPassportElementErrorSourceTranslationFiles) GetType() string {
-    return TypeInputPassportElementErrorSourceTranslationFiles
+	return TypeInputPassportElementErrorSourceTranslationFiles
 }
 
 func (*InputPassportElementErrorSourceTranslationFiles) InputPassportElementErrorSourceType() string {
-    return TypeInputPassportElementErrorSourceTranslationFiles
+	return TypeInputPassportElementErrorSourceTranslationFiles
 }
 
 // The file contains an error. The error is considered resolved when the file changes
 type InputPassportElementErrorSourceFile struct {
-    meta
-    // Current hash of the file which has the error
-    FileHash []byte `json:"file_hash"`
+	meta
+	// Current hash of the file which has the error
+	FileHash []byte `json:"file_hash"`
 }
 
 func (entity *InputPassportElementErrorSourceFile) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementErrorSourceFile
+	type stub InputPassportElementErrorSourceFile
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementErrorSourceFile) GetClass() string {
-    return ClassInputPassportElementErrorSource
+	return ClassInputPassportElementErrorSource
 }
 
 func (*InputPassportElementErrorSourceFile) GetType() string {
-    return TypeInputPassportElementErrorSourceFile
+	return TypeInputPassportElementErrorSourceFile
 }
 
 func (*InputPassportElementErrorSourceFile) InputPassportElementErrorSourceType() string {
-    return TypeInputPassportElementErrorSourceFile
+	return TypeInputPassportElementErrorSourceFile
 }
 
 // The list of attached files contains an error. The error is considered resolved when the file list changes
 type InputPassportElementErrorSourceFiles struct {
-    meta
-    // Current hashes of all attached files
-    FileHashes [][]byte `json:"file_hashes"`
+	meta
+	// Current hashes of all attached files
+	FileHashes [][]byte `json:"file_hashes"`
 }
 
 func (entity *InputPassportElementErrorSourceFiles) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementErrorSourceFiles
+	type stub InputPassportElementErrorSourceFiles
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementErrorSourceFiles) GetClass() string {
-    return ClassInputPassportElementErrorSource
+	return ClassInputPassportElementErrorSource
 }
 
 func (*InputPassportElementErrorSourceFiles) GetType() string {
-    return TypeInputPassportElementErrorSourceFiles
+	return TypeInputPassportElementErrorSourceFiles
 }
 
 func (*InputPassportElementErrorSourceFiles) InputPassportElementErrorSourceType() string {
-    return TypeInputPassportElementErrorSourceFiles
+	return TypeInputPassportElementErrorSourceFiles
 }
 
 // Contains the description of an error in a Telegram Passport element; for bots only
 type InputPassportElementError struct {
-    meta
-    // Type of Telegram Passport element that has the error
-    Type PassportElementType `json:"type"`
-    // Error message
-    Message string `json:"message"`
-    // Error source
-    Source InputPassportElementErrorSource `json:"source"`
+	meta
+	// Type of Telegram Passport element that has the error
+	Type PassportElementType `json:"type"`
+	// Error message
+	Message string `json:"message"`
+	// Error source
+	Source InputPassportElementErrorSource `json:"source"`
 }
 
 func (entity *InputPassportElementError) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputPassportElementError
+	type stub InputPassportElementError
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputPassportElementError) GetClass() string {
-    return ClassInputPassportElementError
+	return ClassInputPassportElementError
 }
 
 func (*InputPassportElementError) GetType() string {
-    return TypeInputPassportElementError
+	return TypeInputPassportElementError
 }
 
 func (inputPassportElementError *InputPassportElementError) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Type json.RawMessage `json:"type"`
-        Message string `json:"message"`
-        Source json.RawMessage `json:"source"`
-    }
+	var tmp struct {
+		Type    json.RawMessage `json:"type"`
+		Message string          `json:"message"`
+		Source  json.RawMessage `json:"source"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputPassportElementError.Message = tmp.Message
+	inputPassportElementError.Message = tmp.Message
 
-    fieldType, _ := UnmarshalPassportElementType(tmp.Type)
-    inputPassportElementError.Type = fieldType
+	fieldType, _ := UnmarshalPassportElementType(tmp.Type)
+	inputPassportElementError.Type = fieldType
 
-    fieldSource, _ := UnmarshalInputPassportElementErrorSource(tmp.Source)
-    inputPassportElementError.Source = fieldSource
+	fieldSource, _ := UnmarshalInputPassportElementErrorSource(tmp.Source)
+	inputPassportElementError.Source = fieldSource
 
-    return nil
+	return nil
 }
 
 // A text message
 type MessageText struct {
-    meta
-    // Text of the message
-    Text *FormattedText `json:"text"`
-    // A preview of the web page that's mentioned in the text; may be null
-    WebPage *WebPage `json:"web_page"`
+	meta
+	// Text of the message
+	Text *FormattedText `json:"text"`
+	// A preview of the web page that's mentioned in the text; may be null
+	WebPage *WebPage `json:"web_page"`
 }
 
 func (entity *MessageText) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageText
+	type stub MessageText
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageText) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageText) GetType() string {
-    return TypeMessageText
+	return TypeMessageText
 }
 
 func (*MessageText) MessageContentType() string {
-    return TypeMessageText
+	return TypeMessageText
 }
 
 // An animation message (GIF-style).
 type MessageAnimation struct {
-    meta
-    // Message content
-    Animation *Animation `json:"animation"`
-    // Animation caption
-    Caption *FormattedText `json:"caption"`
-    // True, if the animation thumbnail must be blurred and the animation must be shown only while tapped
-    IsSecret bool `json:"is_secret"`
+	meta
+	// Message content
+	Animation *Animation `json:"animation"`
+	// Animation caption
+	Caption *FormattedText `json:"caption"`
+	// True, if the animation thumbnail must be blurred and the animation must be shown only while tapped
+	IsSecret bool `json:"is_secret"`
 }
 
 func (entity *MessageAnimation) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageAnimation
+	type stub MessageAnimation
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageAnimation) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageAnimation) GetType() string {
-    return TypeMessageAnimation
+	return TypeMessageAnimation
 }
 
 func (*MessageAnimation) MessageContentType() string {
-    return TypeMessageAnimation
+	return TypeMessageAnimation
 }
 
 // An audio message
 type MessageAudio struct {
-    meta
-    // Message content
-    Audio *Audio `json:"audio"`
-    // Audio caption
-    Caption *FormattedText `json:"caption"`
+	meta
+	// Message content
+	Audio *Audio `json:"audio"`
+	// Audio caption
+	Caption *FormattedText `json:"caption"`
 }
 
 func (entity *MessageAudio) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageAudio
+	type stub MessageAudio
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageAudio) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageAudio) GetType() string {
-    return TypeMessageAudio
+	return TypeMessageAudio
 }
 
 func (*MessageAudio) MessageContentType() string {
-    return TypeMessageAudio
+	return TypeMessageAudio
 }
 
 // A document message (general file)
 type MessageDocument struct {
-    meta
-    // Message content
-    Document *Document `json:"document"`
-    // Document caption
-    Caption *FormattedText `json:"caption"`
+	meta
+	// Message content
+	Document *Document `json:"document"`
+	// Document caption
+	Caption *FormattedText `json:"caption"`
 }
 
 func (entity *MessageDocument) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageDocument
+	type stub MessageDocument
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageDocument) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageDocument) GetType() string {
-    return TypeMessageDocument
+	return TypeMessageDocument
 }
 
 func (*MessageDocument) MessageContentType() string {
-    return TypeMessageDocument
+	return TypeMessageDocument
 }
 
 // A photo message
 type MessagePhoto struct {
-    meta
-    // Message content
-    Photo *Photo `json:"photo"`
-    // Photo caption
-    Caption *FormattedText `json:"caption"`
-    // True, if the photo must be blurred and must be shown only while tapped
-    IsSecret bool `json:"is_secret"`
+	meta
+	// Message content
+	Photo *Photo `json:"photo"`
+	// Photo caption
+	Caption *FormattedText `json:"caption"`
+	// True, if the photo must be blurred and must be shown only while tapped
+	IsSecret bool `json:"is_secret"`
 }
 
 func (entity *MessagePhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessagePhoto
+	type stub MessagePhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessagePhoto) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessagePhoto) GetType() string {
-    return TypeMessagePhoto
+	return TypeMessagePhoto
 }
 
 func (*MessagePhoto) MessageContentType() string {
-    return TypeMessagePhoto
+	return TypeMessagePhoto
 }
 
 // An expired photo message (self-destructed after TTL has elapsed)
-type MessageExpiredPhoto struct{
-    meta
+type MessageExpiredPhoto struct {
+	meta
 }
 
 func (entity *MessageExpiredPhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageExpiredPhoto
+	type stub MessageExpiredPhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageExpiredPhoto) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageExpiredPhoto) GetType() string {
-    return TypeMessageExpiredPhoto
+	return TypeMessageExpiredPhoto
 }
 
 func (*MessageExpiredPhoto) MessageContentType() string {
-    return TypeMessageExpiredPhoto
+	return TypeMessageExpiredPhoto
 }
 
 // A sticker message
 type MessageSticker struct {
-    meta
-    // Message content
-    Sticker *Sticker `json:"sticker"`
+	meta
+	// Message content
+	Sticker *Sticker `json:"sticker"`
 }
 
 func (entity *MessageSticker) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageSticker
+	type stub MessageSticker
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageSticker) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageSticker) GetType() string {
-    return TypeMessageSticker
+	return TypeMessageSticker
 }
 
 func (*MessageSticker) MessageContentType() string {
-    return TypeMessageSticker
+	return TypeMessageSticker
 }
 
 // A video message
 type MessageVideo struct {
-    meta
-    // Message content
-    Video *Video `json:"video"`
-    // Video caption
-    Caption *FormattedText `json:"caption"`
-    // True, if the video thumbnail must be blurred and the video must be shown only while tapped
-    IsSecret bool `json:"is_secret"`
+	meta
+	// Message content
+	Video *Video `json:"video"`
+	// Video caption
+	Caption *FormattedText `json:"caption"`
+	// True, if the video thumbnail must be blurred and the video must be shown only while tapped
+	IsSecret bool `json:"is_secret"`
 }
 
 func (entity *MessageVideo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageVideo
+	type stub MessageVideo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageVideo) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageVideo) GetType() string {
-    return TypeMessageVideo
+	return TypeMessageVideo
 }
 
 func (*MessageVideo) MessageContentType() string {
-    return TypeMessageVideo
+	return TypeMessageVideo
 }
 
 // An expired video message (self-destructed after TTL has elapsed)
-type MessageExpiredVideo struct{
-    meta
+type MessageExpiredVideo struct {
+	meta
 }
 
 func (entity *MessageExpiredVideo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageExpiredVideo
+	type stub MessageExpiredVideo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageExpiredVideo) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageExpiredVideo) GetType() string {
-    return TypeMessageExpiredVideo
+	return TypeMessageExpiredVideo
 }
 
 func (*MessageExpiredVideo) MessageContentType() string {
-    return TypeMessageExpiredVideo
+	return TypeMessageExpiredVideo
 }
 
 // A video note message
 type MessageVideoNote struct {
-    meta
-    // Message content
-    VideoNote *VideoNote `json:"video_note"`
-    // True, if at least one of the recipients has viewed the video note
-    IsViewed bool `json:"is_viewed"`
-    // True, if the video note thumbnail must be blurred and the video note must be shown only while tapped
-    IsSecret bool `json:"is_secret"`
+	meta
+	// Message content
+	VideoNote *VideoNote `json:"video_note"`
+	// True, if at least one of the recipients has viewed the video note
+	IsViewed bool `json:"is_viewed"`
+	// True, if the video note thumbnail must be blurred and the video note must be shown only while tapped
+	IsSecret bool `json:"is_secret"`
 }
 
 func (entity *MessageVideoNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageVideoNote
+	type stub MessageVideoNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageVideoNote) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageVideoNote) GetType() string {
-    return TypeMessageVideoNote
+	return TypeMessageVideoNote
 }
 
 func (*MessageVideoNote) MessageContentType() string {
-    return TypeMessageVideoNote
+	return TypeMessageVideoNote
 }
 
 // A voice note message
 type MessageVoiceNote struct {
-    meta
-    // Message content
-    VoiceNote *VoiceNote `json:"voice_note"`
-    // Voice note caption
-    Caption *FormattedText `json:"caption"`
-    // True, if at least one of the recipients has listened to the voice note
-    IsListened bool `json:"is_listened"`
+	meta
+	// Message content
+	VoiceNote *VoiceNote `json:"voice_note"`
+	// Voice note caption
+	Caption *FormattedText `json:"caption"`
+	// True, if at least one of the recipients has listened to the voice note
+	IsListened bool `json:"is_listened"`
 }
 
 func (entity *MessageVoiceNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageVoiceNote
+	type stub MessageVoiceNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageVoiceNote) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageVoiceNote) GetType() string {
-    return TypeMessageVoiceNote
+	return TypeMessageVoiceNote
 }
 
 func (*MessageVoiceNote) MessageContentType() string {
-    return TypeMessageVoiceNote
+	return TypeMessageVoiceNote
 }
 
 // A message with a location
 type MessageLocation struct {
-    meta
-    // Message content
-    Location *Location `json:"location"`
-    // Time relative to the message sent date until which the location can be updated, in seconds
-    LivePeriod int32 `json:"live_period"`
-    // Left time for which the location can be updated, in seconds. updateMessageContent is not sent when this field changes
-    ExpiresIn int32 `json:"expires_in"`
+	meta
+	// Message content
+	Location *Location `json:"location"`
+	// Time relative to the message sent date until which the location can be updated, in seconds
+	LivePeriod int32 `json:"live_period"`
+	// Left time for which the location can be updated, in seconds. updateMessageContent is not sent when this field changes
+	ExpiresIn int32 `json:"expires_in"`
 }
 
 func (entity *MessageLocation) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageLocation
+	type stub MessageLocation
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageLocation) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageLocation) GetType() string {
-    return TypeMessageLocation
+	return TypeMessageLocation
 }
 
 func (*MessageLocation) MessageContentType() string {
-    return TypeMessageLocation
+	return TypeMessageLocation
 }
 
 // A message with information about a venue
 type MessageVenue struct {
-    meta
-    // Message content
-    Venue *Venue `json:"venue"`
+	meta
+	// Message content
+	Venue *Venue `json:"venue"`
 }
 
 func (entity *MessageVenue) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageVenue
+	type stub MessageVenue
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageVenue) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageVenue) GetType() string {
-    return TypeMessageVenue
+	return TypeMessageVenue
 }
 
 func (*MessageVenue) MessageContentType() string {
-    return TypeMessageVenue
+	return TypeMessageVenue
 }
 
 // A message with a user contact
 type MessageContact struct {
-    meta
-    // Message content
-    Contact *Contact `json:"contact"`
+	meta
+	// Message content
+	Contact *Contact `json:"contact"`
 }
 
 func (entity *MessageContact) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageContact
+	type stub MessageContact
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageContact) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageContact) GetType() string {
-    return TypeMessageContact
+	return TypeMessageContact
 }
 
 func (*MessageContact) MessageContentType() string {
-    return TypeMessageContact
+	return TypeMessageContact
 }
 
 // A message with a game
 type MessageGame struct {
-    meta
-    // Game
-    Game *Game `json:"game"`
+	meta
+	// Game
+	Game *Game `json:"game"`
 }
 
 func (entity *MessageGame) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageGame
+	type stub MessageGame
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageGame) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageGame) GetType() string {
-    return TypeMessageGame
+	return TypeMessageGame
 }
 
 func (*MessageGame) MessageContentType() string {
-    return TypeMessageGame
+	return TypeMessageGame
 }
 
 // A message with an invoice from a bot
 type MessageInvoice struct {
-    meta
-    // Product title
-    Title string `json:"title"`
-    // Product description
-    Description string `json:"description"`
-    // Product photo; may be null
-    Photo *Photo `json:"photo"`
-    // Currency for the product price
-    Currency string `json:"currency"`
-    // Product total price in the minimal quantity of the currency
-    TotalAmount int64 `json:"total_amount"`
-    // Unique invoice bot start_parameter. To share an invoice use the URL https://t.me/{bot_username}?start={start_parameter}
-    StartParameter string `json:"start_parameter"`
-    // True, if the invoice is a test invoice
-    IsTest bool `json:"is_test"`
-    // True, if the shipping address should be specified
-    NeedShippingAddress bool `json:"need_shipping_address"`
-    // The identifier of the message with the receipt, after the product has been purchased
-    ReceiptMessageId int64 `json:"receipt_message_id"`
+	meta
+	// Product title
+	Title string `json:"title"`
+	// Product description
+	Description string `json:"description"`
+	// Product photo; may be null
+	Photo *Photo `json:"photo"`
+	// Currency for the product price
+	Currency string `json:"currency"`
+	// Product total price in the minimal quantity of the currency
+	TotalAmount int64 `json:"total_amount"`
+	// Unique invoice bot start_parameter. To share an invoice use the URL https://t.me/{bot_username}?start={start_parameter}
+	StartParameter string `json:"start_parameter"`
+	// True, if the invoice is a test invoice
+	IsTest bool `json:"is_test"`
+	// True, if the shipping address should be specified
+	NeedShippingAddress bool `json:"need_shipping_address"`
+	// The identifier of the message with the receipt, after the product has been purchased
+	ReceiptMessageId int64 `json:"receipt_message_id"`
 }
 
 func (entity *MessageInvoice) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageInvoice
+	type stub MessageInvoice
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageInvoice) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageInvoice) GetType() string {
-    return TypeMessageInvoice
+	return TypeMessageInvoice
 }
 
 func (*MessageInvoice) MessageContentType() string {
-    return TypeMessageInvoice
+	return TypeMessageInvoice
 }
 
 // A message with information about an ended call
 type MessageCall struct {
-    meta
-    // Reason why the call was discarded
-    DiscardReason CallDiscardReason `json:"discard_reason"`
-    // Call duration, in seconds
-    Duration int32 `json:"duration"`
+	meta
+	// Reason why the call was discarded
+	DiscardReason CallDiscardReason `json:"discard_reason"`
+	// Call duration, in seconds
+	Duration int32 `json:"duration"`
 }
 
 func (entity *MessageCall) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageCall
+	type stub MessageCall
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageCall) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageCall) GetType() string {
-    return TypeMessageCall
+	return TypeMessageCall
 }
 
 func (*MessageCall) MessageContentType() string {
-    return TypeMessageCall
+	return TypeMessageCall
 }
 
 func (messageCall *MessageCall) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        DiscardReason json.RawMessage `json:"discard_reason"`
-        Duration int32 `json:"duration"`
-    }
+	var tmp struct {
+		DiscardReason json.RawMessage `json:"discard_reason"`
+		Duration      int32           `json:"duration"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    messageCall.Duration = tmp.Duration
+	messageCall.Duration = tmp.Duration
 
-    fieldDiscardReason, _ := UnmarshalCallDiscardReason(tmp.DiscardReason)
-    messageCall.DiscardReason = fieldDiscardReason
+	fieldDiscardReason, _ := UnmarshalCallDiscardReason(tmp.DiscardReason)
+	messageCall.DiscardReason = fieldDiscardReason
 
-    return nil
+	return nil
 }
 
 // A newly created basic group
 type MessageBasicGroupChatCreate struct {
-    meta
-    // Title of the basic group
-    Title string `json:"title"`
-    // User identifiers of members in the basic group
-    MemberUserIds []int32 `json:"member_user_ids"`
+	meta
+	// Title of the basic group
+	Title string `json:"title"`
+	// User identifiers of members in the basic group
+	MemberUserIds []int32 `json:"member_user_ids"`
 }
 
 func (entity *MessageBasicGroupChatCreate) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageBasicGroupChatCreate
+	type stub MessageBasicGroupChatCreate
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageBasicGroupChatCreate) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageBasicGroupChatCreate) GetType() string {
-    return TypeMessageBasicGroupChatCreate
+	return TypeMessageBasicGroupChatCreate
 }
 
 func (*MessageBasicGroupChatCreate) MessageContentType() string {
-    return TypeMessageBasicGroupChatCreate
+	return TypeMessageBasicGroupChatCreate
 }
 
 // A newly created supergroup or channel
 type MessageSupergroupChatCreate struct {
-    meta
-    // Title of the supergroup or channel
-    Title string `json:"title"`
+	meta
+	// Title of the supergroup or channel
+	Title string `json:"title"`
 }
 
 func (entity *MessageSupergroupChatCreate) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageSupergroupChatCreate
+	type stub MessageSupergroupChatCreate
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageSupergroupChatCreate) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageSupergroupChatCreate) GetType() string {
-    return TypeMessageSupergroupChatCreate
+	return TypeMessageSupergroupChatCreate
 }
 
 func (*MessageSupergroupChatCreate) MessageContentType() string {
-    return TypeMessageSupergroupChatCreate
+	return TypeMessageSupergroupChatCreate
 }
 
 // An updated chat title
 type MessageChatChangeTitle struct {
-    meta
-    // New chat title
-    Title string `json:"title"`
+	meta
+	// New chat title
+	Title string `json:"title"`
 }
 
 func (entity *MessageChatChangeTitle) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageChatChangeTitle
+	type stub MessageChatChangeTitle
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageChatChangeTitle) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageChatChangeTitle) GetType() string {
-    return TypeMessageChatChangeTitle
+	return TypeMessageChatChangeTitle
 }
 
 func (*MessageChatChangeTitle) MessageContentType() string {
-    return TypeMessageChatChangeTitle
+	return TypeMessageChatChangeTitle
 }
 
 // An updated chat photo
 type MessageChatChangePhoto struct {
-    meta
-    // New chat photo
-    Photo *Photo `json:"photo"`
+	meta
+	// New chat photo
+	Photo *Photo `json:"photo"`
 }
 
 func (entity *MessageChatChangePhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageChatChangePhoto
+	type stub MessageChatChangePhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageChatChangePhoto) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageChatChangePhoto) GetType() string {
-    return TypeMessageChatChangePhoto
+	return TypeMessageChatChangePhoto
 }
 
 func (*MessageChatChangePhoto) MessageContentType() string {
-    return TypeMessageChatChangePhoto
+	return TypeMessageChatChangePhoto
 }
 
 // A deleted chat photo
-type MessageChatDeletePhoto struct{
-    meta
+type MessageChatDeletePhoto struct {
+	meta
 }
 
 func (entity *MessageChatDeletePhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageChatDeletePhoto
+	type stub MessageChatDeletePhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageChatDeletePhoto) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageChatDeletePhoto) GetType() string {
-    return TypeMessageChatDeletePhoto
+	return TypeMessageChatDeletePhoto
 }
 
 func (*MessageChatDeletePhoto) MessageContentType() string {
-    return TypeMessageChatDeletePhoto
+	return TypeMessageChatDeletePhoto
 }
 
 // New chat members were added
 type MessageChatAddMembers struct {
-    meta
-    // User identifiers of the new members
-    MemberUserIds []int32 `json:"member_user_ids"`
+	meta
+	// User identifiers of the new members
+	MemberUserIds []int32 `json:"member_user_ids"`
 }
 
 func (entity *MessageChatAddMembers) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageChatAddMembers
+	type stub MessageChatAddMembers
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageChatAddMembers) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageChatAddMembers) GetType() string {
-    return TypeMessageChatAddMembers
+	return TypeMessageChatAddMembers
 }
 
 func (*MessageChatAddMembers) MessageContentType() string {
-    return TypeMessageChatAddMembers
+	return TypeMessageChatAddMembers
 }
 
 // A new member joined the chat by invite link
-type MessageChatJoinByLink struct{
-    meta
+type MessageChatJoinByLink struct {
+	meta
 }
 
 func (entity *MessageChatJoinByLink) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageChatJoinByLink
+	type stub MessageChatJoinByLink
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageChatJoinByLink) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageChatJoinByLink) GetType() string {
-    return TypeMessageChatJoinByLink
+	return TypeMessageChatJoinByLink
 }
 
 func (*MessageChatJoinByLink) MessageContentType() string {
-    return TypeMessageChatJoinByLink
+	return TypeMessageChatJoinByLink
 }
 
 // A chat member was deleted
 type MessageChatDeleteMember struct {
-    meta
-    // User identifier of the deleted chat member
-    UserId int32 `json:"user_id"`
+	meta
+	// User identifier of the deleted chat member
+	UserId int32 `json:"user_id"`
 }
 
 func (entity *MessageChatDeleteMember) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageChatDeleteMember
+	type stub MessageChatDeleteMember
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageChatDeleteMember) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageChatDeleteMember) GetType() string {
-    return TypeMessageChatDeleteMember
+	return TypeMessageChatDeleteMember
 }
 
 func (*MessageChatDeleteMember) MessageContentType() string {
-    return TypeMessageChatDeleteMember
+	return TypeMessageChatDeleteMember
 }
 
 // A basic group was upgraded to a supergroup and was deactivated as the result
 type MessageChatUpgradeTo struct {
-    meta
-    // Identifier of the supergroup to which the basic group was upgraded
-    SupergroupId int32 `json:"supergroup_id"`
+	meta
+	// Identifier of the supergroup to which the basic group was upgraded
+	SupergroupId int32 `json:"supergroup_id"`
 }
 
 func (entity *MessageChatUpgradeTo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageChatUpgradeTo
+	type stub MessageChatUpgradeTo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageChatUpgradeTo) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageChatUpgradeTo) GetType() string {
-    return TypeMessageChatUpgradeTo
+	return TypeMessageChatUpgradeTo
 }
 
 func (*MessageChatUpgradeTo) MessageContentType() string {
-    return TypeMessageChatUpgradeTo
+	return TypeMessageChatUpgradeTo
 }
 
 // A supergroup has been created from a basic group
 type MessageChatUpgradeFrom struct {
-    meta
-    // Title of the newly created supergroup
-    Title string `json:"title"`
-    // The identifier of the original basic group
-    BasicGroupId int32 `json:"basic_group_id"`
+	meta
+	// Title of the newly created supergroup
+	Title string `json:"title"`
+	// The identifier of the original basic group
+	BasicGroupId int32 `json:"basic_group_id"`
 }
 
 func (entity *MessageChatUpgradeFrom) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageChatUpgradeFrom
+	type stub MessageChatUpgradeFrom
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageChatUpgradeFrom) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageChatUpgradeFrom) GetType() string {
-    return TypeMessageChatUpgradeFrom
+	return TypeMessageChatUpgradeFrom
 }
 
 func (*MessageChatUpgradeFrom) MessageContentType() string {
-    return TypeMessageChatUpgradeFrom
+	return TypeMessageChatUpgradeFrom
 }
 
 // A message has been pinned
 type MessagePinMessage struct {
-    meta
-    // Identifier of the pinned message, can be an identifier of a deleted message
-    MessageId int64 `json:"message_id"`
+	meta
+	// Identifier of the pinned message, can be an identifier of a deleted message
+	MessageId int64 `json:"message_id"`
 }
 
 func (entity *MessagePinMessage) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessagePinMessage
+	type stub MessagePinMessage
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessagePinMessage) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessagePinMessage) GetType() string {
-    return TypeMessagePinMessage
+	return TypeMessagePinMessage
 }
 
 func (*MessagePinMessage) MessageContentType() string {
-    return TypeMessagePinMessage
+	return TypeMessagePinMessage
 }
 
 // A screenshot of a message in the chat has been taken
-type MessageScreenshotTaken struct{
-    meta
+type MessageScreenshotTaken struct {
+	meta
 }
 
 func (entity *MessageScreenshotTaken) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageScreenshotTaken
+	type stub MessageScreenshotTaken
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageScreenshotTaken) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageScreenshotTaken) GetType() string {
-    return TypeMessageScreenshotTaken
+	return TypeMessageScreenshotTaken
 }
 
 func (*MessageScreenshotTaken) MessageContentType() string {
-    return TypeMessageScreenshotTaken
+	return TypeMessageScreenshotTaken
 }
 
 // The TTL (Time To Live) setting messages in a secret chat has been changed
 type MessageChatSetTtl struct {
-    meta
-    // New TTL
-    Ttl int32 `json:"ttl"`
+	meta
+	// New TTL
+	Ttl int32 `json:"ttl"`
 }
 
 func (entity *MessageChatSetTtl) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageChatSetTtl
+	type stub MessageChatSetTtl
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageChatSetTtl) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageChatSetTtl) GetType() string {
-    return TypeMessageChatSetTtl
+	return TypeMessageChatSetTtl
 }
 
 func (*MessageChatSetTtl) MessageContentType() string {
-    return TypeMessageChatSetTtl
+	return TypeMessageChatSetTtl
 }
 
 // A non-standard action has happened in the chat
 type MessageCustomServiceAction struct {
-    meta
-    // Message text to be shown in the chat
-    Text string `json:"text"`
+	meta
+	// Message text to be shown in the chat
+	Text string `json:"text"`
 }
 
 func (entity *MessageCustomServiceAction) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageCustomServiceAction
+	type stub MessageCustomServiceAction
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageCustomServiceAction) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageCustomServiceAction) GetType() string {
-    return TypeMessageCustomServiceAction
+	return TypeMessageCustomServiceAction
 }
 
 func (*MessageCustomServiceAction) MessageContentType() string {
-    return TypeMessageCustomServiceAction
+	return TypeMessageCustomServiceAction
 }
 
 // A new high score was achieved in a game
 type MessageGameScore struct {
-    meta
-    // Identifier of the message with the game, can be an identifier of a deleted message
-    GameMessageId int64 `json:"game_message_id"`
-    // Identifier of the game, may be different from the games presented in the message with the game
-    GameId JsonInt64 `json:"game_id"`
-    // New score
-    Score int32 `json:"score"`
+	meta
+	// Identifier of the message with the game, can be an identifier of a deleted message
+	GameMessageId int64 `json:"game_message_id"`
+	// Identifier of the game, may be different from the games presented in the message with the game
+	GameId JsonInt64 `json:"game_id"`
+	// New score
+	Score int32 `json:"score"`
 }
 
 func (entity *MessageGameScore) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageGameScore
+	type stub MessageGameScore
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageGameScore) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageGameScore) GetType() string {
-    return TypeMessageGameScore
+	return TypeMessageGameScore
 }
 
 func (*MessageGameScore) MessageContentType() string {
-    return TypeMessageGameScore
+	return TypeMessageGameScore
 }
 
 // A payment has been completed
 type MessagePaymentSuccessful struct {
-    meta
-    // Identifier of the message with the corresponding invoice; can be an identifier of a deleted message
-    InvoiceMessageId int64 `json:"invoice_message_id"`
-    // Currency for the price of the product
-    Currency string `json:"currency"`
-    // Total price for the product, in the minimal quantity of the currency
-    TotalAmount int64 `json:"total_amount"`
+	meta
+	// Identifier of the message with the corresponding invoice; can be an identifier of a deleted message
+	InvoiceMessageId int64 `json:"invoice_message_id"`
+	// Currency for the price of the product
+	Currency string `json:"currency"`
+	// Total price for the product, in the minimal quantity of the currency
+	TotalAmount int64 `json:"total_amount"`
 }
 
 func (entity *MessagePaymentSuccessful) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessagePaymentSuccessful
+	type stub MessagePaymentSuccessful
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessagePaymentSuccessful) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessagePaymentSuccessful) GetType() string {
-    return TypeMessagePaymentSuccessful
+	return TypeMessagePaymentSuccessful
 }
 
 func (*MessagePaymentSuccessful) MessageContentType() string {
-    return TypeMessagePaymentSuccessful
+	return TypeMessagePaymentSuccessful
 }
 
 // A payment has been completed; for bots only
 type MessagePaymentSuccessfulBot struct {
-    meta
-    // Identifier of the message with the corresponding invoice; can be an identifier of a deleted message
-    InvoiceMessageId int64 `json:"invoice_message_id"`
-    // Currency for price of the product
-    Currency string `json:"currency"`
-    // Total price for the product, in the minimal quantity of the currency
-    TotalAmount int64 `json:"total_amount"`
-    // Invoice payload
-    InvoicePayload []byte `json:"invoice_payload"`
-    // Identifier of the shipping option chosen by the user; may be empty if not applicable
-    ShippingOptionId string `json:"shipping_option_id"`
-    // Information about the order; may be null
-    OrderInfo *OrderInfo `json:"order_info"`
-    // Telegram payment identifier
-    TelegramPaymentChargeId string `json:"telegram_payment_charge_id"`
-    // Provider payment identifier
-    ProviderPaymentChargeId string `json:"provider_payment_charge_id"`
+	meta
+	// Identifier of the message with the corresponding invoice; can be an identifier of a deleted message
+	InvoiceMessageId int64 `json:"invoice_message_id"`
+	// Currency for price of the product
+	Currency string `json:"currency"`
+	// Total price for the product, in the minimal quantity of the currency
+	TotalAmount int64 `json:"total_amount"`
+	// Invoice payload
+	InvoicePayload []byte `json:"invoice_payload"`
+	// Identifier of the shipping option chosen by the user; may be empty if not applicable
+	ShippingOptionId string `json:"shipping_option_id"`
+	// Information about the order; may be null
+	OrderInfo *OrderInfo `json:"order_info"`
+	// Telegram payment identifier
+	TelegramPaymentChargeId string `json:"telegram_payment_charge_id"`
+	// Provider payment identifier
+	ProviderPaymentChargeId string `json:"provider_payment_charge_id"`
 }
 
 func (entity *MessagePaymentSuccessfulBot) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessagePaymentSuccessfulBot
+	type stub MessagePaymentSuccessfulBot
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessagePaymentSuccessfulBot) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessagePaymentSuccessfulBot) GetType() string {
-    return TypeMessagePaymentSuccessfulBot
+	return TypeMessagePaymentSuccessfulBot
 }
 
 func (*MessagePaymentSuccessfulBot) MessageContentType() string {
-    return TypeMessagePaymentSuccessfulBot
+	return TypeMessagePaymentSuccessfulBot
 }
 
 // A contact has registered with Telegram
-type MessageContactRegistered struct{
-    meta
+type MessageContactRegistered struct {
+	meta
 }
 
 func (entity *MessageContactRegistered) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageContactRegistered
+	type stub MessageContactRegistered
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageContactRegistered) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageContactRegistered) GetType() string {
-    return TypeMessageContactRegistered
+	return TypeMessageContactRegistered
 }
 
 func (*MessageContactRegistered) MessageContentType() string {
-    return TypeMessageContactRegistered
+	return TypeMessageContactRegistered
 }
 
 // The current user has connected a website by logging in using Telegram Login Widget on it
 type MessageWebsiteConnected struct {
-    meta
-    // Domain name of the connected website
-    DomainName string `json:"domain_name"`
+	meta
+	// Domain name of the connected website
+	DomainName string `json:"domain_name"`
 }
 
 func (entity *MessageWebsiteConnected) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageWebsiteConnected
+	type stub MessageWebsiteConnected
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageWebsiteConnected) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageWebsiteConnected) GetType() string {
-    return TypeMessageWebsiteConnected
+	return TypeMessageWebsiteConnected
 }
 
 func (*MessageWebsiteConnected) MessageContentType() string {
-    return TypeMessageWebsiteConnected
+	return TypeMessageWebsiteConnected
 }
 
 // Telegram Passport data has been sent
 type MessagePassportDataSent struct {
-    meta
-    // List of Telegram Passport element types sent
-    Types []PassportElementType `json:"types"`
+	meta
+	// List of Telegram Passport element types sent
+	Types []PassportElementType `json:"types"`
 }
 
 func (entity *MessagePassportDataSent) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessagePassportDataSent
+	type stub MessagePassportDataSent
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessagePassportDataSent) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessagePassportDataSent) GetType() string {
-    return TypeMessagePassportDataSent
+	return TypeMessagePassportDataSent
 }
 
 func (*MessagePassportDataSent) MessageContentType() string {
-    return TypeMessagePassportDataSent
+	return TypeMessagePassportDataSent
 }
 
 // Telegram Passport data has been received; for bots only
 type MessagePassportDataReceived struct {
-    meta
-    // List of received Telegram Passport elements
-    Elements []*EncryptedPassportElement `json:"elements"`
-    // Encrypted data credentials
-    Credentials *EncryptedCredentials `json:"credentials"`
+	meta
+	// List of received Telegram Passport elements
+	Elements []*EncryptedPassportElement `json:"elements"`
+	// Encrypted data credentials
+	Credentials *EncryptedCredentials `json:"credentials"`
 }
 
 func (entity *MessagePassportDataReceived) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessagePassportDataReceived
+	type stub MessagePassportDataReceived
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessagePassportDataReceived) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessagePassportDataReceived) GetType() string {
-    return TypeMessagePassportDataReceived
+	return TypeMessagePassportDataReceived
 }
 
 func (*MessagePassportDataReceived) MessageContentType() string {
-    return TypeMessagePassportDataReceived
+	return TypeMessagePassportDataReceived
 }
 
 // Message content that is not supported by the client
-type MessageUnsupported struct{
-    meta
+type MessageUnsupported struct {
+	meta
 }
 
 func (entity *MessageUnsupported) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub MessageUnsupported
+	type stub MessageUnsupported
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*MessageUnsupported) GetClass() string {
-    return ClassMessageContent
+	return ClassMessageContent
 }
 
 func (*MessageUnsupported) GetType() string {
-    return TypeMessageUnsupported
+	return TypeMessageUnsupported
 }
 
 func (*MessageUnsupported) MessageContentType() string {
-    return TypeMessageUnsupported
+	return TypeMessageUnsupported
 }
 
 // A mention of a user by their username
-type TextEntityTypeMention struct{
-    meta
+type TextEntityTypeMention struct {
+	meta
 }
 
 func (entity *TextEntityTypeMention) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntityTypeMention
+	type stub TextEntityTypeMention
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntityTypeMention) GetClass() string {
-    return ClassTextEntityType
+	return ClassTextEntityType
 }
 
 func (*TextEntityTypeMention) GetType() string {
-    return TypeTextEntityTypeMention
+	return TypeTextEntityTypeMention
 }
 
 func (*TextEntityTypeMention) TextEntityTypeType() string {
-    return TypeTextEntityTypeMention
+	return TypeTextEntityTypeMention
 }
 
 // A hashtag text, beginning with "#"
-type TextEntityTypeHashtag struct{
-    meta
+type TextEntityTypeHashtag struct {
+	meta
 }
 
 func (entity *TextEntityTypeHashtag) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntityTypeHashtag
+	type stub TextEntityTypeHashtag
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntityTypeHashtag) GetClass() string {
-    return ClassTextEntityType
+	return ClassTextEntityType
 }
 
 func (*TextEntityTypeHashtag) GetType() string {
-    return TypeTextEntityTypeHashtag
+	return TypeTextEntityTypeHashtag
 }
 
 func (*TextEntityTypeHashtag) TextEntityTypeType() string {
-    return TypeTextEntityTypeHashtag
+	return TypeTextEntityTypeHashtag
 }
 
 // A cashtag text, beginning with "$" and consisting of capital english letters (i.e. "$USD")
-type TextEntityTypeCashtag struct{
-    meta
+type TextEntityTypeCashtag struct {
+	meta
 }
 
 func (entity *TextEntityTypeCashtag) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntityTypeCashtag
+	type stub TextEntityTypeCashtag
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntityTypeCashtag) GetClass() string {
-    return ClassTextEntityType
+	return ClassTextEntityType
 }
 
 func (*TextEntityTypeCashtag) GetType() string {
-    return TypeTextEntityTypeCashtag
+	return TypeTextEntityTypeCashtag
 }
 
 func (*TextEntityTypeCashtag) TextEntityTypeType() string {
-    return TypeTextEntityTypeCashtag
+	return TypeTextEntityTypeCashtag
 }
 
 // A bot command, beginning with "/". This shouldn't be highlighted if there are no bots in the chat
-type TextEntityTypeBotCommand struct{
-    meta
+type TextEntityTypeBotCommand struct {
+	meta
 }
 
 func (entity *TextEntityTypeBotCommand) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntityTypeBotCommand
+	type stub TextEntityTypeBotCommand
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntityTypeBotCommand) GetClass() string {
-    return ClassTextEntityType
+	return ClassTextEntityType
 }
 
 func (*TextEntityTypeBotCommand) GetType() string {
-    return TypeTextEntityTypeBotCommand
+	return TypeTextEntityTypeBotCommand
 }
 
 func (*TextEntityTypeBotCommand) TextEntityTypeType() string {
-    return TypeTextEntityTypeBotCommand
+	return TypeTextEntityTypeBotCommand
 }
 
 // An HTTP URL
-type TextEntityTypeUrl struct{
-    meta
+type TextEntityTypeUrl struct {
+	meta
 }
 
 func (entity *TextEntityTypeUrl) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntityTypeUrl
+	type stub TextEntityTypeUrl
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntityTypeUrl) GetClass() string {
-    return ClassTextEntityType
+	return ClassTextEntityType
 }
 
 func (*TextEntityTypeUrl) GetType() string {
-    return TypeTextEntityTypeUrl
+	return TypeTextEntityTypeUrl
 }
 
 func (*TextEntityTypeUrl) TextEntityTypeType() string {
-    return TypeTextEntityTypeUrl
+	return TypeTextEntityTypeUrl
 }
 
 // An email address
-type TextEntityTypeEmailAddress struct{
-    meta
+type TextEntityTypeEmailAddress struct {
+	meta
 }
 
 func (entity *TextEntityTypeEmailAddress) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntityTypeEmailAddress
+	type stub TextEntityTypeEmailAddress
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntityTypeEmailAddress) GetClass() string {
-    return ClassTextEntityType
+	return ClassTextEntityType
 }
 
 func (*TextEntityTypeEmailAddress) GetType() string {
-    return TypeTextEntityTypeEmailAddress
+	return TypeTextEntityTypeEmailAddress
 }
 
 func (*TextEntityTypeEmailAddress) TextEntityTypeType() string {
-    return TypeTextEntityTypeEmailAddress
+	return TypeTextEntityTypeEmailAddress
 }
 
 // A bold text
-type TextEntityTypeBold struct{
-    meta
+type TextEntityTypeBold struct {
+	meta
 }
 
 func (entity *TextEntityTypeBold) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntityTypeBold
+	type stub TextEntityTypeBold
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntityTypeBold) GetClass() string {
-    return ClassTextEntityType
+	return ClassTextEntityType
 }
 
 func (*TextEntityTypeBold) GetType() string {
-    return TypeTextEntityTypeBold
+	return TypeTextEntityTypeBold
 }
 
 func (*TextEntityTypeBold) TextEntityTypeType() string {
-    return TypeTextEntityTypeBold
+	return TypeTextEntityTypeBold
 }
 
 // An italic text
-type TextEntityTypeItalic struct{
-    meta
+type TextEntityTypeItalic struct {
+	meta
 }
 
 func (entity *TextEntityTypeItalic) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntityTypeItalic
+	type stub TextEntityTypeItalic
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntityTypeItalic) GetClass() string {
-    return ClassTextEntityType
+	return ClassTextEntityType
 }
 
 func (*TextEntityTypeItalic) GetType() string {
-    return TypeTextEntityTypeItalic
+	return TypeTextEntityTypeItalic
 }
 
 func (*TextEntityTypeItalic) TextEntityTypeType() string {
-    return TypeTextEntityTypeItalic
+	return TypeTextEntityTypeItalic
 }
 
 // Text that must be formatted as if inside a code HTML tag
-type TextEntityTypeCode struct{
-    meta
+type TextEntityTypeCode struct {
+	meta
 }
 
 func (entity *TextEntityTypeCode) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntityTypeCode
+	type stub TextEntityTypeCode
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntityTypeCode) GetClass() string {
-    return ClassTextEntityType
+	return ClassTextEntityType
 }
 
 func (*TextEntityTypeCode) GetType() string {
-    return TypeTextEntityTypeCode
+	return TypeTextEntityTypeCode
 }
 
 func (*TextEntityTypeCode) TextEntityTypeType() string {
-    return TypeTextEntityTypeCode
+	return TypeTextEntityTypeCode
 }
 
 // Text that must be formatted as if inside a pre HTML tag
-type TextEntityTypePre struct{
-    meta
+type TextEntityTypePre struct {
+	meta
 }
 
 func (entity *TextEntityTypePre) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntityTypePre
+	type stub TextEntityTypePre
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntityTypePre) GetClass() string {
-    return ClassTextEntityType
+	return ClassTextEntityType
 }
 
 func (*TextEntityTypePre) GetType() string {
-    return TypeTextEntityTypePre
+	return TypeTextEntityTypePre
 }
 
 func (*TextEntityTypePre) TextEntityTypeType() string {
-    return TypeTextEntityTypePre
+	return TypeTextEntityTypePre
 }
 
 // Text that must be formatted as if inside pre, and code HTML tags
 type TextEntityTypePreCode struct {
-    meta
-    // Programming language of the code; as defined by the sender
-    Language string `json:"language"`
+	meta
+	// Programming language of the code; as defined by the sender
+	Language string `json:"language"`
 }
 
 func (entity *TextEntityTypePreCode) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntityTypePreCode
+	type stub TextEntityTypePreCode
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntityTypePreCode) GetClass() string {
-    return ClassTextEntityType
+	return ClassTextEntityType
 }
 
 func (*TextEntityTypePreCode) GetType() string {
-    return TypeTextEntityTypePreCode
+	return TypeTextEntityTypePreCode
 }
 
 func (*TextEntityTypePreCode) TextEntityTypeType() string {
-    return TypeTextEntityTypePreCode
+	return TypeTextEntityTypePreCode
 }
 
 // A text description shown instead of a raw URL
 type TextEntityTypeTextUrl struct {
-    meta
-    // HTTP or tg:// URL to be opened when the link is clicked
-    Url string `json:"url"`
+	meta
+	// HTTP or tg:// URL to be opened when the link is clicked
+	Url string `json:"url"`
 }
 
 func (entity *TextEntityTypeTextUrl) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntityTypeTextUrl
+	type stub TextEntityTypeTextUrl
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntityTypeTextUrl) GetClass() string {
-    return ClassTextEntityType
+	return ClassTextEntityType
 }
 
 func (*TextEntityTypeTextUrl) GetType() string {
-    return TypeTextEntityTypeTextUrl
+	return TypeTextEntityTypeTextUrl
 }
 
 func (*TextEntityTypeTextUrl) TextEntityTypeType() string {
-    return TypeTextEntityTypeTextUrl
+	return TypeTextEntityTypeTextUrl
 }
 
 // A text shows instead of a raw mention of the user (e.g., when the user has no username)
 type TextEntityTypeMentionName struct {
-    meta
-    // Identifier of the mentioned user
-    UserId int32 `json:"user_id"`
+	meta
+	// Identifier of the mentioned user
+	UserId int32 `json:"user_id"`
 }
 
 func (entity *TextEntityTypeMentionName) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntityTypeMentionName
+	type stub TextEntityTypeMentionName
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntityTypeMentionName) GetClass() string {
-    return ClassTextEntityType
+	return ClassTextEntityType
 }
 
 func (*TextEntityTypeMentionName) GetType() string {
-    return TypeTextEntityTypeMentionName
+	return TypeTextEntityTypeMentionName
 }
 
 func (*TextEntityTypeMentionName) TextEntityTypeType() string {
-    return TypeTextEntityTypeMentionName
+	return TypeTextEntityTypeMentionName
 }
 
 // A phone number
-type TextEntityTypePhoneNumber struct{
-    meta
+type TextEntityTypePhoneNumber struct {
+	meta
 }
 
 func (entity *TextEntityTypePhoneNumber) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextEntityTypePhoneNumber
+	type stub TextEntityTypePhoneNumber
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextEntityTypePhoneNumber) GetClass() string {
-    return ClassTextEntityType
+	return ClassTextEntityType
 }
 
 func (*TextEntityTypePhoneNumber) GetType() string {
-    return TypeTextEntityTypePhoneNumber
+	return TypeTextEntityTypePhoneNumber
 }
 
 func (*TextEntityTypePhoneNumber) TextEntityTypeType() string {
-    return TypeTextEntityTypePhoneNumber
+	return TypeTextEntityTypePhoneNumber
 }
 
 // A thumbnail to be sent along with a file; should be in JPEG or WEBP format for stickers, and less than 200 kB in size
 type InputThumbnail struct {
-    meta
-    // Thumbnail file to send. Sending thumbnails by file_id is currently not supported
-    Thumbnail InputFile `json:"thumbnail"`
-    // Thumbnail width, usually shouldn't exceed 90. Use 0 if unknown
-    Width int32 `json:"width"`
-    // Thumbnail height, usually shouldn't exceed 90. Use 0 if unknown
-    Height int32 `json:"height"`
+	meta
+	// Thumbnail file to send. Sending thumbnails by file_id is currently not supported
+	Thumbnail InputFile `json:"thumbnail"`
+	// Thumbnail width, usually shouldn't exceed 90. Use 0 if unknown
+	Width int32 `json:"width"`
+	// Thumbnail height, usually shouldn't exceed 90. Use 0 if unknown
+	Height int32 `json:"height"`
 }
 
 func (entity *InputThumbnail) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputThumbnail
+	type stub InputThumbnail
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputThumbnail) GetClass() string {
-    return ClassInputThumbnail
+	return ClassInputThumbnail
 }
 
 func (*InputThumbnail) GetType() string {
-    return TypeInputThumbnail
+	return TypeInputThumbnail
 }
 
 func (inputThumbnail *InputThumbnail) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Thumbnail json.RawMessage `json:"thumbnail"`
-        Width int32 `json:"width"`
-        Height int32 `json:"height"`
-    }
+	var tmp struct {
+		Thumbnail json.RawMessage `json:"thumbnail"`
+		Width     int32           `json:"width"`
+		Height    int32           `json:"height"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputThumbnail.Width = tmp.Width
-    inputThumbnail.Height = tmp.Height
+	inputThumbnail.Width = tmp.Width
+	inputThumbnail.Height = tmp.Height
 
-    fieldThumbnail, _ := UnmarshalInputFile(tmp.Thumbnail)
-    inputThumbnail.Thumbnail = fieldThumbnail
+	fieldThumbnail, _ := UnmarshalInputFile(tmp.Thumbnail)
+	inputThumbnail.Thumbnail = fieldThumbnail
 
-    return nil
+	return nil
 }
 
 // A text message
 type InputMessageText struct {
-    meta
-    // Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Code, Pre, PreCode and TextUrl entities are allowed to be specified manually
-    Text *FormattedText `json:"text"`
-    // True, if rich web page previews for URLs in the message text should be disabled
-    DisableWebPagePreview bool `json:"disable_web_page_preview"`
-    // True, if a chat message draft should be deleted
-    ClearDraft bool `json:"clear_draft"`
+	meta
+	// Formatted text to be sent; 1-GetOption("message_text_length_max") characters. Only Bold, Italic, Code, Pre, PreCode and TextUrl entities are allowed to be specified manually
+	Text *FormattedText `json:"text"`
+	// True, if rich web page previews for URLs in the message text should be disabled
+	DisableWebPagePreview bool `json:"disable_web_page_preview"`
+	// True, if a chat message draft should be deleted
+	ClearDraft bool `json:"clear_draft"`
 }
 
 func (entity *InputMessageText) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessageText
+	type stub InputMessageText
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessageText) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessageText) GetType() string {
-    return TypeInputMessageText
+	return TypeInputMessageText
 }
 
 func (*InputMessageText) InputMessageContentType() string {
-    return TypeInputMessageText
+	return TypeInputMessageText
 }
 
 // An animation message (GIF-style).
 type InputMessageAnimation struct {
-    meta
-    // Animation file to be sent
-    Animation InputFile `json:"animation"`
-    // Animation thumbnail, if available
-    Thumbnail *InputThumbnail `json:"thumbnail"`
-    // Duration of the animation, in seconds
-    Duration int32 `json:"duration"`
-    // Width of the animation; may be replaced by the server
-    Width int32 `json:"width"`
-    // Height of the animation; may be replaced by the server
-    Height int32 `json:"height"`
-    // Animation caption; 0-GetOption("message_caption_length_max") characters
-    Caption *FormattedText `json:"caption"`
+	meta
+	// Animation file to be sent
+	Animation InputFile `json:"animation"`
+	// Animation thumbnail, if available
+	Thumbnail *InputThumbnail `json:"thumbnail"`
+	// Duration of the animation, in seconds
+	Duration int32 `json:"duration"`
+	// Width of the animation; may be replaced by the server
+	Width int32 `json:"width"`
+	// Height of the animation; may be replaced by the server
+	Height int32 `json:"height"`
+	// Animation caption; 0-GetOption("message_caption_length_max") characters
+	Caption *FormattedText `json:"caption"`
 }
 
 func (entity *InputMessageAnimation) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessageAnimation
+	type stub InputMessageAnimation
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessageAnimation) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessageAnimation) GetType() string {
-    return TypeInputMessageAnimation
+	return TypeInputMessageAnimation
 }
 
 func (*InputMessageAnimation) InputMessageContentType() string {
-    return TypeInputMessageAnimation
+	return TypeInputMessageAnimation
 }
 
 func (inputMessageAnimation *InputMessageAnimation) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Animation json.RawMessage `json:"animation"`
-        Thumbnail *InputThumbnail `json:"thumbnail"`
-        Duration int32 `json:"duration"`
-        Width int32 `json:"width"`
-        Height int32 `json:"height"`
-        Caption *FormattedText `json:"caption"`
-    }
+	var tmp struct {
+		Animation json.RawMessage `json:"animation"`
+		Thumbnail *InputThumbnail `json:"thumbnail"`
+		Duration  int32           `json:"duration"`
+		Width     int32           `json:"width"`
+		Height    int32           `json:"height"`
+		Caption   *FormattedText  `json:"caption"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputMessageAnimation.Thumbnail = tmp.Thumbnail
-    inputMessageAnimation.Duration = tmp.Duration
-    inputMessageAnimation.Width = tmp.Width
-    inputMessageAnimation.Height = tmp.Height
-    inputMessageAnimation.Caption = tmp.Caption
+	inputMessageAnimation.Thumbnail = tmp.Thumbnail
+	inputMessageAnimation.Duration = tmp.Duration
+	inputMessageAnimation.Width = tmp.Width
+	inputMessageAnimation.Height = tmp.Height
+	inputMessageAnimation.Caption = tmp.Caption
 
-    fieldAnimation, _ := UnmarshalInputFile(tmp.Animation)
-    inputMessageAnimation.Animation = fieldAnimation
+	fieldAnimation, _ := UnmarshalInputFile(tmp.Animation)
+	inputMessageAnimation.Animation = fieldAnimation
 
-    return nil
+	return nil
 }
 
 // An audio message
 type InputMessageAudio struct {
-    meta
-    // Audio file to be sent
-    Audio InputFile `json:"audio"`
-    // Thumbnail of the cover for the album, if available
-    AlbumCoverThumbnail *InputThumbnail `json:"album_cover_thumbnail"`
-    // Duration of the audio, in seconds; may be replaced by the server
-    Duration int32 `json:"duration"`
-    // Title of the audio; 0-64 characters; may be replaced by the server
-    Title string `json:"title"`
-    // Performer of the audio; 0-64 characters, may be replaced by the server
-    Performer string `json:"performer"`
-    // Audio caption; 0-GetOption("message_caption_length_max") characters
-    Caption *FormattedText `json:"caption"`
+	meta
+	// Audio file to be sent
+	Audio InputFile `json:"audio"`
+	// Thumbnail of the cover for the album, if available
+	AlbumCoverThumbnail *InputThumbnail `json:"album_cover_thumbnail"`
+	// Duration of the audio, in seconds; may be replaced by the server
+	Duration int32 `json:"duration"`
+	// Title of the audio; 0-64 characters; may be replaced by the server
+	Title string `json:"title"`
+	// Performer of the audio; 0-64 characters, may be replaced by the server
+	Performer string `json:"performer"`
+	// Audio caption; 0-GetOption("message_caption_length_max") characters
+	Caption *FormattedText `json:"caption"`
 }
 
 func (entity *InputMessageAudio) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessageAudio
+	type stub InputMessageAudio
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessageAudio) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessageAudio) GetType() string {
-    return TypeInputMessageAudio
+	return TypeInputMessageAudio
 }
 
 func (*InputMessageAudio) InputMessageContentType() string {
-    return TypeInputMessageAudio
+	return TypeInputMessageAudio
 }
 
 func (inputMessageAudio *InputMessageAudio) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Audio json.RawMessage `json:"audio"`
-        AlbumCoverThumbnail *InputThumbnail `json:"album_cover_thumbnail"`
-        Duration int32 `json:"duration"`
-        Title string `json:"title"`
-        Performer string `json:"performer"`
-        Caption *FormattedText `json:"caption"`
-    }
+	var tmp struct {
+		Audio               json.RawMessage `json:"audio"`
+		AlbumCoverThumbnail *InputThumbnail `json:"album_cover_thumbnail"`
+		Duration            int32           `json:"duration"`
+		Title               string          `json:"title"`
+		Performer           string          `json:"performer"`
+		Caption             *FormattedText  `json:"caption"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputMessageAudio.AlbumCoverThumbnail = tmp.AlbumCoverThumbnail
-    inputMessageAudio.Duration = tmp.Duration
-    inputMessageAudio.Title = tmp.Title
-    inputMessageAudio.Performer = tmp.Performer
-    inputMessageAudio.Caption = tmp.Caption
+	inputMessageAudio.AlbumCoverThumbnail = tmp.AlbumCoverThumbnail
+	inputMessageAudio.Duration = tmp.Duration
+	inputMessageAudio.Title = tmp.Title
+	inputMessageAudio.Performer = tmp.Performer
+	inputMessageAudio.Caption = tmp.Caption
 
-    fieldAudio, _ := UnmarshalInputFile(tmp.Audio)
-    inputMessageAudio.Audio = fieldAudio
+	fieldAudio, _ := UnmarshalInputFile(tmp.Audio)
+	inputMessageAudio.Audio = fieldAudio
 
-    return nil
+	return nil
 }
 
 // A document message (general file)
 type InputMessageDocument struct {
-    meta
-    // Document to be sent
-    Document InputFile `json:"document"`
-    // Document thumbnail, if available
-    Thumbnail *InputThumbnail `json:"thumbnail"`
-    // Document caption; 0-GetOption("message_caption_length_max") characters
-    Caption *FormattedText `json:"caption"`
+	meta
+	// Document to be sent
+	Document InputFile `json:"document"`
+	// Document thumbnail, if available
+	Thumbnail *InputThumbnail `json:"thumbnail"`
+	// Document caption; 0-GetOption("message_caption_length_max") characters
+	Caption *FormattedText `json:"caption"`
 }
 
 func (entity *InputMessageDocument) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessageDocument
+	type stub InputMessageDocument
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessageDocument) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessageDocument) GetType() string {
-    return TypeInputMessageDocument
+	return TypeInputMessageDocument
 }
 
 func (*InputMessageDocument) InputMessageContentType() string {
-    return TypeInputMessageDocument
+	return TypeInputMessageDocument
 }
 
 func (inputMessageDocument *InputMessageDocument) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Document json.RawMessage `json:"document"`
-        Thumbnail *InputThumbnail `json:"thumbnail"`
-        Caption *FormattedText `json:"caption"`
-    }
+	var tmp struct {
+		Document  json.RawMessage `json:"document"`
+		Thumbnail *InputThumbnail `json:"thumbnail"`
+		Caption   *FormattedText  `json:"caption"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputMessageDocument.Thumbnail = tmp.Thumbnail
-    inputMessageDocument.Caption = tmp.Caption
+	inputMessageDocument.Thumbnail = tmp.Thumbnail
+	inputMessageDocument.Caption = tmp.Caption
 
-    fieldDocument, _ := UnmarshalInputFile(tmp.Document)
-    inputMessageDocument.Document = fieldDocument
+	fieldDocument, _ := UnmarshalInputFile(tmp.Document)
+	inputMessageDocument.Document = fieldDocument
 
-    return nil
+	return nil
 }
 
 // A photo message
 type InputMessagePhoto struct {
-    meta
-    // Photo to send
-    Photo InputFile `json:"photo"`
-    // Photo thumbnail to be sent, this is sent to the other party in secret chats only
-    Thumbnail *InputThumbnail `json:"thumbnail"`
-    // File identifiers of the stickers added to the photo, if applicable
-    AddedStickerFileIds []int32 `json:"added_sticker_file_ids"`
-    // Photo width
-    Width int32 `json:"width"`
-    // Photo height
-    Height int32 `json:"height"`
-    // Photo caption; 0-GetOption("message_caption_length_max") characters
-    Caption *FormattedText `json:"caption"`
-    // Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
-    Ttl int32 `json:"ttl"`
+	meta
+	// Photo to send
+	Photo InputFile `json:"photo"`
+	// Photo thumbnail to be sent, this is sent to the other party in secret chats only
+	Thumbnail *InputThumbnail `json:"thumbnail"`
+	// File identifiers of the stickers added to the photo, if applicable
+	AddedStickerFileIds []int32 `json:"added_sticker_file_ids"`
+	// Photo width
+	Width int32 `json:"width"`
+	// Photo height
+	Height int32 `json:"height"`
+	// Photo caption; 0-GetOption("message_caption_length_max") characters
+	Caption *FormattedText `json:"caption"`
+	// Photo TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
+	Ttl int32 `json:"ttl"`
 }
 
 func (entity *InputMessagePhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessagePhoto
+	type stub InputMessagePhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessagePhoto) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessagePhoto) GetType() string {
-    return TypeInputMessagePhoto
+	return TypeInputMessagePhoto
 }
 
 func (*InputMessagePhoto) InputMessageContentType() string {
-    return TypeInputMessagePhoto
+	return TypeInputMessagePhoto
 }
 
 func (inputMessagePhoto *InputMessagePhoto) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Photo json.RawMessage `json:"photo"`
-        Thumbnail *InputThumbnail `json:"thumbnail"`
-        AddedStickerFileIds []int32 `json:"added_sticker_file_ids"`
-        Width int32 `json:"width"`
-        Height int32 `json:"height"`
-        Caption *FormattedText `json:"caption"`
-        Ttl int32 `json:"ttl"`
-    }
+	var tmp struct {
+		Photo               json.RawMessage `json:"photo"`
+		Thumbnail           *InputThumbnail `json:"thumbnail"`
+		AddedStickerFileIds []int32         `json:"added_sticker_file_ids"`
+		Width               int32           `json:"width"`
+		Height              int32           `json:"height"`
+		Caption             *FormattedText  `json:"caption"`
+		Ttl                 int32           `json:"ttl"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputMessagePhoto.Thumbnail = tmp.Thumbnail
-    inputMessagePhoto.AddedStickerFileIds = tmp.AddedStickerFileIds
-    inputMessagePhoto.Width = tmp.Width
-    inputMessagePhoto.Height = tmp.Height
-    inputMessagePhoto.Caption = tmp.Caption
-    inputMessagePhoto.Ttl = tmp.Ttl
+	inputMessagePhoto.Thumbnail = tmp.Thumbnail
+	inputMessagePhoto.AddedStickerFileIds = tmp.AddedStickerFileIds
+	inputMessagePhoto.Width = tmp.Width
+	inputMessagePhoto.Height = tmp.Height
+	inputMessagePhoto.Caption = tmp.Caption
+	inputMessagePhoto.Ttl = tmp.Ttl
 
-    fieldPhoto, _ := UnmarshalInputFile(tmp.Photo)
-    inputMessagePhoto.Photo = fieldPhoto
+	fieldPhoto, _ := UnmarshalInputFile(tmp.Photo)
+	inputMessagePhoto.Photo = fieldPhoto
 
-    return nil
+	return nil
 }
 
 // A sticker message
 type InputMessageSticker struct {
-    meta
-    // Sticker to be sent
-    Sticker InputFile `json:"sticker"`
-    // Sticker thumbnail, if available
-    Thumbnail *InputThumbnail `json:"thumbnail"`
-    // Sticker width
-    Width int32 `json:"width"`
-    // Sticker height
-    Height int32 `json:"height"`
+	meta
+	// Sticker to be sent
+	Sticker InputFile `json:"sticker"`
+	// Sticker thumbnail, if available
+	Thumbnail *InputThumbnail `json:"thumbnail"`
+	// Sticker width
+	Width int32 `json:"width"`
+	// Sticker height
+	Height int32 `json:"height"`
 }
 
 func (entity *InputMessageSticker) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessageSticker
+	type stub InputMessageSticker
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessageSticker) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessageSticker) GetType() string {
-    return TypeInputMessageSticker
+	return TypeInputMessageSticker
 }
 
 func (*InputMessageSticker) InputMessageContentType() string {
-    return TypeInputMessageSticker
+	return TypeInputMessageSticker
 }
 
 func (inputMessageSticker *InputMessageSticker) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Sticker json.RawMessage `json:"sticker"`
-        Thumbnail *InputThumbnail `json:"thumbnail"`
-        Width int32 `json:"width"`
-        Height int32 `json:"height"`
-    }
+	var tmp struct {
+		Sticker   json.RawMessage `json:"sticker"`
+		Thumbnail *InputThumbnail `json:"thumbnail"`
+		Width     int32           `json:"width"`
+		Height    int32           `json:"height"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputMessageSticker.Thumbnail = tmp.Thumbnail
-    inputMessageSticker.Width = tmp.Width
-    inputMessageSticker.Height = tmp.Height
+	inputMessageSticker.Thumbnail = tmp.Thumbnail
+	inputMessageSticker.Width = tmp.Width
+	inputMessageSticker.Height = tmp.Height
 
-    fieldSticker, _ := UnmarshalInputFile(tmp.Sticker)
-    inputMessageSticker.Sticker = fieldSticker
+	fieldSticker, _ := UnmarshalInputFile(tmp.Sticker)
+	inputMessageSticker.Sticker = fieldSticker
 
-    return nil
+	return nil
 }
 
 // A video message
 type InputMessageVideo struct {
-    meta
-    // Video to be sent
-    Video InputFile `json:"video"`
-    // Video thumbnail, if available
-    Thumbnail *InputThumbnail `json:"thumbnail"`
-    // File identifiers of the stickers added to the video, if applicable
-    AddedStickerFileIds []int32 `json:"added_sticker_file_ids"`
-    // Duration of the video, in seconds
-    Duration int32 `json:"duration"`
-    // Video width
-    Width int32 `json:"width"`
-    // Video height
-    Height int32 `json:"height"`
-    // True, if the video should be tried to be streamed
-    SupportsStreaming bool `json:"supports_streaming"`
-    // Video caption; 0-GetOption("message_caption_length_max") characters
-    Caption *FormattedText `json:"caption"`
-    // Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
-    Ttl int32 `json:"ttl"`
+	meta
+	// Video to be sent
+	Video InputFile `json:"video"`
+	// Video thumbnail, if available
+	Thumbnail *InputThumbnail `json:"thumbnail"`
+	// File identifiers of the stickers added to the video, if applicable
+	AddedStickerFileIds []int32 `json:"added_sticker_file_ids"`
+	// Duration of the video, in seconds
+	Duration int32 `json:"duration"`
+	// Video width
+	Width int32 `json:"width"`
+	// Video height
+	Height int32 `json:"height"`
+	// True, if the video should be tried to be streamed
+	SupportsStreaming bool `json:"supports_streaming"`
+	// Video caption; 0-GetOption("message_caption_length_max") characters
+	Caption *FormattedText `json:"caption"`
+	// Video TTL (Time To Live), in seconds (0-60). A non-zero TTL can be specified only in private chats
+	Ttl int32 `json:"ttl"`
 }
 
 func (entity *InputMessageVideo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessageVideo
+	type stub InputMessageVideo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessageVideo) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessageVideo) GetType() string {
-    return TypeInputMessageVideo
+	return TypeInputMessageVideo
 }
 
 func (*InputMessageVideo) InputMessageContentType() string {
-    return TypeInputMessageVideo
+	return TypeInputMessageVideo
 }
 
 func (inputMessageVideo *InputMessageVideo) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Video json.RawMessage `json:"video"`
-        Thumbnail *InputThumbnail `json:"thumbnail"`
-        AddedStickerFileIds []int32 `json:"added_sticker_file_ids"`
-        Duration int32 `json:"duration"`
-        Width int32 `json:"width"`
-        Height int32 `json:"height"`
-        SupportsStreaming bool `json:"supports_streaming"`
-        Caption *FormattedText `json:"caption"`
-        Ttl int32 `json:"ttl"`
-    }
+	var tmp struct {
+		Video               json.RawMessage `json:"video"`
+		Thumbnail           *InputThumbnail `json:"thumbnail"`
+		AddedStickerFileIds []int32         `json:"added_sticker_file_ids"`
+		Duration            int32           `json:"duration"`
+		Width               int32           `json:"width"`
+		Height              int32           `json:"height"`
+		SupportsStreaming   bool            `json:"supports_streaming"`
+		Caption             *FormattedText  `json:"caption"`
+		Ttl                 int32           `json:"ttl"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputMessageVideo.Thumbnail = tmp.Thumbnail
-    inputMessageVideo.AddedStickerFileIds = tmp.AddedStickerFileIds
-    inputMessageVideo.Duration = tmp.Duration
-    inputMessageVideo.Width = tmp.Width
-    inputMessageVideo.Height = tmp.Height
-    inputMessageVideo.SupportsStreaming = tmp.SupportsStreaming
-    inputMessageVideo.Caption = tmp.Caption
-    inputMessageVideo.Ttl = tmp.Ttl
+	inputMessageVideo.Thumbnail = tmp.Thumbnail
+	inputMessageVideo.AddedStickerFileIds = tmp.AddedStickerFileIds
+	inputMessageVideo.Duration = tmp.Duration
+	inputMessageVideo.Width = tmp.Width
+	inputMessageVideo.Height = tmp.Height
+	inputMessageVideo.SupportsStreaming = tmp.SupportsStreaming
+	inputMessageVideo.Caption = tmp.Caption
+	inputMessageVideo.Ttl = tmp.Ttl
 
-    fieldVideo, _ := UnmarshalInputFile(tmp.Video)
-    inputMessageVideo.Video = fieldVideo
+	fieldVideo, _ := UnmarshalInputFile(tmp.Video)
+	inputMessageVideo.Video = fieldVideo
 
-    return nil
+	return nil
 }
 
 // A video note message
 type InputMessageVideoNote struct {
-    meta
-    // Video note to be sent
-    VideoNote InputFile `json:"video_note"`
-    // Video thumbnail, if available
-    Thumbnail *InputThumbnail `json:"thumbnail"`
-    // Duration of the video, in seconds
-    Duration int32 `json:"duration"`
-    // Video width and height; must be positive and not greater than 640
-    Length int32 `json:"length"`
+	meta
+	// Video note to be sent
+	VideoNote InputFile `json:"video_note"`
+	// Video thumbnail, if available
+	Thumbnail *InputThumbnail `json:"thumbnail"`
+	// Duration of the video, in seconds
+	Duration int32 `json:"duration"`
+	// Video width and height; must be positive and not greater than 640
+	Length int32 `json:"length"`
 }
 
 func (entity *InputMessageVideoNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessageVideoNote
+	type stub InputMessageVideoNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessageVideoNote) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessageVideoNote) GetType() string {
-    return TypeInputMessageVideoNote
+	return TypeInputMessageVideoNote
 }
 
 func (*InputMessageVideoNote) InputMessageContentType() string {
-    return TypeInputMessageVideoNote
+	return TypeInputMessageVideoNote
 }
 
 func (inputMessageVideoNote *InputMessageVideoNote) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        VideoNote json.RawMessage `json:"video_note"`
-        Thumbnail *InputThumbnail `json:"thumbnail"`
-        Duration int32 `json:"duration"`
-        Length int32 `json:"length"`
-    }
+	var tmp struct {
+		VideoNote json.RawMessage `json:"video_note"`
+		Thumbnail *InputThumbnail `json:"thumbnail"`
+		Duration  int32           `json:"duration"`
+		Length    int32           `json:"length"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputMessageVideoNote.Thumbnail = tmp.Thumbnail
-    inputMessageVideoNote.Duration = tmp.Duration
-    inputMessageVideoNote.Length = tmp.Length
+	inputMessageVideoNote.Thumbnail = tmp.Thumbnail
+	inputMessageVideoNote.Duration = tmp.Duration
+	inputMessageVideoNote.Length = tmp.Length
 
-    fieldVideoNote, _ := UnmarshalInputFile(tmp.VideoNote)
-    inputMessageVideoNote.VideoNote = fieldVideoNote
+	fieldVideoNote, _ := UnmarshalInputFile(tmp.VideoNote)
+	inputMessageVideoNote.VideoNote = fieldVideoNote
 
-    return nil
+	return nil
 }
 
 // A voice note message
 type InputMessageVoiceNote struct {
-    meta
-    // Voice note to be sent
-    VoiceNote InputFile `json:"voice_note"`
-    // Duration of the voice note, in seconds
-    Duration int32 `json:"duration"`
-    // Waveform representation of the voice note, in 5-bit format
-    Waveform []byte `json:"waveform"`
-    // Voice note caption; 0-GetOption("message_caption_length_max") characters
-    Caption *FormattedText `json:"caption"`
+	meta
+	// Voice note to be sent
+	VoiceNote InputFile `json:"voice_note"`
+	// Duration of the voice note, in seconds
+	Duration int32 `json:"duration"`
+	// Waveform representation of the voice note, in 5-bit format
+	Waveform []byte `json:"waveform"`
+	// Voice note caption; 0-GetOption("message_caption_length_max") characters
+	Caption *FormattedText `json:"caption"`
 }
 
 func (entity *InputMessageVoiceNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessageVoiceNote
+	type stub InputMessageVoiceNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessageVoiceNote) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessageVoiceNote) GetType() string {
-    return TypeInputMessageVoiceNote
+	return TypeInputMessageVoiceNote
 }
 
 func (*InputMessageVoiceNote) InputMessageContentType() string {
-    return TypeInputMessageVoiceNote
+	return TypeInputMessageVoiceNote
 }
 
 func (inputMessageVoiceNote *InputMessageVoiceNote) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        VoiceNote json.RawMessage `json:"voice_note"`
-        Duration int32 `json:"duration"`
-        Waveform []byte `json:"waveform"`
-        Caption *FormattedText `json:"caption"`
-    }
+	var tmp struct {
+		VoiceNote json.RawMessage `json:"voice_note"`
+		Duration  int32           `json:"duration"`
+		Waveform  []byte          `json:"waveform"`
+		Caption   *FormattedText  `json:"caption"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputMessageVoiceNote.Duration = tmp.Duration
-    inputMessageVoiceNote.Waveform = tmp.Waveform
-    inputMessageVoiceNote.Caption = tmp.Caption
+	inputMessageVoiceNote.Duration = tmp.Duration
+	inputMessageVoiceNote.Waveform = tmp.Waveform
+	inputMessageVoiceNote.Caption = tmp.Caption
 
-    fieldVoiceNote, _ := UnmarshalInputFile(tmp.VoiceNote)
-    inputMessageVoiceNote.VoiceNote = fieldVoiceNote
+	fieldVoiceNote, _ := UnmarshalInputFile(tmp.VoiceNote)
+	inputMessageVoiceNote.VoiceNote = fieldVoiceNote
 
-    return nil
+	return nil
 }
 
 // A message with a location
 type InputMessageLocation struct {
-    meta
-    // Location to be sent
-    Location *Location `json:"location"`
-    // Period for which the location can be updated, in seconds; should bebetween 60 and 86400 for a live location and 0 otherwise
-    LivePeriod int32 `json:"live_period"`
+	meta
+	// Location to be sent
+	Location *Location `json:"location"`
+	// Period for which the location can be updated, in seconds; should bebetween 60 and 86400 for a live location and 0 otherwise
+	LivePeriod int32 `json:"live_period"`
 }
 
 func (entity *InputMessageLocation) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessageLocation
+	type stub InputMessageLocation
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessageLocation) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessageLocation) GetType() string {
-    return TypeInputMessageLocation
+	return TypeInputMessageLocation
 }
 
 func (*InputMessageLocation) InputMessageContentType() string {
-    return TypeInputMessageLocation
+	return TypeInputMessageLocation
 }
 
 // A message with information about a venue
 type InputMessageVenue struct {
-    meta
-    // Venue to send
-    Venue *Venue `json:"venue"`
+	meta
+	// Venue to send
+	Venue *Venue `json:"venue"`
 }
 
 func (entity *InputMessageVenue) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessageVenue
+	type stub InputMessageVenue
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessageVenue) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessageVenue) GetType() string {
-    return TypeInputMessageVenue
+	return TypeInputMessageVenue
 }
 
 func (*InputMessageVenue) InputMessageContentType() string {
-    return TypeInputMessageVenue
+	return TypeInputMessageVenue
 }
 
 // A message containing a user contact
 type InputMessageContact struct {
-    meta
-    // Contact to send
-    Contact *Contact `json:"contact"`
+	meta
+	// Contact to send
+	Contact *Contact `json:"contact"`
 }
 
 func (entity *InputMessageContact) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessageContact
+	type stub InputMessageContact
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessageContact) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessageContact) GetType() string {
-    return TypeInputMessageContact
+	return TypeInputMessageContact
 }
 
 func (*InputMessageContact) InputMessageContentType() string {
-    return TypeInputMessageContact
+	return TypeInputMessageContact
 }
 
 // A message with a game; not supported for channels or secret chats
 type InputMessageGame struct {
-    meta
-    // User identifier of the bot that owns the game
-    BotUserId int32 `json:"bot_user_id"`
-    // Short name of the game
-    GameShortName string `json:"game_short_name"`
+	meta
+	// User identifier of the bot that owns the game
+	BotUserId int32 `json:"bot_user_id"`
+	// Short name of the game
+	GameShortName string `json:"game_short_name"`
 }
 
 func (entity *InputMessageGame) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessageGame
+	type stub InputMessageGame
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessageGame) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessageGame) GetType() string {
-    return TypeInputMessageGame
+	return TypeInputMessageGame
 }
 
 func (*InputMessageGame) InputMessageContentType() string {
-    return TypeInputMessageGame
+	return TypeInputMessageGame
 }
 
 // A message with an invoice; can be used only by bots and only in private chats
 type InputMessageInvoice struct {
-    meta
-    // Invoice
-    Invoice *Invoice `json:"invoice"`
-    // Product title; 1-32 characters
-    Title string `json:"title"`
-    // Product description; 0-255 characters
-    Description string `json:"description"`
-    // Product photo URL; optional
-    PhotoUrl string `json:"photo_url"`
-    // Product photo size
-    PhotoSize int32 `json:"photo_size"`
-    // Product photo width
-    PhotoWidth int32 `json:"photo_width"`
-    // Product photo height
-    PhotoHeight int32 `json:"photo_height"`
-    // The invoice payload
-    Payload []byte `json:"payload"`
-    // Payment provider token
-    ProviderToken string `json:"provider_token"`
-    // JSON-encoded data about the invoice, which will be shared with the payment provider
-    ProviderData string `json:"provider_data"`
-    // Unique invoice bot start_parameter for the generation of this invoice
-    StartParameter string `json:"start_parameter"`
+	meta
+	// Invoice
+	Invoice *Invoice `json:"invoice"`
+	// Product title; 1-32 characters
+	Title string `json:"title"`
+	// Product description; 0-255 characters
+	Description string `json:"description"`
+	// Product photo URL; optional
+	PhotoUrl string `json:"photo_url"`
+	// Product photo size
+	PhotoSize int32 `json:"photo_size"`
+	// Product photo width
+	PhotoWidth int32 `json:"photo_width"`
+	// Product photo height
+	PhotoHeight int32 `json:"photo_height"`
+	// The invoice payload
+	Payload []byte `json:"payload"`
+	// Payment provider token
+	ProviderToken string `json:"provider_token"`
+	// JSON-encoded data about the invoice, which will be shared with the payment provider
+	ProviderData string `json:"provider_data"`
+	// Unique invoice bot start_parameter for the generation of this invoice
+	StartParameter string `json:"start_parameter"`
 }
 
 func (entity *InputMessageInvoice) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessageInvoice
+	type stub InputMessageInvoice
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessageInvoice) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessageInvoice) GetType() string {
-    return TypeInputMessageInvoice
+	return TypeInputMessageInvoice
 }
 
 func (*InputMessageInvoice) InputMessageContentType() string {
-    return TypeInputMessageInvoice
+	return TypeInputMessageInvoice
 }
 
 // A forwarded message
 type InputMessageForwarded struct {
-    meta
-    // Identifier for the chat this forwarded message came from
-    FromChatId int64 `json:"from_chat_id"`
-    // Identifier of the message to forward
-    MessageId int64 `json:"message_id"`
-    // True, if a game message should be shared within a launched game; applies only to game messages
-    InGameShare bool `json:"in_game_share"`
+	meta
+	// Identifier for the chat this forwarded message came from
+	FromChatId int64 `json:"from_chat_id"`
+	// Identifier of the message to forward
+	MessageId int64 `json:"message_id"`
+	// True, if a game message should be shared within a launched game; applies only to game messages
+	InGameShare bool `json:"in_game_share"`
 }
 
 func (entity *InputMessageForwarded) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputMessageForwarded
+	type stub InputMessageForwarded
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputMessageForwarded) GetClass() string {
-    return ClassInputMessageContent
+	return ClassInputMessageContent
 }
 
 func (*InputMessageForwarded) GetType() string {
-    return TypeInputMessageForwarded
+	return TypeInputMessageForwarded
 }
 
 func (*InputMessageForwarded) InputMessageContentType() string {
-    return TypeInputMessageForwarded
+	return TypeInputMessageForwarded
 }
 
 // Returns all found messages, no filter is applied
-type SearchMessagesFilterEmpty struct{
-    meta
+type SearchMessagesFilterEmpty struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterEmpty) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterEmpty
+	type stub SearchMessagesFilterEmpty
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterEmpty) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterEmpty) GetType() string {
-    return TypeSearchMessagesFilterEmpty
+	return TypeSearchMessagesFilterEmpty
 }
 
 func (*SearchMessagesFilterEmpty) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterEmpty
+	return TypeSearchMessagesFilterEmpty
 }
 
 // Returns only animation messages
-type SearchMessagesFilterAnimation struct{
-    meta
+type SearchMessagesFilterAnimation struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterAnimation) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterAnimation
+	type stub SearchMessagesFilterAnimation
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterAnimation) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterAnimation) GetType() string {
-    return TypeSearchMessagesFilterAnimation
+	return TypeSearchMessagesFilterAnimation
 }
 
 func (*SearchMessagesFilterAnimation) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterAnimation
+	return TypeSearchMessagesFilterAnimation
 }
 
 // Returns only audio messages
-type SearchMessagesFilterAudio struct{
-    meta
+type SearchMessagesFilterAudio struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterAudio) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterAudio
+	type stub SearchMessagesFilterAudio
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterAudio) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterAudio) GetType() string {
-    return TypeSearchMessagesFilterAudio
+	return TypeSearchMessagesFilterAudio
 }
 
 func (*SearchMessagesFilterAudio) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterAudio
+	return TypeSearchMessagesFilterAudio
 }
 
 // Returns only document messages
-type SearchMessagesFilterDocument struct{
-    meta
+type SearchMessagesFilterDocument struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterDocument) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterDocument
+	type stub SearchMessagesFilterDocument
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterDocument) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterDocument) GetType() string {
-    return TypeSearchMessagesFilterDocument
+	return TypeSearchMessagesFilterDocument
 }
 
 func (*SearchMessagesFilterDocument) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterDocument
+	return TypeSearchMessagesFilterDocument
 }
 
 // Returns only photo messages
-type SearchMessagesFilterPhoto struct{
-    meta
+type SearchMessagesFilterPhoto struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterPhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterPhoto
+	type stub SearchMessagesFilterPhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterPhoto) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterPhoto) GetType() string {
-    return TypeSearchMessagesFilterPhoto
+	return TypeSearchMessagesFilterPhoto
 }
 
 func (*SearchMessagesFilterPhoto) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterPhoto
+	return TypeSearchMessagesFilterPhoto
 }
 
 // Returns only video messages
-type SearchMessagesFilterVideo struct{
-    meta
+type SearchMessagesFilterVideo struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterVideo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterVideo
+	type stub SearchMessagesFilterVideo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterVideo) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterVideo) GetType() string {
-    return TypeSearchMessagesFilterVideo
+	return TypeSearchMessagesFilterVideo
 }
 
 func (*SearchMessagesFilterVideo) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterVideo
+	return TypeSearchMessagesFilterVideo
 }
 
 // Returns only voice note messages
-type SearchMessagesFilterVoiceNote struct{
-    meta
+type SearchMessagesFilterVoiceNote struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterVoiceNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterVoiceNote
+	type stub SearchMessagesFilterVoiceNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterVoiceNote) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterVoiceNote) GetType() string {
-    return TypeSearchMessagesFilterVoiceNote
+	return TypeSearchMessagesFilterVoiceNote
 }
 
 func (*SearchMessagesFilterVoiceNote) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterVoiceNote
+	return TypeSearchMessagesFilterVoiceNote
 }
 
 // Returns only photo and video messages
-type SearchMessagesFilterPhotoAndVideo struct{
-    meta
+type SearchMessagesFilterPhotoAndVideo struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterPhotoAndVideo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterPhotoAndVideo
+	type stub SearchMessagesFilterPhotoAndVideo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterPhotoAndVideo) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterPhotoAndVideo) GetType() string {
-    return TypeSearchMessagesFilterPhotoAndVideo
+	return TypeSearchMessagesFilterPhotoAndVideo
 }
 
 func (*SearchMessagesFilterPhotoAndVideo) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterPhotoAndVideo
+	return TypeSearchMessagesFilterPhotoAndVideo
 }
 
 // Returns only messages containing URLs
-type SearchMessagesFilterUrl struct{
-    meta
+type SearchMessagesFilterUrl struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterUrl) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterUrl
+	type stub SearchMessagesFilterUrl
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterUrl) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterUrl) GetType() string {
-    return TypeSearchMessagesFilterUrl
+	return TypeSearchMessagesFilterUrl
 }
 
 func (*SearchMessagesFilterUrl) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterUrl
+	return TypeSearchMessagesFilterUrl
 }
 
 // Returns only messages containing chat photos
-type SearchMessagesFilterChatPhoto struct{
-    meta
+type SearchMessagesFilterChatPhoto struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterChatPhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterChatPhoto
+	type stub SearchMessagesFilterChatPhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterChatPhoto) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterChatPhoto) GetType() string {
-    return TypeSearchMessagesFilterChatPhoto
+	return TypeSearchMessagesFilterChatPhoto
 }
 
 func (*SearchMessagesFilterChatPhoto) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterChatPhoto
+	return TypeSearchMessagesFilterChatPhoto
 }
 
 // Returns only call messages
-type SearchMessagesFilterCall struct{
-    meta
+type SearchMessagesFilterCall struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterCall) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterCall
+	type stub SearchMessagesFilterCall
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterCall) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterCall) GetType() string {
-    return TypeSearchMessagesFilterCall
+	return TypeSearchMessagesFilterCall
 }
 
 func (*SearchMessagesFilterCall) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterCall
+	return TypeSearchMessagesFilterCall
 }
 
 // Returns only incoming call messages with missed/declined discard reasons
-type SearchMessagesFilterMissedCall struct{
-    meta
+type SearchMessagesFilterMissedCall struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterMissedCall) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterMissedCall
+	type stub SearchMessagesFilterMissedCall
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterMissedCall) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterMissedCall) GetType() string {
-    return TypeSearchMessagesFilterMissedCall
+	return TypeSearchMessagesFilterMissedCall
 }
 
 func (*SearchMessagesFilterMissedCall) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterMissedCall
+	return TypeSearchMessagesFilterMissedCall
 }
 
 // Returns only video note messages
-type SearchMessagesFilterVideoNote struct{
-    meta
+type SearchMessagesFilterVideoNote struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterVideoNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterVideoNote
+	type stub SearchMessagesFilterVideoNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterVideoNote) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterVideoNote) GetType() string {
-    return TypeSearchMessagesFilterVideoNote
+	return TypeSearchMessagesFilterVideoNote
 }
 
 func (*SearchMessagesFilterVideoNote) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterVideoNote
+	return TypeSearchMessagesFilterVideoNote
 }
 
 // Returns only voice and video note messages
-type SearchMessagesFilterVoiceAndVideoNote struct{
-    meta
+type SearchMessagesFilterVoiceAndVideoNote struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterVoiceAndVideoNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterVoiceAndVideoNote
+	type stub SearchMessagesFilterVoiceAndVideoNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterVoiceAndVideoNote) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterVoiceAndVideoNote) GetType() string {
-    return TypeSearchMessagesFilterVoiceAndVideoNote
+	return TypeSearchMessagesFilterVoiceAndVideoNote
 }
 
 func (*SearchMessagesFilterVoiceAndVideoNote) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterVoiceAndVideoNote
+	return TypeSearchMessagesFilterVoiceAndVideoNote
 }
 
 // Returns only messages with mentions of the current user, or messages that are replies to their messages
-type SearchMessagesFilterMention struct{
-    meta
+type SearchMessagesFilterMention struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterMention) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterMention
+	type stub SearchMessagesFilterMention
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterMention) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterMention) GetType() string {
-    return TypeSearchMessagesFilterMention
+	return TypeSearchMessagesFilterMention
 }
 
 func (*SearchMessagesFilterMention) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterMention
+	return TypeSearchMessagesFilterMention
 }
 
 // Returns only messages with unread mentions of the current user or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query or by the sending user
-type SearchMessagesFilterUnreadMention struct{
-    meta
+type SearchMessagesFilterUnreadMention struct {
+	meta
 }
 
 func (entity *SearchMessagesFilterUnreadMention) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub SearchMessagesFilterUnreadMention
+	type stub SearchMessagesFilterUnreadMention
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*SearchMessagesFilterUnreadMention) GetClass() string {
-    return ClassSearchMessagesFilter
+	return ClassSearchMessagesFilter
 }
 
 func (*SearchMessagesFilterUnreadMention) GetType() string {
-    return TypeSearchMessagesFilterUnreadMention
+	return TypeSearchMessagesFilterUnreadMention
 }
 
 func (*SearchMessagesFilterUnreadMention) SearchMessagesFilterType() string {
-    return TypeSearchMessagesFilterUnreadMention
+	return TypeSearchMessagesFilterUnreadMention
 }
 
 // The user is typing a message
-type ChatActionTyping struct{
-    meta
+type ChatActionTyping struct {
+	meta
 }
 
 func (entity *ChatActionTyping) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatActionTyping
+	type stub ChatActionTyping
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatActionTyping) GetClass() string {
-    return ClassChatAction
+	return ClassChatAction
 }
 
 func (*ChatActionTyping) GetType() string {
-    return TypeChatActionTyping
+	return TypeChatActionTyping
 }
 
 func (*ChatActionTyping) ChatActionType() string {
-    return TypeChatActionTyping
+	return TypeChatActionTyping
 }
 
 // The user is recording a video
-type ChatActionRecordingVideo struct{
-    meta
+type ChatActionRecordingVideo struct {
+	meta
 }
 
 func (entity *ChatActionRecordingVideo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatActionRecordingVideo
+	type stub ChatActionRecordingVideo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatActionRecordingVideo) GetClass() string {
-    return ClassChatAction
+	return ClassChatAction
 }
 
 func (*ChatActionRecordingVideo) GetType() string {
-    return TypeChatActionRecordingVideo
+	return TypeChatActionRecordingVideo
 }
 
 func (*ChatActionRecordingVideo) ChatActionType() string {
-    return TypeChatActionRecordingVideo
+	return TypeChatActionRecordingVideo
 }
 
 // The user is uploading a video
 type ChatActionUploadingVideo struct {
-    meta
-    // Upload progress, as a percentage
-    Progress int32 `json:"progress"`
+	meta
+	// Upload progress, as a percentage
+	Progress int32 `json:"progress"`
 }
 
 func (entity *ChatActionUploadingVideo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatActionUploadingVideo
+	type stub ChatActionUploadingVideo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatActionUploadingVideo) GetClass() string {
-    return ClassChatAction
+	return ClassChatAction
 }
 
 func (*ChatActionUploadingVideo) GetType() string {
-    return TypeChatActionUploadingVideo
+	return TypeChatActionUploadingVideo
 }
 
 func (*ChatActionUploadingVideo) ChatActionType() string {
-    return TypeChatActionUploadingVideo
+	return TypeChatActionUploadingVideo
 }
 
 // The user is recording a voice note
-type ChatActionRecordingVoiceNote struct{
-    meta
+type ChatActionRecordingVoiceNote struct {
+	meta
 }
 
 func (entity *ChatActionRecordingVoiceNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatActionRecordingVoiceNote
+	type stub ChatActionRecordingVoiceNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatActionRecordingVoiceNote) GetClass() string {
-    return ClassChatAction
+	return ClassChatAction
 }
 
 func (*ChatActionRecordingVoiceNote) GetType() string {
-    return TypeChatActionRecordingVoiceNote
+	return TypeChatActionRecordingVoiceNote
 }
 
 func (*ChatActionRecordingVoiceNote) ChatActionType() string {
-    return TypeChatActionRecordingVoiceNote
+	return TypeChatActionRecordingVoiceNote
 }
 
 // The user is uploading a voice note
 type ChatActionUploadingVoiceNote struct {
-    meta
-    // Upload progress, as a percentage
-    Progress int32 `json:"progress"`
+	meta
+	// Upload progress, as a percentage
+	Progress int32 `json:"progress"`
 }
 
 func (entity *ChatActionUploadingVoiceNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatActionUploadingVoiceNote
+	type stub ChatActionUploadingVoiceNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatActionUploadingVoiceNote) GetClass() string {
-    return ClassChatAction
+	return ClassChatAction
 }
 
 func (*ChatActionUploadingVoiceNote) GetType() string {
-    return TypeChatActionUploadingVoiceNote
+	return TypeChatActionUploadingVoiceNote
 }
 
 func (*ChatActionUploadingVoiceNote) ChatActionType() string {
-    return TypeChatActionUploadingVoiceNote
+	return TypeChatActionUploadingVoiceNote
 }
 
 // The user is uploading a photo
 type ChatActionUploadingPhoto struct {
-    meta
-    // Upload progress, as a percentage
-    Progress int32 `json:"progress"`
+	meta
+	// Upload progress, as a percentage
+	Progress int32 `json:"progress"`
 }
 
 func (entity *ChatActionUploadingPhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatActionUploadingPhoto
+	type stub ChatActionUploadingPhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatActionUploadingPhoto) GetClass() string {
-    return ClassChatAction
+	return ClassChatAction
 }
 
 func (*ChatActionUploadingPhoto) GetType() string {
-    return TypeChatActionUploadingPhoto
+	return TypeChatActionUploadingPhoto
 }
 
 func (*ChatActionUploadingPhoto) ChatActionType() string {
-    return TypeChatActionUploadingPhoto
+	return TypeChatActionUploadingPhoto
 }
 
 // The user is uploading a document
 type ChatActionUploadingDocument struct {
-    meta
-    // Upload progress, as a percentage
-    Progress int32 `json:"progress"`
+	meta
+	// Upload progress, as a percentage
+	Progress int32 `json:"progress"`
 }
 
 func (entity *ChatActionUploadingDocument) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatActionUploadingDocument
+	type stub ChatActionUploadingDocument
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatActionUploadingDocument) GetClass() string {
-    return ClassChatAction
+	return ClassChatAction
 }
 
 func (*ChatActionUploadingDocument) GetType() string {
-    return TypeChatActionUploadingDocument
+	return TypeChatActionUploadingDocument
 }
 
 func (*ChatActionUploadingDocument) ChatActionType() string {
-    return TypeChatActionUploadingDocument
+	return TypeChatActionUploadingDocument
 }
 
 // The user is picking a location or venue to send
-type ChatActionChoosingLocation struct{
-    meta
+type ChatActionChoosingLocation struct {
+	meta
 }
 
 func (entity *ChatActionChoosingLocation) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatActionChoosingLocation
+	type stub ChatActionChoosingLocation
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatActionChoosingLocation) GetClass() string {
-    return ClassChatAction
+	return ClassChatAction
 }
 
 func (*ChatActionChoosingLocation) GetType() string {
-    return TypeChatActionChoosingLocation
+	return TypeChatActionChoosingLocation
 }
 
 func (*ChatActionChoosingLocation) ChatActionType() string {
-    return TypeChatActionChoosingLocation
+	return TypeChatActionChoosingLocation
 }
 
 // The user is picking a contact to send
-type ChatActionChoosingContact struct{
-    meta
+type ChatActionChoosingContact struct {
+	meta
 }
 
 func (entity *ChatActionChoosingContact) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatActionChoosingContact
+	type stub ChatActionChoosingContact
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatActionChoosingContact) GetClass() string {
-    return ClassChatAction
+	return ClassChatAction
 }
 
 func (*ChatActionChoosingContact) GetType() string {
-    return TypeChatActionChoosingContact
+	return TypeChatActionChoosingContact
 }
 
 func (*ChatActionChoosingContact) ChatActionType() string {
-    return TypeChatActionChoosingContact
+	return TypeChatActionChoosingContact
 }
 
 // The user has started to play a game
-type ChatActionStartPlayingGame struct{
-    meta
+type ChatActionStartPlayingGame struct {
+	meta
 }
 
 func (entity *ChatActionStartPlayingGame) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatActionStartPlayingGame
+	type stub ChatActionStartPlayingGame
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatActionStartPlayingGame) GetClass() string {
-    return ClassChatAction
+	return ClassChatAction
 }
 
 func (*ChatActionStartPlayingGame) GetType() string {
-    return TypeChatActionStartPlayingGame
+	return TypeChatActionStartPlayingGame
 }
 
 func (*ChatActionStartPlayingGame) ChatActionType() string {
-    return TypeChatActionStartPlayingGame
+	return TypeChatActionStartPlayingGame
 }
 
 // The user is recording a video note
-type ChatActionRecordingVideoNote struct{
-    meta
+type ChatActionRecordingVideoNote struct {
+	meta
 }
 
 func (entity *ChatActionRecordingVideoNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatActionRecordingVideoNote
+	type stub ChatActionRecordingVideoNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatActionRecordingVideoNote) GetClass() string {
-    return ClassChatAction
+	return ClassChatAction
 }
 
 func (*ChatActionRecordingVideoNote) GetType() string {
-    return TypeChatActionRecordingVideoNote
+	return TypeChatActionRecordingVideoNote
 }
 
 func (*ChatActionRecordingVideoNote) ChatActionType() string {
-    return TypeChatActionRecordingVideoNote
+	return TypeChatActionRecordingVideoNote
 }
 
 // The user is uploading a video note
 type ChatActionUploadingVideoNote struct {
-    meta
-    // Upload progress, as a percentage
-    Progress int32 `json:"progress"`
+	meta
+	// Upload progress, as a percentage
+	Progress int32 `json:"progress"`
 }
 
 func (entity *ChatActionUploadingVideoNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatActionUploadingVideoNote
+	type stub ChatActionUploadingVideoNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatActionUploadingVideoNote) GetClass() string {
-    return ClassChatAction
+	return ClassChatAction
 }
 
 func (*ChatActionUploadingVideoNote) GetType() string {
-    return TypeChatActionUploadingVideoNote
+	return TypeChatActionUploadingVideoNote
 }
 
 func (*ChatActionUploadingVideoNote) ChatActionType() string {
-    return TypeChatActionUploadingVideoNote
+	return TypeChatActionUploadingVideoNote
 }
 
 // The user has cancelled the previous action
-type ChatActionCancel struct{
-    meta
+type ChatActionCancel struct {
+	meta
 }
 
 func (entity *ChatActionCancel) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatActionCancel
+	type stub ChatActionCancel
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatActionCancel) GetClass() string {
-    return ClassChatAction
+	return ClassChatAction
 }
 
 func (*ChatActionCancel) GetType() string {
-    return TypeChatActionCancel
+	return TypeChatActionCancel
 }
 
 func (*ChatActionCancel) ChatActionType() string {
-    return TypeChatActionCancel
+	return TypeChatActionCancel
 }
 
 // The user status was never changed
-type UserStatusEmpty struct{
-    meta
+type UserStatusEmpty struct {
+	meta
 }
 
 func (entity *UserStatusEmpty) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserStatusEmpty
+	type stub UserStatusEmpty
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserStatusEmpty) GetClass() string {
-    return ClassUserStatus
+	return ClassUserStatus
 }
 
 func (*UserStatusEmpty) GetType() string {
-    return TypeUserStatusEmpty
+	return TypeUserStatusEmpty
 }
 
 func (*UserStatusEmpty) UserStatusType() string {
-    return TypeUserStatusEmpty
+	return TypeUserStatusEmpty
 }
 
 // The user is online
 type UserStatusOnline struct {
-    meta
-    // Point in time (Unix timestamp) when the user's online status will expire
-    Expires int32 `json:"expires"`
+	meta
+	// Point in time (Unix timestamp) when the user's online status will expire
+	Expires int32 `json:"expires"`
 }
 
 func (entity *UserStatusOnline) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserStatusOnline
+	type stub UserStatusOnline
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserStatusOnline) GetClass() string {
-    return ClassUserStatus
+	return ClassUserStatus
 }
 
 func (*UserStatusOnline) GetType() string {
-    return TypeUserStatusOnline
+	return TypeUserStatusOnline
 }
 
 func (*UserStatusOnline) UserStatusType() string {
-    return TypeUserStatusOnline
+	return TypeUserStatusOnline
 }
 
 // The user is offline
 type UserStatusOffline struct {
-    meta
-    // Point in time (Unix timestamp) when the user was last online
-    WasOnline int32 `json:"was_online"`
+	meta
+	// Point in time (Unix timestamp) when the user was last online
+	WasOnline int32 `json:"was_online"`
 }
 
 func (entity *UserStatusOffline) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserStatusOffline
+	type stub UserStatusOffline
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserStatusOffline) GetClass() string {
-    return ClassUserStatus
+	return ClassUserStatus
 }
 
 func (*UserStatusOffline) GetType() string {
-    return TypeUserStatusOffline
+	return TypeUserStatusOffline
 }
 
 func (*UserStatusOffline) UserStatusType() string {
-    return TypeUserStatusOffline
+	return TypeUserStatusOffline
 }
 
 // The user was online recently
-type UserStatusRecently struct{
-    meta
+type UserStatusRecently struct {
+	meta
 }
 
 func (entity *UserStatusRecently) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserStatusRecently
+	type stub UserStatusRecently
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserStatusRecently) GetClass() string {
-    return ClassUserStatus
+	return ClassUserStatus
 }
 
 func (*UserStatusRecently) GetType() string {
-    return TypeUserStatusRecently
+	return TypeUserStatusRecently
 }
 
 func (*UserStatusRecently) UserStatusType() string {
-    return TypeUserStatusRecently
+	return TypeUserStatusRecently
 }
 
 // The user is offline, but was online last week
-type UserStatusLastWeek struct{
-    meta
+type UserStatusLastWeek struct {
+	meta
 }
 
 func (entity *UserStatusLastWeek) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserStatusLastWeek
+	type stub UserStatusLastWeek
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserStatusLastWeek) GetClass() string {
-    return ClassUserStatus
+	return ClassUserStatus
 }
 
 func (*UserStatusLastWeek) GetType() string {
-    return TypeUserStatusLastWeek
+	return TypeUserStatusLastWeek
 }
 
 func (*UserStatusLastWeek) UserStatusType() string {
-    return TypeUserStatusLastWeek
+	return TypeUserStatusLastWeek
 }
 
 // The user is offline, but was online last month
-type UserStatusLastMonth struct{
-    meta
+type UserStatusLastMonth struct {
+	meta
 }
 
 func (entity *UserStatusLastMonth) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserStatusLastMonth
+	type stub UserStatusLastMonth
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserStatusLastMonth) GetClass() string {
-    return ClassUserStatus
+	return ClassUserStatus
 }
 
 func (*UserStatusLastMonth) GetType() string {
-    return TypeUserStatusLastMonth
+	return TypeUserStatusLastMonth
 }
 
 func (*UserStatusLastMonth) UserStatusType() string {
-    return TypeUserStatusLastMonth
+	return TypeUserStatusLastMonth
 }
 
 // Represents a list of stickers
 type Stickers struct {
-    meta
-    // List of stickers
-    Stickers []*Sticker `json:"stickers"`
+	meta
+	// List of stickers
+	Stickers []*Sticker `json:"stickers"`
 }
 
 func (entity *Stickers) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Stickers
+	type stub Stickers
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Stickers) GetClass() string {
-    return ClassStickers
+	return ClassStickers
 }
 
 func (*Stickers) GetType() string {
-    return TypeStickers
+	return TypeStickers
 }
 
 // Represents a list of all emoji corresponding to a sticker in a sticker set. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
 type StickerEmojis struct {
-    meta
-    // List of emojis
-    Emojis []string `json:"emojis"`
+	meta
+	// List of emojis
+	Emojis []string `json:"emojis"`
 }
 
 func (entity *StickerEmojis) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub StickerEmojis
+	type stub StickerEmojis
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*StickerEmojis) GetClass() string {
-    return ClassStickerEmojis
+	return ClassStickerEmojis
 }
 
 func (*StickerEmojis) GetType() string {
-    return TypeStickerEmojis
+	return TypeStickerEmojis
 }
 
 // Represents a sticker set
 type StickerSet struct {
-    meta
-    // Identifier of the sticker set
-    Id JsonInt64 `json:"id"`
-    // Title of the sticker set
-    Title string `json:"title"`
-    // Name of the sticker set
-    Name string `json:"name"`
-    // True, if the sticker set has been installed by the current user
-    IsInstalled bool `json:"is_installed"`
-    // True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
-    IsArchived bool `json:"is_archived"`
-    // True, if the sticker set is official
-    IsOfficial bool `json:"is_official"`
-    // True, if the stickers in the set are masks
-    IsMasks bool `json:"is_masks"`
-    // True for already viewed trending sticker sets
-    IsViewed bool `json:"is_viewed"`
-    // List of stickers in this set
-    Stickers []*Sticker `json:"stickers"`
-    // A list of emoji corresponding to the stickers in the same order
-    Emojis []*StickerEmojis `json:"emojis"`
+	meta
+	// Identifier of the sticker set
+	Id JsonInt64 `json:"id"`
+	// Title of the sticker set
+	Title string `json:"title"`
+	// Name of the sticker set
+	Name string `json:"name"`
+	// True, if the sticker set has been installed by the current user
+	IsInstalled bool `json:"is_installed"`
+	// True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
+	IsArchived bool `json:"is_archived"`
+	// True, if the sticker set is official
+	IsOfficial bool `json:"is_official"`
+	// True, if the stickers in the set are masks
+	IsMasks bool `json:"is_masks"`
+	// True for already viewed trending sticker sets
+	IsViewed bool `json:"is_viewed"`
+	// List of stickers in this set
+	Stickers []*Sticker `json:"stickers"`
+	// A list of emoji corresponding to the stickers in the same order
+	Emojis []*StickerEmojis `json:"emojis"`
 }
 
 func (entity *StickerSet) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub StickerSet
+	type stub StickerSet
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*StickerSet) GetClass() string {
-    return ClassStickerSet
+	return ClassStickerSet
 }
 
 func (*StickerSet) GetType() string {
-    return TypeStickerSet
+	return TypeStickerSet
 }
 
 // Represents short information about a sticker set
 type StickerSetInfo struct {
-    meta
-    // Identifier of the sticker set
-    Id JsonInt64 `json:"id"`
-    // Title of the sticker set
-    Title string `json:"title"`
-    // Name of the sticker set
-    Name string `json:"name"`
-    // True, if the sticker set has been installed by current user
-    IsInstalled bool `json:"is_installed"`
-    // True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
-    IsArchived bool `json:"is_archived"`
-    // True, if the sticker set is official
-    IsOfficial bool `json:"is_official"`
-    // True, if the stickers in the set are masks
-    IsMasks bool `json:"is_masks"`
-    // True for already viewed trending sticker sets
-    IsViewed bool `json:"is_viewed"`
-    // Total number of stickers in the set
-    Size int32 `json:"size"`
-    // Contains up to the first 5 stickers from the set, depending on the context. If the client needs more stickers the full set should be requested
-    Covers []*Sticker `json:"covers"`
+	meta
+	// Identifier of the sticker set
+	Id JsonInt64 `json:"id"`
+	// Title of the sticker set
+	Title string `json:"title"`
+	// Name of the sticker set
+	Name string `json:"name"`
+	// True, if the sticker set has been installed by current user
+	IsInstalled bool `json:"is_installed"`
+	// True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
+	IsArchived bool `json:"is_archived"`
+	// True, if the sticker set is official
+	IsOfficial bool `json:"is_official"`
+	// True, if the stickers in the set are masks
+	IsMasks bool `json:"is_masks"`
+	// True for already viewed trending sticker sets
+	IsViewed bool `json:"is_viewed"`
+	// Total number of stickers in the set
+	Size int32 `json:"size"`
+	// Contains up to the first 5 stickers from the set, depending on the context. If the client needs more stickers the full set should be requested
+	Covers []*Sticker `json:"covers"`
 }
 
 func (entity *StickerSetInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub StickerSetInfo
+	type stub StickerSetInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*StickerSetInfo) GetClass() string {
-    return ClassStickerSetInfo
+	return ClassStickerSetInfo
 }
 
 func (*StickerSetInfo) GetType() string {
-    return TypeStickerSetInfo
+	return TypeStickerSetInfo
 }
 
 // Represents a list of sticker sets
 type StickerSets struct {
-    meta
-    // Approximate total number of sticker sets found
-    TotalCount int32 `json:"total_count"`
-    // List of sticker sets
-    Sets []*StickerSetInfo `json:"sets"`
+	meta
+	// Approximate total number of sticker sets found
+	TotalCount int32 `json:"total_count"`
+	// List of sticker sets
+	Sets []*StickerSetInfo `json:"sets"`
 }
 
 func (entity *StickerSets) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub StickerSets
+	type stub StickerSets
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*StickerSets) GetClass() string {
-    return ClassStickerSets
+	return ClassStickerSets
 }
 
 func (*StickerSets) GetType() string {
-    return TypeStickerSets
+	return TypeStickerSets
 }
 
 // The call wasn't discarded, or the reason is unknown
-type CallDiscardReasonEmpty struct{
-    meta
+type CallDiscardReasonEmpty struct {
+	meta
 }
 
 func (entity *CallDiscardReasonEmpty) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallDiscardReasonEmpty
+	type stub CallDiscardReasonEmpty
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallDiscardReasonEmpty) GetClass() string {
-    return ClassCallDiscardReason
+	return ClassCallDiscardReason
 }
 
 func (*CallDiscardReasonEmpty) GetType() string {
-    return TypeCallDiscardReasonEmpty
+	return TypeCallDiscardReasonEmpty
 }
 
 func (*CallDiscardReasonEmpty) CallDiscardReasonType() string {
-    return TypeCallDiscardReasonEmpty
+	return TypeCallDiscardReasonEmpty
 }
 
 // The call was ended before the conversation started. It was cancelled by the caller or missed by the other party
-type CallDiscardReasonMissed struct{
-    meta
+type CallDiscardReasonMissed struct {
+	meta
 }
 
 func (entity *CallDiscardReasonMissed) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallDiscardReasonMissed
+	type stub CallDiscardReasonMissed
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallDiscardReasonMissed) GetClass() string {
-    return ClassCallDiscardReason
+	return ClassCallDiscardReason
 }
 
 func (*CallDiscardReasonMissed) GetType() string {
-    return TypeCallDiscardReasonMissed
+	return TypeCallDiscardReasonMissed
 }
 
 func (*CallDiscardReasonMissed) CallDiscardReasonType() string {
-    return TypeCallDiscardReasonMissed
+	return TypeCallDiscardReasonMissed
 }
 
 // The call was ended before the conversation started. It was declined by the other party
-type CallDiscardReasonDeclined struct{
-    meta
+type CallDiscardReasonDeclined struct {
+	meta
 }
 
 func (entity *CallDiscardReasonDeclined) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallDiscardReasonDeclined
+	type stub CallDiscardReasonDeclined
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallDiscardReasonDeclined) GetClass() string {
-    return ClassCallDiscardReason
+	return ClassCallDiscardReason
 }
 
 func (*CallDiscardReasonDeclined) GetType() string {
-    return TypeCallDiscardReasonDeclined
+	return TypeCallDiscardReasonDeclined
 }
 
 func (*CallDiscardReasonDeclined) CallDiscardReasonType() string {
-    return TypeCallDiscardReasonDeclined
+	return TypeCallDiscardReasonDeclined
 }
 
 // The call was ended during the conversation because the users were disconnected
-type CallDiscardReasonDisconnected struct{
-    meta
+type CallDiscardReasonDisconnected struct {
+	meta
 }
 
 func (entity *CallDiscardReasonDisconnected) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallDiscardReasonDisconnected
+	type stub CallDiscardReasonDisconnected
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallDiscardReasonDisconnected) GetClass() string {
-    return ClassCallDiscardReason
+	return ClassCallDiscardReason
 }
 
 func (*CallDiscardReasonDisconnected) GetType() string {
-    return TypeCallDiscardReasonDisconnected
+	return TypeCallDiscardReasonDisconnected
 }
 
 func (*CallDiscardReasonDisconnected) CallDiscardReasonType() string {
-    return TypeCallDiscardReasonDisconnected
+	return TypeCallDiscardReasonDisconnected
 }
 
 // The call was ended because one of the parties hung up
-type CallDiscardReasonHungUp struct{
-    meta
+type CallDiscardReasonHungUp struct {
+	meta
 }
 
 func (entity *CallDiscardReasonHungUp) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallDiscardReasonHungUp
+	type stub CallDiscardReasonHungUp
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallDiscardReasonHungUp) GetClass() string {
-    return ClassCallDiscardReason
+	return ClassCallDiscardReason
 }
 
 func (*CallDiscardReasonHungUp) GetType() string {
-    return TypeCallDiscardReasonHungUp
+	return TypeCallDiscardReasonHungUp
 }
 
 func (*CallDiscardReasonHungUp) CallDiscardReasonType() string {
-    return TypeCallDiscardReasonHungUp
+	return TypeCallDiscardReasonHungUp
 }
 
 // Specifies the supported call protocols
 type CallProtocol struct {
-    meta
-    // True, if UDP peer-to-peer connections are supported
-    UdpP2p bool `json:"udp_p2p"`
-    // True, if connection through UDP reflectors is supported
-    UdpReflector bool `json:"udp_reflector"`
-    // Minimum supported API layer; use 65
-    MinLayer int32 `json:"min_layer"`
-    // Maximum supported API layer; use 65
-    MaxLayer int32 `json:"max_layer"`
+	meta
+	// True, if UDP peer-to-peer connections are supported
+	UdpP2p bool `json:"udp_p2p"`
+	// True, if connection through UDP reflectors is supported
+	UdpReflector bool `json:"udp_reflector"`
+	// Minimum supported API layer; use 65
+	MinLayer int32 `json:"min_layer"`
+	// Maximum supported API layer; use 65
+	MaxLayer int32 `json:"max_layer"`
 }
 
 func (entity *CallProtocol) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallProtocol
+	type stub CallProtocol
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallProtocol) GetClass() string {
-    return ClassCallProtocol
+	return ClassCallProtocol
 }
 
 func (*CallProtocol) GetType() string {
-    return TypeCallProtocol
+	return TypeCallProtocol
 }
 
 // Describes the address of UDP reflectors
 type CallConnection struct {
-    meta
-    // Reflector identifier
-    Id JsonInt64 `json:"id"`
-    // IPv4 reflector address
-    Ip string `json:"ip"`
-    // IPv6 reflector address
-    Ipv6 string `json:"ipv6"`
-    // Reflector port number
-    Port int32 `json:"port"`
-    // Connection peer tag
-    PeerTag []byte `json:"peer_tag"`
+	meta
+	// Reflector identifier
+	Id JsonInt64 `json:"id"`
+	// IPv4 reflector address
+	Ip string `json:"ip"`
+	// IPv6 reflector address
+	Ipv6 string `json:"ipv6"`
+	// Reflector port number
+	Port int32 `json:"port"`
+	// Connection peer tag
+	PeerTag []byte `json:"peer_tag"`
 }
 
 func (entity *CallConnection) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallConnection
+	type stub CallConnection
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallConnection) GetClass() string {
-    return ClassCallConnection
+	return ClassCallConnection
 }
 
 func (*CallConnection) GetType() string {
-    return TypeCallConnection
+	return TypeCallConnection
 }
 
 // Contains the call identifier
 type CallId struct {
-    meta
-    // Call identifier
-    Id int32 `json:"id"`
+	meta
+	// Call identifier
+	Id int32 `json:"id"`
 }
 
 func (entity *CallId) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallId
+	type stub CallId
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallId) GetClass() string {
-    return ClassCallId
+	return ClassCallId
 }
 
 func (*CallId) GetType() string {
-    return TypeCallId
+	return TypeCallId
 }
 
 // The call is pending, waiting to be accepted by a user
 type CallStatePending struct {
-    meta
-    // True, if the call has already been created by the server
-    IsCreated bool `json:"is_created"`
-    // True, if the call has already been received by the other party
-    IsReceived bool `json:"is_received"`
+	meta
+	// True, if the call has already been created by the server
+	IsCreated bool `json:"is_created"`
+	// True, if the call has already been received by the other party
+	IsReceived bool `json:"is_received"`
 }
 
 func (entity *CallStatePending) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallStatePending
+	type stub CallStatePending
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallStatePending) GetClass() string {
-    return ClassCallState
+	return ClassCallState
 }
 
 func (*CallStatePending) GetType() string {
-    return TypeCallStatePending
+	return TypeCallStatePending
 }
 
 func (*CallStatePending) CallStateType() string {
-    return TypeCallStatePending
+	return TypeCallStatePending
 }
 
 // The call has been answered and encryption keys are being exchanged
-type CallStateExchangingKeys struct{
-    meta
+type CallStateExchangingKeys struct {
+	meta
 }
 
 func (entity *CallStateExchangingKeys) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallStateExchangingKeys
+	type stub CallStateExchangingKeys
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallStateExchangingKeys) GetClass() string {
-    return ClassCallState
+	return ClassCallState
 }
 
 func (*CallStateExchangingKeys) GetType() string {
-    return TypeCallStateExchangingKeys
+	return TypeCallStateExchangingKeys
 }
 
 func (*CallStateExchangingKeys) CallStateType() string {
-    return TypeCallStateExchangingKeys
+	return TypeCallStateExchangingKeys
 }
 
 // The call is ready to use
 type CallStateReady struct {
-    meta
-    // Call protocols supported by the peer
-    Protocol *CallProtocol `json:"protocol"`
-    // Available UDP reflectors
-    Connections []*CallConnection `json:"connections"`
-    // A JSON-encoded call config
-    Config string `json:"config"`
-    // Call encryption key
-    EncryptionKey []byte `json:"encryption_key"`
-    // Encryption key emojis fingerprint
-    Emojis []string `json:"emojis"`
+	meta
+	// Call protocols supported by the peer
+	Protocol *CallProtocol `json:"protocol"`
+	// Available UDP reflectors
+	Connections []*CallConnection `json:"connections"`
+	// A JSON-encoded call config
+	Config string `json:"config"`
+	// Call encryption key
+	EncryptionKey []byte `json:"encryption_key"`
+	// Encryption key emojis fingerprint
+	Emojis []string `json:"emojis"`
 }
 
 func (entity *CallStateReady) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallStateReady
+	type stub CallStateReady
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallStateReady) GetClass() string {
-    return ClassCallState
+	return ClassCallState
 }
 
 func (*CallStateReady) GetType() string {
-    return TypeCallStateReady
+	return TypeCallStateReady
 }
 
 func (*CallStateReady) CallStateType() string {
-    return TypeCallStateReady
+	return TypeCallStateReady
 }
 
 // The call is hanging up after discardCall has been called
-type CallStateHangingUp struct{
-    meta
+type CallStateHangingUp struct {
+	meta
 }
 
 func (entity *CallStateHangingUp) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallStateHangingUp
+	type stub CallStateHangingUp
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallStateHangingUp) GetClass() string {
-    return ClassCallState
+	return ClassCallState
 }
 
 func (*CallStateHangingUp) GetType() string {
-    return TypeCallStateHangingUp
+	return TypeCallStateHangingUp
 }
 
 func (*CallStateHangingUp) CallStateType() string {
-    return TypeCallStateHangingUp
+	return TypeCallStateHangingUp
 }
 
 // The call has ended successfully
 type CallStateDiscarded struct {
-    meta
-    // The reason, why the call has ended
-    Reason CallDiscardReason `json:"reason"`
-    // True, if the call rating should be sent to the server
-    NeedRating bool `json:"need_rating"`
-    // True, if the call debug information should be sent to the server
-    NeedDebugInformation bool `json:"need_debug_information"`
+	meta
+	// The reason, why the call has ended
+	Reason CallDiscardReason `json:"reason"`
+	// True, if the call rating should be sent to the server
+	NeedRating bool `json:"need_rating"`
+	// True, if the call debug information should be sent to the server
+	NeedDebugInformation bool `json:"need_debug_information"`
 }
 
 func (entity *CallStateDiscarded) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallStateDiscarded
+	type stub CallStateDiscarded
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallStateDiscarded) GetClass() string {
-    return ClassCallState
+	return ClassCallState
 }
 
 func (*CallStateDiscarded) GetType() string {
-    return TypeCallStateDiscarded
+	return TypeCallStateDiscarded
 }
 
 func (*CallStateDiscarded) CallStateType() string {
-    return TypeCallStateDiscarded
+	return TypeCallStateDiscarded
 }
 
 func (callStateDiscarded *CallStateDiscarded) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Reason json.RawMessage `json:"reason"`
-        NeedRating bool `json:"need_rating"`
-        NeedDebugInformation bool `json:"need_debug_information"`
-    }
+	var tmp struct {
+		Reason               json.RawMessage `json:"reason"`
+		NeedRating           bool            `json:"need_rating"`
+		NeedDebugInformation bool            `json:"need_debug_information"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    callStateDiscarded.NeedRating = tmp.NeedRating
-    callStateDiscarded.NeedDebugInformation = tmp.NeedDebugInformation
+	callStateDiscarded.NeedRating = tmp.NeedRating
+	callStateDiscarded.NeedDebugInformation = tmp.NeedDebugInformation
 
-    fieldReason, _ := UnmarshalCallDiscardReason(tmp.Reason)
-    callStateDiscarded.Reason = fieldReason
+	fieldReason, _ := UnmarshalCallDiscardReason(tmp.Reason)
+	callStateDiscarded.Reason = fieldReason
 
-    return nil
+	return nil
 }
 
 // The call has ended with an error
 type CallStateError struct {
-    meta
-    // Error. An error with the code 4005000 will be returned if an outgoing call is missed because of an expired timeout
-    Error *Error `json:"error"`
+	meta
+	// Error. An error with the code 4005000 will be returned if an outgoing call is missed because of an expired timeout
+	Error *Error `json:"error"`
 }
 
 func (entity *CallStateError) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallStateError
+	type stub CallStateError
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallStateError) GetClass() string {
-    return ClassCallState
+	return ClassCallState
 }
 
 func (*CallStateError) GetType() string {
-    return TypeCallStateError
+	return TypeCallStateError
 }
 
 func (*CallStateError) CallStateType() string {
-    return TypeCallStateError
+	return TypeCallStateError
 }
 
 // Describes a call
 type Call struct {
-    meta
-    // Call identifier, not persistent
-    Id int32 `json:"id"`
-    // Peer user identifier
-    UserId int32 `json:"user_id"`
-    // True, if the call is outgoing
-    IsOutgoing bool `json:"is_outgoing"`
-    // Call state
-    State CallState `json:"state"`
+	meta
+	// Call identifier, not persistent
+	Id int32 `json:"id"`
+	// Peer user identifier
+	UserId int32 `json:"user_id"`
+	// True, if the call is outgoing
+	IsOutgoing bool `json:"is_outgoing"`
+	// Call state
+	State CallState `json:"state"`
 }
 
 func (entity *Call) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Call
+	type stub Call
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Call) GetClass() string {
-    return ClassCall
+	return ClassCall
 }
 
 func (*Call) GetType() string {
-    return TypeCall
+	return TypeCall
 }
 
 func (call *Call) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id int32 `json:"id"`
-        UserId int32 `json:"user_id"`
-        IsOutgoing bool `json:"is_outgoing"`
-        State json.RawMessage `json:"state"`
-    }
+	var tmp struct {
+		Id         int32           `json:"id"`
+		UserId     int32           `json:"user_id"`
+		IsOutgoing bool            `json:"is_outgoing"`
+		State      json.RawMessage `json:"state"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    call.Id = tmp.Id
-    call.UserId = tmp.UserId
-    call.IsOutgoing = tmp.IsOutgoing
+	call.Id = tmp.Id
+	call.UserId = tmp.UserId
+	call.IsOutgoing = tmp.IsOutgoing
 
-    fieldState, _ := UnmarshalCallState(tmp.State)
-    call.State = fieldState
+	fieldState, _ := UnmarshalCallState(tmp.State)
+	call.State = fieldState
 
-    return nil
+	return nil
 }
 
 // Represents a list of animations
 type Animations struct {
-    meta
-    // List of animations
-    Animations []*Animation `json:"animations"`
+	meta
+	// List of animations
+	Animations []*Animation `json:"animations"`
 }
 
 func (entity *Animations) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Animations
+	type stub Animations
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Animations) GetClass() string {
-    return ClassAnimations
+	return ClassAnimations
 }
 
 func (*Animations) GetType() string {
-    return TypeAnimations
+	return TypeAnimations
 }
 
 // Represents the result of an ImportContacts request
 type ImportedContacts struct {
-    meta
-    // User identifiers of the imported contacts in the same order as they were specified in the request; 0 if the contact is not yet a registered user
-    UserIds []int32 `json:"user_ids"`
-    // The number of users that imported the corresponding contact; 0 for already registered users or if unavailable
-    ImporterCount []int32 `json:"importer_count"`
+	meta
+	// User identifiers of the imported contacts in the same order as they were specified in the request; 0 if the contact is not yet a registered user
+	UserIds []int32 `json:"user_ids"`
+	// The number of users that imported the corresponding contact; 0 for already registered users or if unavailable
+	ImporterCount []int32 `json:"importer_count"`
 }
 
 func (entity *ImportedContacts) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ImportedContacts
+	type stub ImportedContacts
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ImportedContacts) GetClass() string {
-    return ClassImportedContacts
+	return ClassImportedContacts
 }
 
 func (*ImportedContacts) GetType() string {
-    return TypeImportedContacts
+	return TypeImportedContacts
 }
 
 // Represents a link to an animated GIF
 type InputInlineQueryResultAnimatedGif struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Title of the query result
-    Title string `json:"title"`
-    // URL of the static result thumbnail (JPEG or GIF), if it exists
-    ThumbnailUrl string `json:"thumbnail_url"`
-    // The URL of the GIF-file (file size must not exceed 1MB)
-    GifUrl string `json:"gif_url"`
-    // Duration of the GIF, in seconds
-    GifDuration int32 `json:"gif_duration"`
-    // Width of the GIF
-    GifWidth int32 `json:"gif_width"`
-    // Height of the GIF
-    GifHeight int32 `json:"gif_height"`
-    // The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
-    // The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAnimation, InputMessageLocation, InputMessageVenue or InputMessageContact
-    InputMessageContent InputMessageContent `json:"input_message_content"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Title of the query result
+	Title string `json:"title"`
+	// URL of the static result thumbnail (JPEG or GIF), if it exists
+	ThumbnailUrl string `json:"thumbnail_url"`
+	// The URL of the GIF-file (file size must not exceed 1MB)
+	GifUrl string `json:"gif_url"`
+	// Duration of the GIF, in seconds
+	GifDuration int32 `json:"gif_duration"`
+	// Width of the GIF
+	GifWidth int32 `json:"gif_width"`
+	// Height of the GIF
+	GifHeight int32 `json:"gif_height"`
+	// The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	// The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAnimation, InputMessageLocation, InputMessageVenue or InputMessageContact
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (entity *InputInlineQueryResultAnimatedGif) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputInlineQueryResultAnimatedGif
+	type stub InputInlineQueryResultAnimatedGif
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputInlineQueryResultAnimatedGif) GetClass() string {
-    return ClassInputInlineQueryResult
+	return ClassInputInlineQueryResult
 }
 
 func (*InputInlineQueryResultAnimatedGif) GetType() string {
-    return TypeInputInlineQueryResultAnimatedGif
+	return TypeInputInlineQueryResultAnimatedGif
 }
 
 func (*InputInlineQueryResultAnimatedGif) InputInlineQueryResultType() string {
-    return TypeInputInlineQueryResultAnimatedGif
+	return TypeInputInlineQueryResultAnimatedGif
 }
 
 func (inputInlineQueryResultAnimatedGif *InputInlineQueryResultAnimatedGif) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id string `json:"id"`
-        Title string `json:"title"`
-        ThumbnailUrl string `json:"thumbnail_url"`
-        GifUrl string `json:"gif_url"`
-        GifDuration int32 `json:"gif_duration"`
-        GifWidth int32 `json:"gif_width"`
-        GifHeight int32 `json:"gif_height"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-        InputMessageContent json.RawMessage `json:"input_message_content"`
-    }
+	var tmp struct {
+		Id                  string          `json:"id"`
+		Title               string          `json:"title"`
+		ThumbnailUrl        string          `json:"thumbnail_url"`
+		GifUrl              string          `json:"gif_url"`
+		GifDuration         int32           `json:"gif_duration"`
+		GifWidth            int32           `json:"gif_width"`
+		GifHeight           int32           `json:"gif_height"`
+		ReplyMarkup         json.RawMessage `json:"reply_markup"`
+		InputMessageContent json.RawMessage `json:"input_message_content"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputInlineQueryResultAnimatedGif.Id = tmp.Id
-    inputInlineQueryResultAnimatedGif.Title = tmp.Title
-    inputInlineQueryResultAnimatedGif.ThumbnailUrl = tmp.ThumbnailUrl
-    inputInlineQueryResultAnimatedGif.GifUrl = tmp.GifUrl
-    inputInlineQueryResultAnimatedGif.GifDuration = tmp.GifDuration
-    inputInlineQueryResultAnimatedGif.GifWidth = tmp.GifWidth
-    inputInlineQueryResultAnimatedGif.GifHeight = tmp.GifHeight
+	inputInlineQueryResultAnimatedGif.Id = tmp.Id
+	inputInlineQueryResultAnimatedGif.Title = tmp.Title
+	inputInlineQueryResultAnimatedGif.ThumbnailUrl = tmp.ThumbnailUrl
+	inputInlineQueryResultAnimatedGif.GifUrl = tmp.GifUrl
+	inputInlineQueryResultAnimatedGif.GifDuration = tmp.GifDuration
+	inputInlineQueryResultAnimatedGif.GifWidth = tmp.GifWidth
+	inputInlineQueryResultAnimatedGif.GifHeight = tmp.GifHeight
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    inputInlineQueryResultAnimatedGif.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	inputInlineQueryResultAnimatedGif.ReplyMarkup = fieldReplyMarkup
 
-    fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
-    inputInlineQueryResultAnimatedGif.InputMessageContent = fieldInputMessageContent
+	fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
+	inputInlineQueryResultAnimatedGif.InputMessageContent = fieldInputMessageContent
 
-    return nil
+	return nil
 }
 
 // Represents a link to an animated (i.e. without sound) H.264/MPEG-4 AVC video
 type InputInlineQueryResultAnimatedMpeg4 struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Title of the result
-    Title string `json:"title"`
-    // URL of the static result thumbnail (JPEG or GIF), if it exists
-    ThumbnailUrl string `json:"thumbnail_url"`
-    // The URL of the MPEG4-file (file size must not exceed 1MB)
-    Mpeg4Url string `json:"mpeg4_url"`
-    // Duration of the video, in seconds
-    Mpeg4Duration int32 `json:"mpeg4_duration"`
-    // Width of the video
-    Mpeg4Width int32 `json:"mpeg4_width"`
-    // Height of the video
-    Mpeg4Height int32 `json:"mpeg4_height"`
-    // The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
-    // The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAnimation, InputMessageLocation, InputMessageVenue or InputMessageContact
-    InputMessageContent InputMessageContent `json:"input_message_content"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Title of the result
+	Title string `json:"title"`
+	// URL of the static result thumbnail (JPEG or GIF), if it exists
+	ThumbnailUrl string `json:"thumbnail_url"`
+	// The URL of the MPEG4-file (file size must not exceed 1MB)
+	Mpeg4Url string `json:"mpeg4_url"`
+	// Duration of the video, in seconds
+	Mpeg4Duration int32 `json:"mpeg4_duration"`
+	// Width of the video
+	Mpeg4Width int32 `json:"mpeg4_width"`
+	// Height of the video
+	Mpeg4Height int32 `json:"mpeg4_height"`
+	// The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	// The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAnimation, InputMessageLocation, InputMessageVenue or InputMessageContact
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (entity *InputInlineQueryResultAnimatedMpeg4) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputInlineQueryResultAnimatedMpeg4
+	type stub InputInlineQueryResultAnimatedMpeg4
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputInlineQueryResultAnimatedMpeg4) GetClass() string {
-    return ClassInputInlineQueryResult
+	return ClassInputInlineQueryResult
 }
 
 func (*InputInlineQueryResultAnimatedMpeg4) GetType() string {
-    return TypeInputInlineQueryResultAnimatedMpeg4
+	return TypeInputInlineQueryResultAnimatedMpeg4
 }
 
 func (*InputInlineQueryResultAnimatedMpeg4) InputInlineQueryResultType() string {
-    return TypeInputInlineQueryResultAnimatedMpeg4
+	return TypeInputInlineQueryResultAnimatedMpeg4
 }
 
 func (inputInlineQueryResultAnimatedMpeg4 *InputInlineQueryResultAnimatedMpeg4) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id string `json:"id"`
-        Title string `json:"title"`
-        ThumbnailUrl string `json:"thumbnail_url"`
-        Mpeg4Url string `json:"mpeg4_url"`
-        Mpeg4Duration int32 `json:"mpeg4_duration"`
-        Mpeg4Width int32 `json:"mpeg4_width"`
-        Mpeg4Height int32 `json:"mpeg4_height"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-        InputMessageContent json.RawMessage `json:"input_message_content"`
-    }
+	var tmp struct {
+		Id                  string          `json:"id"`
+		Title               string          `json:"title"`
+		ThumbnailUrl        string          `json:"thumbnail_url"`
+		Mpeg4Url            string          `json:"mpeg4_url"`
+		Mpeg4Duration       int32           `json:"mpeg4_duration"`
+		Mpeg4Width          int32           `json:"mpeg4_width"`
+		Mpeg4Height         int32           `json:"mpeg4_height"`
+		ReplyMarkup         json.RawMessage `json:"reply_markup"`
+		InputMessageContent json.RawMessage `json:"input_message_content"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputInlineQueryResultAnimatedMpeg4.Id = tmp.Id
-    inputInlineQueryResultAnimatedMpeg4.Title = tmp.Title
-    inputInlineQueryResultAnimatedMpeg4.ThumbnailUrl = tmp.ThumbnailUrl
-    inputInlineQueryResultAnimatedMpeg4.Mpeg4Url = tmp.Mpeg4Url
-    inputInlineQueryResultAnimatedMpeg4.Mpeg4Duration = tmp.Mpeg4Duration
-    inputInlineQueryResultAnimatedMpeg4.Mpeg4Width = tmp.Mpeg4Width
-    inputInlineQueryResultAnimatedMpeg4.Mpeg4Height = tmp.Mpeg4Height
+	inputInlineQueryResultAnimatedMpeg4.Id = tmp.Id
+	inputInlineQueryResultAnimatedMpeg4.Title = tmp.Title
+	inputInlineQueryResultAnimatedMpeg4.ThumbnailUrl = tmp.ThumbnailUrl
+	inputInlineQueryResultAnimatedMpeg4.Mpeg4Url = tmp.Mpeg4Url
+	inputInlineQueryResultAnimatedMpeg4.Mpeg4Duration = tmp.Mpeg4Duration
+	inputInlineQueryResultAnimatedMpeg4.Mpeg4Width = tmp.Mpeg4Width
+	inputInlineQueryResultAnimatedMpeg4.Mpeg4Height = tmp.Mpeg4Height
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    inputInlineQueryResultAnimatedMpeg4.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	inputInlineQueryResultAnimatedMpeg4.ReplyMarkup = fieldReplyMarkup
 
-    fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
-    inputInlineQueryResultAnimatedMpeg4.InputMessageContent = fieldInputMessageContent
+	fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
+	inputInlineQueryResultAnimatedMpeg4.InputMessageContent = fieldInputMessageContent
 
-    return nil
+	return nil
 }
 
 // Represents a link to an article or web page
 type InputInlineQueryResultArticle struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // URL of the result, if it exists
-    Url string `json:"url"`
-    // True, if the URL must be not shown
-    HideUrl bool `json:"hide_url"`
-    // Title of the result
-    Title string `json:"title"`
-    // A short description of the result
-    Description string `json:"description"`
-    // URL of the result thumbnail, if it exists
-    ThumbnailUrl string `json:"thumbnail_url"`
-    // Thumbnail width, if known
-    ThumbnailWidth int32 `json:"thumbnail_width"`
-    // Thumbnail height, if known
-    ThumbnailHeight int32 `json:"thumbnail_height"`
-    // The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
-    // The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
-    InputMessageContent InputMessageContent `json:"input_message_content"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// URL of the result, if it exists
+	Url string `json:"url"`
+	// True, if the URL must be not shown
+	HideUrl bool `json:"hide_url"`
+	// Title of the result
+	Title string `json:"title"`
+	// A short description of the result
+	Description string `json:"description"`
+	// URL of the result thumbnail, if it exists
+	ThumbnailUrl string `json:"thumbnail_url"`
+	// Thumbnail width, if known
+	ThumbnailWidth int32 `json:"thumbnail_width"`
+	// Thumbnail height, if known
+	ThumbnailHeight int32 `json:"thumbnail_height"`
+	// The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	// The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (entity *InputInlineQueryResultArticle) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputInlineQueryResultArticle
+	type stub InputInlineQueryResultArticle
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputInlineQueryResultArticle) GetClass() string {
-    return ClassInputInlineQueryResult
+	return ClassInputInlineQueryResult
 }
 
 func (*InputInlineQueryResultArticle) GetType() string {
-    return TypeInputInlineQueryResultArticle
+	return TypeInputInlineQueryResultArticle
 }
 
 func (*InputInlineQueryResultArticle) InputInlineQueryResultType() string {
-    return TypeInputInlineQueryResultArticle
+	return TypeInputInlineQueryResultArticle
 }
 
 func (inputInlineQueryResultArticle *InputInlineQueryResultArticle) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id string `json:"id"`
-        Url string `json:"url"`
-        HideUrl bool `json:"hide_url"`
-        Title string `json:"title"`
-        Description string `json:"description"`
-        ThumbnailUrl string `json:"thumbnail_url"`
-        ThumbnailWidth int32 `json:"thumbnail_width"`
-        ThumbnailHeight int32 `json:"thumbnail_height"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-        InputMessageContent json.RawMessage `json:"input_message_content"`
-    }
+	var tmp struct {
+		Id                  string          `json:"id"`
+		Url                 string          `json:"url"`
+		HideUrl             bool            `json:"hide_url"`
+		Title               string          `json:"title"`
+		Description         string          `json:"description"`
+		ThumbnailUrl        string          `json:"thumbnail_url"`
+		ThumbnailWidth      int32           `json:"thumbnail_width"`
+		ThumbnailHeight     int32           `json:"thumbnail_height"`
+		ReplyMarkup         json.RawMessage `json:"reply_markup"`
+		InputMessageContent json.RawMessage `json:"input_message_content"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputInlineQueryResultArticle.Id = tmp.Id
-    inputInlineQueryResultArticle.Url = tmp.Url
-    inputInlineQueryResultArticle.HideUrl = tmp.HideUrl
-    inputInlineQueryResultArticle.Title = tmp.Title
-    inputInlineQueryResultArticle.Description = tmp.Description
-    inputInlineQueryResultArticle.ThumbnailUrl = tmp.ThumbnailUrl
-    inputInlineQueryResultArticle.ThumbnailWidth = tmp.ThumbnailWidth
-    inputInlineQueryResultArticle.ThumbnailHeight = tmp.ThumbnailHeight
+	inputInlineQueryResultArticle.Id = tmp.Id
+	inputInlineQueryResultArticle.Url = tmp.Url
+	inputInlineQueryResultArticle.HideUrl = tmp.HideUrl
+	inputInlineQueryResultArticle.Title = tmp.Title
+	inputInlineQueryResultArticle.Description = tmp.Description
+	inputInlineQueryResultArticle.ThumbnailUrl = tmp.ThumbnailUrl
+	inputInlineQueryResultArticle.ThumbnailWidth = tmp.ThumbnailWidth
+	inputInlineQueryResultArticle.ThumbnailHeight = tmp.ThumbnailHeight
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    inputInlineQueryResultArticle.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	inputInlineQueryResultArticle.ReplyMarkup = fieldReplyMarkup
 
-    fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
-    inputInlineQueryResultArticle.InputMessageContent = fieldInputMessageContent
+	fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
+	inputInlineQueryResultArticle.InputMessageContent = fieldInputMessageContent
 
-    return nil
+	return nil
 }
 
 // Represents a link to an MP3 audio file
 type InputInlineQueryResultAudio struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Title of the audio file
-    Title string `json:"title"`
-    // Performer of the audio file
-    Performer string `json:"performer"`
-    // The URL of the audio file
-    AudioUrl string `json:"audio_url"`
-    // Audio file duration, in seconds
-    AudioDuration int32 `json:"audio_duration"`
-    // The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
-    // The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAudio, InputMessageLocation, InputMessageVenue or InputMessageContact
-    InputMessageContent InputMessageContent `json:"input_message_content"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Title of the audio file
+	Title string `json:"title"`
+	// Performer of the audio file
+	Performer string `json:"performer"`
+	// The URL of the audio file
+	AudioUrl string `json:"audio_url"`
+	// Audio file duration, in seconds
+	AudioDuration int32 `json:"audio_duration"`
+	// The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	// The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageAudio, InputMessageLocation, InputMessageVenue or InputMessageContact
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (entity *InputInlineQueryResultAudio) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputInlineQueryResultAudio
+	type stub InputInlineQueryResultAudio
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputInlineQueryResultAudio) GetClass() string {
-    return ClassInputInlineQueryResult
+	return ClassInputInlineQueryResult
 }
 
 func (*InputInlineQueryResultAudio) GetType() string {
-    return TypeInputInlineQueryResultAudio
+	return TypeInputInlineQueryResultAudio
 }
 
 func (*InputInlineQueryResultAudio) InputInlineQueryResultType() string {
-    return TypeInputInlineQueryResultAudio
+	return TypeInputInlineQueryResultAudio
 }
 
 func (inputInlineQueryResultAudio *InputInlineQueryResultAudio) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id string `json:"id"`
-        Title string `json:"title"`
-        Performer string `json:"performer"`
-        AudioUrl string `json:"audio_url"`
-        AudioDuration int32 `json:"audio_duration"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-        InputMessageContent json.RawMessage `json:"input_message_content"`
-    }
+	var tmp struct {
+		Id                  string          `json:"id"`
+		Title               string          `json:"title"`
+		Performer           string          `json:"performer"`
+		AudioUrl            string          `json:"audio_url"`
+		AudioDuration       int32           `json:"audio_duration"`
+		ReplyMarkup         json.RawMessage `json:"reply_markup"`
+		InputMessageContent json.RawMessage `json:"input_message_content"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputInlineQueryResultAudio.Id = tmp.Id
-    inputInlineQueryResultAudio.Title = tmp.Title
-    inputInlineQueryResultAudio.Performer = tmp.Performer
-    inputInlineQueryResultAudio.AudioUrl = tmp.AudioUrl
-    inputInlineQueryResultAudio.AudioDuration = tmp.AudioDuration
+	inputInlineQueryResultAudio.Id = tmp.Id
+	inputInlineQueryResultAudio.Title = tmp.Title
+	inputInlineQueryResultAudio.Performer = tmp.Performer
+	inputInlineQueryResultAudio.AudioUrl = tmp.AudioUrl
+	inputInlineQueryResultAudio.AudioDuration = tmp.AudioDuration
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    inputInlineQueryResultAudio.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	inputInlineQueryResultAudio.ReplyMarkup = fieldReplyMarkup
 
-    fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
-    inputInlineQueryResultAudio.InputMessageContent = fieldInputMessageContent
+	fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
+	inputInlineQueryResultAudio.InputMessageContent = fieldInputMessageContent
 
-    return nil
+	return nil
 }
 
 // Represents a user contact
 type InputInlineQueryResultContact struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // User contact
-    Contact *Contact `json:"contact"`
-    // URL of the result thumbnail, if it exists
-    ThumbnailUrl string `json:"thumbnail_url"`
-    // Thumbnail width, if known
-    ThumbnailWidth int32 `json:"thumbnail_width"`
-    // Thumbnail height, if known
-    ThumbnailHeight int32 `json:"thumbnail_height"`
-    // The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
-    // The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
-    InputMessageContent InputMessageContent `json:"input_message_content"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// User contact
+	Contact *Contact `json:"contact"`
+	// URL of the result thumbnail, if it exists
+	ThumbnailUrl string `json:"thumbnail_url"`
+	// Thumbnail width, if known
+	ThumbnailWidth int32 `json:"thumbnail_width"`
+	// Thumbnail height, if known
+	ThumbnailHeight int32 `json:"thumbnail_height"`
+	// The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	// The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (entity *InputInlineQueryResultContact) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputInlineQueryResultContact
+	type stub InputInlineQueryResultContact
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputInlineQueryResultContact) GetClass() string {
-    return ClassInputInlineQueryResult
+	return ClassInputInlineQueryResult
 }
 
 func (*InputInlineQueryResultContact) GetType() string {
-    return TypeInputInlineQueryResultContact
+	return TypeInputInlineQueryResultContact
 }
 
 func (*InputInlineQueryResultContact) InputInlineQueryResultType() string {
-    return TypeInputInlineQueryResultContact
+	return TypeInputInlineQueryResultContact
 }
 
 func (inputInlineQueryResultContact *InputInlineQueryResultContact) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id string `json:"id"`
-        Contact *Contact `json:"contact"`
-        ThumbnailUrl string `json:"thumbnail_url"`
-        ThumbnailWidth int32 `json:"thumbnail_width"`
-        ThumbnailHeight int32 `json:"thumbnail_height"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-        InputMessageContent json.RawMessage `json:"input_message_content"`
-    }
+	var tmp struct {
+		Id                  string          `json:"id"`
+		Contact             *Contact        `json:"contact"`
+		ThumbnailUrl        string          `json:"thumbnail_url"`
+		ThumbnailWidth      int32           `json:"thumbnail_width"`
+		ThumbnailHeight     int32           `json:"thumbnail_height"`
+		ReplyMarkup         json.RawMessage `json:"reply_markup"`
+		InputMessageContent json.RawMessage `json:"input_message_content"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputInlineQueryResultContact.Id = tmp.Id
-    inputInlineQueryResultContact.Contact = tmp.Contact
-    inputInlineQueryResultContact.ThumbnailUrl = tmp.ThumbnailUrl
-    inputInlineQueryResultContact.ThumbnailWidth = tmp.ThumbnailWidth
-    inputInlineQueryResultContact.ThumbnailHeight = tmp.ThumbnailHeight
+	inputInlineQueryResultContact.Id = tmp.Id
+	inputInlineQueryResultContact.Contact = tmp.Contact
+	inputInlineQueryResultContact.ThumbnailUrl = tmp.ThumbnailUrl
+	inputInlineQueryResultContact.ThumbnailWidth = tmp.ThumbnailWidth
+	inputInlineQueryResultContact.ThumbnailHeight = tmp.ThumbnailHeight
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    inputInlineQueryResultContact.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	inputInlineQueryResultContact.ReplyMarkup = fieldReplyMarkup
 
-    fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
-    inputInlineQueryResultContact.InputMessageContent = fieldInputMessageContent
+	fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
+	inputInlineQueryResultContact.InputMessageContent = fieldInputMessageContent
 
-    return nil
+	return nil
 }
 
 // Represents a link to a file
 type InputInlineQueryResultDocument struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Title of the resulting file
-    Title string `json:"title"`
-    // Short description of the result, if known
-    Description string `json:"description"`
-    // URL of the file
-    DocumentUrl string `json:"document_url"`
-    // MIME type of the file content; only "application/pdf" and "application/zip" are currently allowed
-    MimeType string `json:"mime_type"`
-    // The URL of the file thumbnail, if it exists
-    ThumbnailUrl string `json:"thumbnail_url"`
-    // Width of the thumbnail
-    ThumbnailWidth int32 `json:"thumbnail_width"`
-    // Height of the thumbnail
-    ThumbnailHeight int32 `json:"thumbnail_height"`
-    // The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
-    // The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageDocument, InputMessageLocation, InputMessageVenue or InputMessageContact
-    InputMessageContent InputMessageContent `json:"input_message_content"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Title of the resulting file
+	Title string `json:"title"`
+	// Short description of the result, if known
+	Description string `json:"description"`
+	// URL of the file
+	DocumentUrl string `json:"document_url"`
+	// MIME type of the file content; only "application/pdf" and "application/zip" are currently allowed
+	MimeType string `json:"mime_type"`
+	// The URL of the file thumbnail, if it exists
+	ThumbnailUrl string `json:"thumbnail_url"`
+	// Width of the thumbnail
+	ThumbnailWidth int32 `json:"thumbnail_width"`
+	// Height of the thumbnail
+	ThumbnailHeight int32 `json:"thumbnail_height"`
+	// The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	// The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageDocument, InputMessageLocation, InputMessageVenue or InputMessageContact
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (entity *InputInlineQueryResultDocument) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputInlineQueryResultDocument
+	type stub InputInlineQueryResultDocument
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputInlineQueryResultDocument) GetClass() string {
-    return ClassInputInlineQueryResult
+	return ClassInputInlineQueryResult
 }
 
 func (*InputInlineQueryResultDocument) GetType() string {
-    return TypeInputInlineQueryResultDocument
+	return TypeInputInlineQueryResultDocument
 }
 
 func (*InputInlineQueryResultDocument) InputInlineQueryResultType() string {
-    return TypeInputInlineQueryResultDocument
+	return TypeInputInlineQueryResultDocument
 }
 
 func (inputInlineQueryResultDocument *InputInlineQueryResultDocument) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id string `json:"id"`
-        Title string `json:"title"`
-        Description string `json:"description"`
-        DocumentUrl string `json:"document_url"`
-        MimeType string `json:"mime_type"`
-        ThumbnailUrl string `json:"thumbnail_url"`
-        ThumbnailWidth int32 `json:"thumbnail_width"`
-        ThumbnailHeight int32 `json:"thumbnail_height"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-        InputMessageContent json.RawMessage `json:"input_message_content"`
-    }
+	var tmp struct {
+		Id                  string          `json:"id"`
+		Title               string          `json:"title"`
+		Description         string          `json:"description"`
+		DocumentUrl         string          `json:"document_url"`
+		MimeType            string          `json:"mime_type"`
+		ThumbnailUrl        string          `json:"thumbnail_url"`
+		ThumbnailWidth      int32           `json:"thumbnail_width"`
+		ThumbnailHeight     int32           `json:"thumbnail_height"`
+		ReplyMarkup         json.RawMessage `json:"reply_markup"`
+		InputMessageContent json.RawMessage `json:"input_message_content"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputInlineQueryResultDocument.Id = tmp.Id
-    inputInlineQueryResultDocument.Title = tmp.Title
-    inputInlineQueryResultDocument.Description = tmp.Description
-    inputInlineQueryResultDocument.DocumentUrl = tmp.DocumentUrl
-    inputInlineQueryResultDocument.MimeType = tmp.MimeType
-    inputInlineQueryResultDocument.ThumbnailUrl = tmp.ThumbnailUrl
-    inputInlineQueryResultDocument.ThumbnailWidth = tmp.ThumbnailWidth
-    inputInlineQueryResultDocument.ThumbnailHeight = tmp.ThumbnailHeight
+	inputInlineQueryResultDocument.Id = tmp.Id
+	inputInlineQueryResultDocument.Title = tmp.Title
+	inputInlineQueryResultDocument.Description = tmp.Description
+	inputInlineQueryResultDocument.DocumentUrl = tmp.DocumentUrl
+	inputInlineQueryResultDocument.MimeType = tmp.MimeType
+	inputInlineQueryResultDocument.ThumbnailUrl = tmp.ThumbnailUrl
+	inputInlineQueryResultDocument.ThumbnailWidth = tmp.ThumbnailWidth
+	inputInlineQueryResultDocument.ThumbnailHeight = tmp.ThumbnailHeight
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    inputInlineQueryResultDocument.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	inputInlineQueryResultDocument.ReplyMarkup = fieldReplyMarkup
 
-    fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
-    inputInlineQueryResultDocument.InputMessageContent = fieldInputMessageContent
+	fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
+	inputInlineQueryResultDocument.InputMessageContent = fieldInputMessageContent
 
-    return nil
+	return nil
 }
 
 // Represents a game
 type InputInlineQueryResultGame struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Short name of the game
-    GameShortName string `json:"game_short_name"`
-    // Message reply markup. Must be of type replyMarkupInlineKeyboard or null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Short name of the game
+	GameShortName string `json:"game_short_name"`
+	// Message reply markup. Must be of type replyMarkupInlineKeyboard or null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
 }
 
 func (entity *InputInlineQueryResultGame) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputInlineQueryResultGame
+	type stub InputInlineQueryResultGame
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputInlineQueryResultGame) GetClass() string {
-    return ClassInputInlineQueryResult
+	return ClassInputInlineQueryResult
 }
 
 func (*InputInlineQueryResultGame) GetType() string {
-    return TypeInputInlineQueryResultGame
+	return TypeInputInlineQueryResultGame
 }
 
 func (*InputInlineQueryResultGame) InputInlineQueryResultType() string {
-    return TypeInputInlineQueryResultGame
+	return TypeInputInlineQueryResultGame
 }
 
 func (inputInlineQueryResultGame *InputInlineQueryResultGame) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id string `json:"id"`
-        GameShortName string `json:"game_short_name"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-    }
+	var tmp struct {
+		Id            string          `json:"id"`
+		GameShortName string          `json:"game_short_name"`
+		ReplyMarkup   json.RawMessage `json:"reply_markup"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputInlineQueryResultGame.Id = tmp.Id
-    inputInlineQueryResultGame.GameShortName = tmp.GameShortName
+	inputInlineQueryResultGame.Id = tmp.Id
+	inputInlineQueryResultGame.GameShortName = tmp.GameShortName
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    inputInlineQueryResultGame.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	inputInlineQueryResultGame.ReplyMarkup = fieldReplyMarkup
 
-    return nil
+	return nil
 }
 
 // Represents a point on the map
 type InputInlineQueryResultLocation struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Location result
-    Location *Location `json:"location"`
-    // Amount of time relative to the message sent time until the location can be updated, in seconds
-    LivePeriod int32 `json:"live_period"`
-    // Title of the result
-    Title string `json:"title"`
-    // URL of the result thumbnail, if it exists
-    ThumbnailUrl string `json:"thumbnail_url"`
-    // Thumbnail width, if known
-    ThumbnailWidth int32 `json:"thumbnail_width"`
-    // Thumbnail height, if known
-    ThumbnailHeight int32 `json:"thumbnail_height"`
-    // The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
-    // The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
-    InputMessageContent InputMessageContent `json:"input_message_content"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Location result
+	Location *Location `json:"location"`
+	// Amount of time relative to the message sent time until the location can be updated, in seconds
+	LivePeriod int32 `json:"live_period"`
+	// Title of the result
+	Title string `json:"title"`
+	// URL of the result thumbnail, if it exists
+	ThumbnailUrl string `json:"thumbnail_url"`
+	// Thumbnail width, if known
+	ThumbnailWidth int32 `json:"thumbnail_width"`
+	// Thumbnail height, if known
+	ThumbnailHeight int32 `json:"thumbnail_height"`
+	// The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	// The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (entity *InputInlineQueryResultLocation) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputInlineQueryResultLocation
+	type stub InputInlineQueryResultLocation
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputInlineQueryResultLocation) GetClass() string {
-    return ClassInputInlineQueryResult
+	return ClassInputInlineQueryResult
 }
 
 func (*InputInlineQueryResultLocation) GetType() string {
-    return TypeInputInlineQueryResultLocation
+	return TypeInputInlineQueryResultLocation
 }
 
 func (*InputInlineQueryResultLocation) InputInlineQueryResultType() string {
-    return TypeInputInlineQueryResultLocation
+	return TypeInputInlineQueryResultLocation
 }
 
 func (inputInlineQueryResultLocation *InputInlineQueryResultLocation) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id string `json:"id"`
-        Location *Location `json:"location"`
-        LivePeriod int32 `json:"live_period"`
-        Title string `json:"title"`
-        ThumbnailUrl string `json:"thumbnail_url"`
-        ThumbnailWidth int32 `json:"thumbnail_width"`
-        ThumbnailHeight int32 `json:"thumbnail_height"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-        InputMessageContent json.RawMessage `json:"input_message_content"`
-    }
+	var tmp struct {
+		Id                  string          `json:"id"`
+		Location            *Location       `json:"location"`
+		LivePeriod          int32           `json:"live_period"`
+		Title               string          `json:"title"`
+		ThumbnailUrl        string          `json:"thumbnail_url"`
+		ThumbnailWidth      int32           `json:"thumbnail_width"`
+		ThumbnailHeight     int32           `json:"thumbnail_height"`
+		ReplyMarkup         json.RawMessage `json:"reply_markup"`
+		InputMessageContent json.RawMessage `json:"input_message_content"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputInlineQueryResultLocation.Id = tmp.Id
-    inputInlineQueryResultLocation.Location = tmp.Location
-    inputInlineQueryResultLocation.LivePeriod = tmp.LivePeriod
-    inputInlineQueryResultLocation.Title = tmp.Title
-    inputInlineQueryResultLocation.ThumbnailUrl = tmp.ThumbnailUrl
-    inputInlineQueryResultLocation.ThumbnailWidth = tmp.ThumbnailWidth
-    inputInlineQueryResultLocation.ThumbnailHeight = tmp.ThumbnailHeight
+	inputInlineQueryResultLocation.Id = tmp.Id
+	inputInlineQueryResultLocation.Location = tmp.Location
+	inputInlineQueryResultLocation.LivePeriod = tmp.LivePeriod
+	inputInlineQueryResultLocation.Title = tmp.Title
+	inputInlineQueryResultLocation.ThumbnailUrl = tmp.ThumbnailUrl
+	inputInlineQueryResultLocation.ThumbnailWidth = tmp.ThumbnailWidth
+	inputInlineQueryResultLocation.ThumbnailHeight = tmp.ThumbnailHeight
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    inputInlineQueryResultLocation.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	inputInlineQueryResultLocation.ReplyMarkup = fieldReplyMarkup
 
-    fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
-    inputInlineQueryResultLocation.InputMessageContent = fieldInputMessageContent
+	fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
+	inputInlineQueryResultLocation.InputMessageContent = fieldInputMessageContent
 
-    return nil
+	return nil
 }
 
 // Represents link to a JPEG image
 type InputInlineQueryResultPhoto struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Title of the result, if known
-    Title string `json:"title"`
-    // A short description of the result, if known
-    Description string `json:"description"`
-    // URL of the photo thumbnail, if it exists
-    ThumbnailUrl string `json:"thumbnail_url"`
-    // The URL of the JPEG photo (photo size must not exceed 5MB)
-    PhotoUrl string `json:"photo_url"`
-    // Width of the photo
-    PhotoWidth int32 `json:"photo_width"`
-    // Height of the photo
-    PhotoHeight int32 `json:"photo_height"`
-    // The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
-    // The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessagePhoto, InputMessageLocation, InputMessageVenue or InputMessageContact
-    InputMessageContent InputMessageContent `json:"input_message_content"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Title of the result, if known
+	Title string `json:"title"`
+	// A short description of the result, if known
+	Description string `json:"description"`
+	// URL of the photo thumbnail, if it exists
+	ThumbnailUrl string `json:"thumbnail_url"`
+	// The URL of the JPEG photo (photo size must not exceed 5MB)
+	PhotoUrl string `json:"photo_url"`
+	// Width of the photo
+	PhotoWidth int32 `json:"photo_width"`
+	// Height of the photo
+	PhotoHeight int32 `json:"photo_height"`
+	// The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	// The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessagePhoto, InputMessageLocation, InputMessageVenue or InputMessageContact
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (entity *InputInlineQueryResultPhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputInlineQueryResultPhoto
+	type stub InputInlineQueryResultPhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputInlineQueryResultPhoto) GetClass() string {
-    return ClassInputInlineQueryResult
+	return ClassInputInlineQueryResult
 }
 
 func (*InputInlineQueryResultPhoto) GetType() string {
-    return TypeInputInlineQueryResultPhoto
+	return TypeInputInlineQueryResultPhoto
 }
 
 func (*InputInlineQueryResultPhoto) InputInlineQueryResultType() string {
-    return TypeInputInlineQueryResultPhoto
+	return TypeInputInlineQueryResultPhoto
 }
 
 func (inputInlineQueryResultPhoto *InputInlineQueryResultPhoto) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id string `json:"id"`
-        Title string `json:"title"`
-        Description string `json:"description"`
-        ThumbnailUrl string `json:"thumbnail_url"`
-        PhotoUrl string `json:"photo_url"`
-        PhotoWidth int32 `json:"photo_width"`
-        PhotoHeight int32 `json:"photo_height"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-        InputMessageContent json.RawMessage `json:"input_message_content"`
-    }
+	var tmp struct {
+		Id                  string          `json:"id"`
+		Title               string          `json:"title"`
+		Description         string          `json:"description"`
+		ThumbnailUrl        string          `json:"thumbnail_url"`
+		PhotoUrl            string          `json:"photo_url"`
+		PhotoWidth          int32           `json:"photo_width"`
+		PhotoHeight         int32           `json:"photo_height"`
+		ReplyMarkup         json.RawMessage `json:"reply_markup"`
+		InputMessageContent json.RawMessage `json:"input_message_content"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputInlineQueryResultPhoto.Id = tmp.Id
-    inputInlineQueryResultPhoto.Title = tmp.Title
-    inputInlineQueryResultPhoto.Description = tmp.Description
-    inputInlineQueryResultPhoto.ThumbnailUrl = tmp.ThumbnailUrl
-    inputInlineQueryResultPhoto.PhotoUrl = tmp.PhotoUrl
-    inputInlineQueryResultPhoto.PhotoWidth = tmp.PhotoWidth
-    inputInlineQueryResultPhoto.PhotoHeight = tmp.PhotoHeight
+	inputInlineQueryResultPhoto.Id = tmp.Id
+	inputInlineQueryResultPhoto.Title = tmp.Title
+	inputInlineQueryResultPhoto.Description = tmp.Description
+	inputInlineQueryResultPhoto.ThumbnailUrl = tmp.ThumbnailUrl
+	inputInlineQueryResultPhoto.PhotoUrl = tmp.PhotoUrl
+	inputInlineQueryResultPhoto.PhotoWidth = tmp.PhotoWidth
+	inputInlineQueryResultPhoto.PhotoHeight = tmp.PhotoHeight
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    inputInlineQueryResultPhoto.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	inputInlineQueryResultPhoto.ReplyMarkup = fieldReplyMarkup
 
-    fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
-    inputInlineQueryResultPhoto.InputMessageContent = fieldInputMessageContent
+	fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
+	inputInlineQueryResultPhoto.InputMessageContent = fieldInputMessageContent
 
-    return nil
+	return nil
 }
 
 // Represents a link to a WEBP sticker
 type InputInlineQueryResultSticker struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // URL of the sticker thumbnail, if it exists
-    ThumbnailUrl string `json:"thumbnail_url"`
-    // The URL of the WEBP sticker (sticker file size must not exceed 5MB)
-    StickerUrl string `json:"sticker_url"`
-    // Width of the sticker
-    StickerWidth int32 `json:"sticker_width"`
-    // Height of the sticker
-    StickerHeight int32 `json:"sticker_height"`
-    // The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
-    // The content of the message to be sent. Must be one of the following types: InputMessageText, inputMessageSticker, InputMessageLocation, InputMessageVenue or InputMessageContact
-    InputMessageContent InputMessageContent `json:"input_message_content"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// URL of the sticker thumbnail, if it exists
+	ThumbnailUrl string `json:"thumbnail_url"`
+	// The URL of the WEBP sticker (sticker file size must not exceed 5MB)
+	StickerUrl string `json:"sticker_url"`
+	// Width of the sticker
+	StickerWidth int32 `json:"sticker_width"`
+	// Height of the sticker
+	StickerHeight int32 `json:"sticker_height"`
+	// The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	// The content of the message to be sent. Must be one of the following types: InputMessageText, inputMessageSticker, InputMessageLocation, InputMessageVenue or InputMessageContact
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (entity *InputInlineQueryResultSticker) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputInlineQueryResultSticker
+	type stub InputInlineQueryResultSticker
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputInlineQueryResultSticker) GetClass() string {
-    return ClassInputInlineQueryResult
+	return ClassInputInlineQueryResult
 }
 
 func (*InputInlineQueryResultSticker) GetType() string {
-    return TypeInputInlineQueryResultSticker
+	return TypeInputInlineQueryResultSticker
 }
 
 func (*InputInlineQueryResultSticker) InputInlineQueryResultType() string {
-    return TypeInputInlineQueryResultSticker
+	return TypeInputInlineQueryResultSticker
 }
 
 func (inputInlineQueryResultSticker *InputInlineQueryResultSticker) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id string `json:"id"`
-        ThumbnailUrl string `json:"thumbnail_url"`
-        StickerUrl string `json:"sticker_url"`
-        StickerWidth int32 `json:"sticker_width"`
-        StickerHeight int32 `json:"sticker_height"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-        InputMessageContent json.RawMessage `json:"input_message_content"`
-    }
+	var tmp struct {
+		Id                  string          `json:"id"`
+		ThumbnailUrl        string          `json:"thumbnail_url"`
+		StickerUrl          string          `json:"sticker_url"`
+		StickerWidth        int32           `json:"sticker_width"`
+		StickerHeight       int32           `json:"sticker_height"`
+		ReplyMarkup         json.RawMessage `json:"reply_markup"`
+		InputMessageContent json.RawMessage `json:"input_message_content"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputInlineQueryResultSticker.Id = tmp.Id
-    inputInlineQueryResultSticker.ThumbnailUrl = tmp.ThumbnailUrl
-    inputInlineQueryResultSticker.StickerUrl = tmp.StickerUrl
-    inputInlineQueryResultSticker.StickerWidth = tmp.StickerWidth
-    inputInlineQueryResultSticker.StickerHeight = tmp.StickerHeight
+	inputInlineQueryResultSticker.Id = tmp.Id
+	inputInlineQueryResultSticker.ThumbnailUrl = tmp.ThumbnailUrl
+	inputInlineQueryResultSticker.StickerUrl = tmp.StickerUrl
+	inputInlineQueryResultSticker.StickerWidth = tmp.StickerWidth
+	inputInlineQueryResultSticker.StickerHeight = tmp.StickerHeight
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    inputInlineQueryResultSticker.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	inputInlineQueryResultSticker.ReplyMarkup = fieldReplyMarkup
 
-    fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
-    inputInlineQueryResultSticker.InputMessageContent = fieldInputMessageContent
+	fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
+	inputInlineQueryResultSticker.InputMessageContent = fieldInputMessageContent
 
-    return nil
+	return nil
 }
 
 // Represents information about a venue
 type InputInlineQueryResultVenue struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Venue result
-    Venue *Venue `json:"venue"`
-    // URL of the result thumbnail, if it exists
-    ThumbnailUrl string `json:"thumbnail_url"`
-    // Thumbnail width, if known
-    ThumbnailWidth int32 `json:"thumbnail_width"`
-    // Thumbnail height, if known
-    ThumbnailHeight int32 `json:"thumbnail_height"`
-    // The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
-    // The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
-    InputMessageContent InputMessageContent `json:"input_message_content"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Venue result
+	Venue *Venue `json:"venue"`
+	// URL of the result thumbnail, if it exists
+	ThumbnailUrl string `json:"thumbnail_url"`
+	// Thumbnail width, if known
+	ThumbnailWidth int32 `json:"thumbnail_width"`
+	// Thumbnail height, if known
+	ThumbnailHeight int32 `json:"thumbnail_height"`
+	// The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	// The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageLocation, InputMessageVenue or InputMessageContact
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (entity *InputInlineQueryResultVenue) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputInlineQueryResultVenue
+	type stub InputInlineQueryResultVenue
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputInlineQueryResultVenue) GetClass() string {
-    return ClassInputInlineQueryResult
+	return ClassInputInlineQueryResult
 }
 
 func (*InputInlineQueryResultVenue) GetType() string {
-    return TypeInputInlineQueryResultVenue
+	return TypeInputInlineQueryResultVenue
 }
 
 func (*InputInlineQueryResultVenue) InputInlineQueryResultType() string {
-    return TypeInputInlineQueryResultVenue
+	return TypeInputInlineQueryResultVenue
 }
 
 func (inputInlineQueryResultVenue *InputInlineQueryResultVenue) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id string `json:"id"`
-        Venue *Venue `json:"venue"`
-        ThumbnailUrl string `json:"thumbnail_url"`
-        ThumbnailWidth int32 `json:"thumbnail_width"`
-        ThumbnailHeight int32 `json:"thumbnail_height"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-        InputMessageContent json.RawMessage `json:"input_message_content"`
-    }
+	var tmp struct {
+		Id                  string          `json:"id"`
+		Venue               *Venue          `json:"venue"`
+		ThumbnailUrl        string          `json:"thumbnail_url"`
+		ThumbnailWidth      int32           `json:"thumbnail_width"`
+		ThumbnailHeight     int32           `json:"thumbnail_height"`
+		ReplyMarkup         json.RawMessage `json:"reply_markup"`
+		InputMessageContent json.RawMessage `json:"input_message_content"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputInlineQueryResultVenue.Id = tmp.Id
-    inputInlineQueryResultVenue.Venue = tmp.Venue
-    inputInlineQueryResultVenue.ThumbnailUrl = tmp.ThumbnailUrl
-    inputInlineQueryResultVenue.ThumbnailWidth = tmp.ThumbnailWidth
-    inputInlineQueryResultVenue.ThumbnailHeight = tmp.ThumbnailHeight
+	inputInlineQueryResultVenue.Id = tmp.Id
+	inputInlineQueryResultVenue.Venue = tmp.Venue
+	inputInlineQueryResultVenue.ThumbnailUrl = tmp.ThumbnailUrl
+	inputInlineQueryResultVenue.ThumbnailWidth = tmp.ThumbnailWidth
+	inputInlineQueryResultVenue.ThumbnailHeight = tmp.ThumbnailHeight
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    inputInlineQueryResultVenue.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	inputInlineQueryResultVenue.ReplyMarkup = fieldReplyMarkup
 
-    fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
-    inputInlineQueryResultVenue.InputMessageContent = fieldInputMessageContent
+	fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
+	inputInlineQueryResultVenue.InputMessageContent = fieldInputMessageContent
 
-    return nil
+	return nil
 }
 
 // Represents a link to a page containing an embedded video player or a video file
 type InputInlineQueryResultVideo struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Title of the result
-    Title string `json:"title"`
-    // A short description of the result, if known
-    Description string `json:"description"`
-    // The URL of the video thumbnail (JPEG), if it exists
-    ThumbnailUrl string `json:"thumbnail_url"`
-    // URL of the embedded video player or video file
-    VideoUrl string `json:"video_url"`
-    // MIME type of the content of the video URL, only "text/html" or "video/mp4" are currently supported
-    MimeType string `json:"mime_type"`
-    // Width of the video
-    VideoWidth int32 `json:"video_width"`
-    // Height of the video
-    VideoHeight int32 `json:"video_height"`
-    // Video duration, in seconds
-    VideoDuration int32 `json:"video_duration"`
-    // The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
-    // The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageVideo, InputMessageLocation, InputMessageVenue or InputMessageContact
-    InputMessageContent InputMessageContent `json:"input_message_content"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Title of the result
+	Title string `json:"title"`
+	// A short description of the result, if known
+	Description string `json:"description"`
+	// The URL of the video thumbnail (JPEG), if it exists
+	ThumbnailUrl string `json:"thumbnail_url"`
+	// URL of the embedded video player or video file
+	VideoUrl string `json:"video_url"`
+	// MIME type of the content of the video URL, only "text/html" or "video/mp4" are currently supported
+	MimeType string `json:"mime_type"`
+	// Width of the video
+	VideoWidth int32 `json:"video_width"`
+	// Height of the video
+	VideoHeight int32 `json:"video_height"`
+	// Video duration, in seconds
+	VideoDuration int32 `json:"video_duration"`
+	// The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	// The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageVideo, InputMessageLocation, InputMessageVenue or InputMessageContact
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (entity *InputInlineQueryResultVideo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputInlineQueryResultVideo
+	type stub InputInlineQueryResultVideo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputInlineQueryResultVideo) GetClass() string {
-    return ClassInputInlineQueryResult
+	return ClassInputInlineQueryResult
 }
 
 func (*InputInlineQueryResultVideo) GetType() string {
-    return TypeInputInlineQueryResultVideo
+	return TypeInputInlineQueryResultVideo
 }
 
 func (*InputInlineQueryResultVideo) InputInlineQueryResultType() string {
-    return TypeInputInlineQueryResultVideo
+	return TypeInputInlineQueryResultVideo
 }
 
 func (inputInlineQueryResultVideo *InputInlineQueryResultVideo) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id string `json:"id"`
-        Title string `json:"title"`
-        Description string `json:"description"`
-        ThumbnailUrl string `json:"thumbnail_url"`
-        VideoUrl string `json:"video_url"`
-        MimeType string `json:"mime_type"`
-        VideoWidth int32 `json:"video_width"`
-        VideoHeight int32 `json:"video_height"`
-        VideoDuration int32 `json:"video_duration"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-        InputMessageContent json.RawMessage `json:"input_message_content"`
-    }
+	var tmp struct {
+		Id                  string          `json:"id"`
+		Title               string          `json:"title"`
+		Description         string          `json:"description"`
+		ThumbnailUrl        string          `json:"thumbnail_url"`
+		VideoUrl            string          `json:"video_url"`
+		MimeType            string          `json:"mime_type"`
+		VideoWidth          int32           `json:"video_width"`
+		VideoHeight         int32           `json:"video_height"`
+		VideoDuration       int32           `json:"video_duration"`
+		ReplyMarkup         json.RawMessage `json:"reply_markup"`
+		InputMessageContent json.RawMessage `json:"input_message_content"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputInlineQueryResultVideo.Id = tmp.Id
-    inputInlineQueryResultVideo.Title = tmp.Title
-    inputInlineQueryResultVideo.Description = tmp.Description
-    inputInlineQueryResultVideo.ThumbnailUrl = tmp.ThumbnailUrl
-    inputInlineQueryResultVideo.VideoUrl = tmp.VideoUrl
-    inputInlineQueryResultVideo.MimeType = tmp.MimeType
-    inputInlineQueryResultVideo.VideoWidth = tmp.VideoWidth
-    inputInlineQueryResultVideo.VideoHeight = tmp.VideoHeight
-    inputInlineQueryResultVideo.VideoDuration = tmp.VideoDuration
+	inputInlineQueryResultVideo.Id = tmp.Id
+	inputInlineQueryResultVideo.Title = tmp.Title
+	inputInlineQueryResultVideo.Description = tmp.Description
+	inputInlineQueryResultVideo.ThumbnailUrl = tmp.ThumbnailUrl
+	inputInlineQueryResultVideo.VideoUrl = tmp.VideoUrl
+	inputInlineQueryResultVideo.MimeType = tmp.MimeType
+	inputInlineQueryResultVideo.VideoWidth = tmp.VideoWidth
+	inputInlineQueryResultVideo.VideoHeight = tmp.VideoHeight
+	inputInlineQueryResultVideo.VideoDuration = tmp.VideoDuration
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    inputInlineQueryResultVideo.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	inputInlineQueryResultVideo.ReplyMarkup = fieldReplyMarkup
 
-    fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
-    inputInlineQueryResultVideo.InputMessageContent = fieldInputMessageContent
+	fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
+	inputInlineQueryResultVideo.InputMessageContent = fieldInputMessageContent
 
-    return nil
+	return nil
 }
 
 // Represents a link to an opus-encoded audio file within an OGG container, single channel audio
 type InputInlineQueryResultVoiceNote struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Title of the voice note
-    Title string `json:"title"`
-    // The URL of the voice note file
-    VoiceNoteUrl string `json:"voice_note_url"`
-    // Duration of the voice note, in seconds
-    VoiceNoteDuration int32 `json:"voice_note_duration"`
-    // The message reply markup. Must be of type replyMarkupInlineKeyboard or null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
-    // The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageVoiceNote, InputMessageLocation, InputMessageVenue or InputMessageContact
-    InputMessageContent InputMessageContent `json:"input_message_content"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Title of the voice note
+	Title string `json:"title"`
+	// The URL of the voice note file
+	VoiceNoteUrl string `json:"voice_note_url"`
+	// Duration of the voice note, in seconds
+	VoiceNoteDuration int32 `json:"voice_note_duration"`
+	// The message reply markup. Must be of type replyMarkupInlineKeyboard or null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	// The content of the message to be sent. Must be one of the following types: InputMessageText, InputMessageVoiceNote, InputMessageLocation, InputMessageVenue or InputMessageContact
+	InputMessageContent InputMessageContent `json:"input_message_content"`
 }
 
 func (entity *InputInlineQueryResultVoiceNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputInlineQueryResultVoiceNote
+	type stub InputInlineQueryResultVoiceNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputInlineQueryResultVoiceNote) GetClass() string {
-    return ClassInputInlineQueryResult
+	return ClassInputInlineQueryResult
 }
 
 func (*InputInlineQueryResultVoiceNote) GetType() string {
-    return TypeInputInlineQueryResultVoiceNote
+	return TypeInputInlineQueryResultVoiceNote
 }
 
 func (*InputInlineQueryResultVoiceNote) InputInlineQueryResultType() string {
-    return TypeInputInlineQueryResultVoiceNote
+	return TypeInputInlineQueryResultVoiceNote
 }
 
 func (inputInlineQueryResultVoiceNote *InputInlineQueryResultVoiceNote) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id string `json:"id"`
-        Title string `json:"title"`
-        VoiceNoteUrl string `json:"voice_note_url"`
-        VoiceNoteDuration int32 `json:"voice_note_duration"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-        InputMessageContent json.RawMessage `json:"input_message_content"`
-    }
+	var tmp struct {
+		Id                  string          `json:"id"`
+		Title               string          `json:"title"`
+		VoiceNoteUrl        string          `json:"voice_note_url"`
+		VoiceNoteDuration   int32           `json:"voice_note_duration"`
+		ReplyMarkup         json.RawMessage `json:"reply_markup"`
+		InputMessageContent json.RawMessage `json:"input_message_content"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputInlineQueryResultVoiceNote.Id = tmp.Id
-    inputInlineQueryResultVoiceNote.Title = tmp.Title
-    inputInlineQueryResultVoiceNote.VoiceNoteUrl = tmp.VoiceNoteUrl
-    inputInlineQueryResultVoiceNote.VoiceNoteDuration = tmp.VoiceNoteDuration
+	inputInlineQueryResultVoiceNote.Id = tmp.Id
+	inputInlineQueryResultVoiceNote.Title = tmp.Title
+	inputInlineQueryResultVoiceNote.VoiceNoteUrl = tmp.VoiceNoteUrl
+	inputInlineQueryResultVoiceNote.VoiceNoteDuration = tmp.VoiceNoteDuration
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    inputInlineQueryResultVoiceNote.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	inputInlineQueryResultVoiceNote.ReplyMarkup = fieldReplyMarkup
 
-    fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
-    inputInlineQueryResultVoiceNote.InputMessageContent = fieldInputMessageContent
+	fieldInputMessageContent, _ := UnmarshalInputMessageContent(tmp.InputMessageContent)
+	inputInlineQueryResultVoiceNote.InputMessageContent = fieldInputMessageContent
 
-    return nil
+	return nil
 }
 
 // Represents a link to an article or web page
 type InlineQueryResultArticle struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // URL of the result, if it exists
-    Url string `json:"url"`
-    // True, if the URL must be not shown
-    HideUrl bool `json:"hide_url"`
-    // Title of the result
-    Title string `json:"title"`
-    // A short description of the result
-    Description string `json:"description"`
-    // Result thumbnail; may be null
-    Thumbnail *PhotoSize `json:"thumbnail"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// URL of the result, if it exists
+	Url string `json:"url"`
+	// True, if the URL must be not shown
+	HideUrl bool `json:"hide_url"`
+	// Title of the result
+	Title string `json:"title"`
+	// A short description of the result
+	Description string `json:"description"`
+	// Result thumbnail; may be null
+	Thumbnail *PhotoSize `json:"thumbnail"`
 }
 
 func (entity *InlineQueryResultArticle) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineQueryResultArticle
+	type stub InlineQueryResultArticle
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineQueryResultArticle) GetClass() string {
-    return ClassInlineQueryResult
+	return ClassInlineQueryResult
 }
 
 func (*InlineQueryResultArticle) GetType() string {
-    return TypeInlineQueryResultArticle
+	return TypeInlineQueryResultArticle
 }
 
 func (*InlineQueryResultArticle) InlineQueryResultType() string {
-    return TypeInlineQueryResultArticle
+	return TypeInlineQueryResultArticle
 }
 
 // Represents a user contact
 type InlineQueryResultContact struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // A user contact
-    Contact *Contact `json:"contact"`
-    // Result thumbnail; may be null
-    Thumbnail *PhotoSize `json:"thumbnail"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// A user contact
+	Contact *Contact `json:"contact"`
+	// Result thumbnail; may be null
+	Thumbnail *PhotoSize `json:"thumbnail"`
 }
 
 func (entity *InlineQueryResultContact) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineQueryResultContact
+	type stub InlineQueryResultContact
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineQueryResultContact) GetClass() string {
-    return ClassInlineQueryResult
+	return ClassInlineQueryResult
 }
 
 func (*InlineQueryResultContact) GetType() string {
-    return TypeInlineQueryResultContact
+	return TypeInlineQueryResultContact
 }
 
 func (*InlineQueryResultContact) InlineQueryResultType() string {
-    return TypeInlineQueryResultContact
+	return TypeInlineQueryResultContact
 }
 
 // Represents a point on the map
 type InlineQueryResultLocation struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Location result
-    Location *Location `json:"location"`
-    // Title of the result
-    Title string `json:"title"`
-    // Result thumbnail; may be null
-    Thumbnail *PhotoSize `json:"thumbnail"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Location result
+	Location *Location `json:"location"`
+	// Title of the result
+	Title string `json:"title"`
+	// Result thumbnail; may be null
+	Thumbnail *PhotoSize `json:"thumbnail"`
 }
 
 func (entity *InlineQueryResultLocation) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineQueryResultLocation
+	type stub InlineQueryResultLocation
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineQueryResultLocation) GetClass() string {
-    return ClassInlineQueryResult
+	return ClassInlineQueryResult
 }
 
 func (*InlineQueryResultLocation) GetType() string {
-    return TypeInlineQueryResultLocation
+	return TypeInlineQueryResultLocation
 }
 
 func (*InlineQueryResultLocation) InlineQueryResultType() string {
-    return TypeInlineQueryResultLocation
+	return TypeInlineQueryResultLocation
 }
 
 // Represents information about a venue
 type InlineQueryResultVenue struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Venue result
-    Venue *Venue `json:"venue"`
-    // Result thumbnail; may be null
-    Thumbnail *PhotoSize `json:"thumbnail"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Venue result
+	Venue *Venue `json:"venue"`
+	// Result thumbnail; may be null
+	Thumbnail *PhotoSize `json:"thumbnail"`
 }
 
 func (entity *InlineQueryResultVenue) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineQueryResultVenue
+	type stub InlineQueryResultVenue
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineQueryResultVenue) GetClass() string {
-    return ClassInlineQueryResult
+	return ClassInlineQueryResult
 }
 
 func (*InlineQueryResultVenue) GetType() string {
-    return TypeInlineQueryResultVenue
+	return TypeInlineQueryResultVenue
 }
 
 func (*InlineQueryResultVenue) InlineQueryResultType() string {
-    return TypeInlineQueryResultVenue
+	return TypeInlineQueryResultVenue
 }
 
 // Represents information about a game
 type InlineQueryResultGame struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Game result
-    Game *Game `json:"game"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Game result
+	Game *Game `json:"game"`
 }
 
 func (entity *InlineQueryResultGame) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineQueryResultGame
+	type stub InlineQueryResultGame
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineQueryResultGame) GetClass() string {
-    return ClassInlineQueryResult
+	return ClassInlineQueryResult
 }
 
 func (*InlineQueryResultGame) GetType() string {
-    return TypeInlineQueryResultGame
+	return TypeInlineQueryResultGame
 }
 
 func (*InlineQueryResultGame) InlineQueryResultType() string {
-    return TypeInlineQueryResultGame
+	return TypeInlineQueryResultGame
 }
 
 // Represents an animation file
 type InlineQueryResultAnimation struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Animation file
-    Animation *Animation `json:"animation"`
-    // Animation title
-    Title string `json:"title"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Animation file
+	Animation *Animation `json:"animation"`
+	// Animation title
+	Title string `json:"title"`
 }
 
 func (entity *InlineQueryResultAnimation) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineQueryResultAnimation
+	type stub InlineQueryResultAnimation
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineQueryResultAnimation) GetClass() string {
-    return ClassInlineQueryResult
+	return ClassInlineQueryResult
 }
 
 func (*InlineQueryResultAnimation) GetType() string {
-    return TypeInlineQueryResultAnimation
+	return TypeInlineQueryResultAnimation
 }
 
 func (*InlineQueryResultAnimation) InlineQueryResultType() string {
-    return TypeInlineQueryResultAnimation
+	return TypeInlineQueryResultAnimation
 }
 
 // Represents an audio file
 type InlineQueryResultAudio struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Audio file
-    Audio *Audio `json:"audio"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Audio file
+	Audio *Audio `json:"audio"`
 }
 
 func (entity *InlineQueryResultAudio) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineQueryResultAudio
+	type stub InlineQueryResultAudio
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineQueryResultAudio) GetClass() string {
-    return ClassInlineQueryResult
+	return ClassInlineQueryResult
 }
 
 func (*InlineQueryResultAudio) GetType() string {
-    return TypeInlineQueryResultAudio
+	return TypeInlineQueryResultAudio
 }
 
 func (*InlineQueryResultAudio) InlineQueryResultType() string {
-    return TypeInlineQueryResultAudio
+	return TypeInlineQueryResultAudio
 }
 
 // Represents a document
 type InlineQueryResultDocument struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Document
-    Document *Document `json:"document"`
-    // Document title
-    Title string `json:"title"`
-    // Document description
-    Description string `json:"description"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Document
+	Document *Document `json:"document"`
+	// Document title
+	Title string `json:"title"`
+	// Document description
+	Description string `json:"description"`
 }
 
 func (entity *InlineQueryResultDocument) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineQueryResultDocument
+	type stub InlineQueryResultDocument
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineQueryResultDocument) GetClass() string {
-    return ClassInlineQueryResult
+	return ClassInlineQueryResult
 }
 
 func (*InlineQueryResultDocument) GetType() string {
-    return TypeInlineQueryResultDocument
+	return TypeInlineQueryResultDocument
 }
 
 func (*InlineQueryResultDocument) InlineQueryResultType() string {
-    return TypeInlineQueryResultDocument
+	return TypeInlineQueryResultDocument
 }
 
 // Represents a photo
 type InlineQueryResultPhoto struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Photo
-    Photo *Photo `json:"photo"`
-    // Title of the result, if known
-    Title string `json:"title"`
-    // A short description of the result, if known
-    Description string `json:"description"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Photo
+	Photo *Photo `json:"photo"`
+	// Title of the result, if known
+	Title string `json:"title"`
+	// A short description of the result, if known
+	Description string `json:"description"`
 }
 
 func (entity *InlineQueryResultPhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineQueryResultPhoto
+	type stub InlineQueryResultPhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineQueryResultPhoto) GetClass() string {
-    return ClassInlineQueryResult
+	return ClassInlineQueryResult
 }
 
 func (*InlineQueryResultPhoto) GetType() string {
-    return TypeInlineQueryResultPhoto
+	return TypeInlineQueryResultPhoto
 }
 
 func (*InlineQueryResultPhoto) InlineQueryResultType() string {
-    return TypeInlineQueryResultPhoto
+	return TypeInlineQueryResultPhoto
 }
 
 // Represents a sticker
 type InlineQueryResultSticker struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Sticker
-    Sticker *Sticker `json:"sticker"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Sticker
+	Sticker *Sticker `json:"sticker"`
 }
 
 func (entity *InlineQueryResultSticker) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineQueryResultSticker
+	type stub InlineQueryResultSticker
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineQueryResultSticker) GetClass() string {
-    return ClassInlineQueryResult
+	return ClassInlineQueryResult
 }
 
 func (*InlineQueryResultSticker) GetType() string {
-    return TypeInlineQueryResultSticker
+	return TypeInlineQueryResultSticker
 }
 
 func (*InlineQueryResultSticker) InlineQueryResultType() string {
-    return TypeInlineQueryResultSticker
+	return TypeInlineQueryResultSticker
 }
 
 // Represents a video
 type InlineQueryResultVideo struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Video
-    Video *Video `json:"video"`
-    // Title of the video
-    Title string `json:"title"`
-    // Description of the video
-    Description string `json:"description"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Video
+	Video *Video `json:"video"`
+	// Title of the video
+	Title string `json:"title"`
+	// Description of the video
+	Description string `json:"description"`
 }
 
 func (entity *InlineQueryResultVideo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineQueryResultVideo
+	type stub InlineQueryResultVideo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineQueryResultVideo) GetClass() string {
-    return ClassInlineQueryResult
+	return ClassInlineQueryResult
 }
 
 func (*InlineQueryResultVideo) GetType() string {
-    return TypeInlineQueryResultVideo
+	return TypeInlineQueryResultVideo
 }
 
 func (*InlineQueryResultVideo) InlineQueryResultType() string {
-    return TypeInlineQueryResultVideo
+	return TypeInlineQueryResultVideo
 }
 
 // Represents a voice note
 type InlineQueryResultVoiceNote struct {
-    meta
-    // Unique identifier of the query result
-    Id string `json:"id"`
-    // Voice note
-    VoiceNote *VoiceNote `json:"voice_note"`
-    // Title of the voice note
-    Title string `json:"title"`
+	meta
+	// Unique identifier of the query result
+	Id string `json:"id"`
+	// Voice note
+	VoiceNote *VoiceNote `json:"voice_note"`
+	// Title of the voice note
+	Title string `json:"title"`
 }
 
 func (entity *InlineQueryResultVoiceNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineQueryResultVoiceNote
+	type stub InlineQueryResultVoiceNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineQueryResultVoiceNote) GetClass() string {
-    return ClassInlineQueryResult
+	return ClassInlineQueryResult
 }
 
 func (*InlineQueryResultVoiceNote) GetType() string {
-    return TypeInlineQueryResultVoiceNote
+	return TypeInlineQueryResultVoiceNote
 }
 
 func (*InlineQueryResultVoiceNote) InlineQueryResultType() string {
-    return TypeInlineQueryResultVoiceNote
+	return TypeInlineQueryResultVoiceNote
 }
 
 // Represents the results of the inline query. Use sendInlineQueryResultMessage to send the result of the query
 type InlineQueryResults struct {
-    meta
-    // Unique identifier of the inline query
-    InlineQueryId JsonInt64 `json:"inline_query_id"`
-    // The offset for the next request. If empty, there are no more results
-    NextOffset string `json:"next_offset"`
-    // Results of the query
-    Results []InlineQueryResult `json:"results"`
-    // If non-empty, this text should be shown on the button, which opens a private chat with the bot and sends the bot a start message with the switch_pm_parameter
-    SwitchPmText string `json:"switch_pm_text"`
-    // Parameter for the bot start message
-    SwitchPmParameter string `json:"switch_pm_parameter"`
+	meta
+	// Unique identifier of the inline query
+	InlineQueryId JsonInt64 `json:"inline_query_id"`
+	// The offset for the next request. If empty, there are no more results
+	NextOffset string `json:"next_offset"`
+	// Results of the query
+	Results []InlineQueryResult `json:"results"`
+	// If non-empty, this text should be shown on the button, which opens a private chat with the bot and sends the bot a start message with the switch_pm_parameter
+	SwitchPmText string `json:"switch_pm_text"`
+	// Parameter for the bot start message
+	SwitchPmParameter string `json:"switch_pm_parameter"`
 }
 
 func (entity *InlineQueryResults) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InlineQueryResults
+	type stub InlineQueryResults
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InlineQueryResults) GetClass() string {
-    return ClassInlineQueryResults
+	return ClassInlineQueryResults
 }
 
 func (*InlineQueryResults) GetType() string {
-    return TypeInlineQueryResults
+	return TypeInlineQueryResults
 }
 
 // The payload from a general callback button
 type CallbackQueryPayloadData struct {
-    meta
-    // Data that was attached to the callback button
-    Data []byte `json:"data"`
+	meta
+	// Data that was attached to the callback button
+	Data []byte `json:"data"`
 }
 
 func (entity *CallbackQueryPayloadData) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallbackQueryPayloadData
+	type stub CallbackQueryPayloadData
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallbackQueryPayloadData) GetClass() string {
-    return ClassCallbackQueryPayload
+	return ClassCallbackQueryPayload
 }
 
 func (*CallbackQueryPayloadData) GetType() string {
-    return TypeCallbackQueryPayloadData
+	return TypeCallbackQueryPayloadData
 }
 
 func (*CallbackQueryPayloadData) CallbackQueryPayloadType() string {
-    return TypeCallbackQueryPayloadData
+	return TypeCallbackQueryPayloadData
 }
 
 // The payload from a game callback button
 type CallbackQueryPayloadGame struct {
-    meta
-    // A short name of the game that was attached to the callback button
-    GameShortName string `json:"game_short_name"`
+	meta
+	// A short name of the game that was attached to the callback button
+	GameShortName string `json:"game_short_name"`
 }
 
 func (entity *CallbackQueryPayloadGame) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallbackQueryPayloadGame
+	type stub CallbackQueryPayloadGame
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallbackQueryPayloadGame) GetClass() string {
-    return ClassCallbackQueryPayload
+	return ClassCallbackQueryPayload
 }
 
 func (*CallbackQueryPayloadGame) GetType() string {
-    return TypeCallbackQueryPayloadGame
+	return TypeCallbackQueryPayloadGame
 }
 
 func (*CallbackQueryPayloadGame) CallbackQueryPayloadType() string {
-    return TypeCallbackQueryPayloadGame
+	return TypeCallbackQueryPayloadGame
 }
 
 // Contains a bot's answer to a callback query
 type CallbackQueryAnswer struct {
-    meta
-    // Text of the answer
-    Text string `json:"text"`
-    // True, if an alert should be shown to the user instead of a toast notification
-    ShowAlert bool `json:"show_alert"`
-    // URL to be opened
-    Url string `json:"url"`
+	meta
+	// Text of the answer
+	Text string `json:"text"`
+	// True, if an alert should be shown to the user instead of a toast notification
+	ShowAlert bool `json:"show_alert"`
+	// URL to be opened
+	Url string `json:"url"`
 }
 
 func (entity *CallbackQueryAnswer) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CallbackQueryAnswer
+	type stub CallbackQueryAnswer
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CallbackQueryAnswer) GetClass() string {
-    return ClassCallbackQueryAnswer
+	return ClassCallbackQueryAnswer
 }
 
 func (*CallbackQueryAnswer) GetType() string {
-    return TypeCallbackQueryAnswer
+	return TypeCallbackQueryAnswer
 }
 
 // Contains the result of a custom request
 type CustomRequestResult struct {
-    meta
-    // A JSON-serialized result
-    Result string `json:"result"`
+	meta
+	// A JSON-serialized result
+	Result string `json:"result"`
 }
 
 func (entity *CustomRequestResult) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CustomRequestResult
+	type stub CustomRequestResult
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CustomRequestResult) GetClass() string {
-    return ClassCustomRequestResult
+	return ClassCustomRequestResult
 }
 
 func (*CustomRequestResult) GetType() string {
-    return TypeCustomRequestResult
+	return TypeCustomRequestResult
 }
 
 // Contains one row of the game high score table
 type GameHighScore struct {
-    meta
-    // Position in the high score table
-    Position int32 `json:"position"`
-    // User identifier
-    UserId int32 `json:"user_id"`
-    // User score
-    Score int32 `json:"score"`
+	meta
+	// Position in the high score table
+	Position int32 `json:"position"`
+	// User identifier
+	UserId int32 `json:"user_id"`
+	// User score
+	Score int32 `json:"score"`
 }
 
 func (entity *GameHighScore) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub GameHighScore
+	type stub GameHighScore
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*GameHighScore) GetClass() string {
-    return ClassGameHighScore
+	return ClassGameHighScore
 }
 
 func (*GameHighScore) GetType() string {
-    return TypeGameHighScore
+	return TypeGameHighScore
 }
 
 // Contains a list of game high scores
 type GameHighScores struct {
-    meta
-    // A list of game high scores
-    Scores []*GameHighScore `json:"scores"`
+	meta
+	// A list of game high scores
+	Scores []*GameHighScore `json:"scores"`
 }
 
 func (entity *GameHighScores) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub GameHighScores
+	type stub GameHighScores
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*GameHighScores) GetClass() string {
-    return ClassGameHighScores
+	return ClassGameHighScores
 }
 
 func (*GameHighScores) GetType() string {
-    return TypeGameHighScores
+	return TypeGameHighScores
 }
 
 // A message was edited
 type ChatEventMessageEdited struct {
-    meta
-    // The original message before the edit
-    OldMessage *Message `json:"old_message"`
-    // The message after it was edited
-    NewMessage *Message `json:"new_message"`
+	meta
+	// The original message before the edit
+	OldMessage *Message `json:"old_message"`
+	// The message after it was edited
+	NewMessage *Message `json:"new_message"`
 }
 
 func (entity *ChatEventMessageEdited) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventMessageEdited
+	type stub ChatEventMessageEdited
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventMessageEdited) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventMessageEdited) GetType() string {
-    return TypeChatEventMessageEdited
+	return TypeChatEventMessageEdited
 }
 
 func (*ChatEventMessageEdited) ChatEventActionType() string {
-    return TypeChatEventMessageEdited
+	return TypeChatEventMessageEdited
 }
 
 // A message was deleted
 type ChatEventMessageDeleted struct {
-    meta
-    // Deleted message
-    Message *Message `json:"message"`
+	meta
+	// Deleted message
+	Message *Message `json:"message"`
 }
 
 func (entity *ChatEventMessageDeleted) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventMessageDeleted
+	type stub ChatEventMessageDeleted
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventMessageDeleted) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventMessageDeleted) GetType() string {
-    return TypeChatEventMessageDeleted
+	return TypeChatEventMessageDeleted
 }
 
 func (*ChatEventMessageDeleted) ChatEventActionType() string {
-    return TypeChatEventMessageDeleted
+	return TypeChatEventMessageDeleted
 }
 
 // A message was pinned
 type ChatEventMessagePinned struct {
-    meta
-    // Pinned message
-    Message *Message `json:"message"`
+	meta
+	// Pinned message
+	Message *Message `json:"message"`
 }
 
 func (entity *ChatEventMessagePinned) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventMessagePinned
+	type stub ChatEventMessagePinned
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventMessagePinned) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventMessagePinned) GetType() string {
-    return TypeChatEventMessagePinned
+	return TypeChatEventMessagePinned
 }
 
 func (*ChatEventMessagePinned) ChatEventActionType() string {
-    return TypeChatEventMessagePinned
+	return TypeChatEventMessagePinned
 }
 
 // A message was unpinned
-type ChatEventMessageUnpinned struct{
-    meta
+type ChatEventMessageUnpinned struct {
+	meta
 }
 
 func (entity *ChatEventMessageUnpinned) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventMessageUnpinned
+	type stub ChatEventMessageUnpinned
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventMessageUnpinned) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventMessageUnpinned) GetType() string {
-    return TypeChatEventMessageUnpinned
+	return TypeChatEventMessageUnpinned
 }
 
 func (*ChatEventMessageUnpinned) ChatEventActionType() string {
-    return TypeChatEventMessageUnpinned
+	return TypeChatEventMessageUnpinned
 }
 
 // A new member joined the chat
-type ChatEventMemberJoined struct{
-    meta
+type ChatEventMemberJoined struct {
+	meta
 }
 
 func (entity *ChatEventMemberJoined) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventMemberJoined
+	type stub ChatEventMemberJoined
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventMemberJoined) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventMemberJoined) GetType() string {
-    return TypeChatEventMemberJoined
+	return TypeChatEventMemberJoined
 }
 
 func (*ChatEventMemberJoined) ChatEventActionType() string {
-    return TypeChatEventMemberJoined
+	return TypeChatEventMemberJoined
 }
 
 // A member left the chat
-type ChatEventMemberLeft struct{
-    meta
+type ChatEventMemberLeft struct {
+	meta
 }
 
 func (entity *ChatEventMemberLeft) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventMemberLeft
+	type stub ChatEventMemberLeft
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventMemberLeft) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventMemberLeft) GetType() string {
-    return TypeChatEventMemberLeft
+	return TypeChatEventMemberLeft
 }
 
 func (*ChatEventMemberLeft) ChatEventActionType() string {
-    return TypeChatEventMemberLeft
+	return TypeChatEventMemberLeft
 }
 
 // A new chat member was invited
 type ChatEventMemberInvited struct {
-    meta
-    // New member user identifier
-    UserId int32 `json:"user_id"`
-    // New member status
-    Status ChatMemberStatus `json:"status"`
+	meta
+	// New member user identifier
+	UserId int32 `json:"user_id"`
+	// New member status
+	Status ChatMemberStatus `json:"status"`
 }
 
 func (entity *ChatEventMemberInvited) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventMemberInvited
+	type stub ChatEventMemberInvited
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventMemberInvited) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventMemberInvited) GetType() string {
-    return TypeChatEventMemberInvited
+	return TypeChatEventMemberInvited
 }
 
 func (*ChatEventMemberInvited) ChatEventActionType() string {
-    return TypeChatEventMemberInvited
+	return TypeChatEventMemberInvited
 }
 
 func (chatEventMemberInvited *ChatEventMemberInvited) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        UserId int32 `json:"user_id"`
-        Status json.RawMessage `json:"status"`
-    }
+	var tmp struct {
+		UserId int32           `json:"user_id"`
+		Status json.RawMessage `json:"status"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    chatEventMemberInvited.UserId = tmp.UserId
+	chatEventMemberInvited.UserId = tmp.UserId
 
-    fieldStatus, _ := UnmarshalChatMemberStatus(tmp.Status)
-    chatEventMemberInvited.Status = fieldStatus
+	fieldStatus, _ := UnmarshalChatMemberStatus(tmp.Status)
+	chatEventMemberInvited.Status = fieldStatus
 
-    return nil
+	return nil
 }
 
 // A chat member has gained/lost administrator status, or the list of their administrator privileges has changed
 type ChatEventMemberPromoted struct {
-    meta
-    // Chat member user identifier
-    UserId int32 `json:"user_id"`
-    // Previous status of the chat member
-    OldStatus ChatMemberStatus `json:"old_status"`
-    // New status of the chat member
-    NewStatus ChatMemberStatus `json:"new_status"`
+	meta
+	// Chat member user identifier
+	UserId int32 `json:"user_id"`
+	// Previous status of the chat member
+	OldStatus ChatMemberStatus `json:"old_status"`
+	// New status of the chat member
+	NewStatus ChatMemberStatus `json:"new_status"`
 }
 
 func (entity *ChatEventMemberPromoted) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventMemberPromoted
+	type stub ChatEventMemberPromoted
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventMemberPromoted) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventMemberPromoted) GetType() string {
-    return TypeChatEventMemberPromoted
+	return TypeChatEventMemberPromoted
 }
 
 func (*ChatEventMemberPromoted) ChatEventActionType() string {
-    return TypeChatEventMemberPromoted
+	return TypeChatEventMemberPromoted
 }
 
 func (chatEventMemberPromoted *ChatEventMemberPromoted) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        UserId int32 `json:"user_id"`
-        OldStatus json.RawMessage `json:"old_status"`
-        NewStatus json.RawMessage `json:"new_status"`
-    }
+	var tmp struct {
+		UserId    int32           `json:"user_id"`
+		OldStatus json.RawMessage `json:"old_status"`
+		NewStatus json.RawMessage `json:"new_status"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    chatEventMemberPromoted.UserId = tmp.UserId
+	chatEventMemberPromoted.UserId = tmp.UserId
 
-    fieldOldStatus, _ := UnmarshalChatMemberStatus(tmp.OldStatus)
-    chatEventMemberPromoted.OldStatus = fieldOldStatus
+	fieldOldStatus, _ := UnmarshalChatMemberStatus(tmp.OldStatus)
+	chatEventMemberPromoted.OldStatus = fieldOldStatus
 
-    fieldNewStatus, _ := UnmarshalChatMemberStatus(tmp.NewStatus)
-    chatEventMemberPromoted.NewStatus = fieldNewStatus
+	fieldNewStatus, _ := UnmarshalChatMemberStatus(tmp.NewStatus)
+	chatEventMemberPromoted.NewStatus = fieldNewStatus
 
-    return nil
+	return nil
 }
 
 // A chat member was restricted/unrestricted or banned/unbanned, or the list of their restrictions has changed
 type ChatEventMemberRestricted struct {
-    meta
-    // Chat member user identifier
-    UserId int32 `json:"user_id"`
-    // Previous status of the chat member
-    OldStatus ChatMemberStatus `json:"old_status"`
-    // New status of the chat member
-    NewStatus ChatMemberStatus `json:"new_status"`
+	meta
+	// Chat member user identifier
+	UserId int32 `json:"user_id"`
+	// Previous status of the chat member
+	OldStatus ChatMemberStatus `json:"old_status"`
+	// New status of the chat member
+	NewStatus ChatMemberStatus `json:"new_status"`
 }
 
 func (entity *ChatEventMemberRestricted) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventMemberRestricted
+	type stub ChatEventMemberRestricted
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventMemberRestricted) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventMemberRestricted) GetType() string {
-    return TypeChatEventMemberRestricted
+	return TypeChatEventMemberRestricted
 }
 
 func (*ChatEventMemberRestricted) ChatEventActionType() string {
-    return TypeChatEventMemberRestricted
+	return TypeChatEventMemberRestricted
 }
 
 func (chatEventMemberRestricted *ChatEventMemberRestricted) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        UserId int32 `json:"user_id"`
-        OldStatus json.RawMessage `json:"old_status"`
-        NewStatus json.RawMessage `json:"new_status"`
-    }
+	var tmp struct {
+		UserId    int32           `json:"user_id"`
+		OldStatus json.RawMessage `json:"old_status"`
+		NewStatus json.RawMessage `json:"new_status"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    chatEventMemberRestricted.UserId = tmp.UserId
+	chatEventMemberRestricted.UserId = tmp.UserId
 
-    fieldOldStatus, _ := UnmarshalChatMemberStatus(tmp.OldStatus)
-    chatEventMemberRestricted.OldStatus = fieldOldStatus
+	fieldOldStatus, _ := UnmarshalChatMemberStatus(tmp.OldStatus)
+	chatEventMemberRestricted.OldStatus = fieldOldStatus
 
-    fieldNewStatus, _ := UnmarshalChatMemberStatus(tmp.NewStatus)
-    chatEventMemberRestricted.NewStatus = fieldNewStatus
+	fieldNewStatus, _ := UnmarshalChatMemberStatus(tmp.NewStatus)
+	chatEventMemberRestricted.NewStatus = fieldNewStatus
 
-    return nil
+	return nil
 }
 
 // The chat title was changed
 type ChatEventTitleChanged struct {
-    meta
-    // Previous chat title
-    OldTitle string `json:"old_title"`
-    // New chat title
-    NewTitle string `json:"new_title"`
+	meta
+	// Previous chat title
+	OldTitle string `json:"old_title"`
+	// New chat title
+	NewTitle string `json:"new_title"`
 }
 
 func (entity *ChatEventTitleChanged) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventTitleChanged
+	type stub ChatEventTitleChanged
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventTitleChanged) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventTitleChanged) GetType() string {
-    return TypeChatEventTitleChanged
+	return TypeChatEventTitleChanged
 }
 
 func (*ChatEventTitleChanged) ChatEventActionType() string {
-    return TypeChatEventTitleChanged
+	return TypeChatEventTitleChanged
 }
 
 // The chat description was changed
 type ChatEventDescriptionChanged struct {
-    meta
-    // Previous chat description
-    OldDescription string `json:"old_description"`
-    // New chat description
-    NewDescription string `json:"new_description"`
+	meta
+	// Previous chat description
+	OldDescription string `json:"old_description"`
+	// New chat description
+	NewDescription string `json:"new_description"`
 }
 
 func (entity *ChatEventDescriptionChanged) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventDescriptionChanged
+	type stub ChatEventDescriptionChanged
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventDescriptionChanged) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventDescriptionChanged) GetType() string {
-    return TypeChatEventDescriptionChanged
+	return TypeChatEventDescriptionChanged
 }
 
 func (*ChatEventDescriptionChanged) ChatEventActionType() string {
-    return TypeChatEventDescriptionChanged
+	return TypeChatEventDescriptionChanged
 }
 
 // The chat username was changed
 type ChatEventUsernameChanged struct {
-    meta
-    // Previous chat username
-    OldUsername string `json:"old_username"`
-    // New chat username
-    NewUsername string `json:"new_username"`
+	meta
+	// Previous chat username
+	OldUsername string `json:"old_username"`
+	// New chat username
+	NewUsername string `json:"new_username"`
 }
 
 func (entity *ChatEventUsernameChanged) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventUsernameChanged
+	type stub ChatEventUsernameChanged
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventUsernameChanged) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventUsernameChanged) GetType() string {
-    return TypeChatEventUsernameChanged
+	return TypeChatEventUsernameChanged
 }
 
 func (*ChatEventUsernameChanged) ChatEventActionType() string {
-    return TypeChatEventUsernameChanged
+	return TypeChatEventUsernameChanged
 }
 
 // The chat photo was changed
 type ChatEventPhotoChanged struct {
-    meta
-    // Previous chat photo value; may be null
-    OldPhoto *ChatPhoto `json:"old_photo"`
-    // New chat photo value; may be null
-    NewPhoto *ChatPhoto `json:"new_photo"`
+	meta
+	// Previous chat photo value; may be null
+	OldPhoto *ChatPhoto `json:"old_photo"`
+	// New chat photo value; may be null
+	NewPhoto *ChatPhoto `json:"new_photo"`
 }
 
 func (entity *ChatEventPhotoChanged) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventPhotoChanged
+	type stub ChatEventPhotoChanged
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventPhotoChanged) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventPhotoChanged) GetType() string {
-    return TypeChatEventPhotoChanged
+	return TypeChatEventPhotoChanged
 }
 
 func (*ChatEventPhotoChanged) ChatEventActionType() string {
-    return TypeChatEventPhotoChanged
+	return TypeChatEventPhotoChanged
 }
 
 // The anyone_can_invite setting of a supergroup chat was toggled
 type ChatEventInvitesToggled struct {
-    meta
-    // New value of anyone_can_invite
-    AnyoneCanInvite bool `json:"anyone_can_invite"`
+	meta
+	// New value of anyone_can_invite
+	AnyoneCanInvite bool `json:"anyone_can_invite"`
 }
 
 func (entity *ChatEventInvitesToggled) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventInvitesToggled
+	type stub ChatEventInvitesToggled
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventInvitesToggled) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventInvitesToggled) GetType() string {
-    return TypeChatEventInvitesToggled
+	return TypeChatEventInvitesToggled
 }
 
 func (*ChatEventInvitesToggled) ChatEventActionType() string {
-    return TypeChatEventInvitesToggled
+	return TypeChatEventInvitesToggled
 }
 
 // The sign_messages setting of a channel was toggled
 type ChatEventSignMessagesToggled struct {
-    meta
-    // New value of sign_messages
-    SignMessages bool `json:"sign_messages"`
+	meta
+	// New value of sign_messages
+	SignMessages bool `json:"sign_messages"`
 }
 
 func (entity *ChatEventSignMessagesToggled) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventSignMessagesToggled
+	type stub ChatEventSignMessagesToggled
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventSignMessagesToggled) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventSignMessagesToggled) GetType() string {
-    return TypeChatEventSignMessagesToggled
+	return TypeChatEventSignMessagesToggled
 }
 
 func (*ChatEventSignMessagesToggled) ChatEventActionType() string {
-    return TypeChatEventSignMessagesToggled
+	return TypeChatEventSignMessagesToggled
 }
 
 // The supergroup sticker set was changed
 type ChatEventStickerSetChanged struct {
-    meta
-    // Previous identifier of the chat sticker set; 0 if none
-    OldStickerSetId JsonInt64 `json:"old_sticker_set_id"`
-    // New identifier of the chat sticker set; 0 if none
-    NewStickerSetId JsonInt64 `json:"new_sticker_set_id"`
+	meta
+	// Previous identifier of the chat sticker set; 0 if none
+	OldStickerSetId JsonInt64 `json:"old_sticker_set_id"`
+	// New identifier of the chat sticker set; 0 if none
+	NewStickerSetId JsonInt64 `json:"new_sticker_set_id"`
 }
 
 func (entity *ChatEventStickerSetChanged) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventStickerSetChanged
+	type stub ChatEventStickerSetChanged
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventStickerSetChanged) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventStickerSetChanged) GetType() string {
-    return TypeChatEventStickerSetChanged
+	return TypeChatEventStickerSetChanged
 }
 
 func (*ChatEventStickerSetChanged) ChatEventActionType() string {
-    return TypeChatEventStickerSetChanged
+	return TypeChatEventStickerSetChanged
 }
 
 // The is_all_history_available setting of a supergroup was toggled
 type ChatEventIsAllHistoryAvailableToggled struct {
-    meta
-    // New value of is_all_history_available
-    IsAllHistoryAvailable bool `json:"is_all_history_available"`
+	meta
+	// New value of is_all_history_available
+	IsAllHistoryAvailable bool `json:"is_all_history_available"`
 }
 
 func (entity *ChatEventIsAllHistoryAvailableToggled) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventIsAllHistoryAvailableToggled
+	type stub ChatEventIsAllHistoryAvailableToggled
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventIsAllHistoryAvailableToggled) GetClass() string {
-    return ClassChatEventAction
+	return ClassChatEventAction
 }
 
 func (*ChatEventIsAllHistoryAvailableToggled) GetType() string {
-    return TypeChatEventIsAllHistoryAvailableToggled
+	return TypeChatEventIsAllHistoryAvailableToggled
 }
 
 func (*ChatEventIsAllHistoryAvailableToggled) ChatEventActionType() string {
-    return TypeChatEventIsAllHistoryAvailableToggled
+	return TypeChatEventIsAllHistoryAvailableToggled
 }
 
 // Represents a chat event
 type ChatEvent struct {
-    meta
-    // Chat event identifier
-    Id JsonInt64 `json:"id"`
-    // Point in time (Unix timestamp) when the event happened
-    Date int32 `json:"date"`
-    // Identifier of the user who performed the action that triggered the event
-    UserId int32 `json:"user_id"`
-    // Action performed by the user
-    Action ChatEventAction `json:"action"`
+	meta
+	// Chat event identifier
+	Id JsonInt64 `json:"id"`
+	// Point in time (Unix timestamp) when the event happened
+	Date int32 `json:"date"`
+	// Identifier of the user who performed the action that triggered the event
+	UserId int32 `json:"user_id"`
+	// Action performed by the user
+	Action ChatEventAction `json:"action"`
 }
 
 func (entity *ChatEvent) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEvent
+	type stub ChatEvent
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEvent) GetClass() string {
-    return ClassChatEvent
+	return ClassChatEvent
 }
 
 func (*ChatEvent) GetType() string {
-    return TypeChatEvent
+	return TypeChatEvent
 }
 
 func (chatEvent *ChatEvent) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id JsonInt64 `json:"id"`
-        Date int32 `json:"date"`
-        UserId int32 `json:"user_id"`
-        Action json.RawMessage `json:"action"`
-    }
+	var tmp struct {
+		Id     JsonInt64       `json:"id"`
+		Date   int32           `json:"date"`
+		UserId int32           `json:"user_id"`
+		Action json.RawMessage `json:"action"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    chatEvent.Id = tmp.Id
-    chatEvent.Date = tmp.Date
-    chatEvent.UserId = tmp.UserId
+	chatEvent.Id = tmp.Id
+	chatEvent.Date = tmp.Date
+	chatEvent.UserId = tmp.UserId
 
-    fieldAction, _ := UnmarshalChatEventAction(tmp.Action)
-    chatEvent.Action = fieldAction
+	fieldAction, _ := UnmarshalChatEventAction(tmp.Action)
+	chatEvent.Action = fieldAction
 
-    return nil
+	return nil
 }
 
 // Contains a list of chat events
 type ChatEvents struct {
-    meta
-    // List of events
-    Events []*ChatEvent `json:"events"`
+	meta
+	// List of events
+	Events []*ChatEvent `json:"events"`
 }
 
 func (entity *ChatEvents) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEvents
+	type stub ChatEvents
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEvents) GetClass() string {
-    return ClassChatEvents
+	return ClassChatEvents
 }
 
 func (*ChatEvents) GetType() string {
-    return TypeChatEvents
+	return TypeChatEvents
 }
 
 // Represents a set of filters used to obtain a chat event log
 type ChatEventLogFilters struct {
-    meta
-    // True, if message edits should be returned
-    MessageEdits bool `json:"message_edits"`
-    // True, if message deletions should be returned
-    MessageDeletions bool `json:"message_deletions"`
-    // True, if pin/unpin events should be returned
-    MessagePins bool `json:"message_pins"`
-    // True, if members joining events should be returned
-    MemberJoins bool `json:"member_joins"`
-    // True, if members leaving events should be returned
-    MemberLeaves bool `json:"member_leaves"`
-    // True, if invited member events should be returned
-    MemberInvites bool `json:"member_invites"`
-    // True, if member promotion/demotion events should be returned
-    MemberPromotions bool `json:"member_promotions"`
-    // True, if member restricted/unrestricted/banned/unbanned events should be returned
-    MemberRestrictions bool `json:"member_restrictions"`
-    // True, if changes in chat information should be returned
-    InfoChanges bool `json:"info_changes"`
-    // True, if changes in chat settings should be returned
-    SettingChanges bool `json:"setting_changes"`
+	meta
+	// True, if message edits should be returned
+	MessageEdits bool `json:"message_edits"`
+	// True, if message deletions should be returned
+	MessageDeletions bool `json:"message_deletions"`
+	// True, if pin/unpin events should be returned
+	MessagePins bool `json:"message_pins"`
+	// True, if members joining events should be returned
+	MemberJoins bool `json:"member_joins"`
+	// True, if members leaving events should be returned
+	MemberLeaves bool `json:"member_leaves"`
+	// True, if invited member events should be returned
+	MemberInvites bool `json:"member_invites"`
+	// True, if member promotion/demotion events should be returned
+	MemberPromotions bool `json:"member_promotions"`
+	// True, if member restricted/unrestricted/banned/unbanned events should be returned
+	MemberRestrictions bool `json:"member_restrictions"`
+	// True, if changes in chat information should be returned
+	InfoChanges bool `json:"info_changes"`
+	// True, if changes in chat settings should be returned
+	SettingChanges bool `json:"setting_changes"`
 }
 
 func (entity *ChatEventLogFilters) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatEventLogFilters
+	type stub ChatEventLogFilters
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatEventLogFilters) GetClass() string {
-    return ClassChatEventLogFilters
+	return ClassChatEventLogFilters
 }
 
 func (*ChatEventLogFilters) GetType() string {
-    return TypeChatEventLogFilters
+	return TypeChatEventLogFilters
 }
 
 // An ordinary language pack string
 type LanguagePackStringValueOrdinary struct {
-    meta
-    // String value
-    Value string `json:"value"`
+	meta
+	// String value
+	Value string `json:"value"`
 }
 
 func (entity *LanguagePackStringValueOrdinary) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub LanguagePackStringValueOrdinary
+	type stub LanguagePackStringValueOrdinary
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*LanguagePackStringValueOrdinary) GetClass() string {
-    return ClassLanguagePackStringValue
+	return ClassLanguagePackStringValue
 }
 
 func (*LanguagePackStringValueOrdinary) GetType() string {
-    return TypeLanguagePackStringValueOrdinary
+	return TypeLanguagePackStringValueOrdinary
 }
 
 func (*LanguagePackStringValueOrdinary) LanguagePackStringValueType() string {
-    return TypeLanguagePackStringValueOrdinary
+	return TypeLanguagePackStringValueOrdinary
 }
 
 // A language pack string which has different forms based on the number of some object it mentions
 type LanguagePackStringValuePluralized struct {
-    meta
-    // Value for zero objects
-    ZeroValue string `json:"zero_value"`
-    // Value for one object
-    OneValue string `json:"one_value"`
-    // Value for two objects
-    TwoValue string `json:"two_value"`
-    // Value for few objects
-    FewValue string `json:"few_value"`
-    // Value for many objects
-    ManyValue string `json:"many_value"`
-    // Default value
-    OtherValue string `json:"other_value"`
+	meta
+	// Value for zero objects
+	ZeroValue string `json:"zero_value"`
+	// Value for one object
+	OneValue string `json:"one_value"`
+	// Value for two objects
+	TwoValue string `json:"two_value"`
+	// Value for few objects
+	FewValue string `json:"few_value"`
+	// Value for many objects
+	ManyValue string `json:"many_value"`
+	// Default value
+	OtherValue string `json:"other_value"`
 }
 
 func (entity *LanguagePackStringValuePluralized) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub LanguagePackStringValuePluralized
+	type stub LanguagePackStringValuePluralized
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*LanguagePackStringValuePluralized) GetClass() string {
-    return ClassLanguagePackStringValue
+	return ClassLanguagePackStringValue
 }
 
 func (*LanguagePackStringValuePluralized) GetType() string {
-    return TypeLanguagePackStringValuePluralized
+	return TypeLanguagePackStringValuePluralized
 }
 
 func (*LanguagePackStringValuePluralized) LanguagePackStringValueType() string {
-    return TypeLanguagePackStringValuePluralized
+	return TypeLanguagePackStringValuePluralized
 }
 
 // A deleted language pack string, the value should be taken from the built-in english language pack
-type LanguagePackStringValueDeleted struct{
-    meta
+type LanguagePackStringValueDeleted struct {
+	meta
 }
 
 func (entity *LanguagePackStringValueDeleted) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub LanguagePackStringValueDeleted
+	type stub LanguagePackStringValueDeleted
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*LanguagePackStringValueDeleted) GetClass() string {
-    return ClassLanguagePackStringValue
+	return ClassLanguagePackStringValue
 }
 
 func (*LanguagePackStringValueDeleted) GetType() string {
-    return TypeLanguagePackStringValueDeleted
+	return TypeLanguagePackStringValueDeleted
 }
 
 func (*LanguagePackStringValueDeleted) LanguagePackStringValueType() string {
-    return TypeLanguagePackStringValueDeleted
+	return TypeLanguagePackStringValueDeleted
 }
 
 // Represents one language pack string
 type LanguagePackString struct {
-    meta
-    // String key
-    Key string `json:"key"`
-    // String value
-    Value LanguagePackStringValue `json:"value"`
+	meta
+	// String key
+	Key string `json:"key"`
+	// String value
+	Value LanguagePackStringValue `json:"value"`
 }
 
 func (entity *LanguagePackString) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub LanguagePackString
+	type stub LanguagePackString
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*LanguagePackString) GetClass() string {
-    return ClassLanguagePackString
+	return ClassLanguagePackString
 }
 
 func (*LanguagePackString) GetType() string {
-    return TypeLanguagePackString
+	return TypeLanguagePackString
 }
 
 func (languagePackString *LanguagePackString) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Key string `json:"key"`
-        Value json.RawMessage `json:"value"`
-    }
+	var tmp struct {
+		Key   string          `json:"key"`
+		Value json.RawMessage `json:"value"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    languagePackString.Key = tmp.Key
+	languagePackString.Key = tmp.Key
 
-    fieldValue, _ := UnmarshalLanguagePackStringValue(tmp.Value)
-    languagePackString.Value = fieldValue
+	fieldValue, _ := UnmarshalLanguagePackStringValue(tmp.Value)
+	languagePackString.Value = fieldValue
 
-    return nil
+	return nil
 }
 
 // Contains a list of language pack strings
 type LanguagePackStrings struct {
-    meta
-    // A list of language pack strings
-    Strings []*LanguagePackString `json:"strings"`
+	meta
+	// A list of language pack strings
+	Strings []*LanguagePackString `json:"strings"`
 }
 
 func (entity *LanguagePackStrings) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub LanguagePackStrings
+	type stub LanguagePackStrings
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*LanguagePackStrings) GetClass() string {
-    return ClassLanguagePackStrings
+	return ClassLanguagePackStrings
 }
 
 func (*LanguagePackStrings) GetType() string {
-    return TypeLanguagePackStrings
+	return TypeLanguagePackStrings
 }
 
 // Contains information about a language pack
 type LanguagePackInfo struct {
-    meta
-    // Unique language pack identifier
-    Id string `json:"id"`
-    // Language name
-    Name string `json:"name"`
-    // Name of the language in that language
-    NativeName string `json:"native_name"`
-    // Total number of non-deleted strings from the language pack available locally
-    LocalStringCount int32 `json:"local_string_count"`
+	meta
+	// Unique language pack identifier
+	Id string `json:"id"`
+	// Language name
+	Name string `json:"name"`
+	// Name of the language in that language
+	NativeName string `json:"native_name"`
+	// Total number of non-deleted strings from the language pack available locally
+	LocalStringCount int32 `json:"local_string_count"`
 }
 
 func (entity *LanguagePackInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub LanguagePackInfo
+	type stub LanguagePackInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*LanguagePackInfo) GetClass() string {
-    return ClassLanguagePackInfo
+	return ClassLanguagePackInfo
 }
 
 func (*LanguagePackInfo) GetType() string {
-    return TypeLanguagePackInfo
+	return TypeLanguagePackInfo
 }
 
 // Contains information about the current localization target
 type LocalizationTargetInfo struct {
-    meta
-    // List of available language packs for this application
-    LanguagePacks []*LanguagePackInfo `json:"language_packs"`
+	meta
+	// List of available language packs for this application
+	LanguagePacks []*LanguagePackInfo `json:"language_packs"`
 }
 
 func (entity *LocalizationTargetInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub LocalizationTargetInfo
+	type stub LocalizationTargetInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*LocalizationTargetInfo) GetClass() string {
-    return ClassLocalizationTargetInfo
+	return ClassLocalizationTargetInfo
 }
 
 func (*LocalizationTargetInfo) GetType() string {
-    return TypeLocalizationTargetInfo
+	return TypeLocalizationTargetInfo
 }
 
 // A token for Google Cloud Messaging
 type DeviceTokenGoogleCloudMessaging struct {
-    meta
-    // Device registration token; may be empty to de-register a device
-    Token string `json:"token"`
+	meta
+	// Device registration token; may be empty to de-register a device
+	Token string `json:"token"`
 }
 
 func (entity *DeviceTokenGoogleCloudMessaging) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub DeviceTokenGoogleCloudMessaging
+	type stub DeviceTokenGoogleCloudMessaging
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*DeviceTokenGoogleCloudMessaging) GetClass() string {
-    return ClassDeviceToken
+	return ClassDeviceToken
 }
 
 func (*DeviceTokenGoogleCloudMessaging) GetType() string {
-    return TypeDeviceTokenGoogleCloudMessaging
+	return TypeDeviceTokenGoogleCloudMessaging
 }
 
 func (*DeviceTokenGoogleCloudMessaging) DeviceTokenType() string {
-    return TypeDeviceTokenGoogleCloudMessaging
+	return TypeDeviceTokenGoogleCloudMessaging
 }
 
 // A token for Apple Push Notification service
 type DeviceTokenApplePush struct {
-    meta
-    // Device token; may be empty to de-register a device
-    DeviceToken string `json:"device_token"`
-    // True, if App Sandbox is enabled
-    IsAppSandbox bool `json:"is_app_sandbox"`
+	meta
+	// Device token; may be empty to de-register a device
+	DeviceToken string `json:"device_token"`
+	// True, if App Sandbox is enabled
+	IsAppSandbox bool `json:"is_app_sandbox"`
 }
 
 func (entity *DeviceTokenApplePush) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub DeviceTokenApplePush
+	type stub DeviceTokenApplePush
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*DeviceTokenApplePush) GetClass() string {
-    return ClassDeviceToken
+	return ClassDeviceToken
 }
 
 func (*DeviceTokenApplePush) GetType() string {
-    return TypeDeviceTokenApplePush
+	return TypeDeviceTokenApplePush
 }
 
 func (*DeviceTokenApplePush) DeviceTokenType() string {
-    return TypeDeviceTokenApplePush
+	return TypeDeviceTokenApplePush
 }
 
 // A token for Apple Push Notification service VoIP notifications
 type DeviceTokenApplePushVoIP struct {
-    meta
-    // Device token; may be empty to de-register a device
-    DeviceToken string `json:"device_token"`
-    // True, if App Sandbox is enabled
-    IsAppSandbox bool `json:"is_app_sandbox"`
+	meta
+	// Device token; may be empty to de-register a device
+	DeviceToken string `json:"device_token"`
+	// True, if App Sandbox is enabled
+	IsAppSandbox bool `json:"is_app_sandbox"`
 }
 
 func (entity *DeviceTokenApplePushVoIP) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub DeviceTokenApplePushVoIP
+	type stub DeviceTokenApplePushVoIP
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*DeviceTokenApplePushVoIP) GetClass() string {
-    return ClassDeviceToken
+	return ClassDeviceToken
 }
 
 func (*DeviceTokenApplePushVoIP) GetType() string {
-    return TypeDeviceTokenApplePushVoIP
+	return TypeDeviceTokenApplePushVoIP
 }
 
 func (*DeviceTokenApplePushVoIP) DeviceTokenType() string {
-    return TypeDeviceTokenApplePushVoIP
+	return TypeDeviceTokenApplePushVoIP
 }
 
 // A token for Windows Push Notification Services
 type DeviceTokenWindowsPush struct {
-    meta
-    // The access token that will be used to send notifications; may be empty to de-register a device
-    AccessToken string `json:"access_token"`
+	meta
+	// The access token that will be used to send notifications; may be empty to de-register a device
+	AccessToken string `json:"access_token"`
 }
 
 func (entity *DeviceTokenWindowsPush) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub DeviceTokenWindowsPush
+	type stub DeviceTokenWindowsPush
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*DeviceTokenWindowsPush) GetClass() string {
-    return ClassDeviceToken
+	return ClassDeviceToken
 }
 
 func (*DeviceTokenWindowsPush) GetType() string {
-    return TypeDeviceTokenWindowsPush
+	return TypeDeviceTokenWindowsPush
 }
 
 func (*DeviceTokenWindowsPush) DeviceTokenType() string {
-    return TypeDeviceTokenWindowsPush
+	return TypeDeviceTokenWindowsPush
 }
 
 // A token for Microsoft Push Notification Service
 type DeviceTokenMicrosoftPush struct {
-    meta
-    // Push notification channel URI; may be empty to de-register a device
-    ChannelUri string `json:"channel_uri"`
+	meta
+	// Push notification channel URI; may be empty to de-register a device
+	ChannelUri string `json:"channel_uri"`
 }
 
 func (entity *DeviceTokenMicrosoftPush) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub DeviceTokenMicrosoftPush
+	type stub DeviceTokenMicrosoftPush
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*DeviceTokenMicrosoftPush) GetClass() string {
-    return ClassDeviceToken
+	return ClassDeviceToken
 }
 
 func (*DeviceTokenMicrosoftPush) GetType() string {
-    return TypeDeviceTokenMicrosoftPush
+	return TypeDeviceTokenMicrosoftPush
 }
 
 func (*DeviceTokenMicrosoftPush) DeviceTokenType() string {
-    return TypeDeviceTokenMicrosoftPush
+	return TypeDeviceTokenMicrosoftPush
 }
 
 // A token for Microsoft Push Notification Service VoIP channel
 type DeviceTokenMicrosoftPushVoIP struct {
-    meta
-    // Push notification channel URI; may be empty to de-register a device
-    ChannelUri string `json:"channel_uri"`
+	meta
+	// Push notification channel URI; may be empty to de-register a device
+	ChannelUri string `json:"channel_uri"`
 }
 
 func (entity *DeviceTokenMicrosoftPushVoIP) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub DeviceTokenMicrosoftPushVoIP
+	type stub DeviceTokenMicrosoftPushVoIP
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*DeviceTokenMicrosoftPushVoIP) GetClass() string {
-    return ClassDeviceToken
+	return ClassDeviceToken
 }
 
 func (*DeviceTokenMicrosoftPushVoIP) GetType() string {
-    return TypeDeviceTokenMicrosoftPushVoIP
+	return TypeDeviceTokenMicrosoftPushVoIP
 }
 
 func (*DeviceTokenMicrosoftPushVoIP) DeviceTokenType() string {
-    return TypeDeviceTokenMicrosoftPushVoIP
+	return TypeDeviceTokenMicrosoftPushVoIP
 }
 
 // A token for web Push API
 type DeviceTokenWebPush struct {
-    meta
-    // Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
-    Endpoint string `json:"endpoint"`
-    // Base64url-encoded P-256 elliptic curve Diffie-Hellman public key
-    P256dhBase64url string `json:"p256dh_base64url"`
-    // Base64url-encoded authentication secret
-    AuthBase64url string `json:"auth_base64url"`
+	meta
+	// Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
+	Endpoint string `json:"endpoint"`
+	// Base64url-encoded P-256 elliptic curve Diffie-Hellman public key
+	P256dhBase64url string `json:"p256dh_base64url"`
+	// Base64url-encoded authentication secret
+	AuthBase64url string `json:"auth_base64url"`
 }
 
 func (entity *DeviceTokenWebPush) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub DeviceTokenWebPush
+	type stub DeviceTokenWebPush
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*DeviceTokenWebPush) GetClass() string {
-    return ClassDeviceToken
+	return ClassDeviceToken
 }
 
 func (*DeviceTokenWebPush) GetType() string {
-    return TypeDeviceTokenWebPush
+	return TypeDeviceTokenWebPush
 }
 
 func (*DeviceTokenWebPush) DeviceTokenType() string {
-    return TypeDeviceTokenWebPush
+	return TypeDeviceTokenWebPush
 }
 
 // A token for Simple Push API for Firefox OS
 type DeviceTokenSimplePush struct {
-    meta
-    // Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
-    Endpoint string `json:"endpoint"`
+	meta
+	// Absolute URL exposed by the push service where the application server can send push messages; may be empty to de-register a device
+	Endpoint string `json:"endpoint"`
 }
 
 func (entity *DeviceTokenSimplePush) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub DeviceTokenSimplePush
+	type stub DeviceTokenSimplePush
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*DeviceTokenSimplePush) GetClass() string {
-    return ClassDeviceToken
+	return ClassDeviceToken
 }
 
 func (*DeviceTokenSimplePush) GetType() string {
-    return TypeDeviceTokenSimplePush
+	return TypeDeviceTokenSimplePush
 }
 
 func (*DeviceTokenSimplePush) DeviceTokenType() string {
-    return TypeDeviceTokenSimplePush
+	return TypeDeviceTokenSimplePush
 }
 
 // A token for Ubuntu Push Client service
 type DeviceTokenUbuntuPush struct {
-    meta
-    // Token; may be empty to de-register a device
-    Token string `json:"token"`
+	meta
+	// Token; may be empty to de-register a device
+	Token string `json:"token"`
 }
 
 func (entity *DeviceTokenUbuntuPush) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub DeviceTokenUbuntuPush
+	type stub DeviceTokenUbuntuPush
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*DeviceTokenUbuntuPush) GetClass() string {
-    return ClassDeviceToken
+	return ClassDeviceToken
 }
 
 func (*DeviceTokenUbuntuPush) GetType() string {
-    return TypeDeviceTokenUbuntuPush
+	return TypeDeviceTokenUbuntuPush
 }
 
 func (*DeviceTokenUbuntuPush) DeviceTokenType() string {
-    return TypeDeviceTokenUbuntuPush
+	return TypeDeviceTokenUbuntuPush
 }
 
 // A token for BlackBerry Push Service
 type DeviceTokenBlackBerryPush struct {
-    meta
-    // Token; may be empty to de-register a device
-    Token string `json:"token"`
+	meta
+	// Token; may be empty to de-register a device
+	Token string `json:"token"`
 }
 
 func (entity *DeviceTokenBlackBerryPush) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub DeviceTokenBlackBerryPush
+	type stub DeviceTokenBlackBerryPush
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*DeviceTokenBlackBerryPush) GetClass() string {
-    return ClassDeviceToken
+	return ClassDeviceToken
 }
 
 func (*DeviceTokenBlackBerryPush) GetType() string {
-    return TypeDeviceTokenBlackBerryPush
+	return TypeDeviceTokenBlackBerryPush
 }
 
 func (*DeviceTokenBlackBerryPush) DeviceTokenType() string {
-    return TypeDeviceTokenBlackBerryPush
+	return TypeDeviceTokenBlackBerryPush
 }
 
 // A token for Tizen Push Service
 type DeviceTokenTizenPush struct {
-    meta
-    // Push service registration identifier; may be empty to de-register a device
-    RegId string `json:"reg_id"`
+	meta
+	// Push service registration identifier; may be empty to de-register a device
+	RegId string `json:"reg_id"`
 }
 
 func (entity *DeviceTokenTizenPush) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub DeviceTokenTizenPush
+	type stub DeviceTokenTizenPush
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*DeviceTokenTizenPush) GetClass() string {
-    return ClassDeviceToken
+	return ClassDeviceToken
 }
 
 func (*DeviceTokenTizenPush) GetType() string {
-    return TypeDeviceTokenTizenPush
+	return TypeDeviceTokenTizenPush
 }
 
 func (*DeviceTokenTizenPush) DeviceTokenType() string {
-    return TypeDeviceTokenTizenPush
+	return TypeDeviceTokenTizenPush
 }
 
 // Contains information about a wallpaper
 type Wallpaper struct {
-    meta
-    // Unique persistent wallpaper identifier
-    Id int32 `json:"id"`
-    // Available variants of the wallpaper in different sizes. These photos can only be downloaded; they can't be sent in a message
-    Sizes []*PhotoSize `json:"sizes"`
-    // Main color of the wallpaper in RGB24 format; should be treated as background color if no photos are specified
-    Color int32 `json:"color"`
+	meta
+	// Unique persistent wallpaper identifier
+	Id int32 `json:"id"`
+	// Available variants of the wallpaper in different sizes. These photos can only be downloaded; they can't be sent in a message
+	Sizes []*PhotoSize `json:"sizes"`
+	// Main color of the wallpaper in RGB24 format; should be treated as background color if no photos are specified
+	Color int32 `json:"color"`
 }
 
 func (entity *Wallpaper) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Wallpaper
+	type stub Wallpaper
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Wallpaper) GetClass() string {
-    return ClassWallpaper
+	return ClassWallpaper
 }
 
 func (*Wallpaper) GetType() string {
-    return TypeWallpaper
+	return TypeWallpaper
 }
 
 // Contains a list of wallpapers
 type Wallpapers struct {
-    meta
-    // A list of wallpapers
-    Wallpapers []*Wallpaper `json:"wallpapers"`
+	meta
+	// A list of wallpapers
+	Wallpapers []*Wallpaper `json:"wallpapers"`
 }
 
 func (entity *Wallpapers) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Wallpapers
+	type stub Wallpapers
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Wallpapers) GetClass() string {
-    return ClassWallpapers
+	return ClassWallpapers
 }
 
 func (*Wallpapers) GetType() string {
-    return TypeWallpapers
+	return TypeWallpapers
 }
 
 // Contains a list of hashtags
 type Hashtags struct {
-    meta
-    // A list of hashtags
-    Hashtags []string `json:"hashtags"`
+	meta
+	// A list of hashtags
+	Hashtags []string `json:"hashtags"`
 }
 
 func (entity *Hashtags) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Hashtags
+	type stub Hashtags
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Hashtags) GetClass() string {
-    return ClassHashtags
+	return ClassHashtags
 }
 
 func (*Hashtags) GetType() string {
-    return TypeHashtags
+	return TypeHashtags
 }
 
 // The username can be set
-type CheckChatUsernameResultOk struct{
-    meta
+type CheckChatUsernameResultOk struct {
+	meta
 }
 
 func (entity *CheckChatUsernameResultOk) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CheckChatUsernameResultOk
+	type stub CheckChatUsernameResultOk
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CheckChatUsernameResultOk) GetClass() string {
-    return ClassCheckChatUsernameResult
+	return ClassCheckChatUsernameResult
 }
 
 func (*CheckChatUsernameResultOk) GetType() string {
-    return TypeCheckChatUsernameResultOk
+	return TypeCheckChatUsernameResultOk
 }
 
 func (*CheckChatUsernameResultOk) CheckChatUsernameResultType() string {
-    return TypeCheckChatUsernameResultOk
+	return TypeCheckChatUsernameResultOk
 }
 
 // The username is invalid
-type CheckChatUsernameResultUsernameInvalid struct{
-    meta
+type CheckChatUsernameResultUsernameInvalid struct {
+	meta
 }
 
 func (entity *CheckChatUsernameResultUsernameInvalid) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CheckChatUsernameResultUsernameInvalid
+	type stub CheckChatUsernameResultUsernameInvalid
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CheckChatUsernameResultUsernameInvalid) GetClass() string {
-    return ClassCheckChatUsernameResult
+	return ClassCheckChatUsernameResult
 }
 
 func (*CheckChatUsernameResultUsernameInvalid) GetType() string {
-    return TypeCheckChatUsernameResultUsernameInvalid
+	return TypeCheckChatUsernameResultUsernameInvalid
 }
 
 func (*CheckChatUsernameResultUsernameInvalid) CheckChatUsernameResultType() string {
-    return TypeCheckChatUsernameResultUsernameInvalid
+	return TypeCheckChatUsernameResultUsernameInvalid
 }
 
 // The username is occupied
-type CheckChatUsernameResultUsernameOccupied struct{
-    meta
+type CheckChatUsernameResultUsernameOccupied struct {
+	meta
 }
 
 func (entity *CheckChatUsernameResultUsernameOccupied) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CheckChatUsernameResultUsernameOccupied
+	type stub CheckChatUsernameResultUsernameOccupied
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CheckChatUsernameResultUsernameOccupied) GetClass() string {
-    return ClassCheckChatUsernameResult
+	return ClassCheckChatUsernameResult
 }
 
 func (*CheckChatUsernameResultUsernameOccupied) GetType() string {
-    return TypeCheckChatUsernameResultUsernameOccupied
+	return TypeCheckChatUsernameResultUsernameOccupied
 }
 
 func (*CheckChatUsernameResultUsernameOccupied) CheckChatUsernameResultType() string {
-    return TypeCheckChatUsernameResultUsernameOccupied
+	return TypeCheckChatUsernameResultUsernameOccupied
 }
 
 // The user has too much public chats, one of them should be made private first
-type CheckChatUsernameResultPublicChatsTooMuch struct{
-    meta
+type CheckChatUsernameResultPublicChatsTooMuch struct {
+	meta
 }
 
 func (entity *CheckChatUsernameResultPublicChatsTooMuch) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CheckChatUsernameResultPublicChatsTooMuch
+	type stub CheckChatUsernameResultPublicChatsTooMuch
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CheckChatUsernameResultPublicChatsTooMuch) GetClass() string {
-    return ClassCheckChatUsernameResult
+	return ClassCheckChatUsernameResult
 }
 
 func (*CheckChatUsernameResultPublicChatsTooMuch) GetType() string {
-    return TypeCheckChatUsernameResultPublicChatsTooMuch
+	return TypeCheckChatUsernameResultPublicChatsTooMuch
 }
 
 func (*CheckChatUsernameResultPublicChatsTooMuch) CheckChatUsernameResultType() string {
-    return TypeCheckChatUsernameResultPublicChatsTooMuch
+	return TypeCheckChatUsernameResultPublicChatsTooMuch
 }
 
 // The user can't be a member of a public supergroup
-type CheckChatUsernameResultPublicGroupsUnavailable struct{
-    meta
+type CheckChatUsernameResultPublicGroupsUnavailable struct {
+	meta
 }
 
 func (entity *CheckChatUsernameResultPublicGroupsUnavailable) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub CheckChatUsernameResultPublicGroupsUnavailable
+	type stub CheckChatUsernameResultPublicGroupsUnavailable
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*CheckChatUsernameResultPublicGroupsUnavailable) GetClass() string {
-    return ClassCheckChatUsernameResult
+	return ClassCheckChatUsernameResult
 }
 
 func (*CheckChatUsernameResultPublicGroupsUnavailable) GetType() string {
-    return TypeCheckChatUsernameResultPublicGroupsUnavailable
+	return TypeCheckChatUsernameResultPublicGroupsUnavailable
 }
 
 func (*CheckChatUsernameResultPublicGroupsUnavailable) CheckChatUsernameResultType() string {
-    return TypeCheckChatUsernameResultPublicGroupsUnavailable
+	return TypeCheckChatUsernameResultPublicGroupsUnavailable
 }
 
 // Boolean option
 type OptionValueBoolean struct {
-    meta
-    // The value of the option
-    Value bool `json:"value"`
+	meta
+	// The value of the option
+	Value bool `json:"value"`
 }
 
 func (entity *OptionValueBoolean) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub OptionValueBoolean
+	type stub OptionValueBoolean
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*OptionValueBoolean) GetClass() string {
-    return ClassOptionValue
+	return ClassOptionValue
 }
 
 func (*OptionValueBoolean) GetType() string {
-    return TypeOptionValueBoolean
+	return TypeOptionValueBoolean
 }
 
 func (*OptionValueBoolean) OptionValueType() string {
-    return TypeOptionValueBoolean
+	return TypeOptionValueBoolean
 }
 
 // An unknown option or an option which has a default value
-type OptionValueEmpty struct{
-    meta
+type OptionValueEmpty struct {
+	meta
 }
 
 func (entity *OptionValueEmpty) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub OptionValueEmpty
+	type stub OptionValueEmpty
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*OptionValueEmpty) GetClass() string {
-    return ClassOptionValue
+	return ClassOptionValue
 }
 
 func (*OptionValueEmpty) GetType() string {
-    return TypeOptionValueEmpty
+	return TypeOptionValueEmpty
 }
 
 func (*OptionValueEmpty) OptionValueType() string {
-    return TypeOptionValueEmpty
+	return TypeOptionValueEmpty
 }
 
 // An integer option
 type OptionValueInteger struct {
-    meta
-    // The value of the option
-    Value int32 `json:"value"`
+	meta
+	// The value of the option
+	Value int32 `json:"value"`
 }
 
 func (entity *OptionValueInteger) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub OptionValueInteger
+	type stub OptionValueInteger
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*OptionValueInteger) GetClass() string {
-    return ClassOptionValue
+	return ClassOptionValue
 }
 
 func (*OptionValueInteger) GetType() string {
-    return TypeOptionValueInteger
+	return TypeOptionValueInteger
 }
 
 func (*OptionValueInteger) OptionValueType() string {
-    return TypeOptionValueInteger
+	return TypeOptionValueInteger
 }
 
 // A string option
 type OptionValueString struct {
-    meta
-    // The value of the option
-    Value string `json:"value"`
+	meta
+	// The value of the option
+	Value string `json:"value"`
 }
 
 func (entity *OptionValueString) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub OptionValueString
+	type stub OptionValueString
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*OptionValueString) GetClass() string {
-    return ClassOptionValue
+	return ClassOptionValue
 }
 
 func (*OptionValueString) GetType() string {
-    return TypeOptionValueString
+	return TypeOptionValueString
 }
 
 func (*OptionValueString) OptionValueType() string {
-    return TypeOptionValueString
+	return TypeOptionValueString
 }
 
 // A rule to allow all users to do something
-type UserPrivacySettingRuleAllowAll struct{
-    meta
+type UserPrivacySettingRuleAllowAll struct {
+	meta
 }
 
 func (entity *UserPrivacySettingRuleAllowAll) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserPrivacySettingRuleAllowAll
+	type stub UserPrivacySettingRuleAllowAll
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserPrivacySettingRuleAllowAll) GetClass() string {
-    return ClassUserPrivacySettingRule
+	return ClassUserPrivacySettingRule
 }
 
 func (*UserPrivacySettingRuleAllowAll) GetType() string {
-    return TypeUserPrivacySettingRuleAllowAll
+	return TypeUserPrivacySettingRuleAllowAll
 }
 
 func (*UserPrivacySettingRuleAllowAll) UserPrivacySettingRuleType() string {
-    return TypeUserPrivacySettingRuleAllowAll
+	return TypeUserPrivacySettingRuleAllowAll
 }
 
 // A rule to allow all of a user's contacts to do something
-type UserPrivacySettingRuleAllowContacts struct{
-    meta
+type UserPrivacySettingRuleAllowContacts struct {
+	meta
 }
 
 func (entity *UserPrivacySettingRuleAllowContacts) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserPrivacySettingRuleAllowContacts
+	type stub UserPrivacySettingRuleAllowContacts
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserPrivacySettingRuleAllowContacts) GetClass() string {
-    return ClassUserPrivacySettingRule
+	return ClassUserPrivacySettingRule
 }
 
 func (*UserPrivacySettingRuleAllowContacts) GetType() string {
-    return TypeUserPrivacySettingRuleAllowContacts
+	return TypeUserPrivacySettingRuleAllowContacts
 }
 
 func (*UserPrivacySettingRuleAllowContacts) UserPrivacySettingRuleType() string {
-    return TypeUserPrivacySettingRuleAllowContacts
+	return TypeUserPrivacySettingRuleAllowContacts
 }
 
 // A rule to allow certain specified users to do something
 type UserPrivacySettingRuleAllowUsers struct {
-    meta
-    // The user identifiers
-    UserIds []int32 `json:"user_ids"`
+	meta
+	// The user identifiers
+	UserIds []int32 `json:"user_ids"`
 }
 
 func (entity *UserPrivacySettingRuleAllowUsers) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserPrivacySettingRuleAllowUsers
+	type stub UserPrivacySettingRuleAllowUsers
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserPrivacySettingRuleAllowUsers) GetClass() string {
-    return ClassUserPrivacySettingRule
+	return ClassUserPrivacySettingRule
 }
 
 func (*UserPrivacySettingRuleAllowUsers) GetType() string {
-    return TypeUserPrivacySettingRuleAllowUsers
+	return TypeUserPrivacySettingRuleAllowUsers
 }
 
 func (*UserPrivacySettingRuleAllowUsers) UserPrivacySettingRuleType() string {
-    return TypeUserPrivacySettingRuleAllowUsers
+	return TypeUserPrivacySettingRuleAllowUsers
 }
 
 // A rule to restrict all users from doing something
-type UserPrivacySettingRuleRestrictAll struct{
-    meta
+type UserPrivacySettingRuleRestrictAll struct {
+	meta
 }
 
 func (entity *UserPrivacySettingRuleRestrictAll) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserPrivacySettingRuleRestrictAll
+	type stub UserPrivacySettingRuleRestrictAll
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserPrivacySettingRuleRestrictAll) GetClass() string {
-    return ClassUserPrivacySettingRule
+	return ClassUserPrivacySettingRule
 }
 
 func (*UserPrivacySettingRuleRestrictAll) GetType() string {
-    return TypeUserPrivacySettingRuleRestrictAll
+	return TypeUserPrivacySettingRuleRestrictAll
 }
 
 func (*UserPrivacySettingRuleRestrictAll) UserPrivacySettingRuleType() string {
-    return TypeUserPrivacySettingRuleRestrictAll
+	return TypeUserPrivacySettingRuleRestrictAll
 }
 
 // A rule to restrict all contacts of a user from doing something
-type UserPrivacySettingRuleRestrictContacts struct{
-    meta
+type UserPrivacySettingRuleRestrictContacts struct {
+	meta
 }
 
 func (entity *UserPrivacySettingRuleRestrictContacts) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserPrivacySettingRuleRestrictContacts
+	type stub UserPrivacySettingRuleRestrictContacts
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserPrivacySettingRuleRestrictContacts) GetClass() string {
-    return ClassUserPrivacySettingRule
+	return ClassUserPrivacySettingRule
 }
 
 func (*UserPrivacySettingRuleRestrictContacts) GetType() string {
-    return TypeUserPrivacySettingRuleRestrictContacts
+	return TypeUserPrivacySettingRuleRestrictContacts
 }
 
 func (*UserPrivacySettingRuleRestrictContacts) UserPrivacySettingRuleType() string {
-    return TypeUserPrivacySettingRuleRestrictContacts
+	return TypeUserPrivacySettingRuleRestrictContacts
 }
 
 // A rule to restrict all specified users from doing something
 type UserPrivacySettingRuleRestrictUsers struct {
-    meta
-    // The user identifiers
-    UserIds []int32 `json:"user_ids"`
+	meta
+	// The user identifiers
+	UserIds []int32 `json:"user_ids"`
 }
 
 func (entity *UserPrivacySettingRuleRestrictUsers) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserPrivacySettingRuleRestrictUsers
+	type stub UserPrivacySettingRuleRestrictUsers
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserPrivacySettingRuleRestrictUsers) GetClass() string {
-    return ClassUserPrivacySettingRule
+	return ClassUserPrivacySettingRule
 }
 
 func (*UserPrivacySettingRuleRestrictUsers) GetType() string {
-    return TypeUserPrivacySettingRuleRestrictUsers
+	return TypeUserPrivacySettingRuleRestrictUsers
 }
 
 func (*UserPrivacySettingRuleRestrictUsers) UserPrivacySettingRuleType() string {
-    return TypeUserPrivacySettingRuleRestrictUsers
+	return TypeUserPrivacySettingRuleRestrictUsers
 }
 
 // A list of privacy rules. Rules are matched in the specified order. The first matched rule defines the privacy setting for a given user. If no rule matches, the action is not allowed
 type UserPrivacySettingRules struct {
-    meta
-    // A list of rules
-    Rules []UserPrivacySettingRule `json:"rules"`
+	meta
+	// A list of rules
+	Rules []UserPrivacySettingRule `json:"rules"`
 }
 
 func (entity *UserPrivacySettingRules) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserPrivacySettingRules
+	type stub UserPrivacySettingRules
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserPrivacySettingRules) GetClass() string {
-    return ClassUserPrivacySettingRules
+	return ClassUserPrivacySettingRules
 }
 
 func (*UserPrivacySettingRules) GetType() string {
-    return TypeUserPrivacySettingRules
+	return TypeUserPrivacySettingRules
 }
 
 // A privacy setting for managing whether the user's online status is visible
-type UserPrivacySettingShowStatus struct{
-    meta
+type UserPrivacySettingShowStatus struct {
+	meta
 }
 
 func (entity *UserPrivacySettingShowStatus) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserPrivacySettingShowStatus
+	type stub UserPrivacySettingShowStatus
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserPrivacySettingShowStatus) GetClass() string {
-    return ClassUserPrivacySetting
+	return ClassUserPrivacySetting
 }
 
 func (*UserPrivacySettingShowStatus) GetType() string {
-    return TypeUserPrivacySettingShowStatus
+	return TypeUserPrivacySettingShowStatus
 }
 
 func (*UserPrivacySettingShowStatus) UserPrivacySettingType() string {
-    return TypeUserPrivacySettingShowStatus
+	return TypeUserPrivacySettingShowStatus
 }
 
 // A privacy setting for managing whether the user can be invited to chats
-type UserPrivacySettingAllowChatInvites struct{
-    meta
+type UserPrivacySettingAllowChatInvites struct {
+	meta
 }
 
 func (entity *UserPrivacySettingAllowChatInvites) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserPrivacySettingAllowChatInvites
+	type stub UserPrivacySettingAllowChatInvites
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserPrivacySettingAllowChatInvites) GetClass() string {
-    return ClassUserPrivacySetting
+	return ClassUserPrivacySetting
 }
 
 func (*UserPrivacySettingAllowChatInvites) GetType() string {
-    return TypeUserPrivacySettingAllowChatInvites
+	return TypeUserPrivacySettingAllowChatInvites
 }
 
 func (*UserPrivacySettingAllowChatInvites) UserPrivacySettingType() string {
-    return TypeUserPrivacySettingAllowChatInvites
+	return TypeUserPrivacySettingAllowChatInvites
 }
 
 // A privacy setting for managing whether the user can be called
-type UserPrivacySettingAllowCalls struct{
-    meta
+type UserPrivacySettingAllowCalls struct {
+	meta
 }
 
 func (entity *UserPrivacySettingAllowCalls) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UserPrivacySettingAllowCalls
+	type stub UserPrivacySettingAllowCalls
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UserPrivacySettingAllowCalls) GetClass() string {
-    return ClassUserPrivacySetting
+	return ClassUserPrivacySetting
 }
 
 func (*UserPrivacySettingAllowCalls) GetType() string {
-    return TypeUserPrivacySettingAllowCalls
+	return TypeUserPrivacySettingAllowCalls
 }
 
 func (*UserPrivacySettingAllowCalls) UserPrivacySettingType() string {
-    return TypeUserPrivacySettingAllowCalls
+	return TypeUserPrivacySettingAllowCalls
 }
 
 // Contains information about the period of inactivity after which the current user's account will automatically be deleted
 type AccountTtl struct {
-    meta
-    // Number of days of inactivity before the account will be flagged for deletion; should range from 30-366 days
-    Days int32 `json:"days"`
+	meta
+	// Number of days of inactivity before the account will be flagged for deletion; should range from 30-366 days
+	Days int32 `json:"days"`
 }
 
 func (entity *AccountTtl) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub AccountTtl
+	type stub AccountTtl
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*AccountTtl) GetClass() string {
-    return ClassAccountTtl
+	return ClassAccountTtl
 }
 
 func (*AccountTtl) GetType() string {
-    return TypeAccountTtl
+	return TypeAccountTtl
 }
 
 // Contains information about one session in a Telegram application used by the current user
 type Session struct {
-    meta
-    // Session identifier
-    Id JsonInt64 `json:"id"`
-    // True, if this session is the current session
-    IsCurrent bool `json:"is_current"`
-    // Telegram API identifier, as provided by the application
-    ApiId int32 `json:"api_id"`
-    // Name of the application, as provided by the application
-    ApplicationName string `json:"application_name"`
-    // The version of the application, as provided by the application
-    ApplicationVersion string `json:"application_version"`
-    // True, if the application is an official application or uses the api_id of an official application
-    IsOfficialApplication bool `json:"is_official_application"`
-    // Model of the device the application has been run or is running on, as provided by the application
-    DeviceModel string `json:"device_model"`
-    // Operating system the application has been run or is running on, as provided by the application
-    Platform string `json:"platform"`
-    // Version of the operating system the application has been run or is running on, as provided by the application
-    SystemVersion string `json:"system_version"`
-    // Point in time (Unix timestamp) when the user has logged in
-    LogInDate int32 `json:"log_in_date"`
-    // Point in time (Unix timestamp) when the session was last used
-    LastActiveDate int32 `json:"last_active_date"`
-    // IP address from which the session was created, in human-readable format
-    Ip string `json:"ip"`
-    // A two-letter country code for the country from which the session was created, based on the IP address
-    Country string `json:"country"`
-    // Region code from which the session was created, based on the IP address
-    Region string `json:"region"`
+	meta
+	// Session identifier
+	Id JsonInt64 `json:"id"`
+	// True, if this session is the current session
+	IsCurrent bool `json:"is_current"`
+	// Telegram API identifier, as provided by the application
+	ApiId int32 `json:"api_id"`
+	// Name of the application, as provided by the application
+	ApplicationName string `json:"application_name"`
+	// The version of the application, as provided by the application
+	ApplicationVersion string `json:"application_version"`
+	// True, if the application is an official application or uses the api_id of an official application
+	IsOfficialApplication bool `json:"is_official_application"`
+	// Model of the device the application has been run or is running on, as provided by the application
+	DeviceModel string `json:"device_model"`
+	// Operating system the application has been run or is running on, as provided by the application
+	Platform string `json:"platform"`
+	// Version of the operating system the application has been run or is running on, as provided by the application
+	SystemVersion string `json:"system_version"`
+	// Point in time (Unix timestamp) when the user has logged in
+	LogInDate int32 `json:"log_in_date"`
+	// Point in time (Unix timestamp) when the session was last used
+	LastActiveDate int32 `json:"last_active_date"`
+	// IP address from which the session was created, in human-readable format
+	Ip string `json:"ip"`
+	// A two-letter country code for the country from which the session was created, based on the IP address
+	Country string `json:"country"`
+	// Region code from which the session was created, based on the IP address
+	Region string `json:"region"`
 }
 
 func (entity *Session) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Session
+	type stub Session
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Session) GetClass() string {
-    return ClassSession
+	return ClassSession
 }
 
 func (*Session) GetType() string {
-    return TypeSession
+	return TypeSession
 }
 
 // Contains a list of sessions
 type Sessions struct {
-    meta
-    // List of sessions
-    Sessions []*Session `json:"sessions"`
+	meta
+	// List of sessions
+	Sessions []*Session `json:"sessions"`
 }
 
 func (entity *Sessions) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Sessions
+	type stub Sessions
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Sessions) GetClass() string {
-    return ClassSessions
+	return ClassSessions
 }
 
 func (*Sessions) GetType() string {
-    return TypeSessions
+	return TypeSessions
 }
 
 // Contains information about one website the current user is logged in with Telegram
 type ConnectedWebsite struct {
-    meta
-    // Website identifier
-    Id JsonInt64 `json:"id"`
-    // The domain name of the website
-    DomainName string `json:"domain_name"`
-    // User identifier of a bot linked with the website
-    BotUserId int32 `json:"bot_user_id"`
-    // The version of a browser used to log in
-    Browser string `json:"browser"`
-    // Operating system the browser is running on
-    Platform string `json:"platform"`
-    // Point in time (Unix timestamp) when the user was logged in
-    LogInDate int32 `json:"log_in_date"`
-    // Point in time (Unix timestamp) when obtained authorization was last used
-    LastActiveDate int32 `json:"last_active_date"`
-    // IP address from which the user was logged in, in human-readable format
-    Ip string `json:"ip"`
-    // Human-readable description of a country and a region, from which the user was logged in, based on the IP address
-    Location string `json:"location"`
+	meta
+	// Website identifier
+	Id JsonInt64 `json:"id"`
+	// The domain name of the website
+	DomainName string `json:"domain_name"`
+	// User identifier of a bot linked with the website
+	BotUserId int32 `json:"bot_user_id"`
+	// The version of a browser used to log in
+	Browser string `json:"browser"`
+	// Operating system the browser is running on
+	Platform string `json:"platform"`
+	// Point in time (Unix timestamp) when the user was logged in
+	LogInDate int32 `json:"log_in_date"`
+	// Point in time (Unix timestamp) when obtained authorization was last used
+	LastActiveDate int32 `json:"last_active_date"`
+	// IP address from which the user was logged in, in human-readable format
+	Ip string `json:"ip"`
+	// Human-readable description of a country and a region, from which the user was logged in, based on the IP address
+	Location string `json:"location"`
 }
 
 func (entity *ConnectedWebsite) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ConnectedWebsite
+	type stub ConnectedWebsite
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ConnectedWebsite) GetClass() string {
-    return ClassConnectedWebsite
+	return ClassConnectedWebsite
 }
 
 func (*ConnectedWebsite) GetType() string {
-    return TypeConnectedWebsite
+	return TypeConnectedWebsite
 }
 
 // Contains a list of websites the current user is logged in with Telegram
 type ConnectedWebsites struct {
-    meta
-    // List of connected websites
-    Websites []*ConnectedWebsite `json:"websites"`
+	meta
+	// List of connected websites
+	Websites []*ConnectedWebsite `json:"websites"`
 }
 
 func (entity *ConnectedWebsites) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ConnectedWebsites
+	type stub ConnectedWebsites
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ConnectedWebsites) GetClass() string {
-    return ClassConnectedWebsites
+	return ClassConnectedWebsites
 }
 
 func (*ConnectedWebsites) GetType() string {
-    return TypeConnectedWebsites
+	return TypeConnectedWebsites
 }
 
 // Contains information about the availability of the "Report spam" action for a chat
 type ChatReportSpamState struct {
-    meta
-    // True, if a prompt with the "Report spam" action should be shown to the user
-    CanReportSpam bool `json:"can_report_spam"`
+	meta
+	// True, if a prompt with the "Report spam" action should be shown to the user
+	CanReportSpam bool `json:"can_report_spam"`
 }
 
 func (entity *ChatReportSpamState) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatReportSpamState
+	type stub ChatReportSpamState
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatReportSpamState) GetClass() string {
-    return ClassChatReportSpamState
+	return ClassChatReportSpamState
 }
 
 func (*ChatReportSpamState) GetType() string {
-    return TypeChatReportSpamState
+	return TypeChatReportSpamState
 }
 
 // The chat contains spam messages
-type ChatReportReasonSpam struct{
-    meta
+type ChatReportReasonSpam struct {
+	meta
 }
 
 func (entity *ChatReportReasonSpam) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatReportReasonSpam
+	type stub ChatReportReasonSpam
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatReportReasonSpam) GetClass() string {
-    return ClassChatReportReason
+	return ClassChatReportReason
 }
 
 func (*ChatReportReasonSpam) GetType() string {
-    return TypeChatReportReasonSpam
+	return TypeChatReportReasonSpam
 }
 
 func (*ChatReportReasonSpam) ChatReportReasonType() string {
-    return TypeChatReportReasonSpam
+	return TypeChatReportReasonSpam
 }
 
 // The chat promotes violence
-type ChatReportReasonViolence struct{
-    meta
+type ChatReportReasonViolence struct {
+	meta
 }
 
 func (entity *ChatReportReasonViolence) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatReportReasonViolence
+	type stub ChatReportReasonViolence
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatReportReasonViolence) GetClass() string {
-    return ClassChatReportReason
+	return ClassChatReportReason
 }
 
 func (*ChatReportReasonViolence) GetType() string {
-    return TypeChatReportReasonViolence
+	return TypeChatReportReasonViolence
 }
 
 func (*ChatReportReasonViolence) ChatReportReasonType() string {
-    return TypeChatReportReasonViolence
+	return TypeChatReportReasonViolence
 }
 
 // The chat contains pornographic messages
-type ChatReportReasonPornography struct{
-    meta
+type ChatReportReasonPornography struct {
+	meta
 }
 
 func (entity *ChatReportReasonPornography) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatReportReasonPornography
+	type stub ChatReportReasonPornography
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatReportReasonPornography) GetClass() string {
-    return ClassChatReportReason
+	return ClassChatReportReason
 }
 
 func (*ChatReportReasonPornography) GetType() string {
-    return TypeChatReportReasonPornography
+	return TypeChatReportReasonPornography
 }
 
 func (*ChatReportReasonPornography) ChatReportReasonType() string {
-    return TypeChatReportReasonPornography
+	return TypeChatReportReasonPornography
 }
 
 // The chat contains copyrighted content
-type ChatReportReasonCopyright struct{
-    meta
+type ChatReportReasonCopyright struct {
+	meta
 }
 
 func (entity *ChatReportReasonCopyright) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatReportReasonCopyright
+	type stub ChatReportReasonCopyright
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatReportReasonCopyright) GetClass() string {
-    return ClassChatReportReason
+	return ClassChatReportReason
 }
 
 func (*ChatReportReasonCopyright) GetType() string {
-    return TypeChatReportReasonCopyright
+	return TypeChatReportReasonCopyright
 }
 
 func (*ChatReportReasonCopyright) ChatReportReasonType() string {
-    return TypeChatReportReasonCopyright
+	return TypeChatReportReasonCopyright
 }
 
 // A custom reason provided by the user
 type ChatReportReasonCustom struct {
-    meta
-    // Report text
-    Text string `json:"text"`
+	meta
+	// Report text
+	Text string `json:"text"`
 }
 
 func (entity *ChatReportReasonCustom) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ChatReportReasonCustom
+	type stub ChatReportReasonCustom
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ChatReportReasonCustom) GetClass() string {
-    return ClassChatReportReason
+	return ClassChatReportReason
 }
 
 func (*ChatReportReasonCustom) GetType() string {
-    return TypeChatReportReasonCustom
+	return TypeChatReportReasonCustom
 }
 
 func (*ChatReportReasonCustom) ChatReportReasonType() string {
-    return TypeChatReportReasonCustom
+	return TypeChatReportReasonCustom
 }
 
 // Contains a public HTTPS link to a message in a public supergroup or channel
 type PublicMessageLink struct {
-    meta
-    // Message link
-    Link string `json:"link"`
-    // HTML-code for embedding the message
-    Html string `json:"html"`
+	meta
+	// Message link
+	Link string `json:"link"`
+	// HTML-code for embedding the message
+	Html string `json:"html"`
 }
 
 func (entity *PublicMessageLink) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub PublicMessageLink
+	type stub PublicMessageLink
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*PublicMessageLink) GetClass() string {
-    return ClassPublicMessageLink
+	return ClassPublicMessageLink
 }
 
 func (*PublicMessageLink) GetType() string {
-    return TypePublicMessageLink
+	return TypePublicMessageLink
 }
 
 // The data is not a file
-type FileTypeNone struct{
-    meta
+type FileTypeNone struct {
+	meta
 }
 
 func (entity *FileTypeNone) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeNone
+	type stub FileTypeNone
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeNone) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeNone) GetType() string {
-    return TypeFileTypeNone
+	return TypeFileTypeNone
 }
 
 func (*FileTypeNone) FileTypeType() string {
-    return TypeFileTypeNone
+	return TypeFileTypeNone
 }
 
 // The file is an animation
-type FileTypeAnimation struct{
-    meta
+type FileTypeAnimation struct {
+	meta
 }
 
 func (entity *FileTypeAnimation) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeAnimation
+	type stub FileTypeAnimation
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeAnimation) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeAnimation) GetType() string {
-    return TypeFileTypeAnimation
+	return TypeFileTypeAnimation
 }
 
 func (*FileTypeAnimation) FileTypeType() string {
-    return TypeFileTypeAnimation
+	return TypeFileTypeAnimation
 }
 
 // The file is an audio file
-type FileTypeAudio struct{
-    meta
+type FileTypeAudio struct {
+	meta
 }
 
 func (entity *FileTypeAudio) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeAudio
+	type stub FileTypeAudio
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeAudio) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeAudio) GetType() string {
-    return TypeFileTypeAudio
+	return TypeFileTypeAudio
 }
 
 func (*FileTypeAudio) FileTypeType() string {
-    return TypeFileTypeAudio
+	return TypeFileTypeAudio
 }
 
 // The file is a document
-type FileTypeDocument struct{
-    meta
+type FileTypeDocument struct {
+	meta
 }
 
 func (entity *FileTypeDocument) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeDocument
+	type stub FileTypeDocument
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeDocument) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeDocument) GetType() string {
-    return TypeFileTypeDocument
+	return TypeFileTypeDocument
 }
 
 func (*FileTypeDocument) FileTypeType() string {
-    return TypeFileTypeDocument
+	return TypeFileTypeDocument
 }
 
 // The file is a photo
-type FileTypePhoto struct{
-    meta
+type FileTypePhoto struct {
+	meta
 }
 
 func (entity *FileTypePhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypePhoto
+	type stub FileTypePhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypePhoto) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypePhoto) GetType() string {
-    return TypeFileTypePhoto
+	return TypeFileTypePhoto
 }
 
 func (*FileTypePhoto) FileTypeType() string {
-    return TypeFileTypePhoto
+	return TypeFileTypePhoto
 }
 
 // The file is a profile photo
-type FileTypeProfilePhoto struct{
-    meta
+type FileTypeProfilePhoto struct {
+	meta
 }
 
 func (entity *FileTypeProfilePhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeProfilePhoto
+	type stub FileTypeProfilePhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeProfilePhoto) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeProfilePhoto) GetType() string {
-    return TypeFileTypeProfilePhoto
+	return TypeFileTypeProfilePhoto
 }
 
 func (*FileTypeProfilePhoto) FileTypeType() string {
-    return TypeFileTypeProfilePhoto
+	return TypeFileTypeProfilePhoto
 }
 
 // The file was sent to a secret chat (the file type is not known to the server)
-type FileTypeSecret struct{
-    meta
+type FileTypeSecret struct {
+	meta
 }
 
 func (entity *FileTypeSecret) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeSecret
+	type stub FileTypeSecret
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeSecret) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeSecret) GetType() string {
-    return TypeFileTypeSecret
+	return TypeFileTypeSecret
 }
 
 func (*FileTypeSecret) FileTypeType() string {
-    return TypeFileTypeSecret
+	return TypeFileTypeSecret
 }
 
 // The file is a thumbnail of a file from a secret chat
-type FileTypeSecretThumbnail struct{
-    meta
+type FileTypeSecretThumbnail struct {
+	meta
 }
 
 func (entity *FileTypeSecretThumbnail) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeSecretThumbnail
+	type stub FileTypeSecretThumbnail
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeSecretThumbnail) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeSecretThumbnail) GetType() string {
-    return TypeFileTypeSecretThumbnail
+	return TypeFileTypeSecretThumbnail
 }
 
 func (*FileTypeSecretThumbnail) FileTypeType() string {
-    return TypeFileTypeSecretThumbnail
+	return TypeFileTypeSecretThumbnail
 }
 
 // The file is a file from Secure storage used for storing Telegram Passport files
-type FileTypeSecure struct{
-    meta
+type FileTypeSecure struct {
+	meta
 }
 
 func (entity *FileTypeSecure) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeSecure
+	type stub FileTypeSecure
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeSecure) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeSecure) GetType() string {
-    return TypeFileTypeSecure
+	return TypeFileTypeSecure
 }
 
 func (*FileTypeSecure) FileTypeType() string {
-    return TypeFileTypeSecure
+	return TypeFileTypeSecure
 }
 
 // The file is a sticker
-type FileTypeSticker struct{
-    meta
+type FileTypeSticker struct {
+	meta
 }
 
 func (entity *FileTypeSticker) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeSticker
+	type stub FileTypeSticker
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeSticker) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeSticker) GetType() string {
-    return TypeFileTypeSticker
+	return TypeFileTypeSticker
 }
 
 func (*FileTypeSticker) FileTypeType() string {
-    return TypeFileTypeSticker
+	return TypeFileTypeSticker
 }
 
 // The file is a thumbnail of another file
-type FileTypeThumbnail struct{
-    meta
+type FileTypeThumbnail struct {
+	meta
 }
 
 func (entity *FileTypeThumbnail) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeThumbnail
+	type stub FileTypeThumbnail
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeThumbnail) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeThumbnail) GetType() string {
-    return TypeFileTypeThumbnail
+	return TypeFileTypeThumbnail
 }
 
 func (*FileTypeThumbnail) FileTypeType() string {
-    return TypeFileTypeThumbnail
+	return TypeFileTypeThumbnail
 }
 
 // The file type is not yet known
-type FileTypeUnknown struct{
-    meta
+type FileTypeUnknown struct {
+	meta
 }
 
 func (entity *FileTypeUnknown) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeUnknown
+	type stub FileTypeUnknown
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeUnknown) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeUnknown) GetType() string {
-    return TypeFileTypeUnknown
+	return TypeFileTypeUnknown
 }
 
 func (*FileTypeUnknown) FileTypeType() string {
-    return TypeFileTypeUnknown
+	return TypeFileTypeUnknown
 }
 
 // The file is a video
-type FileTypeVideo struct{
-    meta
+type FileTypeVideo struct {
+	meta
 }
 
 func (entity *FileTypeVideo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeVideo
+	type stub FileTypeVideo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeVideo) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeVideo) GetType() string {
-    return TypeFileTypeVideo
+	return TypeFileTypeVideo
 }
 
 func (*FileTypeVideo) FileTypeType() string {
-    return TypeFileTypeVideo
+	return TypeFileTypeVideo
 }
 
 // The file is a video note
-type FileTypeVideoNote struct{
-    meta
+type FileTypeVideoNote struct {
+	meta
 }
 
 func (entity *FileTypeVideoNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeVideoNote
+	type stub FileTypeVideoNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeVideoNote) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeVideoNote) GetType() string {
-    return TypeFileTypeVideoNote
+	return TypeFileTypeVideoNote
 }
 
 func (*FileTypeVideoNote) FileTypeType() string {
-    return TypeFileTypeVideoNote
+	return TypeFileTypeVideoNote
 }
 
 // The file is a voice note
-type FileTypeVoiceNote struct{
-    meta
+type FileTypeVoiceNote struct {
+	meta
 }
 
 func (entity *FileTypeVoiceNote) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeVoiceNote
+	type stub FileTypeVoiceNote
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeVoiceNote) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeVoiceNote) GetType() string {
-    return TypeFileTypeVoiceNote
+	return TypeFileTypeVoiceNote
 }
 
 func (*FileTypeVoiceNote) FileTypeType() string {
-    return TypeFileTypeVoiceNote
+	return TypeFileTypeVoiceNote
 }
 
 // The file is a wallpaper
-type FileTypeWallpaper struct{
-    meta
+type FileTypeWallpaper struct {
+	meta
 }
 
 func (entity *FileTypeWallpaper) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub FileTypeWallpaper
+	type stub FileTypeWallpaper
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*FileTypeWallpaper) GetClass() string {
-    return ClassFileType
+	return ClassFileType
 }
 
 func (*FileTypeWallpaper) GetType() string {
-    return TypeFileTypeWallpaper
+	return TypeFileTypeWallpaper
 }
 
 func (*FileTypeWallpaper) FileTypeType() string {
-    return TypeFileTypeWallpaper
+	return TypeFileTypeWallpaper
 }
 
 // Contains the storage usage statistics for a specific file type
 type StorageStatisticsByFileType struct {
-    meta
-    // File type
-    FileType FileType `json:"file_type"`
-    // Total size of the files
-    Size int64 `json:"size"`
-    // Total number of files
-    Count int32 `json:"count"`
+	meta
+	// File type
+	FileType FileType `json:"file_type"`
+	// Total size of the files
+	Size int64 `json:"size"`
+	// Total number of files
+	Count int32 `json:"count"`
 }
 
 func (entity *StorageStatisticsByFileType) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub StorageStatisticsByFileType
+	type stub StorageStatisticsByFileType
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*StorageStatisticsByFileType) GetClass() string {
-    return ClassStorageStatisticsByFileType
+	return ClassStorageStatisticsByFileType
 }
 
 func (*StorageStatisticsByFileType) GetType() string {
-    return TypeStorageStatisticsByFileType
+	return TypeStorageStatisticsByFileType
 }
 
 func (storageStatisticsByFileType *StorageStatisticsByFileType) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        FileType json.RawMessage `json:"file_type"`
-        Size int64 `json:"size"`
-        Count int32 `json:"count"`
-    }
+	var tmp struct {
+		FileType json.RawMessage `json:"file_type"`
+		Size     int64           `json:"size"`
+		Count    int32           `json:"count"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    storageStatisticsByFileType.Size = tmp.Size
-    storageStatisticsByFileType.Count = tmp.Count
+	storageStatisticsByFileType.Size = tmp.Size
+	storageStatisticsByFileType.Count = tmp.Count
 
-    fieldFileType, _ := UnmarshalFileType(tmp.FileType)
-    storageStatisticsByFileType.FileType = fieldFileType
+	fieldFileType, _ := UnmarshalFileType(tmp.FileType)
+	storageStatisticsByFileType.FileType = fieldFileType
 
-    return nil
+	return nil
 }
 
 // Contains the storage usage statistics for a specific chat
 type StorageStatisticsByChat struct {
-    meta
-    // Chat identifier; 0 if none
-    ChatId int64 `json:"chat_id"`
-    // Total size of the files in the chat
-    Size int64 `json:"size"`
-    // Total number of files in the chat
-    Count int32 `json:"count"`
-    // Statistics split by file types
-    ByFileType []*StorageStatisticsByFileType `json:"by_file_type"`
+	meta
+	// Chat identifier; 0 if none
+	ChatId int64 `json:"chat_id"`
+	// Total size of the files in the chat
+	Size int64 `json:"size"`
+	// Total number of files in the chat
+	Count int32 `json:"count"`
+	// Statistics split by file types
+	ByFileType []*StorageStatisticsByFileType `json:"by_file_type"`
 }
 
 func (entity *StorageStatisticsByChat) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub StorageStatisticsByChat
+	type stub StorageStatisticsByChat
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*StorageStatisticsByChat) GetClass() string {
-    return ClassStorageStatisticsByChat
+	return ClassStorageStatisticsByChat
 }
 
 func (*StorageStatisticsByChat) GetType() string {
-    return TypeStorageStatisticsByChat
+	return TypeStorageStatisticsByChat
 }
 
 // Contains the exact storage usage statistics split by chats and file type
 type StorageStatistics struct {
-    meta
-    // Total size of files
-    Size int64 `json:"size"`
-    // Total number of files
-    Count int32 `json:"count"`
-    // Statistics split by chats
-    ByChat []*StorageStatisticsByChat `json:"by_chat"`
+	meta
+	// Total size of files
+	Size int64 `json:"size"`
+	// Total number of files
+	Count int32 `json:"count"`
+	// Statistics split by chats
+	ByChat []*StorageStatisticsByChat `json:"by_chat"`
 }
 
 func (entity *StorageStatistics) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub StorageStatistics
+	type stub StorageStatistics
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*StorageStatistics) GetClass() string {
-    return ClassStorageStatistics
+	return ClassStorageStatistics
 }
 
 func (*StorageStatistics) GetType() string {
-    return TypeStorageStatistics
+	return TypeStorageStatistics
 }
 
 // Contains approximate storage usage statistics, excluding files of unknown file type
 type StorageStatisticsFast struct {
-    meta
-    // Approximate total size of files
-    FilesSize int64 `json:"files_size"`
-    // Approximate number of files
-    FileCount int32 `json:"file_count"`
-    // Size of the database
-    DatabaseSize int64 `json:"database_size"`
+	meta
+	// Approximate total size of files
+	FilesSize int64 `json:"files_size"`
+	// Approximate number of files
+	FileCount int32 `json:"file_count"`
+	// Size of the database
+	DatabaseSize int64 `json:"database_size"`
 }
 
 func (entity *StorageStatisticsFast) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub StorageStatisticsFast
+	type stub StorageStatisticsFast
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*StorageStatisticsFast) GetClass() string {
-    return ClassStorageStatisticsFast
+	return ClassStorageStatisticsFast
 }
 
 func (*StorageStatisticsFast) GetType() string {
-    return TypeStorageStatisticsFast
+	return TypeStorageStatisticsFast
 }
 
 // The network is not available
-type NetworkTypeNone struct{
-    meta
+type NetworkTypeNone struct {
+	meta
 }
 
 func (entity *NetworkTypeNone) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub NetworkTypeNone
+	type stub NetworkTypeNone
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*NetworkTypeNone) GetClass() string {
-    return ClassNetworkType
+	return ClassNetworkType
 }
 
 func (*NetworkTypeNone) GetType() string {
-    return TypeNetworkTypeNone
+	return TypeNetworkTypeNone
 }
 
 func (*NetworkTypeNone) NetworkTypeType() string {
-    return TypeNetworkTypeNone
+	return TypeNetworkTypeNone
 }
 
 // A mobile network
-type NetworkTypeMobile struct{
-    meta
+type NetworkTypeMobile struct {
+	meta
 }
 
 func (entity *NetworkTypeMobile) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub NetworkTypeMobile
+	type stub NetworkTypeMobile
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*NetworkTypeMobile) GetClass() string {
-    return ClassNetworkType
+	return ClassNetworkType
 }
 
 func (*NetworkTypeMobile) GetType() string {
-    return TypeNetworkTypeMobile
+	return TypeNetworkTypeMobile
 }
 
 func (*NetworkTypeMobile) NetworkTypeType() string {
-    return TypeNetworkTypeMobile
+	return TypeNetworkTypeMobile
 }
 
 // A mobile roaming network
-type NetworkTypeMobileRoaming struct{
-    meta
+type NetworkTypeMobileRoaming struct {
+	meta
 }
 
 func (entity *NetworkTypeMobileRoaming) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub NetworkTypeMobileRoaming
+	type stub NetworkTypeMobileRoaming
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*NetworkTypeMobileRoaming) GetClass() string {
-    return ClassNetworkType
+	return ClassNetworkType
 }
 
 func (*NetworkTypeMobileRoaming) GetType() string {
-    return TypeNetworkTypeMobileRoaming
+	return TypeNetworkTypeMobileRoaming
 }
 
 func (*NetworkTypeMobileRoaming) NetworkTypeType() string {
-    return TypeNetworkTypeMobileRoaming
+	return TypeNetworkTypeMobileRoaming
 }
 
 // A Wi-Fi network
-type NetworkTypeWiFi struct{
-    meta
+type NetworkTypeWiFi struct {
+	meta
 }
 
 func (entity *NetworkTypeWiFi) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub NetworkTypeWiFi
+	type stub NetworkTypeWiFi
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*NetworkTypeWiFi) GetClass() string {
-    return ClassNetworkType
+	return ClassNetworkType
 }
 
 func (*NetworkTypeWiFi) GetType() string {
-    return TypeNetworkTypeWiFi
+	return TypeNetworkTypeWiFi
 }
 
 func (*NetworkTypeWiFi) NetworkTypeType() string {
-    return TypeNetworkTypeWiFi
+	return TypeNetworkTypeWiFi
 }
 
 // A different network type (e.g., Ethernet network)
-type NetworkTypeOther struct{
-    meta
+type NetworkTypeOther struct {
+	meta
 }
 
 func (entity *NetworkTypeOther) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub NetworkTypeOther
+	type stub NetworkTypeOther
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*NetworkTypeOther) GetClass() string {
-    return ClassNetworkType
+	return ClassNetworkType
 }
 
 func (*NetworkTypeOther) GetType() string {
-    return TypeNetworkTypeOther
+	return TypeNetworkTypeOther
 }
 
 func (*NetworkTypeOther) NetworkTypeType() string {
-    return TypeNetworkTypeOther
+	return TypeNetworkTypeOther
 }
 
 // Contains information about the total amount of data that was used to send and receive files
 type NetworkStatisticsEntryFile struct {
-    meta
-    // Type of the file the data is part of
-    FileType FileType `json:"file_type"`
-    // Type of the network the data was sent through. Call setNetworkType to maintain the actual network type
-    NetworkType NetworkType `json:"network_type"`
-    // Total number of bytes sent
-    SentBytes int64 `json:"sent_bytes"`
-    // Total number of bytes received
-    ReceivedBytes int64 `json:"received_bytes"`
+	meta
+	// Type of the file the data is part of
+	FileType FileType `json:"file_type"`
+	// Type of the network the data was sent through. Call setNetworkType to maintain the actual network type
+	NetworkType NetworkType `json:"network_type"`
+	// Total number of bytes sent
+	SentBytes int64 `json:"sent_bytes"`
+	// Total number of bytes received
+	ReceivedBytes int64 `json:"received_bytes"`
 }
 
 func (entity *NetworkStatisticsEntryFile) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub NetworkStatisticsEntryFile
+	type stub NetworkStatisticsEntryFile
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*NetworkStatisticsEntryFile) GetClass() string {
-    return ClassNetworkStatisticsEntry
+	return ClassNetworkStatisticsEntry
 }
 
 func (*NetworkStatisticsEntryFile) GetType() string {
-    return TypeNetworkStatisticsEntryFile
+	return TypeNetworkStatisticsEntryFile
 }
 
 func (*NetworkStatisticsEntryFile) NetworkStatisticsEntryType() string {
-    return TypeNetworkStatisticsEntryFile
+	return TypeNetworkStatisticsEntryFile
 }
 
 func (networkStatisticsEntryFile *NetworkStatisticsEntryFile) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        FileType json.RawMessage `json:"file_type"`
-        NetworkType json.RawMessage `json:"network_type"`
-        SentBytes int64 `json:"sent_bytes"`
-        ReceivedBytes int64 `json:"received_bytes"`
-    }
+	var tmp struct {
+		FileType      json.RawMessage `json:"file_type"`
+		NetworkType   json.RawMessage `json:"network_type"`
+		SentBytes     int64           `json:"sent_bytes"`
+		ReceivedBytes int64           `json:"received_bytes"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    networkStatisticsEntryFile.SentBytes = tmp.SentBytes
-    networkStatisticsEntryFile.ReceivedBytes = tmp.ReceivedBytes
+	networkStatisticsEntryFile.SentBytes = tmp.SentBytes
+	networkStatisticsEntryFile.ReceivedBytes = tmp.ReceivedBytes
 
-    fieldFileType, _ := UnmarshalFileType(tmp.FileType)
-    networkStatisticsEntryFile.FileType = fieldFileType
+	fieldFileType, _ := UnmarshalFileType(tmp.FileType)
+	networkStatisticsEntryFile.FileType = fieldFileType
 
-    fieldNetworkType, _ := UnmarshalNetworkType(tmp.NetworkType)
-    networkStatisticsEntryFile.NetworkType = fieldNetworkType
+	fieldNetworkType, _ := UnmarshalNetworkType(tmp.NetworkType)
+	networkStatisticsEntryFile.NetworkType = fieldNetworkType
 
-    return nil
+	return nil
 }
 
 // Contains information about the total amount of data that was used for calls
 type NetworkStatisticsEntryCall struct {
-    meta
-    // Type of the network the data was sent through. Call setNetworkType to maintain the actual network type
-    NetworkType NetworkType `json:"network_type"`
-    // Total number of bytes sent
-    SentBytes int64 `json:"sent_bytes"`
-    // Total number of bytes received
-    ReceivedBytes int64 `json:"received_bytes"`
-    // Total call duration, in seconds
-    Duration float64 `json:"duration"`
+	meta
+	// Type of the network the data was sent through. Call setNetworkType to maintain the actual network type
+	NetworkType NetworkType `json:"network_type"`
+	// Total number of bytes sent
+	SentBytes int64 `json:"sent_bytes"`
+	// Total number of bytes received
+	ReceivedBytes int64 `json:"received_bytes"`
+	// Total call duration, in seconds
+	Duration float64 `json:"duration"`
 }
 
 func (entity *NetworkStatisticsEntryCall) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub NetworkStatisticsEntryCall
+	type stub NetworkStatisticsEntryCall
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*NetworkStatisticsEntryCall) GetClass() string {
-    return ClassNetworkStatisticsEntry
+	return ClassNetworkStatisticsEntry
 }
 
 func (*NetworkStatisticsEntryCall) GetType() string {
-    return TypeNetworkStatisticsEntryCall
+	return TypeNetworkStatisticsEntryCall
 }
 
 func (*NetworkStatisticsEntryCall) NetworkStatisticsEntryType() string {
-    return TypeNetworkStatisticsEntryCall
+	return TypeNetworkStatisticsEntryCall
 }
 
 func (networkStatisticsEntryCall *NetworkStatisticsEntryCall) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        NetworkType json.RawMessage `json:"network_type"`
-        SentBytes int64 `json:"sent_bytes"`
-        ReceivedBytes int64 `json:"received_bytes"`
-        Duration float64 `json:"duration"`
-    }
+	var tmp struct {
+		NetworkType   json.RawMessage `json:"network_type"`
+		SentBytes     int64           `json:"sent_bytes"`
+		ReceivedBytes int64           `json:"received_bytes"`
+		Duration      float64         `json:"duration"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    networkStatisticsEntryCall.SentBytes = tmp.SentBytes
-    networkStatisticsEntryCall.ReceivedBytes = tmp.ReceivedBytes
-    networkStatisticsEntryCall.Duration = tmp.Duration
+	networkStatisticsEntryCall.SentBytes = tmp.SentBytes
+	networkStatisticsEntryCall.ReceivedBytes = tmp.ReceivedBytes
+	networkStatisticsEntryCall.Duration = tmp.Duration
 
-    fieldNetworkType, _ := UnmarshalNetworkType(tmp.NetworkType)
-    networkStatisticsEntryCall.NetworkType = fieldNetworkType
+	fieldNetworkType, _ := UnmarshalNetworkType(tmp.NetworkType)
+	networkStatisticsEntryCall.NetworkType = fieldNetworkType
 
-    return nil
+	return nil
 }
 
 // A full list of available network statistic entries
 type NetworkStatistics struct {
-    meta
-    // Point in time (Unix timestamp) when the app began collecting statistics
-    SinceDate int32 `json:"since_date"`
-    // Network statistics entries
-    Entries []NetworkStatisticsEntry `json:"entries"`
+	meta
+	// Point in time (Unix timestamp) when the app began collecting statistics
+	SinceDate int32 `json:"since_date"`
+	// Network statistics entries
+	Entries []NetworkStatisticsEntry `json:"entries"`
 }
 
 func (entity *NetworkStatistics) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub NetworkStatistics
+	type stub NetworkStatistics
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*NetworkStatistics) GetClass() string {
-    return ClassNetworkStatistics
+	return ClassNetworkStatistics
 }
 
 func (*NetworkStatistics) GetType() string {
-    return TypeNetworkStatistics
+	return TypeNetworkStatistics
 }
 
 // Currently waiting for the network to become available. Use SetNetworkType to change the available network type
-type ConnectionStateWaitingForNetwork struct{
-    meta
+type ConnectionStateWaitingForNetwork struct {
+	meta
 }
 
 func (entity *ConnectionStateWaitingForNetwork) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ConnectionStateWaitingForNetwork
+	type stub ConnectionStateWaitingForNetwork
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ConnectionStateWaitingForNetwork) GetClass() string {
-    return ClassConnectionState
+	return ClassConnectionState
 }
 
 func (*ConnectionStateWaitingForNetwork) GetType() string {
-    return TypeConnectionStateWaitingForNetwork
+	return TypeConnectionStateWaitingForNetwork
 }
 
 func (*ConnectionStateWaitingForNetwork) ConnectionStateType() string {
-    return TypeConnectionStateWaitingForNetwork
+	return TypeConnectionStateWaitingForNetwork
 }
 
 // Currently establishing a connection with a proxy server
-type ConnectionStateConnectingToProxy struct{
-    meta
+type ConnectionStateConnectingToProxy struct {
+	meta
 }
 
 func (entity *ConnectionStateConnectingToProxy) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ConnectionStateConnectingToProxy
+	type stub ConnectionStateConnectingToProxy
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ConnectionStateConnectingToProxy) GetClass() string {
-    return ClassConnectionState
+	return ClassConnectionState
 }
 
 func (*ConnectionStateConnectingToProxy) GetType() string {
-    return TypeConnectionStateConnectingToProxy
+	return TypeConnectionStateConnectingToProxy
 }
 
 func (*ConnectionStateConnectingToProxy) ConnectionStateType() string {
-    return TypeConnectionStateConnectingToProxy
+	return TypeConnectionStateConnectingToProxy
 }
 
 // Currently establishing a connection to the Telegram servers
-type ConnectionStateConnecting struct{
-    meta
+type ConnectionStateConnecting struct {
+	meta
 }
 
 func (entity *ConnectionStateConnecting) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ConnectionStateConnecting
+	type stub ConnectionStateConnecting
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ConnectionStateConnecting) GetClass() string {
-    return ClassConnectionState
+	return ClassConnectionState
 }
 
 func (*ConnectionStateConnecting) GetType() string {
-    return TypeConnectionStateConnecting
+	return TypeConnectionStateConnecting
 }
 
 func (*ConnectionStateConnecting) ConnectionStateType() string {
-    return TypeConnectionStateConnecting
+	return TypeConnectionStateConnecting
 }
 
 // Downloading data received while the client was offline
-type ConnectionStateUpdating struct{
-    meta
+type ConnectionStateUpdating struct {
+	meta
 }
 
 func (entity *ConnectionStateUpdating) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ConnectionStateUpdating
+	type stub ConnectionStateUpdating
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ConnectionStateUpdating) GetClass() string {
-    return ClassConnectionState
+	return ClassConnectionState
 }
 
 func (*ConnectionStateUpdating) GetType() string {
-    return TypeConnectionStateUpdating
+	return TypeConnectionStateUpdating
 }
 
 func (*ConnectionStateUpdating) ConnectionStateType() string {
-    return TypeConnectionStateUpdating
+	return TypeConnectionStateUpdating
 }
 
 // There is a working connection to the Telegram servers
-type ConnectionStateReady struct{
-    meta
+type ConnectionStateReady struct {
+	meta
 }
 
 func (entity *ConnectionStateReady) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ConnectionStateReady
+	type stub ConnectionStateReady
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ConnectionStateReady) GetClass() string {
-    return ClassConnectionState
+	return ClassConnectionState
 }
 
 func (*ConnectionStateReady) GetType() string {
-    return TypeConnectionStateReady
+	return TypeConnectionStateReady
 }
 
 func (*ConnectionStateReady) ConnectionStateType() string {
-    return TypeConnectionStateReady
+	return TypeConnectionStateReady
 }
 
 // A category containing frequently used private chats with non-bot users
-type TopChatCategoryUsers struct{
-    meta
+type TopChatCategoryUsers struct {
+	meta
 }
 
 func (entity *TopChatCategoryUsers) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TopChatCategoryUsers
+	type stub TopChatCategoryUsers
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TopChatCategoryUsers) GetClass() string {
-    return ClassTopChatCategory
+	return ClassTopChatCategory
 }
 
 func (*TopChatCategoryUsers) GetType() string {
-    return TypeTopChatCategoryUsers
+	return TypeTopChatCategoryUsers
 }
 
 func (*TopChatCategoryUsers) TopChatCategoryType() string {
-    return TypeTopChatCategoryUsers
+	return TypeTopChatCategoryUsers
 }
 
 // A category containing frequently used private chats with bot users
-type TopChatCategoryBots struct{
-    meta
+type TopChatCategoryBots struct {
+	meta
 }
 
 func (entity *TopChatCategoryBots) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TopChatCategoryBots
+	type stub TopChatCategoryBots
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TopChatCategoryBots) GetClass() string {
-    return ClassTopChatCategory
+	return ClassTopChatCategory
 }
 
 func (*TopChatCategoryBots) GetType() string {
-    return TypeTopChatCategoryBots
+	return TypeTopChatCategoryBots
 }
 
 func (*TopChatCategoryBots) TopChatCategoryType() string {
-    return TypeTopChatCategoryBots
+	return TypeTopChatCategoryBots
 }
 
 // A category containing frequently used basic groups and supergroups
-type TopChatCategoryGroups struct{
-    meta
+type TopChatCategoryGroups struct {
+	meta
 }
 
 func (entity *TopChatCategoryGroups) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TopChatCategoryGroups
+	type stub TopChatCategoryGroups
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TopChatCategoryGroups) GetClass() string {
-    return ClassTopChatCategory
+	return ClassTopChatCategory
 }
 
 func (*TopChatCategoryGroups) GetType() string {
-    return TypeTopChatCategoryGroups
+	return TypeTopChatCategoryGroups
 }
 
 func (*TopChatCategoryGroups) TopChatCategoryType() string {
-    return TypeTopChatCategoryGroups
+	return TypeTopChatCategoryGroups
 }
 
 // A category containing frequently used channels
-type TopChatCategoryChannels struct{
-    meta
+type TopChatCategoryChannels struct {
+	meta
 }
 
 func (entity *TopChatCategoryChannels) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TopChatCategoryChannels
+	type stub TopChatCategoryChannels
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TopChatCategoryChannels) GetClass() string {
-    return ClassTopChatCategory
+	return ClassTopChatCategory
 }
 
 func (*TopChatCategoryChannels) GetType() string {
-    return TypeTopChatCategoryChannels
+	return TypeTopChatCategoryChannels
 }
 
 func (*TopChatCategoryChannels) TopChatCategoryType() string {
-    return TypeTopChatCategoryChannels
+	return TypeTopChatCategoryChannels
 }
 
 // A category containing frequently used chats with inline bots sorted by their usage in inline mode
-type TopChatCategoryInlineBots struct{
-    meta
+type TopChatCategoryInlineBots struct {
+	meta
 }
 
 func (entity *TopChatCategoryInlineBots) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TopChatCategoryInlineBots
+	type stub TopChatCategoryInlineBots
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TopChatCategoryInlineBots) GetClass() string {
-    return ClassTopChatCategory
+	return ClassTopChatCategory
 }
 
 func (*TopChatCategoryInlineBots) GetType() string {
-    return TypeTopChatCategoryInlineBots
+	return TypeTopChatCategoryInlineBots
 }
 
 func (*TopChatCategoryInlineBots) TopChatCategoryType() string {
-    return TypeTopChatCategoryInlineBots
+	return TypeTopChatCategoryInlineBots
 }
 
 // A category containing frequently used chats used for calls
-type TopChatCategoryCalls struct{
-    meta
+type TopChatCategoryCalls struct {
+	meta
 }
 
 func (entity *TopChatCategoryCalls) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TopChatCategoryCalls
+	type stub TopChatCategoryCalls
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TopChatCategoryCalls) GetClass() string {
-    return ClassTopChatCategory
+	return ClassTopChatCategory
 }
 
 func (*TopChatCategoryCalls) GetType() string {
-    return TypeTopChatCategoryCalls
+	return TypeTopChatCategoryCalls
 }
 
 func (*TopChatCategoryCalls) TopChatCategoryType() string {
-    return TypeTopChatCategoryCalls
+	return TypeTopChatCategoryCalls
 }
 
 // A URL linking to a user
 type TMeUrlTypeUser struct {
-    meta
-    // Identifier of the user
-    UserId int32 `json:"user_id"`
+	meta
+	// Identifier of the user
+	UserId int32 `json:"user_id"`
 }
 
 func (entity *TMeUrlTypeUser) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TMeUrlTypeUser
+	type stub TMeUrlTypeUser
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TMeUrlTypeUser) GetClass() string {
-    return ClassTMeUrlType
+	return ClassTMeUrlType
 }
 
 func (*TMeUrlTypeUser) GetType() string {
-    return TypeTMeUrlTypeUser
+	return TypeTMeUrlTypeUser
 }
 
 func (*TMeUrlTypeUser) TMeUrlTypeType() string {
-    return TypeTMeUrlTypeUser
+	return TypeTMeUrlTypeUser
 }
 
 // A URL linking to a public supergroup or channel
 type TMeUrlTypeSupergroup struct {
-    meta
-    // Identifier of the supergroup or channel
-    SupergroupId int64 `json:"supergroup_id"`
+	meta
+	// Identifier of the supergroup or channel
+	SupergroupId int64 `json:"supergroup_id"`
 }
 
 func (entity *TMeUrlTypeSupergroup) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TMeUrlTypeSupergroup
+	type stub TMeUrlTypeSupergroup
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TMeUrlTypeSupergroup) GetClass() string {
-    return ClassTMeUrlType
+	return ClassTMeUrlType
 }
 
 func (*TMeUrlTypeSupergroup) GetType() string {
-    return TypeTMeUrlTypeSupergroup
+	return TypeTMeUrlTypeSupergroup
 }
 
 func (*TMeUrlTypeSupergroup) TMeUrlTypeType() string {
-    return TypeTMeUrlTypeSupergroup
+	return TypeTMeUrlTypeSupergroup
 }
 
 // A chat invite link
 type TMeUrlTypeChatInvite struct {
-    meta
-    // Chat invite link info
-    Info *ChatInviteLinkInfo `json:"info"`
+	meta
+	// Chat invite link info
+	Info *ChatInviteLinkInfo `json:"info"`
 }
 
 func (entity *TMeUrlTypeChatInvite) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TMeUrlTypeChatInvite
+	type stub TMeUrlTypeChatInvite
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TMeUrlTypeChatInvite) GetClass() string {
-    return ClassTMeUrlType
+	return ClassTMeUrlType
 }
 
 func (*TMeUrlTypeChatInvite) GetType() string {
-    return TypeTMeUrlTypeChatInvite
+	return TypeTMeUrlTypeChatInvite
 }
 
 func (*TMeUrlTypeChatInvite) TMeUrlTypeType() string {
-    return TypeTMeUrlTypeChatInvite
+	return TypeTMeUrlTypeChatInvite
 }
 
 // A URL linking to a sticker set
 type TMeUrlTypeStickerSet struct {
-    meta
-    // Identifier of the sticker set
-    StickerSetId JsonInt64 `json:"sticker_set_id"`
+	meta
+	// Identifier of the sticker set
+	StickerSetId JsonInt64 `json:"sticker_set_id"`
 }
 
 func (entity *TMeUrlTypeStickerSet) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TMeUrlTypeStickerSet
+	type stub TMeUrlTypeStickerSet
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TMeUrlTypeStickerSet) GetClass() string {
-    return ClassTMeUrlType
+	return ClassTMeUrlType
 }
 
 func (*TMeUrlTypeStickerSet) GetType() string {
-    return TypeTMeUrlTypeStickerSet
+	return TypeTMeUrlTypeStickerSet
 }
 
 func (*TMeUrlTypeStickerSet) TMeUrlTypeType() string {
-    return TypeTMeUrlTypeStickerSet
+	return TypeTMeUrlTypeStickerSet
 }
 
 // Represents a URL linking to an internal Telegram entity
 type TMeUrl struct {
-    meta
-    // URL
-    Url string `json:"url"`
-    // Type of the URL
-    Type TMeUrlType `json:"type"`
+	meta
+	// URL
+	Url string `json:"url"`
+	// Type of the URL
+	Type TMeUrlType `json:"type"`
 }
 
 func (entity *TMeUrl) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TMeUrl
+	type stub TMeUrl
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TMeUrl) GetClass() string {
-    return ClassTMeUrl
+	return ClassTMeUrl
 }
 
 func (*TMeUrl) GetType() string {
-    return TypeTMeUrl
+	return TypeTMeUrl
 }
 
 func (tMeUrl *TMeUrl) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Url string `json:"url"`
-        Type json.RawMessage `json:"type"`
-    }
+	var tmp struct {
+		Url  string          `json:"url"`
+		Type json.RawMessage `json:"type"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    tMeUrl.Url = tmp.Url
+	tMeUrl.Url = tmp.Url
 
-    fieldType, _ := UnmarshalTMeUrlType(tmp.Type)
-    tMeUrl.Type = fieldType
+	fieldType, _ := UnmarshalTMeUrlType(tmp.Type)
+	tMeUrl.Type = fieldType
 
-    return nil
+	return nil
 }
 
 // Contains a list of t.me URLs
 type TMeUrls struct {
-    meta
-    // List of URLs
-    Urls []*TMeUrl `json:"urls"`
+	meta
+	// List of URLs
+	Urls []*TMeUrl `json:"urls"`
 }
 
 func (entity *TMeUrls) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TMeUrls
+	type stub TMeUrls
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TMeUrls) GetClass() string {
-    return ClassTMeUrls
+	return ClassTMeUrls
 }
 
 func (*TMeUrls) GetType() string {
-    return TypeTMeUrls
+	return TypeTMeUrls
 }
 
 // Contains a counter
 type Count struct {
-    meta
-    // Count
-    Count int32 `json:"count"`
+	meta
+	// Count
+	Count int32 `json:"count"`
 }
 
 func (entity *Count) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Count
+	type stub Count
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Count) GetClass() string {
-    return ClassCount
+	return ClassCount
 }
 
 func (*Count) GetType() string {
-    return TypeCount
+	return TypeCount
 }
 
 // Contains some text
 type Text struct {
-    meta
-    // Text
-    Text string `json:"text"`
+	meta
+	// Text
+	Text string `json:"text"`
 }
 
 func (entity *Text) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Text
+	type stub Text
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Text) GetClass() string {
-    return ClassText
+	return ClassText
 }
 
 func (*Text) GetType() string {
-    return TypeText
+	return TypeText
 }
 
 // Contains a value representing a number of seconds
 type Seconds struct {
-    meta
-    // Number of seconds
-    Seconds float64 `json:"seconds"`
+	meta
+	// Number of seconds
+	Seconds float64 `json:"seconds"`
 }
 
 func (entity *Seconds) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Seconds
+	type stub Seconds
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Seconds) GetClass() string {
-    return ClassSeconds
+	return ClassSeconds
 }
 
 func (*Seconds) GetType() string {
-    return TypeSeconds
+	return TypeSeconds
 }
 
 // Contains information about a tg:// deep link
 type DeepLinkInfo struct {
-    meta
-    // Text to be shown to the user
-    Text *FormattedText `json:"text"`
-    // True, if user should be asked to update the application
-    NeedUpdateApplication bool `json:"need_update_application"`
+	meta
+	// Text to be shown to the user
+	Text *FormattedText `json:"text"`
+	// True, if user should be asked to update the application
+	NeedUpdateApplication bool `json:"need_update_application"`
 }
 
 func (entity *DeepLinkInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub DeepLinkInfo
+	type stub DeepLinkInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*DeepLinkInfo) GetClass() string {
-    return ClassDeepLinkInfo
+	return ClassDeepLinkInfo
 }
 
 func (*DeepLinkInfo) GetType() string {
-    return TypeDeepLinkInfo
+	return TypeDeepLinkInfo
 }
 
 // The text should be parsed in markdown-style
-type TextParseModeMarkdown struct{
-    meta
+type TextParseModeMarkdown struct {
+	meta
 }
 
 func (entity *TextParseModeMarkdown) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextParseModeMarkdown
+	type stub TextParseModeMarkdown
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextParseModeMarkdown) GetClass() string {
-    return ClassTextParseMode
+	return ClassTextParseMode
 }
 
 func (*TextParseModeMarkdown) GetType() string {
-    return TypeTextParseModeMarkdown
+	return TypeTextParseModeMarkdown
 }
 
 func (*TextParseModeMarkdown) TextParseModeType() string {
-    return TypeTextParseModeMarkdown
+	return TypeTextParseModeMarkdown
 }
 
 // The text should be parsed in HTML-style
-type TextParseModeHTML struct{
-    meta
+type TextParseModeHTML struct {
+	meta
 }
 
 func (entity *TextParseModeHTML) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TextParseModeHTML
+	type stub TextParseModeHTML
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TextParseModeHTML) GetClass() string {
-    return ClassTextParseMode
+	return ClassTextParseMode
 }
 
 func (*TextParseModeHTML) GetType() string {
-    return TypeTextParseModeHTML
+	return TypeTextParseModeHTML
 }
 
 func (*TextParseModeHTML) TextParseModeType() string {
-    return TypeTextParseModeHTML
+	return TypeTextParseModeHTML
 }
 
 // A SOCKS5 proxy server
 type ProxyTypeSocks5 struct {
-    meta
-    // Username for logging in; may be empty
-    Username string `json:"username"`
-    // Password for logging in; may be empty
-    Password string `json:"password"`
+	meta
+	// Username for logging in; may be empty
+	Username string `json:"username"`
+	// Password for logging in; may be empty
+	Password string `json:"password"`
 }
 
 func (entity *ProxyTypeSocks5) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ProxyTypeSocks5
+	type stub ProxyTypeSocks5
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ProxyTypeSocks5) GetClass() string {
-    return ClassProxyType
+	return ClassProxyType
 }
 
 func (*ProxyTypeSocks5) GetType() string {
-    return TypeProxyTypeSocks5
+	return TypeProxyTypeSocks5
 }
 
 func (*ProxyTypeSocks5) ProxyTypeType() string {
-    return TypeProxyTypeSocks5
+	return TypeProxyTypeSocks5
 }
 
 // A HTTP transparent proxy server
 type ProxyTypeHttp struct {
-    meta
-    // Username for logging in; may be empty
-    Username string `json:"username"`
-    // Password for logging in; may be empty
-    Password string `json:"password"`
-    // Pass true, if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
-    HttpOnly bool `json:"http_only"`
+	meta
+	// Username for logging in; may be empty
+	Username string `json:"username"`
+	// Password for logging in; may be empty
+	Password string `json:"password"`
+	// Pass true, if the proxy supports only HTTP requests and doesn't support transparent TCP connections via HTTP CONNECT method
+	HttpOnly bool `json:"http_only"`
 }
 
 func (entity *ProxyTypeHttp) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ProxyTypeHttp
+	type stub ProxyTypeHttp
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ProxyTypeHttp) GetClass() string {
-    return ClassProxyType
+	return ClassProxyType
 }
 
 func (*ProxyTypeHttp) GetType() string {
-    return TypeProxyTypeHttp
+	return TypeProxyTypeHttp
 }
 
 func (*ProxyTypeHttp) ProxyTypeType() string {
-    return TypeProxyTypeHttp
+	return TypeProxyTypeHttp
 }
 
 // An MTProto proxy server
 type ProxyTypeMtproto struct {
-    meta
-    // The proxy's secret in hexadecimal encoding
-    Secret string `json:"secret"`
+	meta
+	// The proxy's secret in hexadecimal encoding
+	Secret string `json:"secret"`
 }
 
 func (entity *ProxyTypeMtproto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub ProxyTypeMtproto
+	type stub ProxyTypeMtproto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*ProxyTypeMtproto) GetClass() string {
-    return ClassProxyType
+	return ClassProxyType
 }
 
 func (*ProxyTypeMtproto) GetType() string {
-    return TypeProxyTypeMtproto
+	return TypeProxyTypeMtproto
 }
 
 func (*ProxyTypeMtproto) ProxyTypeType() string {
-    return TypeProxyTypeMtproto
+	return TypeProxyTypeMtproto
 }
 
 // Contains information about a proxy server
 type Proxy struct {
-    meta
-    // Unique identifier of the proxy
-    Id int32 `json:"id"`
-    // Proxy server IP address
-    Server string `json:"server"`
-    // Proxy server port
-    Port int32 `json:"port"`
-    // Point in time (Unix timestamp) when the proxy was last used; 0 if never
-    LastUsedDate int32 `json:"last_used_date"`
-    // True, if the proxy is enabled now
-    IsEnabled bool `json:"is_enabled"`
-    // Type of the proxy
-    Type ProxyType `json:"type"`
+	meta
+	// Unique identifier of the proxy
+	Id int32 `json:"id"`
+	// Proxy server IP address
+	Server string `json:"server"`
+	// Proxy server port
+	Port int32 `json:"port"`
+	// Point in time (Unix timestamp) when the proxy was last used; 0 if never
+	LastUsedDate int32 `json:"last_used_date"`
+	// True, if the proxy is enabled now
+	IsEnabled bool `json:"is_enabled"`
+	// Type of the proxy
+	Type ProxyType `json:"type"`
 }
 
 func (entity *Proxy) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Proxy
+	type stub Proxy
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Proxy) GetClass() string {
-    return ClassProxy
+	return ClassProxy
 }
 
 func (*Proxy) GetType() string {
-    return TypeProxy
+	return TypeProxy
 }
 
 func (proxy *Proxy) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id int32 `json:"id"`
-        Server string `json:"server"`
-        Port int32 `json:"port"`
-        LastUsedDate int32 `json:"last_used_date"`
-        IsEnabled bool `json:"is_enabled"`
-        Type json.RawMessage `json:"type"`
-    }
+	var tmp struct {
+		Id           int32           `json:"id"`
+		Server       string          `json:"server"`
+		Port         int32           `json:"port"`
+		LastUsedDate int32           `json:"last_used_date"`
+		IsEnabled    bool            `json:"is_enabled"`
+		Type         json.RawMessage `json:"type"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    proxy.Id = tmp.Id
-    proxy.Server = tmp.Server
-    proxy.Port = tmp.Port
-    proxy.LastUsedDate = tmp.LastUsedDate
-    proxy.IsEnabled = tmp.IsEnabled
+	proxy.Id = tmp.Id
+	proxy.Server = tmp.Server
+	proxy.Port = tmp.Port
+	proxy.LastUsedDate = tmp.LastUsedDate
+	proxy.IsEnabled = tmp.IsEnabled
 
-    fieldType, _ := UnmarshalProxyType(tmp.Type)
-    proxy.Type = fieldType
+	fieldType, _ := UnmarshalProxyType(tmp.Type)
+	proxy.Type = fieldType
 
-    return nil
+	return nil
 }
 
 // Represents a list of proxy servers
 type Proxies struct {
-    meta
-    // List of proxy servers
-    Proxies []*Proxy `json:"proxies"`
+	meta
+	// List of proxy servers
+	Proxies []*Proxy `json:"proxies"`
 }
 
 func (entity *Proxies) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub Proxies
+	type stub Proxies
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*Proxies) GetClass() string {
-    return ClassProxies
+	return ClassProxies
 }
 
 func (*Proxies) GetType() string {
-    return TypeProxies
+	return TypeProxies
 }
 
 // Describes a sticker that should be added to a sticker set
 type InputSticker struct {
-    meta
-    // PNG image with the sticker; must be up to 512 kB in size and fit in a 512x512 square
-    PngSticker InputFile `json:"png_sticker"`
-    // Emoji corresponding to the sticker
-    Emojis string `json:"emojis"`
-    // For masks, position where the mask should be placed; may be null
-    MaskPosition *MaskPosition `json:"mask_position"`
+	meta
+	// PNG image with the sticker; must be up to 512 kB in size and fit in a 512x512 square
+	PngSticker InputFile `json:"png_sticker"`
+	// Emoji corresponding to the sticker
+	Emojis string `json:"emojis"`
+	// For masks, position where the mask should be placed; may be null
+	MaskPosition *MaskPosition `json:"mask_position"`
 }
 
 func (entity *InputSticker) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub InputSticker
+	type stub InputSticker
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*InputSticker) GetClass() string {
-    return ClassInputSticker
+	return ClassInputSticker
 }
 
 func (*InputSticker) GetType() string {
-    return TypeInputSticker
+	return TypeInputSticker
 }
 
 func (inputSticker *InputSticker) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        PngSticker json.RawMessage `json:"png_sticker"`
-        Emojis string `json:"emojis"`
-        MaskPosition *MaskPosition `json:"mask_position"`
-    }
+	var tmp struct {
+		PngSticker   json.RawMessage `json:"png_sticker"`
+		Emojis       string          `json:"emojis"`
+		MaskPosition *MaskPosition   `json:"mask_position"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    inputSticker.Emojis = tmp.Emojis
-    inputSticker.MaskPosition = tmp.MaskPosition
+	inputSticker.Emojis = tmp.Emojis
+	inputSticker.MaskPosition = tmp.MaskPosition
 
-    fieldPngSticker, _ := UnmarshalInputFile(tmp.PngSticker)
-    inputSticker.PngSticker = fieldPngSticker
+	fieldPngSticker, _ := UnmarshalInputFile(tmp.PngSticker)
+	inputSticker.PngSticker = fieldPngSticker
 
-    return nil
+	return nil
 }
 
 // The user authorization state has changed
 type UpdateAuthorizationState struct {
-    meta
-    // New authorization state
-    AuthorizationState AuthorizationState `json:"authorization_state"`
+	meta
+	// New authorization state
+	AuthorizationState AuthorizationState `json:"authorization_state"`
 }
 
 func (entity *UpdateAuthorizationState) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateAuthorizationState
+	type stub UpdateAuthorizationState
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateAuthorizationState) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateAuthorizationState) GetType() string {
-    return TypeUpdateAuthorizationState
+	return TypeUpdateAuthorizationState
 }
 
 func (*UpdateAuthorizationState) UpdateType() string {
-    return TypeUpdateAuthorizationState
+	return TypeUpdateAuthorizationState
 }
 
 func (updateAuthorizationState *UpdateAuthorizationState) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        AuthorizationState json.RawMessage `json:"authorization_state"`
-    }
+	var tmp struct {
+		AuthorizationState json.RawMessage `json:"authorization_state"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldAuthorizationState, _ := UnmarshalAuthorizationState(tmp.AuthorizationState)
-    updateAuthorizationState.AuthorizationState = fieldAuthorizationState
+	fieldAuthorizationState, _ := UnmarshalAuthorizationState(tmp.AuthorizationState)
+	updateAuthorizationState.AuthorizationState = fieldAuthorizationState
 
-    return nil
+	return nil
 }
 
 // A new message was received; can also be an outgoing message
 type UpdateNewMessage struct {
-    meta
-    // The new message
-    Message *Message `json:"message"`
-    // True, if this message must not generate a notification
-    DisableNotification bool `json:"disable_notification"`
-    // True, if the message contains a mention of the current user
-    ContainsMention bool `json:"contains_mention"`
+	meta
+	// The new message
+	Message *Message `json:"message"`
+	// True, if this message must not generate a notification
+	DisableNotification bool `json:"disable_notification"`
+	// True, if the message contains a mention of the current user
+	ContainsMention bool `json:"contains_mention"`
 }
 
 func (entity *UpdateNewMessage) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateNewMessage
+	type stub UpdateNewMessage
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateNewMessage) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateNewMessage) GetType() string {
-    return TypeUpdateNewMessage
+	return TypeUpdateNewMessage
 }
 
 func (*UpdateNewMessage) UpdateType() string {
-    return TypeUpdateNewMessage
+	return TypeUpdateNewMessage
 }
 
 // A request to send a message has reached the Telegram server. This doesn't mean that the message will be sent successfully or even that the send message request will be processed. This update will be sent only if the option "use_quick_ack" is set to true. This update may be sent multiple times for the same message
 type UpdateMessageSendAcknowledged struct {
-    meta
-    // The chat identifier of the sent message
-    ChatId int64 `json:"chat_id"`
-    // A temporary message identifier
-    MessageId int64 `json:"message_id"`
+	meta
+	// The chat identifier of the sent message
+	ChatId int64 `json:"chat_id"`
+	// A temporary message identifier
+	MessageId int64 `json:"message_id"`
 }
 
 func (entity *UpdateMessageSendAcknowledged) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateMessageSendAcknowledged
+	type stub UpdateMessageSendAcknowledged
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateMessageSendAcknowledged) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateMessageSendAcknowledged) GetType() string {
-    return TypeUpdateMessageSendAcknowledged
+	return TypeUpdateMessageSendAcknowledged
 }
 
 func (*UpdateMessageSendAcknowledged) UpdateType() string {
-    return TypeUpdateMessageSendAcknowledged
+	return TypeUpdateMessageSendAcknowledged
 }
 
 // A message has been successfully sent
 type UpdateMessageSendSucceeded struct {
-    meta
-    // Information about the sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
-    Message *Message `json:"message"`
-    // The previous temporary message identifier
-    OldMessageId int64 `json:"old_message_id"`
+	meta
+	// Information about the sent message. Usually only the message identifier, date, and content are changed, but almost all other fields can also change
+	Message *Message `json:"message"`
+	// The previous temporary message identifier
+	OldMessageId int64 `json:"old_message_id"`
 }
 
 func (entity *UpdateMessageSendSucceeded) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateMessageSendSucceeded
+	type stub UpdateMessageSendSucceeded
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateMessageSendSucceeded) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateMessageSendSucceeded) GetType() string {
-    return TypeUpdateMessageSendSucceeded
+	return TypeUpdateMessageSendSucceeded
 }
 
 func (*UpdateMessageSendSucceeded) UpdateType() string {
-    return TypeUpdateMessageSendSucceeded
+	return TypeUpdateMessageSendSucceeded
 }
 
 // A message failed to send. Be aware that some messages being sent can be irrecoverably deleted, in which case updateDeleteMessages will be received instead of this update
 type UpdateMessageSendFailed struct {
-    meta
-    // Contains information about the message that failed to send
-    Message *Message `json:"message"`
-    // The previous temporary message identifier
-    OldMessageId int64 `json:"old_message_id"`
-    // An error code
-    ErrorCode int32 `json:"error_code"`
-    // Error message
-    ErrorMessage string `json:"error_message"`
+	meta
+	// Contains information about the message that failed to send
+	Message *Message `json:"message"`
+	// The previous temporary message identifier
+	OldMessageId int64 `json:"old_message_id"`
+	// An error code
+	ErrorCode int32 `json:"error_code"`
+	// Error message
+	ErrorMessage string `json:"error_message"`
 }
 
 func (entity *UpdateMessageSendFailed) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateMessageSendFailed
+	type stub UpdateMessageSendFailed
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateMessageSendFailed) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateMessageSendFailed) GetType() string {
-    return TypeUpdateMessageSendFailed
+	return TypeUpdateMessageSendFailed
 }
 
 func (*UpdateMessageSendFailed) UpdateType() string {
-    return TypeUpdateMessageSendFailed
+	return TypeUpdateMessageSendFailed
 }
 
 // The message content has changed
 type UpdateMessageContent struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // Message identifier
-    MessageId int64 `json:"message_id"`
-    // New message content
-    NewContent MessageContent `json:"new_content"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Message identifier
+	MessageId int64 `json:"message_id"`
+	// New message content
+	NewContent MessageContent `json:"new_content"`
 }
 
 func (entity *UpdateMessageContent) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateMessageContent
+	type stub UpdateMessageContent
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateMessageContent) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateMessageContent) GetType() string {
-    return TypeUpdateMessageContent
+	return TypeUpdateMessageContent
 }
 
 func (*UpdateMessageContent) UpdateType() string {
-    return TypeUpdateMessageContent
+	return TypeUpdateMessageContent
 }
 
 func (updateMessageContent *UpdateMessageContent) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        ChatId int64 `json:"chat_id"`
-        MessageId int64 `json:"message_id"`
-        NewContent json.RawMessage `json:"new_content"`
-    }
+	var tmp struct {
+		ChatId     int64           `json:"chat_id"`
+		MessageId  int64           `json:"message_id"`
+		NewContent json.RawMessage `json:"new_content"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    updateMessageContent.ChatId = tmp.ChatId
-    updateMessageContent.MessageId = tmp.MessageId
+	updateMessageContent.ChatId = tmp.ChatId
+	updateMessageContent.MessageId = tmp.MessageId
 
-    fieldNewContent, _ := UnmarshalMessageContent(tmp.NewContent)
-    updateMessageContent.NewContent = fieldNewContent
+	fieldNewContent, _ := UnmarshalMessageContent(tmp.NewContent)
+	updateMessageContent.NewContent = fieldNewContent
 
-    return nil
+	return nil
 }
 
 // A message was edited. Changes in the message content will come in a separate updateMessageContent
 type UpdateMessageEdited struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // Message identifier
-    MessageId int64 `json:"message_id"`
-    // Point in time (Unix timestamp) when the message was edited
-    EditDate int32 `json:"edit_date"`
-    // New message reply markup; may be null
-    ReplyMarkup ReplyMarkup `json:"reply_markup"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Message identifier
+	MessageId int64 `json:"message_id"`
+	// Point in time (Unix timestamp) when the message was edited
+	EditDate int32 `json:"edit_date"`
+	// New message reply markup; may be null
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
 }
 
 func (entity *UpdateMessageEdited) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateMessageEdited
+	type stub UpdateMessageEdited
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateMessageEdited) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateMessageEdited) GetType() string {
-    return TypeUpdateMessageEdited
+	return TypeUpdateMessageEdited
 }
 
 func (*UpdateMessageEdited) UpdateType() string {
-    return TypeUpdateMessageEdited
+	return TypeUpdateMessageEdited
 }
 
 func (updateMessageEdited *UpdateMessageEdited) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        ChatId int64 `json:"chat_id"`
-        MessageId int64 `json:"message_id"`
-        EditDate int32 `json:"edit_date"`
-        ReplyMarkup json.RawMessage `json:"reply_markup"`
-    }
+	var tmp struct {
+		ChatId      int64           `json:"chat_id"`
+		MessageId   int64           `json:"message_id"`
+		EditDate    int32           `json:"edit_date"`
+		ReplyMarkup json.RawMessage `json:"reply_markup"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    updateMessageEdited.ChatId = tmp.ChatId
-    updateMessageEdited.MessageId = tmp.MessageId
-    updateMessageEdited.EditDate = tmp.EditDate
+	updateMessageEdited.ChatId = tmp.ChatId
+	updateMessageEdited.MessageId = tmp.MessageId
+	updateMessageEdited.EditDate = tmp.EditDate
 
-    fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
-    updateMessageEdited.ReplyMarkup = fieldReplyMarkup
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	updateMessageEdited.ReplyMarkup = fieldReplyMarkup
 
-    return nil
+	return nil
 }
 
 // The view count of the message has changed
 type UpdateMessageViews struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // Message identifier
-    MessageId int64 `json:"message_id"`
-    // New value of the view count
-    Views int32 `json:"views"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Message identifier
+	MessageId int64 `json:"message_id"`
+	// New value of the view count
+	Views int32 `json:"views"`
 }
 
 func (entity *UpdateMessageViews) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateMessageViews
+	type stub UpdateMessageViews
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateMessageViews) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateMessageViews) GetType() string {
-    return TypeUpdateMessageViews
+	return TypeUpdateMessageViews
 }
 
 func (*UpdateMessageViews) UpdateType() string {
-    return TypeUpdateMessageViews
+	return TypeUpdateMessageViews
 }
 
 // The message content was opened. Updates voice note messages to "listened", video note messages to "viewed" and starts the TTL timer for self-destructing messages
 type UpdateMessageContentOpened struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // Message identifier
-    MessageId int64 `json:"message_id"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Message identifier
+	MessageId int64 `json:"message_id"`
 }
 
 func (entity *UpdateMessageContentOpened) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateMessageContentOpened
+	type stub UpdateMessageContentOpened
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateMessageContentOpened) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateMessageContentOpened) GetType() string {
-    return TypeUpdateMessageContentOpened
+	return TypeUpdateMessageContentOpened
 }
 
 func (*UpdateMessageContentOpened) UpdateType() string {
-    return TypeUpdateMessageContentOpened
+	return TypeUpdateMessageContentOpened
 }
 
 // A message with an unread mention was read
 type UpdateMessageMentionRead struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // Message identifier
-    MessageId int64 `json:"message_id"`
-    // The new number of unread mention messages left in the chat
-    UnreadMentionCount int32 `json:"unread_mention_count"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Message identifier
+	MessageId int64 `json:"message_id"`
+	// The new number of unread mention messages left in the chat
+	UnreadMentionCount int32 `json:"unread_mention_count"`
 }
 
 func (entity *UpdateMessageMentionRead) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateMessageMentionRead
+	type stub UpdateMessageMentionRead
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateMessageMentionRead) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateMessageMentionRead) GetType() string {
-    return TypeUpdateMessageMentionRead
+	return TypeUpdateMessageMentionRead
 }
 
 func (*UpdateMessageMentionRead) UpdateType() string {
-    return TypeUpdateMessageMentionRead
+	return TypeUpdateMessageMentionRead
 }
 
 // A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the client. The chat field changes will be reported through separate updates
 type UpdateNewChat struct {
-    meta
-    // The chat
-    Chat *Chat `json:"chat"`
+	meta
+	// The chat
+	Chat *Chat `json:"chat"`
 }
 
 func (entity *UpdateNewChat) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateNewChat
+	type stub UpdateNewChat
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateNewChat) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateNewChat) GetType() string {
-    return TypeUpdateNewChat
+	return TypeUpdateNewChat
 }
 
 func (*UpdateNewChat) UpdateType() string {
-    return TypeUpdateNewChat
+	return TypeUpdateNewChat
 }
 
 // The title of a chat was changed
 type UpdateChatTitle struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // The new chat title
-    Title string `json:"title"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The new chat title
+	Title string `json:"title"`
 }
 
 func (entity *UpdateChatTitle) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateChatTitle
+	type stub UpdateChatTitle
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateChatTitle) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateChatTitle) GetType() string {
-    return TypeUpdateChatTitle
+	return TypeUpdateChatTitle
 }
 
 func (*UpdateChatTitle) UpdateType() string {
-    return TypeUpdateChatTitle
+	return TypeUpdateChatTitle
 }
 
 // A chat photo was changed
 type UpdateChatPhoto struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // The new chat photo; may be null
-    Photo *ChatPhoto `json:"photo"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The new chat photo; may be null
+	Photo *ChatPhoto `json:"photo"`
 }
 
 func (entity *UpdateChatPhoto) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateChatPhoto
+	type stub UpdateChatPhoto
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateChatPhoto) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateChatPhoto) GetType() string {
-    return TypeUpdateChatPhoto
+	return TypeUpdateChatPhoto
 }
 
 func (*UpdateChatPhoto) UpdateType() string {
-    return TypeUpdateChatPhoto
+	return TypeUpdateChatPhoto
 }
 
 // The last message of a chat was changed. If last_message is null then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case
 type UpdateChatLastMessage struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // The new last message in the chat; may be null
-    LastMessage *Message `json:"last_message"`
-    // New value of the chat order
-    Order JsonInt64 `json:"order"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The new last message in the chat; may be null
+	LastMessage *Message `json:"last_message"`
+	// New value of the chat order
+	Order JsonInt64 `json:"order"`
 }
 
 func (entity *UpdateChatLastMessage) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateChatLastMessage
+	type stub UpdateChatLastMessage
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateChatLastMessage) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateChatLastMessage) GetType() string {
-    return TypeUpdateChatLastMessage
+	return TypeUpdateChatLastMessage
 }
 
 func (*UpdateChatLastMessage) UpdateType() string {
-    return TypeUpdateChatLastMessage
+	return TypeUpdateChatLastMessage
 }
 
 // The order of the chat in the chats list has changed. Instead of this update updateChatLastMessage, updateChatIsPinned or updateChatDraftMessage might be sent
 type UpdateChatOrder struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // New value of the order
-    Order JsonInt64 `json:"order"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// New value of the order
+	Order JsonInt64 `json:"order"`
 }
 
 func (entity *UpdateChatOrder) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateChatOrder
+	type stub UpdateChatOrder
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateChatOrder) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateChatOrder) GetType() string {
-    return TypeUpdateChatOrder
+	return TypeUpdateChatOrder
 }
 
 func (*UpdateChatOrder) UpdateType() string {
-    return TypeUpdateChatOrder
+	return TypeUpdateChatOrder
 }
 
 // A chat was pinned or unpinned
 type UpdateChatIsPinned struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // New value of is_pinned
-    IsPinned bool `json:"is_pinned"`
-    // New value of the chat order
-    Order JsonInt64 `json:"order"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// New value of is_pinned
+	IsPinned bool `json:"is_pinned"`
+	// New value of the chat order
+	Order JsonInt64 `json:"order"`
 }
 
 func (entity *UpdateChatIsPinned) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateChatIsPinned
+	type stub UpdateChatIsPinned
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateChatIsPinned) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateChatIsPinned) GetType() string {
-    return TypeUpdateChatIsPinned
+	return TypeUpdateChatIsPinned
 }
 
 func (*UpdateChatIsPinned) UpdateType() string {
-    return TypeUpdateChatIsPinned
+	return TypeUpdateChatIsPinned
 }
 
 // A chat was marked as unread or was read
 type UpdateChatIsMarkedAsUnread struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // New value of is_marked_as_unread
-    IsMarkedAsUnread bool `json:"is_marked_as_unread"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// New value of is_marked_as_unread
+	IsMarkedAsUnread bool `json:"is_marked_as_unread"`
 }
 
 func (entity *UpdateChatIsMarkedAsUnread) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateChatIsMarkedAsUnread
+	type stub UpdateChatIsMarkedAsUnread
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateChatIsMarkedAsUnread) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateChatIsMarkedAsUnread) GetType() string {
-    return TypeUpdateChatIsMarkedAsUnread
+	return TypeUpdateChatIsMarkedAsUnread
 }
 
 func (*UpdateChatIsMarkedAsUnread) UpdateType() string {
-    return TypeUpdateChatIsMarkedAsUnread
+	return TypeUpdateChatIsMarkedAsUnread
 }
 
 // A chat's is_sponsored field has changed
 type UpdateChatIsSponsored struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // New value of is_sponsored
-    IsSponsored bool `json:"is_sponsored"`
-    // New value of chat order
-    Order JsonInt64 `json:"order"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// New value of is_sponsored
+	IsSponsored bool `json:"is_sponsored"`
+	// New value of chat order
+	Order JsonInt64 `json:"order"`
 }
 
 func (entity *UpdateChatIsSponsored) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateChatIsSponsored
+	type stub UpdateChatIsSponsored
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateChatIsSponsored) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateChatIsSponsored) GetType() string {
-    return TypeUpdateChatIsSponsored
+	return TypeUpdateChatIsSponsored
 }
 
 func (*UpdateChatIsSponsored) UpdateType() string {
-    return TypeUpdateChatIsSponsored
+	return TypeUpdateChatIsSponsored
 }
 
 // The value of the default disable_notification parameter, used when a message is sent to the chat, was changed
 type UpdateChatDefaultDisableNotification struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // The new default_disable_notification value
-    DefaultDisableNotification bool `json:"default_disable_notification"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The new default_disable_notification value
+	DefaultDisableNotification bool `json:"default_disable_notification"`
 }
 
 func (entity *UpdateChatDefaultDisableNotification) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateChatDefaultDisableNotification
+	type stub UpdateChatDefaultDisableNotification
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateChatDefaultDisableNotification) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateChatDefaultDisableNotification) GetType() string {
-    return TypeUpdateChatDefaultDisableNotification
+	return TypeUpdateChatDefaultDisableNotification
 }
 
 func (*UpdateChatDefaultDisableNotification) UpdateType() string {
-    return TypeUpdateChatDefaultDisableNotification
+	return TypeUpdateChatDefaultDisableNotification
 }
 
 // Incoming messages were read or number of unread messages has been changed
 type UpdateChatReadInbox struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // Identifier of the last read incoming message
-    LastReadInboxMessageId int64 `json:"last_read_inbox_message_id"`
-    // The number of unread messages left in the chat
-    UnreadCount int32 `json:"unread_count"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the last read incoming message
+	LastReadInboxMessageId int64 `json:"last_read_inbox_message_id"`
+	// The number of unread messages left in the chat
+	UnreadCount int32 `json:"unread_count"`
 }
 
 func (entity *UpdateChatReadInbox) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateChatReadInbox
+	type stub UpdateChatReadInbox
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateChatReadInbox) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateChatReadInbox) GetType() string {
-    return TypeUpdateChatReadInbox
+	return TypeUpdateChatReadInbox
 }
 
 func (*UpdateChatReadInbox) UpdateType() string {
-    return TypeUpdateChatReadInbox
+	return TypeUpdateChatReadInbox
 }
 
 // Outgoing messages were read
 type UpdateChatReadOutbox struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // Identifier of last read outgoing message
-    LastReadOutboxMessageId int64 `json:"last_read_outbox_message_id"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of last read outgoing message
+	LastReadOutboxMessageId int64 `json:"last_read_outbox_message_id"`
 }
 
 func (entity *UpdateChatReadOutbox) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateChatReadOutbox
+	type stub UpdateChatReadOutbox
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateChatReadOutbox) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateChatReadOutbox) GetType() string {
-    return TypeUpdateChatReadOutbox
+	return TypeUpdateChatReadOutbox
 }
 
 func (*UpdateChatReadOutbox) UpdateType() string {
-    return TypeUpdateChatReadOutbox
+	return TypeUpdateChatReadOutbox
 }
 
 // The chat unread_mention_count has changed
 type UpdateChatUnreadMentionCount struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // The number of unread mention messages left in the chat
-    UnreadMentionCount int32 `json:"unread_mention_count"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The number of unread mention messages left in the chat
+	UnreadMentionCount int32 `json:"unread_mention_count"`
 }
 
 func (entity *UpdateChatUnreadMentionCount) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateChatUnreadMentionCount
+	type stub UpdateChatUnreadMentionCount
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateChatUnreadMentionCount) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateChatUnreadMentionCount) GetType() string {
-    return TypeUpdateChatUnreadMentionCount
+	return TypeUpdateChatUnreadMentionCount
 }
 
 func (*UpdateChatUnreadMentionCount) UpdateType() string {
-    return TypeUpdateChatUnreadMentionCount
+	return TypeUpdateChatUnreadMentionCount
 }
 
 // Notification settings for a chat were changed
 type UpdateChatNotificationSettings struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // The new notification settings
-    NotificationSettings *ChatNotificationSettings `json:"notification_settings"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The new notification settings
+	NotificationSettings *ChatNotificationSettings `json:"notification_settings"`
 }
 
 func (entity *UpdateChatNotificationSettings) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateChatNotificationSettings
+	type stub UpdateChatNotificationSettings
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateChatNotificationSettings) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateChatNotificationSettings) GetType() string {
-    return TypeUpdateChatNotificationSettings
+	return TypeUpdateChatNotificationSettings
 }
 
 func (*UpdateChatNotificationSettings) UpdateType() string {
-    return TypeUpdateChatNotificationSettings
+	return TypeUpdateChatNotificationSettings
 }
 
 // Notification settings for some type of chats were updated
 type UpdateScopeNotificationSettings struct {
-    meta
-    // Types of chats for which notification settings were updated
-    Scope NotificationSettingsScope `json:"scope"`
-    // The new notification settings
-    NotificationSettings *ScopeNotificationSettings `json:"notification_settings"`
+	meta
+	// Types of chats for which notification settings were updated
+	Scope NotificationSettingsScope `json:"scope"`
+	// The new notification settings
+	NotificationSettings *ScopeNotificationSettings `json:"notification_settings"`
 }
 
 func (entity *UpdateScopeNotificationSettings) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateScopeNotificationSettings
+	type stub UpdateScopeNotificationSettings
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateScopeNotificationSettings) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateScopeNotificationSettings) GetType() string {
-    return TypeUpdateScopeNotificationSettings
+	return TypeUpdateScopeNotificationSettings
 }
 
 func (*UpdateScopeNotificationSettings) UpdateType() string {
-    return TypeUpdateScopeNotificationSettings
+	return TypeUpdateScopeNotificationSettings
 }
 
 func (updateScopeNotificationSettings *UpdateScopeNotificationSettings) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Scope json.RawMessage `json:"scope"`
-        NotificationSettings *ScopeNotificationSettings `json:"notification_settings"`
-    }
+	var tmp struct {
+		Scope                json.RawMessage            `json:"scope"`
+		NotificationSettings *ScopeNotificationSettings `json:"notification_settings"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    updateScopeNotificationSettings.NotificationSettings = tmp.NotificationSettings
+	updateScopeNotificationSettings.NotificationSettings = tmp.NotificationSettings
 
-    fieldScope, _ := UnmarshalNotificationSettingsScope(tmp.Scope)
-    updateScopeNotificationSettings.Scope = fieldScope
+	fieldScope, _ := UnmarshalNotificationSettingsScope(tmp.Scope)
+	updateScopeNotificationSettings.Scope = fieldScope
 
-    return nil
+	return nil
 }
 
 // The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user
 type UpdateChatReplyMarkup struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
-    ReplyMarkupMessageId int64 `json:"reply_markup_message_id"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message from which reply markup needs to be used; 0 if there is no default custom reply markup in the chat
+	ReplyMarkupMessageId int64 `json:"reply_markup_message_id"`
 }
 
 func (entity *UpdateChatReplyMarkup) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateChatReplyMarkup
+	type stub UpdateChatReplyMarkup
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateChatReplyMarkup) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateChatReplyMarkup) GetType() string {
-    return TypeUpdateChatReplyMarkup
+	return TypeUpdateChatReplyMarkup
 }
 
 func (*UpdateChatReplyMarkup) UpdateType() string {
-    return TypeUpdateChatReplyMarkup
+	return TypeUpdateChatReplyMarkup
 }
 
 // A chat draft has changed. Be aware that the update may come in the currently opened chat but with old content of the draft. If the user has changed the content of the draft, this update shouldn't be applied
 type UpdateChatDraftMessage struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // The new draft message; may be null
-    DraftMessage *DraftMessage `json:"draft_message"`
-    // New value of the chat order
-    Order JsonInt64 `json:"order"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The new draft message; may be null
+	DraftMessage *DraftMessage `json:"draft_message"`
+	// New value of the chat order
+	Order JsonInt64 `json:"order"`
 }
 
 func (entity *UpdateChatDraftMessage) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateChatDraftMessage
+	type stub UpdateChatDraftMessage
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateChatDraftMessage) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateChatDraftMessage) GetType() string {
-    return TypeUpdateChatDraftMessage
+	return TypeUpdateChatDraftMessage
 }
 
 func (*UpdateChatDraftMessage) UpdateType() string {
-    return TypeUpdateChatDraftMessage
+	return TypeUpdateChatDraftMessage
 }
 
 // Some messages were deleted
 type UpdateDeleteMessages struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // Identifiers of the deleted messages
-    MessageIds []int64 `json:"message_ids"`
-    // True, if the messages are permanently deleted by a user (as opposed to just becoming unaccessible)
-    IsPermanent bool `json:"is_permanent"`
-    // True, if the messages are deleted only from the cache and can possibly be retrieved again in the future
-    FromCache bool `json:"from_cache"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifiers of the deleted messages
+	MessageIds []int64 `json:"message_ids"`
+	// True, if the messages are permanently deleted by a user (as opposed to just becoming unaccessible)
+	IsPermanent bool `json:"is_permanent"`
+	// True, if the messages are deleted only from the cache and can possibly be retrieved again in the future
+	FromCache bool `json:"from_cache"`
 }
 
 func (entity *UpdateDeleteMessages) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateDeleteMessages
+	type stub UpdateDeleteMessages
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateDeleteMessages) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateDeleteMessages) GetType() string {
-    return TypeUpdateDeleteMessages
+	return TypeUpdateDeleteMessages
 }
 
 func (*UpdateDeleteMessages) UpdateType() string {
-    return TypeUpdateDeleteMessages
+	return TypeUpdateDeleteMessages
 }
 
 // User activity in the chat has changed
 type UpdateUserChatAction struct {
-    meta
-    // Chat identifier
-    ChatId int64 `json:"chat_id"`
-    // Identifier of a user performing an action
-    UserId int32 `json:"user_id"`
-    // The action description
-    Action ChatAction `json:"action"`
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Identifier of a user performing an action
+	UserId int32 `json:"user_id"`
+	// The action description
+	Action ChatAction `json:"action"`
 }
 
 func (entity *UpdateUserChatAction) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateUserChatAction
+	type stub UpdateUserChatAction
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateUserChatAction) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateUserChatAction) GetType() string {
-    return TypeUpdateUserChatAction
+	return TypeUpdateUserChatAction
 }
 
 func (*UpdateUserChatAction) UpdateType() string {
-    return TypeUpdateUserChatAction
+	return TypeUpdateUserChatAction
 }
 
 func (updateUserChatAction *UpdateUserChatAction) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        ChatId int64 `json:"chat_id"`
-        UserId int32 `json:"user_id"`
-        Action json.RawMessage `json:"action"`
-    }
+	var tmp struct {
+		ChatId int64           `json:"chat_id"`
+		UserId int32           `json:"user_id"`
+		Action json.RawMessage `json:"action"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    updateUserChatAction.ChatId = tmp.ChatId
-    updateUserChatAction.UserId = tmp.UserId
+	updateUserChatAction.ChatId = tmp.ChatId
+	updateUserChatAction.UserId = tmp.UserId
 
-    fieldAction, _ := UnmarshalChatAction(tmp.Action)
-    updateUserChatAction.Action = fieldAction
+	fieldAction, _ := UnmarshalChatAction(tmp.Action)
+	updateUserChatAction.Action = fieldAction
 
-    return nil
+	return nil
 }
 
 // The user went online or offline
 type UpdateUserStatus struct {
-    meta
-    // User identifier
-    UserId int32 `json:"user_id"`
-    // New status of the user
-    Status UserStatus `json:"status"`
+	meta
+	// User identifier
+	UserId int32 `json:"user_id"`
+	// New status of the user
+	Status UserStatus `json:"status"`
 }
 
 func (entity *UpdateUserStatus) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateUserStatus
+	type stub UpdateUserStatus
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateUserStatus) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateUserStatus) GetType() string {
-    return TypeUpdateUserStatus
+	return TypeUpdateUserStatus
 }
 
 func (*UpdateUserStatus) UpdateType() string {
-    return TypeUpdateUserStatus
+	return TypeUpdateUserStatus
 }
 
 func (updateUserStatus *UpdateUserStatus) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        UserId int32 `json:"user_id"`
-        Status json.RawMessage `json:"status"`
-    }
+	var tmp struct {
+		UserId int32           `json:"user_id"`
+		Status json.RawMessage `json:"status"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    updateUserStatus.UserId = tmp.UserId
+	updateUserStatus.UserId = tmp.UserId
 
-    fieldStatus, _ := UnmarshalUserStatus(tmp.Status)
-    updateUserStatus.Status = fieldStatus
+	fieldStatus, _ := UnmarshalUserStatus(tmp.Status)
+	updateUserStatus.Status = fieldStatus
 
-    return nil
+	return nil
 }
 
 // Some data of a user has changed. This update is guaranteed to come before the user identifier is returned to the client
 type UpdateUser struct {
-    meta
-    // New data about the user
-    User *User `json:"user"`
+	meta
+	// New data about the user
+	User *User `json:"user"`
 }
 
 func (entity *UpdateUser) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateUser
+	type stub UpdateUser
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateUser) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateUser) GetType() string {
-    return TypeUpdateUser
+	return TypeUpdateUser
 }
 
 func (*UpdateUser) UpdateType() string {
-    return TypeUpdateUser
+	return TypeUpdateUser
 }
 
 // Some data of a basic group has changed. This update is guaranteed to come before the basic group identifier is returned to the client
 type UpdateBasicGroup struct {
-    meta
-    // New data about the group
-    BasicGroup *BasicGroup `json:"basic_group"`
+	meta
+	// New data about the group
+	BasicGroup *BasicGroup `json:"basic_group"`
 }
 
 func (entity *UpdateBasicGroup) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateBasicGroup
+	type stub UpdateBasicGroup
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateBasicGroup) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateBasicGroup) GetType() string {
-    return TypeUpdateBasicGroup
+	return TypeUpdateBasicGroup
 }
 
 func (*UpdateBasicGroup) UpdateType() string {
-    return TypeUpdateBasicGroup
+	return TypeUpdateBasicGroup
 }
 
 // Some data of a supergroup or a channel has changed. This update is guaranteed to come before the supergroup identifier is returned to the client
 type UpdateSupergroup struct {
-    meta
-    // New data about the supergroup
-    Supergroup *Supergroup `json:"supergroup"`
+	meta
+	// New data about the supergroup
+	Supergroup *Supergroup `json:"supergroup"`
 }
 
 func (entity *UpdateSupergroup) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateSupergroup
+	type stub UpdateSupergroup
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateSupergroup) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateSupergroup) GetType() string {
-    return TypeUpdateSupergroup
+	return TypeUpdateSupergroup
 }
 
 func (*UpdateSupergroup) UpdateType() string {
-    return TypeUpdateSupergroup
+	return TypeUpdateSupergroup
 }
 
 // Some data of a secret chat has changed. This update is guaranteed to come before the secret chat identifier is returned to the client
 type UpdateSecretChat struct {
-    meta
-    // New data about the secret chat
-    SecretChat *SecretChat `json:"secret_chat"`
+	meta
+	// New data about the secret chat
+	SecretChat *SecretChat `json:"secret_chat"`
 }
 
 func (entity *UpdateSecretChat) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateSecretChat
+	type stub UpdateSecretChat
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateSecretChat) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateSecretChat) GetType() string {
-    return TypeUpdateSecretChat
+	return TypeUpdateSecretChat
 }
 
 func (*UpdateSecretChat) UpdateType() string {
-    return TypeUpdateSecretChat
+	return TypeUpdateSecretChat
 }
 
 // Some data from userFullInfo has been changed
 type UpdateUserFullInfo struct {
-    meta
-    // User identifier
-    UserId int32 `json:"user_id"`
-    // New full information about the user
-    UserFullInfo *UserFullInfo `json:"user_full_info"`
+	meta
+	// User identifier
+	UserId int32 `json:"user_id"`
+	// New full information about the user
+	UserFullInfo *UserFullInfo `json:"user_full_info"`
 }
 
 func (entity *UpdateUserFullInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateUserFullInfo
+	type stub UpdateUserFullInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateUserFullInfo) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateUserFullInfo) GetType() string {
-    return TypeUpdateUserFullInfo
+	return TypeUpdateUserFullInfo
 }
 
 func (*UpdateUserFullInfo) UpdateType() string {
-    return TypeUpdateUserFullInfo
+	return TypeUpdateUserFullInfo
 }
 
 // Some data from basicGroupFullInfo has been changed
 type UpdateBasicGroupFullInfo struct {
-    meta
-    // Identifier of a basic group
-    BasicGroupId int32 `json:"basic_group_id"`
-    // New full information about the group
-    BasicGroupFullInfo *BasicGroupFullInfo `json:"basic_group_full_info"`
+	meta
+	// Identifier of a basic group
+	BasicGroupId int32 `json:"basic_group_id"`
+	// New full information about the group
+	BasicGroupFullInfo *BasicGroupFullInfo `json:"basic_group_full_info"`
 }
 
 func (entity *UpdateBasicGroupFullInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateBasicGroupFullInfo
+	type stub UpdateBasicGroupFullInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateBasicGroupFullInfo) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateBasicGroupFullInfo) GetType() string {
-    return TypeUpdateBasicGroupFullInfo
+	return TypeUpdateBasicGroupFullInfo
 }
 
 func (*UpdateBasicGroupFullInfo) UpdateType() string {
-    return TypeUpdateBasicGroupFullInfo
+	return TypeUpdateBasicGroupFullInfo
 }
 
 // Some data from supergroupFullInfo has been changed
 type UpdateSupergroupFullInfo struct {
-    meta
-    // Identifier of the supergroup or channel
-    SupergroupId int32 `json:"supergroup_id"`
-    // New full information about the supergroup
-    SupergroupFullInfo *SupergroupFullInfo `json:"supergroup_full_info"`
+	meta
+	// Identifier of the supergroup or channel
+	SupergroupId int32 `json:"supergroup_id"`
+	// New full information about the supergroup
+	SupergroupFullInfo *SupergroupFullInfo `json:"supergroup_full_info"`
 }
 
 func (entity *UpdateSupergroupFullInfo) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateSupergroupFullInfo
+	type stub UpdateSupergroupFullInfo
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateSupergroupFullInfo) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateSupergroupFullInfo) GetType() string {
-    return TypeUpdateSupergroupFullInfo
+	return TypeUpdateSupergroupFullInfo
 }
 
 func (*UpdateSupergroupFullInfo) UpdateType() string {
-    return TypeUpdateSupergroupFullInfo
+	return TypeUpdateSupergroupFullInfo
 }
 
 // Service notification from the server. Upon receiving this the client must show a popup with the content of the notification
 type UpdateServiceNotification struct {
-    meta
-    // Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" should be shown under notification; if user presses the second, all local data should be destroyed using Destroy method
-    Type string `json:"type"`
-    // Notification content
-    Content MessageContent `json:"content"`
+	meta
+	// Notification type. If type begins with "AUTH_KEY_DROP_", then two buttons "Cancel" and "Log out" should be shown under notification; if user presses the second, all local data should be destroyed using Destroy method
+	Type string `json:"type"`
+	// Notification content
+	Content MessageContent `json:"content"`
 }
 
 func (entity *UpdateServiceNotification) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateServiceNotification
+	type stub UpdateServiceNotification
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateServiceNotification) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateServiceNotification) GetType() string {
-    return TypeUpdateServiceNotification
+	return TypeUpdateServiceNotification
 }
 
 func (*UpdateServiceNotification) UpdateType() string {
-    return TypeUpdateServiceNotification
+	return TypeUpdateServiceNotification
 }
 
 func (updateServiceNotification *UpdateServiceNotification) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Type string `json:"type"`
-        Content json.RawMessage `json:"content"`
-    }
+	var tmp struct {
+		Type    string          `json:"type"`
+		Content json.RawMessage `json:"content"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    updateServiceNotification.Type = tmp.Type
+	updateServiceNotification.Type = tmp.Type
 
-    fieldContent, _ := UnmarshalMessageContent(tmp.Content)
-    updateServiceNotification.Content = fieldContent
+	fieldContent, _ := UnmarshalMessageContent(tmp.Content)
+	updateServiceNotification.Content = fieldContent
 
-    return nil
+	return nil
 }
 
 // Information about a file was updated
 type UpdateFile struct {
-    meta
-    // New data about the file
-    File *File `json:"file"`
+	meta
+	// New data about the file
+	File *File `json:"file"`
 }
 
 func (entity *UpdateFile) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateFile
+	type stub UpdateFile
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateFile) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateFile) GetType() string {
-    return TypeUpdateFile
+	return TypeUpdateFile
 }
 
 func (*UpdateFile) UpdateType() string {
-    return TypeUpdateFile
+	return TypeUpdateFile
 }
 
 // The file generation process needs to be started by the client
 type UpdateFileGenerationStart struct {
-    meta
-    // Unique identifier for the generation process
-    GenerationId JsonInt64 `json:"generation_id"`
-    // The path to a file from which a new file is generated; may be empty
-    OriginalPath string `json:"original_path"`
-    // The path to a file that should be created and where the new file should be generated
-    DestinationPath string `json:"destination_path"`
-    // String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which should be downloaded by the client
-    Conversion string `json:"conversion"`
+	meta
+	// Unique identifier for the generation process
+	GenerationId JsonInt64 `json:"generation_id"`
+	// The path to a file from which a new file is generated; may be empty
+	OriginalPath string `json:"original_path"`
+	// The path to a file that should be created and where the new file should be generated
+	DestinationPath string `json:"destination_path"`
+	// String specifying the conversion applied to the original file. If conversion is "#url#" than original_path contains an HTTP/HTTPS URL of a file, which should be downloaded by the client
+	Conversion string `json:"conversion"`
 }
 
 func (entity *UpdateFileGenerationStart) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateFileGenerationStart
+	type stub UpdateFileGenerationStart
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateFileGenerationStart) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateFileGenerationStart) GetType() string {
-    return TypeUpdateFileGenerationStart
+	return TypeUpdateFileGenerationStart
 }
 
 func (*UpdateFileGenerationStart) UpdateType() string {
-    return TypeUpdateFileGenerationStart
+	return TypeUpdateFileGenerationStart
 }
 
 // File generation is no longer needed
 type UpdateFileGenerationStop struct {
-    meta
-    // Unique identifier for the generation process
-    GenerationId JsonInt64 `json:"generation_id"`
+	meta
+	// Unique identifier for the generation process
+	GenerationId JsonInt64 `json:"generation_id"`
 }
 
 func (entity *UpdateFileGenerationStop) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateFileGenerationStop
+	type stub UpdateFileGenerationStop
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateFileGenerationStop) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateFileGenerationStop) GetType() string {
-    return TypeUpdateFileGenerationStop
+	return TypeUpdateFileGenerationStop
 }
 
 func (*UpdateFileGenerationStop) UpdateType() string {
-    return TypeUpdateFileGenerationStop
+	return TypeUpdateFileGenerationStop
 }
 
 // New call was created or information about a call was updated
 type UpdateCall struct {
-    meta
-    // New data about a call
-    Call *Call `json:"call"`
+	meta
+	// New data about a call
+	Call *Call `json:"call"`
 }
 
 func (entity *UpdateCall) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateCall
+	type stub UpdateCall
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateCall) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateCall) GetType() string {
-    return TypeUpdateCall
+	return TypeUpdateCall
 }
 
 func (*UpdateCall) UpdateType() string {
-    return TypeUpdateCall
+	return TypeUpdateCall
 }
 
 // Some privacy setting rules have been changed
 type UpdateUserPrivacySettingRules struct {
-    meta
-    // The privacy setting
-    Setting UserPrivacySetting `json:"setting"`
-    // New privacy rules
-    Rules *UserPrivacySettingRules `json:"rules"`
+	meta
+	// The privacy setting
+	Setting UserPrivacySetting `json:"setting"`
+	// New privacy rules
+	Rules *UserPrivacySettingRules `json:"rules"`
 }
 
 func (entity *UpdateUserPrivacySettingRules) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateUserPrivacySettingRules
+	type stub UpdateUserPrivacySettingRules
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateUserPrivacySettingRules) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateUserPrivacySettingRules) GetType() string {
-    return TypeUpdateUserPrivacySettingRules
+	return TypeUpdateUserPrivacySettingRules
 }
 
 func (*UpdateUserPrivacySettingRules) UpdateType() string {
-    return TypeUpdateUserPrivacySettingRules
+	return TypeUpdateUserPrivacySettingRules
 }
 
 func (updateUserPrivacySettingRules *UpdateUserPrivacySettingRules) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Setting json.RawMessage `json:"setting"`
-        Rules *UserPrivacySettingRules `json:"rules"`
-    }
+	var tmp struct {
+		Setting json.RawMessage          `json:"setting"`
+		Rules   *UserPrivacySettingRules `json:"rules"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    updateUserPrivacySettingRules.Rules = tmp.Rules
+	updateUserPrivacySettingRules.Rules = tmp.Rules
 
-    fieldSetting, _ := UnmarshalUserPrivacySetting(tmp.Setting)
-    updateUserPrivacySettingRules.Setting = fieldSetting
+	fieldSetting, _ := UnmarshalUserPrivacySetting(tmp.Setting)
+	updateUserPrivacySettingRules.Setting = fieldSetting
 
-    return nil
+	return nil
 }
 
 // Number of unread messages has changed. This update is sent only if a message database is used
 type UpdateUnreadMessageCount struct {
-    meta
-    // Total number of unread messages
-    UnreadCount int32 `json:"unread_count"`
-    // Total number of unread messages in unmuted chats
-    UnreadUnmutedCount int32 `json:"unread_unmuted_count"`
+	meta
+	// Total number of unread messages
+	UnreadCount int32 `json:"unread_count"`
+	// Total number of unread messages in unmuted chats
+	UnreadUnmutedCount int32 `json:"unread_unmuted_count"`
 }
 
 func (entity *UpdateUnreadMessageCount) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateUnreadMessageCount
+	type stub UpdateUnreadMessageCount
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateUnreadMessageCount) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateUnreadMessageCount) GetType() string {
-    return TypeUpdateUnreadMessageCount
+	return TypeUpdateUnreadMessageCount
 }
 
 func (*UpdateUnreadMessageCount) UpdateType() string {
-    return TypeUpdateUnreadMessageCount
+	return TypeUpdateUnreadMessageCount
 }
 
 // Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if a message database is used
 type UpdateUnreadChatCount struct {
-    meta
-    // Total number of unread chats
-    UnreadCount int32 `json:"unread_count"`
-    // Total number of unread unmuted chats
-    UnreadUnmutedCount int32 `json:"unread_unmuted_count"`
-    // Total number of chats marked as unread
-    MarkedAsUnreadCount int32 `json:"marked_as_unread_count"`
-    // Total number of unmuted chats marked as unread
-    MarkedAsUnreadUnmutedCount int32 `json:"marked_as_unread_unmuted_count"`
+	meta
+	// Total number of unread chats
+	UnreadCount int32 `json:"unread_count"`
+	// Total number of unread unmuted chats
+	UnreadUnmutedCount int32 `json:"unread_unmuted_count"`
+	// Total number of chats marked as unread
+	MarkedAsUnreadCount int32 `json:"marked_as_unread_count"`
+	// Total number of unmuted chats marked as unread
+	MarkedAsUnreadUnmutedCount int32 `json:"marked_as_unread_unmuted_count"`
 }
 
 func (entity *UpdateUnreadChatCount) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateUnreadChatCount
+	type stub UpdateUnreadChatCount
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateUnreadChatCount) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateUnreadChatCount) GetType() string {
-    return TypeUpdateUnreadChatCount
+	return TypeUpdateUnreadChatCount
 }
 
 func (*UpdateUnreadChatCount) UpdateType() string {
-    return TypeUpdateUnreadChatCount
+	return TypeUpdateUnreadChatCount
 }
 
 // An option changed its value
 type UpdateOption struct {
-    meta
-    // The option name
-    Name string `json:"name"`
-    // The new option value
-    Value OptionValue `json:"value"`
+	meta
+	// The option name
+	Name string `json:"name"`
+	// The new option value
+	Value OptionValue `json:"value"`
 }
 
 func (entity *UpdateOption) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateOption
+	type stub UpdateOption
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateOption) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateOption) GetType() string {
-    return TypeUpdateOption
+	return TypeUpdateOption
 }
 
 func (*UpdateOption) UpdateType() string {
-    return TypeUpdateOption
+	return TypeUpdateOption
 }
 
 func (updateOption *UpdateOption) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Name string `json:"name"`
-        Value json.RawMessage `json:"value"`
-    }
+	var tmp struct {
+		Name  string          `json:"name"`
+		Value json.RawMessage `json:"value"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    updateOption.Name = tmp.Name
+	updateOption.Name = tmp.Name
 
-    fieldValue, _ := UnmarshalOptionValue(tmp.Value)
-    updateOption.Value = fieldValue
+	fieldValue, _ := UnmarshalOptionValue(tmp.Value)
+	updateOption.Value = fieldValue
 
-    return nil
+	return nil
 }
 
 // The list of installed sticker sets was updated
 type UpdateInstalledStickerSets struct {
-    meta
-    // True, if the list of installed mask sticker sets was updated
-    IsMasks bool `json:"is_masks"`
-    // The new list of installed ordinary sticker sets
-    StickerSetIds []JsonInt64 `json:"sticker_set_ids"`
+	meta
+	// True, if the list of installed mask sticker sets was updated
+	IsMasks bool `json:"is_masks"`
+	// The new list of installed ordinary sticker sets
+	StickerSetIds []JsonInt64 `json:"sticker_set_ids"`
 }
 
 func (entity *UpdateInstalledStickerSets) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateInstalledStickerSets
+	type stub UpdateInstalledStickerSets
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateInstalledStickerSets) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateInstalledStickerSets) GetType() string {
-    return TypeUpdateInstalledStickerSets
+	return TypeUpdateInstalledStickerSets
 }
 
 func (*UpdateInstalledStickerSets) UpdateType() string {
-    return TypeUpdateInstalledStickerSets
+	return TypeUpdateInstalledStickerSets
 }
 
 // The list of trending sticker sets was updated or some of them were viewed
 type UpdateTrendingStickerSets struct {
-    meta
-    // The new list of trending sticker sets
-    StickerSets *StickerSets `json:"sticker_sets"`
+	meta
+	// The new list of trending sticker sets
+	StickerSets *StickerSets `json:"sticker_sets"`
 }
 
 func (entity *UpdateTrendingStickerSets) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateTrendingStickerSets
+	type stub UpdateTrendingStickerSets
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateTrendingStickerSets) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateTrendingStickerSets) GetType() string {
-    return TypeUpdateTrendingStickerSets
+	return TypeUpdateTrendingStickerSets
 }
 
 func (*UpdateTrendingStickerSets) UpdateType() string {
-    return TypeUpdateTrendingStickerSets
+	return TypeUpdateTrendingStickerSets
 }
 
 // The list of recently used stickers was updated
 type UpdateRecentStickers struct {
-    meta
-    // True, if the list of stickers attached to photo or video files was updated, otherwise the list of sent stickers is updated
-    IsAttached bool `json:"is_attached"`
-    // The new list of file identifiers of recently used stickers
-    StickerIds []int32 `json:"sticker_ids"`
+	meta
+	// True, if the list of stickers attached to photo or video files was updated, otherwise the list of sent stickers is updated
+	IsAttached bool `json:"is_attached"`
+	// The new list of file identifiers of recently used stickers
+	StickerIds []int32 `json:"sticker_ids"`
 }
 
 func (entity *UpdateRecentStickers) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateRecentStickers
+	type stub UpdateRecentStickers
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateRecentStickers) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateRecentStickers) GetType() string {
-    return TypeUpdateRecentStickers
+	return TypeUpdateRecentStickers
 }
 
 func (*UpdateRecentStickers) UpdateType() string {
-    return TypeUpdateRecentStickers
+	return TypeUpdateRecentStickers
 }
 
 // The list of favorite stickers was updated
 type UpdateFavoriteStickers struct {
-    meta
-    // The new list of file identifiers of favorite stickers
-    StickerIds []int32 `json:"sticker_ids"`
+	meta
+	// The new list of file identifiers of favorite stickers
+	StickerIds []int32 `json:"sticker_ids"`
 }
 
 func (entity *UpdateFavoriteStickers) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateFavoriteStickers
+	type stub UpdateFavoriteStickers
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateFavoriteStickers) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateFavoriteStickers) GetType() string {
-    return TypeUpdateFavoriteStickers
+	return TypeUpdateFavoriteStickers
 }
 
 func (*UpdateFavoriteStickers) UpdateType() string {
-    return TypeUpdateFavoriteStickers
+	return TypeUpdateFavoriteStickers
 }
 
 // The list of saved animations was updated
 type UpdateSavedAnimations struct {
-    meta
-    // The new list of file identifiers of saved animations
-    AnimationIds []int32 `json:"animation_ids"`
+	meta
+	// The new list of file identifiers of saved animations
+	AnimationIds []int32 `json:"animation_ids"`
 }
 
 func (entity *UpdateSavedAnimations) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateSavedAnimations
+	type stub UpdateSavedAnimations
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateSavedAnimations) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateSavedAnimations) GetType() string {
-    return TypeUpdateSavedAnimations
+	return TypeUpdateSavedAnimations
 }
 
 func (*UpdateSavedAnimations) UpdateType() string {
-    return TypeUpdateSavedAnimations
+	return TypeUpdateSavedAnimations
 }
 
 // Some language pack strings have been updated
 type UpdateLanguagePackStrings struct {
-    meta
-    // Localization target to which the language pack belongs
-    LocalizationTarget string `json:"localization_target"`
-    // Identifier of the updated language pack
-    LanguagePackId string `json:"language_pack_id"`
-    // List of changed language pack strings
-    Strings []*LanguagePackString `json:"strings"`
+	meta
+	// Localization target to which the language pack belongs
+	LocalizationTarget string `json:"localization_target"`
+	// Identifier of the updated language pack
+	LanguagePackId string `json:"language_pack_id"`
+	// List of changed language pack strings
+	Strings []*LanguagePackString `json:"strings"`
 }
 
 func (entity *UpdateLanguagePackStrings) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateLanguagePackStrings
+	type stub UpdateLanguagePackStrings
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateLanguagePackStrings) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateLanguagePackStrings) GetType() string {
-    return TypeUpdateLanguagePackStrings
+	return TypeUpdateLanguagePackStrings
 }
 
 func (*UpdateLanguagePackStrings) UpdateType() string {
-    return TypeUpdateLanguagePackStrings
+	return TypeUpdateLanguagePackStrings
 }
 
 // The connection state has changed
 type UpdateConnectionState struct {
-    meta
-    // The new connection state
-    State ConnectionState `json:"state"`
+	meta
+	// The new connection state
+	State ConnectionState `json:"state"`
 }
 
 func (entity *UpdateConnectionState) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateConnectionState
+	type stub UpdateConnectionState
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateConnectionState) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateConnectionState) GetType() string {
-    return TypeUpdateConnectionState
+	return TypeUpdateConnectionState
 }
 
 func (*UpdateConnectionState) UpdateType() string {
-    return TypeUpdateConnectionState
+	return TypeUpdateConnectionState
 }
 
 func (updateConnectionState *UpdateConnectionState) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        State json.RawMessage `json:"state"`
-    }
+	var tmp struct {
+		State json.RawMessage `json:"state"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    fieldState, _ := UnmarshalConnectionState(tmp.State)
-    updateConnectionState.State = fieldState
+	fieldState, _ := UnmarshalConnectionState(tmp.State)
+	updateConnectionState.State = fieldState
 
-    return nil
+	return nil
 }
 
 // New terms of service must be accepted by the user. If the terms of service are declined, then the deleteAccount method should be called with the reason "Decline ToS update"
 type UpdateTermsOfService struct {
-    meta
-    // Identifier of the terms of service
-    TermsOfServiceId string `json:"terms_of_service_id"`
-    // The new terms of service
-    TermsOfService *TermsOfService `json:"terms_of_service"`
+	meta
+	// Identifier of the terms of service
+	TermsOfServiceId string `json:"terms_of_service_id"`
+	// The new terms of service
+	TermsOfService *TermsOfService `json:"terms_of_service"`
 }
 
 func (entity *UpdateTermsOfService) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateTermsOfService
+	type stub UpdateTermsOfService
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateTermsOfService) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateTermsOfService) GetType() string {
-    return TypeUpdateTermsOfService
+	return TypeUpdateTermsOfService
 }
 
 func (*UpdateTermsOfService) UpdateType() string {
-    return TypeUpdateTermsOfService
+	return TypeUpdateTermsOfService
 }
 
 // A new incoming inline query; for bots only
 type UpdateNewInlineQuery struct {
-    meta
-    // Unique query identifier
-    Id JsonInt64 `json:"id"`
-    // Identifier of the user who sent the query
-    SenderUserId int32 `json:"sender_user_id"`
-    // User location, provided by the client; may be null
-    UserLocation *Location `json:"user_location"`
-    // Text of the query
-    Query string `json:"query"`
-    // Offset of the first entry to return
-    Offset string `json:"offset"`
+	meta
+	// Unique query identifier
+	Id JsonInt64 `json:"id"`
+	// Identifier of the user who sent the query
+	SenderUserId int32 `json:"sender_user_id"`
+	// User location, provided by the client; may be null
+	UserLocation *Location `json:"user_location"`
+	// Text of the query
+	Query string `json:"query"`
+	// Offset of the first entry to return
+	Offset string `json:"offset"`
 }
 
 func (entity *UpdateNewInlineQuery) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateNewInlineQuery
+	type stub UpdateNewInlineQuery
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateNewInlineQuery) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateNewInlineQuery) GetType() string {
-    return TypeUpdateNewInlineQuery
+	return TypeUpdateNewInlineQuery
 }
 
 func (*UpdateNewInlineQuery) UpdateType() string {
-    return TypeUpdateNewInlineQuery
+	return TypeUpdateNewInlineQuery
 }
 
 // The user has chosen a result of an inline query; for bots only
 type UpdateNewChosenInlineResult struct {
-    meta
-    // Identifier of the user who sent the query
-    SenderUserId int32 `json:"sender_user_id"`
-    // User location, provided by the client; may be null
-    UserLocation *Location `json:"user_location"`
-    // Text of the query
-    Query string `json:"query"`
-    // Identifier of the chosen result
-    ResultId string `json:"result_id"`
-    // Identifier of the sent inline message, if known
-    InlineMessageId string `json:"inline_message_id"`
+	meta
+	// Identifier of the user who sent the query
+	SenderUserId int32 `json:"sender_user_id"`
+	// User location, provided by the client; may be null
+	UserLocation *Location `json:"user_location"`
+	// Text of the query
+	Query string `json:"query"`
+	// Identifier of the chosen result
+	ResultId string `json:"result_id"`
+	// Identifier of the sent inline message, if known
+	InlineMessageId string `json:"inline_message_id"`
 }
 
 func (entity *UpdateNewChosenInlineResult) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateNewChosenInlineResult
+	type stub UpdateNewChosenInlineResult
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateNewChosenInlineResult) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateNewChosenInlineResult) GetType() string {
-    return TypeUpdateNewChosenInlineResult
+	return TypeUpdateNewChosenInlineResult
 }
 
 func (*UpdateNewChosenInlineResult) UpdateType() string {
-    return TypeUpdateNewChosenInlineResult
+	return TypeUpdateNewChosenInlineResult
 }
 
 // A new incoming callback query; for bots only
 type UpdateNewCallbackQuery struct {
-    meta
-    // Unique query identifier
-    Id JsonInt64 `json:"id"`
-    // Identifier of the user who sent the query
-    SenderUserId int32 `json:"sender_user_id"`
-    // Identifier of the chat, in which the query was sent
-    ChatId int64 `json:"chat_id"`
-    // Identifier of the message, from which the query originated
-    MessageId int64 `json:"message_id"`
-    // Identifier that uniquely corresponds to the chat to which the message was sent
-    ChatInstance JsonInt64 `json:"chat_instance"`
-    // Query payload
-    Payload CallbackQueryPayload `json:"payload"`
+	meta
+	// Unique query identifier
+	Id JsonInt64 `json:"id"`
+	// Identifier of the user who sent the query
+	SenderUserId int32 `json:"sender_user_id"`
+	// Identifier of the chat, in which the query was sent
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message, from which the query originated
+	MessageId int64 `json:"message_id"`
+	// Identifier that uniquely corresponds to the chat to which the message was sent
+	ChatInstance JsonInt64 `json:"chat_instance"`
+	// Query payload
+	Payload CallbackQueryPayload `json:"payload"`
 }
 
 func (entity *UpdateNewCallbackQuery) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateNewCallbackQuery
+	type stub UpdateNewCallbackQuery
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateNewCallbackQuery) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateNewCallbackQuery) GetType() string {
-    return TypeUpdateNewCallbackQuery
+	return TypeUpdateNewCallbackQuery
 }
 
 func (*UpdateNewCallbackQuery) UpdateType() string {
-    return TypeUpdateNewCallbackQuery
+	return TypeUpdateNewCallbackQuery
 }
 
 func (updateNewCallbackQuery *UpdateNewCallbackQuery) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id JsonInt64 `json:"id"`
-        SenderUserId int32 `json:"sender_user_id"`
-        ChatId int64 `json:"chat_id"`
-        MessageId int64 `json:"message_id"`
-        ChatInstance JsonInt64 `json:"chat_instance"`
-        Payload json.RawMessage `json:"payload"`
-    }
+	var tmp struct {
+		Id           JsonInt64       `json:"id"`
+		SenderUserId int32           `json:"sender_user_id"`
+		ChatId       int64           `json:"chat_id"`
+		MessageId    int64           `json:"message_id"`
+		ChatInstance JsonInt64       `json:"chat_instance"`
+		Payload      json.RawMessage `json:"payload"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    updateNewCallbackQuery.Id = tmp.Id
-    updateNewCallbackQuery.SenderUserId = tmp.SenderUserId
-    updateNewCallbackQuery.ChatId = tmp.ChatId
-    updateNewCallbackQuery.MessageId = tmp.MessageId
-    updateNewCallbackQuery.ChatInstance = tmp.ChatInstance
+	updateNewCallbackQuery.Id = tmp.Id
+	updateNewCallbackQuery.SenderUserId = tmp.SenderUserId
+	updateNewCallbackQuery.ChatId = tmp.ChatId
+	updateNewCallbackQuery.MessageId = tmp.MessageId
+	updateNewCallbackQuery.ChatInstance = tmp.ChatInstance
 
-    fieldPayload, _ := UnmarshalCallbackQueryPayload(tmp.Payload)
-    updateNewCallbackQuery.Payload = fieldPayload
+	fieldPayload, _ := UnmarshalCallbackQueryPayload(tmp.Payload)
+	updateNewCallbackQuery.Payload = fieldPayload
 
-    return nil
+	return nil
 }
 
 // A new incoming callback query from a message sent via a bot; for bots only
 type UpdateNewInlineCallbackQuery struct {
-    meta
-    // Unique query identifier
-    Id JsonInt64 `json:"id"`
-    // Identifier of the user who sent the query
-    SenderUserId int32 `json:"sender_user_id"`
-    // Identifier of the inline message, from which the query originated
-    InlineMessageId string `json:"inline_message_id"`
-    // An identifier uniquely corresponding to the chat a message was sent to
-    ChatInstance JsonInt64 `json:"chat_instance"`
-    // Query payload
-    Payload CallbackQueryPayload `json:"payload"`
+	meta
+	// Unique query identifier
+	Id JsonInt64 `json:"id"`
+	// Identifier of the user who sent the query
+	SenderUserId int32 `json:"sender_user_id"`
+	// Identifier of the inline message, from which the query originated
+	InlineMessageId string `json:"inline_message_id"`
+	// An identifier uniquely corresponding to the chat a message was sent to
+	ChatInstance JsonInt64 `json:"chat_instance"`
+	// Query payload
+	Payload CallbackQueryPayload `json:"payload"`
 }
 
 func (entity *UpdateNewInlineCallbackQuery) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateNewInlineCallbackQuery
+	type stub UpdateNewInlineCallbackQuery
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateNewInlineCallbackQuery) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateNewInlineCallbackQuery) GetType() string {
-    return TypeUpdateNewInlineCallbackQuery
+	return TypeUpdateNewInlineCallbackQuery
 }
 
 func (*UpdateNewInlineCallbackQuery) UpdateType() string {
-    return TypeUpdateNewInlineCallbackQuery
+	return TypeUpdateNewInlineCallbackQuery
 }
 
 func (updateNewInlineCallbackQuery *UpdateNewInlineCallbackQuery) UnmarshalJSON(data []byte) error {
-    var tmp struct {
-        Id JsonInt64 `json:"id"`
-        SenderUserId int32 `json:"sender_user_id"`
-        InlineMessageId string `json:"inline_message_id"`
-        ChatInstance JsonInt64 `json:"chat_instance"`
-        Payload json.RawMessage `json:"payload"`
-    }
+	var tmp struct {
+		Id              JsonInt64       `json:"id"`
+		SenderUserId    int32           `json:"sender_user_id"`
+		InlineMessageId string          `json:"inline_message_id"`
+		ChatInstance    JsonInt64       `json:"chat_instance"`
+		Payload         json.RawMessage `json:"payload"`
+	}
 
-    err := json.Unmarshal(data, &tmp)
-    if err != nil {
-        return err
-    }
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
 
-    updateNewInlineCallbackQuery.Id = tmp.Id
-    updateNewInlineCallbackQuery.SenderUserId = tmp.SenderUserId
-    updateNewInlineCallbackQuery.InlineMessageId = tmp.InlineMessageId
-    updateNewInlineCallbackQuery.ChatInstance = tmp.ChatInstance
+	updateNewInlineCallbackQuery.Id = tmp.Id
+	updateNewInlineCallbackQuery.SenderUserId = tmp.SenderUserId
+	updateNewInlineCallbackQuery.InlineMessageId = tmp.InlineMessageId
+	updateNewInlineCallbackQuery.ChatInstance = tmp.ChatInstance
 
-    fieldPayload, _ := UnmarshalCallbackQueryPayload(tmp.Payload)
-    updateNewInlineCallbackQuery.Payload = fieldPayload
+	fieldPayload, _ := UnmarshalCallbackQueryPayload(tmp.Payload)
+	updateNewInlineCallbackQuery.Payload = fieldPayload
 
-    return nil
+	return nil
 }
 
 // A new incoming shipping query; for bots only. Only for invoices with flexible price
 type UpdateNewShippingQuery struct {
-    meta
-    // Unique query identifier
-    Id JsonInt64 `json:"id"`
-    // Identifier of the user who sent the query
-    SenderUserId int32 `json:"sender_user_id"`
-    // Invoice payload
-    InvoicePayload string `json:"invoice_payload"`
-    // User shipping address
-    ShippingAddress *Address `json:"shipping_address"`
+	meta
+	// Unique query identifier
+	Id JsonInt64 `json:"id"`
+	// Identifier of the user who sent the query
+	SenderUserId int32 `json:"sender_user_id"`
+	// Invoice payload
+	InvoicePayload string `json:"invoice_payload"`
+	// User shipping address
+	ShippingAddress *Address `json:"shipping_address"`
 }
 
 func (entity *UpdateNewShippingQuery) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateNewShippingQuery
+	type stub UpdateNewShippingQuery
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateNewShippingQuery) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateNewShippingQuery) GetType() string {
-    return TypeUpdateNewShippingQuery
+	return TypeUpdateNewShippingQuery
 }
 
 func (*UpdateNewShippingQuery) UpdateType() string {
-    return TypeUpdateNewShippingQuery
+	return TypeUpdateNewShippingQuery
 }
 
 // A new incoming pre-checkout query; for bots only. Contains full information about a checkout
 type UpdateNewPreCheckoutQuery struct {
-    meta
-    // Unique query identifier
-    Id JsonInt64 `json:"id"`
-    // Identifier of the user who sent the query
-    SenderUserId int32 `json:"sender_user_id"`
-    // Currency for the product price
-    Currency string `json:"currency"`
-    // Total price for the product, in the minimal quantity of the currency
-    TotalAmount int64 `json:"total_amount"`
-    // Invoice payload
-    InvoicePayload []byte `json:"invoice_payload"`
-    // Identifier of a shipping option chosen by the user; may be empty if not applicable
-    ShippingOptionId string `json:"shipping_option_id"`
-    // Information about the order; may be null
-    OrderInfo *OrderInfo `json:"order_info"`
+	meta
+	// Unique query identifier
+	Id JsonInt64 `json:"id"`
+	// Identifier of the user who sent the query
+	SenderUserId int32 `json:"sender_user_id"`
+	// Currency for the product price
+	Currency string `json:"currency"`
+	// Total price for the product, in the minimal quantity of the currency
+	TotalAmount int64 `json:"total_amount"`
+	// Invoice payload
+	InvoicePayload []byte `json:"invoice_payload"`
+	// Identifier of a shipping option chosen by the user; may be empty if not applicable
+	ShippingOptionId string `json:"shipping_option_id"`
+	// Information about the order; may be null
+	OrderInfo *OrderInfo `json:"order_info"`
 }
 
 func (entity *UpdateNewPreCheckoutQuery) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateNewPreCheckoutQuery
+	type stub UpdateNewPreCheckoutQuery
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateNewPreCheckoutQuery) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateNewPreCheckoutQuery) GetType() string {
-    return TypeUpdateNewPreCheckoutQuery
+	return TypeUpdateNewPreCheckoutQuery
 }
 
 func (*UpdateNewPreCheckoutQuery) UpdateType() string {
-    return TypeUpdateNewPreCheckoutQuery
+	return TypeUpdateNewPreCheckoutQuery
 }
 
 // A new incoming event; for bots only
 type UpdateNewCustomEvent struct {
-    meta
-    // A JSON-serialized event
-    Event string `json:"event"`
+	meta
+	// A JSON-serialized event
+	Event string `json:"event"`
 }
 
 func (entity *UpdateNewCustomEvent) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateNewCustomEvent
+	type stub UpdateNewCustomEvent
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateNewCustomEvent) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateNewCustomEvent) GetType() string {
-    return TypeUpdateNewCustomEvent
+	return TypeUpdateNewCustomEvent
 }
 
 func (*UpdateNewCustomEvent) UpdateType() string {
-    return TypeUpdateNewCustomEvent
+	return TypeUpdateNewCustomEvent
 }
 
 // A new incoming query; for bots only
 type UpdateNewCustomQuery struct {
-    meta
-    // The query identifier
-    Id JsonInt64 `json:"id"`
-    // JSON-serialized query data
-    Data string `json:"data"`
-    // Query timeout
-    Timeout int32 `json:"timeout"`
+	meta
+	// The query identifier
+	Id JsonInt64 `json:"id"`
+	// JSON-serialized query data
+	Data string `json:"data"`
+	// Query timeout
+	Timeout int32 `json:"timeout"`
 }
 
 func (entity *UpdateNewCustomQuery) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub UpdateNewCustomQuery
+	type stub UpdateNewCustomQuery
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*UpdateNewCustomQuery) GetClass() string {
-    return ClassUpdate
+	return ClassUpdate
 }
 
 func (*UpdateNewCustomQuery) GetType() string {
-    return TypeUpdateNewCustomQuery
+	return TypeUpdateNewCustomQuery
 }
 
 func (*UpdateNewCustomQuery) UpdateType() string {
-    return TypeUpdateNewCustomQuery
+	return TypeUpdateNewCustomQuery
 }
 
 // A simple object containing a number; for testing only
 type TestInt struct {
-    meta
-    // Number
-    Value int32 `json:"value"`
+	meta
+	// Number
+	Value int32 `json:"value"`
 }
 
 func (entity *TestInt) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TestInt
+	type stub TestInt
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TestInt) GetClass() string {
-    return ClassTestInt
+	return ClassTestInt
 }
 
 func (*TestInt) GetType() string {
-    return TypeTestInt
+	return TypeTestInt
 }
 
 // A simple object containing a string; for testing only
 type TestString struct {
-    meta
-    // String
-    Value string `json:"value"`
+	meta
+	// String
+	Value string `json:"value"`
 }
 
 func (entity *TestString) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TestString
+	type stub TestString
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TestString) GetClass() string {
-    return ClassTestString
+	return ClassTestString
 }
 
 func (*TestString) GetType() string {
-    return TypeTestString
+	return TypeTestString
 }
 
 // A simple object containing a sequence of bytes; for testing only
 type TestBytes struct {
-    meta
-    // Bytes
-    Value []byte `json:"value"`
+	meta
+	// Bytes
+	Value []byte `json:"value"`
 }
 
 func (entity *TestBytes) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TestBytes
+	type stub TestBytes
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TestBytes) GetClass() string {
-    return ClassTestBytes
+	return ClassTestBytes
 }
 
 func (*TestBytes) GetType() string {
-    return TypeTestBytes
+	return TypeTestBytes
 }
 
 // A simple object containing a vector of numbers; for testing only
 type TestVectorInt struct {
-    meta
-    // Vector of numbers
-    Value []int32 `json:"value"`
+	meta
+	// Vector of numbers
+	Value []int32 `json:"value"`
 }
 
 func (entity *TestVectorInt) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TestVectorInt
+	type stub TestVectorInt
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TestVectorInt) GetClass() string {
-    return ClassTestVectorInt
+	return ClassTestVectorInt
 }
 
 func (*TestVectorInt) GetType() string {
-    return TypeTestVectorInt
+	return TypeTestVectorInt
 }
 
 // A simple object containing a vector of objects that hold a number; for testing only
 type TestVectorIntObject struct {
-    meta
-    // Vector of objects
-    Value []*TestInt `json:"value"`
+	meta
+	// Vector of objects
+	Value []*TestInt `json:"value"`
 }
 
 func (entity *TestVectorIntObject) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TestVectorIntObject
+	type stub TestVectorIntObject
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TestVectorIntObject) GetClass() string {
-    return ClassTestVectorIntObject
+	return ClassTestVectorIntObject
 }
 
 func (*TestVectorIntObject) GetType() string {
-    return TypeTestVectorIntObject
+	return TypeTestVectorIntObject
 }
 
 // A simple object containing a vector of strings; for testing only
 type TestVectorString struct {
-    meta
-    // Vector of strings
-    Value []string `json:"value"`
+	meta
+	// Vector of strings
+	Value []string `json:"value"`
 }
 
 func (entity *TestVectorString) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TestVectorString
+	type stub TestVectorString
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TestVectorString) GetClass() string {
-    return ClassTestVectorString
+	return ClassTestVectorString
 }
 
 func (*TestVectorString) GetType() string {
-    return TypeTestVectorString
+	return TypeTestVectorString
 }
 
 // A simple object containing a vector of objects that hold a string; for testing only
 type TestVectorStringObject struct {
-    meta
-    // Vector of objects
-    Value []*TestString `json:"value"`
+	meta
+	// Vector of objects
+	Value []*TestString `json:"value"`
 }
 
 func (entity *TestVectorStringObject) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetType()
+	entity.meta.Type = entity.GetType()
 
-    type stub TestVectorStringObject
+	type stub TestVectorStringObject
 
-    return json.Marshal((*stub)(entity))
+	return json.Marshal((*stub)(entity))
 }
 
 func (*TestVectorStringObject) GetClass() string {
-    return ClassTestVectorStringObject
+	return ClassTestVectorStringObject
 }
 
 func (*TestVectorStringObject) GetType() string {
-    return TypeTestVectorStringObject
+	return TypeTestVectorStringObject
 }
-

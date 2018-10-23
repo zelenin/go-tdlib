@@ -1,66 +1,66 @@
 package client
 
 import (
-    "sync"
+	"sync"
 )
 
 func newListenerStore() *listenerStore {
-    return &listenerStore{
-        listeners: []*Listener{},
-    }
+	return &listenerStore{
+		listeners: []*Listener{},
+	}
 }
 
 type listenerStore struct {
-    sync.Mutex
-    listeners []*Listener
+	sync.Mutex
+	listeners []*Listener
 }
 
 func (store *listenerStore) Add(listener *Listener) {
-    store.Lock()
-    defer store.Unlock()
+	store.Lock()
+	defer store.Unlock()
 
-    store.listeners = append(store.listeners, listener)
+	store.listeners = append(store.listeners, listener)
 }
 
 func (store *listenerStore) Listeners() []*Listener {
-    store.Lock()
-    defer store.Unlock()
+	store.Lock()
+	defer store.Unlock()
 
-    return store.listeners
+	return store.listeners
 }
 
 func (store *listenerStore) gc() {
-    store.Lock()
-    defer store.Unlock()
+	store.Lock()
+	defer store.Unlock()
 
-    oldListeners := store.listeners
+	oldListeners := store.listeners
 
-    store.listeners = []*Listener{}
+	store.listeners = []*Listener{}
 
-    for _, listener := range oldListeners {
-        if listener.IsActive() {
-            store.listeners = append(store.listeners, listener)
-        }
-    }
+	for _, listener := range oldListeners {
+		if listener.IsActive() {
+			store.listeners = append(store.listeners, listener)
+		}
+	}
 }
 
 type Listener struct {
-    mu       sync.Mutex
-    isActive bool
-    Updates  chan Type
+	mu       sync.Mutex
+	isActive bool
+	Updates  chan Type
 }
 
 func (listener *Listener) Close() {
-    listener.mu.Lock()
-    defer listener.mu.Unlock()
+	listener.mu.Lock()
+	defer listener.mu.Unlock()
 
-    listener.isActive = false
-    close(listener.Updates)
+	listener.isActive = false
+	close(listener.Updates)
 }
 
 func (listener *Listener) IsActive() bool {
-    listener.mu.Lock()
-    defer listener.mu.Unlock()
+	listener.mu.Lock()
+	defer listener.mu.Unlock()
 
-    return listener.isActive
+	return listener.isActive
 }

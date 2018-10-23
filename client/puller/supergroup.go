@@ -1,53 +1,53 @@
 package puller
 
 import (
-    "github.com/zelenin/go-tdlib/client"
+	"github.com/zelenin/go-tdlib/client"
 )
 
 func SupergroupMembers(tdlibClient *client.Client, supergroupId int32) (chan *client.ChatMember, chan error) {
-    chatMemberChan := make(chan *client.ChatMember, 10)
-    errChan := make(chan error, 1)
+	chatMemberChan := make(chan *client.ChatMember, 10)
+	errChan := make(chan error, 1)
 
-    var filter client.SupergroupMembersFilter = nil
-    var offset int32 = 0
-    var limit int32 = 200
+	var filter client.SupergroupMembersFilter = nil
+	var offset int32 = 0
+	var limit int32 = 200
 
-    go supergroupMembers(tdlibClient, chatMemberChan, errChan, supergroupId, filter, offset, limit)
+	go supergroupMembers(tdlibClient, chatMemberChan, errChan, supergroupId, filter, offset, limit)
 
-    return chatMemberChan, errChan
+	return chatMemberChan, errChan
 }
 
 func supergroupMembers(tdlibClient *client.Client, chatMemberChan chan *client.ChatMember, errChan chan error, supergroupId int32, filter client.SupergroupMembersFilter, offset int32, limit int32) {
-    defer func() {
-        close(chatMemberChan)
-        close(errChan)
-    }()
+	defer func() {
+		close(chatMemberChan)
+		close(errChan)
+	}()
 
-    var page int32 = 0
+	var page int32 = 0
 
-    for {
-        chatMembers, err := tdlibClient.GetSupergroupMembers(&client.GetSupergroupMembersRequest{
-            SupergroupId: supergroupId,
-            Filter:       filter,
-            Offset:       page*limit + offset,
-            Limit:        limit,
-        })
-        if err != nil {
-            errChan <- err
+	for {
+		chatMembers, err := tdlibClient.GetSupergroupMembers(&client.GetSupergroupMembersRequest{
+			SupergroupId: supergroupId,
+			Filter:       filter,
+			Offset:       page*limit + offset,
+			Limit:        limit,
+		})
+		if err != nil {
+			errChan <- err
 
-            return
-        }
+			return
+		}
 
-        if len(chatMembers.Members) == 0 {
-            errChan <- EOP
+		if len(chatMembers.Members) == 0 {
+			errChan <- EOP
 
-            break
-        }
+			break
+		}
 
-        for _, member := range chatMembers.Members {
-            chatMemberChan <- member
-        }
+		for _, member := range chatMembers.Members {
+			chatMemberChan <- member
+		}
 
-        page++
-    }
+		page++
+	}
 }

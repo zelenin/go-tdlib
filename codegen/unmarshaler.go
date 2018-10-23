@@ -1,27 +1,27 @@
 package codegen
 
 import (
-    "github.com/zelenin/go-tdlib/tlparser"
-    "fmt"
-    "bytes"
+	"bytes"
+	"fmt"
+	"github.com/zelenin/go-tdlib/tlparser"
 )
 
 func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
-    buf := bytes.NewBufferString("")
+	buf := bytes.NewBufferString("")
 
-    buf.WriteString(fmt.Sprintf("%s\n\npackage %s\n\n", header, packageName))
+	buf.WriteString(fmt.Sprintf("%s\n\npackage %s\n\n", header, packageName))
 
-    buf.WriteString(`import (
+	buf.WriteString(`import (
     "encoding/json"
     "fmt"
 )
 
 `)
 
-    for _, class := range schema.Classes {
-        tdlibClass := TdlibClass(class.Name, schema)
+	for _, class := range schema.Classes {
+		tdlibClass := TdlibClass(class.Name, schema)
 
-        buf.WriteString(fmt.Sprintf(`func Unmarshal%s(data json.RawMessage) (%s, error) {
+		buf.WriteString(fmt.Sprintf(`func Unmarshal%s(data json.RawMessage) (%s, error) {
     var meta meta
 
     err := json.Unmarshal(data, &meta)
@@ -32,30 +32,30 @@ func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
     switch meta.Type {
 `, tdlibClass.ToGoType(), tdlibClass.ToGoType()))
 
-        for _, subType := range tdlibClass.GetSubTypes() {
-            buf.WriteString(fmt.Sprintf(`    case %s:
+		for _, subType := range tdlibClass.GetSubTypes() {
+			buf.WriteString(fmt.Sprintf(`    case %s:
         return Unmarshal%s(data)
 
 `, subType.ToTypeConst(), subType.ToGoType()))
 
-        }
+		}
 
-        buf.WriteString(`    default:
+		buf.WriteString(`    default:
         return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.Type)
     }
 }
 
 `)
-    }
+	}
 
-    for _, typ := range schema.Types {
-        tdlibType := TdlibType(typ.Name, schema)
+	for _, typ := range schema.Types {
+		tdlibType := TdlibType(typ.Name, schema)
 
-        if tdlibType.IsList() || tdlibType.IsInternal() {
-            continue
-        }
+		if tdlibType.IsList() || tdlibType.IsInternal() {
+			continue
+		}
 
-        buf.WriteString(fmt.Sprintf(`func Unmarshal%s(data json.RawMessage) (*%s, error) {
+		buf.WriteString(fmt.Sprintf(`func Unmarshal%s(data json.RawMessage) (*%s, error) {
     var resp %s
 
     err := json.Unmarshal(data, &resp)
@@ -65,9 +65,9 @@ func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
 
 `, tdlibType.ToGoType(), tdlibType.ToGoType(), tdlibType.ToGoType()))
 
-    }
+	}
 
-    buf.WriteString(`func UnmarshalType(data json.RawMessage) (Type, error) {
+	buf.WriteString(`func UnmarshalType(data json.RawMessage) (Type, error) {
     var meta meta
 
     err := json.Unmarshal(data, &meta)
@@ -78,25 +78,25 @@ func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
     switch meta.Type {
 `)
 
-    for _, typ := range schema.Types {
-        tdlibType := TdlibType(typ.Name, schema)
+	for _, typ := range schema.Types {
+		tdlibType := TdlibType(typ.Name, schema)
 
-        if tdlibType.IsList() || tdlibType.IsInternal() {
-            continue
-        }
+		if tdlibType.IsList() || tdlibType.IsInternal() {
+			continue
+		}
 
-        buf.WriteString(fmt.Sprintf(`    case %s:
+		buf.WriteString(fmt.Sprintf(`    case %s:
         return Unmarshal%s(data)
 
 `, tdlibType.ToTypeConst(), tdlibType.ToGoType()))
 
-    }
+	}
 
-    buf.WriteString(`    default:
+	buf.WriteString(`    default:
         return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.Type)
     }
 }
 `)
 
-    return buf.Bytes()
+	return buf.Bytes()
 }
