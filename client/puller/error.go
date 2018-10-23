@@ -1,7 +1,7 @@
 package puller
 
 import (
-    "errors"
+	"errors"
 )
 
 var EOP = errors.New("end of pull")
