@@ -10,9 +10,12 @@ var ErrNotSupportedAuthorizationState = errors.New("not supported state")
 
 type AuthorizationStateHandler interface {
 	Handle(client *Client, state AuthorizationState) error
+	Close()
 }
 
 func Authorize(client *Client, authorizationStateHandler AuthorizationStateHandler) error {
+	defer authorizationStateHandler.Close()
+
 	for {
 		state, err := client.GetAuthorizationState()
 		if err != nil {
@@ -91,14 +94,6 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 		return err
 
 	case TypeAuthorizationStateReady:
-		close(stateHandler.TdlibParameters)
-		close(stateHandler.PhoneNumber)
-		close(stateHandler.Code)
-		close(stateHandler.State)
-		close(stateHandler.FirstName)
-		close(stateHandler.LastName)
-		close(stateHandler.Password)
-
 		return nil
 
 	case TypeAuthorizationStateLoggingOut:
@@ -112,6 +107,16 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 	}
 
 	return ErrNotSupportedAuthorizationState
+}
+
+func (stateHandler *clientAuthorizer) Close() {
+	close(stateHandler.TdlibParameters)
+	close(stateHandler.PhoneNumber)
+	close(stateHandler.Code)
+	close(stateHandler.State)
+	close(stateHandler.FirstName)
+	close(stateHandler.LastName)
+	close(stateHandler.Password)
 }
 
 func CliInteractor(clientAuthorizer *clientAuthorizer) {
@@ -207,10 +212,6 @@ func (stateHandler *botAuthorizer) Handle(client *Client, state AuthorizationSta
 		return ErrNotSupportedAuthorizationState
 
 	case TypeAuthorizationStateReady:
-		close(stateHandler.TdlibParameters)
-		close(stateHandler.Token)
-		close(stateHandler.State)
-
 		return nil
 
 	case TypeAuthorizationStateLoggingOut:
@@ -224,4 +225,10 @@ func (stateHandler *botAuthorizer) Handle(client *Client, state AuthorizationSta
 	}
 
 	return ErrNotSupportedAuthorizationState
+}
+
+func (stateHandler *botAuthorizer) Close() {
+	close(stateHandler.TdlibParameters)
+	close(stateHandler.Token)
+	close(stateHandler.State)
 }
