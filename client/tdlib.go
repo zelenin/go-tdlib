@@ -90,7 +90,7 @@ func (jsonClient *JsonClient) Execute(req Request) (*Response, error) {
 }
 
 // Destroys the TDLib client instance. After this is called the client instance shouldn't be used anymore.
-func (jsonClient *JsonClient) DestroyInstance() {
+func (jsonClient *JsonClient) Destroy() {
 	C.td_json_client_destroy(jsonClient.jsonClient)
 }
 
