@@ -67,6 +67,8 @@ func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...O
 
 	err := Authorize(client, authorizationStateHandler)
 	if err != nil {
+		client.Stop()
+
 		return nil, err
 	}
 
@@ -142,4 +144,9 @@ func (client *Client) GetListener() *Listener {
 	client.listenerStore.Add(listener)
 
 	return listener
+}
+
+func (client *Client) Stop() {
+	client.Destroy()
+	client.jsonClient.Destroy()
 }
