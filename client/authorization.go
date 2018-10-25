@@ -122,7 +122,11 @@ func (stateHandler *clientAuthorizer) Close() {
 func CliInteractor(clientAuthorizer *clientAuthorizer) {
 	for {
 		select {
-		case state := <-clientAuthorizer.State:
+		case state, ok := <-clientAuthorizer.State:
+			if !ok {
+				return
+			}
+
 			switch state.AuthorizationStateType() {
 			case TypeAuthorizationStateWaitPhoneNumber:
 				fmt.Println("Enter phone number: ")
