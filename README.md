@@ -29,6 +29,12 @@ sudo apt update
 sudo apt install -y tdlib-dev
 ```
 
+Fedora:
+```bash
+sudo dnf update
+sudo dnf install tdlib-static
+```
+
 #### Manual compilation
 
 ```bash
