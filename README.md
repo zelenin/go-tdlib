@@ -141,6 +141,23 @@ for update := range listener.Updates {
 }
 ```
 
+### Proxy support
+
+```go
+proxyOption := client.WithProxy(&client.AddProxyRequest{
+    Server: "1.1.1.1",
+    Port:   1080,
+    Enable: true,
+    Type: &client.ProxyTypeSocks5{
+        Username: "username",
+        Password: "password",
+    },
+})
+
+tdlibClient, err := client.NewClient(authorizer, proxyOption)
+
+```
+
 ## Notes
 
 * WIP. Library API can be changed in the future
