@@ -36,6 +36,12 @@ func WithUpdatesTimeout(timeout time.Duration) Option {
 	}
 }
 
+func WithProxy(req *AddProxyRequest) Option {
+	return func(client *Client) {
+		client.AddProxy(req)
+	}
+}
+
 func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...Option) (*Client, error) {
 	catchersListener := make(chan *Response, 1000)
 
@@ -46,20 +52,12 @@ func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...O
 		catchersStore: &sync.Map{},
 	}
 
+	client.extraGenerator = UuidV4Generator()
+	client.catchTimeout = 60 * time.Second
+	client.updatesTimeout = 60 * time.Second
+
 	for _, option := range options {
 		option(client)
-	}
-
-	if client.extraGenerator == nil {
-		client.extraGenerator = UuidV4Generator()
-	}
-
-	if client.catchTimeout == 0 {
-		client.catchTimeout = 60 * time.Second
-	}
-
-	if client.updatesTimeout == 0 {
-		client.updatesTimeout = 60 * time.Second
 	}
 
 	go client.receive()
