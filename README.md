@@ -1,12 +1,12 @@
 # go-tdlib
 
-Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) with full support of TDLib v1.3.0
+Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) with full support of TDLib v1.4.0
 
 ## TDLib installation
 
 ### Ubuntu 18.04 / Debian 9
 
-#### Precompiled
+#### Precompiled (v1.3.0)
 
 Debian:
 ```bash
@@ -49,7 +49,7 @@ apt-get install -y \
     libssl-dev \
     libreadline-dev \
     zlib1g-dev
-git clone --depth 1 -b "v1.3.0" "https://github.com/tdlib/td.git" ./tdlib-src
+git clone --depth 1 -b "v1.4.0" "https://github.com/tdlib/td.git" ./tdlib-src
 mkdir ./tdlib-src/build
 cd ./tdlib-src/build
 cmake -DCMAKE_BUILD_TYPE=Release ..
