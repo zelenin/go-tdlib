@@ -378,7 +378,7 @@
                 {
                     "name": "password_hint",
                     "type": "string",
-                    "description": "Hint for the password; can be empty"
+                    "description": "Hint for the password; may be empty"
                 },
                 {
                     "name": "has_recovery_email_address",
@@ -424,27 +424,27 @@
                 {
                     "name": "has_password",
                     "type": "Bool",
-                    "description": "True if a 2-step verification password is set"
+                    "description": "True, if a 2-step verification password is set"
                 },
                 {
                     "name": "password_hint",
                     "type": "string",
-                    "description": "Hint for the password; can be empty"
+                    "description": "Hint for the password; may be empty"
                 },
                 {
                     "name": "has_recovery_email_address",
                     "type": "Bool",
-                    "description": "True if a recovery email is set"
+                    "description": "True, if a recovery email is set"
                 },
                 {
                     "name": "has_passport_data",
                     "type": "Bool",
-                    "description": "True if some Telegram Passport elements were saved"
+                    "description": "True, if some Telegram Passport elements were saved"
                 },
                 {
-                    "name": "unconfirmed_recovery_email_address_pattern",
-                    "type": "string",
-                    "description": "Pattern of the email address to which the confirmation email was sent"
+                    "name": "recovery_email_address_code_info",
+                    "type": "emailAddressAuthenticationCodeInfo",
+                    "description": "Information about the recovery email address to which the confirmation email was sent; may be null"
                 }
             ]
         },
@@ -508,9 +508,14 @@
                     "description": "True, if the local copy is fully available"
                 },
                 {
+                    "name": "download_offset",
+                    "type": "int32",
+                    "description": "Download will be started from this offset. downloaded_prefix_size is calculated from this offset"
+                },
+                {
                     "name": "downloaded_prefix_size",
                     "type": "int32",
-                    "description": "If is_downloading_completed is false, then only some prefix of the file is ready to be read. downloaded_prefix_size is the size of that prefix"
+                    "description": "If is_downloading_completed is false, then only some prefix of the file starting from download_offset is ready to be read. downloaded_prefix_size is the size of that prefix"
                 },
                 {
                     "name": "downloaded_size",
@@ -627,7 +632,7 @@
                 {
                     "name": "conversion",
                     "type": "string",
-                    "description": "String specifying the conversion applied to the original file; should be persistent across application restarts"
+                    "description": "String specifying the conversion applied to the original file; should be persistent across application restarts. Conversions beginning with '#' are reserved for internal TDLib usage"
                 },
                 {
                     "name": "expected_size",
@@ -711,6 +716,38 @@
                     "name": "scale",
                     "type": "double",
                     "description": "Mask scaling coefficient. (For example, 2.0 means a doubled size)"
+                }
+            ]
+        },
+        {
+            "name": "pollOption",
+            "description": "Describes one answer option of a poll",
+            "class": "PollOption",
+            "properties": [
+                {
+                    "name": "text",
+                    "type": "string",
+                    "description": "Option text, 1-100 characters"
+                },
+                {
+                    "name": "voter_count",
+                    "type": "int32",
+                    "description": "Number of voters for this option, available only for closed or voted polls"
+                },
+                {
+                    "name": "vote_percentage",
+                    "type": "int32",
+                    "description": "The percentage of votes for this option, 0-100"
+                },
+                {
+                    "name": "is_chosen",
+                    "type": "Bool",
+                    "description": "True, if the option was chosen by the user"
+                },
+                {
+                    "name": "is_being_chosen",
+                    "type": "Bool",
+                    "description": "True, if the option is being chosen by a pending setPollAnswer request"
                 }
             ]
         },
@@ -830,11 +867,6 @@
             "description": "Describes a photo",
             "class": "Photo",
             "properties": [
-                {
-                    "name": "id",
-                    "type": "int64",
-                    "description": "Photo identifier; 0 for deleted photos"
-                },
                 {
                     "name": "has_stickers",
                     "type": "Bool",
@@ -1129,6 +1161,38 @@
             ]
         },
         {
+            "name": "poll",
+            "description": "Describes a poll",
+            "class": "Poll",
+            "properties": [
+                {
+                    "name": "id",
+                    "type": "int64",
+                    "description": "Unique poll identifier"
+                },
+                {
+                    "name": "question",
+                    "type": "string",
+                    "description": "Poll question, 1-255 characters"
+                },
+                {
+                    "name": "options",
+                    "type": "vector\u003cpollOption\u003e",
+                    "description": "List of poll answer options"
+                },
+                {
+                    "name": "total_voter_count",
+                    "type": "int32",
+                    "description": "Total number of voters, participating in the poll"
+                },
+                {
+                    "name": "is_closed",
+                    "type": "Bool",
+                    "description": "True, if the poll is closed"
+                }
+            ]
+        },
+        {
             "name": "profilePhoto",
             "description": "Describes a user profile photo",
             "class": "ProfilePhoto",
@@ -1175,13 +1239,13 @@
         },
         {
             "name": "linkStateKnowsPhoneNumber",
-            "description": "The phone number of user A is known but that number has not been saved to the contacts list of user B",
+            "description": "The phone number of user A is known but that number has not been saved to the contact list of user B",
             "class": "LinkState",
             "properties": []
         },
         {
             "name": "linkStateIsContact",
-            "description": "The phone number of user A has been saved to the contacts list of user B",
+            "description": "The phone number of user A has been saved to the contact list of user B",
             "class": "LinkState",
             "properties": []
         },
@@ -1325,6 +1389,11 @@
                     "description": "True, if the user is verified"
                 },
                 {
+                    "name": "is_support",
+                    "type": "Bool",
+                    "description": "True, if the user is Telegram support account"
+                },
+                {
                     "name": "restriction_reason",
                     "type": "string",
                     "description": "If non-empty, it contains the reason why access to this user must be restricted. The format of the string is \"{type}: {description}\". {type} contains the type of the restriction and at least one of the suffixes \"-all\", \"-ios\", \"-android\", or \"-wp\", which describe the platforms on which access should be restricted. (For example, \"terms-ios-android\". {description} contains a human-readable description of the restriction, which can be shown to the user)"
@@ -1389,6 +1458,28 @@
             ]
         },
         {
+            "name": "userProfilePhoto",
+            "description": "Contains full information about a user profile photo",
+            "class": "UserProfilePhoto",
+            "properties": [
+                {
+                    "name": "id",
+                    "type": "int64",
+                    "description": "Unique user profile photo identifier"
+                },
+                {
+                    "name": "added_date",
+                    "type": "int32",
+                    "description": "Point in time (Unix timestamp) when the photo has been added"
+                },
+                {
+                    "name": "sizes",
+                    "type": "vector\u003cphotoSize\u003e",
+                    "description": "Available variants of the user photo, in different sizes"
+                }
+            ]
+        },
+        {
             "name": "userProfilePhotos",
             "description": "Contains part of the list of user photos",
             "class": "UserProfilePhotos",
@@ -1400,7 +1491,7 @@
                 },
                 {
                     "name": "photos",
-                    "type": "vector\u003cphoto\u003e",
+                    "type": "vector\u003cuserProfilePhoto\u003e",
                     "description": "A list of photos"
                 }
             ]
@@ -1477,7 +1568,7 @@
                 {
                     "name": "can_pin_messages",
                     "type": "Bool",
-                    "description": "True, if the administrator can pin messages; applicable to supergroups only"
+                    "description": "True, if the administrator can pin messages; applicable to groups only"
                 },
                 {
                     "name": "can_promote_members",
@@ -1842,6 +1933,11 @@
                     "description": "True, if the supergroup sticker set can be changed"
                 },
                 {
+                    "name": "can_view_statistics",
+                    "type": "Bool",
+                    "description": "True, if the channel statistics is available through getChatStatisticsUrl"
+                },
+                {
                     "name": "is_all_history_available",
                     "type": "Bool",
                     "description": "True, if new chat members will have access to old messages. In public supergroups and both public and private channels, old messages are always available, so this option affects only private supergroups. The value of this field is only available for chat administrators"
@@ -1855,11 +1951,6 @@
                     "name": "invite_link",
                     "type": "string",
                     "description": "Invite link for this chat"
-                },
-                {
-                    "name": "pinned_message_id",
-                    "type": "int53",
-                    "description": "Identifier of the pinned message in the chat; 0 if none"
                 },
                 {
                     "name": "upgraded_from_basic_group_id",
@@ -1934,46 +2025,60 @@
             ]
         },
         {
-            "name": "messageForwardedFromUser",
+            "name": "messageForwardOriginUser",
             "description": "The message was originally written by a known user",
-            "class": "MessageForwardInfo",
+            "class": "MessageForwardOrigin",
             "properties": [
                 {
                     "name": "sender_user_id",
                     "type": "int32",
-                    "description": "Identifier of the user that originally sent this message"
-                },
-                {
-                    "name": "date",
-                    "type": "int32",
-                    "description": "Point in time (Unix timestamp) when the message was originally sent"
-                },
-                {
-                    "name": "forwarded_from_chat_id",
-                    "type": "int53",
-                    "description": "For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded; 0 if unknown"
-                },
-                {
-                    "name": "forwarded_from_message_id",
-                    "type": "int53",
-                    "description": "For messages forwarded to the chat with the current user (saved messages) the identifier of the original message from which the new message was forwarded; 0 if unknown"
+                    "description": "Identifier of the user that originally sent the message"
                 }
             ]
         },
         {
-            "name": "messageForwardedPost",
+            "name": "messageForwardOriginHiddenUser",
+            "description": "The message was originally written by a user, which is hidden by his privacy settings",
+            "class": "MessageForwardOrigin",
+            "properties": [
+                {
+                    "name": "sender_name",
+                    "type": "string",
+                    "description": "Name of the sender"
+                }
+            ]
+        },
+        {
+            "name": "messageForwardOriginChannel",
             "description": "The message was originally a post in a channel",
-            "class": "MessageForwardInfo",
+            "class": "MessageForwardOrigin",
             "properties": [
                 {
                     "name": "chat_id",
                     "type": "int53",
-                    "description": "Identifier of the chat from which the message was forwarded"
+                    "description": "Identifier of the chat from which the message was originally forwarded"
+                },
+                {
+                    "name": "message_id",
+                    "type": "int53",
+                    "description": "Message identifier of the original message; 0 if unknown"
                 },
                 {
                     "name": "author_signature",
                     "type": "string",
-                    "description": "Post author signature"
+                    "description": "Original post author signature"
+                }
+            ]
+        },
+        {
+            "name": "messageForwardInfo",
+            "description": "Contains information about a forwarded message",
+            "class": "MessageForwardInfo",
+            "properties": [
+                {
+                    "name": "origin",
+                    "type": "MessageForwardOrigin",
+                    "description": "Origin of a forwarded message"
                 },
                 {
                     "name": "date",
@@ -1981,19 +2086,14 @@
                     "description": "Point in time (Unix timestamp) when the message was originally sent"
                 },
                 {
-                    "name": "message_id",
+                    "name": "from_chat_id",
                     "type": "int53",
-                    "description": "Message identifier of the original message from which the new message was forwarded; 0 if unknown"
+                    "description": "For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded last time; 0 if unknown"
                 },
                 {
-                    "name": "forwarded_from_chat_id",
+                    "name": "from_message_id",
                     "type": "int53",
-                    "description": "For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded; 0 if unknown"
-                },
-                {
-                    "name": "forwarded_from_message_id",
-                    "type": "int53",
-                    "description": "For messages forwarded to the chat with the current user (saved messages), the identifier of the original message from which the new message was forwarded; 0 if unknown"
+                    "description": "For messages forwarded to the chat with the current user (saved messages), the identifier of the original message from which the new message was forwarded last time; 0 if unknown"
                 }
             ]
         },
@@ -2042,7 +2142,7 @@
                 {
                     "name": "can_be_edited",
                     "type": "Bool",
-                    "description": "True, if the message can be edited"
+                    "description": "True, if the message can be edited. For live location and poll messages this fields shows, whether editMessageLiveLocation or stopPoll can be used with this message by the client"
                 },
                 {
                     "name": "can_be_forwarded",
@@ -2081,7 +2181,7 @@
                 },
                 {
                     "name": "forward_info",
-                    "type": "MessageForwardInfo",
+                    "type": "messageForwardInfo",
                     "description": "Information about the initial message sender; may be null"
                 },
                 {
@@ -2173,7 +2273,13 @@
         },
         {
             "name": "notificationSettingsScopeGroupChats",
-            "description": "Notification settings applied to all basic groups, supergroups and channels when the corresponding chat setting has a default value",
+            "description": "Notification settings applied to all basic groups and supergroups when the corresponding chat setting has a default value",
+            "class": "NotificationSettingsScope",
+            "properties": []
+        },
+        {
+            "name": "notificationSettingsScopeChannelChats",
+            "description": "Notification settings applied to all channels when the corresponding chat setting has a default value",
             "class": "NotificationSettingsScope",
             "properties": []
         },
@@ -2211,6 +2317,26 @@
                     "name": "show_preview",
                     "type": "Bool",
                     "description": "True, if message content should be displayed in notifications"
+                },
+                {
+                    "name": "use_default_disable_pinned_message_notifications",
+                    "type": "Bool",
+                    "description": "If true, disable_pinned_message_notifications is ignored and the value for the relevant type of chat is used instead"
+                },
+                {
+                    "name": "disable_pinned_message_notifications",
+                    "type": "Bool",
+                    "description": "If true, notifications for incoming pinned messages will be created as for an ordinary unread message"
+                },
+                {
+                    "name": "use_default_disable_mention_notifications",
+                    "type": "Bool",
+                    "description": "If true, disable_mention_notifications is ignored and the value for the relevant type of chat is used instead"
+                },
+                {
+                    "name": "disable_mention_notifications",
+                    "type": "Bool",
+                    "description": "If true, notifications for messages with mentions will be created as for an ordinary unread message"
                 }
             ]
         },
@@ -2233,6 +2359,16 @@
                     "name": "show_preview",
                     "type": "Bool",
                     "description": "True, if message content should be displayed in notifications"
+                },
+                {
+                    "name": "disable_pinned_message_notifications",
+                    "type": "Bool",
+                    "description": "True, if notifications for incoming pinned messages will be created as for an ordinary unread message"
+                },
+                {
+                    "name": "disable_mention_notifications",
+                    "type": "Bool",
+                    "description": "True, if notifications for messages with mentions will be created as for an ordinary unread message"
                 }
             ]
         },
@@ -2362,6 +2498,16 @@
                     "description": "True, if the chat is sponsored by the user's MTProxy server"
                 },
                 {
+                    "name": "can_be_deleted_only_for_self",
+                    "type": "Bool",
+                    "description": "True, if the chat messages can be deleted only for the current user while other users will continue to see the messages"
+                },
+                {
+                    "name": "can_be_deleted_for_all_users",
+                    "type": "Bool",
+                    "description": "True, if the chat messages can be deleted for all users"
+                },
+                {
                     "name": "can_be_reported",
                     "type": "Bool",
                     "description": "True, if the chat can be reported to Telegram moderators through reportChat"
@@ -2395,6 +2541,11 @@
                     "name": "notification_settings",
                     "type": "chatNotificationSettings",
                     "description": "Notification settings for this chat"
+                },
+                {
+                    "name": "pinned_message_id",
+                    "type": "int53",
+                    "description": "Identifier of the pinned message in the chat; 0 if none"
                 },
                 {
                     "name": "reply_markup_message_id",
@@ -2754,6 +2905,98 @@
             ]
         },
         {
+            "name": "richTextSubscript",
+            "description": "A subscript rich text",
+            "class": "RichText",
+            "properties": [
+                {
+                    "name": "text",
+                    "type": "RichText",
+                    "description": "Text"
+                }
+            ]
+        },
+        {
+            "name": "richTextSuperscript",
+            "description": "A superscript rich text",
+            "class": "RichText",
+            "properties": [
+                {
+                    "name": "text",
+                    "type": "RichText",
+                    "description": "Text"
+                }
+            ]
+        },
+        {
+            "name": "richTextMarked",
+            "description": "A marked rich text",
+            "class": "RichText",
+            "properties": [
+                {
+                    "name": "text",
+                    "type": "RichText",
+                    "description": "Text"
+                }
+            ]
+        },
+        {
+            "name": "richTextPhoneNumber",
+            "description": "A rich text phone number",
+            "class": "RichText",
+            "properties": [
+                {
+                    "name": "text",
+                    "type": "RichText",
+                    "description": "Text"
+                },
+                {
+                    "name": "phone_number",
+                    "type": "string",
+                    "description": "Phone number"
+                }
+            ]
+        },
+        {
+            "name": "richTextIcon",
+            "description": "A small image inside the text",
+            "class": "RichText",
+            "properties": [
+                {
+                    "name": "document",
+                    "type": "document",
+                    "description": "The image represented as a document. The image can be in GIF, JPEG or PNG format"
+                },
+                {
+                    "name": "width",
+                    "type": "int32",
+                    "description": "Width of a bounding box in which the image should be shown, 0 if unknown"
+                },
+                {
+                    "name": "height",
+                    "type": "int32",
+                    "description": "Height of a bounding box in which the image should be shown, 0 if unknown"
+                }
+            ]
+        },
+        {
+            "name": "richTextAnchor",
+            "description": "A rich text anchor",
+            "class": "RichText",
+            "properties": [
+                {
+                    "name": "text",
+                    "type": "RichText",
+                    "description": "Text"
+                },
+                {
+                    "name": "name",
+                    "type": "string",
+                    "description": "Anchor name"
+                }
+            ]
+        },
+        {
             "name": "richTexts",
             "description": "A concatenation of rich texts",
             "class": "RichText",
@@ -2762,6 +3005,150 @@
                     "name": "texts",
                     "type": "vector\u003cRichText\u003e",
                     "description": "Texts"
+                }
+            ]
+        },
+        {
+            "name": "pageBlockCaption",
+            "description": "Contains a caption of an instant view web page block, consisting of a text and a trailing credit",
+            "class": "PageBlockCaption",
+            "properties": [
+                {
+                    "name": "text",
+                    "type": "RichText",
+                    "description": "Content of the caption"
+                },
+                {
+                    "name": "credit",
+                    "type": "RichText",
+                    "description": "Block credit (like HTML tag \u003ccite\u003e)"
+                }
+            ]
+        },
+        {
+            "name": "pageBlockListItem",
+            "description": "Describes an item of a list page block",
+            "class": "PageBlockListItem",
+            "properties": [
+                {
+                    "name": "label",
+                    "type": "string",
+                    "description": "Item label"
+                },
+                {
+                    "name": "page_blocks",
+                    "type": "vector\u003cPageBlock\u003e",
+                    "description": "Item blocks"
+                }
+            ]
+        },
+        {
+            "name": "pageBlockHorizontalAlignmentLeft",
+            "description": "The content should be left-aligned",
+            "class": "PageBlockHorizontalAlignment",
+            "properties": []
+        },
+        {
+            "name": "pageBlockHorizontalAlignmentCenter",
+            "description": "The content should be center-aligned",
+            "class": "PageBlockHorizontalAlignment",
+            "properties": []
+        },
+        {
+            "name": "pageBlockHorizontalAlignmentRight",
+            "description": "The content should be right-aligned",
+            "class": "PageBlockHorizontalAlignment",
+            "properties": []
+        },
+        {
+            "name": "pageBlockVerticalAlignmentTop",
+            "description": "The content should be top-aligned",
+            "class": "PageBlockVerticalAlignment",
+            "properties": []
+        },
+        {
+            "name": "pageBlockVerticalAlignmentMiddle",
+            "description": "The content should be middle-aligned",
+            "class": "PageBlockVerticalAlignment",
+            "properties": []
+        },
+        {
+            "name": "pageBlockVerticalAlignmentBottom",
+            "description": "The content should be bottom-aligned",
+            "class": "PageBlockVerticalAlignment",
+            "properties": []
+        },
+        {
+            "name": "pageBlockTableCell",
+            "description": "Represents a cell of a table",
+            "class": "PageBlockTableCell",
+            "properties": [
+                {
+                    "name": "text",
+                    "type": "RichText",
+                    "description": "Cell text"
+                },
+                {
+                    "name": "is_header",
+                    "type": "Bool",
+                    "description": "True, if it is a header cell"
+                },
+                {
+                    "name": "colspan",
+                    "type": "int32",
+                    "description": "The number of columns the cell should span"
+                },
+                {
+                    "name": "rowspan",
+                    "type": "int32",
+                    "description": "The number of rows the cell should span"
+                },
+                {
+                    "name": "align",
+                    "type": "PageBlockHorizontalAlignment",
+                    "description": "Horizontal cell content alignment"
+                },
+                {
+                    "name": "valign",
+                    "type": "PageBlockVerticalAlignment",
+                    "description": "Vertical cell content alignment"
+                }
+            ]
+        },
+        {
+            "name": "pageBlockRelatedArticle",
+            "description": "Contains information about a related article",
+            "class": "PageBlockRelatedArticle",
+            "properties": [
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "Related article URL"
+                },
+                {
+                    "name": "title",
+                    "type": "string",
+                    "description": "Article title; may be empty"
+                },
+                {
+                    "name": "description",
+                    "type": "string",
+                    "description": "Article description; may be empty"
+                },
+                {
+                    "name": "photo",
+                    "type": "photo",
+                    "description": "Article photo; may be null"
+                },
+                {
+                    "name": "author",
+                    "type": "string",
+                    "description": "Article author; may be empty"
+                },
+                {
+                    "name": "publish_date",
+                    "type": "int32",
+                    "description": "Point in time (Unix timestamp) when the article was published; 0 if unknown"
                 }
             ]
         },
@@ -2831,6 +3218,18 @@
             ]
         },
         {
+            "name": "pageBlockKicker",
+            "description": "A kicker",
+            "class": "PageBlock",
+            "properties": [
+                {
+                    "name": "kicker",
+                    "type": "RichText",
+                    "description": "Kicker"
+                }
+            ]
+        },
+        {
             "name": "pageBlockParagraph",
             "description": "A text paragraph",
             "class": "PageBlock",
@@ -2891,18 +3290,13 @@
         },
         {
             "name": "pageBlockList",
-            "description": "A list of texts",
+            "description": "A list of data blocks",
             "class": "PageBlock",
             "properties": [
                 {
                     "name": "items",
-                    "type": "vector\u003cRichText\u003e",
-                    "description": "Texts"
-                },
-                {
-                    "name": "is_ordered",
-                    "type": "Bool",
-                    "description": "True, if the items should be marked with numbers"
+                    "type": "vector\u003cpageBlockListItem\u003e",
+                    "description": "The items of the list"
                 }
             ]
         },
@@ -2917,9 +3311,9 @@
                     "description": "Quote text"
                 },
                 {
-                    "name": "caption",
+                    "name": "credit",
                     "type": "RichText",
-                    "description": "Quote caption"
+                    "description": "Quote credit"
                 }
             ]
         },
@@ -2934,9 +3328,9 @@
                     "description": "Quote text"
                 },
                 {
-                    "name": "caption",
+                    "name": "credit",
                     "type": "RichText",
-                    "description": "Quote caption"
+                    "description": "Quote credit"
                 }
             ]
         },
@@ -2952,7 +3346,7 @@
                 },
                 {
                     "name": "caption",
-                    "type": "RichText",
+                    "type": "pageBlockCaption",
                     "description": "Animation caption"
                 },
                 {
@@ -2974,7 +3368,7 @@
                 },
                 {
                     "name": "caption",
-                    "type": "RichText",
+                    "type": "pageBlockCaption",
                     "description": "Audio file caption"
                 }
             ]
@@ -2991,8 +3385,13 @@
                 },
                 {
                     "name": "caption",
-                    "type": "RichText",
+                    "type": "pageBlockCaption",
                     "description": "Photo caption"
+                },
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "URL that needs to be opened when the photo is clicked"
                 }
             ]
         },
@@ -3008,7 +3407,7 @@
                 },
                 {
                     "name": "caption",
-                    "type": "RichText",
+                    "type": "pageBlockCaption",
                     "description": "Video caption"
                 },
                 {
@@ -3058,16 +3457,16 @@
                 {
                     "name": "width",
                     "type": "int32",
-                    "description": "Block width"
+                    "description": "Block width, 0 if unknown"
                 },
                 {
                     "name": "height",
                     "type": "int32",
-                    "description": "Block height"
+                    "description": "Block height, 0 if unknown"
                 },
                 {
                     "name": "caption",
-                    "type": "RichText",
+                    "type": "pageBlockCaption",
                     "description": "Block caption"
                 },
                 {
@@ -3114,7 +3513,7 @@
                 },
                 {
                     "name": "caption",
-                    "type": "RichText",
+                    "type": "pageBlockCaption",
                     "description": "Post caption"
                 }
             ]
@@ -3131,7 +3530,7 @@
                 },
                 {
                     "name": "caption",
-                    "type": "RichText",
+                    "type": "pageBlockCaption",
                     "description": "Block caption"
                 }
             ]
@@ -3148,7 +3547,7 @@
                 },
                 {
                     "name": "caption",
-                    "type": "RichText",
+                    "type": "pageBlockCaption",
                     "description": "Block caption"
                 }
             ]
@@ -3176,6 +3575,104 @@
             ]
         },
         {
+            "name": "pageBlockTable",
+            "description": "A table",
+            "class": "PageBlock",
+            "properties": [
+                {
+                    "name": "caption",
+                    "type": "RichText",
+                    "description": "Table caption"
+                },
+                {
+                    "name": "cells",
+                    "type": "vector\u003cvector\u003cpageBlockTableCell\u003e\u003e",
+                    "description": "Table cells"
+                },
+                {
+                    "name": "is_bordered",
+                    "type": "Bool",
+                    "description": "True, if the table is bordered"
+                },
+                {
+                    "name": "is_striped",
+                    "type": "Bool",
+                    "description": "True, if the table is striped"
+                }
+            ]
+        },
+        {
+            "name": "pageBlockDetails",
+            "description": "A collapsible block",
+            "class": "PageBlock",
+            "properties": [
+                {
+                    "name": "header",
+                    "type": "RichText",
+                    "description": "Always visible heading for the block"
+                },
+                {
+                    "name": "page_blocks",
+                    "type": "vector\u003cPageBlock\u003e",
+                    "description": "Block contents"
+                },
+                {
+                    "name": "is_open",
+                    "type": "Bool",
+                    "description": "True, if the block is open by default"
+                }
+            ]
+        },
+        {
+            "name": "pageBlockRelatedArticles",
+            "description": "Related articles",
+            "class": "PageBlock",
+            "properties": [
+                {
+                    "name": "header",
+                    "type": "RichText",
+                    "description": "Block header"
+                },
+                {
+                    "name": "articles",
+                    "type": "vector\u003cpageBlockRelatedArticle\u003e",
+                    "description": "List of related articles"
+                }
+            ]
+        },
+        {
+            "name": "pageBlockMap",
+            "description": "A map",
+            "class": "PageBlock",
+            "properties": [
+                {
+                    "name": "location",
+                    "type": "location",
+                    "description": "Location of the map center"
+                },
+                {
+                    "name": "zoom",
+                    "type": "int32",
+                    "description": "Map zoom level"
+                },
+                {
+                    "name": "width",
+                    "type": "int32",
+                    "description": "Map width"
+                },
+                {
+                    "name": "height",
+                    "type": "int32",
+                    "description": "Map height"
+                },
+                {
+                    "name": "caption",
+                    "type": "pageBlockCaption",
+                    "description": "Block caption"
+                }
+            ]
+        },
+        {
             "name": "webPageInstantView",
             "description": "Describes an instant view page for a web page",
             "class": "WebPageInstantView",
@@ -3184,6 +3681,21 @@
                     "name": "page_blocks",
                     "type": "vector\u003cPageBlock\u003e",
                     "description": "Content of the web page"
+                },
+                {
+                    "name": "version",
+                    "type": "int32",
+                    "description": "Version of the instant view, currently can be 1 or 2"
+                },
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "Instant view URL; may be different from WebPage.url and must be used for the correct anchors handling"
+                },
+                {
+                    "name": "is_rtl",
+                    "type": "Bool",
+                    "description": "True, if the instant view must be shown from right to left"
                 },
                 {
                     "name": "is_full",
@@ -3298,9 +3810,9 @@
                     "description": "Preview of the content as a voice note, if available; may be null"
                 },
                 {
-                    "name": "has_instant_view",
-                    "type": "Bool",
-                    "description": "True, if the web page has an instant view"
+                    "name": "instant_view_version",
+                    "type": "int32",
+                    "description": "Version of instant view, available for the web page (currently can be 1 or 2), 0 if none"
                 }
             ]
         },
@@ -4320,7 +4832,13 @@
             "name": "passportElementErrorSourceTranslationFile",
             "description": "One of files with the translation of the document contains an error. The error will be considered resolved when the file changes",
             "class": "PassportElementErrorSource",
-            "properties": []
+            "properties": [
+                {
+                    "name": "file_index",
+                    "type": "int32",
+                    "description": "Index of a file with the error"
+                }
+            ]
         },
         {
             "name": "passportElementErrorSourceTranslationFiles",
@@ -4332,7 +4850,13 @@
             "name": "passportElementErrorSourceFile",
             "description": "The file contains an error. The error will be considered resolved when the file changes",
             "class": "PassportElementErrorSource",
-            "properties": []
+            "properties": [
+                {
+                    "name": "file_index",
+                    "type": "int32",
+                    "description": "Index of a file with the error"
+                }
+            ]
         },
         {
             "name": "passportElementErrorSourceFiles",
@@ -4417,19 +4941,26 @@
                     "description": "Information about the Telegram Passport elements that need to be provided to complete the form"
                 },
                 {
+                    "name": "privacy_policy_url",
+                    "type": "string",
+                    "description": "URL for the privacy policy of the service; may be empty"
+                }
+            ]
+        },
+        {
+            "name": "passportElementsWithErrors",
+            "description": "Contains information about a Telegram Passport elements and corresponding errors",
+            "class": "PassportElementsWithErrors",
+            "properties": [
+                {
                     "name": "elements",
                     "type": "vector\u003cPassportElement\u003e",
-                    "description": "Already available Telegram Passport elements"
+                    "description": "Telegram Passport elements"
                 },
                 {
                     "name": "errors",
                     "type": "vector\u003cpassportElementError\u003e",
                     "description": "Errors in the elements that are already available"
-                },
-                {
-                    "name": "privacy_policy_url",
-                    "type": "string",
-                    "description": "URL for the privacy policy of the service; can be empty"
                 }
             ]
         },
@@ -4886,6 +5417,18 @@
             ]
         },
         {
+            "name": "messagePoll",
+            "description": "A message with a poll",
+            "class": "MessageContent",
+            "properties": [
+                {
+                    "name": "poll",
+                    "type": "poll",
+                    "description": "Poll"
+                }
+            ]
+        },
+        {
             "name": "messageInvoice",
             "description": "A message with an invoice from a bot",
             "class": "MessageContent",
@@ -5080,7 +5623,7 @@
                 {
                     "name": "message_id",
                     "type": "int53",
-                    "description": "Identifier of the pinned message, can be an identifier of a deleted message"
+                    "description": "Identifier of the pinned message, can be an identifier of a deleted message or 0"
                 }
             ]
         },
@@ -5127,7 +5670,7 @@
                 {
                     "name": "game_id",
                     "type": "int64",
-                    "description": "Identifier of the game, may be different from the games presented in the message with the game"
+                    "description": "Identifier of the game; may be different from the games presented in the message with the game"
                 },
                 {
                     "name": "score",
@@ -5373,12 +5916,12 @@
                 {
                     "name": "width",
                     "type": "int32",
-                    "description": "Thumbnail width, usually shouldn't exceed 90. Use 0 if unknown"
+                    "description": "Thumbnail width, usually shouldn't exceed 320. Use 0 if unknown"
                 },
                 {
                     "name": "height",
                     "type": "int32",
-                    "description": "Thumbnail height, usually shouldn't exceed 90. Use 0 if unknown"
+                    "description": "Thumbnail height, usually shouldn't exceed 320. Use 0 if unknown"
                 }
             ]
         },
@@ -5796,6 +6339,23 @@
             ]
         },
         {
+            "name": "inputMessagePoll",
+            "description": "A message with a poll. Polls can't be sent to private or secret chats",
+            "class": "InputMessageContent",
+            "properties": [
+                {
+                    "name": "question",
+                    "type": "string",
+                    "description": "Poll question, 1-255 characters"
+                },
+                {
+                    "name": "options",
+                    "type": "vector\u003cstring\u003e",
+                    "description": "List of poll answer options, 2-10 strings 1-100 characters each"
+                }
+            ]
+        },
+        {
             "name": "inputMessageForwarded",
             "description": "A forwarded message",
             "class": "InputMessageContent",
@@ -5909,7 +6469,7 @@
         },
         {
             "name": "searchMessagesFilterUnreadMention",
-            "description": "Returns only messages with unread mentions of the current user or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query or by the sending user",
+            "description": "Returns only messages with unread mentions of the current user, or messages that are replies to their messages. When using this filter the results can't be additionally filtered by a query or by the sending user",
             "class": "SearchMessagesFilter",
             "properties": []
         },
@@ -6377,6 +6937,11 @@
                     "name": "emojis",
                     "type": "vector\u003cstring\u003e",
                     "description": "Encryption key emojis fingerprint"
+                },
+                {
+                    "name": "allow_p2p",
+                    "type": "Bool",
+                    "description": "True, if peer-to-peer connection is allowed by users privacy settings"
                 }
             ]
         },
@@ -6473,6 +7038,18 @@
                     "name": "importer_count",
                     "type": "vector\u003cint32\u003e",
                     "description": "The number of users that imported the corresponding contact; 0 for already registered users or if unavailable"
+                }
+            ]
+        },
+        {
+            "name": "httpUrl",
+            "description": "Contains an HTTP URL",
+            "class": "HttpUrl",
+            "properties": [
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "The URL"
                 }
             ]
         },
@@ -7846,7 +8423,7 @@
         },
         {
             "name": "languagePackStringValuePluralized",
-            "description": "A language pack string which has different forms based on the number of some object it mentions",
+            "description": "A language pack string which has different forms based on the number of some object it mentions. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info",
             "class": "LanguagePackStringValue",
             "properties": [
                 {
@@ -7927,6 +8504,11 @@
                     "description": "Unique language pack identifier"
                 },
                 {
+                    "name": "base_language_pack_id",
+                    "type": "string",
+                    "description": "Identifier of a base language pack; may be empty. If a string is missed in the language pack, then it should be fetched from base language pack. Unsupported in custom language packs"
+                },
+                {
                     "name": "name",
                     "type": "string",
                     "description": "Language name"
@@ -7937,9 +8519,49 @@
                     "description": "Name of the language in that language"
                 },
                 {
+                    "name": "plural_code",
+                    "type": "string",
+                    "description": "A language code to be used to apply plural forms. See https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html for more info"
+                },
+                {
+                    "name": "is_official",
+                    "type": "Bool",
+                    "description": "True, if the language pack is official"
+                },
+                {
+                    "name": "is_rtl",
+                    "type": "Bool",
+                    "description": "True, if the language pack strings are RTL"
+                },
+                {
+                    "name": "is_beta",
+                    "type": "Bool",
+                    "description": "True, if the language pack is a beta language pack"
+                },
+                {
+                    "name": "is_installed",
+                    "type": "Bool",
+                    "description": "True, if the language pack is installed by the current user"
+                },
+                {
+                    "name": "total_string_count",
+                    "type": "int32",
+                    "description": "Total number of non-deleted strings from the language pack"
+                },
+                {
+                    "name": "translated_string_count",
+                    "type": "int32",
+                    "description": "Total number of translated strings from the language pack"
+                },
+                {
                     "name": "local_string_count",
                     "type": "int32",
                     "description": "Total number of non-deleted strings from the language pack available locally"
+                },
+                {
+                    "name": "translation_url",
+                    "type": "string",
+                    "description": "Link to language translation interface; empty for custom local language packs"
                 }
             ]
         },
@@ -7956,14 +8578,19 @@
             ]
         },
         {
-            "name": "deviceTokenGoogleCloudMessaging",
-            "description": "A token for Google Cloud Messaging",
+            "name": "deviceTokenFirebaseCloudMessaging",
+            "description": "A token for Firebase Cloud Messaging",
             "class": "DeviceToken",
             "properties": [
                 {
                     "name": "token",
                     "type": "string",
                     "description": "Device registration token; may be empty to de-register a device"
+                },
+                {
+                    "name": "encrypt",
+                    "type": "Bool",
+                    "description": "True, if push notifications should be additionally encrypted"
                 }
             ]
         },
@@ -7998,6 +8625,11 @@
                     "name": "is_app_sandbox",
                     "type": "Bool",
                     "description": "True, if App Sandbox is enabled"
+                },
+                {
+                    "name": "encrypt",
+                    "type": "Bool",
+                    "description": "True, if push notifications should be additionally encrypted"
                 }
             ]
         },
@@ -8108,6 +8740,18 @@
             ]
         },
         {
+            "name": "pushReceiverId",
+            "description": "Contains a globally unique push receiver identifier, which can be used to identify which account has received a push notification",
+            "class": "PushReceiverId",
+            "properties": [
+                {
+                    "name": "id",
+                    "type": "int64",
+                    "description": "The globally unique identifier of push notification subscription"
+                }
+            ]
+        },
+        {
             "name": "wallpaper",
             "description": "Contains information about a wallpaper",
             "class": "Wallpaper",
@@ -8184,8 +8828,560 @@
             "properties": []
         },
         {
+            "name": "pushMessageContentHidden",
+            "description": "A general message with hidden content",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentAnimation",
+            "description": "An animation message (GIF-style)",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "animation",
+                    "type": "animation",
+                    "description": "Message content; may be null"
+                },
+                {
+                    "name": "caption",
+                    "type": "string",
+                    "description": "Animation caption"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentAudio",
+            "description": "An audio message",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "audio",
+                    "type": "audio",
+                    "description": "Message content; may be null"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentContact",
+            "description": "A message with a user contact",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "description": "Contact's name"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentContactRegistered",
+            "description": "A contact has registered with Telegram",
+            "class": "PushMessageContent",
+            "properties": []
+        },
+        {
+            "name": "pushMessageContentDocument",
+            "description": "A document message (a general file)",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "document",
+                    "type": "document",
+                    "description": "Message content; may be null"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentGame",
+            "description": "A message with a game",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "title",
+                    "type": "string",
+                    "description": "Game title, empty for pinned game message"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentGameScore",
+            "description": "A new high score was achieved in a game",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "title",
+                    "type": "string",
+                    "description": "Game title, empty for pinned message"
+                },
+                {
+                    "name": "score",
+                    "type": "int32",
+                    "description": "New score, 0 for pinned message"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentInvoice",
+            "description": "A message with an invoice from a bot",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "price",
+                    "type": "string",
+                    "description": "Product price"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentLocation",
+            "description": "A message with a location",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "is_live",
+                    "type": "Bool",
+                    "description": "True, if the location is live"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentPhoto",
+            "description": "A photo message",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "photo",
+                    "type": "photo",
+                    "description": "Message content; may be null"
+                },
+                {
+                    "name": "caption",
+                    "type": "string",
+                    "description": "Photo caption"
+                },
+                {
+                    "name": "is_secret",
+                    "type": "Bool",
+                    "description": "True, if the photo is secret"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentPoll",
+            "description": "A message with a poll",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "question",
+                    "type": "string",
+                    "description": "Poll question"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentScreenshotTaken",
+            "description": "A screenshot of a message in the chat has been taken",
+            "class": "PushMessageContent",
+            "properties": []
+        },
+        {
+            "name": "pushMessageContentSticker",
+            "description": "A message with a sticker",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "sticker",
+                    "type": "sticker",
+                    "description": "Message content; may be null"
+                },
+                {
+                    "name": "emoji",
+                    "type": "string",
+                    "description": "Emoji corresponding to the sticker; may be empty"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentText",
+            "description": "A text message",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "text",
+                    "type": "string",
+                    "description": "Message text"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentVideo",
+            "description": "A video message",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "video",
+                    "type": "video",
+                    "description": "Message content; may be null"
+                },
+                {
+                    "name": "caption",
+                    "type": "string",
+                    "description": "Video caption"
+                },
+                {
+                    "name": "is_secret",
+                    "type": "Bool",
+                    "description": "True, if the video is secret"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentVideoNote",
+            "description": "A video note message",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "video_note",
+                    "type": "videoNote",
+                    "description": "Message content; may be null"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentVoiceNote",
+            "description": "A voice note message",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "voice_note",
+                    "type": "voiceNote",
+                    "description": "Message content; may be null"
+                },
+                {
+                    "name": "is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the message is a pinned message with the specified content"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentBasicGroupChatCreate",
+            "description": "A newly created basic group",
+            "class": "PushMessageContent",
+            "properties": []
+        },
+        {
+            "name": "pushMessageContentChatAddMembers",
+            "description": "New chat members were invited to a group",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "member_name",
+                    "type": "string",
+                    "description": "Name of the added member"
+                },
+                {
+                    "name": "is_current_user",
+                    "type": "Bool",
+                    "description": "True, if the current user was added to the group"
+                },
+                {
+                    "name": "is_returned",
+                    "type": "Bool",
+                    "description": "True, if the user has returned to the group himself"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentChatChangePhoto",
+            "description": "A chat photo was edited",
+            "class": "PushMessageContent",
+            "properties": []
+        },
+        {
+            "name": "pushMessageContentChatChangeTitle",
+            "description": "A chat title was edited",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "title",
+                    "type": "string",
+                    "description": "New chat title"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentChatDeleteMember",
+            "description": "A chat member was deleted",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "member_name",
+                    "type": "string",
+                    "description": "Name of the deleted member"
+                },
+                {
+                    "name": "is_current_user",
+                    "type": "Bool",
+                    "description": "True, if the current user was deleted from the group"
+                },
+                {
+                    "name": "is_left",
+                    "type": "Bool",
+                    "description": "True, if the user has left the group himself"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentChatJoinByLink",
+            "description": "A new member joined the chat by invite link",
+            "class": "PushMessageContent",
+            "properties": []
+        },
+        {
+            "name": "pushMessageContentMessageForwards",
+            "description": "A forwarded messages",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "total_count",
+                    "type": "int32",
+                    "description": "Number of forwarded messages"
+                }
+            ]
+        },
+        {
+            "name": "pushMessageContentMediaAlbum",
+            "description": "A media album",
+            "class": "PushMessageContent",
+            "properties": [
+                {
+                    "name": "total_count",
+                    "type": "int32",
+                    "description": "Number of messages in the album"
+                },
+                {
+                    "name": "has_photos",
+                    "type": "Bool",
+                    "description": "True, if the album has at least one photo"
+                },
+                {
+                    "name": "has_videos",
+                    "type": "Bool",
+                    "description": "True, if the album has at least one video"
+                }
+            ]
+        },
+        {
+            "name": "notificationTypeNewMessage",
+            "description": "New message was received",
+            "class": "NotificationType",
+            "properties": [
+                {
+                    "name": "message",
+                    "type": "message",
+                    "description": "The message"
+                }
+            ]
+        },
+        {
+            "name": "notificationTypeNewSecretChat",
+            "description": "New secret chat was created",
+            "class": "NotificationType",
+            "properties": []
+        },
+        {
+            "name": "notificationTypeNewCall",
+            "description": "New call was received",
+            "class": "NotificationType",
+            "properties": [
+                {
+                    "name": "call_id",
+                    "type": "int32",
+                    "description": "Call identifier"
+                }
+            ]
+        },
+        {
+            "name": "notificationTypeNewPushMessage",
+            "description": "New message was received through a push notification",
+            "class": "NotificationType",
+            "properties": [
+                {
+                    "name": "message_id",
+                    "type": "int53",
+                    "description": "The message identifier. The message will not be available in the chat history, but the ID can be used in viewMessages and as reply_to_message_id"
+                },
+                {
+                    "name": "sender_user_id",
+                    "type": "int32",
+                    "description": "Sender of the message. Corresponding user may be inaccessible"
+                },
+                {
+                    "name": "content",
+                    "type": "PushMessageContent",
+                    "description": "Push message content"
+                }
+            ]
+        },
+        {
+            "name": "notificationGroupTypeMessages",
+            "description": "A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with ordinary unread messages",
+            "class": "NotificationGroupType",
+            "properties": []
+        },
+        {
+            "name": "notificationGroupTypeMentions",
+            "description": "A group containing notifications of type notificationTypeNewMessage and notificationTypeNewPushMessage with unread mentions of the current user, replies to their messages, or a pinned message",
+            "class": "NotificationGroupType",
+            "properties": []
+        },
+        {
+            "name": "notificationGroupTypeSecretChat",
+            "description": "A group containing a notification of type notificationTypeNewSecretChat",
+            "class": "NotificationGroupType",
+            "properties": []
+        },
+        {
+            "name": "notificationGroupTypeCalls",
+            "description": "A group containing notifications of type notificationTypeNewCall",
+            "class": "NotificationGroupType",
+            "properties": []
+        },
+        {
+            "name": "notification",
+            "description": "Contains information about a notification",
+            "class": "Notification",
+            "properties": [
+                {
+                    "name": "id",
+                    "type": "int32",
+                    "description": "Unique persistent identifier of this notification"
+                },
+                {
+                    "name": "date",
+                    "type": "int32",
+                    "description": "Notification date"
+                },
+                {
+                    "name": "type",
+                    "type": "NotificationType",
+                    "description": "Notification type"
+                }
+            ]
+        },
+        {
+            "name": "notificationGroup",
+            "description": "Describes a group of notifications",
+            "class": "NotificationGroup",
+            "properties": [
+                {
+                    "name": "id",
+                    "type": "int32",
+                    "description": "Unique persistent auto-incremented from 1 identifier of the notification group"
+                },
+                {
+                    "name": "type",
+                    "type": "NotificationGroupType",
+                    "description": "Type of the group"
+                },
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of a chat to which all notifications in the group belong"
+                },
+                {
+                    "name": "total_count",
+                    "type": "int32",
+                    "description": "Total number of active notifications in the group"
+                },
+                {
+                    "name": "notifications",
+                    "type": "vector\u003cnotification\u003e",
+                    "description": "The list of active notifications"
+                }
+            ]
+        },
+        {
             "name": "optionValueBoolean",
-            "description": "Boolean option",
+            "description": "Represents a boolean option",
             "class": "OptionValue",
             "properties": [
                 {
@@ -8197,13 +9393,13 @@
         },
         {
             "name": "optionValueEmpty",
-            "description": "An unknown option or an option which has a default value",
+            "description": "Represents an unknown option or an option which has a default value",
             "class": "OptionValue",
             "properties": []
         },
         {
             "name": "optionValueInteger",
-            "description": "An integer option",
+            "description": "Represents an integer option",
             "class": "OptionValue",
             "properties": [
                 {
@@ -8215,13 +9411,96 @@
         },
         {
             "name": "optionValueString",
-            "description": "A string option",
+            "description": "Represents a string option",
             "class": "OptionValue",
             "properties": [
                 {
                     "name": "value",
                     "type": "string",
                     "description": "The value of the option"
+                }
+            ]
+        },
+        {
+            "name": "jsonObjectMember",
+            "description": "Represents one member of a JSON object",
+            "class": "JsonObjectMember",
+            "properties": [
+                {
+                    "name": "key",
+                    "type": "string",
+                    "description": "Member's key"
+                },
+                {
+                    "name": "value",
+                    "type": "JsonValue",
+                    "description": "Member's value"
+                }
+            ]
+        },
+        {
+            "name": "jsonValueNull",
+            "description": "Represents a null JSON value",
+            "class": "JsonValue",
+            "properties": []
+        },
+        {
+            "name": "jsonValueBoolean",
+            "description": "Represents a boolean JSON value",
+            "class": "JsonValue",
+            "properties": [
+                {
+                    "name": "value",
+                    "type": "Bool",
+                    "description": "The value"
+                }
+            ]
+        },
+        {
+            "name": "jsonValueNumber",
+            "description": "Represents a numeric JSON value",
+            "class": "JsonValue",
+            "properties": [
+                {
+                    "name": "value",
+                    "type": "double",
+                    "description": "The value"
+                }
+            ]
+        },
+        {
+            "name": "jsonValueString",
+            "description": "Represents a string JSON value",
+            "class": "JsonValue",
+            "properties": [
+                {
+                    "name": "value",
+                    "type": "string",
+                    "description": "The value"
+                }
+            ]
+        },
+        {
+            "name": "jsonValueArray",
+            "description": "Represents a JSON array",
+            "class": "JsonValue",
+            "properties": [
+                {
+                    "name": "values",
+                    "type": "vector\u003cJsonValue\u003e",
+                    "description": "The list of array elements"
+                }
+            ]
+        },
+        {
+            "name": "jsonValueObject",
+            "description": "Represents a JSON object",
+            "class": "JsonValue",
+            "properties": [
+                {
+                    "name": "members",
+                    "type": "vector\u003cjsonObjectMember\u003e",
+                    "description": "The list of object members"
                 }
             ]
         },
@@ -8304,6 +9583,12 @@
             "properties": []
         },
         {
+            "name": "userPrivacySettingAllowPeerToPeerCalls",
+            "description": "A privacy setting for managing whether peer-to-peer connections can be used for calls",
+            "class": "UserPrivacySetting",
+            "properties": []
+        },
+        {
             "name": "accountTtl",
             "description": "Contains information about the period of inactivity after which the current user's account will automatically be deleted",
             "class": "AccountTtl",
@@ -8317,7 +9602,7 @@
         },
         {
             "name": "session",
-            "description": "Contains information about one session in a Telegram application used by the current user",
+            "description": "Contains information about one session in a Telegram application used by the current user. Sessions should be shown to the user in the returned order",
             "class": "Session",
             "properties": [
                 {
@@ -8329,6 +9614,11 @@
                     "name": "is_current",
                     "type": "Bool",
                     "description": "True, if this session is the current session"
+                },
+                {
+                    "name": "is_password_pending",
+                    "type": "Bool",
+                    "description": "True, if a password is needed to complete authorization of the session"
                 },
                 {
                     "name": "api_id",
@@ -8499,6 +9789,12 @@
             "properties": []
         },
         {
+            "name": "chatReportReasonChildAbuse",
+            "description": "The chat has child abuse related content",
+            "class": "ChatReportReason",
+            "properties": []
+        },
+        {
             "name": "chatReportReasonCopyright",
             "description": "The chat contains copyrighted content",
             "class": "ChatReportReason",
@@ -8530,6 +9826,18 @@
                     "name": "html",
                     "type": "string",
                     "description": "HTML-code for embedding the message"
+                }
+            ]
+        },
+        {
+            "name": "filePart",
+            "description": "Contains a part of a file",
+            "class": "FilePart",
+            "properties": [
+                {
+                    "name": "data",
+                    "type": "bytes",
+                    "description": "File bytes"
                 }
             ]
         },
@@ -8719,6 +10027,28 @@
                     "name": "database_size",
                     "type": "int53",
                     "description": "Size of the database"
+                },
+                {
+                    "name": "language_pack_database_size",
+                    "type": "int53",
+                    "description": "Size of the language pack database"
+                },
+                {
+                    "name": "log_size",
+                    "type": "int53",
+                    "description": "Size of the TDLib internal log"
+                }
+            ]
+        },
+        {
+            "name": "databaseStatistics",
+            "description": "Contains database statistics",
+            "class": "DatabaseStatistics",
+            "properties": [
+                {
+                    "name": "statistics",
+                    "type": "string",
+                    "description": "Database statistics in an unspecified human-readable format"
                 }
             ]
         },
@@ -9174,16 +10504,6 @@
                     "name": "message",
                     "type": "message",
                     "description": "The new message"
-                },
-                {
-                    "name": "disable_notification",
-                    "type": "Bool",
-                    "description": "True, if this message must not generate a notification"
-                },
-                {
-                    "name": "contains_mention",
-                    "type": "Bool",
-                    "description": "True, if the message contains a mention of the current user"
                 }
             ]
         },
@@ -9428,7 +10748,7 @@
         },
         {
             "name": "updateChatOrder",
-            "description": "The order of the chat in the chats list has changed. Instead of this update updateChatLastMessage, updateChatIsPinned or updateChatDraftMessage might be sent",
+            "description": "The order of the chat in the chat list has changed. Instead of this update updateChatLastMessage, updateChatIsPinned or updateChatDraftMessage might be sent",
             "class": "Update",
             "properties": [
                 {
@@ -9612,6 +10932,23 @@
             ]
         },
         {
+            "name": "updateChatPinnedMessage",
+            "description": "The chat pinned message was changed",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "pinned_message_id",
+                    "type": "int53",
+                    "description": "The new identifier of the pinned message; 0 if there is no pinned message in the chat"
+                }
+            ]
+        },
+        {
             "name": "updateChatReplyMarkup",
             "description": "The default chat reply markup was changed. Can occur because new messages with reply markup were received or because an old reply markup was hidden by the user",
             "class": "Update",
@@ -9651,6 +10988,116 @@
             ]
         },
         {
+            "name": "updateChatOnlineMemberCount",
+            "description": "The number of online group members has changed. This update with non-zero count is sent only for currently opened chats. There is no guarantee that it will be sent just after the count has changed",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat"
+                },
+                {
+                    "name": "online_member_count",
+                    "type": "int32",
+                    "description": "New number of online members in the chat, or 0 if unknown"
+                }
+            ]
+        },
+        {
+            "name": "updateNotification",
+            "description": "A notification was changed",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "notification_group_id",
+                    "type": "int32",
+                    "description": "Unique notification group identifier"
+                },
+                {
+                    "name": "notification",
+                    "type": "notification",
+                    "description": "Changed notification"
+                }
+            ]
+        },
+        {
+            "name": "updateNotificationGroup",
+            "description": "A list of active notifications in a notification group has changed",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "notification_group_id",
+                    "type": "int32",
+                    "description": "Unique notification group identifier"
+                },
+                {
+                    "name": "type",
+                    "type": "NotificationGroupType",
+                    "description": "New type of the notification group"
+                },
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of a chat to which all notifications in the group belong"
+                },
+                {
+                    "name": "notification_settings_chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier, which notification settings must be applied to the added notifications"
+                },
+                {
+                    "name": "is_silent",
+                    "type": "Bool",
+                    "description": "True, if the notifications should be shown without sound"
+                },
+                {
+                    "name": "total_count",
+                    "type": "int32",
+                    "description": "Total number of unread notifications in the group, can be bigger than number of active notifications"
+                },
+                {
+                    "name": "added_notifications",
+                    "type": "vector\u003cnotification\u003e",
+                    "description": "List of added group notifications, sorted by notification ID"
+                },
+                {
+                    "name": "removed_notification_ids",
+                    "type": "vector\u003cint32\u003e",
+                    "description": "Identifiers of removed group notifications, sorted by notification ID"
+                }
+            ]
+        },
+        {
+            "name": "updateActiveNotifications",
+            "description": "Contains active notifications that was shown on previous application launches. This update is sent only if a message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "groups",
+                    "type": "vector\u003cnotificationGroup\u003e",
+                    "description": "Lists of active notification groups"
+                }
+            ]
+        },
+        {
+            "name": "updateHavePendingNotifications",
+            "description": "Describes, whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "have_delayed_notifications",
+                    "type": "Bool",
+                    "description": "True, if there are some delayed notification updates, which will be sent soon"
+                },
+                {
+                    "name": "have_unreceived_notifications",
+                    "type": "Bool",
+                    "description": "True, if there can be some yet unreceived notifications, which are being fetched from the server"
+                }
+            ]
+        },
+        {
             "name": "updateDeleteMessages",
             "description": "Some messages were deleted",
             "class": "Update",
@@ -9668,7 +11115,7 @@
                 {
                     "name": "is_permanent",
                     "type": "Bool",
-                    "description": "True, if the messages are permanently deleted by a user (as opposed to just becoming unaccessible)"
+                    "description": "True, if the messages are permanently deleted by a user (as opposed to just becoming inaccessible)"
                 },
                 {
                     "name": "from_cache",
@@ -10331,6 +11778,83 @@
             ]
         },
         {
+            "name": "updatePoll",
+            "description": "Information about a poll was updated; for bots only",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "poll",
+                    "type": "poll",
+                    "description": "New data about the poll"
+                }
+            ]
+        },
+        {
+            "name": "updates",
+            "description": "Contains a list of updates",
+            "class": "Updates",
+            "properties": [
+                {
+                    "name": "updates",
+                    "type": "vector\u003cUpdate\u003e",
+                    "description": "List of updates"
+                }
+            ]
+        },
+        {
+            "name": "logStreamDefault",
+            "description": "The log is written to stderr or an OS specific log",
+            "class": "LogStream",
+            "properties": []
+        },
+        {
+            "name": "logStreamFile",
+            "description": "The log is written to a file",
+            "class": "LogStream",
+            "properties": [
+                {
+                    "name": "path",
+                    "type": "string",
+                    "description": "Path to the file to where the internal TDLib log will be written"
+                },
+                {
+                    "name": "max_file_size",
+                    "type": "int53",
+                    "description": "Maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated"
+                }
+            ]
+        },
+        {
+            "name": "logStreamEmpty",
+            "description": "The log is written nowhere",
+            "class": "LogStream",
+            "properties": []
+        },
+        {
+            "name": "logVerbosityLevel",
+            "description": "Contains a TDLib internal log verbosity level",
+            "class": "LogVerbosityLevel",
+            "properties": [
+                {
+                    "name": "verbosity_level",
+                    "type": "int32",
+                    "description": "Log verbosity level"
+                }
+            ]
+        },
+        {
+            "name": "logTags",
+            "description": "Contains a list of available TDLib internal log tags",
+            "class": "LogTags",
+            "properties": [
+                {
+                    "name": "tags",
+                    "type": "vector\u003cstring\u003e",
+                    "description": "List of log tags"
+                }
+            ]
+        },
+        {
             "name": "testInt",
             "description": "A simple object containing a number; for testing only",
             "class": "TestInt",
@@ -10457,8 +11981,8 @@
             "description": "Describes the current secret chat state"
         },
         {
-            "name": "MessageForwardInfo",
-            "description": "Contains information about the initial sender of a forwarded message"
+            "name": "MessageForwardOrigin",
+            "description": "Contains information about the origin of a forwarded message"
         },
         {
             "name": "MessageSendingState",
@@ -10487,6 +12011,14 @@
         {
             "name": "RichText",
             "description": "Describes a text object inside an instant-view web page"
+        },
+        {
+            "name": "PageBlockHorizontalAlignment",
+            "description": "Describes a horizontal alignment of a table cell content"
+        },
+        {
+            "name": "PageBlockVerticalAlignment",
+            "description": "Describes a Vertical alignment of a table cell content"
         },
         {
             "name": "PageBlock",
@@ -10570,15 +12102,31 @@
         },
         {
             "name": "DeviceToken",
-            "description": "Represents a data needed to subscribe for push notifications. To use specific push notification service, you must specify the correct application platform and upload valid server authentication data at https://my.telegram.org"
+            "description": "Represents a data needed to subscribe for push notifications through registerDevice method. To use specific push notification service, you must specify the correct application platform and upload valid server authentication data at https://my.telegram.org"
         },
         {
             "name": "CheckChatUsernameResult",
             "description": "Represents result of checking whether a username can be set for a chat"
         },
         {
+            "name": "PushMessageContent",
+            "description": "Contains content of a push message notification"
+        },
+        {
+            "name": "NotificationType",
+            "description": "Contains detailed information about a notification"
+        },
+        {
+            "name": "NotificationGroupType",
+            "description": "Describes type of notifications in the group"
+        },
+        {
             "name": "OptionValue",
             "description": "Represents the value of an option"
+        },
+        {
+            "name": "JsonValue",
+            "description": "Represents a JSON value"
         },
         {
             "name": "UserPrivacySettingRule",
@@ -10627,6 +12175,10 @@
         {
             "name": "Update",
             "description": "Contains notifications about data changes"
+        },
+        {
+            "name": "LogStream",
+            "description": "Describes a stream to which TDLib internal log is written"
         }
     ],
     "functions": [
@@ -10711,12 +12263,12 @@
                 {
                     "name": "first_name",
                     "type": "string",
-                    "description": "If the user is not yet registered, the first name of the user; 1-255 characters"
+                    "description": "If the user is not yet registered, the first name of the user; 1-64 characters. You can also pass an empty string for unregistered user there to check verification code validness. In the latter case PHONE_NUMBER_UNOCCUPIED error will be returned for a valid code"
                 },
                 {
                     "name": "last_name",
                     "type": "string",
-                    "description": "If the user is not yet registered; the last name of the user; optional; 0-255 characters"
+                    "description": "If the user is not yet registered; the last name of the user; optional; 0-64 characters"
                 }
             ],
             "is_synchronous": false,
@@ -10797,6 +12349,14 @@
             "type": 1
         },
         {
+            "name": "getCurrentState",
+            "description": "Returns all updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others. This is especially usefull if TDLib is run in a separate process. This is an offline method. Can be called before authorization",
+            "class": "Updates",
+            "properties": [],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
             "name": "setDatabaseEncryptionKey",
             "description": "Changes the database encryption key. Usually the encryption key is never changed and is stored in some OS keychain",
             "class": "Ok",
@@ -10820,7 +12380,7 @@
         },
         {
             "name": "setPassword",
-            "description": "Changes the password for the user. If a new recovery email address is specified, then the error EMAIL_UNCONFIRMED is returned and the password change will not be applied until the new recovery email address has been confirmed. The application should periodically call getPasswordState to check whether the new email address has been confirmed",
+            "description": "Changes the password for the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed",
             "class": "PasswordState",
             "properties": [
                 {
@@ -10854,7 +12414,7 @@
         },
         {
             "name": "getRecoveryEmailAddress",
-            "description": "Returns a recovery email address that was previously set up. This method can be used to verify a password provided by the user",
+            "description": "Returns a 2-step verification recovery email address that was previously set up. This method can be used to verify a password provided by the user",
             "class": "RecoveryEmailAddress",
             "properties": [
                 {
@@ -10868,7 +12428,7 @@
         },
         {
             "name": "setRecoveryEmailAddress",
-            "description": "Changes the recovery email address of the user. If a new recovery email address is specified, then the error EMAIL_UNCONFIRMED is returned and the email address will not be changed until the new email has been confirmed. The application should periodically call getPasswordState to check whether the email address has been confirmed. If new_recovery_email_address is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation",
+            "description": "Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed If new_recovery_email_address is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation",
             "class": "PasswordState",
             "properties": [
                 {
@@ -10882,6 +12442,28 @@
                     "description": "New recovery email address"
                 }
             ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "checkRecoveryEmailAddressCode",
+            "description": "Checks the 2-step verification recovery email address verification code",
+            "class": "PasswordState",
+            "properties": [
+                {
+                    "name": "code",
+                    "type": "string",
+                    "description": "Verification code"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "resendRecoveryEmailAddressCode",
+            "description": "Resends the 2-step verification recovery email address verification code",
+            "class": "PasswordState",
+            "properties": [],
             "is_synchronous": false,
             "type": 2
         },
@@ -10933,25 +12515,6 @@
             "properties": [],
             "is_synchronous": false,
             "type": 2
-        },
-        {
-            "name": "processDcUpdate",
-            "description": "Handles a DC_UPDATE push service notification. Can be called before authorization",
-            "class": "Ok",
-            "properties": [
-                {
-                    "name": "dc",
-                    "type": "string",
-                    "description": "Value of the \"dc\" parameter of the notification"
-                },
-                {
-                    "name": "addr",
-                    "type": "string",
-                    "description": "Value of the \"addr\" parameter of the notification"
-                }
-            ],
-            "is_synchronous": false,
-            "type": 1
         },
         {
             "name": "getMe",
@@ -11093,6 +12656,25 @@
             "type": 1
         },
         {
+            "name": "getMessageLocally",
+            "description": "Returns information about a message, if it is available locally without sending network request. This is an offline request",
+            "class": "Message",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat the message belongs to"
+                },
+                {
+                    "name": "message_id",
+                    "type": "int53",
+                    "description": "Identifier of the message to get"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
             "name": "getRepliedMessage",
             "description": "Returns information about a message that is replied by given message",
             "class": "Message",
@@ -11179,7 +12761,7 @@
         },
         {
             "name": "getChats",
-            "description": "Returns an ordered list of chats. Chats are sorted by the pair (order, chat_id) in decreasing order. (For example, to get a list of chats from the beginning, the offset_order should be equal to 2^63 - 1). For optimal performance the number of returned chats is chosen by the library.",
+            "description": "Returns an ordered list of chats. Chats are sorted by the pair (order, chat_id) in decreasing order. (For example, to get a list of chats from the beginning, the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance the number of returned chats is chosen by the library.",
             "class": "Chats",
             "properties": [
                 {
@@ -11348,7 +12930,7 @@
             "properties": [
                 {
                     "name": "chat_id",
-                    "type": "int64",
+                    "type": "int53",
                     "description": "Chat identifier; should be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if chat is being created"
                 },
                 {
@@ -11370,7 +12952,7 @@
         },
         {
             "name": "getGroupsInCommon",
-            "description": "Returns a list of common chats with a given user. Chats are sorted by their type and creation date",
+            "description": "Returns a list of common group chats with a given user. Chats are sorted by their type and creation date",
             "class": "Chats",
             "properties": [
                 {
@@ -11410,12 +12992,12 @@
                 {
                     "name": "offset",
                     "type": "int32",
-                    "description": "Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages"
+                    "description": "Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages"
                 },
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached"
+                    "description": "The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater or equal to -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached"
                 },
                 {
                     "name": "only_local",
@@ -11428,7 +13010,7 @@
         },
         {
             "name": "deleteChatHistory",
-            "description": "Deletes all messages in the chat only for the user. Cannot be used in channels and public supergroups",
+            "description": "Deletes all messages in the chat. Use Chat.can_be_deleted_only_for_self and Chat.can_be_deleted_for_all_users fields to find whether and how the method can be applied to the chat",
             "class": "Ok",
             "properties": [
                 {
@@ -11439,7 +13021,12 @@
                 {
                     "name": "remove_from_chat_list",
                     "type": "Bool",
-                    "description": "Pass true if the chat should be removed from the chats list"
+                    "description": "Pass true if the chat should be removed from the chat list"
+                },
+                {
+                    "name": "revoke",
+                    "type": "Bool",
+                    "description": "Pass true to try to delete chat history for all users"
                 }
             ],
             "is_synchronous": false,
@@ -11652,6 +13239,44 @@
             "type": 2
         },
         {
+            "name": "removeNotification",
+            "description": "Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "notification_group_id",
+                    "type": "int32",
+                    "description": "Identifier of notification group to which the notification belongs"
+                },
+                {
+                    "name": "notification_id",
+                    "type": "int32",
+                    "description": "Identifier of removed notification"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "removeNotificationGroup",
+            "description": "Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "notification_group_id",
+                    "type": "int32",
+                    "description": "Notification group identifier"
+                },
+                {
+                    "name": "max_notification_id",
+                    "type": "int32",
+                    "description": "Maximum identifier of removed notifications"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
             "name": "getPublicMessageLink",
             "description": "Returns a public HTTPS link to a message. Available only for messages in public supergroups and channels",
             "class": "PublicMessageLink",
@@ -11673,7 +13298,26 @@
                 }
             ],
             "is_synchronous": false,
-            "type": 1
+            "type": 2
+        },
+        {
+            "name": "getMessageLink",
+            "description": "Returns a private HTTPS link to a message in a chat. Available only for already sent messages in supergroups and channels. The link will work only for members of the chat",
+            "class": "HttpUrl",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat to which the message belongs"
+                },
+                {
+                    "name": "message_id",
+                    "type": "int53",
+                    "description": "Identifier of the message"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "sendMessage",
@@ -11806,6 +13450,11 @@
                     "name": "result_id",
                     "type": "string",
                     "description": "Identifier of the inline result"
+                },
+                {
+                    "name": "hide_via_bot",
+                    "type": "Bool",
+                    "description": "If true, there will be no mention of a bot, via which the message is sent. Can be used only for bots GetOption(\"animation_search_bot_username\"), GetOption(\"photo_search_bot_username\") and GetOption(\"venue_search_bot_username\")"
                 }
             ],
             "is_synchronous": false,
@@ -11935,7 +13584,7 @@
                 {
                     "name": "revoke",
                     "type": "Bool",
-                    "description": "Pass true to try to delete outgoing messages for all chat members (may fail if messages are too old). Always true for supergroups, channels and secret chats"
+                    "description": "Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats"
                 }
             ],
             "is_synchronous": false,
@@ -12320,6 +13969,82 @@
             "type": 1
         },
         {
+            "name": "getJsonValue",
+            "description": "Converts a JSON-serialized string to corresponding JsonValue object. This is an offline method. Can be called before authorization. Can be called synchronously",
+            "class": "JsonValue",
+            "properties": [
+                {
+                    "name": "json",
+                    "type": "string",
+                    "description": "The JSON-serialized string"
+                }
+            ],
+            "is_synchronous": true,
+            "type": 1
+        },
+        {
+            "name": "getJsonString",
+            "description": "Converts a JsonValue object to corresponding JSON-serialized string. This is an offline method. Can be called before authorization. Can be called synchronously",
+            "class": "Text",
+            "properties": [
+                {
+                    "name": "json_value",
+                    "type": "JsonValue",
+                    "description": "The JsonValue object"
+                }
+            ],
+            "is_synchronous": true,
+            "type": 1
+        },
+        {
+            "name": "setPollAnswer",
+            "description": "Changes user answer to a poll",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat to which the poll belongs"
+                },
+                {
+                    "name": "message_id",
+                    "type": "int53",
+                    "description": "Identifier of the message containing the poll"
+                },
+                {
+                    "name": "option_ids",
+                    "type": "vector\u003cint32\u003e",
+                    "description": "0-based identifiers of options, chosen by the user. Currently user can't choose more than 1 option"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "stopPoll",
+            "description": "Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat to which the poll belongs"
+                },
+                {
+                    "name": "message_id",
+                    "type": "int53",
+                    "description": "Identifier of the message containing the poll"
+                },
+                {
+                    "name": "reply_markup",
+                    "type": "ReplyMarkup",
+                    "description": "The new message reply markup; for bots only"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
             "name": "getInlineQueryResults",
             "description": "Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires",
             "class": "InlineQueryResults",
@@ -12506,7 +14231,7 @@
                 {
                     "name": "chat_id",
                     "type": "int53",
-                    "description": "The chat to which the message with the game"
+                    "description": "The chat to which the message with the game belongs"
                 },
                 {
                     "name": "message_id",
@@ -12654,7 +14379,7 @@
         },
         {
             "name": "openChat",
-            "description": "This method should be called if the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats)",
+            "description": "Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats)",
             "class": "Ok",
             "properties": [
                 {
@@ -12668,7 +14393,7 @@
         },
         {
             "name": "closeChat",
-            "description": "This method should be called if the chat is closed by the user. Many useful activities depend on the chat being opened or closed",
+            "description": "Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed",
             "class": "Ok",
             "properties": [
                 {
@@ -12682,7 +14407,7 @@
         },
         {
             "name": "viewMessages",
-            "description": "This method should be called if messages are being viewed by the user. Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)",
+            "description": "Informs TDLib that messages are being viewed by the user. Many useful activities depend on whether the messages are currently being viewed or not (e.g., marking messages as read, incrementing a view counter, updating a view counter, removing deleted messages in supergroups and channels)",
             "class": "Ok",
             "properties": [
                 {
@@ -12706,7 +14431,7 @@
         },
         {
             "name": "openMessageContent",
-            "description": "This method should be called if the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed",
+            "description": "Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed",
             "class": "Ok",
             "properties": [
                 {
@@ -12821,7 +14546,7 @@
                 {
                     "name": "title",
                     "type": "string",
-                    "description": "Title of the new basic group; 1-255 characters"
+                    "description": "Title of the new basic group; 1-128 characters"
                 }
             ],
             "is_synchronous": false,
@@ -12835,7 +14560,7 @@
                 {
                     "name": "title",
                     "type": "string",
-                    "description": "Title of the new chat; 1-255 characters"
+                    "description": "Title of the new chat; 1-128 characters"
                 },
                 {
                     "name": "is_channel",
@@ -12892,7 +14617,7 @@
                 {
                     "name": "title",
                     "type": "string",
-                    "description": "New title of the chat; 1-255 characters"
+                    "description": "New title of the chat; 1-128 characters"
                 }
             ],
             "is_synchronous": false,
@@ -13032,6 +14757,44 @@
             "type": 1
         },
         {
+            "name": "pinChatMessage",
+            "description": "Pins a message in a chat; requires appropriate administrator rights in the group or channel",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat"
+                },
+                {
+                    "name": "message_id",
+                    "type": "int53",
+                    "description": "Identifier of the new pinned message"
+                },
+                {
+                    "name": "disable_notification",
+                    "type": "Bool",
+                    "description": "True, if there should be no notification about the pinned message"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
+            "name": "unpinChatMessage",
+            "description": "Removes the pinned message from a chat; requires appropriate administrator rights in the group or channel",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
             "name": "joinChat",
             "description": "Adds current user as a new member to a chat. Private and secret chats can't be joined using this method",
             "class": "Ok",
@@ -13043,7 +14806,7 @@
                 }
             ],
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "leaveChat",
@@ -13077,7 +14840,7 @@
                 {
                     "name": "forward_limit",
                     "type": "int32",
-                    "description": "The number of earlier messages from the chat to be forwarded to the new member; up to 300. Ignored for supergroups and channels"
+                    "description": "The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels"
                 }
             ],
             "is_synchronous": false,
@@ -13203,6 +14966,25 @@
             "type": 2
         },
         {
+            "name": "getChatNotificationSettingsExceptions",
+            "description": "Returns list of chats with non-default notification settings",
+            "class": "Chats",
+            "properties": [
+                {
+                    "name": "scope",
+                    "type": "NotificationSettingsScope",
+                    "description": "If specified, only chats from the specified scope will be returned"
+                },
+                {
+                    "name": "compare_sound",
+                    "type": "Bool",
+                    "description": "If true, also chats with non-default sound will be returned"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
             "name": "getScopeNotificationSettings",
             "description": "Returns the notification settings for chats of a given type",
             "class": "ScopeNotificationSettings",
@@ -13259,7 +15041,7 @@
         },
         {
             "name": "downloadFile",
-            "description": "Asynchronously downloads a file from the cloud. updateFile will be used to notify about the download progress and successful completion of the download. Returns file state just after the download has been started",
+            "description": "Downloads a file from the cloud. Download progress and completion of the download will be notified through updateFile updates",
             "class": "File",
             "properties": [
                 {
@@ -13271,6 +15053,40 @@
                     "name": "priority",
                     "type": "int32",
                     "description": "Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first"
+                },
+                {
+                    "name": "offset",
+                    "type": "int32",
+                    "description": "The starting position from which the file should be downloaded"
+                },
+                {
+                    "name": "limit",
+                    "type": "int32",
+                    "description": "Number of bytes which should be downloaded starting from the \"offset\" position before the download will be automatically cancelled; use 0 to download without a limit"
+                },
+                {
+                    "name": "synchronous",
+                    "type": "Bool",
+                    "description": "If false, this request returns file state just after the download has been started. If true, this request returns file state only after the download has succeeded, has failed, has been cancelled or a new downloadFile request with different offset/limit parameters was sent"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
+            "name": "getFileDownloadedPrefixSize",
+            "description": "Returns file downloaded prefix size from a given offset",
+            "class": "Count",
+            "properties": [
+                {
+                    "name": "file_id",
+                    "type": "int32",
+                    "description": "Identifier of the file"
+                },
+                {
+                    "name": "offset",
+                    "type": "int32",
+                    "description": "Offset from which downloaded prefix size should be calculated"
                 }
             ],
             "is_synchronous": false,
@@ -13334,8 +15150,32 @@
             "type": 1
         },
         {
+            "name": "writeGeneratedFilePart",
+            "description": "Writes a part of a generated file. This method is intended to be used only if the client has no direct access to TDLib's file system, because it is usually slower than a direct write to the destination file",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "generation_id",
+                    "type": "int64",
+                    "description": "The identifier of the generation process"
+                },
+                {
+                    "name": "offset",
+                    "type": "int32",
+                    "description": "The offset from which to write the data to the file"
+                },
+                {
+                    "name": "data",
+                    "type": "bytes",
+                    "description": "The data to write"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
             "name": "setFileGenerationProgress",
-            "description": "The next part of a file was generated",
+            "description": "Informs TDLib on a file generation prograss",
             "class": "Ok",
             "properties": [
                 {
@@ -13371,6 +15211,30 @@
                     "name": "error",
                     "type": "error",
                     "description": "If set, means that file generation has failed and should be terminated"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
+            "name": "readFilePart",
+            "description": "Reads a part of a file from the TDLib file cache and returns read bytes. This method is intended to be used only if the client has no direct access to TDLib's file system, because it is usually slower than a direct read from the file",
+            "class": "FilePart",
+            "properties": [
+                {
+                    "name": "file_id",
+                    "type": "int32",
+                    "description": "Identifier of the file. The file must be located in the TDLib file cache"
+                },
+                {
+                    "name": "offset",
+                    "type": "int32",
+                    "description": "The offset from which to read the file"
+                },
+                {
+                    "name": "count",
+                    "type": "int32",
+                    "description": "Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position"
                 }
             ],
             "is_synchronous": false,
@@ -13619,7 +15483,7 @@
                 {
                     "name": "query",
                     "type": "string",
-                    "description": "Query to search for; can be empty to return all contacts"
+                    "description": "Query to search for; may be empty to return all contacts"
                 },
                 {
                     "name": "limit",
@@ -13632,7 +15496,7 @@
         },
         {
             "name": "removeContacts",
-            "description": "Removes users from the contacts list",
+            "description": "Removes users from the contact list",
             "class": "Ok",
             "properties": [
                 {
@@ -13668,7 +15532,7 @@
         },
         {
             "name": "clearImportedContacts",
-            "description": "Clears all imported contacts, contacts list remains unchanged",
+            "description": "Clears all imported contacts, contact list remains unchanged",
             "class": "Ok",
             "properties": [],
             "is_synchronous": false,
@@ -14181,12 +16045,12 @@
                 {
                     "name": "first_name",
                     "type": "string",
-                    "description": "The new value of the first name for the user; 1-255 characters"
+                    "description": "The new value of the first name for the user; 1-64 characters"
                 },
                 {
                     "name": "last_name",
                     "type": "string",
-                    "description": "The new value of the optional last name for the user; 0-255 characters"
+                    "description": "The new value of the optional last name for the user; 0-64 characters"
                 }
             ],
             "is_synchronous": false,
@@ -14460,44 +16324,6 @@
             "type": 1
         },
         {
-            "name": "pinSupergroupMessage",
-            "description": "Pins a message in a supergroup or channel; requires appropriate administrator rights in the supergroup or channel",
-            "class": "Ok",
-            "properties": [
-                {
-                    "name": "supergroup_id",
-                    "type": "int32",
-                    "description": "Identifier of the supergroup or channel"
-                },
-                {
-                    "name": "message_id",
-                    "type": "int53",
-                    "description": "Identifier of the new pinned message"
-                },
-                {
-                    "name": "disable_notification",
-                    "type": "Bool",
-                    "description": "True, if there should be no notification about the pinned message"
-                }
-            ],
-            "is_synchronous": false,
-            "type": 1
-        },
-        {
-            "name": "unpinSupergroupMessage",
-            "description": "Removes the pinned message from a supergroup or channel; requires appropriate administrator rights in the supergroup or channel",
-            "class": "Ok",
-            "properties": [
-                {
-                    "name": "supergroup_id",
-                    "type": "int32",
-                    "description": "Identifier of the supergroup or channel"
-                }
-            ],
-            "is_synchronous": false,
-            "type": 1
-        },
-        {
             "name": "reportSupergroupSpam",
             "description": "Reports some messages from a user in a supergroup as spam; requires administrator rights in the supergroup",
             "class": "Ok",
@@ -14760,7 +16586,7 @@
         },
         {
             "name": "getLocalizationTargetInfo",
-            "description": "Returns information about the current localization target. This is an offline request if only_local is true",
+            "description": "Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization",
             "class": "LocalizationTargetInfo",
             "properties": [
                 {
@@ -14773,8 +16599,22 @@
             "type": 2
         },
         {
+            "name": "getLanguagePackInfo",
+            "description": "Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization",
+            "class": "LanguagePackInfo",
+            "properties": [
+                {
+                    "name": "language_pack_id",
+                    "type": "string",
+                    "description": "Language pack identifier"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
             "name": "getLanguagePackStrings",
-            "description": "Returns strings from a language pack in the current localization target by their keys",
+            "description": "Returns strings from a language pack in the current localization target by their keys. Can be called before authorization",
             "class": "LanguagePackStrings",
             "properties": [
                 {
@@ -14792,14 +16632,42 @@
             "type": 2
         },
         {
+            "name": "synchronizeLanguagePack",
+            "description": "Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method doesn't need to be called explicitly for the current used/base language packs. Can be called before authorization",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "language_pack_id",
+                    "type": "string",
+                    "description": "Language pack identifier"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "addCustomServerLanguagePack",
+            "description": "Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "language_pack_id",
+                    "type": "string",
+                    "description": "Identifier of a language pack to be added; may be different from a name that is used in an \"https://t.me/setlanguage/\" link"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
             "name": "setCustomLanguagePack",
-            "description": "Adds or changes a custom language pack to the current localization target",
+            "description": "Adds or changes a custom local language pack to the current localization target",
             "class": "Ok",
             "properties": [
                 {
                     "name": "info",
                     "type": "languagePackInfo",
-                    "description": "Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters"
+                    "description": "Information about the language pack. Language pack ID must start with 'X', consist only of English letters, digits and hyphens, and must not exceed 64 characters. Can be called before authorization"
                 },
                 {
                     "name": "strings",
@@ -14812,13 +16680,13 @@
         },
         {
             "name": "editCustomLanguagePackInfo",
-            "description": "Edits information about a custom language pack in the current localization target",
+            "description": "Edits information about a custom local language pack in the current localization target. Can be called before authorization",
             "class": "Ok",
             "properties": [
                 {
                     "name": "info",
                     "type": "languagePackInfo",
-                    "description": "New information about the custom language pack"
+                    "description": "New information about the custom local language pack"
                 }
             ],
             "is_synchronous": false,
@@ -14826,13 +16694,13 @@
         },
         {
             "name": "setCustomLanguagePackString",
-            "description": "Adds, edits or deletes a string in a custom language pack",
+            "description": "Adds, edits or deletes a string in a custom local language pack. Can be called before authorization",
             "class": "Ok",
             "properties": [
                 {
                     "name": "language_pack_id",
                     "type": "string",
-                    "description": "Identifier of a previously added custom language pack in the current localization target"
+                    "description": "Identifier of a previously added custom local language pack in the current localization target"
                 },
                 {
                     "name": "new_string",
@@ -14845,7 +16713,7 @@
         },
         {
             "name": "deleteLanguagePack",
-            "description": "Deletes all information about a language pack in the current localization target. The language pack that is currently in use can't be deleted",
+            "description": "Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization",
             "class": "Ok",
             "properties": [
                 {
@@ -14859,8 +16727,8 @@
         },
         {
             "name": "registerDevice",
-            "description": "Registers the currently used device for receiving push notifications",
-            "class": "Ok",
+            "description": "Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription",
+            "class": "PushReceiverId",
             "properties": [
                 {
                     "name": "device_token",
@@ -14870,11 +16738,39 @@
                 {
                     "name": "other_user_ids",
                     "type": "vector\u003cint32\u003e",
-                    "description": "List of at most 100 user identifiers of other users currently using the client"
+                    "description": "List of user identifiers of other users currently using the client"
                 }
             ],
             "is_synchronous": false,
             "type": 2
+        },
+        {
+            "name": "processPushNotification",
+            "description": "Handles a push notification. Returns error with code 406 if the push notification is not supported and connection to the server is required to fetch new data. Can be called before authorization",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "payload",
+                    "type": "string",
+                    "description": "JSON-encoded push notification payload with all fields sent by the server, and \"google.sent_time\" and \"google.notification.sound\" fields added"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "getPushReceiverId",
+            "description": "Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. This is an offline method. Can be called before authorization. Can be called synchronously",
+            "class": "PushReceiverId",
+            "properties": [
+                {
+                    "name": "payload",
+                    "type": "string",
+                    "description": "JSON-encoded push notification payload"
+                }
+            ],
+            "is_synchronous": true,
+            "type": 1
         },
         {
             "name": "getRecentlyVisitedTMeUrls",
@@ -15008,7 +16904,7 @@
         },
         {
             "name": "changeChatReportSpamState",
-            "description": "Used to let the server know whether a chat is spam or not. Can be used only if ChatReportSpamState.can_report_spam is true. After this request, ChatReportSpamState.can_report_spam becomes false forever",
+            "description": "Reports to the server whether a chat is a spam chat or not. Can be used only if ChatReportSpamState.can_report_spam is true. After this request, ChatReportSpamState.can_report_spam becomes false forever",
             "class": "Ok",
             "properties": [
                 {
@@ -15050,8 +16946,32 @@
             "type": 2
         },
         {
+            "name": "getChatStatisticsUrl",
+            "description": "Returns URL with the chat statistics. Currently this method can be used only for channels",
+            "class": "HttpUrl",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "parameters",
+                    "type": "string",
+                    "description": "Parameters from \"tg://statsrefresh?params=******\" link"
+                },
+                {
+                    "name": "is_dark",
+                    "type": "Bool",
+                    "description": "Pass true if a URL with the dark theme must be returned"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
             "name": "getStorageStatistics",
-            "description": "Returns storage usage statistics",
+            "description": "Returns storage usage statistics. Can be called before authorization",
             "class": "StorageStatistics",
             "properties": [
                 {
@@ -15065,8 +16985,16 @@
         },
         {
             "name": "getStorageStatisticsFast",
-            "description": "Quickly returns approximate storage usage statistics",
+            "description": "Quickly returns approximate storage usage statistics. Can be called before authorization",
             "class": "StorageStatisticsFast",
+            "properties": [],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
+            "name": "getDatabaseStatistics",
+            "description": "Returns database statistics",
+            "class": "DatabaseStatistics",
             "properties": [],
             "is_synchronous": false,
             "type": 1
@@ -15375,6 +17303,20 @@
                     "name": "nonce",
                     "type": "string",
                     "description": "Authorization form nonce provided by the service"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "getPassportAuthorizationFormAvailableElements",
+            "description": "Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form",
+            "class": "PassportElementsWithErrors",
+            "properties": [
+                {
+                    "name": "autorization_form_id",
+                    "type": "int32",
+                    "description": "Authorization form identifier"
                 },
                 {
                     "name": "password",
@@ -15387,7 +17329,7 @@
         },
         {
             "name": "sendPassportAuthorizationForm",
-            "description": "Sends a Telegram Passport authorization form, effectively sharing data with the service",
+            "description": "Sends a Telegram Passport authorization form, effectively sharing data with the service. This method must be called after getPassportAuthorizationFormAvailableElements if some previously available elements need to be used",
             "class": "Ok",
             "properties": [
                 {
@@ -15720,6 +17662,38 @@
             "type": 1
         },
         {
+            "name": "getApplicationConfig",
+            "description": "Returns application config, provided by the server. Can be called before authorization",
+            "class": "JsonValue",
+            "properties": [],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "saveApplicationLogEvent",
+            "description": "Saves application log event on the server. Can be called before authorization",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "type",
+                    "type": "string",
+                    "description": "Event type"
+                },
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Optional chat identifier, associated with the event"
+                },
+                {
+                    "name": "data",
+                    "type": "JsonValue",
+                    "description": "The log event data"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
             "name": "addProxy",
             "description": "Adds a proxy server for network requests. Can be called before authorization",
             "class": "Proxy",
@@ -15855,8 +17829,112 @@
             "type": 1
         },
         {
+            "name": "setLogStream",
+            "description": "Sets new log stream for internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "log_stream",
+                    "type": "LogStream",
+                    "description": "New log stream"
+                }
+            ],
+            "is_synchronous": true,
+            "type": 1
+        },
+        {
+            "name": "getLogStream",
+            "description": "Returns information about currently used log stream for internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously",
+            "class": "LogStream",
+            "properties": [],
+            "is_synchronous": true,
+            "type": 1
+        },
+        {
+            "name": "setLogVerbosityLevel",
+            "description": "Sets the verbosity level of the internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "new_verbosity_level",
+                    "type": "int32",
+                    "description": "New value of the verbosity level for logging. Value 0 corresponds to fatal errors, value 1 corresponds to errors, value 2 corresponds to warnings and debug warnings, value 3 corresponds to informational, value 4 corresponds to debug, value 5 corresponds to verbose debug, value greater than 5 and up to 1023 can be used to enable even more logging"
+                }
+            ],
+            "is_synchronous": true,
+            "type": 1
+        },
+        {
+            "name": "getLogVerbosityLevel",
+            "description": "Returns current verbosity level of the internal logging of TDLib. This is an offline method. Can be called before authorization. Can be called synchronously",
+            "class": "LogVerbosityLevel",
+            "properties": [],
+            "is_synchronous": true,
+            "type": 1
+        },
+        {
+            "name": "getLogTags",
+            "description": "Returns list of available TDLib internal log tags, for example, [\"actor\", \"binlog\", \"connections\", \"notifications\", \"proxy\"]. This is an offline method. Can be called before authorization. Can be called synchronously",
+            "class": "LogTags",
+            "properties": [],
+            "is_synchronous": true,
+            "type": 1
+        },
+        {
+            "name": "setLogTagVerbosityLevel",
+            "description": "Sets the verbosity level for a specified TDLib internal log tag. This is an offline method. Can be called before authorization. Can be called synchronously",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "tag",
+                    "type": "string",
+                    "description": "Logging tag to change verbosity level"
+                },
+                {
+                    "name": "new_verbosity_level",
+                    "type": "int32",
+                    "description": "New verbosity level; 1-1024"
+                }
+            ],
+            "is_synchronous": true,
+            "type": 1
+        },
+        {
+            "name": "getLogTagVerbosityLevel",
+            "description": "Returns current verbosity level for a specified TDLib internal log tag. This is an offline method. Can be called before authorization. Can be called synchronously",
+            "class": "LogVerbosityLevel",
+            "properties": [
+                {
+                    "name": "tag",
+                    "type": "string",
+                    "description": "Logging tag to change verbosity level"
+                }
+            ],
+            "is_synchronous": true,
+            "type": 1
+        },
+        {
+            "name": "addLogMessage",
+            "description": "Adds a message to TDLib internal log. This is an offline method. Can be called before authorization. Can be called synchronously",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "verbosity_level",
+                    "type": "int32",
+                    "description": "Minimum verbosity level needed for the message to be logged, 0-1023"
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "description": "Text of a message to log"
+                }
+            ],
+            "is_synchronous": true,
+            "type": 1
+        },
+        {
             "name": "testCallEmpty",
-            "description": "Does nothing; for testing only",
+            "description": "Does nothing; for testing only. This is an offline method. Can be called before authorization",
             "class": "Ok",
             "properties": [],
             "is_synchronous": false,
@@ -15864,7 +17942,7 @@
         },
         {
             "name": "testCallString",
-            "description": "Returns the received string; for testing only",
+            "description": "Returns the received string; for testing only. This is an offline method. Can be called before authorization",
             "class": "TestString",
             "properties": [
                 {
@@ -15878,7 +17956,7 @@
         },
         {
             "name": "testCallBytes",
-            "description": "Returns the received bytes; for testing only",
+            "description": "Returns the received bytes; for testing only. This is an offline method. Can be called before authorization",
             "class": "TestBytes",
             "properties": [
                 {
@@ -15892,7 +17970,7 @@
         },
         {
             "name": "testCallVectorInt",
-            "description": "Returns the received vector of numbers; for testing only",
+            "description": "Returns the received vector of numbers; for testing only. This is an offline method. Can be called before authorization",
             "class": "TestVectorInt",
             "properties": [
                 {
@@ -15906,7 +17984,7 @@
         },
         {
             "name": "testCallVectorIntObject",
-            "description": "Returns the received vector of objects containing a number; for testing only",
+            "description": "Returns the received vector of objects containing a number; for testing only. This is an offline method. Can be called before authorization",
             "class": "TestVectorIntObject",
             "properties": [
                 {
@@ -15920,7 +17998,7 @@
         },
         {
             "name": "testCallVectorString",
-            "description": "For testing only request. Returns the received vector of strings; for testing only",
+            "description": "Returns the received vector of strings; for testing only. This is an offline method. Can be called before authorization",
             "class": "TestVectorString",
             "properties": [
                 {
@@ -15934,7 +18012,7 @@
         },
         {
             "name": "testCallVectorStringObject",
-            "description": "Returns the received vector of objects containing a string; for testing only",
+            "description": "Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization",
             "class": "TestVectorStringObject",
             "properties": [
                 {
@@ -15948,7 +18026,7 @@
         },
         {
             "name": "testSquareInt",
-            "description": "Returns the squared received number; for testing only",
+            "description": "Returns the squared received number; for testing only. This is an offline method. Can be called before authorization",
             "class": "TestInt",
             "properties": [
                 {
@@ -15962,7 +18040,7 @@
         },
         {
             "name": "testNetwork",
-            "description": "Sends a simple network request to the Telegram servers; for testing only",
+            "description": "Sends a simple network request to the Telegram servers; for testing only. Can be called before authorization",
             "class": "Ok",
             "properties": [],
             "is_synchronous": false,
@@ -15978,7 +18056,7 @@
         },
         {
             "name": "testUseUpdate",
-            "description": "Does nothing and ensures that the Update object is used; for testing only",
+            "description": "Does nothing and ensures that the Update object is used; for testing only. This is an offline method. Can be called before authorization",
             "class": "Update",
             "properties": [],
             "is_synchronous": false,
@@ -15986,7 +18064,7 @@
         },
         {
             "name": "testUseError",
-            "description": "Does nothing and ensures that the Error object is used; for testing only",
+            "description": "Does nothing and ensures that the Error object is used; for testing only. This is an offline method. Can be called before authorization",
             "class": "Error",
             "properties": [],
             "is_synchronous": false,
