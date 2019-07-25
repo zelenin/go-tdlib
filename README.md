@@ -4,36 +4,7 @@ Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) 
 
 ## TDLib installation
 
-### Ubuntu 18.04 / Debian 9
-
-#### Precompiled (v1.3.0)
-
-Debian:
-```bash
-su
-apt update
-apt install -y apt-transport-https curl gnupg
-curl "https://repo.zelenin.pw/gpg.key" | apt-key add -
-echo "deb [arch=amd64] https://repo.zelenin.pw common contrib" | tee "/etc/apt/sources.list.d/tdlib.list"
-apt update
-apt install -y tdlib-dev
-```
-
-Ubuntu:
-```bash
-sudo apt update
-sudo apt install -y apt-transport-https curl gnupg
-curl "https://repo.zelenin.pw/gpg.key" | sudo apt-key add -
-echo "deb [arch=amd64] https://repo.zelenin.pw common contrib" | sudo tee "/etc/apt/sources.list.d/tdlib.list"
-sudo apt update
-sudo apt install -y tdlib-dev
-```
-
-Fedora:
-```bash
-sudo dnf update
-sudo dnf install tdlib-static
-```
+### Ubuntu 18-19 / Debian 9
 
 #### Manual compilation
 
@@ -73,10 +44,15 @@ import (
 
     "github.com/zelenin/go-tdlib/client"
 )
+func WithLogs() client.Option {
+    return func(tdlibClient *client.Client) {
+        tdlibClient.SetLogVerbosityLevel(&client.SetLogVerbosityLevelRequest{
+            NewVerbosityLevel: 1,
+        })
+    }
+}
 
 func main() {
-    client.SetLogVerbosityLevel(1)
-    
     // client authorizer
     authorizer := client.ClientAuthorizer()
     go client.CliInteractor(authorizer)
@@ -108,7 +84,7 @@ func main() {
         IgnoreFileNames:        false,
     }
 
-    tdlibClient, err := client.NewClient(authorizer)
+    tdlibClient, err := client.NewClient(authorizer, WithLogs())
     if err != nil {
         log.Fatalf("NewClient error: %s", err)
     }

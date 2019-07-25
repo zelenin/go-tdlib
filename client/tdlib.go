@@ -97,6 +97,7 @@ func (jsonClient *JsonClient) Destroy() {
 // Sets the path to the file where the internal TDLib log will be written.
 // By default TDLib writes logs to stderr or an OS specific log.
 // Use this method to write the log to a file instead.
+// Deprecated
 func SetLogFilePath(filePath string) {
 	query := C.CString(filePath)
 	defer C.free(unsafe.Pointer(query))
@@ -106,12 +107,14 @@ func SetLogFilePath(filePath string) {
 
 // Sets maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated.
 // Unused if log is not written to a file. Defaults to 10 MB.
+// Deprecated
 func SetLogMaxFileSize(maxFileSize int64) {
 	C.td_set_log_max_file_size(C.longlong(maxFileSize))
 }
 
 // Sets the verbosity level of the internal logging of TDLib.
 // By default the TDLib uses a log verbosity level of 5
+// Deprecated
 func SetLogVerbosityLevel(newVerbosityLevel int) {
 	C.td_set_log_verbosity_level(C.int(newVerbosityLevel))
 }
