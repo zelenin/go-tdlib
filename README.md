@@ -117,6 +117,35 @@ for update := range listener.Updates {
 }
 ```
 
+### Receive updates through event collector
+
+```go
+tdlibClient, err := client.NewClient(authorizer)
+if err != nil {
+    log.Fatalf("NewClient error: %s", err)
+}
+
+collector := client.NewEventCollector(tdlibClient)
+
+in := func(cl *client.Client, message client.Message) {
+    log.Println("A forwarded message which contains a video was received")
+}
+
+edit := func(cl *client.Client, message client.Message) {
+    log.Println("This message was edited by somone")
+}
+
+cmd := func(cl *client.Client, args []string) {
+    log.Println(args)
+}
+
+go collector.OnMessage(in, client.FilterVideo, client.FilterForwarded)
+go collector.OnEditedMessage(edit, client.FilterNotMe)
+go collector.OnCommand(cmd, "test", "/")
+
+collector.Wait()
+```
+
 ### Proxy support
 
 ```go
