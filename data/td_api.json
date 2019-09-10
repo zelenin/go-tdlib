@@ -315,7 +315,7 @@
                 {
                     "name": "min_user_age",
                     "type": "int32",
-                    "description": "Mininum age of a user to be able to accept the terms; 0 if any"
+                    "description": "Minimum age of a user to be able to accept the terms; 0 if any"
                 },
                 {
                     "name": "show_popup",
@@ -350,23 +350,25 @@
         },
         {
             "name": "authorizationStateWaitCode",
-            "description": "TDLib needs the user's authentication code to finalize authorization",
+            "description": "TDLib needs the user's authentication code to authorize",
             "class": "AuthorizationState",
             "properties": [
-                {
-                    "name": "is_registered",
-                    "type": "Bool",
-                    "description": "True, if the user is already registered"
-                },
-                {
-                    "name": "terms_of_service",
-                    "type": "termsOfService",
-                    "description": "Telegram terms of service, which should be accepted before user can continue registration; may be null"
-                },
                 {
                     "name": "code_info",
                     "type": "authenticationCodeInfo",
                     "description": "Information about the authorization code that was sent"
+                }
+            ]
+        },
+        {
+            "name": "authorizationStateWaitRegistration",
+            "description": "The user is unregistered and need to accept terms of service and enter their first name and last name to finish registration",
+            "class": "AuthorizationState",
+            "properties": [
+                {
+                    "name": "terms_of_service",
+                    "type": "termsOfService",
+                    "description": "Telegram terms of service"
                 }
             ]
         },
@@ -383,7 +385,7 @@
                 {
                     "name": "has_recovery_email_address",
                     "type": "Bool",
-                    "description": "True if a recovery email address has been set up"
+                    "description": "True, if a recovery email address has been set up"
                 },
                 {
                     "name": "recovery_email_address_pattern",
@@ -669,6 +671,28 @@
             ]
         },
         {
+            "name": "minithumbnail",
+            "description": "Thumbnail image of a very poor quality and low resolution",
+            "class": "Minithumbnail",
+            "properties": [
+                {
+                    "name": "width",
+                    "type": "int32",
+                    "description": "Thumbnail width, usually doesn't exceed 40"
+                },
+                {
+                    "name": "height",
+                    "type": "int32",
+                    "description": "Thumbnail height, usually doesn't exceed 40"
+                },
+                {
+                    "name": "data",
+                    "type": "bytes",
+                    "description": "The thumbnail in JPEG format"
+                }
+            ]
+        },
+        {
             "name": "maskPointForehead",
             "description": "A mask should be placed relatively to the forehead",
             "class": "MaskPoint",
@@ -782,6 +806,11 @@
                     "description": "MIME type of the file, usually \"image/gif\" or \"video/mp4\""
                 },
                 {
+                    "name": "minithumbnail",
+                    "type": "minithumbnail",
+                    "description": "Animation minithumbnail; may be null"
+                },
+                {
                     "name": "thumbnail",
                     "type": "photoSize",
                     "description": "Animation thumbnail; may be null"
@@ -824,6 +853,11 @@
                     "description": "The MIME type of the file; as defined by the sender"
                 },
                 {
+                    "name": "album_cover_minithumbnail",
+                    "type": "minithumbnail",
+                    "description": "The minithumbnail of the album cover; may be null"
+                },
+                {
                     "name": "album_cover_thumbnail",
                     "type": "photoSize",
                     "description": "The thumbnail of the album cover; as defined by the sender. The full size thumbnail should be extracted from the downloaded file; may be null"
@@ -851,9 +885,14 @@
                     "description": "MIME type of the file; as defined by the sender"
                 },
                 {
+                    "name": "minithumbnail",
+                    "type": "minithumbnail",
+                    "description": "Document minithumbnail; may be null"
+                },
+                {
                     "name": "thumbnail",
                     "type": "photoSize",
-                    "description": "Document thumbnail; as defined by the sender; may be null"
+                    "description": "Document thumbnail in JPEG or PNG format (PNG will be used only for background patterns); as defined by the sender; may be null"
                 },
                 {
                     "name": "document",
@@ -871,6 +910,11 @@
                     "name": "has_stickers",
                     "type": "Bool",
                     "description": "True, if stickers were added to the photo"
+                },
+                {
+                    "name": "minithumbnail",
+                    "type": "minithumbnail",
+                    "description": "Photo minithumbnail; may be null"
                 },
                 {
                     "name": "sizes",
@@ -903,6 +947,11 @@
                     "name": "emoji",
                     "type": "string",
                     "description": "Emoji corresponding to the sticker"
+                },
+                {
+                    "name": "is_animated",
+                    "type": "Bool",
+                    "description": "True, if the sticker is an animated sticker in TGS format"
                 },
                 {
                     "name": "is_mask",
@@ -967,6 +1016,11 @@
                     "description": "True, if the video should be tried to be streamed"
                 },
                 {
+                    "name": "minithumbnail",
+                    "type": "minithumbnail",
+                    "description": "Video minithumbnail; may be null"
+                },
+                {
                     "name": "thumbnail",
                     "type": "photoSize",
                     "description": "Video thumbnail; as defined by the sender; may be null"
@@ -992,6 +1046,11 @@
                     "name": "length",
                     "type": "int32",
                     "description": "Video width and height; as defined by the sender"
+                },
+                {
+                    "name": "minithumbnail",
+                    "type": "minithumbnail",
+                    "description": "Video minithumbnail; may be null"
                 },
                 {
                     "name": "thumbnail",
@@ -1205,12 +1264,12 @@
                 {
                     "name": "small",
                     "type": "file",
-                    "description": "A small (160x160) user profile photo"
+                    "description": "A small (160x160) user profile photo. The file can be downloaded only before the photo is changed"
                 },
                 {
                     "name": "big",
                     "type": "file",
-                    "description": "A big (640x640) user profile photo"
+                    "description": "A big (640x640) user profile photo. The file can be downloaded only before the photo is changed"
                 }
             ]
         },
@@ -1222,12 +1281,12 @@
                 {
                     "name": "small",
                     "type": "file",
-                    "description": "A small (160x160) chat photo"
+                    "description": "A small (160x160) chat photo. The file can be downloaded only before the photo is changed"
                 },
                 {
                     "name": "big",
                     "type": "file",
-                    "description": "A big (640x640) chat photo"
+                    "description": "A big (640x640) chat photo. The file can be downloaded only before the photo is changed"
                 }
             ]
         },
@@ -1399,6 +1458,11 @@
                     "description": "If non-empty, it contains the reason why access to this user must be restricted. The format of the string is \"{type}: {description}\". {type} contains the type of the restriction and at least one of the suffixes \"-all\", \"-ios\", \"-android\", or \"-wp\", which describe the platforms on which access should be restricted. (For example, \"terms-ios-android\". {description} contains a human-readable description of the restriction, which can be shown to the user)"
                 },
                 {
+                    "name": "is_scam",
+                    "type": "Bool",
+                    "description": "True, if many users reported this user as a scam"
+                },
+                {
                     "name": "have_access",
                     "type": "Bool",
                     "description": "If false, the user is inaccessible, and the only information known about the user is inside this class. It can't be passed to any method except GetUser"
@@ -1514,6 +1578,53 @@
             ]
         },
         {
+            "name": "chatPermissions",
+            "description": "Describes actions that a user is allowed to take in a chat",
+            "class": "ChatPermissions",
+            "properties": [
+                {
+                    "name": "can_send_messages",
+                    "type": "Bool",
+                    "description": "True, if the user can send text messages, contacts, locations, and venues"
+                },
+                {
+                    "name": "can_send_media_messages",
+                    "type": "Bool",
+                    "description": "True, if the user can send audio files, documents, photos, videos, video notes, and voice notes. Implies can_send_messages permissions"
+                },
+                {
+                    "name": "can_send_polls",
+                    "type": "Bool",
+                    "description": "True, if the user can send polls. Implies can_send_messages permissions"
+                },
+                {
+                    "name": "can_send_other_messages",
+                    "type": "Bool",
+                    "description": "True, if the user can send animations, games, and stickers and use inline bots. Implies can_send_messages permissions"
+                },
+                {
+                    "name": "can_add_web_page_previews",
+                    "type": "Bool",
+                    "description": "True, if the user may add a web page preview to their messages. Implies can_send_messages permissions"
+                },
+                {
+                    "name": "can_change_info",
+                    "type": "Bool",
+                    "description": "True, if the user can change the chat title, photo, and other settings"
+                },
+                {
+                    "name": "can_invite_users",
+                    "type": "Bool",
+                    "description": "True, if the user can invite new users to the chat"
+                },
+                {
+                    "name": "can_pin_messages",
+                    "type": "Bool",
+                    "description": "True, if the user can pin messages"
+                }
+            ]
+        },
+        {
             "name": "chatMemberStatusCreator",
             "description": "The user is the creator of a chat and has all the administrator privileges",
             "class": "ChatMemberStatus",
@@ -1573,7 +1684,7 @@
                 {
                     "name": "can_promote_members",
                     "type": "Bool",
-                    "description": "True, if the administrator can add new administrators with a subset of his own privileges or demote administrators that were directly or indirectly promoted by him"
+                    "description": "True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by him"
                 }
             ]
         },
@@ -1599,24 +1710,9 @@
                     "description": "Point in time (Unix timestamp) when restrictions will be lifted from the user; 0 if never. If the user is restricted for more than 366 days or for less than 30 seconds from the current time, the user is considered to be restricted forever"
                 },
                 {
-                    "name": "can_send_messages",
-                    "type": "Bool",
-                    "description": "True, if the user can send text messages, contacts, locations, and venues"
-                },
-                {
-                    "name": "can_send_media_messages",
-                    "type": "Bool",
-                    "description": "True, if the user can send audio files, documents, photos, videos, video notes, and voice notes. Implies can_send_messages permissions"
-                },
-                {
-                    "name": "can_send_other_messages",
-                    "type": "Bool",
-                    "description": "True, if the user can send animations, games, and stickers and use inline bots. Implies can_send_media_messages permissions"
-                },
-                {
-                    "name": "can_add_web_page_previews",
-                    "type": "Bool",
-                    "description": "True, if the user may add a web page preview to his messages. Implies can_send_messages permissions"
+                    "name": "permissions",
+                    "type": "chatPermissions",
+                    "description": "User permissions in the chat"
                 }
             ]
         },
@@ -1688,6 +1784,12 @@
             ]
         },
         {
+            "name": "chatMembersFilterContacts",
+            "description": "Returns contacts of the user",
+            "class": "ChatMembersFilter",
+            "properties": []
+        },
+        {
             "name": "chatMembersFilterAdministrators",
             "description": "Returns the creator and administrators",
             "class": "ChatMembersFilter",
@@ -1722,6 +1824,18 @@
             "description": "Returns recently active users in reverse chronological order",
             "class": "SupergroupMembersFilter",
             "properties": []
+        },
+        {
+            "name": "supergroupMembersFilterContacts",
+            "description": "Returns contacts of the user, which are members of the supergroup or channel",
+            "class": "SupergroupMembersFilter",
+            "properties": [
+                {
+                    "name": "query",
+                    "type": "string",
+                    "description": "Query to search for"
+                }
+            ]
         },
         {
             "name": "supergroupMembersFilterAdministrators",
@@ -1792,11 +1906,6 @@
                     "description": "Status of the current user in the group"
                 },
                 {
-                    "name": "everyone_is_administrator",
-                    "type": "Bool",
-                    "description": "True, if all members have been granted administrator rights in the group"
-                },
-                {
                     "name": "is_active",
                     "type": "Bool",
                     "description": "True, if the group is active"
@@ -1813,6 +1922,11 @@
             "description": "Contains full information about a basic group",
             "class": "BasicGroupFullInfo",
             "properties": [
+                {
+                    "name": "description",
+                    "type": "string",
+                    "description": "Group description"
+                },
                 {
                     "name": "creator_user_id",
                     "type": "int32",
@@ -1861,11 +1975,6 @@
                     "description": "Member count; 0 if unknown. Currently it is guaranteed to be known only if the supergroup or channel was found through SearchPublicChats"
                 },
                 {
-                    "name": "anyone_can_invite",
-                    "type": "Bool",
-                    "description": "True, if any member of the supergroup can invite other members. This field has no meaning for channels"
-                },
-                {
                     "name": "sign_messages",
                     "type": "Bool",
                     "description": "True, if messages sent to the channel should contain information about the sender. This field is only applicable to channels"
@@ -1884,6 +1993,11 @@
                     "name": "restriction_reason",
                     "type": "string",
                     "description": "If non-empty, contains the reason why access to this supergroup or channel must be restricted. Format of the string is \"{type}: {description}\". {type} Contains the type of the restriction and at least one of the suffixes \"-all\", \"-ios\", \"-android\", or \"-wp\", which describe the platforms on which access should be restricted. (For example, \"terms-ios-android\". {description} contains a human-readable description of the restriction, which can be shown to the user)"
+                },
+                {
+                    "name": "is_scam",
+                    "type": "Bool",
+                    "description": "True, if many users reported this supergroup as a scam"
                 }
             ]
         },
@@ -2038,7 +2152,7 @@
         },
         {
             "name": "messageForwardOriginHiddenUser",
-            "description": "The message was originally written by a user, which is hidden by his privacy settings",
+            "description": "The message was originally written by a user, which is hidden by their privacy settings",
             "class": "MessageForwardOrigin",
             "properties": [
                 {
@@ -2088,12 +2202,12 @@
                 {
                     "name": "from_chat_id",
                     "type": "int53",
-                    "description": "For messages forwarded to the chat with the current user (saved messages), the identifier of the chat from which the message was forwarded last time; 0 if unknown"
+                    "description": "For messages forwarded to the chat with the current user (saved messages) or to the channel discussion supergroup, the identifier of the chat from which the message was forwarded last time; 0 if unknown"
                 },
                 {
                     "name": "from_message_id",
                     "type": "int53",
-                    "description": "For messages forwarded to the chat with the current user (saved messages), the identifier of the original message from which the new message was forwarded last time; 0 if unknown"
+                    "description": "For messages forwarded to the chat with the current user (saved messages) or to the channel discussion supergroup, the identifier of the original message from which the new message was forwarded last time; 0 if unknown"
                 }
             ]
         },
@@ -2107,7 +2221,28 @@
             "name": "messageSendingStateFailed",
             "description": "The message failed to be sent",
             "class": "MessageSendingState",
-            "properties": []
+            "properties": [
+                {
+                    "name": "error_code",
+                    "type": "int32",
+                    "description": "An error code; 0 if unknown"
+                },
+                {
+                    "name": "error_message",
+                    "type": "string",
+                    "description": "Error message"
+                },
+                {
+                    "name": "can_retry",
+                    "type": "Bool",
+                    "description": "True, if the message can be re-sent"
+                },
+                {
+                    "name": "retry_after",
+                    "type": "double",
+                    "description": "Time left before the message can be re-sent, in seconds. No update is sent when this field changes"
+                }
+            ]
         },
         {
             "name": "message",
@@ -2122,7 +2257,7 @@
                 {
                     "name": "sender_user_id",
                     "type": "int32",
-                    "description": "Identifier of the user who sent the message; 0 if unknown. It is unknown for channel posts"
+                    "description": "Identifier of the user who sent the message; 0 if unknown. Currently, it is unknown for channel posts and for channel posts automatically forwarded to discussion group"
                 },
                 {
                     "name": "chat_id",
@@ -2473,6 +2608,11 @@
                     "description": "Chat photo; may be null"
                 },
                 {
+                    "name": "permissions",
+                    "type": "chatPermissions",
+                    "description": "Actions that non-administrator chat members are allowed to take in the chat"
+                },
+                {
                     "name": "last_message",
                     "type": "message",
                     "description": "Last message in the chat; may be null"
@@ -2626,7 +2766,7 @@
                 {
                     "name": "is_public",
                     "type": "Bool",
-                    "description": "True, if the chat is a public supergroup or channel with a username"
+                    "description": "True, if the chat is a public supergroup or a channel with a username"
                 }
             ]
         },
@@ -2674,6 +2814,28 @@
                     "name": "url",
                     "type": "string",
                     "description": "HTTP or tg:// URL to open"
+                }
+            ]
+        },
+        {
+            "name": "inlineKeyboardButtonTypeLoginUrl",
+            "description": "A button that opens a specified URL and automatically logs in in current user if they allowed to do that",
+            "class": "InlineKeyboardButtonType",
+            "properties": [
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "HTTP URL to open"
+                },
+                {
+                    "name": "id",
+                    "type": "int32",
+                    "description": "Unique button identifier"
+                },
+                {
+                    "name": "forward_text",
+                    "type": "string",
+                    "description": "If non-empty, new text of the button in forwarded messages"
                 }
             ]
         },
@@ -2970,12 +3132,12 @@
                 {
                     "name": "width",
                     "type": "int32",
-                    "description": "Width of a bounding box in which the image should be shown, 0 if unknown"
+                    "description": "Width of a bounding box in which the image should be shown; 0 if unknown"
                 },
                 {
                     "name": "height",
                     "type": "int32",
-                    "description": "Height of a bounding box in which the image should be shown, 0 if unknown"
+                    "description": "Height of a bounding box in which the image should be shown; 0 if unknown"
                 }
             ]
         },
@@ -3457,12 +3619,12 @@
                 {
                     "name": "width",
                     "type": "int32",
-                    "description": "Block width, 0 if unknown"
+                    "description": "Block width; 0 if unknown"
                 },
                 {
                     "name": "height",
                     "type": "int32",
-                    "description": "Block height, 0 if unknown"
+                    "description": "Block height; 0 if unknown"
                 },
                 {
                     "name": "caption",
@@ -3499,7 +3661,7 @@
                 {
                     "name": "author_photo",
                     "type": "photo",
-                    "description": "Post author photo"
+                    "description": "Post author photo; may be null"
                 },
                 {
                     "name": "date",
@@ -6374,6 +6536,16 @@
                     "name": "in_game_share",
                     "type": "Bool",
                     "description": "True, if a game message should be shared within a launched game; applies only to game messages"
+                },
+                {
+                    "name": "send_copy",
+                    "type": "Bool",
+                    "description": "True, if content of the message needs to be copied without a link to the original message. Always true if the message is forwarded to a secret chat"
+                },
+                {
+                    "name": "remove_caption",
+                    "type": "Bool",
+                    "description": "True, if media caption of the message copy needs to be removed. Ignored if send_copy is false"
                 }
             ]
         },
@@ -6642,9 +6814,9 @@
             ]
         },
         {
-            "name": "stickerEmojis",
-            "description": "Represents a list of all emoji corresponding to a sticker in a sticker set. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object",
-            "class": "StickerEmojis",
+            "name": "emojis",
+            "description": "Represents a list of emoji",
+            "class": "Emojis",
             "properties": [
                 {
                     "name": "emojis",
@@ -6674,6 +6846,11 @@
                     "description": "Name of the sticker set"
                 },
                 {
+                    "name": "thumbnail",
+                    "type": "photoSize",
+                    "description": "Sticker set thumbnail in WEBP format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed"
+                },
+                {
                     "name": "is_installed",
                     "type": "Bool",
                     "description": "True, if the sticker set has been installed by the current user"
@@ -6687,6 +6864,11 @@
                     "name": "is_official",
                     "type": "Bool",
                     "description": "True, if the sticker set is official"
+                },
+                {
+                    "name": "is_animated",
+                    "type": "Bool",
+                    "description": "True, is the stickers in the set are animated"
                 },
                 {
                     "name": "is_masks",
@@ -6705,8 +6887,8 @@
                 },
                 {
                     "name": "emojis",
-                    "type": "vector\u003cstickerEmojis\u003e",
-                    "description": "A list of emoji corresponding to the stickers in the same order"
+                    "type": "vector\u003cemojis\u003e",
+                    "description": "A list of emoji corresponding to the stickers in the same order. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object"
                 }
             ]
         },
@@ -6731,6 +6913,11 @@
                     "description": "Name of the sticker set"
                 },
                 {
+                    "name": "thumbnail",
+                    "type": "photoSize",
+                    "description": "Sticker set thumbnail in WEBP format with width and height 100; may be null"
+                },
+                {
                     "name": "is_installed",
                     "type": "Bool",
                     "description": "True, if the sticker set has been installed by current user"
@@ -6744,6 +6931,11 @@
                     "name": "is_official",
                     "type": "Bool",
                     "description": "True, if the sticker set is official"
+                },
+                {
+                    "name": "is_animated",
+                    "type": "Bool",
+                    "description": "True, is the stickers in the set are animated"
                 },
                 {
                     "name": "is_masks",
@@ -6986,6 +7178,48 @@
             ]
         },
         {
+            "name": "callProblemEcho",
+            "description": "The user heard their own voice",
+            "class": "CallProblem",
+            "properties": []
+        },
+        {
+            "name": "callProblemNoise",
+            "description": "The user heard background noise",
+            "class": "CallProblem",
+            "properties": []
+        },
+        {
+            "name": "callProblemInterruptions",
+            "description": "The other side kept disappearing",
+            "class": "CallProblem",
+            "properties": []
+        },
+        {
+            "name": "callProblemDistortedSpeech",
+            "description": "The speech was distorted",
+            "class": "CallProblem",
+            "properties": []
+        },
+        {
+            "name": "callProblemSilentLocal",
+            "description": "The user couldn't hear the other side",
+            "class": "CallProblem",
+            "properties": []
+        },
+        {
+            "name": "callProblemSilentRemote",
+            "description": "The other side couldn't hear the user",
+            "class": "CallProblem",
+            "properties": []
+        },
+        {
+            "name": "callProblemDropped",
+            "description": "The call ended unexpectedly",
+            "class": "CallProblem",
+            "properties": []
+        },
+        {
             "name": "call",
             "description": "Describes a call",
             "class": "Call",
@@ -7009,6 +7243,28 @@
                     "name": "state",
                     "type": "CallState",
                     "description": "Call state"
+                }
+            ]
+        },
+        {
+            "name": "phoneNumberAuthenticationSettings",
+            "description": "Contains settings for the authentication of the user's phone number",
+            "class": "PhoneNumberAuthenticationSettings",
+            "properties": [
+                {
+                    "name": "allow_flash_call",
+                    "type": "Bool",
+                    "description": "Pass true if the authentication code may be sent via flash call to the specified phone number"
+                },
+                {
+                    "name": "is_current_phone_number",
+                    "type": "Bool",
+                    "description": "Pass true if the authenticated phone number is used on the current device"
+                },
+                {
+                    "name": "allow_sms_retriever_api",
+                    "type": "Bool",
+                    "description": "For official applications only. True, if the app can use Android SMS Retriever API (requires Google Play Services \u003e= 10.2) to automatically receive the authentication code from the SMS. See https://developers.google.com/identity/sms-retriever/ for more details"
                 }
             ]
         },
@@ -7483,7 +7739,7 @@
         },
         {
             "name": "inputInlineQueryResultSticker",
-            "description": "Represents a link to a WEBP sticker",
+            "description": "Represents a link to a WEBP or a TGS sticker",
             "class": "InputInlineQueryResult",
             "properties": [
                 {
@@ -7499,7 +7755,7 @@
                 {
                     "name": "sticker_url",
                     "type": "string",
-                    "description": "The URL of the WEBP sticker (sticker file size must not exceed 5MB)"
+                    "description": "The URL of the WEBP or a TGS sticker (sticker file size must not exceed 5MB)"
                 },
                 {
                     "name": "sticker_width",
@@ -8102,6 +8358,18 @@
             ]
         },
         {
+            "name": "chatEventPollStopped",
+            "description": "A poll in a message was stopped",
+            "class": "ChatEventAction",
+            "properties": [
+                {
+                    "name": "message",
+                    "type": "message",
+                    "description": "The message with the poll"
+                }
+            ]
+        },
+        {
             "name": "chatEventMessagePinned",
             "description": "A message was pinned",
             "class": "ChatEventAction",
@@ -8210,6 +8478,23 @@
             ]
         },
         {
+            "name": "chatEventPermissionsChanged",
+            "description": "The chat permissions was changed",
+            "class": "ChatEventAction",
+            "properties": [
+                {
+                    "name": "old_permissions",
+                    "type": "chatPermissions",
+                    "description": "Previous chat permissions"
+                },
+                {
+                    "name": "new_permissions",
+                    "type": "chatPermissions",
+                    "description": "New chat permissions"
+                }
+            ]
+        },
+        {
             "name": "chatEventDescriptionChanged",
             "description": "The chat description was changed",
             "class": "ChatEventAction",
@@ -8250,25 +8535,25 @@
             "properties": [
                 {
                     "name": "old_photo",
-                    "type": "chatPhoto",
+                    "type": "photo",
                     "description": "Previous chat photo value; may be null"
                 },
                 {
                     "name": "new_photo",
-                    "type": "chatPhoto",
+                    "type": "photo",
                     "description": "New chat photo value; may be null"
                 }
             ]
         },
         {
             "name": "chatEventInvitesToggled",
-            "description": "The anyone_can_invite setting of a supergroup chat was toggled",
+            "description": "The can_invite_users permission of a supergroup chat was toggled",
             "class": "ChatEventAction",
             "properties": [
                 {
-                    "name": "anyone_can_invite",
+                    "name": "can_invite_users",
                     "type": "Bool",
-                    "description": "New value of anyone_can_invite"
+                    "description": "New value of can_invite_users permission"
                 }
             ]
         },
@@ -8752,36 +9037,126 @@
             ]
         },
         {
-            "name": "wallpaper",
-            "description": "Contains information about a wallpaper",
-            "class": "Wallpaper",
+            "name": "backgroundTypeWallpaper",
+            "description": "A wallpaper in JPEG format",
+            "class": "BackgroundType",
             "properties": [
                 {
-                    "name": "id",
-                    "type": "int32",
-                    "description": "Unique persistent wallpaper identifier"
+                    "name": "is_blurred",
+                    "type": "Bool",
+                    "description": "True, if the wallpaper must be downscaled to fit in 450x450 square and then box-blurred with radius 12"
                 },
                 {
-                    "name": "sizes",
-                    "type": "vector\u003cphotoSize\u003e",
-                    "description": "Available variants of the wallpaper in different sizes. These photos can only be downloaded; they can't be sent in a message"
-                },
-                {
-                    "name": "color",
-                    "type": "int32",
-                    "description": "Main color of the wallpaper in RGB24 format; should be treated as background color if no photos are specified"
+                    "name": "is_moving",
+                    "type": "Bool",
+                    "description": "True, if the background needs to be slightly moved when device is rotated"
                 }
             ]
         },
         {
-            "name": "wallpapers",
-            "description": "Contains a list of wallpapers",
-            "class": "Wallpapers",
+            "name": "backgroundTypePattern",
+            "description": "A PNG pattern to be combined with the color chosen by the user",
+            "class": "BackgroundType",
             "properties": [
                 {
-                    "name": "wallpapers",
-                    "type": "vector\u003cwallpaper\u003e",
-                    "description": "A list of wallpapers"
+                    "name": "is_moving",
+                    "type": "Bool",
+                    "description": "True, if the background needs to be slightly moved when device is rotated"
+                },
+                {
+                    "name": "color",
+                    "type": "int32",
+                    "description": "Main color of the background in RGB24 format"
+                },
+                {
+                    "name": "intensity",
+                    "type": "int32",
+                    "description": "Intensity of the pattern when it is shown above the main background color, 0-100"
+                }
+            ]
+        },
+        {
+            "name": "backgroundTypeSolid",
+            "description": "A solid background",
+            "class": "BackgroundType",
+            "properties": [
+                {
+                    "name": "color",
+                    "type": "int32",
+                    "description": "A color of the background in RGB24 format"
+                }
+            ]
+        },
+        {
+            "name": "background",
+            "description": "Describes a chat background",
+            "class": "Background",
+            "properties": [
+                {
+                    "name": "id",
+                    "type": "int64",
+                    "description": "Unique background identifier"
+                },
+                {
+                    "name": "is_default",
+                    "type": "Bool",
+                    "description": "True, if this is one of default backgrounds"
+                },
+                {
+                    "name": "is_dark",
+                    "type": "Bool",
+                    "description": "True, if the background is dark and is recommended to be used with dark theme"
+                },
+                {
+                    "name": "name",
+                    "type": "string",
+                    "description": "Unique background name"
+                },
+                {
+                    "name": "document",
+                    "type": "document",
+                    "description": "Document with the background; may be null. Null only for solid backgrounds"
+                },
+                {
+                    "name": "type",
+                    "type": "BackgroundType",
+                    "description": "Type of the background"
+                }
+            ]
+        },
+        {
+            "name": "backgrounds",
+            "description": "Contains a list of backgrounds",
+            "class": "Backgrounds",
+            "properties": [
+                {
+                    "name": "backgrounds",
+                    "type": "vector\u003cbackground\u003e",
+                    "description": "A list of backgrounds"
+                }
+            ]
+        },
+        {
+            "name": "inputBackgroundLocal",
+            "description": "A background from a local file",
+            "class": "InputBackground",
+            "properties": [
+                {
+                    "name": "background",
+                    "type": "InputFile",
+                    "description": "Background file to use. Only inputFileLocal and inputFileGenerated are supported. The file nust be in JPEG format for wallpapers and in PNG format for patterns"
+                }
+            ]
+        },
+        {
+            "name": "inputBackgroundRemote",
+            "description": "A background from the server",
+            "class": "InputBackground",
+            "properties": [
+                {
+                    "name": "background_id",
+                    "type": "int64",
+                    "description": "The background identifier"
                 }
             ]
         },
@@ -8817,7 +9192,7 @@
         },
         {
             "name": "checkChatUsernameResultPublicChatsTooMuch",
-            "description": "The user has too much public chats, one of them should be made private first",
+            "description": "The user has too much chats with username, one of them should be made private first",
             "class": "CheckChatUsernameResult",
             "properties": []
         },
@@ -8841,7 +9216,7 @@
         },
         {
             "name": "pushMessageContentAnimation",
-            "description": "An animation message (GIF-style)",
+            "description": "An animation message (GIF-style).",
             "class": "PushMessageContent",
             "properties": [
                 {
@@ -9571,6 +9946,18 @@
             "properties": []
         },
         {
+            "name": "userPrivacySettingShowProfilePhoto",
+            "description": "A privacy setting for managing whether the user's profile photo is visible",
+            "class": "UserPrivacySetting",
+            "properties": []
+        },
+        {
+            "name": "userPrivacySettingShowLinkInForwardedMessages",
+            "description": "A privacy setting for managing whether a link to the user's account is included in forwarded messages",
+            "class": "UserPrivacySetting",
+            "properties": []
+        },
+        {
             "name": "userPrivacySettingAllowChatInvites",
             "description": "A privacy setting for managing whether the user can be invited to chats",
             "class": "UserPrivacySetting",
@@ -9814,7 +10201,7 @@
         },
         {
             "name": "publicMessageLink",
-            "description": "Contains a public HTTPS link to a message in a public supergroup or channel",
+            "description": "Contains a public HTTPS link to a message in a public supergroup or channel with a username",
             "class": "PublicMessageLink",
             "properties": [
                 {
@@ -9826,6 +10213,33 @@
                     "name": "html",
                     "type": "string",
                     "description": "HTML-code for embedding the message"
+                }
+            ]
+        },
+        {
+            "name": "messageLinkInfo",
+            "description": "Contains information about a link to a message in a chat",
+            "class": "MessageLinkInfo",
+            "properties": [
+                {
+                    "name": "is_public",
+                    "type": "Bool",
+                    "description": "True, if the link is a public link for a message in a chat"
+                },
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "If found, identifier of the chat to which the message belongs, 0 otherwise"
+                },
+                {
+                    "name": "message",
+                    "type": "message",
+                    "description": "If found, the linked message; may be null"
+                },
+                {
+                    "name": "for_album",
+                    "type": "Bool",
+                    "description": "True, if the whole media album to which the message belongs is linked"
                 }
             ]
         },
@@ -9933,7 +10347,7 @@
         },
         {
             "name": "fileTypeWallpaper",
-            "description": "The file is a wallpaper",
+            "description": "The file is a wallpaper or a background pattern",
             "class": "FileType",
             "properties": []
         },
@@ -10154,8 +10568,72 @@
             ]
         },
         {
+            "name": "autoDownloadSettings",
+            "description": "Contains auto-download settings",
+            "class": "AutoDownloadSettings",
+            "properties": [
+                {
+                    "name": "is_auto_download_enabled",
+                    "type": "Bool",
+                    "description": "True, if the auto-download is enabled"
+                },
+                {
+                    "name": "max_photo_file_size",
+                    "type": "int32",
+                    "description": "Maximum size of a photo file to be auto-downloaded"
+                },
+                {
+                    "name": "max_video_file_size",
+                    "type": "int32",
+                    "description": "Maximum size of a video file to be auto-downloaded"
+                },
+                {
+                    "name": "max_other_file_size",
+                    "type": "int32",
+                    "description": "Maximum size of other file types to be auto-downloaded"
+                },
+                {
+                    "name": "preload_large_videos",
+                    "type": "Bool",
+                    "description": "True, if the beginning of videos needs to be preloaded for instant playback"
+                },
+                {
+                    "name": "preload_next_audio",
+                    "type": "Bool",
+                    "description": "True, if the next audio track needs to be preloaded while the user is listening to an audio file"
+                },
+                {
+                    "name": "use_less_data_for_calls",
+                    "type": "Bool",
+                    "description": "True, if \"use less data for calls\" option needs to be enabled"
+                }
+            ]
+        },
+        {
+            "name": "autoDownloadSettingsPresets",
+            "description": "Contains auto-download settings presets for the user",
+            "class": "AutoDownloadSettingsPresets",
+            "properties": [
+                {
+                    "name": "low",
+                    "type": "autoDownloadSettings",
+                    "description": "Preset with lowest settings; supposed to be used by default when roaming"
+                },
+                {
+                    "name": "medium",
+                    "type": "autoDownloadSettings",
+                    "description": "Preset with medium settings; supposed to be used by default when using mobile data"
+                },
+                {
+                    "name": "high",
+                    "type": "autoDownloadSettings",
+                    "description": "Preset with highest settings; supposed to be used by default when connected on Wi-Fi"
+                }
+            ]
+        },
+        {
             "name": "connectionStateWaitingForNetwork",
-            "description": "Currently waiting for the network to become available. Use SetNetworkType to change the available network type",
+            "description": "Currently waiting for the network to become available. Use setNetworkType to change the available network type",
             "class": "ConnectionState",
             "properties": []
         },
@@ -10549,7 +11027,7 @@
                 {
                     "name": "message",
                     "type": "message",
-                    "description": "Contains information about the message that failed to send"
+                    "description": "Contains information about the message which failed to send"
                 },
                 {
                     "name": "old_message_id",
@@ -10721,6 +11199,23 @@
                     "name": "photo",
                     "type": "chatPhoto",
                     "description": "The new chat photo; may be null"
+                }
+            ]
+        },
+        {
+            "name": "updateChatPermissions",
+            "description": "Chat permissions was changed",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "permissions",
+                    "type": "chatPermissions",
+                    "description": "The new chat permissions"
                 }
             ]
         },
@@ -11491,6 +11986,23 @@
             ]
         },
         {
+            "name": "updateSelectedBackground",
+            "description": "The selected background has changed",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "for_dark_theme",
+                    "type": "Bool",
+                    "description": "True, if background for dark theme has changed"
+                },
+                {
+                    "name": "background",
+                    "type": "background",
+                    "description": "The new selected background; may be null"
+                }
+            ]
+        },
+        {
             "name": "updateLanguagePackStrings",
             "description": "Some language pack strings have been updated",
             "class": "Update",
@@ -12081,6 +12593,10 @@
             "description": "Describes the current call state"
         },
         {
+            "name": "CallProblem",
+            "description": "Describes the exact type of a problem with a call"
+        },
+        {
             "name": "InputInlineQueryResult",
             "description": "Represents a single result of an inline query; for bots only"
         },
@@ -12103,6 +12619,14 @@
         {
             "name": "DeviceToken",
             "description": "Represents a data needed to subscribe for push notifications through registerDevice method. To use specific push notification service, you must specify the correct application platform and upload valid server authentication data at https://my.telegram.org"
+        },
+        {
+            "name": "BackgroundType",
+            "description": "Describes a type of a background"
+        },
+        {
+            "name": "InputBackground",
+            "description": "Contains information about background to set"
         },
         {
             "name": "CheckChatUsernameResult",
@@ -12220,7 +12744,7 @@
         },
         {
             "name": "setAuthenticationPhoneNumber",
-            "description": "Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber",
+            "description": "Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode or authorizationStateWaitPassword",
             "class": "Ok",
             "properties": [
                 {
@@ -12229,14 +12753,9 @@
                     "description": "The phone number of the user, in international format"
                 },
                 {
-                    "name": "allow_flash_call",
-                    "type": "Bool",
-                    "description": "Pass true if the authentication code may be sent via flash call to the specified phone number"
-                },
-                {
-                    "name": "is_current_phone_number",
-                    "type": "Bool",
-                    "description": "Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false"
+                    "name": "settings",
+                    "type": "phoneNumberAuthenticationSettings",
+                    "description": "Settings for the authentication of the user's phone number"
                 }
             ],
             "is_synchronous": false,
@@ -12259,16 +12778,25 @@
                     "name": "code",
                     "type": "string",
                     "description": "The verification code received via SMS, Telegram message, phone call, or flash call"
-                },
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
+            "name": "registerUser",
+            "description": "Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration",
+            "class": "Ok",
+            "properties": [
                 {
                     "name": "first_name",
                     "type": "string",
-                    "description": "If the user is not yet registered, the first name of the user; 1-64 characters. You can also pass an empty string for unregistered user there to check verification code validness. In the latter case PHONE_NUMBER_UNOCCUPIED error will be returned for a valid code"
+                    "description": "The first name of the user; 1-64 characters"
                 },
                 {
                     "name": "last_name",
                     "type": "string",
-                    "description": "If the user is not yet registered; the last name of the user; optional; 0-64 characters"
+                    "description": "The last name of the user; 0-64 characters"
                 }
             ],
             "is_synchronous": false,
@@ -12428,7 +12956,7 @@
         },
         {
             "name": "setRecoveryEmailAddress",
-            "description": "Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed If new_recovery_email_address is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation",
+            "description": "Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed. If new_recovery_email_address is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation",
             "class": "PasswordState",
             "properties": [
                 {
@@ -12761,7 +13289,7 @@
         },
         {
             "name": "getChats",
-            "description": "Returns an ordered list of chats. Chats are sorted by the pair (order, chat_id) in decreasing order. (For example, to get a list of chats from the beginning, the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance the number of returned chats is chosen by the library.",
+            "description": "Returns an ordered list of chats. Chats are sorted by the pair (order, chat_id) in decreasing order. (For example, to get a list of chats from the beginning, the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance the number of returned chats is chosen by the library",
             "class": "Chats",
             "properties": [
                 {
@@ -12944,7 +13472,7 @@
         },
         {
             "name": "getCreatedPublicChats",
-            "description": "Returns a list of public chats created by the user",
+            "description": "Returns a list of public chats with username created by the user",
             "class": "Chats",
             "properties": [],
             "is_synchronous": false,
@@ -13278,7 +13806,7 @@
         },
         {
             "name": "getPublicMessageLink",
-            "description": "Returns a public HTTPS link to a message. Available only for messages in public supergroups and channels",
+            "description": "Returns a public HTTPS link to a message. Available only for messages in supergroups and channels with username",
             "class": "PublicMessageLink",
             "properties": [
                 {
@@ -13318,6 +13846,20 @@
             ],
             "is_synchronous": false,
             "type": 2
+        },
+        {
+            "name": "getMessageLinkInfo",
+            "description": "Returns information about a public or private message link",
+            "class": "MessageLinkInfo",
+            "properties": [
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "The message link in the format \"https://t.me/c/...\", or \"tg://privatepost?...\", or \"https://t.me/username/...\", or \"tg://resolve?...\""
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
         },
         {
             "name": "sendMessage",
@@ -13410,7 +13952,7 @@
                 {
                     "name": "parameter",
                     "type": "string",
-                    "description": "A hidden parameter sent to the bot for deep linking purposes (https://api.telegram.org/bots#deep-linking)"
+                    "description": "A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)"
                 }
             ],
             "is_synchronous": false,
@@ -13488,12 +14030,41 @@
                 {
                     "name": "from_background",
                     "type": "Bool",
-                    "description": "Pass true if the message is sent from the background"
+                    "description": "Pass true if the messages are sent from the background"
                 },
                 {
                     "name": "as_album",
                     "type": "Bool",
                     "description": "True, if the messages should be grouped into an album after forwarding. For this to work, no more than 10 messages may be forwarded, and all of them must be photo or video messages"
+                },
+                {
+                    "name": "send_copy",
+                    "type": "Bool",
+                    "description": "True, if content of the messages needs to be copied without links to the original messages. Always true if the messages are forwarded to a secret chat"
+                },
+                {
+                    "name": "remove_caption",
+                    "type": "Bool",
+                    "description": "True, if media captions of message copies needs to be removed. Ignored if send_copy is false"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
+            "name": "resendMessages",
+            "description": "Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message",
+            "class": "Messages",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat to send messages"
+                },
+                {
+                    "name": "message_ids",
+                    "type": "vector\u003cint53\u003e",
+                    "description": "Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order"
                 }
             ],
             "is_synchronous": false,
@@ -14592,7 +15163,7 @@
         },
         {
             "name": "upgradeBasicGroupChatToSupergroupChat",
-            "description": "Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom. Deactivates the original basic group",
+            "description": "Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group",
             "class": "Chat",
             "properties": [
                 {
@@ -14606,7 +15177,7 @@
         },
         {
             "name": "setChatTitle",
-            "description": "Changes the chat title. Supported only for basic groups, supergroups and channels. Requires administrator rights in basic groups and the appropriate administrator rights in supergroups and channels. The title will not be changed until the request to the server has been completed",
+            "description": "Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info rights. The title will not be changed until the request to the server has been completed",
             "class": "Ok",
             "properties": [
                 {
@@ -14625,7 +15196,7 @@
         },
         {
             "name": "setChatPhoto",
-            "description": "Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires administrator rights in basic groups and the appropriate administrator rights in supergroups and channels. The photo will not be changed before request to the server has been completed",
+            "description": "Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info rights. The photo will not be changed before request to the server has been completed",
             "class": "Ok",
             "properties": [
                 {
@@ -14637,6 +15208,25 @@
                     "name": "photo",
                     "type": "InputFile",
                     "description": "New chat photo. You can use a zero InputFileId to delete the chat photo. Files that are accessible only by HTTP URL are not acceptable"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
+            "name": "setChatPermissions",
+            "description": "Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "permissions",
+                    "type": "chatPermissions",
+                    "description": "New non-administrator members permissions in the chat"
                 }
             ],
             "is_synchronous": false,
@@ -14757,8 +15347,27 @@
             "type": 1
         },
         {
+            "name": "setChatDescription",
+            "description": "Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info rights",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat"
+                },
+                {
+                    "name": "description",
+                    "type": "string",
+                    "description": "New chat description; 0-255 characters"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
             "name": "pinChatMessage",
-            "description": "Pins a message in a chat; requires appropriate administrator rights in the group or channel",
+            "description": "Pins a message in a chat; requires can_pin_messages rights",
             "class": "Ok",
             "properties": [
                 {
@@ -14782,7 +15391,7 @@
         },
         {
             "name": "unpinChatMessage",
-            "description": "Removes the pinned message from a chat; requires appropriate administrator rights in the group or channel",
+            "description": "Removes the pinned message from a chat; requires can_pin_messages rights in the group or channel",
             "class": "Ok",
             "properties": [
                 {
@@ -15256,7 +15865,7 @@
         },
         {
             "name": "generateChatInviteLink",
-            "description": "Generates a new invite link for a chat; the previously generated link is revoked. Available for basic groups, supergroups, and channels. In basic groups this can be called only by the group's creator; in supergroups and channels this requires appropriate administrator rights",
+            "description": "Generates a new invite link for a chat; the previously generated link is revoked. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right",
             "class": "ChatInviteLink",
             "properties": [
                 {
@@ -15382,6 +15991,11 @@
                     "name": "comment",
                     "type": "string",
                     "description": "An optional user comment if the rating is less than 5"
+                },
+                {
+                    "name": "problems",
+                    "type": "vector\u003cCallProblem\u003e",
+                    "description": "List of the exact types of problems with the call, specified by the user"
                 }
             ],
             "is_synchronous": false,
@@ -15887,13 +16501,46 @@
         },
         {
             "name": "getStickerEmojis",
-            "description": "Returns emoji corresponding to a sticker",
-            "class": "StickerEmojis",
+            "description": "Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object",
+            "class": "Emojis",
             "properties": [
                 {
                     "name": "sticker",
                     "type": "InputFile",
                     "description": "Sticker file identifier"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "searchEmojis",
+            "description": "Searches for emojis by keywords. Supported only if the file database is enabled",
+            "class": "Emojis",
+            "properties": [
+                {
+                    "name": "text",
+                    "type": "string",
+                    "description": "Text to search for"
+                },
+                {
+                    "name": "exact_match",
+                    "type": "Bool",
+                    "description": "True, if only emojis, which exactly match text needs to be returned"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "getEmojiSuggestionsUrl",
+            "description": "Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation",
+            "class": "HttpUrl",
+            "properties": [
+                {
+                    "name": "language_code",
+                    "type": "string",
+                    "description": "Language code for which the emoji replacements will be suggested"
                 }
             ],
             "is_synchronous": false,
@@ -16095,14 +16742,9 @@
                     "description": "The new phone number of the user in international format"
                 },
                 {
-                    "name": "allow_flash_call",
-                    "type": "Bool",
-                    "description": "Pass true if the code can be sent via flash call to the specified phone number"
-                },
-                {
-                    "name": "is_current_phone_number",
-                    "type": "Bool",
-                    "description": "Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false"
+                    "name": "settings",
+                    "type": "phoneNumberAuthenticationSettings",
+                    "description": "Settings for the authentication of the user's phone number"
                 }
             ],
             "is_synchronous": false,
@@ -16191,25 +16833,6 @@
             "type": 2
         },
         {
-            "name": "toggleBasicGroupAdministrators",
-            "description": "Toggles the \"All members are admins\" setting in basic groups; requires creator privileges in the group",
-            "class": "Ok",
-            "properties": [
-                {
-                    "name": "basic_group_id",
-                    "type": "int32",
-                    "description": "Identifier of the basic group"
-                },
-                {
-                    "name": "everyone_is_administrator",
-                    "type": "Bool",
-                    "description": "New value of everyone_is_administrator"
-                }
-            ],
-            "is_synchronous": false,
-            "type": 2
-        },
-        {
             "name": "setSupergroupUsername",
             "description": "Changes the username of a supergroup or channel, requires creator privileges in the supergroup or channel",
             "class": "Ok",
@@ -16230,7 +16853,7 @@
         },
         {
             "name": "setSupergroupStickerSet",
-            "description": "Changes the sticker set of a supergroup; requires appropriate rights in the supergroup",
+            "description": "Changes the sticker set of a supergroup; requires can_change_info rights",
             "class": "Ok",
             "properties": [
                 {
@@ -16248,27 +16871,8 @@
             "type": 1
         },
         {
-            "name": "toggleSupergroupInvites",
-            "description": "Toggles whether all members of a supergroup can add new members; requires appropriate administrator rights in the supergroup.",
-            "class": "Ok",
-            "properties": [
-                {
-                    "name": "supergroup_id",
-                    "type": "int32",
-                    "description": "Identifier of the supergroup"
-                },
-                {
-                    "name": "anyone_can_invite",
-                    "type": "Bool",
-                    "description": "New value of anyone_can_invite"
-                }
-            ],
-            "is_synchronous": false,
-            "type": 2
-        },
-        {
             "name": "toggleSupergroupSignMessages",
-            "description": "Toggles sender signatures messages sent in a channel; requires appropriate administrator rights in the channel.",
+            "description": "Toggles sender signatures messages sent in a channel; requires can_change_info rights",
             "class": "Ok",
             "properties": [
                 {
@@ -16287,7 +16891,7 @@
         },
         {
             "name": "toggleSupergroupIsAllHistoryAvailable",
-            "description": "Toggles whether the message history of a supergroup is available to new members; requires appropriate administrator rights in the supergroup.",
+            "description": "Toggles whether the message history of a supergroup is available to new members; requires can_change_info rights",
             "class": "Ok",
             "properties": [
                 {
@@ -16303,25 +16907,6 @@
             ],
             "is_synchronous": false,
             "type": 2
-        },
-        {
-            "name": "setSupergroupDescription",
-            "description": "Changes information about a supergroup or channel; requires appropriate administrator rights",
-            "class": "Ok",
-            "properties": [
-                {
-                    "name": "supergroup_id",
-                    "type": "int32",
-                    "description": "Identifier of the supergroup or channel"
-                },
-                {
-                    "name": "description",
-                    "type": "string",
-                    "description": "New supergroup or channel description; 0-255 characters"
-                }
-            ],
-            "is_synchronous": false,
-            "type": 1
         },
         {
             "name": "reportSupergroupSpam",
@@ -16577,9 +17162,94 @@
             "type": 2
         },
         {
-            "name": "getWallpapers",
-            "description": "Returns background wallpapers",
-            "class": "Wallpapers",
+            "name": "getBackgrounds",
+            "description": "Returns backgrounds installed by the user",
+            "class": "Backgrounds",
+            "properties": [
+                {
+                    "name": "for_dark_theme",
+                    "type": "Bool",
+                    "description": "True, if the backgrounds needs to be ordered for dark theme"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "getBackgroundUrl",
+            "description": "Constructs a persistent HTTP URL for a background",
+            "class": "HttpUrl",
+            "properties": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "description": "Background name"
+                },
+                {
+                    "name": "type",
+                    "type": "BackgroundType",
+                    "description": "Background type"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "searchBackground",
+            "description": "Searches for a background by its name",
+            "class": "Background",
+            "properties": [
+                {
+                    "name": "name",
+                    "type": "string",
+                    "description": "The name of the background"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "setBackground",
+            "description": "Changes the background selected by the user; adds background to the list of installed backgrounds",
+            "class": "Background",
+            "properties": [
+                {
+                    "name": "background",
+                    "type": "InputBackground",
+                    "description": "The input background to use, null for solid backgrounds"
+                },
+                {
+                    "name": "type",
+                    "type": "BackgroundType",
+                    "description": "Background type; null for default background. The method will return error 404 if type is null"
+                },
+                {
+                    "name": "for_dark_theme",
+                    "type": "Bool",
+                    "description": "True, if the background is chosen for dark theme"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "removeBackground",
+            "description": "Removes background from the list of installed backgrounds",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "background_id",
+                    "type": "int64",
+                    "description": "The background indentifier"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "resetBackgrounds",
+            "description": "Resets list of installed backgrounds to its default value",
+            "class": "Ok",
             "properties": [],
             "is_synchronous": false,
             "type": 2
@@ -16947,7 +17617,7 @@
         },
         {
             "name": "getChatStatisticsUrl",
-            "description": "Returns URL with the chat statistics. Currently this method can be used only for channels",
+            "description": "Returns an HTTP URL with the chat statistics. Currently this method can be used only for channels",
             "class": "HttpUrl",
             "properties": [
                 {
@@ -17099,6 +17769,33 @@
             "type": 1
         },
         {
+            "name": "getAutoDownloadSettingsPresets",
+            "description": "Returns auto-download settings presets for the currently logged in user",
+            "class": "AutoDownloadSettingsPresets",
+            "properties": [],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "setAutoDownloadSettings",
+            "description": "Sets auto-download settings",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "settings",
+                    "type": "autoDownloadSettings",
+                    "description": "New user auto-download settings"
+                },
+                {
+                    "name": "type",
+                    "type": "NetworkType",
+                    "description": "Type of the network for which the new settings are applied"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
             "name": "getPassportElement",
             "description": "Returns one of the available Telegram Passport elements",
             "class": "PassportElement",
@@ -17208,14 +17905,9 @@
                     "description": "The phone number of the user, in international format"
                 },
                 {
-                    "name": "allow_flash_call",
-                    "type": "Bool",
-                    "description": "Pass true if the authentication code may be sent via flash call to the specified phone number"
-                },
-                {
-                    "name": "is_current_phone_number",
-                    "type": "Bool",
-                    "description": "Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false"
+                    "name": "settings",
+                    "type": "phoneNumberAuthenticationSettings",
+                    "description": "Settings for the authentication of the user's phone number"
                 }
             ],
             "is_synchronous": false,
@@ -17362,14 +18054,9 @@
                     "description": "Value of the \"phone\" parameter from the link"
                 },
                 {
-                    "name": "allow_flash_call",
-                    "type": "Bool",
-                    "description": "Pass true if the authentication code may be sent via flash call to the specified phone number"
-                },
-                {
-                    "name": "is_current_phone_number",
-                    "type": "Bool",
-                    "description": "Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false"
+                    "name": "settings",
+                    "type": "phoneNumberAuthenticationSettings",
+                    "description": "Settings for the authentication of the user's phone number"
                 }
             ],
             "is_synchronous": false,
@@ -17633,7 +18320,7 @@
         },
         {
             "name": "getCountryCode",
-            "description": "Uses current user IP to found his country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization",
+            "description": "Uses current user IP to found their country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization",
             "class": "Text",
             "properties": [],
             "is_synchronous": false,
@@ -18047,6 +18734,30 @@
             "type": 1
         },
         {
+            "name": "testProxy",
+            "description": "Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "server",
+                    "type": "string",
+                    "description": "Proxy server IP address"
+                },
+                {
+                    "name": "port",
+                    "type": "int32",
+                    "description": "Proxy server port"
+                },
+                {
+                    "name": "type",
+                    "type": "ProxyType",
+                    "description": "Proxy type"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
             "name": "testGetDifference",
             "description": "Forces an updates.getDifference call to the Telegram servers; for testing only",
             "class": "Ok",
@@ -18063,11 +18774,17 @@
             "type": 1
         },
         {
-            "name": "testUseError",
-            "description": "Does nothing and ensures that the Error object is used; for testing only. This is an offline method. Can be called before authorization",
+            "name": "testReturnError",
+            "description": "Returns the specified error and ensures that the Error object is used; for testing only. This is an offline method. Can be called before authorization. Can be called synchronously",
             "class": "Error",
-            "properties": [],
-            "is_synchronous": false,
+            "properties": [
+                {
+                    "name": "error",
+                    "type": "error",
+                    "description": "The error to be returned"
+                }
+            ],
+            "is_synchronous": true,
             "type": 1
         }
     ]

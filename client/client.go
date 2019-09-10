@@ -42,6 +42,12 @@ func WithProxy(req *AddProxyRequest) Option {
 	}
 }
 
+func WithLogVerbosity(req *SetLogVerbosityLevelRequest) Option {
+	return func(client *Client) {
+		client.SetLogVerbosityLevel(req)
+	}
+}
+
 func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...Option) (*Client, error) {
 	catchersListener := make(chan *Response, 1000)
 

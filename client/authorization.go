@@ -40,8 +40,6 @@ type clientAuthorizer struct {
 	PhoneNumber     chan string
 	Code            chan string
 	State           chan AuthorizationState
-	FirstName       chan string
-	LastName        chan string
 	Password        chan string
 }
 
@@ -51,8 +49,6 @@ func ClientAuthorizer() *clientAuthorizer {
 		PhoneNumber:     make(chan string, 1),
 		Code:            make(chan string, 1),
 		State:           make(chan AuthorizationState, 10),
-		FirstName:       make(chan string, 1),
-		LastName:        make(chan string, 1),
 		Password:        make(chan string, 1),
 	}
 }
@@ -73,19 +69,23 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 
 	case TypeAuthorizationStateWaitPhoneNumber:
 		_, err := client.SetAuthenticationPhoneNumber(&SetAuthenticationPhoneNumberRequest{
-			PhoneNumber:          <-stateHandler.PhoneNumber,
-			AllowFlashCall:       false,
-			IsCurrentPhoneNumber: false,
+			PhoneNumber: <-stateHandler.PhoneNumber,
+			Settings: &PhoneNumberAuthenticationSettings{
+				AllowFlashCall:       false,
+				IsCurrentPhoneNumber: false,
+				AllowSmsRetrieverApi: false,
+			},
 		})
 		return err
 
 	case TypeAuthorizationStateWaitCode:
 		_, err := client.CheckAuthenticationCode(&CheckAuthenticationCodeRequest{
-			Code:      <-stateHandler.Code,
-			FirstName: <-stateHandler.FirstName,
-			LastName:  <-stateHandler.LastName,
+			Code: <-stateHandler.Code,
 		})
 		return err
+
+	case TypeAuthorizationStateWaitRegistration:
+		return ErrNotSupportedAuthorizationState
 
 	case TypeAuthorizationStateWaitPassword:
 		_, err := client.CheckAuthenticationPassword(&CheckAuthenticationPasswordRequest{
@@ -114,8 +114,6 @@ func (stateHandler *clientAuthorizer) Close() {
 	close(stateHandler.PhoneNumber)
 	close(stateHandler.Code)
 	close(stateHandler.State)
-	close(stateHandler.FirstName)
-	close(stateHandler.LastName)
 	close(stateHandler.Password)
 }
 
@@ -137,25 +135,11 @@ func CliInteractor(clientAuthorizer *clientAuthorizer) {
 
 			case TypeAuthorizationStateWaitCode:
 				var code string
-				var firstName string
-				var lastName string
 
 				fmt.Println("Enter code: ")
 				fmt.Scanln(&code)
 
-				if !state.(*AuthorizationStateWaitCode).IsRegistered {
-					fmt.Println("Phone number is not registered.")
-
-					fmt.Println("Enter first name: ")
-					fmt.Scanln(&firstName)
-
-					fmt.Println("Enter last name: ")
-					fmt.Scanln(&lastName)
-				}
-
 				clientAuthorizer.Code <- code
-				clientAuthorizer.FirstName <- firstName
-				clientAuthorizer.LastName <- lastName
 
 			case TypeAuthorizationStateWaitPassword:
 				fmt.Println("Enter password: ")

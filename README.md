@@ -1,33 +1,10 @@
 # go-tdlib
 
-Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) with full support of TDLib v1.4.0
+Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) with full support of TDLib v1.5.0
 
 ## TDLib installation
 
-### Ubuntu 18-19 / Debian 9
-
-#### Manual compilation
-
-```bash
-apt-get update -y
-apt-get install -y \
-    build-essential \
-    ca-certificates \
-    ccache \
-    cmake \
-    git \
-    gperf \
-    libssl-dev \
-    libreadline-dev \
-    zlib1g-dev
-git clone --depth 1 -b "v1.4.0" "https://github.com/tdlib/td.git" ./tdlib-src
-mkdir ./tdlib-src/build
-cd ./tdlib-src/build
-cmake -DCMAKE_BUILD_TYPE=Release ..
-cmake --build .
-make install
-rm -rf ./../../tdlib-src
-```
+Use [TDLib build instructions](https://tdlib.github.io/td/build.html)
 
 ## Usage
 
@@ -44,23 +21,16 @@ import (
 
     "github.com/zelenin/go-tdlib/client"
 )
-func WithLogs() client.Option {
-    return func(tdlibClient *client.Client) {
-        tdlibClient.SetLogVerbosityLevel(&client.SetLogVerbosityLevelRequest{
-            NewVerbosityLevel: 1,
-        })
-    }
-}
 
 func main() {
     // client authorizer
     authorizer := client.ClientAuthorizer()
     go client.CliInteractor(authorizer)
-    
+
     // or bot authorizer
-    botToken := "000000000:gsVCGG5YbikxYHC7bP5vRvmBqJ7Xz6vG6td"
-    authorizer := client.BotAuthorizer(botToken)
-    
+    // botToken := "000000000:gsVCGG5YbikxYHC7bP5vRvmBqJ7Xz6vG6td"
+    // authorizer := client.BotAuthorizer(botToken)
+
     const (
         apiId   = 00000
         apiHash = "8pu9yg32qkuukj83ozaqo5zzjwhkxhnk"
@@ -84,10 +54,23 @@ func main() {
         IgnoreFileNames:        false,
     }
 
-    tdlibClient, err := client.NewClient(authorizer, WithLogs())
+    logVerbosity := client.WithLogVerbosity(&client.SetLogVerbosityLevelRequest{
+        NewVerbosityLevel: 0,
+    })
+
+    tdlibClient, err := client.NewClient(authorizer, logVerbosity)
     if err != nil {
         log.Fatalf("NewClient error: %s", err)
     }
+
+    optionValue, err := tdlibClient.GetOption(&client.GetOptionRequest{
+        Name: "version",
+    })
+    if err != nil {
+        log.Fatalf("GetOption error: %s", err)
+    }
+
+    log.Printf("TDLib version: %s", optionValue.(*client.OptionValueString).Value)
 
     me, err := tdlibClient.GetMe()
     if err != nil {
@@ -120,7 +103,7 @@ for update := range listener.Updates {
 ### Proxy support
 
 ```go
-proxyOption := client.WithProxy(&client.AddProxyRequest{
+proxy := client.WithProxy(&client.AddProxyRequest{
     Server: "1.1.1.1",
     Port:   1080,
     Enable: true,
@@ -130,7 +113,7 @@ proxyOption := client.WithProxy(&client.AddProxyRequest{
     },
 })
 
-tdlibClient, err := client.NewClient(authorizer, proxyOption)
+tdlibClient, err := client.NewClient(authorizer, proxy)
 
 ```
 

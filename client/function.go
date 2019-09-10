@@ -35,6 +35,9 @@ func (client *Client) GetAuthorizationState() (AuthorizationState, error) {
 	case TypeAuthorizationStateWaitCode:
 		return UnmarshalAuthorizationStateWaitCode(result.Data)
 
+	case TypeAuthorizationStateWaitRegistration:
+		return UnmarshalAuthorizationStateWaitRegistration(result.Data)
+
 	case TypeAuthorizationStateWaitPassword:
 		return UnmarshalAuthorizationStateWaitPassword(result.Data)
 
@@ -110,22 +113,19 @@ func (client *Client) CheckDatabaseEncryptionKey(req *CheckDatabaseEncryptionKey
 type SetAuthenticationPhoneNumberRequest struct {
 	// The phone number of the user, in international format
 	PhoneNumber string `json:"phone_number"`
-	// Pass true if the authentication code may be sent via flash call to the specified phone number
-	AllowFlashCall bool `json:"allow_flash_call"`
-	// Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false
-	IsCurrentPhoneNumber bool `json:"is_current_phone_number"`
+	// Settings for the authentication of the user's phone number
+	Settings *PhoneNumberAuthenticationSettings `json:"settings"`
 }
 
-// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber
+// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode or authorizationStateWaitPassword
 func (client *Client) SetAuthenticationPhoneNumber(req *SetAuthenticationPhoneNumberRequest) (*Ok, error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "setAuthenticationPhoneNumber",
 		},
 		Data: map[string]interface{}{
-			"phone_number":            req.PhoneNumber,
-			"allow_flash_call":        req.AllowFlashCall,
-			"is_current_phone_number": req.IsCurrentPhoneNumber,
+			"phone_number": req.PhoneNumber,
+			"settings":     req.Settings,
 		},
 	})
 	if err != nil {
@@ -161,10 +161,6 @@ func (client *Client) ResendAuthenticationCode() (*Ok, error) {
 type CheckAuthenticationCodeRequest struct {
 	// The verification code received via SMS, Telegram message, phone call, or flash call
 	Code string `json:"code"`
-	// If the user is not yet registered, the first name of the user; 1-64 characters. You can also pass an empty string for unregistered user there to check verification code validness. In the latter case PHONE_NUMBER_UNOCCUPIED error will be returned for a valid code
-	FirstName string `json:"first_name"`
-	// If the user is not yet registered; the last name of the user; optional; 0-64 characters
-	LastName string `json:"last_name"`
 }
 
 // Checks the authentication code. Works only when the current authorization state is authorizationStateWaitCode
@@ -174,7 +170,34 @@ func (client *Client) CheckAuthenticationCode(req *CheckAuthenticationCodeReques
 			Type: "checkAuthenticationCode",
 		},
 		Data: map[string]interface{}{
-			"code":       req.Code,
+			"code": req.Code,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type RegisterUserRequest struct {
+	// The first name of the user; 1-64 characters
+	FirstName string `json:"first_name"`
+	// The last name of the user; 0-64 characters
+	LastName string `json:"last_name"`
+}
+
+// Finishes user registration. Works only when the current authorization state is authorizationStateWaitRegistration
+func (client *Client) RegisterUser(req *RegisterUserRequest) (*Ok, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "registerUser",
+		},
+		Data: map[string]interface{}{
 			"first_name": req.FirstName,
 			"last_name":  req.LastName,
 		},
@@ -479,7 +502,7 @@ type SetRecoveryEmailAddressRequest struct {
 	NewRecoveryEmailAddress string `json:"new_recovery_email_address"`
 }
 
-// Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed If new_recovery_email_address is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation
+// Changes the 2-step verification recovery email address of the user. If a new recovery email address is specified, then the change will not be applied until the new recovery email address is confirmed. If new_recovery_email_address is the same as the email address that is currently set up, this call succeeds immediately and aborts all other requests waiting for an email confirmation
 func (client *Client) SetRecoveryEmailAddress(req *SetRecoveryEmailAddressRequest) (*PasswordState, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -1072,7 +1095,7 @@ type GetChatsRequest struct {
 	Limit int32 `json:"limit"`
 }
 
-// Returns an ordered list of chats. Chats are sorted by the pair (order, chat_id) in decreasing order. (For example, to get a list of chats from the beginning, the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance the number of returned chats is chosen by the library.
+// Returns an ordered list of chats. Chats are sorted by the pair (order, chat_id) in decreasing order. (For example, to get a list of chats from the beginning, the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance the number of returned chats is chosen by the library
 func (client *Client) GetChats(req *GetChatsRequest) (*Chats, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -1381,7 +1404,7 @@ func (client *Client) CheckChatUsername(req *CheckChatUsernameRequest) (CheckCha
 	}
 }
 
-// Returns a list of public chats created by the user
+// Returns a list of public chats with username created by the user
 func (client *Client) GetCreatedPublicChats() (*Chats, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -1830,7 +1853,7 @@ type GetPublicMessageLinkRequest struct {
 	ForAlbum bool `json:"for_album"`
 }
 
-// Returns a public HTTPS link to a message. Available only for messages in public supergroups and channels
+// Returns a public HTTPS link to a message. Available only for messages in supergroups and channels with username
 func (client *Client) GetPublicMessageLink(req *GetPublicMessageLinkRequest) (*PublicMessageLink, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -1880,6 +1903,32 @@ func (client *Client) GetMessageLink(req *GetMessageLinkRequest) (*HttpUrl, erro
 	}
 
 	return UnmarshalHttpUrl(result.Data)
+}
+
+type GetMessageLinkInfoRequest struct {
+	// The message link in the format "https://t.me/c/...", or "tg://privatepost?...", or "https://t.me/username/...", or "tg://resolve?..."
+	Url string `json:"url"`
+}
+
+// Returns information about a public or private message link
+func (client *Client) GetMessageLinkInfo(req *GetMessageLinkInfoRequest) (*MessageLinkInfo, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "getMessageLinkInfo",
+		},
+		Data: map[string]interface{}{
+			"url": req.Url,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalMessageLinkInfo(result.Data)
 }
 
 type SendMessageRequest struct {
@@ -1966,7 +2015,7 @@ type SendBotStartMessageRequest struct {
 	BotUserId int32 `json:"bot_user_id"`
 	// Identifier of the target chat
 	ChatId int64 `json:"chat_id"`
-	// A hidden parameter sent to the bot for deep linking purposes (https://api.telegram.org/bots#deep-linking)
+	// A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
 	Parameter string `json:"parameter"`
 }
 
@@ -2046,10 +2095,14 @@ type ForwardMessagesRequest struct {
 	MessageIds []int64 `json:"message_ids"`
 	// Pass true to disable notification for the message, doesn't work if messages are forwarded to a secret chat
 	DisableNotification bool `json:"disable_notification"`
-	// Pass true if the message is sent from the background
+	// Pass true if the messages are sent from the background
 	FromBackground bool `json:"from_background"`
 	// True, if the messages should be grouped into an album after forwarding. For this to work, no more than 10 messages may be forwarded, and all of them must be photo or video messages
 	AsAlbum bool `json:"as_album"`
+	// True, if content of the messages needs to be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
+	SendCopy bool `json:"send_copy"`
+	// True, if media captions of message copies needs to be removed. Ignored if send_copy is false
+	RemoveCaption bool `json:"remove_caption"`
 }
 
 // Forwards previously sent messages. Returns the forwarded messages in the same order as the message identifiers passed in message_ids. If a message can't be forwarded, null will be returned instead of the message
@@ -2065,6 +2118,37 @@ func (client *Client) ForwardMessages(req *ForwardMessagesRequest) (*Messages, e
 			"disable_notification": req.DisableNotification,
 			"from_background":      req.FromBackground,
 			"as_album":             req.AsAlbum,
+			"send_copy":            req.SendCopy,
+			"remove_caption":       req.RemoveCaption,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalMessages(result.Data)
+}
+
+type ResendMessagesRequest struct {
+	// Identifier of the chat to send messages
+	ChatId int64 `json:"chat_id"`
+	// Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
+	MessageIds []int64 `json:"message_ids"`
+}
+
+// Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
+func (client *Client) ResendMessages(req *ResendMessagesRequest) (*Messages, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "resendMessages",
+		},
+		Data: map[string]interface{}{
+			"chat_id":     req.ChatId,
+			"message_ids": req.MessageIds,
 		},
 	})
 	if err != nil {
@@ -3633,7 +3717,7 @@ type UpgradeBasicGroupChatToSupergroupChatRequest struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-// Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom. Deactivates the original basic group
+// Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group
 func (client *Client) UpgradeBasicGroupChatToSupergroupChat(req *UpgradeBasicGroupChatToSupergroupChatRequest) (*Chat, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -3661,7 +3745,7 @@ type SetChatTitleRequest struct {
 	Title string `json:"title"`
 }
 
-// Changes the chat title. Supported only for basic groups, supergroups and channels. Requires administrator rights in basic groups and the appropriate administrator rights in supergroups and channels. The title will not be changed until the request to the server has been completed
+// Changes the chat title. Supported only for basic groups, supergroups and channels. Requires can_change_info rights. The title will not be changed until the request to the server has been completed
 func (client *Client) SetChatTitle(req *SetChatTitleRequest) (*Ok, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -3690,7 +3774,7 @@ type SetChatPhotoRequest struct {
 	Photo InputFile `json:"photo"`
 }
 
-// Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires administrator rights in basic groups and the appropriate administrator rights in supergroups and channels. The photo will not be changed before request to the server has been completed
+// Changes the photo of a chat. Supported only for basic groups, supergroups and channels. Requires can_change_info rights. The photo will not be changed before request to the server has been completed
 func (client *Client) SetChatPhoto(req *SetChatPhotoRequest) (*Ok, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -3699,6 +3783,35 @@ func (client *Client) SetChatPhoto(req *SetChatPhotoRequest) (*Ok, error) {
 		Data: map[string]interface{}{
 			"chat_id": req.ChatId,
 			"photo":   req.Photo,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type SetChatPermissionsRequest struct {
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// New non-administrator members permissions in the chat
+	Permissions *ChatPermissions `json:"permissions"`
+}
+
+// Changes the chat members permissions. Supported only for basic groups and supergroups. Requires can_restrict_members administrator right
+func (client *Client) SetChatPermissions(req *SetChatPermissionsRequest) (*Ok, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "setChatPermissions",
+		},
+		Data: map[string]interface{}{
+			"chat_id":     req.ChatId,
+			"permissions": req.Permissions,
 		},
 	})
 	if err != nil {
@@ -3886,6 +3999,35 @@ func (client *Client) SetChatClientData(req *SetChatClientDataRequest) (*Ok, err
 	return UnmarshalOk(result.Data)
 }
 
+type SetChatDescriptionRequest struct {
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+	// New chat description; 0-255 characters
+	Description string `json:"description"`
+}
+
+// Changes information about a chat. Available for basic groups, supergroups, and channels. Requires can_change_info rights
+func (client *Client) SetChatDescription(req *SetChatDescriptionRequest) (*Ok, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "setChatDescription",
+		},
+		Data: map[string]interface{}{
+			"chat_id":     req.ChatId,
+			"description": req.Description,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
 type PinChatMessageRequest struct {
 	// Identifier of the chat
 	ChatId int64 `json:"chat_id"`
@@ -3895,7 +4037,7 @@ type PinChatMessageRequest struct {
 	DisableNotification bool `json:"disable_notification"`
 }
 
-// Pins a message in a chat; requires appropriate administrator rights in the group or channel
+// Pins a message in a chat; requires can_pin_messages rights
 func (client *Client) PinChatMessage(req *PinChatMessageRequest) (*Ok, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -3923,7 +4065,7 @@ type UnpinChatMessageRequest struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-// Removes the pinned message from a chat; requires appropriate administrator rights in the group or channel
+// Removes the pinned message from a chat; requires can_pin_messages rights in the group or channel
 func (client *Client) UnpinChatMessage(req *UnpinChatMessageRequest) (*Ok, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -4644,7 +4786,7 @@ type GenerateChatInviteLinkRequest struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-// Generates a new invite link for a chat; the previously generated link is revoked. Available for basic groups, supergroups, and channels. In basic groups this can be called only by the group's creator; in supergroups and channels this requires appropriate administrator rights
+// Generates a new invite link for a chat; the previously generated link is revoked. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
 func (client *Client) GenerateChatInviteLink(req *GenerateChatInviteLinkRequest) (*ChatInviteLink, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -4817,6 +4959,8 @@ type SendCallRatingRequest struct {
 	Rating int32 `json:"rating"`
 	// An optional user comment if the rating is less than 5
 	Comment string `json:"comment"`
+	// List of the exact types of problems with the call, specified by the user
+	Problems []CallProblem `json:"problems"`
 }
 
 // Sends a call rating
@@ -4826,9 +4970,10 @@ func (client *Client) SendCallRating(req *SendCallRatingRequest) (*Ok, error) {
 			Type: "sendCallRating",
 		},
 		Data: map[string]interface{}{
-			"call_id": req.CallId,
-			"rating":  req.Rating,
-			"comment": req.Comment,
+			"call_id":  req.CallId,
+			"rating":   req.Rating,
+			"comment":  req.Comment,
+			"problems": req.Problems,
 		},
 	})
 	if err != nil {
@@ -5692,8 +5837,8 @@ type GetStickerEmojisRequest struct {
 	Sticker InputFile `json:"sticker"`
 }
 
-// Returns emoji corresponding to a sticker
-func (client *Client) GetStickerEmojis(req *GetStickerEmojisRequest) (*StickerEmojis, error) {
+// Returns emoji corresponding to a sticker. The list is only for informational purposes, because a sticker is always sent with a fixed emoji from the corresponding Sticker object
+func (client *Client) GetStickerEmojis(req *GetStickerEmojisRequest) (*Emojis, error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "getStickerEmojis",
@@ -5710,7 +5855,62 @@ func (client *Client) GetStickerEmojis(req *GetStickerEmojisRequest) (*StickerEm
 		return nil, buildResponseError(result.Data)
 	}
 
-	return UnmarshalStickerEmojis(result.Data)
+	return UnmarshalEmojis(result.Data)
+}
+
+type SearchEmojisRequest struct {
+	// Text to search for
+	Text string `json:"text"`
+	// True, if only emojis, which exactly match text needs to be returned
+	ExactMatch bool `json:"exact_match"`
+}
+
+// Searches for emojis by keywords. Supported only if the file database is enabled
+func (client *Client) SearchEmojis(req *SearchEmojisRequest) (*Emojis, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "searchEmojis",
+		},
+		Data: map[string]interface{}{
+			"text":        req.Text,
+			"exact_match": req.ExactMatch,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalEmojis(result.Data)
+}
+
+type GetEmojiSuggestionsUrlRequest struct {
+	// Language code for which the emoji replacements will be suggested
+	LanguageCode string `json:"language_code"`
+}
+
+// Returns an HTTP URL which can be used to automatically log in to the translation platform and suggest new emoji replacements. The URL will be valid for 30 seconds after generation
+func (client *Client) GetEmojiSuggestionsUrl(req *GetEmojiSuggestionsUrlRequest) (*HttpUrl, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "getEmojiSuggestionsUrl",
+		},
+		Data: map[string]interface{}{
+			"language_code": req.LanguageCode,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalHttpUrl(result.Data)
 }
 
 // Returns saved animations
@@ -6049,10 +6249,8 @@ func (client *Client) SetUsername(req *SetUsernameRequest) (*Ok, error) {
 type ChangePhoneNumberRequest struct {
 	// The new phone number of the user in international format
 	PhoneNumber string `json:"phone_number"`
-	// Pass true if the code can be sent via flash call to the specified phone number
-	AllowFlashCall bool `json:"allow_flash_call"`
-	// Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false
-	IsCurrentPhoneNumber bool `json:"is_current_phone_number"`
+	// Settings for the authentication of the user's phone number
+	Settings *PhoneNumberAuthenticationSettings `json:"settings"`
 }
 
 // Changes the phone number of the user and sends an authentication code to the user's new phone number. On success, returns information about the sent code
@@ -6062,9 +6260,8 @@ func (client *Client) ChangePhoneNumber(req *ChangePhoneNumberRequest) (*Authent
 			Type: "changePhoneNumber",
 		},
 		Data: map[string]interface{}{
-			"phone_number":            req.PhoneNumber,
-			"allow_flash_call":        req.AllowFlashCall,
-			"is_current_phone_number": req.IsCurrentPhoneNumber,
+			"phone_number": req.PhoneNumber,
+			"settings":     req.Settings,
 		},
 	})
 	if err != nil {
@@ -6251,35 +6448,6 @@ func (client *Client) DisconnectAllWebsites() (*Ok, error) {
 	return UnmarshalOk(result.Data)
 }
 
-type ToggleBasicGroupAdministratorsRequest struct {
-	// Identifier of the basic group
-	BasicGroupId int32 `json:"basic_group_id"`
-	// New value of everyone_is_administrator
-	EveryoneIsAdministrator bool `json:"everyone_is_administrator"`
-}
-
-// Toggles the "All members are admins" setting in basic groups; requires creator privileges in the group
-func (client *Client) ToggleBasicGroupAdministrators(req *ToggleBasicGroupAdministratorsRequest) (*Ok, error) {
-	result, err := client.Send(Request{
-		meta: meta{
-			Type: "toggleBasicGroupAdministrators",
-		},
-		Data: map[string]interface{}{
-			"basic_group_id":            req.BasicGroupId,
-			"everyone_is_administrator": req.EveryoneIsAdministrator,
-		},
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	if result.Type == "error" {
-		return nil, buildResponseError(result.Data)
-	}
-
-	return UnmarshalOk(result.Data)
-}
-
 type SetSupergroupUsernameRequest struct {
 	// Identifier of the supergroup or channel
 	SupergroupId int32 `json:"supergroup_id"`
@@ -6316,7 +6484,7 @@ type SetSupergroupStickerSetRequest struct {
 	StickerSetId JsonInt64 `json:"sticker_set_id"`
 }
 
-// Changes the sticker set of a supergroup; requires appropriate rights in the supergroup
+// Changes the sticker set of a supergroup; requires can_change_info rights
 func (client *Client) SetSupergroupStickerSet(req *SetSupergroupStickerSetRequest) (*Ok, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -6338,35 +6506,6 @@ func (client *Client) SetSupergroupStickerSet(req *SetSupergroupStickerSetReques
 	return UnmarshalOk(result.Data)
 }
 
-type ToggleSupergroupInvitesRequest struct {
-	// Identifier of the supergroup
-	SupergroupId int32 `json:"supergroup_id"`
-	// New value of anyone_can_invite
-	AnyoneCanInvite bool `json:"anyone_can_invite"`
-}
-
-// Toggles whether all members of a supergroup can add new members; requires appropriate administrator rights in the supergroup.
-func (client *Client) ToggleSupergroupInvites(req *ToggleSupergroupInvitesRequest) (*Ok, error) {
-	result, err := client.Send(Request{
-		meta: meta{
-			Type: "toggleSupergroupInvites",
-		},
-		Data: map[string]interface{}{
-			"supergroup_id":     req.SupergroupId,
-			"anyone_can_invite": req.AnyoneCanInvite,
-		},
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	if result.Type == "error" {
-		return nil, buildResponseError(result.Data)
-	}
-
-	return UnmarshalOk(result.Data)
-}
-
 type ToggleSupergroupSignMessagesRequest struct {
 	// Identifier of the channel
 	SupergroupId int32 `json:"supergroup_id"`
@@ -6374,7 +6513,7 @@ type ToggleSupergroupSignMessagesRequest struct {
 	SignMessages bool `json:"sign_messages"`
 }
 
-// Toggles sender signatures messages sent in a channel; requires appropriate administrator rights in the channel.
+// Toggles sender signatures messages sent in a channel; requires can_change_info rights
 func (client *Client) ToggleSupergroupSignMessages(req *ToggleSupergroupSignMessagesRequest) (*Ok, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -6403,7 +6542,7 @@ type ToggleSupergroupIsAllHistoryAvailableRequest struct {
 	IsAllHistoryAvailable bool `json:"is_all_history_available"`
 }
 
-// Toggles whether the message history of a supergroup is available to new members; requires appropriate administrator rights in the supergroup.
+// Toggles whether the message history of a supergroup is available to new members; requires can_change_info rights
 func (client *Client) ToggleSupergroupIsAllHistoryAvailable(req *ToggleSupergroupIsAllHistoryAvailableRequest) (*Ok, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -6412,35 +6551,6 @@ func (client *Client) ToggleSupergroupIsAllHistoryAvailable(req *ToggleSupergrou
 		Data: map[string]interface{}{
 			"supergroup_id":            req.SupergroupId,
 			"is_all_history_available": req.IsAllHistoryAvailable,
-		},
-	})
-	if err != nil {
-		return nil, err
-	}
-
-	if result.Type == "error" {
-		return nil, buildResponseError(result.Data)
-	}
-
-	return UnmarshalOk(result.Data)
-}
-
-type SetSupergroupDescriptionRequest struct {
-	// Identifier of the supergroup or channel
-	SupergroupId int32 `json:"supergroup_id"`
-	// New supergroup or channel description; 0-255 characters
-	Description string `json:"description"`
-}
-
-// Changes information about a supergroup or channel; requires appropriate administrator rights
-func (client *Client) SetSupergroupDescription(req *SetSupergroupDescriptionRequest) (*Ok, error) {
-	result, err := client.Send(Request{
-		meta: meta{
-			Type: "setSupergroupDescription",
-		},
-		Data: map[string]interface{}{
-			"supergroup_id": req.SupergroupId,
-			"description":   req.Description,
 		},
 	})
 	if err != nil {
@@ -6821,11 +6931,150 @@ func (client *Client) GetSupportUser() (*User, error) {
 	return UnmarshalUser(result.Data)
 }
 
-// Returns background wallpapers
-func (client *Client) GetWallpapers() (*Wallpapers, error) {
+type GetBackgroundsRequest struct {
+	// True, if the backgrounds needs to be ordered for dark theme
+	ForDarkTheme bool `json:"for_dark_theme"`
+}
+
+// Returns backgrounds installed by the user
+func (client *Client) GetBackgrounds(req *GetBackgroundsRequest) (*Backgrounds, error) {
 	result, err := client.Send(Request{
 		meta: meta{
-			Type: "getWallpapers",
+			Type: "getBackgrounds",
+		},
+		Data: map[string]interface{}{
+			"for_dark_theme": req.ForDarkTheme,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalBackgrounds(result.Data)
+}
+
+type GetBackgroundUrlRequest struct {
+	// Background name
+	Name string `json:"name"`
+	// Background type
+	Type BackgroundType `json:"type"`
+}
+
+// Constructs a persistent HTTP URL for a background
+func (client *Client) GetBackgroundUrl(req *GetBackgroundUrlRequest) (*HttpUrl, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "getBackgroundUrl",
+		},
+		Data: map[string]interface{}{
+			"name": req.Name,
+			"type": req.Type,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalHttpUrl(result.Data)
+}
+
+type SearchBackgroundRequest struct {
+	// The name of the background
+	Name string `json:"name"`
+}
+
+// Searches for a background by its name
+func (client *Client) SearchBackground(req *SearchBackgroundRequest) (*Background, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "searchBackground",
+		},
+		Data: map[string]interface{}{
+			"name": req.Name,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalBackground(result.Data)
+}
+
+type SetBackgroundRequest struct {
+	// The input background to use, null for solid backgrounds
+	Background InputBackground `json:"background"`
+	// Background type; null for default background. The method will return error 404 if type is null
+	Type BackgroundType `json:"type"`
+	// True, if the background is chosen for dark theme
+	ForDarkTheme bool `json:"for_dark_theme"`
+}
+
+// Changes the background selected by the user; adds background to the list of installed backgrounds
+func (client *Client) SetBackground(req *SetBackgroundRequest) (*Background, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "setBackground",
+		},
+		Data: map[string]interface{}{
+			"background":     req.Background,
+			"type":           req.Type,
+			"for_dark_theme": req.ForDarkTheme,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalBackground(result.Data)
+}
+
+type RemoveBackgroundRequest struct {
+	// The background indentifier
+	BackgroundId JsonInt64 `json:"background_id"`
+}
+
+// Removes background from the list of installed backgrounds
+func (client *Client) RemoveBackground(req *RemoveBackgroundRequest) (*Ok, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "removeBackground",
+		},
+		Data: map[string]interface{}{
+			"background_id": req.BackgroundId,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+// Resets list of installed backgrounds to its default value
+func (client *Client) ResetBackgrounds() (*Ok, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "resetBackgrounds",
 		},
 		Data: map[string]interface{}{},
 	})
@@ -6837,7 +7086,7 @@ func (client *Client) GetWallpapers() (*Wallpapers, error) {
 		return nil, buildResponseError(result.Data)
 	}
 
-	return UnmarshalWallpapers(result.Data)
+	return UnmarshalOk(result.Data)
 }
 
 type GetLocalizationTargetInfoRequest struct {
@@ -7482,7 +7731,7 @@ type GetChatStatisticsUrlRequest struct {
 	IsDark bool `json:"is_dark"`
 }
 
-// Returns URL with the chat statistics. Currently this method can be used only for channels
+// Returns an HTTP URL with the chat statistics. Currently this method can be used only for channels
 func (client *Client) GetChatStatisticsUrl(req *GetChatStatisticsUrlRequest) (*HttpUrl, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -7701,6 +7950,54 @@ func (client *Client) ResetNetworkStatistics() (*Ok, error) {
 			Type: "resetNetworkStatistics",
 		},
 		Data: map[string]interface{}{},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+// Returns auto-download settings presets for the currently logged in user
+func (client *Client) GetAutoDownloadSettingsPresets() (*AutoDownloadSettingsPresets, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "getAutoDownloadSettingsPresets",
+		},
+		Data: map[string]interface{}{},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalAutoDownloadSettingsPresets(result.Data)
+}
+
+type SetAutoDownloadSettingsRequest struct {
+	// New user auto-download settings
+	Settings *AutoDownloadSettings `json:"settings"`
+	// Type of the network for which the new settings are applied
+	Type NetworkType `json:"type"`
+}
+
+// Sets auto-download settings
+func (client *Client) SetAutoDownloadSettings(req *SetAutoDownloadSettingsRequest) (*Ok, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "setAutoDownloadSettings",
+		},
+		Data: map[string]interface{}{
+			"settings": req.Settings,
+			"type":     req.Type,
+		},
 	})
 	if err != nil {
 		return nil, err
@@ -7965,10 +8262,8 @@ func (client *Client) GetPreferredCountryLanguage(req *GetPreferredCountryLangua
 type SendPhoneNumberVerificationCodeRequest struct {
 	// The phone number of the user, in international format
 	PhoneNumber string `json:"phone_number"`
-	// Pass true if the authentication code may be sent via flash call to the specified phone number
-	AllowFlashCall bool `json:"allow_flash_call"`
-	// Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false
-	IsCurrentPhoneNumber bool `json:"is_current_phone_number"`
+	// Settings for the authentication of the user's phone number
+	Settings *PhoneNumberAuthenticationSettings `json:"settings"`
 }
 
 // Sends a code to verify a phone number to be added to a user's Telegram Passport
@@ -7978,9 +8273,8 @@ func (client *Client) SendPhoneNumberVerificationCode(req *SendPhoneNumberVerifi
 			Type: "sendPhoneNumberVerificationCode",
 		},
 		Data: map[string]interface{}{
-			"phone_number":            req.PhoneNumber,
-			"allow_flash_call":        req.AllowFlashCall,
-			"is_current_phone_number": req.IsCurrentPhoneNumber,
+			"phone_number": req.PhoneNumber,
+			"settings":     req.Settings,
 		},
 	})
 	if err != nil {
@@ -8208,10 +8502,8 @@ type SendPhoneNumberConfirmationCodeRequest struct {
 	Hash string `json:"hash"`
 	// Value of the "phone" parameter from the link
 	PhoneNumber string `json:"phone_number"`
-	// Pass true if the authentication code may be sent via flash call to the specified phone number
-	AllowFlashCall bool `json:"allow_flash_call"`
-	// Pass true if the phone number is used on the current device. Ignored if allow_flash_call is false
-	IsCurrentPhoneNumber bool `json:"is_current_phone_number"`
+	// Settings for the authentication of the user's phone number
+	Settings *PhoneNumberAuthenticationSettings `json:"settings"`
 }
 
 // Sends phone number confirmation code. Should be called when user presses "https://t.me/confirmphone?phone=*******&hash=**********" or "tg://confirmphone?phone=*******&hash=**********" link
@@ -8221,10 +8513,9 @@ func (client *Client) SendPhoneNumberConfirmationCode(req *SendPhoneNumberConfir
 			Type: "sendPhoneNumberConfirmationCode",
 		},
 		Data: map[string]interface{}{
-			"hash":                    req.Hash,
-			"phone_number":            req.PhoneNumber,
-			"allow_flash_call":        req.AllowFlashCall,
-			"is_current_phone_number": req.IsCurrentPhoneNumber,
+			"hash":         req.Hash,
+			"phone_number": req.PhoneNumber,
+			"settings":     req.Settings,
 		},
 	})
 	if err != nil {
@@ -8617,7 +8908,7 @@ func (client *Client) SetAlarm(req *SetAlarmRequest) (*Ok, error) {
 	return UnmarshalOk(result.Data)
 }
 
-// Uses current user IP to found his country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
+// Uses current user IP to found their country. Returns two-letter ISO 3166-1 alpha-2 country code. Can be called before authorization
 func (client *Client) GetCountryCode() (*Text, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -9393,6 +9684,38 @@ func (client *Client) TestNetwork() (*Ok, error) {
 	return UnmarshalOk(result.Data)
 }
 
+type TestProxyRequest struct {
+	// Proxy server IP address
+	Server string `json:"server"`
+	// Proxy server port
+	Port int32 `json:"port"`
+	// Proxy type
+	Type ProxyType `json:"type"`
+}
+
+// Sends a simple network request to the Telegram servers via proxy; for testing only. Can be called before authorization
+func (client *Client) TestProxy(req *TestProxyRequest) (*Ok, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "testProxy",
+		},
+		Data: map[string]interface{}{
+			"server": req.Server,
+			"port":   req.Port,
+			"type":   req.Type,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
 // Forces an updates.getDifference call to the Telegram servers; for testing only
 func (client *Client) TestGetDifference() (*Ok, error) {
 	result, err := client.Send(Request{
@@ -9467,6 +9790,9 @@ func (client *Client) TestUseUpdate() (Update, error) {
 
 	case TypeUpdateChatPhoto:
 		return UnmarshalUpdateChatPhoto(result.Data)
+
+	case TypeUpdateChatPermissions:
+		return UnmarshalUpdateChatPermissions(result.Data)
 
 	case TypeUpdateChatLastMessage:
 		return UnmarshalUpdateChatLastMessage(result.Data)
@@ -9597,6 +9923,9 @@ func (client *Client) TestUseUpdate() (Update, error) {
 	case TypeUpdateSavedAnimations:
 		return UnmarshalUpdateSavedAnimations(result.Data)
 
+	case TypeUpdateSelectedBackground:
+		return UnmarshalUpdateSelectedBackground(result.Data)
+
 	case TypeUpdateLanguagePackStrings:
 		return UnmarshalUpdateLanguagePackStrings(result.Data)
 
@@ -9638,13 +9967,20 @@ func (client *Client) TestUseUpdate() (Update, error) {
 	}
 }
 
-// Does nothing and ensures that the Error object is used; for testing only. This is an offline method. Can be called before authorization
-func (client *Client) TestUseError() (*Error, error) {
-	result, err := client.Send(Request{
+type TestReturnErrorRequest struct {
+	// The error to be returned
+	Error *Error `json:"error"`
+}
+
+// Returns the specified error and ensures that the Error object is used; for testing only. This is an offline method. Can be called before authorization. Can be called synchronously
+func (client *Client) TestReturnError(req *TestReturnErrorRequest) (*Error, error) {
+	result, err := client.jsonClient.Execute(Request{
 		meta: meta{
-			Type: "testUseError",
+			Type: "testReturnError",
 		},
-		Data: map[string]interface{}{},
+		Data: map[string]interface{}{
+			"error": req.Error,
+		},
 	})
 	if err != nil {
 		return nil, err
