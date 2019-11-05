@@ -138,8 +138,8 @@ func buildResponseError(data json.RawMessage) error {
 type JsonInt64 int64
 
 // MarshalJSON marshals to json
-func (jsonInt64 *JsonInt64) MarshalJSON() ([]byte, error) {
-	return []byte(strconv.FormatInt(int64(*jsonInt64), 10)), nil
+func (jsonInt64 JsonInt64) MarshalJSON() ([]byte, error) {
+	return []byte(`"`+strconv.FormatInt(int64(jsonInt64), 10)+`"`), nil
 }
 
 // UnmarshalJSON unmarshals from json
