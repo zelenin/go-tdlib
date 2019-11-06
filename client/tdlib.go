@@ -139,7 +139,7 @@ type JsonInt64 int64
 
 // MarshalJSON marshals to json
 func (jsonInt64 JsonInt64) MarshalJSON() ([]byte, error) {
-	return []byte(`"`+strconv.FormatInt(int64(jsonInt64), 10)+`"`), nil
+	return []byte(`"` + strconv.FormatInt(int64(jsonInt64), 10) + `"`), nil
 }
 
 // UnmarshalJSON unmarshals from json
