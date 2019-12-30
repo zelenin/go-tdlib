@@ -16,21 +16,28 @@ type AuthorizationStateHandler interface {
 func Authorize(client *Client, authorizationStateHandler AuthorizationStateHandler) error {
 	defer authorizationStateHandler.Close()
 
+	var authorizationError error
+
 	for {
 		state, err := client.GetAuthorizationState()
 		if err != nil {
 			return err
 		}
 
-		err = authorizationStateHandler.Handle(client, state)
-		if err != nil {
-			return err
+		if state.AuthorizationStateType() == TypeAuthorizationStateClosed {
+			return authorizationError
 		}
 
 		if state.AuthorizationStateType() == TypeAuthorizationStateReady {
 			// dirty hack for db flush after authorization
 			time.Sleep(1 * time.Second)
 			return nil
+		}
+
+		err = authorizationStateHandler.Handle(client, state)
+		if err != nil {
+			authorizationError = err
+			client.Close()
 		}
 	}
 }
@@ -100,10 +107,10 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 		return ErrNotSupportedAuthorizationState
 
 	case TypeAuthorizationStateClosing:
-		return ErrNotSupportedAuthorizationState
+		return nil
 
 	case TypeAuthorizationStateClosed:
-		return ErrNotSupportedAuthorizationState
+		return nil
 	}
 
 	return ErrNotSupportedAuthorizationState

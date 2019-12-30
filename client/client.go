@@ -71,8 +71,6 @@ func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...O
 
 	err := Authorize(client, authorizationStateHandler)
 	if err != nil {
-		client.Stop()
-
 		return nil, err
 	}
 
