@@ -259,12 +259,12 @@
                 {
                     "name": "offset",
                     "type": "int32",
-                    "description": "Offset of the entity in UTF-16 code points"
+                    "description": "Offset of the entity in UTF-16 code units"
                 },
                 {
                     "name": "length",
                     "type": "int32",
-                    "description": "Length of the entity, in UTF-16 code points"
+                    "description": "Length of the entity, in UTF-16 code units"
                 },
                 {
                     "name": "type",
@@ -298,7 +298,7 @@
                 {
                     "name": "entities",
                     "type": "vector\u003ctextEntity\u003e",
-                    "description": "Entities contained in the text"
+                    "description": "Entities contained in the text. Entities can be nested, but must not mutually intersect with each other. Pre, Code and PreCode entities can't contain other entities. Bold, Italic, Underline and Strikethrough entities can contain and to be contained in all other entities. All other entities can't contain each other"
                 }
             ]
         },
@@ -315,7 +315,7 @@
                 {
                     "name": "min_user_age",
                     "type": "int32",
-                    "description": "Minimum age of a user to be able to accept the terms; 0 if any"
+                    "description": "The minimum age of a user to be able to accept the terms; 0 if any"
                 },
                 {
                     "name": "show_popup",
@@ -344,7 +344,7 @@
         },
         {
             "name": "authorizationStateWaitPhoneNumber",
-            "description": "TDLib needs the user's phone number to authorize",
+            "description": "TDLib needs the user's phone number to authorize. Call `setAuthenticationPhoneNumber` to provide the phone number, or use `requestQrCodeAuthentication`, or `checkAuthenticationBotToken` for other authentication options",
             "class": "AuthorizationState",
             "properties": []
         },
@@ -357,6 +357,18 @@
                     "name": "code_info",
                     "type": "authenticationCodeInfo",
                     "description": "Information about the authorization code that was sent"
+                }
+            ]
+        },
+        {
+            "name": "authorizationStateWaitOtherDeviceConfirmation",
+            "description": "The user needs to confirm authorization on another logged in device by scanning a QR code with the provided link",
+            "class": "AuthorizationState",
+            "properties": [
+                {
+                    "name": "link",
+                    "type": "string",
+                    "description": "A tg:// URL for the QR code. The link will be updated frequently"
                 }
             ]
         },
@@ -534,7 +546,12 @@
                 {
                     "name": "id",
                     "type": "string",
-                    "description": "Remote file identifier; may be empty. Can be used across application restarts or even from other devices for the current user. If the ID starts with \"http://\" or \"https://\", it represents the HTTP URL of the file. TDLib is currently unable to download files if only their URL is known. If downloadFile is called on such a file or if it is sent to a secret chat, TDLib starts a file generation process by sending updateFileGenerationStart to the client with the HTTP URL in the original_path and \"#url#\" as the conversion string. Clients should generate the file by downloading it to the specified location"
+                    "description": "Remote file identifier; may be empty. Can be used across application restarts or even from other devices for the current user. Uniquely identifies a file, but a file can have a lot of different valid identifiers. If the ID starts with \"http://\" or \"https://\", it represents the HTTP URL of the file. TDLib is currently unable to download files if only their URL is known. If downloadFile is called on such a file or if it is sent to a secret chat, TDLib starts a file generation process by sending updateFileGenerationStart to the client with the HTTP URL in the original_path and \"#url#\" as the conversion string. Clients should generate the file by downloading it to the specified location"
+                },
+                {
+                    "name": "unique_id",
+                    "type": "string",
+                    "description": "Unique file identifier; may be empty if unknown. The unique file identifier which is the same for the same file even for different users and is persistent over time"
                 },
                 {
                     "name": "is_uploading_active",
@@ -599,7 +616,7 @@
         },
         {
             "name": "inputFileRemote",
-            "description": "A file defined by its remote ID",
+            "description": "A file defined by its remote ID. The remote ID is guaranteed to be usable only if the corresponding file is still accessible to the user and known to TDLib. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the client",
             "class": "InputFile",
             "properties": [
                 {
@@ -776,6 +793,30 @@
             ]
         },
         {
+            "name": "pollTypeRegular",
+            "description": "A regular poll",
+            "class": "PollType",
+            "properties": [
+                {
+                    "name": "allow_multiple_answers",
+                    "type": "Bool",
+                    "description": "True, if multiple answer options can be chosen simultaneously"
+                }
+            ]
+        },
+        {
+            "name": "pollTypeQuiz",
+            "description": "A poll in quiz mode, which has exactly one correct answer option and can be answered only once",
+            "class": "PollType",
+            "properties": [
+                {
+                    "name": "correct_option_id",
+                    "type": "int32",
+                    "description": "0-based identifier of the correct answer option; -1 for a yet unanswered poll"
+                }
+            ]
+        },
+        {
             "name": "animation",
             "description": "Describes an animation file. The animation must be encoded in GIF or MPEG4 format",
             "class": "Animation",
@@ -824,7 +865,7 @@
         },
         {
             "name": "audio",
-            "description": "Describes an audio file. Audio is usually in MP3 format",
+            "description": "Describes an audio file. Audio is usually in MP3 or M4A format",
             "class": "Audio",
             "properties": [
                 {
@@ -1008,7 +1049,7 @@
                 {
                     "name": "has_stickers",
                     "type": "Bool",
-                    "description": "True, if stickers were added to the photo"
+                    "description": "True, if stickers were added to the video"
                 },
                 {
                     "name": "supports_streaming",
@@ -1245,6 +1286,21 @@
                     "description": "Total number of voters, participating in the poll"
                 },
                 {
+                    "name": "recent_voter_user_ids",
+                    "type": "vector\u003cint32\u003e",
+                    "description": "User identifiers of recent voters, if the poll is non-anonymous"
+                },
+                {
+                    "name": "is_anonymous",
+                    "type": "Bool",
+                    "description": "True, if the poll is anonymous"
+                },
+                {
+                    "name": "type",
+                    "type": "PollType",
+                    "description": "Type of the poll"
+                },
+                {
                     "name": "is_closed",
                     "type": "Bool",
                     "description": "True, if the poll is closed"
@@ -1291,24 +1347,6 @@
             ]
         },
         {
-            "name": "linkStateNone",
-            "description": "The phone number of user A is not known to user B",
-            "class": "LinkState",
-            "properties": []
-        },
-        {
-            "name": "linkStateKnowsPhoneNumber",
-            "description": "The phone number of user A is known but that number has not been saved to the contact list of user B",
-            "class": "LinkState",
-            "properties": []
-        },
-        {
-            "name": "linkStateIsContact",
-            "description": "The phone number of user A has been saved to the contact list of user B",
-            "class": "LinkState",
-            "properties": []
-        },
-        {
             "name": "userTypeRegular",
             "description": "A regular user",
             "class": "UserType",
@@ -1316,7 +1354,7 @@
         },
         {
             "name": "userTypeDeleted",
-            "description": "A deleted user or deleted bot. No information on the user besides the user_id is available. It is not possible to perform any active actions on this type of user",
+            "description": "A deleted user or deleted bot. No information on the user besides the user identifier is available. It is not possible to perform any active actions on this type of user",
             "class": "UserType",
             "properties": []
         },
@@ -1354,7 +1392,7 @@
         },
         {
             "name": "userTypeUnknown",
-            "description": "No information on the user besides the user_id is available, yet this user has not been deleted. This object is extremely rare and must be handled like a deleted user. It is not possible to perform any actions on users of this type",
+            "description": "No information on the user besides the user identifier is available, yet this user has not been deleted. This object is extremely rare and must be handled like a deleted user. It is not possible to perform any actions on users of this type",
             "class": "UserType",
             "properties": []
         },
@@ -1389,6 +1427,23 @@
                     "name": "commands",
                     "type": "vector\u003cbotCommand\u003e",
                     "description": "A list of commands supported by the bot"
+                }
+            ]
+        },
+        {
+            "name": "chatLocation",
+            "description": "Represents a location to which a chat is connected",
+            "class": "ChatLocation",
+            "properties": [
+                {
+                    "name": "location",
+                    "type": "location",
+                    "description": "The location"
+                },
+                {
+                    "name": "address",
+                    "type": "string",
+                    "description": "Location address; 1-64 characters, as defined by the chat owner"
                 }
             ]
         },
@@ -1433,14 +1488,14 @@
                     "description": "Profile photo of the user; may be null"
                 },
                 {
-                    "name": "outgoing_link",
-                    "type": "LinkState",
-                    "description": "Relationship from the current user to the other user"
+                    "name": "is_contact",
+                    "type": "Bool",
+                    "description": "The user is a contact of the current user"
                 },
                 {
-                    "name": "incoming_link",
-                    "type": "LinkState",
-                    "description": "Relationship from the other user to the current user"
+                    "name": "is_mutual_contact",
+                    "type": "Bool",
+                    "description": "The user is a contact of the current user and the current user is a contact of the user"
                 },
                 {
                     "name": "is_verified",
@@ -1455,7 +1510,7 @@
                 {
                     "name": "restriction_reason",
                     "type": "string",
-                    "description": "If non-empty, it contains the reason why access to this user must be restricted. The format of the string is \"{type}: {description}\". {type} contains the type of the restriction and at least one of the suffixes \"-all\", \"-ios\", \"-android\", or \"-wp\", which describe the platforms on which access should be restricted. (For example, \"terms-ios-android\". {description} contains a human-readable description of the restriction, which can be shown to the user)"
+                    "description": "If non-empty, it contains a human-readable description of the reason why access to this user must be restricted"
                 },
                 {
                     "name": "is_scam",
@@ -1498,6 +1553,11 @@
                     "name": "has_private_calls",
                     "type": "Bool",
                     "description": "True, if the user can't be called due to their privacy settings"
+                },
+                {
+                    "name": "need_phone_number_privacy_exception",
+                    "type": "Bool",
+                    "description": "True, if the current user needs to explicitly allow to share their phone number with the user when the method addContact is used"
                 },
                 {
                     "name": "bio",
@@ -1578,6 +1638,40 @@
             ]
         },
         {
+            "name": "chatAdministrator",
+            "description": "Contains information about a chat administrator",
+            "class": "ChatAdministrator",
+            "properties": [
+                {
+                    "name": "user_id",
+                    "type": "int32",
+                    "description": "User identifier of the administrator"
+                },
+                {
+                    "name": "custom_title",
+                    "type": "string",
+                    "description": "Custom title of the administrator"
+                },
+                {
+                    "name": "is_owner",
+                    "type": "Bool",
+                    "description": "True, if the user is the owner of the chat"
+                }
+            ]
+        },
+        {
+            "name": "chatAdministrators",
+            "description": "Represents a list of chat administrators",
+            "class": "ChatAdministrators",
+            "properties": [
+                {
+                    "name": "administrators",
+                    "type": "vector\u003cchatAdministrator\u003e",
+                    "description": "A list of chat administrators"
+                }
+            ]
+        },
+        {
             "name": "chatPermissions",
             "description": "Describes actions that a user is allowed to take in a chat",
             "class": "ChatPermissions",
@@ -1626,9 +1720,14 @@
         },
         {
             "name": "chatMemberStatusCreator",
-            "description": "The user is the creator of a chat and has all the administrator privileges",
+            "description": "The user is the owner of a chat and has all the administrator privileges",
             "class": "ChatMemberStatus",
             "properties": [
+                {
+                    "name": "custom_title",
+                    "type": "string",
+                    "description": "A custom title of the owner; 0-16 characters without emojis; applicable to supergroups only"
+                },
                 {
                     "name": "is_member",
                     "type": "Bool",
@@ -1641,6 +1740,11 @@
             "description": "The user is a member of a chat and has some additional privileges. In basic groups, administrators can edit and delete messages sent by others, add new members, and ban unprivileged members. In supergroups and channels, there are more detailed options for administrator privileges",
             "class": "ChatMemberStatus",
             "properties": [
+                {
+                    "name": "custom_title",
+                    "type": "string",
+                    "description": "A custom title of the administrator; 0-16 characters without emojis; applicable to supergroups only"
+                },
                 {
                     "name": "can_be_edited",
                     "type": "Bool",
@@ -1684,7 +1788,7 @@
                 {
                     "name": "can_promote_members",
                     "type": "Bool",
-                    "description": "True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by him"
+                    "description": "True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them"
                 }
             ]
         },
@@ -1791,7 +1895,7 @@
         },
         {
             "name": "chatMembersFilterAdministrators",
-            "description": "Returns the creator and administrators",
+            "description": "Returns the owner and administrators",
             "class": "ChatMembersFilter",
             "properties": []
         },
@@ -1839,7 +1943,7 @@
         },
         {
             "name": "supergroupMembersFilterAdministrators",
-            "description": "Returns the creator and administrators",
+            "description": "Returns the owner and administrators",
             "class": "SupergroupMembersFilter",
             "properties": []
         },
@@ -1940,7 +2044,7 @@
                 {
                     "name": "invite_link",
                     "type": "string",
-                    "description": "Invite link for this group; available only for the group creator and only after it has been generated at least once"
+                    "description": "Invite link for this group; available only after it has been generated at least once and only for the group creator"
                 }
             ]
         },
@@ -1967,7 +2071,7 @@
                 {
                     "name": "status",
                     "type": "ChatMemberStatus",
-                    "description": "Status of the current user in the supergroup or channel"
+                    "description": "Status of the current user in the supergroup or channel; custom title will be always empty"
                 },
                 {
                     "name": "member_count",
@@ -1975,9 +2079,24 @@
                     "description": "Member count; 0 if unknown. Currently it is guaranteed to be known only if the supergroup or channel was found through SearchPublicChats"
                 },
                 {
+                    "name": "has_linked_chat",
+                    "type": "Bool",
+                    "description": "True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel"
+                },
+                {
+                    "name": "has_location",
+                    "type": "Bool",
+                    "description": "True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup"
+                },
+                {
                     "name": "sign_messages",
                     "type": "Bool",
                     "description": "True, if messages sent to the channel should contain information about the sender. This field is only applicable to channels"
+                },
+                {
+                    "name": "is_slow_mode_enabled",
+                    "type": "Bool",
+                    "description": "True, if the slow mode is enabled in the supergroup"
                 },
                 {
                     "name": "is_channel",
@@ -1992,7 +2111,7 @@
                 {
                     "name": "restriction_reason",
                     "type": "string",
-                    "description": "If non-empty, contains the reason why access to this supergroup or channel must be restricted. Format of the string is \"{type}: {description}\". {type} Contains the type of the restriction and at least one of the suffixes \"-all\", \"-ios\", \"-android\", or \"-wp\", which describe the platforms on which access should be restricted. (For example, \"terms-ios-android\". {description} contains a human-readable description of the restriction, which can be shown to the user)"
+                    "description": "If non-empty, contains a human-readable description of the reason why access to this supergroup or channel must be restricted"
                 },
                 {
                     "name": "is_scam",
@@ -2032,6 +2151,21 @@
                     "description": "Number of users banned from chat; 0 if unknown"
                 },
                 {
+                    "name": "linked_chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier of a discussion group for the channel, or a channel, for which the supergroup is the designated discussion group; 0 if none or unknown"
+                },
+                {
+                    "name": "slow_mode_delay",
+                    "type": "int32",
+                    "description": "Delay between consecutive sent messages for non-administrator supergroup members, in seconds"
+                },
+                {
+                    "name": "slow_mode_delay_expires_in",
+                    "type": "double",
+                    "description": "Time left before next message can be sent in the supergroup, in seconds. An updateSupergroupFullInfo update is not triggered when value of this field changes, but both new and old values are non-zero"
+                },
+                {
                     "name": "can_get_members",
                     "type": "Bool",
                     "description": "True, if members of the chat can be retrieved"
@@ -2039,12 +2173,17 @@
                 {
                     "name": "can_set_username",
                     "type": "Bool",
-                    "description": "True, if the chat can be made public"
+                    "description": "True, if the chat username can be changed"
                 },
                 {
                     "name": "can_set_sticker_set",
                     "type": "Bool",
                     "description": "True, if the supergroup sticker set can be changed"
+                },
+                {
+                    "name": "can_set_location",
+                    "type": "Bool",
+                    "description": "True, if the supergroup location can be changed"
                 },
                 {
                     "name": "can_view_statistics",
@@ -2054,12 +2193,17 @@
                 {
                     "name": "is_all_history_available",
                     "type": "Bool",
-                    "description": "True, if new chat members will have access to old messages. In public supergroups and both public and private channels, old messages are always available, so this option affects only private supergroups. The value of this field is only available for chat administrators"
+                    "description": "True, if new chat members will have access to old messages. In public or discussion groups and both public and private channels, old messages are always available, so this option affects only private supergroups without a linked chat. The value of this field is only available for chat administrators"
                 },
                 {
                     "name": "sticker_set_id",
                     "type": "int64",
                     "description": "Identifier of the supergroup sticker set; 0 if none"
+                },
+                {
+                    "name": "location",
+                    "type": "chatLocation",
+                    "description": "Location to which the supergroup is connected; may be null"
                 },
                 {
                     "name": "invite_link",
@@ -2129,12 +2273,12 @@
                 {
                     "name": "key_hash",
                     "type": "bytes",
-                    "description": "Hash of the currently used key for comparison with the hash of the chat partner's key. This is a string of 36 bytes, which must be used to make a 12x12 square image with a color depth of 4. The first 16 bytes should be used to make a central 8x8 square, while the remaining 20 bytes should be used to construct a 2-pixel-wide border around that square. Alternatively, the first 32 bytes of the hash can be converted to the hexadecimal format and printed as 32 2-digit hex numbers"
+                    "description": "Hash of the currently used key for comparison with the hash of the chat partner's key. This is a string of 36 little-endian bytes, which must be split into groups of 2 bits, each denoting a pixel of one of 4 colors FFFFFF, D5E6F3, 2D5775, and 2F99C9. The pixels must be used to make a 12x12 square image filled from left to right, top to bottom. Alternatively, the first 32 bytes of the hash can be converted to the hexadecimal format and printed as 32 2-digit hex numbers"
                 },
                 {
                     "name": "layer",
                     "type": "int32",
-                    "description": "Secret chat layer; determines features supported by the other client. Video notes are supported if the layer \u003e= 66"
+                    "description": "Secret chat layer; determines features supported by the other client. Video notes are supported if the layer \u003e= 66; nested text entities and underline and strikethrough entities are supported if the layer \u003e= 101"
                 }
             ]
         },
@@ -2202,12 +2346,12 @@
                 {
                     "name": "from_chat_id",
                     "type": "int53",
-                    "description": "For messages forwarded to the chat with the current user (saved messages) or to the channel discussion supergroup, the identifier of the chat from which the message was forwarded last time; 0 if unknown"
+                    "description": "For messages forwarded to the chat with the current user (Saved Messages) or to the channel's discussion group, the identifier of the chat from which the message was forwarded last time; 0 if unknown"
                 },
                 {
                     "name": "from_message_id",
                     "type": "int53",
-                    "description": "For messages forwarded to the chat with the current user (saved messages) or to the channel discussion supergroup, the identifier of the original message from which the new message was forwarded last time; 0 if unknown"
+                    "description": "For messages forwarded to the chat with the current user (Saved Messages) or to the channel's discussion group, the identifier of the original message from which the new message was forwarded last time; 0 if unknown"
                 }
             ]
         },
@@ -2270,6 +2414,11 @@
                     "description": "Information about the sending state of the message; may be null"
                 },
                 {
+                    "name": "scheduling_state",
+                    "type": "MessageSchedulingState",
+                    "description": "Information about the scheduling state of the message; may be null"
+                },
+                {
                     "name": "is_outgoing",
                     "type": "Bool",
                     "description": "True, if the message is outgoing"
@@ -2277,7 +2426,7 @@
                 {
                     "name": "can_be_edited",
                     "type": "Bool",
-                    "description": "True, if the message can be edited. For live location and poll messages this fields shows, whether editMessageLiveLocation or stopPoll can be used with this message by the client"
+                    "description": "True, if the message can be edited. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message by the client"
                 },
                 {
                     "name": "can_be_forwarded",
@@ -2353,6 +2502,11 @@
                     "name": "media_album_id",
                     "type": "int64",
                     "description": "Unique identifier of an album this message belongs to. Only photos and videos can be grouped together in albums"
+                },
+                {
+                    "name": "restriction_reason",
+                    "type": "string",
+                    "description": "If non-empty, contains a human-readable description of the reason why access to this message must be restricted"
                 },
                 {
                     "name": "content",
@@ -2583,6 +2737,18 @@
             ]
         },
         {
+            "name": "chatListMain",
+            "description": "A main list of chats",
+            "class": "ChatList",
+            "properties": []
+        },
+        {
+            "name": "chatListArchive",
+            "description": "A list of chats usually located at the top of the main chat list. Unmuted chats are automatically moved from the Archive to the Main chat list when a new message arrives",
+            "class": "ChatList",
+            "properties": []
+        },
+        {
             "name": "chat",
             "description": "A chat. (Can be a private chat, basic group, supergroup, or secret chat)",
             "class": "Chat",
@@ -2596,6 +2762,11 @@
                     "name": "type",
                     "type": "ChatType",
                     "description": "Type of the chat"
+                },
+                {
+                    "name": "chat_list",
+                    "type": "ChatList",
+                    "description": "A chat list to which the chat belongs; may be null"
                 },
                 {
                     "name": "title",
@@ -2636,6 +2807,11 @@
                     "name": "is_sponsored",
                     "type": "Bool",
                     "description": "True, if the chat is sponsored by the user's MTProxy server"
+                },
+                {
+                    "name": "has_scheduled_messages",
+                    "type": "Bool",
+                    "description": "True, if the chat has scheduled messages"
                 },
                 {
                     "name": "can_be_deleted_only_for_self",
@@ -2683,6 +2859,11 @@
                     "description": "Notification settings for this chat"
                 },
                 {
+                    "name": "action_bar",
+                    "type": "ChatActionBar",
+                    "description": "Describes actions which should be possible to do through a chat action bar; may be null"
+                },
+                {
                     "name": "pinned_message_id",
                     "type": "int53",
                     "description": "Identifier of the pinned message in the chat; 0 if none"
@@ -2700,7 +2881,7 @@
                 {
                     "name": "client_data",
                     "type": "string",
-                    "description": "Contains client-specific data associated with the chat. (For example, the chat position or local chat notification settings can be stored here.) Persistent if a message database is used"
+                    "description": "Contains client-specific data associated with the chat. (For example, the chat position or local chat notification settings can be stored here.) Persistent if the message database is used"
                 }
             ]
         },
@@ -2713,6 +2894,40 @@
                     "name": "chat_ids",
                     "type": "vector\u003cint53\u003e",
                     "description": "List of chat identifiers"
+                }
+            ]
+        },
+        {
+            "name": "chatNearby",
+            "description": "Describes a chat located nearby",
+            "class": "ChatNearby",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "distance",
+                    "type": "int32",
+                    "description": "Distance to the chat location in meters"
+                }
+            ]
+        },
+        {
+            "name": "chatsNearby",
+            "description": "Represents a list of chats located nearby",
+            "class": "ChatsNearby",
+            "properties": [
+                {
+                    "name": "users_nearby",
+                    "type": "vector\u003cchatNearby\u003e",
+                    "description": "List of users nearby"
+                },
+                {
+                    "name": "supergroups_nearby",
+                    "type": "vector\u003cchatNearby\u003e",
+                    "description": "List of location-based supergroups nearby"
                 }
             ]
         },
@@ -2766,9 +2981,51 @@
                 {
                     "name": "is_public",
                     "type": "Bool",
-                    "description": "True, if the chat is a public supergroup or a channel with a username"
+                    "description": "True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup"
                 }
             ]
+        },
+        {
+            "name": "publicChatTypeHasUsername",
+            "description": "The chat is public, because it has username",
+            "class": "PublicChatType",
+            "properties": []
+        },
+        {
+            "name": "publicChatTypeIsLocationBased",
+            "description": "The chat is public, because it is a location-based supergroup",
+            "class": "PublicChatType",
+            "properties": []
+        },
+        {
+            "name": "chatActionBarReportSpam",
+            "description": "The chat can be reported as spam using the method reportChat with the reason chatReportReasonSpam",
+            "class": "ChatActionBar",
+            "properties": []
+        },
+        {
+            "name": "chatActionBarReportUnrelatedLocation",
+            "description": "The chat is a location-based supergroup, which can be reported as having unrelated location using the method reportChat with the reason chatReportReasonUnrelatedLocation",
+            "class": "ChatActionBar",
+            "properties": []
+        },
+        {
+            "name": "chatActionBarReportAddBlock",
+            "description": "The chat is a private or secret chat, which can be reported using the method reportChat, or the other user can be added to the contact list using the method addContact, or the other user can be blocked using the method blockUser",
+            "class": "ChatActionBar",
+            "properties": []
+        },
+        {
+            "name": "chatActionBarAddContact",
+            "description": "The chat is a private or secret chat and the other user can be added to the contact list using the method addContact",
+            "class": "ChatActionBar",
+            "properties": []
+        },
+        {
+            "name": "chatActionBarSharePhoneNumber",
+            "description": "The chat is a private or secret chat with a mutual contact and the user's phone number can be shared with the other user using the method sharePhoneNumber",
+            "class": "ChatActionBar",
+            "properties": []
         },
         {
             "name": "keyboardButtonTypeText",
@@ -2787,6 +3044,23 @@
             "description": "A button that sends the user's location when pressed; available only in private chats",
             "class": "KeyboardButtonType",
             "properties": []
+        },
+        {
+            "name": "keyboardButtonTypeRequestPoll",
+            "description": "A button that allows the user to create and send a poll when pressed; available only in private chats",
+            "class": "KeyboardButtonType",
+            "properties": [
+                {
+                    "name": "force_regular",
+                    "type": "Bool",
+                    "description": "If true, only regular polls must be allowed to create"
+                },
+                {
+                    "name": "force_quiz",
+                    "type": "Bool",
+                    "description": "If true, only polls in quiz mode must be allowed to create"
+                }
+            ]
         },
         {
             "name": "keyboardButton",
@@ -2825,7 +3099,7 @@
                 {
                     "name": "url",
                     "type": "string",
-                    "description": "HTTP URL to open"
+                    "description": "An HTTP URL to open"
                 },
                 {
                     "name": "id",
@@ -2961,6 +3235,50 @@
             ]
         },
         {
+            "name": "loginUrlInfoOpen",
+            "description": "An HTTP url needs to be open",
+            "class": "LoginUrlInfo",
+            "properties": [
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "The URL to open"
+                },
+                {
+                    "name": "skip_confirm",
+                    "type": "Bool",
+                    "description": "True, if there is no need to show an ordinary open URL confirm"
+                }
+            ]
+        },
+        {
+            "name": "loginUrlInfoRequestConfirmation",
+            "description": "An authorization confirmation dialog needs to be shown to the user",
+            "class": "LoginUrlInfo",
+            "properties": [
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "An HTTP URL to be opened"
+                },
+                {
+                    "name": "domain",
+                    "type": "string",
+                    "description": "A domain of the URL"
+                },
+                {
+                    "name": "bot_user_id",
+                    "type": "int32",
+                    "description": "User identifier of a bot linked with the website"
+                },
+                {
+                    "name": "request_write_access",
+                    "type": "Bool",
+                    "description": "True, if the user needs to be requested to give the permission to the bot to send them messages"
+                }
+            ]
+        },
+        {
             "name": "richTextPlain",
             "description": "A plain text",
             "class": "RichText",
@@ -3010,7 +3328,7 @@
         },
         {
             "name": "richTextStrikethrough",
-            "description": "A strike-through rich text",
+            "description": "A strikethrough rich text",
             "class": "RichText",
             "properties": [
                 {
@@ -3046,6 +3364,11 @@
                     "name": "url",
                     "type": "string",
                     "description": "URL"
+                },
+                {
+                    "name": "is_cached",
+                    "type": "Bool",
+                    "description": "True, if the URL has cached instant view server-side"
                 }
             ]
         },
@@ -3248,7 +3571,7 @@
                 {
                     "name": "text",
                     "type": "RichText",
-                    "description": "Cell text"
+                    "description": "Cell text; may be null. If the text is null, then the cell should be invisible"
                 },
                 {
                     "name": "is_header",
@@ -3581,6 +3904,23 @@
                     "name": "is_looped",
                     "type": "Bool",
                     "description": "True, if the video should be looped"
+                }
+            ]
+        },
+        {
+            "name": "pageBlockVoiceNote",
+            "description": "A voice note",
+            "class": "PageBlock",
+            "properties": [
+                {
+                    "name": "voice_note",
+                    "type": "voiceNote",
+                    "description": "Voice note; may be null"
+                },
+                {
+                    "name": "caption",
+                    "type": "pageBlockCaption",
+                    "description": "Voice note caption"
                 }
             ]
         },
@@ -5360,7 +5700,7 @@
                 {
                     "name": "animation",
                     "type": "animation",
-                    "description": "Message content"
+                    "description": "The animation description"
                 },
                 {
                     "name": "caption",
@@ -5382,7 +5722,7 @@
                 {
                     "name": "audio",
                     "type": "audio",
-                    "description": "Message content"
+                    "description": "The audio description"
                 },
                 {
                     "name": "caption",
@@ -5399,7 +5739,7 @@
                 {
                     "name": "document",
                     "type": "document",
-                    "description": "Message content"
+                    "description": "The document description"
                 },
                 {
                     "name": "caption",
@@ -5416,7 +5756,7 @@
                 {
                     "name": "photo",
                     "type": "photo",
-                    "description": "Message content"
+                    "description": "The photo description"
                 },
                 {
                     "name": "caption",
@@ -5444,7 +5784,7 @@
                 {
                     "name": "sticker",
                     "type": "sticker",
-                    "description": "Message content"
+                    "description": "The sticker description"
                 }
             ]
         },
@@ -5456,7 +5796,7 @@
                 {
                     "name": "video",
                     "type": "video",
-                    "description": "Message content"
+                    "description": "The video description"
                 },
                 {
                     "name": "caption",
@@ -5484,7 +5824,7 @@
                 {
                     "name": "video_note",
                     "type": "videoNote",
-                    "description": "Message content"
+                    "description": "The video note description"
                 },
                 {
                     "name": "is_viewed",
@@ -5506,7 +5846,7 @@
                 {
                     "name": "voice_note",
                     "type": "voiceNote",
-                    "description": "Message content"
+                    "description": "The voice note description"
                 },
                 {
                     "name": "caption",
@@ -5528,7 +5868,7 @@
                 {
                     "name": "location",
                     "type": "location",
-                    "description": "Message content"
+                    "description": "The location description"
                 },
                 {
                     "name": "live_period",
@@ -5550,7 +5890,7 @@
                 {
                     "name": "venue",
                     "type": "venue",
-                    "description": "Message content"
+                    "description": "The venue description"
                 }
             ]
         },
@@ -5562,7 +5902,7 @@
                 {
                     "name": "contact",
                     "type": "contact",
-                    "description": "Message content"
+                    "description": "The contact description"
                 }
             ]
         },
@@ -5574,7 +5914,7 @@
                 {
                     "name": "game",
                     "type": "game",
-                    "description": "Game"
+                    "description": "The game description"
                 }
             ]
         },
@@ -5586,7 +5926,7 @@
                 {
                     "name": "poll",
                     "type": "poll",
-                    "description": "Poll"
+                    "description": "The poll description"
                 }
             ]
         },
@@ -6000,6 +6340,12 @@
             "properties": []
         },
         {
+            "name": "textEntityTypePhoneNumber",
+            "description": "A phone number",
+            "class": "TextEntityType",
+            "properties": []
+        },
+        {
             "name": "textEntityTypeBold",
             "description": "A bold text",
             "class": "TextEntityType",
@@ -6008,6 +6354,18 @@
         {
             "name": "textEntityTypeItalic",
             "description": "An italic text",
+            "class": "TextEntityType",
+            "properties": []
+        },
+        {
+            "name": "textEntityTypeUnderline",
+            "description": "An underlined text",
+            "class": "TextEntityType",
+            "properties": []
+        },
+        {
+            "name": "textEntityTypeStrikethrough",
+            "description": "A strikethrough text",
             "class": "TextEntityType",
             "properties": []
         },
@@ -6060,12 +6418,6 @@
             ]
         },
         {
-            "name": "textEntityTypePhoneNumber",
-            "description": "A phone number",
-            "class": "TextEntityType",
-            "properties": []
-        },
-        {
             "name": "inputThumbnail",
             "description": "A thumbnail to be sent along with a file; should be in JPEG or WEBP format for stickers, and less than 200 kB in size",
             "class": "InputThumbnail",
@@ -6088,6 +6440,46 @@
             ]
         },
         {
+            "name": "messageSchedulingStateSendAtDate",
+            "description": "The message will be sent at the specified date",
+            "class": "MessageSchedulingState",
+            "properties": [
+                {
+                    "name": "send_date",
+                    "type": "int32",
+                    "description": "Date the message will be sent. The date must be within 367 days in the future"
+                }
+            ]
+        },
+        {
+            "name": "messageSchedulingStateSendWhenOnline",
+            "description": "The message will be sent when the peer will be online. Applicable to private chats only and when the exact online status of the peer is known",
+            "class": "MessageSchedulingState",
+            "properties": []
+        },
+        {
+            "name": "sendMessageOptions",
+            "description": "Options to be used when a message is send",
+            "class": "SendMessageOptions",
+            "properties": [
+                {
+                    "name": "disable_notification",
+                    "type": "Bool",
+                    "description": "Pass true to disable notification for the message. Must be false if the message is sent to a secret chat"
+                },
+                {
+                    "name": "from_background",
+                    "type": "Bool",
+                    "description": "Pass true if the message is sent from the background"
+                },
+                {
+                    "name": "scheduling_state",
+                    "type": "MessageSchedulingState",
+                    "description": "Message scheduling state. Messages sent to a secret chat, live location messages and self-destructing messages can't be scheduled"
+                }
+            ]
+        },
+        {
             "name": "inputMessageText",
             "description": "A text message",
             "class": "InputMessageContent",
@@ -6095,7 +6487,7 @@
                 {
                     "name": "text",
                     "type": "formattedText",
-                    "description": "Formatted text to be sent; 1-GetOption(\"message_text_length_max\") characters. Only Bold, Italic, Code, Pre, PreCode and TextUrl entities are allowed to be specified manually"
+                    "description": "Formatted text to be sent; 1-GetOption(\"message_text_length_max\") characters. Only Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually"
                 },
                 {
                     "name": "disable_web_page_preview",
@@ -6393,7 +6785,7 @@
                 {
                     "name": "live_period",
                     "type": "int32",
-                    "description": "Period for which the location can be updated, in seconds; should bebetween 60 and 86400 for a live location and 0 otherwise"
+                    "description": "Period for which the location can be updated, in seconds; should be between 60 and 86400 for a live location and 0 otherwise"
                 }
             ]
         },
@@ -6502,7 +6894,7 @@
         },
         {
             "name": "inputMessagePoll",
-            "description": "A message with a poll. Polls can't be sent to private or secret chats",
+            "description": "A message with a poll. Polls can't be sent to secret chats. Polls can be sent only to a private chat with a bot",
             "class": "InputMessageContent",
             "properties": [
                 {
@@ -6514,6 +6906,21 @@
                     "name": "options",
                     "type": "vector\u003cstring\u003e",
                     "description": "List of poll answer options, 2-10 strings 1-100 characters each"
+                },
+                {
+                    "name": "is_anonymous",
+                    "type": "Bool",
+                    "description": "True, if the poll voters are anonymous. Non-anonymous polls can't be sent or forwarded to channels"
+                },
+                {
+                    "name": "type",
+                    "type": "PollType",
+                    "description": "Type of the poll"
+                },
+                {
+                    "name": "is_closed",
+                    "type": "Bool",
+                    "description": "True, if the poll needs to be sent already closed; for bots only"
                 }
             ]
         },
@@ -7024,12 +7431,12 @@
                 {
                     "name": "min_layer",
                     "type": "int32",
-                    "description": "Minimum supported API layer; use 65"
+                    "description": "The minimum supported API layer; use 65"
                 },
                 {
                     "name": "max_layer",
                     "type": "int32",
-                    "description": "Maximum supported API layer; use 65"
+                    "description": "The maximum supported API layer; use 65"
                 }
             ]
         },
@@ -7739,7 +8146,7 @@
         },
         {
             "name": "inputInlineQueryResultSticker",
-            "description": "Represents a link to a WEBP or a TGS sticker",
+            "description": "Represents a link to a WEBP or TGS sticker",
             "class": "InputInlineQueryResult",
             "properties": [
                 {
@@ -7755,7 +8162,7 @@
                 {
                     "name": "sticker_url",
                     "type": "string",
-                    "description": "The URL of the WEBP or a TGS sticker (sticker file size must not exceed 5MB)"
+                    "description": "The URL of the WEBP or TGS sticker (sticker file size must not exceed 5MB)"
                 },
                 {
                     "name": "sticker_width",
@@ -8558,6 +8965,40 @@
             ]
         },
         {
+            "name": "chatEventLinkedChatChanged",
+            "description": "The linked chat of a supergroup was changed",
+            "class": "ChatEventAction",
+            "properties": [
+                {
+                    "name": "old_linked_chat_id",
+                    "type": "int53",
+                    "description": "Previous supergroup linked chat identifier"
+                },
+                {
+                    "name": "new_linked_chat_id",
+                    "type": "int53",
+                    "description": "New supergroup linked chat identifier"
+                }
+            ]
+        },
+        {
+            "name": "chatEventSlowModeDelayChanged",
+            "description": "The slow_mode_delay setting of a supergroup was changed",
+            "class": "ChatEventAction",
+            "properties": [
+                {
+                    "name": "old_slow_mode_delay",
+                    "type": "int32",
+                    "description": "Previous value of slow_mode_delay"
+                },
+                {
+                    "name": "new_slow_mode_delay",
+                    "type": "int32",
+                    "description": "New value of slow_mode_delay"
+                }
+            ]
+        },
+        {
             "name": "chatEventSignMessagesToggled",
             "description": "The sign_messages setting of a channel was toggled",
             "class": "ChatEventAction",
@@ -8583,6 +9024,23 @@
                     "name": "new_sticker_set_id",
                     "type": "int64",
                     "description": "New identifier of the chat sticker set; 0 if none"
+                }
+            ]
+        },
+        {
+            "name": "chatEventLocationChanged",
+            "description": "The supergroup location was changed",
+            "class": "ChatEventAction",
+            "properties": [
+                {
+                    "name": "old_location",
+                    "type": "chatLocation",
+                    "description": "Previous location; may be null"
+                },
+                {
+                    "name": "new_location",
+                    "type": "chatLocation",
+                    "description": "New location; may be null"
                 }
             ]
         },
@@ -9037,6 +9495,40 @@
             ]
         },
         {
+            "name": "backgroundFillSolid",
+            "description": "Describes a solid fill of a background",
+            "class": "BackgroundFill",
+            "properties": [
+                {
+                    "name": "color",
+                    "type": "int32",
+                    "description": "A color of the background in the RGB24 format"
+                }
+            ]
+        },
+        {
+            "name": "backgroundFillGradient",
+            "description": "Describes a gradient fill of a background",
+            "class": "BackgroundFill",
+            "properties": [
+                {
+                    "name": "top_color",
+                    "type": "int32",
+                    "description": "A top color of the background in the RGB24 format"
+                },
+                {
+                    "name": "bottom_color",
+                    "type": "int32",
+                    "description": "A bottom color of the background in the RGB24 format"
+                },
+                {
+                    "name": "rotation_angle",
+                    "type": "int32",
+                    "description": "Clockwise rotation angle of the gradient, in degrees; 0-359. Should be always divisible by 45"
+                }
+            ]
+        },
+        {
             "name": "backgroundTypeWallpaper",
             "description": "A wallpaper in JPEG format",
             "class": "BackgroundType",
@@ -9049,41 +9541,41 @@
                 {
                     "name": "is_moving",
                     "type": "Bool",
-                    "description": "True, if the background needs to be slightly moved when device is rotated"
+                    "description": "True, if the background needs to be slightly moved when device is tilted"
                 }
             ]
         },
         {
             "name": "backgroundTypePattern",
-            "description": "A PNG pattern to be combined with the color chosen by the user",
+            "description": "A PNG or TGV (gzipped subset of SVG with MIME type \"application/x-tgwallpattern\") pattern to be combined with the background fill chosen by the user",
             "class": "BackgroundType",
             "properties": [
                 {
-                    "name": "is_moving",
-                    "type": "Bool",
-                    "description": "True, if the background needs to be slightly moved when device is rotated"
-                },
-                {
-                    "name": "color",
-                    "type": "int32",
-                    "description": "Main color of the background in RGB24 format"
+                    "name": "fill",
+                    "type": "BackgroundFill",
+                    "description": "Description of the background fill"
                 },
                 {
                     "name": "intensity",
                     "type": "int32",
-                    "description": "Intensity of the pattern when it is shown above the main background color, 0-100"
+                    "description": "Intensity of the pattern when it is shown above the filled background, 0-100"
+                },
+                {
+                    "name": "is_moving",
+                    "type": "Bool",
+                    "description": "True, if the background needs to be slightly moved when device is tilted"
                 }
             ]
         },
         {
-            "name": "backgroundTypeSolid",
-            "description": "A solid background",
+            "name": "backgroundTypeFill",
+            "description": "A filled background",
             "class": "BackgroundType",
             "properties": [
                 {
-                    "name": "color",
-                    "type": "int32",
-                    "description": "A color of the background in RGB24 format"
+                    "name": "fill",
+                    "type": "BackgroundFill",
+                    "description": "Description of the background fill"
                 }
             ]
         },
@@ -9115,7 +9607,7 @@
                 {
                     "name": "document",
                     "type": "document",
-                    "description": "Document with the background; may be null. Null only for solid backgrounds"
+                    "description": "Document with the background; may be null. Null only for filled backgrounds"
                 },
                 {
                     "name": "type",
@@ -9144,7 +9636,7 @@
                 {
                     "name": "background",
                     "type": "InputFile",
-                    "description": "Background file to use. Only inputFileLocal and inputFileGenerated are supported. The file nust be in JPEG format for wallpapers and in PNG format for patterns"
+                    "description": "Background file to use. Only inputFileLocal and inputFileGenerated are supported. The file must be in JPEG format for wallpapers and in PNG format for patterns"
                 }
             ]
         },
@@ -9169,6 +9661,42 @@
                     "name": "hashtags",
                     "type": "vector\u003cstring\u003e",
                     "description": "A list of hashtags"
+                }
+            ]
+        },
+        {
+            "name": "canTransferOwnershipResultOk",
+            "description": "The session can be used",
+            "class": "CanTransferOwnershipResult",
+            "properties": []
+        },
+        {
+            "name": "canTransferOwnershipResultPasswordNeeded",
+            "description": "The 2-step verification needs to be enabled first",
+            "class": "CanTransferOwnershipResult",
+            "properties": []
+        },
+        {
+            "name": "canTransferOwnershipResultPasswordTooFresh",
+            "description": "The 2-step verification was enabled recently, user needs to wait",
+            "class": "CanTransferOwnershipResult",
+            "properties": [
+                {
+                    "name": "retry_after",
+                    "type": "int32",
+                    "description": "Time left before the session can be used to transfer ownership of a chat, in seconds"
+                }
+            ]
+        },
+        {
+            "name": "canTransferOwnershipResultSessionTooFresh",
+            "description": "The session was created recently, user needs to wait",
+            "class": "CanTransferOwnershipResult",
+            "properties": [
+                {
+                    "name": "retry_after",
+                    "type": "int32",
+                    "description": "Time left before the session can be used to transfer ownership of a chat, in seconds"
                 }
             ]
         },
@@ -9404,6 +9932,11 @@
                     "description": "Poll question"
                 },
                 {
+                    "name": "is_regular",
+                    "type": "Bool",
+                    "description": "True, if the poll is regular and not in quiz mode"
+                },
+                {
                     "name": "is_pinned",
                     "type": "Bool",
                     "description": "True, if the message is a pinned message with the specified content"
@@ -9540,7 +10073,7 @@
                 {
                     "name": "is_returned",
                     "type": "Bool",
-                    "description": "True, if the user has returned to the group himself"
+                    "description": "True, if the user has returned to the group themself"
                 }
             ]
         },
@@ -9580,7 +10113,7 @@
                 {
                     "name": "is_left",
                     "type": "Bool",
-                    "description": "True, if the user has left the group himself"
+                    "description": "True, if the user has left the group themself"
                 }
             ]
         },
@@ -9714,6 +10247,11 @@
                     "name": "date",
                     "type": "int32",
                     "description": "Notification date"
+                },
+                {
+                    "name": "is_silent",
+                    "type": "Bool",
+                    "description": "True, if the notification was initially silent"
                 },
                 {
                     "name": "type",
@@ -9899,7 +10437,19 @@
                 {
                     "name": "user_ids",
                     "type": "vector\u003cint32\u003e",
-                    "description": "The user identifiers"
+                    "description": "The user identifiers, total number of users in all rules must not exceed 1000"
+                }
+            ]
+        },
+        {
+            "name": "userPrivacySettingRuleAllowChatMembers",
+            "description": "A rule to allow all members of certain specified basic groups and supergroups to doing something",
+            "class": "UserPrivacySettingRule",
+            "properties": [
+                {
+                    "name": "chat_ids",
+                    "type": "vector\u003cint53\u003e",
+                    "description": "The chat identifiers, total number of chats in all rules must not exceed 20"
                 }
             ]
         },
@@ -9923,7 +10473,19 @@
                 {
                     "name": "user_ids",
                     "type": "vector\u003cint32\u003e",
-                    "description": "The user identifiers"
+                    "description": "The user identifiers, total number of users in all rules must not exceed 1000"
+                }
+            ]
+        },
+        {
+            "name": "userPrivacySettingRuleRestrictChatMembers",
+            "description": "A rule to restrict all members of specified basic groups and supergroups from doing something",
+            "class": "UserPrivacySettingRule",
+            "properties": [
+                {
+                    "name": "chat_ids",
+                    "type": "vector\u003cint53\u003e",
+                    "description": "The chat identifiers, total number of chats in all rules must not exceed 20"
                 }
             ]
         },
@@ -9958,6 +10520,12 @@
             "properties": []
         },
         {
+            "name": "userPrivacySettingShowPhoneNumber",
+            "description": "A privacy setting for managing whether the user's phone number is visible",
+            "class": "UserPrivacySetting",
+            "properties": []
+        },
+        {
             "name": "userPrivacySettingAllowChatInvites",
             "description": "A privacy setting for managing whether the user can be invited to chats",
             "class": "UserPrivacySetting",
@@ -9972,6 +10540,12 @@
         {
             "name": "userPrivacySettingAllowPeerToPeerCalls",
             "description": "A privacy setting for managing whether peer-to-peer connections can be used for calls",
+            "class": "UserPrivacySetting",
+            "properties": []
+        },
+        {
+            "name": "userPrivacySettingAllowFindingByPhoneNumber",
+            "description": "A privacy setting for managing whether the user can be found by their phone number. Checked only if the phone number is not known to the other user. Can be set only to \"Allow contacts\" or \"Allow all\"",
             "class": "UserPrivacySetting",
             "properties": []
         },
@@ -10146,18 +10720,6 @@
             ]
         },
         {
-            "name": "chatReportSpamState",
-            "description": "Contains information about the availability of the \"Report spam\" action for a chat",
-            "class": "ChatReportSpamState",
-            "properties": [
-                {
-                    "name": "can_report_spam",
-                    "type": "Bool",
-                    "description": "True, if a prompt with the \"Report spam\" action should be shown to the user"
-                }
-            ]
-        },
-        {
             "name": "chatReportReasonSpam",
             "description": "The chat contains spam messages",
             "class": "ChatReportReason",
@@ -10188,6 +10750,12 @@
             "properties": []
         },
         {
+            "name": "chatReportReasonUnrelatedLocation",
+            "description": "The location-based chat is unrelated to its stated location",
+            "class": "ChatReportReason",
+            "properties": []
+        },
+        {
             "name": "chatReportReasonCustom",
             "description": "A custom reason provided by the user",
             "class": "ChatReportReason",
@@ -10201,7 +10769,7 @@
         },
         {
             "name": "publicMessageLink",
-            "description": "Contains a public HTTPS link to a message in a public supergroup or channel with a username",
+            "description": "Contains a public HTTPS link to a message in a supergroup or channel with a username",
             "class": "PublicMessageLink",
             "properties": [
                 {
@@ -10580,17 +11148,22 @@
                 {
                     "name": "max_photo_file_size",
                     "type": "int32",
-                    "description": "Maximum size of a photo file to be auto-downloaded"
+                    "description": "The maximum size of a photo file to be auto-downloaded"
                 },
                 {
                     "name": "max_video_file_size",
                     "type": "int32",
-                    "description": "Maximum size of a video file to be auto-downloaded"
+                    "description": "The maximum size of a video file to be auto-downloaded"
                 },
                 {
                     "name": "max_other_file_size",
                     "type": "int32",
-                    "description": "Maximum size of other file types to be auto-downloaded"
+                    "description": "The maximum size of other file types to be auto-downloaded"
+                },
+                {
+                    "name": "video_upload_bitrate",
+                    "type": "int32",
+                    "description": "The maximum suggested bitrate for uploaded videos"
                 },
                 {
                     "name": "preload_large_videos",
@@ -10694,6 +11267,12 @@
         {
             "name": "topChatCategoryCalls",
             "description": "A category containing frequently used chats used for calls",
+            "class": "TopChatCategory",
+            "properties": []
+        },
+        {
+            "name": "topChatCategoryForwardChats",
+            "description": "A category containing frequently used chats used to forward messages",
             "class": "TopChatCategory",
             "properties": []
         },
@@ -10831,7 +11410,13 @@
             "name": "textParseModeMarkdown",
             "description": "The text should be parsed in markdown-style",
             "class": "TextParseMode",
-            "properties": []
+            "properties": [
+                {
+                    "name": "version",
+                    "type": "int32",
+                    "description": "Version of the parser: 0 or 1 - Bot API Markdown parse mode, 2 - Bot API MarkdownV2 parse mode"
+                }
+            ]
         },
         {
             "name": "textParseModeHTML",
@@ -11157,6 +11742,23 @@
             ]
         },
         {
+            "name": "updateMessageLiveLocationViewed",
+            "description": "A message with a live location was viewed. When the update is received, the client is supposed to update the live location",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat with the live location message"
+                },
+                {
+                    "name": "message_id",
+                    "type": "int53",
+                    "description": "Identifier of the message with live location"
+                }
+            ]
+        },
+        {
             "name": "updateNewChat",
             "description": "A new chat has been loaded/created. This update is guaranteed to come before the chat identifier is returned to the client. The chat field changes will be reported through separate updates",
             "class": "Update",
@@ -11165,6 +11767,23 @@
                     "name": "chat",
                     "type": "chat",
                     "description": "The chat"
+                }
+            ]
+        },
+        {
+            "name": "updateChatChatList",
+            "description": "The list to which the chat belongs was changed. This update is guaranteed to be sent only when chat.order == 0 and the current or the new chat list is null",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "chat_list",
+                    "type": "ChatList",
+                    "description": "The new chat's chat list; may be null"
                 }
             ]
         },
@@ -11221,7 +11840,7 @@
         },
         {
             "name": "updateChatLastMessage",
-            "description": "The last message of a chat was changed. If last_message is null then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case",
+            "description": "The last message of a chat was changed. If last_message is null, then the last message in the chat became unknown. Some new unknown messages might be added to the chat in this case",
             "class": "Update",
             "properties": [
                 {
@@ -11243,7 +11862,7 @@
         },
         {
             "name": "updateChatOrder",
-            "description": "The order of the chat in the chat list has changed. Instead of this update updateChatLastMessage, updateChatIsPinned or updateChatDraftMessage might be sent",
+            "description": "The order of the chat in the chat list has changed. Instead of this update updateChatLastMessage, updateChatIsPinned, updateChatDraftMessage, or updateChatIsSponsored might be sent",
             "class": "Update",
             "properties": [
                 {
@@ -11316,6 +11935,23 @@
                     "name": "order",
                     "type": "int64",
                     "description": "New value of chat order"
+                }
+            ]
+        },
+        {
+            "name": "updateChatHasScheduledMessages",
+            "description": "A chat's has_scheduled_messages field has changed",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "has_scheduled_messages",
+                    "type": "Bool",
+                    "description": "New value of has_scheduled_messages"
                 }
             ]
         },
@@ -11423,6 +12059,23 @@
                     "name": "notification_settings",
                     "type": "scopeNotificationSettings",
                     "description": "The new notification settings"
+                }
+            ]
+        },
+        {
+            "name": "updateChatActionBar",
+            "description": "The chat action bar was changed",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "action_bar",
+                    "type": "ChatActionBar",
+                    "description": "The new value of the action bar; may be null"
                 }
             ]
         },
@@ -11565,7 +12218,7 @@
         },
         {
             "name": "updateActiveNotifications",
-            "description": "Contains active notifications that was shown on previous application launches. This update is sent only if a message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update",
+            "description": "Contains active notifications that was shown on previous application launches. This update is sent only if the message database is used. In that case it comes once before any updateNotification and updateNotificationGroup update",
             "class": "Update",
             "properties": [
                 {
@@ -11577,7 +12230,7 @@
         },
         {
             "name": "updateHavePendingNotifications",
-            "description": "Describes, whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications",
+            "description": "Describes whether there are some pending notification updates. Can be used to prevent application from killing, while there are some pending notifications",
             "class": "Update",
             "properties": [
                 {
@@ -11856,9 +12509,14 @@
         },
         {
             "name": "updateUnreadMessageCount",
-            "description": "Number of unread messages has changed. This update is sent only if a message database is used",
+            "description": "Number of unread messages in a chat list has changed. This update is sent only if the message database is used",
             "class": "Update",
             "properties": [
+                {
+                    "name": "chat_list",
+                    "type": "ChatList",
+                    "description": "The chat list with changed number of unread messages"
+                },
                 {
                     "name": "unread_count",
                     "type": "int32",
@@ -11873,9 +12531,19 @@
         },
         {
             "name": "updateUnreadChatCount",
-            "description": "Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if a message database is used",
+            "description": "Number of unread chats, i.e. with unread messages or marked as unread, has changed. This update is sent only if the message database is used",
             "class": "Update",
             "properties": [
+                {
+                    "name": "chat_list",
+                    "type": "ChatList",
+                    "description": "The chat list with changed number of unread messages"
+                },
+                {
+                    "name": "total_count",
+                    "type": "int32",
+                    "description": "Approximate total number of chats in the chat list"
+                },
                 {
                     "name": "unread_count",
                     "type": "int32",
@@ -12054,6 +12722,18 @@
             ]
         },
         {
+            "name": "updateUsersNearby",
+            "description": "List of users nearby has changed. The update is sent only 60 seconds after a successful searchChatsNearby request",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "users_nearby",
+                    "type": "vector\u003cchatNearby\u003e",
+                    "description": "The new list of users nearby"
+                }
+            ]
+        },
+        {
             "name": "updateNewInlineQuery",
             "description": "A new incoming inline query; for bots only",
             "class": "Update",
@@ -12135,7 +12815,7 @@
                 {
                     "name": "chat_id",
                     "type": "int53",
-                    "description": "Identifier of the chat, in which the query was sent"
+                    "description": "Identifier of the chat where the query was sent"
                 },
                 {
                     "name": "message_id",
@@ -12291,13 +12971,35 @@
         },
         {
             "name": "updatePoll",
-            "description": "Information about a poll was updated; for bots only",
+            "description": "A poll was updated; for bots only",
             "class": "Update",
             "properties": [
                 {
                     "name": "poll",
                     "type": "poll",
                     "description": "New data about the poll"
+                }
+            ]
+        },
+        {
+            "name": "updatePollAnswer",
+            "description": "A user changed the answer to a poll; for bots only",
+            "class": "Update",
+            "properties": [
+                {
+                    "name": "poll_id",
+                    "type": "int64",
+                    "description": "Unique poll identifier"
+                },
+                {
+                    "name": "user_id",
+                    "type": "int32",
+                    "description": "The user, who changed the answer to the poll"
+                },
+                {
+                    "name": "option_ids",
+                    "type": "vector\u003cint32\u003e",
+                    "description": "0-based identifiers of answer options, chosen by the user"
                 }
             ]
         },
@@ -12332,7 +13034,7 @@
                 {
                     "name": "max_file_size",
                     "type": "int53",
-                    "description": "Maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated"
+                    "description": "The maximum size of the file to where the internal TDLib log is written before the file will be auto-rotated"
                 }
             ]
         },
@@ -12469,12 +13171,12 @@
             "description": "Part of the face, relative to which a mask should be placed"
         },
         {
-            "name": "LinkState",
-            "description": "Represents the relationship between user A and user B. For incoming_link, user A is the current user; for outgoing_link, user B is the current user"
+            "name": "PollType",
+            "description": "Describes the type of a poll"
         },
         {
             "name": "UserType",
-            "description": "Represents the type of the user. The following types are possible: regular users, deleted users and bots"
+            "description": "Represents the type of a user. The following types are possible: regular users, deleted users and bots"
         },
         {
             "name": "ChatMemberStatus",
@@ -12509,6 +13211,18 @@
             "description": "Describes the type of a chat"
         },
         {
+            "name": "ChatList",
+            "description": "Describes a list of chats"
+        },
+        {
+            "name": "PublicChatType",
+            "description": "Describes a type of public chats"
+        },
+        {
+            "name": "ChatActionBar",
+            "description": "Describes actions which should be possible to do through a chat action bar"
+        },
+        {
             "name": "KeyboardButtonType",
             "description": "Describes a keyboard button type"
         },
@@ -12519,6 +13233,10 @@
         {
             "name": "ReplyMarkup",
             "description": "Contains a description of a custom keyboard and actions that can be done with it to quickly reply to bots"
+        },
+        {
+            "name": "LoginUrlInfo",
+            "description": "Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl"
         },
         {
             "name": "RichText",
@@ -12567,6 +13285,10 @@
         {
             "name": "TextEntityType",
             "description": "Represents a part of the text which must be formatted differently"
+        },
+        {
+            "name": "MessageSchedulingState",
+            "description": "Contains information about the time when a scheduled message will be sent"
         },
         {
             "name": "InputMessageContent",
@@ -12621,12 +13343,20 @@
             "description": "Represents a data needed to subscribe for push notifications through registerDevice method. To use specific push notification service, you must specify the correct application platform and upload valid server authentication data at https://my.telegram.org"
         },
         {
+            "name": "BackgroundFill",
+            "description": "Describes a fill of a background"
+        },
+        {
             "name": "BackgroundType",
-            "description": "Describes a type of a background"
+            "description": "Describes the type of a background"
         },
         {
             "name": "InputBackground",
             "description": "Contains information about background to set"
+        },
+        {
+            "name": "CanTransferOwnershipResult",
+            "description": "Represents result of checking whether the current session can be used to transfer a chat ownership to another user"
         },
         {
             "name": "CheckChatUsernameResult",
@@ -12642,7 +13372,7 @@
         },
         {
             "name": "NotificationGroupType",
-            "description": "Describes type of notifications in the group"
+            "description": "Describes the type of notifications in a notification group"
         },
         {
             "name": "OptionValue",
@@ -12694,7 +13424,7 @@
         },
         {
             "name": "ProxyType",
-            "description": "Describes the type of the proxy server"
+            "description": "Describes the type of a proxy server"
         },
         {
             "name": "Update",
@@ -12744,7 +13474,7 @@
         },
         {
             "name": "setAuthenticationPhoneNumber",
-            "description": "Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode or authorizationStateWaitPassword",
+            "description": "Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword",
             "class": "Ok",
             "properties": [
                 {
@@ -12778,6 +13508,20 @@
                     "name": "code",
                     "type": "string",
                     "description": "The verification code received via SMS, Telegram message, phone call, or flash call"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
+            "name": "requestQrCodeAuthentication",
+            "description": "Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "other_user_ids",
+                    "type": "vector\u003cint32\u003e",
+                    "description": "List of user identifiers of other users currently using the client"
                 }
             ],
             "is_synchronous": false,
@@ -12877,8 +13621,22 @@
             "type": 1
         },
         {
+            "name": "confirmQrCodeAuthentication",
+            "description": "Confirms QR code authentication on another device. Returns created session on success",
+            "class": "Session",
+            "properties": [
+                {
+                    "name": "link",
+                    "type": "string",
+                    "description": "A link from a QR code. The link must be scanned by the in-app camera"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
             "name": "getCurrentState",
-            "description": "Returns all updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others. This is especially usefull if TDLib is run in a separate process. This is an offline method. Can be called before authorization",
+            "description": "Returns all updates needed to restore current TDLib state, i.e. all actual UpdateAuthorizationState/UpdateUser/UpdateNewChat and others. This is especially useful if TDLib is run in a separate process. This is an offline method. Can be called before authorization",
             "class": "Updates",
             "properties": [],
             "is_synchronous": false,
@@ -13110,7 +13868,7 @@
         },
         {
             "name": "getSupergroup",
-            "description": "Returns information about a supergroup or channel by its identifier. This is an offline request if the current user is not a bot",
+            "description": "Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot",
             "class": "Supergroup",
             "properties": [
                 {
@@ -13124,7 +13882,7 @@
         },
         {
             "name": "getSupergroupFullInfo",
-            "description": "Returns full information about a supergroup or channel by its identifier, cached for up to 1 minute",
+            "description": "Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute",
             "class": "SupergroupFullInfo",
             "properties": [
                 {
@@ -13270,7 +14028,7 @@
         },
         {
             "name": "getRemoteFile",
-            "description": "Returns information about a file by its remote ID; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message",
+            "description": "Returns information about a file by its remote ID; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the client",
             "class": "File",
             "properties": [
                 {
@@ -13289,9 +14047,14 @@
         },
         {
             "name": "getChats",
-            "description": "Returns an ordered list of chats. Chats are sorted by the pair (order, chat_id) in decreasing order. (For example, to get a list of chats from the beginning, the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance the number of returned chats is chosen by the library",
+            "description": "Returns an ordered list of chats in a chat list. Chats are sorted by the pair (order, chat_id) in decreasing order. (For example, to get a list of chats from the beginning, the offset_order should be equal to a biggest signed 64-bit number 9223372036854775807 == 2^63 - 1). For optimal performance the number of returned chats is chosen by the library",
             "class": "Chats",
             "properties": [
+                {
+                    "name": "chat_list",
+                    "type": "ChatList",
+                    "description": "The chat list in which to return chats"
+                },
                 {
                     "name": "offset_order",
                     "type": "int64",
@@ -13352,7 +14115,7 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of chats to be returned"
+                    "description": "The maximum number of chats to be returned"
                 }
             ],
             "is_synchronous": false,
@@ -13371,7 +14134,21 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of chats to be returned"
+                    "description": "The maximum number of chats to be returned"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "searchChatsNearby",
+            "description": "Returns a list of users and location-based supergroups nearby. The list of users nearby will be updated for 60 seconds after the request by the updates updateUsersNearby. The request should be sent again every 25 seconds with adjusted location to not miss new chats",
+            "class": "ChatsNearby",
+            "properties": [
+                {
+                    "name": "location",
+                    "type": "location",
+                    "description": "Current user location"
                 }
             ],
             "is_synchronous": false,
@@ -13390,7 +14167,7 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of chats to be returned; up to 30"
+                    "description": "The maximum number of chats to be returned; up to 30"
                 }
             ],
             "is_synchronous": false,
@@ -13472,7 +14249,43 @@
         },
         {
             "name": "getCreatedPublicChats",
-            "description": "Returns a list of public chats with username created by the user",
+            "description": "Returns a list of public chats of the specified type, owned by the user",
+            "class": "Chats",
+            "properties": [
+                {
+                    "name": "type",
+                    "type": "PublicChatType",
+                    "description": "Type of the public chats to return"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "checkCreatedPublicChatsLimit",
+            "description": "Checks whether the maximum number of owned public chats has been reached. Returns corresponding error if the limit was reached",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "type",
+                    "type": "PublicChatType",
+                    "description": "Type of the public chats, for which to check the limit"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "getSuitableDiscussionChats",
+            "description": "Returns a list of basic group and supergroup chats, which can be used as a discussion group for a channel. Basic group chats need to be first upgraded to supergroups before they can be set as a discussion group",
+            "class": "Chats",
+            "properties": [],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "getInactiveSupergroupChats",
+            "description": "Returns a list of recently inactive supergroups and channels. Can be used when user reaches limit on the number of joined supergroups and channels and receives CHANNELS_TOO_MUCH error",
             "class": "Chats",
             "properties": [],
             "is_synchronous": false,
@@ -13496,7 +14309,7 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of chats to be returned; up to 100"
+                    "description": "The maximum number of chats to be returned; up to 100"
                 }
             ],
             "is_synchronous": false,
@@ -13610,6 +14423,11 @@
             "class": "Messages",
             "properties": [
                 {
+                    "name": "chat_list",
+                    "type": "ChatList",
+                    "description": "Chat list in which to search messages; pass null to search in all chats regardless of their chat list"
+                },
+                {
                     "name": "query",
                     "type": "string",
                     "description": "Query to search for"
@@ -13661,7 +14479,7 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached"
+                    "description": "The maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached"
                 },
                 {
                     "name": "filter",
@@ -13709,7 +14527,7 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of messages to be returned"
+                    "description": "The maximum number of messages to be returned"
                 }
             ],
             "is_synchronous": false,
@@ -13767,6 +14585,20 @@
             "type": 2
         },
         {
+            "name": "getChatScheduledMessages",
+            "description": "Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)",
+            "class": "Messages",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
             "name": "removeNotification",
             "description": "Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user",
             "class": "Ok",
@@ -13798,7 +14630,7 @@
                 {
                     "name": "max_notification_id",
                     "type": "int32",
-                    "description": "Maximum identifier of removed notifications"
+                    "description": "The maximum identifier of removed notifications"
                 }
             ],
             "is_synchronous": false,
@@ -13806,7 +14638,7 @@
         },
         {
             "name": "getPublicMessageLink",
-            "description": "Returns a public HTTPS link to a message. Available only for messages in supergroups and channels with username",
+            "description": "Returns a public HTTPS link to a message. Available only for messages in supergroups and channels with a username",
             "class": "PublicMessageLink",
             "properties": [
                 {
@@ -13877,14 +14709,9 @@
                     "description": "Identifier of the message to reply to or 0"
                 },
                 {
-                    "name": "disable_notification",
-                    "type": "Bool",
-                    "description": "Pass true to disable notification for the message. Not supported in secret chats"
-                },
-                {
-                    "name": "from_background",
-                    "type": "Bool",
-                    "description": "Pass true if the message is sent from the background"
+                    "name": "options",
+                    "type": "sendMessageOptions",
+                    "description": "Options to be used to send the message"
                 },
                 {
                     "name": "reply_markup",
@@ -13916,14 +14743,9 @@
                     "description": "Identifier of a message to reply to or 0"
                 },
                 {
-                    "name": "disable_notification",
-                    "type": "Bool",
-                    "description": "Pass true to disable notification for the messages. Not supported in secret chats"
-                },
-                {
-                    "name": "from_background",
-                    "type": "Bool",
-                    "description": "Pass true if the messages are sent from the background"
+                    "name": "options",
+                    "type": "sendMessageOptions",
+                    "description": "Options to be used to send the messages"
                 },
                 {
                     "name": "input_message_contents",
@@ -13974,14 +14796,9 @@
                     "description": "Identifier of a message to reply to or 0"
                 },
                 {
-                    "name": "disable_notification",
-                    "type": "Bool",
-                    "description": "Pass true to disable notification for the message. Not supported in secret chats"
-                },
-                {
-                    "name": "from_background",
-                    "type": "Bool",
-                    "description": "Pass true if the message is sent from background"
+                    "name": "options",
+                    "type": "sendMessageOptions",
+                    "description": "Options to be used to send the message"
                 },
                 {
                     "name": "query_id",
@@ -14023,14 +14840,9 @@
                     "description": "Identifiers of the messages to forward"
                 },
                 {
-                    "name": "disable_notification",
-                    "type": "Bool",
-                    "description": "Pass true to disable notification for the message, doesn't work if messages are forwarded to a secret chat"
-                },
-                {
-                    "name": "from_background",
-                    "type": "Bool",
-                    "description": "Pass true if the messages are sent from the background"
+                    "name": "options",
+                    "type": "sendMessageOptions",
+                    "description": "Options to be used to send the messages"
                 },
                 {
                     "name": "as_album",
@@ -14163,7 +14975,7 @@
         },
         {
             "name": "deleteChatMessagesFromUser",
-            "description": "Deletes all messages sent by the specified user to a chat. Supported only in supergroups; requires can_delete_messages administrator privileges",
+            "description": "Deletes all messages sent by the specified user to a chat. Supported only for supergroups; requires can_delete_messages administrator privileges",
             "class": "Ok",
             "properties": [
                 {
@@ -14436,6 +15248,30 @@
             "type": 3
         },
         {
+            "name": "editMessageSchedulingState",
+            "description": "Edits the time when a scheduled message will be sent. Scheduling state of all messages in the same album or forwarded together with the message will be also changed",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "The chat the message belongs to"
+                },
+                {
+                    "name": "message_id",
+                    "type": "int53",
+                    "description": "Identifier of the message"
+                },
+                {
+                    "name": "scheduling_state",
+                    "type": "MessageSchedulingState",
+                    "description": "The new message scheduling state. Pass null to send the message immediately"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
             "name": "getTextEntities",
             "description": "Returns all entities (mentions, hashtags, cashtags, bot commands, URLs, and email addresses) contained in the text. This is an offline method. Can be called before authorization. Can be called synchronously",
             "class": "TextEntities",
@@ -14451,7 +15287,7 @@
         },
         {
             "name": "parseTextEntities",
-            "description": "Parses Bold, Italic, Code, Pre, PreCode and TextUrl entities contained in the text. This is an offline method. Can be called before authorization. Can be called synchronously",
+            "description": "Parses Bold, Italic, Underline, Strikethrough, Code, Pre, PreCode, TextUrl and MentionName entities contained in the text. This is an offline method. Can be called before authorization. Can be called synchronously",
             "class": "FormattedText",
             "properties": [
                 {
@@ -14569,7 +15405,7 @@
         },
         {
             "name": "setPollAnswer",
-            "description": "Changes user answer to a poll",
+            "description": "Changes the user answer to a poll. A poll in quiz mode can be answered only once",
             "class": "Ok",
             "properties": [
                 {
@@ -14585,7 +15421,41 @@
                 {
                     "name": "option_ids",
                     "type": "vector\u003cint32\u003e",
-                    "description": "0-based identifiers of options, chosen by the user. Currently user can't choose more than 1 option"
+                    "description": "0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "getPollVoters",
+            "description": "Returns users voted for the specified option in a non-anonymous polls. For the optimal performance the number of returned users is chosen by the library",
+            "class": "Users",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat to which the poll belongs"
+                },
+                {
+                    "name": "message_id",
+                    "type": "int53",
+                    "description": "Identifier of the message containing the poll"
+                },
+                {
+                    "name": "option_id",
+                    "type": "int32",
+                    "description": "0-based identifier of the answer option"
+                },
+                {
+                    "name": "offset",
+                    "type": "int32",
+                    "description": "Number of users to skip in the result; must be non-negative"
+                },
+                {
+                    "name": "limit",
+                    "type": "int32",
+                    "description": "The maximum number of users to be returned; must be positive and can't be greater than 50. Fewer users may be returned than specified by the limit, even if the end of the voter list has not been reached"
                 }
             ],
             "is_synchronous": false,
@@ -14616,6 +15486,59 @@
             "type": 1
         },
         {
+            "name": "getLoginUrlInfo",
+            "description": "Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button",
+            "class": "LoginUrlInfo",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier of the message with the button"
+                },
+                {
+                    "name": "message_id",
+                    "type": "int53",
+                    "description": "Message identifier of the message with the button"
+                },
+                {
+                    "name": "button_id",
+                    "type": "int32",
+                    "description": "Button identifier"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "getLoginUrl",
+            "description": "Returns an HTTP URL which can be used to automatically authorize the user on a website after clicking an inline button of type inlineKeyboardButtonTypeLoginUrl. Use the method getLoginUrlInfo to find whether a prior user confirmation is needed. If an error is returned, then the button must be handled as an ordinary URL button",
+            "class": "HttpUrl",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier of the message with the button"
+                },
+                {
+                    "name": "message_id",
+                    "type": "int53",
+                    "description": "Message identifier of the message with the button"
+                },
+                {
+                    "name": "button_id",
+                    "type": "int32",
+                    "description": "Button identifier"
+                },
+                {
+                    "name": "allow_write_access",
+                    "type": "Bool",
+                    "description": "True, if the user allowed the bot to send them messages"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
             "name": "getInlineQueryResults",
             "description": "Sends an inline query to a bot and returns its results. Returns an error with code 502 if the bot fails to answer the query before the query timeout expires",
             "class": "InlineQueryResults",
@@ -14628,7 +15551,7 @@
                 {
                     "name": "chat_id",
                     "type": "int53",
-                    "description": "Identifier of the chat, where the query was sent"
+                    "description": "Identifier of the chat where the query was sent"
                 },
                 {
                     "name": "user_location",
@@ -15142,6 +16065,11 @@
                     "name": "description",
                     "type": "string",
                     "description": "Chat description; 0-255 characters"
+                },
+                {
+                    "name": "location",
+                    "type": "chatLocation",
+                    "description": "Chat location if a location-based supergroup is being created"
                 }
             ],
             "is_synchronous": false,
@@ -15170,6 +16098,25 @@
                     "name": "chat_id",
                     "type": "int53",
                     "description": "Identifier of the chat to upgrade"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "setChatChatList",
+            "description": "Moves a chat to a different chat list. Current chat list of the chat must ne non-null",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "chat_list",
+                    "type": "ChatList",
+                    "description": "New chat list of the chat"
                 }
             ],
             "is_synchronous": false,
@@ -15253,7 +16200,7 @@
         },
         {
             "name": "setChatNotificationSettings",
-            "description": "Changes the notification settings of a chat",
+            "description": "Changes the notification settings of a chat. Notification settings of a chat with the current user (Saved Messages) can't be changed",
             "class": "Ok",
             "properties": [
                 {
@@ -15264,7 +16211,7 @@
                 {
                     "name": "notification_settings",
                     "type": "chatNotificationSettings",
-                    "description": "New notification settings for the chat"
+                    "description": "New notification settings for the chat. If the chat is muted for more than 1 week, it is considered to be muted forever"
                 }
             ],
             "is_synchronous": false,
@@ -15272,7 +16219,7 @@
         },
         {
             "name": "toggleChatIsPinned",
-            "description": "Changes the pinned state of a chat. You can pin up to GetOption(\"pinned_chat_count_max\") non-secret chats and the same number of secret chats",
+            "description": "Changes the pinned state of a chat. You can pin up to GetOption(\"pinned_chat_count_max\")/GetOption(\"pinned_archived_chat_count_max\") non-secret chats and the same number of secret chats in the main/archive chat list",
             "class": "Ok",
             "properties": [
                 {
@@ -15364,6 +16311,63 @@
             ],
             "is_synchronous": false,
             "type": 1
+        },
+        {
+            "name": "setChatDiscussionGroup",
+            "description": "Changes the discussion group of a channel chat; requires can_change_info rights in the channel if it is specified",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)"
+                },
+                {
+                    "name": "discussion_chat_id",
+                    "type": "int53",
+                    "description": "Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups. Basic group chats needs to be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable needs to be used first to change that"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "setChatLocation",
+            "description": "Changes the location of a chat. Available only for some location-based supergroups, use supergroupFullInfo.can_set_location to check whether the method is allowed to use",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "location",
+                    "type": "chatLocation",
+                    "description": "New location for the chat; must be valid and not null"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "setChatSlowModeDelay",
+            "description": "Changes the slow mode delay of a chat. Available only for supergroups; requires can_restrict_members rights",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "slow_mode_delay",
+                    "type": "int32",
+                    "description": "New slow mode delay for the chat; must be one of 0, 10, 30, 60, 300, 900, 3600"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "pinChatMessage",
@@ -15476,7 +16480,7 @@
         },
         {
             "name": "setChatMemberStatus",
-            "description": "Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for adding new members to the chat; instead, use addChatMember. The chat member status will not be changed until it has been synchronized with the server",
+            "description": "Changes the status of a chat member, needs appropriate privileges. This function is currently not suitable for adding new members to the chat and transferring chat ownership; instead, use addChatMember or transferChatOwnership. The chat member status will not be changed until it has been synchronized with the server",
             "class": "Ok",
             "properties": [
                 {
@@ -15497,6 +16501,38 @@
             ],
             "is_synchronous": false,
             "type": 1
+        },
+        {
+            "name": "canTransferOwnership",
+            "description": "Checks whether the current session can be used to transfer a chat ownership to another user",
+            "class": "CanTransferOwnershipResult",
+            "properties": [],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "transferChatOwnership",
+            "description": "Changes the owner of a chat. The current user must be a current owner of the chat. Use the method canTransferOwnership to check whether the ownership can be transferred from the current session. Available only for supergroups and channel chats",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
+                {
+                    "name": "user_id",
+                    "type": "int32",
+                    "description": "Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user"
+                },
+                {
+                    "name": "password",
+                    "type": "string",
+                    "description": "The password of the current user"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getChatMember",
@@ -15548,8 +16584,8 @@
         },
         {
             "name": "getChatAdministrators",
-            "description": "Returns a list of users who are administrators of the chat",
-            "class": "Users",
+            "description": "Returns a list of administrators of the chat with their custom titles",
+            "class": "ChatAdministrators",
             "properties": [
                 {
                     "name": "chat_id",
@@ -15639,6 +16675,11 @@
             "description": "Changes the order of pinned chats",
             "class": "Ok",
             "properties": [
+                {
+                    "name": "chat_list",
+                    "type": "ChatList",
+                    "description": "Chat list in which to change the order of pinned chats"
+                },
                 {
                     "name": "chat_ids",
                     "type": "vector\u003cint53\u003e",
@@ -15784,7 +16825,7 @@
         },
         {
             "name": "setFileGenerationProgress",
-            "description": "Informs TDLib on a file generation prograss",
+            "description": "Informs TDLib on a file generation progress",
             "class": "Ok",
             "properties": [
                 {
@@ -16061,7 +17102,26 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of users to return; up to 100"
+                    "description": "The maximum number of users to return; up to 100"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "addContact",
+            "description": "Adds a user to the contact list or edits an existing contact by their user identifier",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "contact",
+                    "type": "contact",
+                    "description": "The contact to add or edit; phone number can be empty and needs to be specified only if known, vCard is ignored"
+                },
+                {
+                    "name": "share_phone_number",
+                    "type": "Bool",
+                    "description": "True, if the new contact needs to be allowed to see current user's phone number. A corresponding rule to userPrivacySettingShowPhoneNumber will be added if needed. Use the field UserFullInfo.need_phone_number_privacy_exception to check whether the current user needs to be asked to share their phone number"
                 }
             ],
             "is_synchronous": false,
@@ -16069,13 +17129,13 @@
         },
         {
             "name": "importContacts",
-            "description": "Adds new contacts or edits existing contacts; contacts' user identifiers are ignored",
+            "description": "Adds new contacts or edits existing contacts by their phone numbers; contacts' user identifiers are ignored",
             "class": "ImportedContacts",
             "properties": [
                 {
                     "name": "contacts",
                     "type": "vector\u003ccontact\u003e",
-                    "description": "The list of contacts to import or edit, contact's vCard are ignored and are not imported"
+                    "description": "The list of contacts to import or edit; contacts' vCard are ignored and are not imported"
                 }
             ],
             "is_synchronous": false,
@@ -16102,7 +17162,7 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of users to be returned"
+                    "description": "The maximum number of users to be returned"
                 }
             ],
             "is_synchronous": false,
@@ -16153,6 +17213,20 @@
             "type": 2
         },
         {
+            "name": "sharePhoneNumber",
+            "description": "Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "user_id",
+                    "type": "int32",
+                    "description": "Identifier of the user with whom to share the phone number. The user must be a mutual contact"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
             "name": "getUserProfilePhotos",
             "description": "Returns the profile photos of a user. The result of this query may be outdated: some photos might have been deleted already",
             "class": "UserProfilePhotos",
@@ -16170,7 +17244,7 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of photos to be returned; up to 100"
+                    "description": "The maximum number of photos to be returned; up to 100"
                 }
             ],
             "is_synchronous": false,
@@ -16189,7 +17263,7 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of stickers to be returned"
+                    "description": "The maximum number of stickers to be returned"
                 }
             ],
             "is_synchronous": false,
@@ -16208,7 +17282,7 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of stickers to be returned"
+                    "description": "The maximum number of stickers to be returned"
                 }
             ],
             "is_synchronous": false,
@@ -16246,7 +17320,7 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of sticker sets to return"
+                    "description": "The maximum number of sticker sets to return"
                 }
             ],
             "is_synchronous": false,
@@ -16320,7 +17394,7 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of sticker sets to return"
+                    "description": "The maximum number of sticker sets to return"
                 }
             ],
             "is_synchronous": false,
@@ -16527,6 +17601,11 @@
                     "name": "exact_match",
                     "type": "Bool",
                     "description": "True, if only emojis, which exactly match text needs to be returned"
+                },
+                {
+                    "name": "input_language_code",
+                    "type": "string",
+                    "description": "IETF language tag of the user's input language; may be empty if unknown"
                 }
             ],
             "is_synchronous": false,
@@ -16603,7 +17682,7 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of hashtags to be returned"
+                    "description": "The maximum number of hashtags to be returned"
                 }
             ],
             "is_synchronous": false,
@@ -16834,7 +17913,7 @@
         },
         {
             "name": "setSupergroupUsername",
-            "description": "Changes the username of a supergroup or channel, requires creator privileges in the supergroup or channel",
+            "description": "Changes the username of a supergroup or channel, requires owner privileges in the supergroup or channel",
             "class": "Ok",
             "properties": [
                 {
@@ -16963,7 +18042,7 @@
         },
         {
             "name": "deleteSupergroup",
-            "description": "Deletes a supergroup or channel along with all messages in the corresponding chat. This will release the supergroup or channel username and remove all members; requires creator privileges in the supergroup or channel. Chats with more than 1000 members can't be deleted using this method",
+            "description": "Deletes a supergroup or channel along with all messages in the corresponding chat. This will release the supergroup or channel username and remove all members; requires owner privileges in the supergroup or channel. Chats with more than 1000 members can't be deleted using this method",
             "class": "Ok",
             "properties": [
                 {
@@ -16977,7 +18056,7 @@
         },
         {
             "name": "closeSecretChat",
-            "description": "Closes a secret chat, effectively transfering its state to secretChatStateClosed",
+            "description": "Closes a secret chat, effectively transferring its state to secretChatStateClosed",
             "class": "Ok",
             "properties": [
                 {
@@ -16991,7 +18070,7 @@
         },
         {
             "name": "getChatEventLog",
-            "description": "Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only in supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i. e., in order of decreasing event_id)",
+            "description": "Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i. e., in order of decreasing event_id)",
             "class": "ChatEvents",
             "properties": [
                 {
@@ -17012,7 +18091,7 @@
                 {
                     "name": "limit",
                     "type": "int32",
-                    "description": "Maximum number of events to return; up to 100"
+                    "description": "The maximum number of events to return; up to 100"
                 },
                 {
                     "name": "filters",
@@ -17216,7 +18295,7 @@
                 {
                     "name": "background",
                     "type": "InputBackground",
-                    "description": "The input background to use, null for solid backgrounds"
+                    "description": "The input background to use, null for filled backgrounds"
                 },
                 {
                     "name": "type",
@@ -17240,7 +18319,7 @@
                 {
                     "name": "background_id",
                     "type": "int64",
-                    "description": "The background indentifier"
+                    "description": "The background identifier"
                 }
             ],
             "is_synchronous": false,
@@ -17559,33 +18638,14 @@
             "type": 2
         },
         {
-            "name": "getChatReportSpamState",
-            "description": "Returns information on whether the current chat can be reported as spam",
-            "class": "ChatReportSpamState",
-            "properties": [
-                {
-                    "name": "chat_id",
-                    "type": "int53",
-                    "description": "Chat identifier"
-                }
-            ],
-            "is_synchronous": false,
-            "type": 2
-        },
-        {
-            "name": "changeChatReportSpamState",
-            "description": "Reports to the server whether a chat is a spam chat or not. Can be used only if ChatReportSpamState.can_report_spam is true. After this request, ChatReportSpamState.can_report_spam becomes false forever",
+            "name": "removeChatActionBar",
+            "description": "Removes a chat action bar without any other action",
             "class": "Ok",
             "properties": [
                 {
                     "name": "chat_id",
                     "type": "int53",
                     "description": "Chat identifier"
-                },
-                {
-                    "name": "is_spam_chat",
-                    "type": "Bool",
-                    "description": "If true, the chat will be reported as spam; otherwise it will be marked as not spam"
                 }
             ],
             "is_synchronous": false,
@@ -17593,7 +18653,7 @@
         },
         {
             "name": "reportChat",
-            "description": "Reports a chat to the Telegram moderators. Supported only for supergroups, channels, or private chats with bots, since other chats can't be checked by moderators",
+            "description": "Reports a chat to the Telegram moderators. Supported only for supergroups, channels, or private chats with bots, since other chats can't be checked by moderators, or when the report is done from the chat action bar",
             "class": "Ok",
             "properties": [
                 {
@@ -17617,7 +18677,7 @@
         },
         {
             "name": "getChatStatisticsUrl",
-            "description": "Returns an HTTP URL with the chat statistics. Currently this method can be used only for channels",
+            "description": "Returns an HTTP URL with the chat statistics. Currently this method can be used only for channels. Can be used only if SupergroupFullInfo.can_view_statistics == true",
             "class": "HttpUrl",
             "properties": [
                 {
@@ -17647,7 +18707,7 @@
                 {
                     "name": "chat_limit",
                     "type": "int32",
-                    "description": "Maximum number of chats with the largest storage usage for which separate statistics should be returned. All other chats will be grouped in entries with chat_id == 0. If the chat info database is not used, the chat_limit is ignored and is always set to 0"
+                    "description": "The maximum number of chats with the largest storage usage for which separate statistics should be returned. All other chats will be grouped in entries with chat_id == 0. If the chat info database is not used, the chat_limit is ignored and is always set to 0"
                 }
             ],
             "is_synchronous": false,
@@ -18608,7 +19668,7 @@
                 {
                     "name": "verbosity_level",
                     "type": "int32",
-                    "description": "Minimum verbosity level needed for the message to be logged, 0-1023"
+                    "description": "The minimum verbosity level needed for the message to be logged, 0-1023"
                 },
                 {
                     "name": "text",
@@ -18752,6 +19812,16 @@
                     "name": "type",
                     "type": "ProxyType",
                     "description": "Proxy type"
+                },
+                {
+                    "name": "dc_id",
+                    "type": "int32",
+                    "description": "Identifier of a datacenter, with which to test connection"
+                },
+                {
+                    "name": "timeout",
+                    "type": "double",
+                    "description": "The maximum overall timeout for the request"
                 }
             ],
             "is_synchronous": false,
