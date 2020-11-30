@@ -1,6 +1,6 @@
 # go-tdlib
 
-Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) with full support of TDLib v1.6.0
+Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) with full support of TDLib v1.7.0
 
 ## TDLib installation
 

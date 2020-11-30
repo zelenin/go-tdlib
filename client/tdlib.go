@@ -144,7 +144,11 @@ func (jsonInt64 JsonInt64) MarshalJSON() ([]byte, error) {
 
 // UnmarshalJSON unmarshals from json
 func (jsonInt64 *JsonInt64) UnmarshalJSON(data []byte) error {
-	jsonBigInt, err := strconv.ParseInt(string(data[1:len(data)-1]), 10, 64)
+	if len(data) > 2 && data[0] == '"' && data[len(data)-1] == '"' {
+		data = data[1 : len(data)-1]
+	}
+
+	jsonBigInt, err := strconv.ParseInt(string(data), 10, 64)
 	if err != nil {
 		return err
 	}
