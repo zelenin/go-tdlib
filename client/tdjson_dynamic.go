@@ -1,11 +1,13 @@
 // +build libtdjson
-// +build linux windows
+// +build linux darwin windows
 
 package client
 
 /*
 #cgo linux CFLAGS: -I/usr/local/include
 #cgo linux LDFLAGS: -L/usr/local/lib -ltdjson -lstdc++ -lssl -lcrypto -ldl -lz -lm
+#cgo darwin CFLAGS: -I/usr/local/include
+#cgo darwin LDFLAGS: -L/usr/local/lib -ltdjson -lstdc++ -lssl -lcrypto -ldl -lz -lm
 #cgo windows CFLAGS: -Ic:/td -Ic:/td/example/csharp/build
 #cgo windows LDFLAGS: -Lc:/td/example/csharp/build/Release -ltdjson
 */
