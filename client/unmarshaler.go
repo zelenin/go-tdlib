@@ -33,6 +33,20 @@ func UnmarshalAuthenticationCodeType(data json.RawMessage) (AuthenticationCodeTy
 	}
 }
 
+func UnmarshalListOfAuthenticationCodeType(dataList []json.RawMessage) ([]AuthenticationCodeType, error) {
+	list := []AuthenticationCodeType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalAuthenticationCodeType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalAuthorizationState(data json.RawMessage) (AuthorizationState, error) {
 	var meta meta
 
@@ -80,6 +94,20 @@ func UnmarshalAuthorizationState(data json.RawMessage) (AuthorizationState, erro
 	}
 }
 
+func UnmarshalListOfAuthorizationState(dataList []json.RawMessage) ([]AuthorizationState, error) {
+	list := []AuthorizationState{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalAuthorizationState(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalInputFile(data json.RawMessage) (InputFile, error) {
 	var meta meta
 
@@ -104,6 +132,20 @@ func UnmarshalInputFile(data json.RawMessage) (InputFile, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfInputFile(dataList []json.RawMessage) ([]InputFile, error) {
+	list := []InputFile{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalInputFile(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalThumbnailFormat(data json.RawMessage) (ThumbnailFormat, error) {
@@ -138,6 +180,20 @@ func UnmarshalThumbnailFormat(data json.RawMessage) (ThumbnailFormat, error) {
 	}
 }
 
+func UnmarshalListOfThumbnailFormat(dataList []json.RawMessage) ([]ThumbnailFormat, error) {
+	list := []ThumbnailFormat{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalThumbnailFormat(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalMaskPoint(data json.RawMessage) (MaskPoint, error) {
 	var meta meta
 
@@ -164,6 +220,20 @@ func UnmarshalMaskPoint(data json.RawMessage) (MaskPoint, error) {
 	}
 }
 
+func UnmarshalListOfMaskPoint(dataList []json.RawMessage) ([]MaskPoint, error) {
+	list := []MaskPoint{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalMaskPoint(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalPollType(data json.RawMessage) (PollType, error) {
 	var meta meta
 
@@ -182,6 +252,20 @@ func UnmarshalPollType(data json.RawMessage) (PollType, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfPollType(dataList []json.RawMessage) ([]PollType, error) {
+	list := []PollType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalPollType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalUserType(data json.RawMessage) (UserType, error) {
@@ -210,6 +294,20 @@ func UnmarshalUserType(data json.RawMessage) (UserType, error) {
 	}
 }
 
+func UnmarshalListOfUserType(dataList []json.RawMessage) ([]UserType, error) {
+	list := []UserType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalUserType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalInputChatPhoto(data json.RawMessage) (InputChatPhoto, error) {
 	var meta meta
 
@@ -231,6 +329,20 @@ func UnmarshalInputChatPhoto(data json.RawMessage) (InputChatPhoto, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfInputChatPhoto(dataList []json.RawMessage) ([]InputChatPhoto, error) {
+	list := []InputChatPhoto{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalInputChatPhoto(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalChatMemberStatus(data json.RawMessage) (ChatMemberStatus, error) {
@@ -263,6 +375,20 @@ func UnmarshalChatMemberStatus(data json.RawMessage) (ChatMemberStatus, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfChatMemberStatus(dataList []json.RawMessage) ([]ChatMemberStatus, error) {
+	list := []ChatMemberStatus{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalChatMemberStatus(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalChatMembersFilter(data json.RawMessage) (ChatMembersFilter, error) {
@@ -298,6 +424,20 @@ func UnmarshalChatMembersFilter(data json.RawMessage) (ChatMembersFilter, error)
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfChatMembersFilter(dataList []json.RawMessage) ([]ChatMembersFilter, error) {
+	list := []ChatMembersFilter{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalChatMembersFilter(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalSupergroupMembersFilter(data json.RawMessage) (SupergroupMembersFilter, error) {
@@ -338,6 +478,20 @@ func UnmarshalSupergroupMembersFilter(data json.RawMessage) (SupergroupMembersFi
 	}
 }
 
+func UnmarshalListOfSupergroupMembersFilter(dataList []json.RawMessage) ([]SupergroupMembersFilter, error) {
+	list := []SupergroupMembersFilter{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalSupergroupMembersFilter(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalSecretChatState(data json.RawMessage) (SecretChatState, error) {
 	var meta meta
 
@@ -361,6 +515,20 @@ func UnmarshalSecretChatState(data json.RawMessage) (SecretChatState, error) {
 	}
 }
 
+func UnmarshalListOfSecretChatState(dataList []json.RawMessage) ([]SecretChatState, error) {
+	list := []SecretChatState{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalSecretChatState(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalMessageSender(data json.RawMessage) (MessageSender, error) {
 	var meta meta
 
@@ -379,6 +547,20 @@ func UnmarshalMessageSender(data json.RawMessage) (MessageSender, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfMessageSender(dataList []json.RawMessage) ([]MessageSender, error) {
+	list := []MessageSender{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalMessageSender(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalMessageForwardOrigin(data json.RawMessage) (MessageForwardOrigin, error) {
@@ -407,6 +589,20 @@ func UnmarshalMessageForwardOrigin(data json.RawMessage) (MessageForwardOrigin, 
 	}
 }
 
+func UnmarshalListOfMessageForwardOrigin(dataList []json.RawMessage) ([]MessageForwardOrigin, error) {
+	list := []MessageForwardOrigin{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalMessageForwardOrigin(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalMessageSendingState(data json.RawMessage) (MessageSendingState, error) {
 	var meta meta
 
@@ -425,6 +621,20 @@ func UnmarshalMessageSendingState(data json.RawMessage) (MessageSendingState, er
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfMessageSendingState(dataList []json.RawMessage) ([]MessageSendingState, error) {
+	list := []MessageSendingState{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalMessageSendingState(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalNotificationSettingsScope(data json.RawMessage) (NotificationSettingsScope, error) {
@@ -448,6 +658,20 @@ func UnmarshalNotificationSettingsScope(data json.RawMessage) (NotificationSetti
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfNotificationSettingsScope(dataList []json.RawMessage) ([]NotificationSettingsScope, error) {
+	list := []NotificationSettingsScope{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalNotificationSettingsScope(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalChatType(data json.RawMessage) (ChatType, error) {
@@ -476,6 +700,20 @@ func UnmarshalChatType(data json.RawMessage) (ChatType, error) {
 	}
 }
 
+func UnmarshalListOfChatType(dataList []json.RawMessage) ([]ChatType, error) {
+	list := []ChatType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalChatType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalChatList(data json.RawMessage) (ChatList, error) {
 	var meta meta
 
@@ -499,6 +737,20 @@ func UnmarshalChatList(data json.RawMessage) (ChatList, error) {
 	}
 }
 
+func UnmarshalListOfChatList(dataList []json.RawMessage) ([]ChatList, error) {
+	list := []ChatList{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalChatList(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalChatSource(data json.RawMessage) (ChatSource, error) {
 	var meta meta
 
@@ -519,6 +771,20 @@ func UnmarshalChatSource(data json.RawMessage) (ChatSource, error) {
 	}
 }
 
+func UnmarshalListOfChatSource(dataList []json.RawMessage) ([]ChatSource, error) {
+	list := []ChatSource{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalChatSource(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalPublicChatType(data json.RawMessage) (PublicChatType, error) {
 	var meta meta
 
@@ -537,6 +803,20 @@ func UnmarshalPublicChatType(data json.RawMessage) (PublicChatType, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfPublicChatType(dataList []json.RawMessage) ([]PublicChatType, error) {
+	list := []PublicChatType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalPublicChatType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalChatActionBar(data json.RawMessage) (ChatActionBar, error) {
@@ -568,6 +848,20 @@ func UnmarshalChatActionBar(data json.RawMessage) (ChatActionBar, error) {
 	}
 }
 
+func UnmarshalListOfChatActionBar(dataList []json.RawMessage) ([]ChatActionBar, error) {
+	list := []ChatActionBar{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalChatActionBar(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalKeyboardButtonType(data json.RawMessage) (KeyboardButtonType, error) {
 	var meta meta
 
@@ -592,6 +886,20 @@ func UnmarshalKeyboardButtonType(data json.RawMessage) (KeyboardButtonType, erro
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfKeyboardButtonType(dataList []json.RawMessage) ([]KeyboardButtonType, error) {
+	list := []KeyboardButtonType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalKeyboardButtonType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalInlineKeyboardButtonType(data json.RawMessage) (InlineKeyboardButtonType, error) {
@@ -629,6 +937,20 @@ func UnmarshalInlineKeyboardButtonType(data json.RawMessage) (InlineKeyboardButt
 	}
 }
 
+func UnmarshalListOfInlineKeyboardButtonType(dataList []json.RawMessage) ([]InlineKeyboardButtonType, error) {
+	list := []InlineKeyboardButtonType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalInlineKeyboardButtonType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalReplyMarkup(data json.RawMessage) (ReplyMarkup, error) {
 	var meta meta
 
@@ -655,6 +977,20 @@ func UnmarshalReplyMarkup(data json.RawMessage) (ReplyMarkup, error) {
 	}
 }
 
+func UnmarshalListOfReplyMarkup(dataList []json.RawMessage) ([]ReplyMarkup, error) {
+	list := []ReplyMarkup{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalReplyMarkup(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalLoginUrlInfo(data json.RawMessage) (LoginUrlInfo, error) {
 	var meta meta
 
@@ -673,6 +1009,20 @@ func UnmarshalLoginUrlInfo(data json.RawMessage) (LoginUrlInfo, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfLoginUrlInfo(dataList []json.RawMessage) ([]LoginUrlInfo, error) {
+	list := []LoginUrlInfo{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalLoginUrlInfo(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalRichText(data json.RawMessage) (RichText, error) {
@@ -740,6 +1090,20 @@ func UnmarshalRichText(data json.RawMessage) (RichText, error) {
 	}
 }
 
+func UnmarshalListOfRichText(dataList []json.RawMessage) ([]RichText, error) {
+	list := []RichText{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalRichText(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalPageBlockHorizontalAlignment(data json.RawMessage) (PageBlockHorizontalAlignment, error) {
 	var meta meta
 
@@ -763,6 +1127,20 @@ func UnmarshalPageBlockHorizontalAlignment(data json.RawMessage) (PageBlockHoriz
 	}
 }
 
+func UnmarshalListOfPageBlockHorizontalAlignment(dataList []json.RawMessage) ([]PageBlockHorizontalAlignment, error) {
+	list := []PageBlockHorizontalAlignment{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalPageBlockHorizontalAlignment(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalPageBlockVerticalAlignment(data json.RawMessage) (PageBlockVerticalAlignment, error) {
 	var meta meta
 
@@ -784,6 +1162,20 @@ func UnmarshalPageBlockVerticalAlignment(data json.RawMessage) (PageBlockVertica
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfPageBlockVerticalAlignment(dataList []json.RawMessage) ([]PageBlockVerticalAlignment, error) {
+	list := []PageBlockVerticalAlignment{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalPageBlockVerticalAlignment(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalPageBlock(data json.RawMessage) (PageBlock, error) {
@@ -887,6 +1279,20 @@ func UnmarshalPageBlock(data json.RawMessage) (PageBlock, error) {
 	}
 }
 
+func UnmarshalListOfPageBlock(dataList []json.RawMessage) ([]PageBlock, error) {
+	list := []PageBlock{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalPageBlock(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalInputCredentials(data json.RawMessage) (InputCredentials, error) {
 	var meta meta
 
@@ -911,6 +1317,20 @@ func UnmarshalInputCredentials(data json.RawMessage) (InputCredentials, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfInputCredentials(dataList []json.RawMessage) ([]InputCredentials, error) {
+	list := []InputCredentials{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalInputCredentials(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalPassportElementType(data json.RawMessage) (PassportElementType, error) {
@@ -966,6 +1386,20 @@ func UnmarshalPassportElementType(data json.RawMessage) (PassportElementType, er
 	}
 }
 
+func UnmarshalListOfPassportElementType(dataList []json.RawMessage) ([]PassportElementType, error) {
+	list := []PassportElementType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalPassportElementType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalPassportElement(data json.RawMessage) (PassportElement, error) {
 	var meta meta
 
@@ -1017,6 +1451,20 @@ func UnmarshalPassportElement(data json.RawMessage) (PassportElement, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfPassportElement(dataList []json.RawMessage) ([]PassportElement, error) {
+	list := []PassportElement{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalPassportElement(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalInputPassportElement(data json.RawMessage) (InputPassportElement, error) {
@@ -1072,6 +1520,20 @@ func UnmarshalInputPassportElement(data json.RawMessage) (InputPassportElement, 
 	}
 }
 
+func UnmarshalListOfInputPassportElement(dataList []json.RawMessage) ([]InputPassportElement, error) {
+	list := []InputPassportElement{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalInputPassportElement(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalPassportElementErrorSource(data json.RawMessage) (PassportElementErrorSource, error) {
 	var meta meta
 
@@ -1113,6 +1575,20 @@ func UnmarshalPassportElementErrorSource(data json.RawMessage) (PassportElementE
 	}
 }
 
+func UnmarshalListOfPassportElementErrorSource(dataList []json.RawMessage) ([]PassportElementErrorSource, error) {
+	list := []PassportElementErrorSource{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalPassportElementErrorSource(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalInputPassportElementErrorSource(data json.RawMessage) (InputPassportElementErrorSource, error) {
 	var meta meta
 
@@ -1152,6 +1628,20 @@ func UnmarshalInputPassportElementErrorSource(data json.RawMessage) (InputPasspo
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfInputPassportElementErrorSource(dataList []json.RawMessage) ([]InputPassportElementErrorSource, error) {
+	list := []InputPassportElementErrorSource{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalInputPassportElementErrorSource(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalMessageContent(data json.RawMessage) (MessageContent, error) {
@@ -1294,6 +1784,20 @@ func UnmarshalMessageContent(data json.RawMessage) (MessageContent, error) {
 	}
 }
 
+func UnmarshalListOfMessageContent(dataList []json.RawMessage) ([]MessageContent, error) {
+	list := []MessageContent{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalMessageContent(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalTextEntityType(data json.RawMessage) (TextEntityType, error) {
 	var meta meta
 
@@ -1359,6 +1863,20 @@ func UnmarshalTextEntityType(data json.RawMessage) (TextEntityType, error) {
 	}
 }
 
+func UnmarshalListOfTextEntityType(dataList []json.RawMessage) ([]TextEntityType, error) {
+	list := []TextEntityType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalTextEntityType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalMessageSchedulingState(data json.RawMessage) (MessageSchedulingState, error) {
 	var meta meta
 
@@ -1377,6 +1895,20 @@ func UnmarshalMessageSchedulingState(data json.RawMessage) (MessageSchedulingSta
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfMessageSchedulingState(dataList []json.RawMessage) ([]MessageSchedulingState, error) {
+	list := []MessageSchedulingState{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalMessageSchedulingState(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalInputMessageContent(data json.RawMessage) (InputMessageContent, error) {
@@ -1442,6 +1974,20 @@ func UnmarshalInputMessageContent(data json.RawMessage) (InputMessageContent, er
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfInputMessageContent(dataList []json.RawMessage) ([]InputMessageContent, error) {
+	list := []InputMessageContent{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalInputMessageContent(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalSearchMessagesFilter(data json.RawMessage) (SearchMessagesFilter, error) {
@@ -1512,6 +2058,20 @@ func UnmarshalSearchMessagesFilter(data json.RawMessage) (SearchMessagesFilter, 
 	}
 }
 
+func UnmarshalListOfSearchMessagesFilter(dataList []json.RawMessage) ([]SearchMessagesFilter, error) {
+	list := []SearchMessagesFilter{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalSearchMessagesFilter(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalChatAction(data json.RawMessage) (ChatAction, error) {
 	var meta meta
 
@@ -1565,6 +2125,20 @@ func UnmarshalChatAction(data json.RawMessage) (ChatAction, error) {
 	}
 }
 
+func UnmarshalListOfChatAction(dataList []json.RawMessage) ([]ChatAction, error) {
+	list := []ChatAction{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalChatAction(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalUserStatus(data json.RawMessage) (UserStatus, error) {
 	var meta meta
 
@@ -1597,6 +2171,20 @@ func UnmarshalUserStatus(data json.RawMessage) (UserStatus, error) {
 	}
 }
 
+func UnmarshalListOfUserStatus(dataList []json.RawMessage) ([]UserStatus, error) {
+	list := []UserStatus{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalUserStatus(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalCallDiscardReason(data json.RawMessage) (CallDiscardReason, error) {
 	var meta meta
 
@@ -1626,6 +2214,20 @@ func UnmarshalCallDiscardReason(data json.RawMessage) (CallDiscardReason, error)
 	}
 }
 
+func UnmarshalListOfCallDiscardReason(dataList []json.RawMessage) ([]CallDiscardReason, error) {
+	list := []CallDiscardReason{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalCallDiscardReason(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalCallServerType(data json.RawMessage) (CallServerType, error) {
 	var meta meta
 
@@ -1644,6 +2246,20 @@ func UnmarshalCallServerType(data json.RawMessage) (CallServerType, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfCallServerType(dataList []json.RawMessage) ([]CallServerType, error) {
+	list := []CallServerType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalCallServerType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalCallState(data json.RawMessage) (CallState, error) {
@@ -1676,6 +2292,20 @@ func UnmarshalCallState(data json.RawMessage) (CallState, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfCallState(dataList []json.RawMessage) ([]CallState, error) {
+	list := []CallState{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalCallState(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalCallProblem(data json.RawMessage) (CallProblem, error) {
@@ -1719,6 +2349,20 @@ func UnmarshalCallProblem(data json.RawMessage) (CallProblem, error) {
 	}
 }
 
+func UnmarshalListOfCallProblem(dataList []json.RawMessage) ([]CallProblem, error) {
+	list := []CallProblem{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalCallProblem(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalDiceStickers(data json.RawMessage) (DiceStickers, error) {
 	var meta meta
 
@@ -1737,6 +2381,20 @@ func UnmarshalDiceStickers(data json.RawMessage) (DiceStickers, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfDiceStickers(dataList []json.RawMessage) ([]DiceStickers, error) {
+	list := []DiceStickers{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalDiceStickers(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalInputInlineQueryResult(data json.RawMessage) (InputInlineQueryResult, error) {
@@ -1789,6 +2447,20 @@ func UnmarshalInputInlineQueryResult(data json.RawMessage) (InputInlineQueryResu
 	}
 }
 
+func UnmarshalListOfInputInlineQueryResult(dataList []json.RawMessage) ([]InputInlineQueryResult, error) {
+	list := []InputInlineQueryResult{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalInputInlineQueryResult(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalInlineQueryResult(data json.RawMessage) (InlineQueryResult, error) {
 	var meta meta
 
@@ -1839,6 +2511,20 @@ func UnmarshalInlineQueryResult(data json.RawMessage) (InlineQueryResult, error)
 	}
 }
 
+func UnmarshalListOfInlineQueryResult(dataList []json.RawMessage) ([]InlineQueryResult, error) {
+	list := []InlineQueryResult{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalInlineQueryResult(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalCallbackQueryPayload(data json.RawMessage) (CallbackQueryPayload, error) {
 	var meta meta
 
@@ -1860,6 +2546,20 @@ func UnmarshalCallbackQueryPayload(data json.RawMessage) (CallbackQueryPayload, 
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfCallbackQueryPayload(dataList []json.RawMessage) ([]CallbackQueryPayload, error) {
+	list := []CallbackQueryPayload{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalCallbackQueryPayload(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalChatEventAction(data json.RawMessage) (ChatEventAction, error) {
@@ -1942,6 +2642,20 @@ func UnmarshalChatEventAction(data json.RawMessage) (ChatEventAction, error) {
 	}
 }
 
+func UnmarshalListOfChatEventAction(dataList []json.RawMessage) ([]ChatEventAction, error) {
+	list := []ChatEventAction{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalChatEventAction(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalLanguagePackStringValue(data json.RawMessage) (LanguagePackStringValue, error) {
 	var meta meta
 
@@ -1963,6 +2677,20 @@ func UnmarshalLanguagePackStringValue(data json.RawMessage) (LanguagePackStringV
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfLanguagePackStringValue(dataList []json.RawMessage) ([]LanguagePackStringValue, error) {
+	list := []LanguagePackStringValue{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalLanguagePackStringValue(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalDeviceToken(data json.RawMessage) (DeviceToken, error) {
@@ -2012,6 +2740,20 @@ func UnmarshalDeviceToken(data json.RawMessage) (DeviceToken, error) {
 	}
 }
 
+func UnmarshalListOfDeviceToken(dataList []json.RawMessage) ([]DeviceToken, error) {
+	list := []DeviceToken{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalDeviceToken(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalBackgroundFill(data json.RawMessage) (BackgroundFill, error) {
 	var meta meta
 
@@ -2030,6 +2772,20 @@ func UnmarshalBackgroundFill(data json.RawMessage) (BackgroundFill, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfBackgroundFill(dataList []json.RawMessage) ([]BackgroundFill, error) {
+	list := []BackgroundFill{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalBackgroundFill(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalBackgroundType(data json.RawMessage) (BackgroundType, error) {
@@ -2055,6 +2811,20 @@ func UnmarshalBackgroundType(data json.RawMessage) (BackgroundType, error) {
 	}
 }
 
+func UnmarshalListOfBackgroundType(dataList []json.RawMessage) ([]BackgroundType, error) {
+	list := []BackgroundType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalBackgroundType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalInputBackground(data json.RawMessage) (InputBackground, error) {
 	var meta meta
 
@@ -2073,6 +2843,20 @@ func UnmarshalInputBackground(data json.RawMessage) (InputBackground, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfInputBackground(dataList []json.RawMessage) ([]InputBackground, error) {
+	list := []InputBackground{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalInputBackground(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalCanTransferOwnershipResult(data json.RawMessage) (CanTransferOwnershipResult, error) {
@@ -2099,6 +2883,20 @@ func UnmarshalCanTransferOwnershipResult(data json.RawMessage) (CanTransferOwner
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfCanTransferOwnershipResult(dataList []json.RawMessage) ([]CanTransferOwnershipResult, error) {
+	list := []CanTransferOwnershipResult{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalCanTransferOwnershipResult(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalCheckChatUsernameResult(data json.RawMessage) (CheckChatUsernameResult, error) {
@@ -2128,6 +2926,20 @@ func UnmarshalCheckChatUsernameResult(data json.RawMessage) (CheckChatUsernameRe
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfCheckChatUsernameResult(dataList []json.RawMessage) ([]CheckChatUsernameResult, error) {
+	list := []CheckChatUsernameResult{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalCheckChatUsernameResult(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalPushMessageContent(data json.RawMessage) (PushMessageContent, error) {
@@ -2222,6 +3034,20 @@ func UnmarshalPushMessageContent(data json.RawMessage) (PushMessageContent, erro
 	}
 }
 
+func UnmarshalListOfPushMessageContent(dataList []json.RawMessage) ([]PushMessageContent, error) {
+	list := []PushMessageContent{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalPushMessageContent(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalNotificationType(data json.RawMessage) (NotificationType, error) {
 	var meta meta
 
@@ -2246,6 +3072,20 @@ func UnmarshalNotificationType(data json.RawMessage) (NotificationType, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfNotificationType(dataList []json.RawMessage) ([]NotificationType, error) {
+	list := []NotificationType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalNotificationType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalNotificationGroupType(data json.RawMessage) (NotificationGroupType, error) {
@@ -2274,6 +3114,20 @@ func UnmarshalNotificationGroupType(data json.RawMessage) (NotificationGroupType
 	}
 }
 
+func UnmarshalListOfNotificationGroupType(dataList []json.RawMessage) ([]NotificationGroupType, error) {
+	list := []NotificationGroupType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalNotificationGroupType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalOptionValue(data json.RawMessage) (OptionValue, error) {
 	var meta meta
 
@@ -2298,6 +3152,20 @@ func UnmarshalOptionValue(data json.RawMessage) (OptionValue, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfOptionValue(dataList []json.RawMessage) ([]OptionValue, error) {
+	list := []OptionValue{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalOptionValue(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalJsonValue(data json.RawMessage) (JsonValue, error) {
@@ -2330,6 +3198,20 @@ func UnmarshalJsonValue(data json.RawMessage) (JsonValue, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfJsonValue(dataList []json.RawMessage) ([]JsonValue, error) {
+	list := []JsonValue{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalJsonValue(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalUserPrivacySettingRule(data json.RawMessage) (UserPrivacySettingRule, error) {
@@ -2370,6 +3252,20 @@ func UnmarshalUserPrivacySettingRule(data json.RawMessage) (UserPrivacySettingRu
 	}
 }
 
+func UnmarshalListOfUserPrivacySettingRule(dataList []json.RawMessage) ([]UserPrivacySettingRule, error) {
+	list := []UserPrivacySettingRule{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalUserPrivacySettingRule(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalUserPrivacySetting(data json.RawMessage) (UserPrivacySetting, error) {
 	var meta meta
 
@@ -2408,6 +3304,20 @@ func UnmarshalUserPrivacySetting(data json.RawMessage) (UserPrivacySetting, erro
 	}
 }
 
+func UnmarshalListOfUserPrivacySetting(dataList []json.RawMessage) ([]UserPrivacySetting, error) {
+	list := []UserPrivacySetting{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalUserPrivacySetting(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalChatReportReason(data json.RawMessage) (ChatReportReason, error) {
 	var meta meta
 
@@ -2441,6 +3351,20 @@ func UnmarshalChatReportReason(data json.RawMessage) (ChatReportReason, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfChatReportReason(dataList []json.RawMessage) ([]ChatReportReason, error) {
+	list := []ChatReportReason{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalChatReportReason(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalFileType(data json.RawMessage) (FileType, error) {
@@ -2505,6 +3429,20 @@ func UnmarshalFileType(data json.RawMessage) (FileType, error) {
 	}
 }
 
+func UnmarshalListOfFileType(dataList []json.RawMessage) ([]FileType, error) {
+	list := []FileType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalFileType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalNetworkType(data json.RawMessage) (NetworkType, error) {
 	var meta meta
 
@@ -2534,6 +3472,20 @@ func UnmarshalNetworkType(data json.RawMessage) (NetworkType, error) {
 	}
 }
 
+func UnmarshalListOfNetworkType(dataList []json.RawMessage) ([]NetworkType, error) {
+	list := []NetworkType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalNetworkType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalNetworkStatisticsEntry(data json.RawMessage) (NetworkStatisticsEntry, error) {
 	var meta meta
 
@@ -2552,6 +3504,20 @@ func UnmarshalNetworkStatisticsEntry(data json.RawMessage) (NetworkStatisticsEnt
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfNetworkStatisticsEntry(dataList []json.RawMessage) ([]NetworkStatisticsEntry, error) {
+	list := []NetworkStatisticsEntry{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalNetworkStatisticsEntry(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalConnectionState(data json.RawMessage) (ConnectionState, error) {
@@ -2581,6 +3547,20 @@ func UnmarshalConnectionState(data json.RawMessage) (ConnectionState, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfConnectionState(dataList []json.RawMessage) ([]ConnectionState, error) {
+	list := []ConnectionState{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalConnectionState(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalTopChatCategory(data json.RawMessage) (TopChatCategory, error) {
@@ -2618,6 +3598,20 @@ func UnmarshalTopChatCategory(data json.RawMessage) (TopChatCategory, error) {
 	}
 }
 
+func UnmarshalListOfTopChatCategory(dataList []json.RawMessage) ([]TopChatCategory, error) {
+	list := []TopChatCategory{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalTopChatCategory(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalTMeUrlType(data json.RawMessage) (TMeUrlType, error) {
 	var meta meta
 
@@ -2644,6 +3638,20 @@ func UnmarshalTMeUrlType(data json.RawMessage) (TMeUrlType, error) {
 	}
 }
 
+func UnmarshalListOfTMeUrlType(dataList []json.RawMessage) ([]TMeUrlType, error) {
+	list := []TMeUrlType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalTMeUrlType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalSuggestedAction(data json.RawMessage) (SuggestedAction, error) {
 	var meta meta
 
@@ -2664,6 +3672,20 @@ func UnmarshalSuggestedAction(data json.RawMessage) (SuggestedAction, error) {
 	}
 }
 
+func UnmarshalListOfSuggestedAction(dataList []json.RawMessage) ([]SuggestedAction, error) {
+	list := []SuggestedAction{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalSuggestedAction(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalTextParseMode(data json.RawMessage) (TextParseMode, error) {
 	var meta meta
 
@@ -2682,6 +3704,20 @@ func UnmarshalTextParseMode(data json.RawMessage) (TextParseMode, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfTextParseMode(dataList []json.RawMessage) ([]TextParseMode, error) {
+	list := []TextParseMode{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalTextParseMode(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalProxyType(data json.RawMessage) (ProxyType, error) {
@@ -2707,6 +3743,20 @@ func UnmarshalProxyType(data json.RawMessage) (ProxyType, error) {
 	}
 }
 
+func UnmarshalListOfProxyType(dataList []json.RawMessage) ([]ProxyType, error) {
+	list := []ProxyType{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalProxyType(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalInputSticker(data json.RawMessage) (InputSticker, error) {
 	var meta meta
 
@@ -2725,6 +3775,20 @@ func UnmarshalInputSticker(data json.RawMessage) (InputSticker, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfInputSticker(dataList []json.RawMessage) ([]InputSticker, error) {
+	list := []InputSticker{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalInputSticker(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalStatisticalGraph(data json.RawMessage) (StatisticalGraph, error) {
@@ -2750,6 +3814,20 @@ func UnmarshalStatisticalGraph(data json.RawMessage) (StatisticalGraph, error) {
 	}
 }
 
+func UnmarshalListOfStatisticalGraph(dataList []json.RawMessage) ([]StatisticalGraph, error) {
+	list := []StatisticalGraph{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalStatisticalGraph(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalChatStatistics(data json.RawMessage) (ChatStatistics, error) {
 	var meta meta
 
@@ -2768,6 +3846,20 @@ func UnmarshalChatStatistics(data json.RawMessage) (ChatStatistics, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfChatStatistics(dataList []json.RawMessage) ([]ChatStatistics, error) {
+	list := []ChatStatistics{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalChatStatistics(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalUpdate(data json.RawMessage) (Update, error) {
@@ -3024,6 +4116,20 @@ func UnmarshalUpdate(data json.RawMessage) (Update, error) {
 	}
 }
 
+func UnmarshalListOfUpdate(dataList []json.RawMessage) ([]Update, error) {
+	list := []Update{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalUpdate(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
 func UnmarshalLogStream(data json.RawMessage) (LogStream, error) {
 	var meta meta
 
@@ -3045,6 +4151,20 @@ func UnmarshalLogStream(data json.RawMessage) (LogStream, error) {
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.Type)
 	}
+}
+
+func UnmarshalListOfLogStream(dataList []json.RawMessage) ([]LogStream, error) {
+	list := []LogStream{}
+
+	for _, data := range dataList {
+		entity, err := UnmarshalLogStream(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
 }
 
 func UnmarshalError(data json.RawMessage) (*Error, error) {

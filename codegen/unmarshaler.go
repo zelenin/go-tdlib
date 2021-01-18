@@ -46,6 +46,23 @@ func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
 }
 
 `)
+
+		buf.WriteString(fmt.Sprintf(`func UnmarshalListOf%s(dataList []json.RawMessage) ([]%s, error) {
+    list := []%s{}
+
+    for _, data := range dataList {
+        entity, err := Unmarshal%s(data)
+        if err != nil {
+            return nil, err
+        }
+        list = append(list, entity)
+    }
+
+    return list, nil
+}
+
+`, tdlibClass.ToGoType(), tdlibClass.ToGoType(), tdlibClass.ToGoType(), tdlibClass.ToGoType()))
+
 	}
 
 	for _, typ := range schema.Types {

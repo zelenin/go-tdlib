@@ -5288,6 +5288,25 @@ func (*MessageSenders) GetType() string {
 	return TypeMessageSenders
 }
 
+func (messageSenders *MessageSenders) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		TotalCount int32             `json:"total_count"`
+		Senders    []json.RawMessage `json:"senders"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	messageSenders.TotalCount = tmp.TotalCount
+
+	fieldSenders, _ := UnmarshalListOfMessageSender(tmp.Senders)
+	messageSenders.Senders = fieldSenders
+
+	return nil
+}
+
 // The message was originally sent by a known user
 type MessageForwardOriginUser struct {
 	meta
@@ -5487,6 +5506,31 @@ func (*MessageReplyInfo) GetClass() string {
 
 func (*MessageReplyInfo) GetType() string {
 	return TypeMessageReplyInfo
+}
+
+func (messageReplyInfo *MessageReplyInfo) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		ReplyCount              int32             `json:"reply_count"`
+		RecentRepliers          []json.RawMessage `json:"recent_repliers"`
+		LastReadInboxMessageId  int64             `json:"last_read_inbox_message_id"`
+		LastReadOutboxMessageId int64             `json:"last_read_outbox_message_id"`
+		LastMessageId           int64             `json:"last_message_id"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	messageReplyInfo.ReplyCount = tmp.ReplyCount
+	messageReplyInfo.LastReadInboxMessageId = tmp.LastReadInboxMessageId
+	messageReplyInfo.LastReadOutboxMessageId = tmp.LastReadOutboxMessageId
+	messageReplyInfo.LastMessageId = tmp.LastMessageId
+
+	fieldRecentRepliers, _ := UnmarshalListOfMessageSender(tmp.RecentRepliers)
+	messageReplyInfo.RecentRepliers = fieldRecentRepliers
+
+	return nil
 }
 
 // Contains information about interactions with a message
@@ -6317,6 +6361,22 @@ func (*ChatLists) GetClass() string {
 
 func (*ChatLists) GetType() string {
 	return TypeChatLists
+}
+
+func (chatLists *ChatLists) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		ChatLists []json.RawMessage `json:"chat_lists"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	fieldChatLists, _ := UnmarshalListOfChatList(tmp.ChatLists)
+	chatLists.ChatLists = fieldChatLists
+
+	return nil
 }
 
 // The chat is sponsored by the user's MTProxy server
@@ -8202,6 +8262,22 @@ func (*RichTexts) RichTextType() string {
 	return TypeRichTexts
 }
 
+func (richTexts *RichTexts) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Texts []json.RawMessage `json:"texts"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	fieldTexts, _ := UnmarshalListOfRichText(tmp.Texts)
+	richTexts.Texts = fieldTexts
+
+	return nil
+}
+
 // Contains a caption of an instant view web page block, consisting of a text and a trailing credit
 type PageBlockCaption struct {
 	meta
@@ -8270,6 +8346,25 @@ func (*PageBlockListItem) GetClass() string {
 
 func (*PageBlockListItem) GetType() string {
 	return TypePageBlockListItem
+}
+
+func (pageBlockListItem *PageBlockListItem) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Label      string            `json:"label"`
+		PageBlocks []json.RawMessage `json:"page_blocks"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	pageBlockListItem.Label = tmp.Label
+
+	fieldPageBlocks, _ := UnmarshalListOfPageBlock(tmp.PageBlocks)
+	pageBlockListItem.PageBlocks = fieldPageBlocks
+
+	return nil
 }
 
 // The content should be left-aligned
@@ -9367,6 +9462,33 @@ func (*PageBlockEmbeddedPost) PageBlockType() string {
 	return TypePageBlockEmbeddedPost
 }
 
+func (pageBlockEmbeddedPost *PageBlockEmbeddedPost) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Url         string            `json:"url"`
+		Author      string            `json:"author"`
+		AuthorPhoto *Photo            `json:"author_photo"`
+		Date        int32             `json:"date"`
+		PageBlocks  []json.RawMessage `json:"page_blocks"`
+		Caption     *PageBlockCaption `json:"caption"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	pageBlockEmbeddedPost.Url = tmp.Url
+	pageBlockEmbeddedPost.Author = tmp.Author
+	pageBlockEmbeddedPost.AuthorPhoto = tmp.AuthorPhoto
+	pageBlockEmbeddedPost.Date = tmp.Date
+	pageBlockEmbeddedPost.Caption = tmp.Caption
+
+	fieldPageBlocks, _ := UnmarshalListOfPageBlock(tmp.PageBlocks)
+	pageBlockEmbeddedPost.PageBlocks = fieldPageBlocks
+
+	return nil
+}
+
 // A collage
 type PageBlockCollage struct {
 	meta
@@ -9396,6 +9518,25 @@ func (*PageBlockCollage) PageBlockType() string {
 	return TypePageBlockCollage
 }
 
+func (pageBlockCollage *PageBlockCollage) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		PageBlocks []json.RawMessage `json:"page_blocks"`
+		Caption    *PageBlockCaption `json:"caption"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	pageBlockCollage.Caption = tmp.Caption
+
+	fieldPageBlocks, _ := UnmarshalListOfPageBlock(tmp.PageBlocks)
+	pageBlockCollage.PageBlocks = fieldPageBlocks
+
+	return nil
+}
+
 // A slideshow
 type PageBlockSlideshow struct {
 	meta
@@ -9423,6 +9564,25 @@ func (*PageBlockSlideshow) GetType() string {
 
 func (*PageBlockSlideshow) PageBlockType() string {
 	return TypePageBlockSlideshow
+}
+
+func (pageBlockSlideshow *PageBlockSlideshow) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		PageBlocks []json.RawMessage `json:"page_blocks"`
+		Caption    *PageBlockCaption `json:"caption"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	pageBlockSlideshow.Caption = tmp.Caption
+
+	fieldPageBlocks, _ := UnmarshalListOfPageBlock(tmp.PageBlocks)
+	pageBlockSlideshow.PageBlocks = fieldPageBlocks
+
+	return nil
 }
 
 // A link to a chat
@@ -9545,9 +9705,9 @@ func (*PageBlockDetails) PageBlockType() string {
 
 func (pageBlockDetails *PageBlockDetails) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		Header     json.RawMessage `json:"header"`
-		PageBlocks []PageBlock     `json:"page_blocks"`
-		IsOpen     bool            `json:"is_open"`
+		Header     json.RawMessage   `json:"header"`
+		PageBlocks []json.RawMessage `json:"page_blocks"`
+		IsOpen     bool              `json:"is_open"`
 	}
 
 	err := json.Unmarshal(data, &tmp)
@@ -9555,11 +9715,13 @@ func (pageBlockDetails *PageBlockDetails) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	pageBlockDetails.PageBlocks = tmp.PageBlocks
 	pageBlockDetails.IsOpen = tmp.IsOpen
 
 	fieldHeader, _ := UnmarshalRichText(tmp.Header)
 	pageBlockDetails.Header = fieldHeader
+
+	fieldPageBlocks, _ := UnmarshalListOfPageBlock(tmp.PageBlocks)
+	pageBlockDetails.PageBlocks = fieldPageBlocks
 
 	return nil
 }
@@ -9676,6 +9838,31 @@ func (*WebPageInstantView) GetClass() string {
 
 func (*WebPageInstantView) GetType() string {
 	return TypeWebPageInstantView
+}
+
+func (webPageInstantView *WebPageInstantView) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		PageBlocks []json.RawMessage `json:"page_blocks"`
+		ViewCount  int32             `json:"view_count"`
+		Version    int32             `json:"version"`
+		IsRtl      bool              `json:"is_rtl"`
+		IsFull     bool              `json:"is_full"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	webPageInstantView.ViewCount = tmp.ViewCount
+	webPageInstantView.Version = tmp.Version
+	webPageInstantView.IsRtl = tmp.IsRtl
+	webPageInstantView.IsFull = tmp.IsFull
+
+	fieldPageBlocks, _ := UnmarshalListOfPageBlock(tmp.PageBlocks)
+	webPageInstantView.PageBlocks = fieldPageBlocks
+
+	return nil
 }
 
 // Describes a web page preview
@@ -10795,12 +10982,12 @@ func (*InputIdentityDocument) GetType() string {
 
 func (inputIdentityDocument *InputIdentityDocument) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		Number      string          `json:"number"`
-		ExpiryDate  *Date           `json:"expiry_date"`
-		FrontSide   json.RawMessage `json:"front_side"`
-		ReverseSide json.RawMessage `json:"reverse_side"`
-		Selfie      json.RawMessage `json:"selfie"`
-		Translation []InputFile     `json:"translation"`
+		Number      string            `json:"number"`
+		ExpiryDate  *Date             `json:"expiry_date"`
+		FrontSide   json.RawMessage   `json:"front_side"`
+		ReverseSide json.RawMessage   `json:"reverse_side"`
+		Selfie      json.RawMessage   `json:"selfie"`
+		Translation []json.RawMessage `json:"translation"`
 	}
 
 	err := json.Unmarshal(data, &tmp)
@@ -10810,7 +10997,6 @@ func (inputIdentityDocument *InputIdentityDocument) UnmarshalJSON(data []byte) e
 
 	inputIdentityDocument.Number = tmp.Number
 	inputIdentityDocument.ExpiryDate = tmp.ExpiryDate
-	inputIdentityDocument.Translation = tmp.Translation
 
 	fieldFrontSide, _ := UnmarshalInputFile(tmp.FrontSide)
 	inputIdentityDocument.FrontSide = fieldFrontSide
@@ -10820,6 +11006,9 @@ func (inputIdentityDocument *InputIdentityDocument) UnmarshalJSON(data []byte) e
 
 	fieldSelfie, _ := UnmarshalInputFile(tmp.Selfie)
 	inputIdentityDocument.Selfie = fieldSelfie
+
+	fieldTranslation, _ := UnmarshalListOfInputFile(tmp.Translation)
+	inputIdentityDocument.Translation = fieldTranslation
 
 	return nil
 }
@@ -10872,6 +11061,26 @@ func (*InputPersonalDocument) GetClass() string {
 
 func (*InputPersonalDocument) GetType() string {
 	return TypeInputPersonalDocument
+}
+
+func (inputPersonalDocument *InputPersonalDocument) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Files       []json.RawMessage `json:"files"`
+		Translation []json.RawMessage `json:"translation"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	fieldFiles, _ := UnmarshalListOfInputFile(tmp.Files)
+	inputPersonalDocument.Files = fieldFiles
+
+	fieldTranslation, _ := UnmarshalListOfInputFile(tmp.Translation)
+	inputPersonalDocument.Translation = fieldTranslation
+
+	return nil
 }
 
 // A Telegram Passport element containing the user's personal details
@@ -11599,6 +11808,22 @@ func (*PassportElements) GetType() string {
 	return TypePassportElements
 }
 
+func (passportElements *PassportElements) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Elements []json.RawMessage `json:"elements"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	fieldElements, _ := UnmarshalListOfPassportElement(tmp.Elements)
+	passportElements.Elements = fieldElements
+
+	return nil
+}
+
 // The element contains an error in an unspecified place. The error will be considered resolved when new data is added
 type PassportElementErrorSourceUnspecified struct {
 	meta
@@ -12005,6 +12230,25 @@ func (*PassportElementsWithErrors) GetClass() string {
 
 func (*PassportElementsWithErrors) GetType() string {
 	return TypePassportElementsWithErrors
+}
+
+func (passportElementsWithErrors *PassportElementsWithErrors) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Elements []json.RawMessage       `json:"elements"`
+		Errors   []*PassportElementError `json:"errors"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	passportElementsWithErrors.Errors = tmp.Errors
+
+	fieldElements, _ := UnmarshalListOfPassportElement(tmp.Elements)
+	passportElementsWithErrors.Elements = fieldElements
+
+	return nil
 }
 
 // Contains encrypted Telegram Passport data credentials
@@ -13576,6 +13820,22 @@ func (*MessagePassportDataSent) GetType() string {
 
 func (*MessagePassportDataSent) MessageContentType() string {
 	return TypeMessagePassportDataSent
+}
+
+func (messagePassportDataSent *MessagePassportDataSent) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Types []json.RawMessage `json:"types"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	fieldTypes, _ := UnmarshalListOfPassportElementType(tmp.Types)
+	messagePassportDataSent.Types = fieldTypes
+
+	return nil
 }
 
 // Telegram Passport data has been received; for bots only
@@ -18448,6 +18708,31 @@ func (*InlineQueryResults) GetType() string {
 	return TypeInlineQueryResults
 }
 
+func (inlineQueryResults *InlineQueryResults) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		InlineQueryId     JsonInt64         `json:"inline_query_id"`
+		NextOffset        string            `json:"next_offset"`
+		Results           []json.RawMessage `json:"results"`
+		SwitchPmText      string            `json:"switch_pm_text"`
+		SwitchPmParameter string            `json:"switch_pm_parameter"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	inlineQueryResults.InlineQueryId = tmp.InlineQueryId
+	inlineQueryResults.NextOffset = tmp.NextOffset
+	inlineQueryResults.SwitchPmText = tmp.SwitchPmText
+	inlineQueryResults.SwitchPmParameter = tmp.SwitchPmParameter
+
+	fieldResults, _ := UnmarshalListOfInlineQueryResult(tmp.Results)
+	inlineQueryResults.Results = fieldResults
+
+	return nil
+}
+
 // The payload for a general callback button
 type CallbackQueryPayloadData struct {
 	meta
@@ -21963,6 +22248,22 @@ func (*JsonValueArray) JsonValueType() string {
 	return TypeJsonValueArray
 }
 
+func (jsonValueArray *JsonValueArray) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Values []json.RawMessage `json:"values"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	fieldValues, _ := UnmarshalListOfJsonValue(tmp.Values)
+	jsonValueArray.Values = fieldValues
+
+	return nil
+}
+
 // Represents a JSON object
 type JsonValueObject struct {
 	meta
@@ -22219,6 +22520,22 @@ func (*UserPrivacySettingRules) GetClass() string {
 
 func (*UserPrivacySettingRules) GetType() string {
 	return TypeUserPrivacySettingRules
+}
+
+func (userPrivacySettingRules *UserPrivacySettingRules) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Rules []json.RawMessage `json:"rules"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	fieldRules, _ := UnmarshalListOfUserPrivacySettingRule(tmp.Rules)
+	userPrivacySettingRules.Rules = fieldRules
+
+	return nil
 }
 
 // A privacy setting for managing whether the user's online status is visible
@@ -23656,6 +23973,25 @@ func (*NetworkStatistics) GetClass() string {
 
 func (*NetworkStatistics) GetType() string {
 	return TypeNetworkStatistics
+}
+
+func (networkStatistics *NetworkStatistics) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		SinceDate int32             `json:"since_date"`
+		Entries   []json.RawMessage `json:"entries"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	networkStatistics.SinceDate = tmp.SinceDate
+
+	fieldEntries, _ := UnmarshalListOfNetworkStatisticsEntry(tmp.Entries)
+	networkStatistics.Entries = fieldEntries
+
+	return nil
 }
 
 // Contains auto-download settings
@@ -27521,6 +27857,26 @@ func (*UpdateSuggestedActions) UpdateType() string {
 	return TypeUpdateSuggestedActions
 }
 
+func (updateSuggestedActions *UpdateSuggestedActions) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		AddedActions   []json.RawMessage `json:"added_actions"`
+		RemovedActions []json.RawMessage `json:"removed_actions"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	fieldAddedActions, _ := UnmarshalListOfSuggestedAction(tmp.AddedActions)
+	updateSuggestedActions.AddedActions = fieldAddedActions
+
+	fieldRemovedActions, _ := UnmarshalListOfSuggestedAction(tmp.RemovedActions)
+	updateSuggestedActions.RemovedActions = fieldRemovedActions
+
+	return nil
+}
+
 // A new incoming inline query; for bots only
 type UpdateNewInlineQuery struct {
 	meta
@@ -27924,6 +28280,22 @@ func (*Updates) GetClass() string {
 
 func (*Updates) GetType() string {
 	return TypeUpdates
+}
+
+func (updates *Updates) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Updates []json.RawMessage `json:"updates"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	fieldUpdates, _ := UnmarshalListOfUpdate(tmp.Updates)
+	updates.Updates = fieldUpdates
+
+	return nil
 }
 
 // The log is written to stderr or an OS specific log

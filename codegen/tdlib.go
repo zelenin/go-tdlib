@@ -285,10 +285,9 @@ func (entity *tdlibType) GetClass() *tlparser.Class {
 func (entity *tdlibType) HasClassProperties() bool {
 	for _, prop := range entity.GetType().Properties {
 		tdlibTypeProperty := TdlibTypeProperty(prop.Name, prop.Type, entity.schema)
-		if tdlibTypeProperty.IsClass() && !tdlibTypeProperty.IsList() {
+		if tdlibTypeProperty.IsClass() {
 			return true
 		}
-
 	}
 
 	return false
