@@ -1,6 +1,7 @@
 package client
 
 import (
+	"context"
 	"errors"
 	"sync"
 	"time"
@@ -123,17 +124,20 @@ func (client *Client) Send(req Request) (*Response, error) {
 	client.catchersStore.Store(req.Extra, catcher)
 
 	defer func() {
-		close(catcher)
 		client.catchersStore.Delete(req.Extra)
+		close(catcher)
 	}()
 
 	client.jsonClient.Send(req)
+
+	ctx, cancel := context.WithTimeout(context.Background(), client.catchTimeout)
+	defer cancel()
 
 	select {
 	case response := <-catcher:
 		return response, nil
 
-	case <-time.After(client.catchTimeout):
+	case <-ctx.Done():
 		return nil, errors.New("response catching timeout")
 	}
 }
