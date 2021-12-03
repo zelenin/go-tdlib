@@ -3,7 +3,8 @@ package codegen
 import (
 	"bytes"
 	"fmt"
-	"github.com/zelenin/go-tdlib/tlparser"
+
+	"github.com/godcong/go-tdlib/tlparser"
 )
 
 func GenerateTypes(schema *tlparser.Schema, packageName string) []byte {
@@ -72,7 +73,10 @@ type %s interface {
 				tdlibTypeProperty := TdlibTypeProperty(property.Name, property.Type, schema)
 
 				buf.WriteString(fmt.Sprintf("    // %s\n", property.Description))
-				buf.WriteString(fmt.Sprintf("    %s %s `json:\"%s\"`\n", tdlibTypeProperty.ToGoName(), tdlibTypeProperty.ToGoType(), property.Name))
+				buf.WriteString(fmt.Sprintf("    %s %s `json:\"%s\"`\n",
+					tdlibTypeProperty.ToGoName(),
+					tdlibTypeProperty.ToGoType(),
+					property.Name))
 			}
 
 			buf.WriteString("}\n\n")
@@ -125,13 +129,22 @@ func (*%s) GetType() string {
 				tdlibTypeProperty := TdlibTypeProperty(property.Name, property.Type, schema)
 
 				if !tdlibTypeProperty.IsClass() {
-					buf.WriteString(fmt.Sprintf("        %s %s `json:\"%s\"`\n", tdlibTypeProperty.ToGoName(), tdlibTypeProperty.ToGoType(), property.Name))
+					buf.WriteString(fmt.Sprintf("        %s %s `json:\"%s\"`\n",
+						tdlibTypeProperty.ToGoName(),
+						tdlibTypeProperty.ToGoType(),
+						property.Name))
 					countSimpleProperties++
 				} else {
 					if tdlibTypeProperty.IsList() {
-						buf.WriteString(fmt.Sprintf("        %s %s `json:\"%s\"`\n", tdlibTypeProperty.ToGoName(), "[]json.RawMessage", property.Name))
+						buf.WriteString(fmt.Sprintf("        %s %s `json:\"%s\"`\n",
+							tdlibTypeProperty.ToGoName(),
+							"[]json.RawMessage",
+							property.Name))
 					} else {
-						buf.WriteString(fmt.Sprintf("        %s %s `json:\"%s\"`\n", tdlibTypeProperty.ToGoName(), "json.RawMessage", property.Name))
+						buf.WriteString(fmt.Sprintf("        %s %s `json:\"%s\"`\n",
+							tdlibTypeProperty.ToGoName(),
+							"json.RawMessage",
+							property.Name))
 					}
 				}
 			}
@@ -149,7 +162,10 @@ func (*%s) GetType() string {
 				tdlibTypeProperty := TdlibTypeProperty(property.Name, property.Type, schema)
 
 				if !tdlibTypeProperty.IsClass() {
-					buf.WriteString(fmt.Sprintf("    %s.%s = tmp.%s\n", typ.Name, tdlibTypeProperty.ToGoName(), tdlibTypeProperty.ToGoName()))
+					buf.WriteString(fmt.Sprintf("    %s.%s = tmp.%s\n",
+						typ.Name,
+						tdlibTypeProperty.ToGoName(),
+						tdlibTypeProperty.ToGoName()))
 				}
 			}
 
@@ -164,13 +180,25 @@ func (*%s) GetType() string {
 					buf.WriteString(fmt.Sprintf(`    field%s, _ := Unmarshal%s(tmp.%s)
     %s.%s = field%s
 
-`, tdlibTypeProperty.ToGoName(), tdlibTypeProperty.ToGoType(), tdlibTypeProperty.ToGoName(), typ.Name, tdlibTypeProperty.ToGoName(), tdlibTypeProperty.ToGoName()))
+`,
+						tdlibTypeProperty.ToGoName(),
+						tdlibTypeProperty.ToGoType(),
+						tdlibTypeProperty.ToGoName(),
+						typ.Name,
+						tdlibTypeProperty.ToGoName(),
+						tdlibTypeProperty.ToGoName()))
 				}
 				if tdlibTypeProperty.IsClass() && tdlibTypeProperty.IsList() {
 					buf.WriteString(fmt.Sprintf(`    field%s, _ := UnmarshalListOf%s(tmp.%s)
     %s.%s = field%s
 
-`, tdlibTypeProperty.ToGoName(), tdlibTypeProperty.GetClass().ToGoType(), tdlibTypeProperty.ToGoName(), typ.Name, tdlibTypeProperty.ToGoName(), tdlibTypeProperty.ToGoName()))
+`,
+						tdlibTypeProperty.ToGoName(),
+						tdlibTypeProperty.GetClass().ToGoType(),
+						tdlibTypeProperty.ToGoName(),
+						typ.Name,
+						tdlibTypeProperty.ToGoName(),
+						tdlibTypeProperty.ToGoName()))
 				}
 			}
 

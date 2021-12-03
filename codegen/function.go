@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/zelenin/go-tdlib/tlparser"
+	"github.com/godcong/go-tdlib/tlparser"
 )
 
 func GenerateFunctions(schema *tlparser.Schema, packageName string) []byte {
@@ -29,7 +29,10 @@ func GenerateFunctions(schema *tlparser.Schema, packageName string) []byte {
 				tdlibTypeProperty := TdlibTypeProperty(property.Name, property.Type, schema)
 
 				buf.WriteString(fmt.Sprintf("    // %s\n", property.Description))
-				buf.WriteString(fmt.Sprintf("    %s %s `json:\"%s\"`\n", tdlibTypeProperty.ToGoName(), tdlibTypeProperty.ToGoType(), property.Name))
+				buf.WriteString(fmt.Sprintf("    %s %s `json:\"%s\"`\n",
+					tdlibTypeProperty.ToGoName(),
+					tdlibTypeProperty.ToGoType(),
+					property.Name))
 			}
 			buf.WriteString("}\n")
 		}
@@ -43,7 +46,10 @@ func GenerateFunctions(schema *tlparser.Schema, packageName string) []byte {
 			requestArgument = fmt.Sprintf("req *%sRequest", tdlibFunction.ToGoName())
 		}
 
-		buf.WriteString(fmt.Sprintf("func (client *Client) %s(%s) (%s, error) {\n", tdlibFunction.ToGoName(), requestArgument, tdlibFunctionReturn.ToGoReturn()))
+		buf.WriteString(fmt.Sprintf("func (client *Client) %s(%s) (%s, error) {\n",
+			tdlibFunction.ToGoName(),
+			requestArgument,
+			tdlibFunctionReturn.ToGoReturn()))
 
 		sendMethod := "Send"
 		if function.IsSynchronous {
@@ -61,7 +67,9 @@ func GenerateFunctions(schema *tlparser.Schema, packageName string) []byte {
 			for _, property := range function.Properties {
 				tdlibTypeProperty := TdlibTypeProperty(property.Name, property.Type, schema)
 
-				buf.WriteString(fmt.Sprintf("            \"%s\": req.%s,\n", property.Name, tdlibTypeProperty.ToGoName()))
+				buf.WriteString(fmt.Sprintf("            \"%s\": req.%s,\n",
+					property.Name,
+					tdlibTypeProperty.ToGoName()))
 			}
 
 			buf.WriteString(`        },

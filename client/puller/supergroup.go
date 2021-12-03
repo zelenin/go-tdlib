@@ -1,7 +1,7 @@
 package puller
 
 import (
-	"github.com/zelenin/go-tdlib/client"
+	"github.com/godcong/go-tdlib/client"
 )
 
 func SupergroupMembers(tdlibClient *client.Client, supergroupID int32) (chan *client.ChatMember, chan error) {
