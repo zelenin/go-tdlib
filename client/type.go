@@ -3978,7 +3978,7 @@ func (*User) GetType() string {
 
 func (user *User) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		ID                int32           `json:"id"`
+		ID                int64           `json:"id"`
 		FirstName         string          `json:"first_name"`
 		LastName          string          `json:"last_name"`
 		Username          string          `json:"username"`
@@ -4869,7 +4869,7 @@ func (*BasicGroup) GetType() string {
 
 func (basicGroup *BasicGroup) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		ID                     int32           `json:"id"`
+		ID                     int64           `json:"id"`
 		MemberCount            int32           `json:"member_count"`
 		Status                 json.RawMessage `json:"status"`
 		IsActive               bool            `json:"is_active"`
@@ -4972,7 +4972,7 @@ func (*Supergroup) GetType() string {
 
 func (supergroup *Supergroup) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		ID                int32           `json:"id"`
+		ID                int64           `json:"id"`
 		Username          string          `json:"username"`
 		Date              int32           `json:"date"`
 		Status            json.RawMessage `json:"status"`
@@ -5184,8 +5184,8 @@ func (*SecretChat) GetType() string {
 
 func (secretChat *SecretChat) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		ID         int32           `json:"id"`
-		UserID     int32           `json:"user_id"`
+		ID         int64           `json:"id"`
+		UserID     int64           `json:"user_id"`
 		State      json.RawMessage `json:"state"`
 		IsOutbound bool            `json:"is_outbound"`
 		Ttl        int32           `json:"ttl"`
@@ -5727,7 +5727,7 @@ func (message *Message) UnmarshalJSON(data []byte) error {
 		MessageThreadID         int64                   `json:"message_thread_id"`
 		Ttl                     int32                   `json:"ttl"`
 		TtlExpiresIn            float64                 `json:"ttl_expires_in"`
-		ViaBotUserID            int32                   `json:"via_bot_user_id"`
+		ViaBotUserID            int64                   `json:"via_bot_user_id"`
 		AuthorSignature         string                  `json:"author_signature"`
 		MediaAlbumID            JsonInt64               `json:"media_album_id"`
 		RestrictionReason       string                  `json:"restriction_reason"`
@@ -17226,8 +17226,8 @@ func (*Call) GetType() string {
 
 func (call *Call) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		ID         int32           `json:"id"`
-		UserID     int32           `json:"user_id"`
+		ID         int64           `json:"id"`
+		UserID     int64           `json:"user_id"`
 		IsOutgoing bool            `json:"is_outgoing"`
 		IsVideo    bool            `json:"is_video"`
 		State      json.RawMessage `json:"state"`
@@ -19186,7 +19186,7 @@ func (*ChatEventMemberPromoted) ChatEventActionType() string {
 
 func (chatEventMemberPromoted *ChatEventMemberPromoted) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		UserID    int32           `json:"user_id"`
+		UserID    int64           `json:"user_id"`
 		OldStatus json.RawMessage `json:"old_status"`
 		NewStatus json.RawMessage `json:"new_status"`
 	}
@@ -19240,7 +19240,7 @@ func (*ChatEventMemberRestricted) ChatEventActionType() string {
 
 func (chatEventMemberRestricted *ChatEventMemberRestricted) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		UserID    int32           `json:"user_id"`
+		UserID    int64           `json:"user_id"`
 		OldStatus json.RawMessage `json:"old_status"`
 		NewStatus json.RawMessage `json:"new_status"`
 	}
@@ -21890,7 +21890,7 @@ func (*Notification) GetType() string {
 
 func (notification *Notification) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		ID       int32           `json:"id"`
+		ID       int64           `json:"id"`
 		Date     int32           `json:"date"`
 		IsSilent bool            `json:"is_silent"`
 		Type     json.RawMessage `json:"type"`
@@ -21944,7 +21944,7 @@ func (*NotificationGroup) GetType() string {
 
 func (notificationGroup *NotificationGroup) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		ID            int32           `json:"id"`
+		ID            int64           `json:"id"`
 		Type          json.RawMessage `json:"type"`
 		ChatID        int64           `json:"chat_id"`
 		TotalCount    int32           `json:"total_count"`
@@ -24853,7 +24853,7 @@ func (*Proxy) GetType() string {
 
 func (proxy *Proxy) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		ID           int32           `json:"id"`
+		ID           int64           `json:"id"`
 		Server       string          `json:"server"`
 		Port         int32           `json:"port"`
 		LastUsedDate int32           `json:"last_used_date"`
@@ -26629,14 +26629,14 @@ func (*UpdateNotificationGroup) UpdateType() string {
 
 func (updateNotificationGroup *UpdateNotificationGroup) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		NotificationGroupID        int32           `json:"notification_group_id"`
+		NotificationGroupID        int64           `json:"notification_group_id"`
 		Type                       json.RawMessage `json:"type"`
 		ChatID                     int64           `json:"chat_id"`
 		NotificationSettingsChatID int64           `json:"notification_settings_chat_id"`
 		IsSilent                   bool            `json:"is_silent"`
 		TotalCount                 int32           `json:"total_count"`
 		AddedNotifications         []*Notification `json:"added_notifications"`
-		RemovedNotificationIDs     []int32         `json:"removed_notification_ids"`
+		RemovedNotificationIDs     []int64         `json:"removed_notification_ids"`
 	}
 
 	err := json.Unmarshal(data, &tmp)
@@ -26784,7 +26784,7 @@ func (updateUserChatAction *UpdateUserChatAction) UnmarshalJSON(data []byte) err
 	var tmp struct {
 		ChatID          int64           `json:"chat_id"`
 		MessageThreadID int64           `json:"message_thread_id"`
-		UserID          int32           `json:"user_id"`
+		UserID          int64           `json:"user_id"`
 		Action          json.RawMessage `json:"action"`
 	}
 
@@ -28051,7 +28051,7 @@ func (*UpdateNewInlineCallbackQuery) UpdateType() string {
 func (updateNewInlineCallbackQuery *UpdateNewInlineCallbackQuery) UnmarshalJSON(data []byte) error {
 	var tmp struct {
 		ID              JsonInt64       `json:"id"`
-		SenderUserID    int32           `json:"sender_user_id"`
+		SenderUserID    int64           `json:"sender_user_id"`
 		InlineMessageID string          `json:"inline_message_id"`
 		ChatInstance    JsonInt64       `json:"chat_instance"`
 		Payload         json.RawMessage `json:"payload"`
