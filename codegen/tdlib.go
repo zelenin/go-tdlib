@@ -4,7 +4,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/godcong/go-tdlib/tlparser"
+	"github.com/zelenin/go-tdlib/tlparser"
 )
 
 type tdlibFunction struct {

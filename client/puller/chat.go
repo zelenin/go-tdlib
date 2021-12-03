@@ -1,7 +1,7 @@
 package puller
 
 import (
-	"github.com/godcong/go-tdlib/client"
+	"github.com/zelenin/go-tdlib/client"
 )
 
 func ChatHistory(tdlibClient *client.Client, chatID int64) (chan *client.Message, chan error) {

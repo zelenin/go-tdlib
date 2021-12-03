@@ -10,7 +10,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/godcong/go-tdlib/tlparser"
+	"github.com/zelenin/go-tdlib/tlparser"
 )
 
 func main() {

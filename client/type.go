@@ -135,7 +135,7 @@ const (
 	ClassChatAdministrators                     = "ChatAdministrators"
 	ClassChatPermissions                        = "ChatPermissions"
 	ClassChatMember                             = "ChatMember"
-	ClassChatMembers                            = "ChatMembers"
+	ClassChatMembers                            = "SearchChatMembersByID"
 	ClassBasicGroup                             = "BasicGroup"
 	ClassBasicGroupFullInfo                     = "BasicGroupFullInfo"
 	ClassSupergroup                             = "Supergroup"
