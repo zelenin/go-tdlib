@@ -4,7 +4,7 @@ import (
 	"github.com/godcong/go-tdlib/client"
 )
 
-func SupergroupMembers(tdlibClient *client.Client, supergroupID int32) (chan *client.ChatMember, chan error) {
+func SupergroupMembers(tdlibClient *client.Client, supergroupID int64) (chan *client.ChatMember, chan error) {
 	chatMemberChan := make(chan *client.ChatMember, 10)
 	errChan := make(chan error, 1)
 
@@ -17,7 +17,7 @@ func SupergroupMembers(tdlibClient *client.Client, supergroupID int32) (chan *cl
 	return chatMemberChan, errChan
 }
 
-func supergroupMembers(tdlibClient *client.Client, chatMemberChan chan *client.ChatMember, errChan chan error, supergroupID int32, filter client.SupergroupMembersFilter, offset int32, limit int32) {
+func supergroupMembers(tdlibClient *client.Client, chatMemberChan chan *client.ChatMember, errChan chan error, supergroupID int64, filter client.SupergroupMembersFilter, offset int32, limit int32) {
 	defer func() {
 		close(chatMemberChan)
 		close(errChan)

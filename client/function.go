@@ -189,7 +189,7 @@ func (client *Client) CheckAuthenticationCode(req *CheckAuthenticationCodeReques
 
 type RequestQrCodeAuthenticationRequest struct {
 	// List of user identifiers of other users currently using the application
-	OtherUserIDs []int32 `json:"other_user_ids"`
+	OtherUserIDs []int64 `json:"other_user_ids"`
 }
 
 // Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
@@ -738,7 +738,7 @@ func (client *Client) GetMe() (*User, error) {
 
 type GetUserRequest struct {
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 // Returns information about a user by their identifier. This is an offline request if the current user is not a bot
@@ -764,7 +764,7 @@ func (client *Client) GetUser(req *GetUserRequest) (*User, error) {
 
 type GetUserFullInfoRequest struct {
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 // Returns full information about a user by their identifier
@@ -790,7 +790,7 @@ func (client *Client) GetUserFullInfo(req *GetUserFullInfoRequest) (*UserFullInf
 
 type GetBasicGroupRequest struct {
 	// Basic group identifier
-	BasicGroupID int32 `json:"basic_group_id"`
+	BasicGroupID int64 `json:"basic_group_id"`
 }
 
 // Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot
@@ -816,7 +816,7 @@ func (client *Client) GetBasicGroup(req *GetBasicGroupRequest) (*BasicGroup, err
 
 type GetBasicGroupFullInfoRequest struct {
 	// Basic group identifier
-	BasicGroupID int32 `json:"basic_group_id"`
+	BasicGroupID int64 `json:"basic_group_id"`
 }
 
 // Returns full information about a basic group by its identifier
@@ -842,7 +842,7 @@ func (client *Client) GetBasicGroupFullInfo(req *GetBasicGroupFullInfoRequest) (
 
 type GetSupergroupRequest struct {
 	// Supergroup or channel identifier
-	SupergroupID int32 `json:"supergroup_id"`
+	SupergroupID int64 `json:"supergroup_id"`
 }
 
 // Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot
@@ -868,7 +868,7 @@ func (client *Client) GetSupergroup(req *GetSupergroupRequest) (*Supergroup, err
 
 type GetSupergroupFullInfoRequest struct {
 	// Supergroup or channel identifier
-	SupergroupID int32 `json:"supergroup_id"`
+	SupergroupID int64 `json:"supergroup_id"`
 }
 
 // Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
@@ -894,7 +894,7 @@ func (client *Client) GetSupergroupFullInfo(req *GetSupergroupFullInfoRequest) (
 
 type GetSecretChatRequest struct {
 	// Secret chat identifier
-	SecretChatID int32 `json:"secret_chat_id"`
+	SecretChatID int64 `json:"secret_chat_id"`
 }
 
 // Returns information about a secret chat by its identifier. This is an offline request
@@ -1149,7 +1149,7 @@ func (client *Client) GetMessageThread(req *GetMessageThreadRequest) (*MessageTh
 
 type GetFileRequest struct {
 	// Identifier of the file to get
-	FileID int32 `json:"file_id"`
+	FileID int64 `json:"file_id"`
 }
 
 // Returns information about a file; this is an offline request
@@ -1641,7 +1641,7 @@ func (client *Client) GetInactiveSupergroupChats() (*Chats, error) {
 
 type GetGroupsInCommonRequest struct {
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// Chat identifier starting from which to return chats; use 0 for the first request
 	OffsetChatID int64 `json:"offset_chat_id"`
 	// The maximum number of chats to be returned; up to 100
@@ -2119,9 +2119,9 @@ func (client *Client) GetMessagePublicForwards(req *GetMessagePublicForwardsRequ
 
 type RemoveNotificationRequest struct {
 	// Identifier of notification group to which the notification belongs
-	NotificationGroupID int32 `json:"notification_group_id"`
+	NotificationGroupID int64 `json:"notification_group_id"`
 	// Identifier of removed notification
-	NotificationID int32 `json:"notification_id"`
+	NotificationID int64 `json:"notification_id"`
 }
 
 // Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user
@@ -2148,9 +2148,9 @@ func (client *Client) RemoveNotification(req *RemoveNotificationRequest) (*Ok, e
 
 type RemoveNotificationGroupRequest struct {
 	// Notification group identifier
-	NotificationGroupID int32 `json:"notification_group_id"`
+	NotificationGroupID int64 `json:"notification_group_id"`
 	// The maximum identifier of removed notifications
-	MaxNotificationID int32 `json:"max_notification_id"`
+	MaxNotificationID int64 `json:"max_notification_id"`
 }
 
 // Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user
@@ -2349,7 +2349,7 @@ func (client *Client) SendMessageAlbum(req *SendMessageAlbumRequest) (*Messages,
 
 type SendBotStartMessageRequest struct {
 	// Identifier of the bot
-	BotUserID int32 `json:"bot_user_id"`
+	BotUserID int64 `json:"bot_user_id"`
 	// Identifier of the target chat
 	ChatID int64 `json:"chat_id"`
 	// A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
@@ -2623,7 +2623,7 @@ type DeleteChatMessagesFromUserRequest struct {
 	// Chat identifier
 	ChatID int64 `json:"chat_id"`
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 // Deletes all messages sent by the specified user to a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
@@ -3332,7 +3332,7 @@ type SetPollAnswerRequest struct {
 	// Identifier of the message containing the poll
 	MessageID int64 `json:"message_id"`
 	// 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
-	OptionIDs []int32 `json:"option_ids"`
+	OptionIDs []int64 `json:"option_ids"`
 }
 
 // Changes the user answer to a poll. A poll in quiz mode can be answered only once
@@ -3364,7 +3364,7 @@ type GetPollVotersRequest struct {
 	// Identifier of the message containing the poll
 	MessageID int64 `json:"message_id"`
 	// 0-based identifier of the answer option
-	OptionID int32 `json:"option_id"`
+	OptionID int64 `json:"option_id"`
 	// Number of users to skip in the result; must be non-negative
 	Offset int32 `json:"offset"`
 	// The maximum number of users to be returned; must be positive and can't be greater than 50. Fewer users may be returned than specified by the limit, even if the end of the voter list has not been reached
@@ -3460,7 +3460,7 @@ type GetLoginUrlInfoRequest struct {
 	// Message identifier of the message with the button
 	MessageID int64 `json:"message_id"`
 	// Button identifier
-	ButtonID int32 `json:"button_id"`
+	ButtonID int64 `json:"button_id"`
 }
 
 // Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
@@ -3501,7 +3501,7 @@ type GetLoginUrlRequest struct {
 	// Message identifier of the message with the button
 	MessageID int64 `json:"message_id"`
 	// Button identifier
-	ButtonID int32 `json:"button_id"`
+	ButtonID int64 `json:"button_id"`
 	// True, if the user allowed the bot to send them messages
 	AllowWriteAccess bool `json:"allow_write_access"`
 }
@@ -3532,7 +3532,7 @@ func (client *Client) GetLoginUrl(req *GetLoginUrlRequest) (*HttpUrl, error) {
 
 type GetInlineQueryResultsRequest struct {
 	// The identifier of the target bot
-	BotUserID int32 `json:"bot_user_id"`
+	BotUserID int64 `json:"bot_user_id"`
 	// Identifier of the chat where the query was sent
 	ChatID int64 `json:"chat_id"`
 	// Location of the user, only if needed
@@ -3751,7 +3751,7 @@ type SetGameScoreRequest struct {
 	// True, if the message should be edited
 	EditMessage bool `json:"edit_message"`
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// The new score
 	Score int32 `json:"score"`
 	// Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
@@ -3790,7 +3790,7 @@ type SetInlineGameScoreRequest struct {
 	// True, if the message should be edited
 	EditMessage bool `json:"edit_message"`
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// The new score
 	Score int32 `json:"score"`
 	// Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
@@ -3828,7 +3828,7 @@ type GetGameHighScoresRequest struct {
 	// Identifier of the message
 	MessageID int64 `json:"message_id"`
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 // Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only
@@ -3858,7 +3858,7 @@ type GetInlineGameHighScoresRequest struct {
 	// Inline message identifier
 	InlineMessageID string `json:"inline_message_id"`
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 // Returns game high scores and some part of the high score table in the range of the specified user; for bots only
@@ -4088,7 +4088,7 @@ func (client *Client) ReadAllChatMentions(req *ReadAllChatMentionsRequest) (*Ok,
 
 type CreatePrivateChatRequest struct {
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
 	Force bool `json:"force"`
 }
@@ -4117,7 +4117,7 @@ func (client *Client) CreatePrivateChat(req *CreatePrivateChatRequest) (*Chat, e
 
 type CreateBasicGroupChatRequest struct {
 	// Basic group identifier
-	BasicGroupID int32 `json:"basic_group_id"`
+	BasicGroupID int64 `json:"basic_group_id"`
 	// If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
 	Force bool `json:"force"`
 }
@@ -4146,7 +4146,7 @@ func (client *Client) CreateBasicGroupChat(req *CreateBasicGroupChatRequest) (*C
 
 type CreateSupergroupChatRequest struct {
 	// Supergroup or channel identifier
-	SupergroupID int32 `json:"supergroup_id"`
+	SupergroupID int64 `json:"supergroup_id"`
 	// If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
 	Force bool `json:"force"`
 }
@@ -4175,7 +4175,7 @@ func (client *Client) CreateSupergroupChat(req *CreateSupergroupChatRequest) (*C
 
 type CreateSecretChatRequest struct {
 	// Secret chat identifier
-	SecretChatID int32 `json:"secret_chat_id"`
+	SecretChatID int64 `json:"secret_chat_id"`
 }
 
 // Returns an existing chat corresponding to a known secret chat
@@ -4201,7 +4201,7 @@ func (client *Client) CreateSecretChat(req *CreateSecretChatRequest) (*Chat, err
 
 type CreateNewBasicGroupChatRequest struct {
 	// Identifiers of users to be added to the basic group
-	UserIDs []int32 `json:"user_ids"`
+	UserIDs []int64 `json:"user_ids"`
 	// Title of the new basic group; 1-128 characters
 	Title string `json:"title"`
 }
@@ -4265,7 +4265,7 @@ func (client *Client) CreateNewSupergroupChat(req *CreateNewSupergroupChatReques
 
 type CreateNewSecretChatRequest struct {
 	// Identifier of the target user
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 // Creates a new secret chat. Returns the newly created chat
@@ -4373,7 +4373,7 @@ func (client *Client) AddChatToList(req *AddChatToListRequest) (*Ok, error) {
 
 type GetChatFilterRequest struct {
 	// Chat filter identifier
-	ChatFilterID int32 `json:"chat_filter_id"`
+	ChatFilterID int64 `json:"chat_filter_id"`
 }
 
 // Returns information about a chat filter by its identifier
@@ -4425,7 +4425,7 @@ func (client *Client) CreateChatFilter(req *CreateChatFilterRequest) (*ChatFilte
 
 type EditChatFilterRequest struct {
 	// Chat filter identifier
-	ChatFilterID int32 `json:"chat_filter_id"`
+	ChatFilterID int64 `json:"chat_filter_id"`
 	// The edited chat filter
 	Filter *ChatFilter `json:"filter"`
 }
@@ -4454,7 +4454,7 @@ func (client *Client) EditChatFilter(req *EditChatFilterRequest) (*ChatFilterInf
 
 type DeleteChatFilterRequest struct {
 	// Chat filter identifier
-	ChatFilterID int32 `json:"chat_filter_id"`
+	ChatFilterID int64 `json:"chat_filter_id"`
 }
 
 // Deletes existing chat filter
@@ -4480,7 +4480,7 @@ func (client *Client) DeleteChatFilter(req *DeleteChatFilterRequest) (*Ok, error
 
 type ReorderChatFiltersRequest struct {
 	// Identifiers of chat filters in the new correct order
-	ChatFilterIDs []int32 `json:"chat_filter_ids"`
+	ChatFilterIDs []int64 `json:"chat_filter_ids"`
 }
 
 // Changes the order of chat filters
@@ -5047,7 +5047,7 @@ type AddChatMemberRequest struct {
 	// Chat identifier
 	ChatID int64 `json:"chat_id"`
 	// Identifier of the user
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels
 	ForwardLimit int32 `json:"forward_limit"`
 }
@@ -5079,7 +5079,7 @@ type AddChatMembersRequest struct {
 	// Chat identifier
 	ChatID int64 `json:"chat_id"`
 	// Identifiers of the users to be added to the chat
-	UserIDs []int32 `json:"user_ids"`
+	UserIDs []int64 `json:"user_ids"`
 }
 
 // Adds multiple new members to a chat. Currently this option is only available for supergroups and channels. This option can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Members will not be added until the chat state has been synchronized with the server
@@ -5108,7 +5108,7 @@ type SetChatMemberStatusRequest struct {
 	// Chat identifier
 	ChatID int64 `json:"chat_id"`
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// The new status of the member in the chat
 	Status ChatMemberStatus `json:"status"`
 }
@@ -5174,7 +5174,7 @@ type TransferChatOwnershipRequest struct {
 	// Chat identifier
 	ChatID int64 `json:"chat_id"`
 	// Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// The password of the current user
 	Password string `json:"password"`
 }
@@ -5206,7 +5206,7 @@ type GetChatMemberRequest struct {
 	// Chat identifier
 	ChatID int64 `json:"chat_id"`
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 // Returns information about a single member of a chat
@@ -5486,7 +5486,7 @@ func (client *Client) SetPinnedChats(req *SetPinnedChatsRequest) (*Ok, error) {
 
 type DownloadFileRequest struct {
 	// Identifier of the file to download
-	FileID int32 `json:"file_id"`
+	FileID int64 `json:"file_id"`
 	// Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first
 	Priority int32 `json:"priority"`
 	// The starting position from which the file should be downloaded
@@ -5524,7 +5524,7 @@ func (client *Client) DownloadFile(req *DownloadFileRequest) (*File, error) {
 
 type GetFileDownloadedPrefixSizeRequest struct {
 	// Identifier of the file
-	FileID int32 `json:"file_id"`
+	FileID int64 `json:"file_id"`
 	// Offset from which downloaded prefix size should be calculated
 	Offset int32 `json:"offset"`
 }
@@ -5553,7 +5553,7 @@ func (client *Client) GetFileDownloadedPrefixSize(req *GetFileDownloadedPrefixSi
 
 type CancelDownloadFileRequest struct {
 	// Identifier of a file to stop downloading
-	FileID int32 `json:"file_id"`
+	FileID int64 `json:"file_id"`
 	// Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server
 	OnlyIfPending bool `json:"only_if_pending"`
 }
@@ -5614,7 +5614,7 @@ func (client *Client) UploadFile(req *UploadFileRequest) (*File, error) {
 
 type CancelUploadFileRequest struct {
 	// Identifier of the file to stop uploading
-	FileID int32 `json:"file_id"`
+	FileID int64 `json:"file_id"`
 }
 
 // Stops the uploading of a file. Supported only for files uploaded by using uploadFile. For other files the behavior is undefined
@@ -5733,7 +5733,7 @@ func (client *Client) FinishFileGeneration(req *FinishFileGenerationRequest) (*O
 
 type ReadFilePartRequest struct {
 	// Identifier of the file. The file must be located in the TDLib file cache
-	FileID int32 `json:"file_id"`
+	FileID int64 `json:"file_id"`
 	// The offset from which to read the file
 	Offset int32 `json:"offset"`
 	// Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
@@ -5765,7 +5765,7 @@ func (client *Client) ReadFilePart(req *ReadFilePartRequest) (*FilePart, error) 
 
 type DeleteFileRequest struct {
 	// Identifier of the file to delete
-	FileID int32 `json:"file_id"`
+	FileID int64 `json:"file_id"`
 }
 
 // Deletes a file from the TDLib file cache
@@ -5869,7 +5869,7 @@ func (client *Client) JoinChatByInviteLink(req *JoinChatByInviteLinkRequest) (*C
 
 type CreateCallRequest struct {
 	// Identifier of the user to be called
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// Description of the call protocols supported by the application
 	Protocol *CallProtocol `json:"protocol"`
 	// True, if a video call needs to be created
@@ -5901,7 +5901,7 @@ func (client *Client) CreateCall(req *CreateCallRequest) (*CallID, error) {
 
 type AcceptCallRequest struct {
 	// Call identifier
-	CallID int32 `json:"call_id"`
+	CallID int64 `json:"call_id"`
 	// Description of the call protocols supported by the application
 	Protocol *CallProtocol `json:"protocol"`
 }
@@ -5930,7 +5930,7 @@ func (client *Client) AcceptCall(req *AcceptCallRequest) (*Ok, error) {
 
 type SendCallSignalingDataRequest struct {
 	// Call identifier
-	CallID int32 `json:"call_id"`
+	CallID int64 `json:"call_id"`
 	// The data
 	Data []byte `json:"data"`
 }
@@ -5959,7 +5959,7 @@ func (client *Client) SendCallSignalingData(req *SendCallSignalingDataRequest) (
 
 type DiscardCallRequest struct {
 	// Call identifier
-	CallID int32 `json:"call_id"`
+	CallID int64 `json:"call_id"`
 	// True, if the user was disconnected
 	IsDisconnected bool `json:"is_disconnected"`
 	// The call duration, in seconds
@@ -5997,7 +5997,7 @@ func (client *Client) DiscardCall(req *DiscardCallRequest) (*Ok, error) {
 
 type SendCallRatingRequest struct {
 	// Call identifier
-	CallID int32 `json:"call_id"`
+	CallID int64 `json:"call_id"`
 	// Call rating; 1-5
 	Rating int32 `json:"rating"`
 	// An optional user comment if the rating is less than 5
@@ -6032,7 +6032,7 @@ func (client *Client) SendCallRating(req *SendCallRatingRequest) (*Ok, error) {
 
 type SendCallDebugInformationRequest struct {
 	// Call identifier
-	CallID int32 `json:"call_id"`
+	CallID int64 `json:"call_id"`
 	// Debug information in application-specific format
 	DebugInformation string `json:"debug_information"`
 }
@@ -6257,7 +6257,7 @@ func (client *Client) SearchContacts(req *SearchContactsRequest) (*Users, error)
 
 type RemoveContactsRequest struct {
 	// Identifiers of users to be deleted
-	UserIDs []int32 `json:"user_ids"`
+	UserIDs []int64 `json:"user_ids"`
 }
 
 // Removes users from the contact list
@@ -6347,7 +6347,7 @@ func (client *Client) ClearImportedContacts() (*Ok, error) {
 
 type SharePhoneNumberRequest struct {
 	// Identifier of the user with whom to share the phone number. The user must be a mutual contact
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 // Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber
@@ -6373,7 +6373,7 @@ func (client *Client) SharePhoneNumber(req *SharePhoneNumberRequest) (*Ok, error
 
 type GetUserProfilePhotosRequest struct {
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// The number of photos to skip; must be non-negative
 	Offset int32 `json:"offset"`
 	// The maximum number of photos to be returned; up to 100
@@ -6550,7 +6550,7 @@ func (client *Client) GetTrendingStickerSets(req *GetTrendingStickerSetsRequest)
 
 type GetAttachedStickerSetsRequest struct {
 	// File identifier
-	FileID int32 `json:"file_id"`
+	FileID int64 `json:"file_id"`
 }
 
 // Returns a list of sticker sets attached to a file. Currently only photos and videos can have attached sticker sets
@@ -7625,7 +7625,7 @@ func (client *Client) DisconnectAllWebsites() (*Ok, error) {
 
 type SetSupergroupUsernameRequest struct {
 	// Identifier of the supergroup or channel
-	SupergroupID int32 `json:"supergroup_id"`
+	SupergroupID int64 `json:"supergroup_id"`
 	// New value of the username. Use an empty string to remove the username
 	Username string `json:"username"`
 }
@@ -7654,7 +7654,7 @@ func (client *Client) SetSupergroupUsername(req *SetSupergroupUsernameRequest) (
 
 type SetSupergroupStickerSetRequest struct {
 	// Identifier of the supergroup
-	SupergroupID int32 `json:"supergroup_id"`
+	SupergroupID int64 `json:"supergroup_id"`
 	// New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
 	StickerSetID JsonInt64 `json:"sticker_set_id"`
 }
@@ -7683,7 +7683,7 @@ func (client *Client) SetSupergroupStickerSet(req *SetSupergroupStickerSetReques
 
 type ToggleSupergroupSignMessagesRequest struct {
 	// Identifier of the channel
-	SupergroupID int32 `json:"supergroup_id"`
+	SupergroupID int64 `json:"supergroup_id"`
 	// New value of sign_messages
 	SignMessages bool `json:"sign_messages"`
 }
@@ -7712,7 +7712,7 @@ func (client *Client) ToggleSupergroupSignMessages(req *ToggleSupergroupSignMess
 
 type ToggleSupergroupIsAllHistoryAvailableRequest struct {
 	// The identifier of the supergroup
-	SupergroupID int32 `json:"supergroup_id"`
+	SupergroupID int64 `json:"supergroup_id"`
 	// The new value of is_all_history_available
 	IsAllHistoryAvailable bool `json:"is_all_history_available"`
 }
@@ -7742,9 +7742,9 @@ func (client *Client) ToggleSupergroupIsAllHistoryAvailable(req *ToggleSupergrou
 
 type ReportSupergroupSpamRequest struct {
 	// Supergroup identifier
-	SupergroupID int32 `json:"supergroup_id"`
+	SupergroupID int64 `json:"supergroup_id"`
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// Identifiers of messages sent in the supergroup by the user. This list must be non-empty
 	MessageIDs []int64 `json:"message_ids"`
 }
@@ -7774,7 +7774,7 @@ func (client *Client) ReportSupergroupSpam(req *ReportSupergroupSpamRequest) (*O
 
 type GetSupergroupMembersRequest struct {
 	// Identifier of the supergroup or channel
-	SupergroupID int32 `json:"supergroup_id"`
+	SupergroupID int64 `json:"supergroup_id"`
 	// The type of users to return. By default, supergroupMembersFilterRecent
 	Filter SupergroupMembersFilter `json:"filter"`
 	// Number of users to skip
@@ -7809,7 +7809,7 @@ func (client *Client) GetSupergroupMembers(req *GetSupergroupMembersRequest) (*C
 
 type DeleteSupergroupRequest struct {
 	// Identifier of the supergroup or channel
-	SupergroupID int32 `json:"supergroup_id"`
+	SupergroupID int64 `json:"supergroup_id"`
 }
 
 // Deletes a supergroup or channel along with all messages in the corresponding chat. This will release the supergroup or channel username and remove all members; requires owner privileges in the supergroup or channel. Chats with more than 1000 members can't be deleted using this method
@@ -7835,7 +7835,7 @@ func (client *Client) DeleteSupergroup(req *DeleteSupergroupRequest) (*Ok, error
 
 type CloseSecretChatRequest struct {
 	// Secret chat identifier
-	SecretChatID int32 `json:"secret_chat_id"`
+	SecretChatID int64 `json:"secret_chat_id"`
 }
 
 // Closes a secret chat, effectively transferring its state to secretChatStateClosed
@@ -7871,7 +7871,7 @@ type GetChatEventLogRequest struct {
 	// The types of events to return. By default, all types will be returned
 	Filters *ChatEventLogFilters `json:"filters"`
 	// User identifiers by which to filter events. By default, events relating to all users will be returned
-	UserIDs []int32 `json:"user_ids"`
+	UserIDs []int64 `json:"user_ids"`
 }
 
 // Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i. e., in order of decreasing event_id)
@@ -8513,7 +8513,7 @@ type RegisterDeviceRequest struct {
 	// Device token
 	DeviceToken DeviceToken `json:"device_token"`
 	// List of user identifiers of other users currently using the application
-	OtherUserIDs []int32 `json:"other_user_ids"`
+	OtherUserIDs []int64 `json:"other_user_ids"`
 }
 
 // Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
@@ -9498,7 +9498,7 @@ func (client *Client) DeletePassportElement(req *DeletePassportElementRequest) (
 
 type SetPassportElementErrorsRequest struct {
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// The errors
 	Errors []*InputPassportElementError `json:"errors"`
 }
@@ -9700,7 +9700,7 @@ func (client *Client) CheckEmailAddressVerificationCode(req *CheckEmailAddressVe
 
 type GetPassportAuthorizationFormRequest struct {
 	// User identifier of the service's bot
-	BotUserID int32 `json:"bot_user_id"`
+	BotUserID int64 `json:"bot_user_id"`
 	// Telegram Passport element types requested by the service
 	Scope string `json:"scope"`
 	// Service's public_key
@@ -9736,7 +9736,7 @@ func (client *Client) GetPassportAuthorizationForm(req *GetPassportAuthorization
 
 type GetPassportAuthorizationFormAvailableElementsRequest struct {
 	// Authorization form identifier
-	AutorizationFormID int32 `json:"autorization_form_id"`
+	AutorizationFormID int64 `json:"autorization_form_id"`
 	// Password of the current user
 	Password string `json:"password"`
 }
@@ -9766,7 +9766,7 @@ func (client *Client) GetPassportAuthorizationFormAvailableElements(req *GetPass
 
 type SendPassportAuthorizationFormRequest struct {
 	// Authorization form identifier
-	AutorizationFormID int32 `json:"autorization_form_id"`
+	AutorizationFormID int64 `json:"autorization_form_id"`
 	// Types of Telegram Passport elements chosen by user to complete the authorization form
 	Types []PassportElementType `json:"types"`
 }
@@ -9902,7 +9902,7 @@ func (client *Client) SetBotUpdatesStatus(req *SetBotUpdatesStatusRequest) (*Ok,
 
 type UploadStickerFileRequest struct {
 	// Sticker file owner
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// PNG image with the sticker; must be up to 512 KB in size and fit in 512x512 square
 	PngSticker InputFile `json:"png_sticker"`
 }
@@ -9931,7 +9931,7 @@ func (client *Client) UploadStickerFile(req *UploadStickerFileRequest) (*File, e
 
 type CreateNewStickerSetRequest struct {
 	// Sticker set owner
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// Sticker set title; 1-64 characters
 	Title string `json:"title"`
 	// Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive); 1-64 characters
@@ -9969,7 +9969,7 @@ func (client *Client) CreateNewStickerSet(req *CreateNewStickerSetRequest) (*Sti
 
 type AddStickerToSetRequest struct {
 	// Sticker set owner
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// Sticker set name
 	Name string `json:"name"`
 	// Sticker to add to the set
@@ -10001,7 +10001,7 @@ func (client *Client) AddStickerToSet(req *AddStickerToSetRequest) (*StickerSet,
 
 type SetStickerSetThumbnailRequest struct {
 	// Sticker set owner
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// Sticker set name
 	Name string `json:"name"`
 	// Thumbnail to set in PNG or TGS format. Animated thumbnail must be set for animated sticker sets and only for them. Pass a zero InputFileID to delete the thumbnail
@@ -10455,7 +10455,7 @@ func (client *Client) AddProxy(req *AddProxyRequest) (*Proxy, error) {
 
 type EditProxyRequest struct {
 	// Proxy identifier
-	ProxyID int32 `json:"proxy_id"`
+	ProxyID int64 `json:"proxy_id"`
 	// Proxy server IP address
 	Server string `json:"server"`
 	// Proxy server port
@@ -10493,7 +10493,7 @@ func (client *Client) EditProxy(req *EditProxyRequest) (*Proxy, error) {
 
 type EnableProxyRequest struct {
 	// Proxy identifier
-	ProxyID int32 `json:"proxy_id"`
+	ProxyID int64 `json:"proxy_id"`
 }
 
 // Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization
@@ -10538,7 +10538,7 @@ func (client *Client) DisableProxy() (*Ok, error) {
 
 type RemoveProxyRequest struct {
 	// Proxy identifier
-	ProxyID int32 `json:"proxy_id"`
+	ProxyID int64 `json:"proxy_id"`
 }
 
 // Removes a proxy server. Can be called before authorization
@@ -10583,7 +10583,7 @@ func (client *Client) GetProxies() (*Proxies, error) {
 
 type GetProxyLinkRequest struct {
 	// Proxy identifier
-	ProxyID int32 `json:"proxy_id"`
+	ProxyID int64 `json:"proxy_id"`
 }
 
 // Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
@@ -10609,7 +10609,7 @@ func (client *Client) GetProxyLink(req *GetProxyLinkRequest) (*Text, error) {
 
 type PingProxyRequest struct {
 	// Proxy identifier. Use 0 to ping a Telegram server without a proxy
-	ProxyID int32 `json:"proxy_id"`
+	ProxyID int64 `json:"proxy_id"`
 }
 
 // Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
@@ -11067,7 +11067,7 @@ type TestProxyRequest struct {
 	// Proxy type
 	Type ProxyType `json:"type"`
 	// Identifier of a datacenter, with which to test connection
-	DcID int32 `json:"dc_id"`
+	DcID int64 `json:"dc_id"`
 	// The maximum overall timeout for the request
 	Timeout float64 `json:"timeout"`
 }

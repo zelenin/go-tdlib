@@ -1584,7 +1584,7 @@ type TdlibParameters struct {
 	// If set to true, support for secret chats will be enabled
 	UseSecretChats bool `json:"use_secret_chats"`
 	// Application identifier for Telegram API access, which can be obtained at https://my.telegram.org
-	ApiID int32 `json:"api_id"`
+	ApiID int64 `json:"api_id"`
 	// Application identifier hash for Telegram API access, which can be obtained at https://my.telegram.org
 	ApiHash string `json:"api_hash"`
 	// IETF language tag of the user's operating system language; must be non-empty
@@ -2367,7 +2367,7 @@ func (*RemoteFile) GetType() string {
 type File struct {
 	meta
 	// Unique file identifier
-	ID int32 `json:"id"`
+	ID int64 `json:"id"`
 	// File size; 0 if unknown
 	Size int32 `json:"size"`
 	// Expected file size in case the exact file size is unknown, but an approximate size is known. Can be used to show download/upload progress
@@ -2398,7 +2398,7 @@ func (*File) GetType() string {
 type InputFileID struct {
 	meta
 	// Unique file identifier
-	ID int32 `json:"id"`
+	ID int64 `json:"id"`
 }
 
 func (entity *InputFileID) MarshalJSON() ([]byte, error) {
@@ -2980,7 +2980,7 @@ func (*PollTypeRegular) PollTypeType() string {
 type PollTypeQuiz struct {
 	meta
 	// 0-based identifier of the correct answer option; -1 for a yet unanswered poll
-	CorrectOptionID int32 `json:"correct_option_id"`
+	CorrectOptionID int64 `json:"correct_option_id"`
 	// Text that is shown when the user chooses an incorrect answer or taps on the lamp icon, 0-200 characters with at most 2 line feeds; empty for a yet unanswered poll
 	Explanation *FormattedText `json:"explanation"`
 }
@@ -3291,7 +3291,7 @@ type Contact struct {
 	// Additional data about the user in a form of vCard; 0-2048 bytes in length
 	Vcard string `json:"vcard"`
 	// Identifier of the user, if known; otherwise 0
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 func (entity *Contact) MarshalJSON() ([]byte, error) {
@@ -3417,7 +3417,7 @@ type Poll struct {
 	// Total number of voters, participating in the poll
 	TotalVoterCount int32 `json:"total_voter_count"`
 	// User identifiers of recent voters, if the poll is non-anonymous
-	RecentVoterUserIDs []int32 `json:"recent_voter_user_ids"`
+	RecentVoterUserIDs []int64 `json:"recent_voter_user_ids"`
 	// True, if the poll is anonymous
 	IsAnonymous bool `json:"is_anonymous"`
 	// Type of the poll
@@ -3452,7 +3452,7 @@ func (poll *Poll) UnmarshalJSON(data []byte) error {
 		Question           string          `json:"question"`
 		Options            []*PollOption   `json:"options"`
 		TotalVoterCount    int32           `json:"total_voter_count"`
-		RecentVoterUserIDs []int32         `json:"recent_voter_user_ids"`
+		RecentVoterUserIDs []int64         `json:"recent_voter_user_ids"`
 		IsAnonymous        bool            `json:"is_anonymous"`
 		Type               json.RawMessage `json:"type"`
 		OpenPeriod         int32           `json:"open_period"`
@@ -3927,7 +3927,7 @@ func (inputChatPhotoAnimation *InputChatPhotoAnimation) UnmarshalJSON(data []byt
 type User struct {
 	meta
 	// User identifier
-	ID int32 `json:"id"`
+	ID int64 `json:"id"`
 	// First name of the user
 	FirstName string `json:"first_name"`
 	// Last name of the user
@@ -4072,7 +4072,7 @@ type Users struct {
 	// Approximate total count of users found
 	TotalCount int32 `json:"total_count"`
 	// A list of user identifiers
-	UserIDs []int32 `json:"user_ids"`
+	UserIDs []int64 `json:"user_ids"`
 }
 
 func (entity *Users) MarshalJSON() ([]byte, error) {
@@ -4095,7 +4095,7 @@ func (*Users) GetType() string {
 type ChatAdministrator struct {
 	meta
 	// User identifier of the administrator
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// Custom title of the administrator
 	CustomTitle string `json:"custom_title"`
 	// True, if the user is the owner of the chat
@@ -4840,7 +4840,7 @@ func (*SupergroupMembersFilterBots) SupergroupMembersFilterType() string {
 type BasicGroup struct {
 	meta
 	// Group identifier
-	ID int32 `json:"id"`
+	ID int64 `json:"id"`
 	// Number of members in the group
 	MemberCount int32 `json:"member_count"`
 	// Status of the current user in the group
@@ -4848,7 +4848,7 @@ type BasicGroup struct {
 	// True, if the group is active
 	IsActive bool `json:"is_active"`
 	// Identifier of the supergroup to which this group was upgraded; 0 if none
-	UpgradedToSupergroupID int32 `json:"upgraded_to_supergroup_id"`
+	UpgradedToSupergroupID int64 `json:"upgraded_to_supergroup_id"`
 }
 
 func (entity *BasicGroup) MarshalJSON() ([]byte, error) {
@@ -4873,7 +4873,7 @@ func (basicGroup *BasicGroup) UnmarshalJSON(data []byte) error {
 		MemberCount            int32           `json:"member_count"`
 		Status                 json.RawMessage `json:"status"`
 		IsActive               bool            `json:"is_active"`
-		UpgradedToSupergroupID int32           `json:"upgraded_to_supergroup_id"`
+		UpgradedToSupergroupID int64           `json:"upgraded_to_supergroup_id"`
 	}
 
 	err := json.Unmarshal(data, &tmp)
@@ -4900,7 +4900,7 @@ type BasicGroupFullInfo struct {
 	// Group description
 	Description string `json:"description"`
 	// User identifier of the creator of the group; 0 if unknown
-	CreatorUserID int32 `json:"creator_user_id"`
+	CreatorUserID int64 `json:"creator_user_id"`
 	// Group members
 	Members []*ChatMember `json:"members"`
 	// Invite link for this group; available only after it has been generated at least once and only for the group creator
@@ -4927,7 +4927,7 @@ func (*BasicGroupFullInfo) GetType() string {
 type Supergroup struct {
 	meta
 	// Supergroup or channel identifier
-	ID int32 `json:"id"`
+	ID int64 `json:"id"`
 	// Username of the supergroup or channel; empty for private supergroups or channels
 	Username string `json:"username"`
 	// Point in time (Unix timestamp) when the current user joined, or the point in time when the supergroup or channel was created, in case the user is not a member
@@ -5051,7 +5051,7 @@ type SupergroupFullInfo struct {
 	// Invite link for this chat
 	InviteLink string `json:"invite_link"`
 	// Identifier of the basic group from which supergroup was upgraded; 0 if none
-	UpgradedFromBasicGroupID int32 `json:"upgraded_from_basic_group_id"`
+	UpgradedFromBasicGroupID int64 `json:"upgraded_from_basic_group_id"`
 	// Identifier of the last message in the basic group from which supergroup was upgraded; 0 if none
 	UpgradedFromMaxMessageID int64 `json:"upgraded_from_max_message_id"`
 }
@@ -5151,9 +5151,9 @@ func (*SecretChatStateClosed) SecretChatStateType() string {
 type SecretChat struct {
 	meta
 	// Secret chat identifier
-	ID int32 `json:"id"`
+	ID int64 `json:"id"`
 	// Identifier of the chat partner
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// State of the secret chat
 	State SecretChatState `json:"state"`
 	// True, if the chat was created by the current user; otherwise false
@@ -5215,7 +5215,7 @@ func (secretChat *SecretChat) UnmarshalJSON(data []byte) error {
 type MessageSenderUser struct {
 	meta
 	// Identifier of the user that sent the message
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 func (entity *MessageSenderUser) MarshalJSON() ([]byte, error) {
@@ -5313,7 +5313,7 @@ func (messageSenders *MessageSenders) UnmarshalJSON(data []byte) error {
 type MessageForwardOriginUser struct {
 	meta
 	// Identifier of the user that originally sent the message
-	SenderUserID int32 `json:"sender_user_id"`
+	SenderUserID int64 `json:"sender_user_id"`
 }
 
 func (entity *MessageForwardOriginUser) MarshalJSON() ([]byte, error) {
@@ -5672,7 +5672,7 @@ type Message struct {
 	// Time left before the message expires, in seconds
 	TtlExpiresIn float64 `json:"ttl_expires_in"`
 	// If non-zero, the user identifier of the bot through which this message was sent
-	ViaBotUserID int32 `json:"via_bot_user_id"`
+	ViaBotUserID int64 `json:"via_bot_user_id"`
 	// For channel posts and anonymous group messages, optional author signature
 	AuthorSignature string `json:"author_signature"`
 	// Unique identifier of an album this message belongs to. Only photos and videos can be grouped together in albums
@@ -6035,7 +6035,7 @@ func (draftMessage *DraftMessage) UnmarshalJSON(data []byte) error {
 type ChatTypePrivate struct {
 	meta
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 func (entity *ChatTypePrivate) MarshalJSON() ([]byte, error) {
@@ -6062,7 +6062,7 @@ func (*ChatTypePrivate) ChatTypeType() string {
 type ChatTypeBasicGroup struct {
 	meta
 	// Basic group identifier
-	BasicGroupID int32 `json:"basic_group_id"`
+	BasicGroupID int64 `json:"basic_group_id"`
 }
 
 func (entity *ChatTypeBasicGroup) MarshalJSON() ([]byte, error) {
@@ -6089,7 +6089,7 @@ func (*ChatTypeBasicGroup) ChatTypeType() string {
 type ChatTypeSupergroup struct {
 	meta
 	// Supergroup or channel identifier
-	SupergroupID int32 `json:"supergroup_id"`
+	SupergroupID int64 `json:"supergroup_id"`
 	// True, if the supergroup is a channel
 	IsChannel bool `json:"is_channel"`
 }
@@ -6118,9 +6118,9 @@ func (*ChatTypeSupergroup) ChatTypeType() string {
 type ChatTypeSecret struct {
 	meta
 	// Secret chat identifier
-	SecretChatID int32 `json:"secret_chat_id"`
+	SecretChatID int64 `json:"secret_chat_id"`
 	// User identifier of the secret chat peer
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 func (entity *ChatTypeSecret) MarshalJSON() ([]byte, error) {
@@ -6194,7 +6194,7 @@ func (*ChatFilter) GetType() string {
 type ChatFilterInfo struct {
 	meta
 	// Unique chat filter identifier
-	ID int32 `json:"id"`
+	ID int64 `json:"id"`
 	// The title of the filter; 1-12 characters without line feeds
 	Title string `json:"title"`
 	// The icon name for short filter representation. One of "All", "Unread", "Unmuted", "Bots", "Channels", "Groups", "Private", "Custom", "Setup", "Cat", "Crown", "Favorite", "Flower", "Game", "Home", "Love", "Mask", "Party", "Sport", "Study", "Trade", "Travel", "Work"
@@ -6319,7 +6319,7 @@ func (*ChatListArchive) ChatListType() string {
 type ChatListFilter struct {
 	meta
 	// Chat filter identifier
-	ChatFilterID int32 `json:"chat_filter_id"`
+	ChatFilterID int64 `json:"chat_filter_id"`
 }
 
 func (entity *ChatListFilter) MarshalJSON() ([]byte, error) {
@@ -6733,7 +6733,7 @@ type ChatInviteLinkInfo struct {
 	// Number of members in the chat
 	MemberCount int32 `json:"member_count"`
 	// User identifiers of some chat members that may be known to the current user
-	MemberUserIDs []int32 `json:"member_user_ids"`
+	MemberUserIDs []int64 `json:"member_user_ids"`
 	// True, if the chat is a public supergroup or channel, i.e. it has a username or it is a location-based supergroup
 	IsPublic bool `json:"is_public"`
 }
@@ -6762,7 +6762,7 @@ func (chatInviteLinkInfo *ChatInviteLinkInfo) UnmarshalJSON(data []byte) error {
 		Title         string          `json:"title"`
 		Photo         *ChatPhotoInfo  `json:"photo"`
 		MemberCount   int32           `json:"member_count"`
-		MemberUserIDs []int32         `json:"member_user_ids"`
+		MemberUserIDs []int64         `json:"member_user_ids"`
 		IsPublic      bool            `json:"is_public"`
 	}
 
@@ -7147,7 +7147,7 @@ type InlineKeyboardButtonTypeLoginUrl struct {
 	// An HTTP URL to open
 	Url string `json:"url"`
 	// Unique button identifier
-	ID int32 `json:"id"`
+	ID int64 `json:"id"`
 	// If non-empty, new text of the button in forwarded messages
 	ForwardText string `json:"forward_text"`
 }
@@ -7500,7 +7500,7 @@ type LoginUrlInfoRequestConfirmation struct {
 	// A domain of the URL
 	Domain string `json:"domain"`
 	// User identifier of a bot linked with the website
-	BotUserID int32 `json:"bot_user_id"`
+	BotUserID int64 `json:"bot_user_id"`
 	// True, if the user needs to be requested to give the permission to the bot to send them messages
 	RequestWriteAccess bool `json:"request_write_access"`
 }
@@ -10471,7 +10471,7 @@ type PaymentReceipt struct {
 	// Point in time (Unix timestamp) when the payment was made
 	Date int32 `json:"date"`
 	// User identifier of the payment provider bot
-	PaymentsProviderUserID int32 `json:"payments_provider_user_id"`
+	PaymentsProviderUserID int64 `json:"payments_provider_user_id"`
 	// Contains information about the invoice
 	Invoice *Invoice `json:"invoice"`
 	// Contains order information; may be null
@@ -12186,7 +12186,7 @@ func (*PassportRequiredElement) GetType() string {
 type PassportAuthorizationForm struct {
 	meta
 	// Unique identifier of the authorization form
-	ID int32 `json:"id"`
+	ID int64 `json:"id"`
 	// Information about the Telegram Passport elements that must be provided to complete the form
 	RequiredElements []*PassportRequiredElement `json:"required_elements"`
 	// URL for the privacy policy of the service; may be empty
@@ -13272,7 +13272,7 @@ type MessageBasicGroupChatCreate struct {
 	// Title of the basic group
 	Title string `json:"title"`
 	// User identifiers of members in the basic group
-	MemberUserIDs []int32 `json:"member_user_ids"`
+	MemberUserIDs []int64 `json:"member_user_ids"`
 }
 
 func (entity *MessageBasicGroupChatCreate) MarshalJSON() ([]byte, error) {
@@ -13405,7 +13405,7 @@ func (*MessageChatDeletePhoto) MessageContentType() string {
 type MessageChatAddMembers struct {
 	meta
 	// User identifiers of the new members
-	MemberUserIDs []int32 `json:"member_user_ids"`
+	MemberUserIDs []int64 `json:"member_user_ids"`
 }
 
 func (entity *MessageChatAddMembers) MarshalJSON() ([]byte, error) {
@@ -13457,7 +13457,7 @@ func (*MessageChatJoinByLink) MessageContentType() string {
 type MessageChatDeleteMember struct {
 	meta
 	// User identifier of the deleted chat member
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 func (entity *MessageChatDeleteMember) MarshalJSON() ([]byte, error) {
@@ -13484,7 +13484,7 @@ func (*MessageChatDeleteMember) MessageContentType() string {
 type MessageChatUpgradeTo struct {
 	meta
 	// Identifier of the supergroup to which the basic group was upgraded
-	SupergroupID int32 `json:"supergroup_id"`
+	SupergroupID int64 `json:"supergroup_id"`
 }
 
 func (entity *MessageChatUpgradeTo) MarshalJSON() ([]byte, error) {
@@ -13513,7 +13513,7 @@ type MessageChatUpgradeFrom struct {
 	// Title of the newly created supergroup
 	Title string `json:"title"`
 	// The identifier of the original basic group
-	BasicGroupID int32 `json:"basic_group_id"`
+	BasicGroupID int64 `json:"basic_group_id"`
 }
 
 func (entity *MessageChatUpgradeFrom) MarshalJSON() ([]byte, error) {
@@ -14356,7 +14356,7 @@ func (*TextEntityTypeTextUrl) TextEntityTypeType() string {
 type TextEntityTypeMentionName struct {
 	meta
 	// Identifier of the mentioned user
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 func (entity *TextEntityTypeMentionName) MarshalJSON() ([]byte, error) {
@@ -14593,7 +14593,7 @@ type InputMessageAnimation struct {
 	// Animation thumbnail, if available
 	Thumbnail *InputThumbnail `json:"thumbnail"`
 	// File identifiers of the stickers added to the animation, if applicable
-	AddedStickerFileIDs []int32 `json:"added_sticker_file_ids"`
+	AddedStickerFileIDs []int64 `json:"added_sticker_file_ids"`
 	// Duration of the animation, in seconds
 	Duration int32 `json:"duration"`
 	// Width of the animation; may be replaced by the server
@@ -14628,7 +14628,7 @@ func (inputMessageAnimation *InputMessageAnimation) UnmarshalJSON(data []byte) e
 	var tmp struct {
 		Animation           json.RawMessage `json:"animation"`
 		Thumbnail           *InputThumbnail `json:"thumbnail"`
-		AddedStickerFileIDs []int32         `json:"added_sticker_file_ids"`
+		AddedStickerFileIDs []int64         `json:"added_sticker_file_ids"`
 		Duration            int32           `json:"duration"`
 		Width               int32           `json:"width"`
 		Height              int32           `json:"height"`
@@ -14781,7 +14781,7 @@ type InputMessagePhoto struct {
 	// Photo thumbnail to be sent, this is sent to the other party in secret chats only
 	Thumbnail *InputThumbnail `json:"thumbnail"`
 	// File identifiers of the stickers added to the photo, if applicable
-	AddedStickerFileIDs []int32 `json:"added_sticker_file_ids"`
+	AddedStickerFileIDs []int64 `json:"added_sticker_file_ids"`
 	// Photo width
 	Width int32 `json:"width"`
 	// Photo height
@@ -14816,7 +14816,7 @@ func (inputMessagePhoto *InputMessagePhoto) UnmarshalJSON(data []byte) error {
 	var tmp struct {
 		Photo               json.RawMessage `json:"photo"`
 		Thumbnail           *InputThumbnail `json:"thumbnail"`
-		AddedStickerFileIDs []int32         `json:"added_sticker_file_ids"`
+		AddedStickerFileIDs []int64         `json:"added_sticker_file_ids"`
 		Width               int32           `json:"width"`
 		Height              int32           `json:"height"`
 		Caption             *FormattedText  `json:"caption"`
@@ -14905,7 +14905,7 @@ type InputMessageVideo struct {
 	// Video thumbnail, if available
 	Thumbnail *InputThumbnail `json:"thumbnail"`
 	// File identifiers of the stickers added to the video, if applicable
-	AddedStickerFileIDs []int32 `json:"added_sticker_file_ids"`
+	AddedStickerFileIDs []int64 `json:"added_sticker_file_ids"`
 	// Duration of the video, in seconds
 	Duration int32 `json:"duration"`
 	// Video width
@@ -14944,7 +14944,7 @@ func (inputMessageVideo *InputMessageVideo) UnmarshalJSON(data []byte) error {
 	var tmp struct {
 		Video               json.RawMessage `json:"video"`
 		Thumbnail           *InputThumbnail `json:"thumbnail"`
-		AddedStickerFileIDs []int32         `json:"added_sticker_file_ids"`
+		AddedStickerFileIDs []int64         `json:"added_sticker_file_ids"`
 		Duration            int32           `json:"duration"`
 		Width               int32           `json:"width"`
 		Height              int32           `json:"height"`
@@ -15205,7 +15205,7 @@ func (*InputMessageDice) InputMessageContentType() string {
 type InputMessageGame struct {
 	meta
 	// User identifier of the bot that owns the game
-	BotUserID int32 `json:"bot_user_id"`
+	BotUserID int64 `json:"bot_user_id"`
 	// Short name of the game
 	GameShortName string `json:"game_short_name"`
 }
@@ -16754,7 +16754,7 @@ func (callServer *CallServer) UnmarshalJSON(data []byte) error {
 type CallID struct {
 	meta
 	// Call identifier
-	ID int32 `json:"id"`
+	ID int64 `json:"id"`
 }
 
 func (entity *CallID) MarshalJSON() ([]byte, error) {
@@ -17197,9 +17197,9 @@ func (*CallProblemPixelatedVideo) CallProblemType() string {
 type Call struct {
 	meta
 	// Call identifier, not persistent
-	ID int32 `json:"id"`
+	ID int64 `json:"id"`
 	// Peer user identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// True, if the call is outgoing
 	IsOutgoing bool `json:"is_outgoing"`
 	// True, if the call is a video call
@@ -17365,7 +17365,7 @@ func (*DiceStickersSlotMachine) DiceStickersType() string {
 type ImportedContacts struct {
 	meta
 	// User identifiers of the imported contacts in the same order as they were specified in the request; 0 if the contact is not yet a registered user
-	UserIDs []int32 `json:"user_ids"`
+	UserIDs []int64 `json:"user_ids"`
 	// The number of users that imported the corresponding contact; 0 for already registered users or if unavailable
 	ImporterCount []int32 `json:"importer_count"`
 }
@@ -18874,7 +18874,7 @@ type GameHighScore struct {
 	// Position in the high score table
 	Position int32 `json:"position"`
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// User score
 	Score int32 `json:"score"`
 }
@@ -19109,7 +19109,7 @@ func (*ChatEventMemberLeft) ChatEventActionType() string {
 type ChatEventMemberInvited struct {
 	meta
 	// New member user identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// New member status
 	Status ChatMemberStatus `json:"status"`
 }
@@ -19136,7 +19136,7 @@ func (*ChatEventMemberInvited) ChatEventActionType() string {
 
 func (chatEventMemberInvited *ChatEventMemberInvited) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		UserID int32           `json:"user_id"`
+		UserID int64           `json:"user_id"`
 		Status json.RawMessage `json:"status"`
 	}
 
@@ -19157,7 +19157,7 @@ func (chatEventMemberInvited *ChatEventMemberInvited) UnmarshalJSON(data []byte)
 type ChatEventMemberPromoted struct {
 	meta
 	// Chat member user identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// Previous status of the chat member
 	OldStatus ChatMemberStatus `json:"old_status"`
 	// New status of the chat member
@@ -19211,7 +19211,7 @@ func (chatEventMemberPromoted *ChatEventMemberPromoted) UnmarshalJSON(data []byt
 type ChatEventMemberRestricted struct {
 	meta
 	// Chat member user identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// Previous status of the chat member
 	OldStatus ChatMemberStatus `json:"old_status"`
 	// New status of the chat member
@@ -19611,7 +19611,7 @@ type ChatEvent struct {
 	// Point in time (Unix timestamp) when the event happened
 	Date int32 `json:"date"`
 	// Identifier of the user who performed the action that triggered the event
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// Action performed by the user
 	Action ChatEventAction `json:"action"`
 }
@@ -19636,7 +19636,7 @@ func (chatEvent *ChatEvent) UnmarshalJSON(data []byte) error {
 	var tmp struct {
 		ID     JsonInt64       `json:"id"`
 		Date   int32           `json:"date"`
-		UserID int32           `json:"user_id"`
+		UserID int64           `json:"user_id"`
 		Action json.RawMessage `json:"action"`
 	}
 
@@ -21674,7 +21674,7 @@ func (*NotificationTypeNewSecretChat) NotificationTypeType() string {
 type NotificationTypeNewCall struct {
 	meta
 	// Call identifier
-	CallID int32 `json:"call_id"`
+	CallID int64 `json:"call_id"`
 }
 
 func (entity *NotificationTypeNewCall) MarshalJSON() ([]byte, error) {
@@ -21863,7 +21863,7 @@ func (*NotificationGroupTypeCalls) NotificationGroupTypeType() string {
 type Notification struct {
 	meta
 	// Unique persistent identifier of this notification
-	ID int32 `json:"id"`
+	ID int64 `json:"id"`
 	// Notification date
 	Date int32 `json:"date"`
 	// True, if the notification was initially silent
@@ -21915,7 +21915,7 @@ func (notification *Notification) UnmarshalJSON(data []byte) error {
 type NotificationGroup struct {
 	meta
 	// Unique persistent auto-incremented from 1 identifier of the notification group
-	ID int32 `json:"id"`
+	ID int64 `json:"id"`
 	// Type of the group
 	Type NotificationGroupType `json:"type"`
 	// Identifier of a chat to which all notifications in the group belong
@@ -22347,7 +22347,7 @@ func (*UserPrivacySettingRuleAllowContacts) UserPrivacySettingRuleType() string 
 type UserPrivacySettingRuleAllowUsers struct {
 	meta
 	// The user identifiers, total number of users in all rules must not exceed 1000
-	UserIDs []int32 `json:"user_ids"`
+	UserIDs []int64 `json:"user_ids"`
 }
 
 func (entity *UserPrivacySettingRuleAllowUsers) MarshalJSON() ([]byte, error) {
@@ -22451,7 +22451,7 @@ func (*UserPrivacySettingRuleRestrictContacts) UserPrivacySettingRuleType() stri
 type UserPrivacySettingRuleRestrictUsers struct {
 	meta
 	// The user identifiers, total number of users in all rules must not exceed 1000
-	UserIDs []int32 `json:"user_ids"`
+	UserIDs []int64 `json:"user_ids"`
 }
 
 func (entity *UserPrivacySettingRuleRestrictUsers) MarshalJSON() ([]byte, error) {
@@ -22773,7 +22773,7 @@ type Session struct {
 	// True, if a password is needed to complete authorization of the session
 	IsPasswordPending bool `json:"is_password_pending"`
 	// Telegram API identifier, as provided by the application
-	ApiID int32 `json:"api_id"`
+	ApiID int64 `json:"api_id"`
 	// Name of the application, as provided by the application
 	ApplicationName string `json:"application_name"`
 	// The version of the application, as provided by the application
@@ -22845,7 +22845,7 @@ type ConnectedWebsite struct {
 	// The domain name of the website
 	DomainName string `json:"domain_name"`
 	// User identifier of a bot linked with the website
-	BotUserID int32 `json:"bot_user_id"`
+	BotUserID int64 `json:"bot_user_id"`
 	// The version of a browser used to log in
 	Browser string `json:"browser"`
 	// Operating system the browser is running on
@@ -24364,7 +24364,7 @@ func (*TopChatCategoryForwardChats) TopChatCategoryType() string {
 type TMeUrlTypeUser struct {
 	meta
 	// Identifier of the user
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 }
 
 func (entity *TMeUrlTypeUser) MarshalJSON() ([]byte, error) {
@@ -24822,7 +24822,7 @@ func (*ProxyTypeMtproto) ProxyTypeType() string {
 type Proxy struct {
 	meta
 	// Unique identifier of the proxy
-	ID int32 `json:"id"`
+	ID int64 `json:"id"`
 	// Proxy server IP address
 	Server string `json:"server"`
 	// Proxy server port
@@ -25167,7 +25167,7 @@ func (*ChatStatisticsMessageInteractionInfo) GetType() string {
 type ChatStatisticsMessageSenderInfo struct {
 	meta
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// Number of sent messages
 	SentMessageCount int32 `json:"sent_message_count"`
 	// Average number of characters in sent messages
@@ -25194,7 +25194,7 @@ func (*ChatStatisticsMessageSenderInfo) GetType() string {
 type ChatStatisticsAdministratorActionsInfo struct {
 	meta
 	// Administrator user identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// Number of messages deleted by the administrator
 	DeletedMessageCount int32 `json:"deleted_message_count"`
 	// Number of users banned by the administrator
@@ -25223,7 +25223,7 @@ func (*ChatStatisticsAdministratorActionsInfo) GetType() string {
 type ChatStatisticsInviterInfo struct {
 	meta
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// Number of new members invited by the user
 	AddedMemberCount int32 `json:"added_member_count"`
 }
@@ -26561,7 +26561,7 @@ func (*UpdateChatOnlineMemberCount) UpdateType() string {
 type UpdateNotification struct {
 	meta
 	// Unique notification group identifier
-	NotificationGroupID int32 `json:"notification_group_id"`
+	NotificationGroupID int64 `json:"notification_group_id"`
 	// Changed notification
 	Notification *Notification `json:"notification"`
 }
@@ -26590,7 +26590,7 @@ func (*UpdateNotification) UpdateType() string {
 type UpdateNotificationGroup struct {
 	meta
 	// Unique notification group identifier
-	NotificationGroupID int32 `json:"notification_group_id"`
+	NotificationGroupID int64 `json:"notification_group_id"`
 	// New type of the notification group
 	Type NotificationGroupType `json:"type"`
 	// Identifier of a chat to which all notifications in the group belong
@@ -26604,7 +26604,7 @@ type UpdateNotificationGroup struct {
 	// List of added group notifications, sorted by notification ID
 	AddedNotifications []*Notification `json:"added_notifications"`
 	// Identifiers of removed group notifications, sorted by notification ID
-	RemovedNotificationIDs []int32 `json:"removed_notification_ids"`
+	RemovedNotificationIDs []int64 `json:"removed_notification_ids"`
 }
 
 func (entity *UpdateNotificationGroup) MarshalJSON() ([]byte, error) {
@@ -26755,7 +26755,7 @@ type UpdateUserChatAction struct {
 	// If not 0, a message thread identifier in which the action was performed
 	MessageThreadID int64 `json:"message_thread_id"`
 	// Identifier of a user performing an action
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// The action description
 	Action ChatAction `json:"action"`
 }
@@ -26807,7 +26807,7 @@ func (updateUserChatAction *UpdateUserChatAction) UnmarshalJSON(data []byte) err
 type UpdateUserStatus struct {
 	meta
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// New status of the user
 	Status UserStatus `json:"status"`
 }
@@ -26834,7 +26834,7 @@ func (*UpdateUserStatus) UpdateType() string {
 
 func (updateUserStatus *UpdateUserStatus) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		UserID int32           `json:"user_id"`
+		UserID int64           `json:"user_id"`
 		Status json.RawMessage `json:"status"`
 	}
 
@@ -26963,7 +26963,7 @@ func (*UpdateSecretChat) UpdateType() string {
 type UpdateUserFullInfo struct {
 	meta
 	// User identifier
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// New full information about the user
 	UserFullInfo *UserFullInfo `json:"user_full_info"`
 }
@@ -26992,7 +26992,7 @@ func (*UpdateUserFullInfo) UpdateType() string {
 type UpdateBasicGroupFullInfo struct {
 	meta
 	// Identifier of a basic group
-	BasicGroupID int32 `json:"basic_group_id"`
+	BasicGroupID int64 `json:"basic_group_id"`
 	// New full information about the group
 	BasicGroupFullInfo *BasicGroupFullInfo `json:"basic_group_full_info"`
 }
@@ -27021,7 +27021,7 @@ func (*UpdateBasicGroupFullInfo) UpdateType() string {
 type UpdateSupergroupFullInfo struct {
 	meta
 	// Identifier of the supergroup or channel
-	SupergroupID int32 `json:"supergroup_id"`
+	SupergroupID int64 `json:"supergroup_id"`
 	// New full information about the supergroup
 	SupergroupFullInfo *SupergroupFullInfo `json:"supergroup_full_info"`
 }
@@ -27212,7 +27212,7 @@ func (*UpdateCall) UpdateType() string {
 type UpdateNewCallSignalingData struct {
 	meta
 	// The call identifier
-	CallID int32 `json:"call_id"`
+	CallID int64 `json:"call_id"`
 	// The data
 	Data []byte `json:"data"`
 }
@@ -27538,7 +27538,7 @@ type UpdateRecentStickers struct {
 	// True, if the list of stickers attached to photo or video files was updated, otherwise the list of sent stickers is updated
 	IsAttached bool `json:"is_attached"`
 	// The new list of file identifiers of recently used stickers
-	StickerIDs []int32 `json:"sticker_ids"`
+	StickerIDs []int64 `json:"sticker_ids"`
 }
 
 func (entity *UpdateRecentStickers) MarshalJSON() ([]byte, error) {
@@ -27565,7 +27565,7 @@ func (*UpdateRecentStickers) UpdateType() string {
 type UpdateFavoriteStickers struct {
 	meta
 	// The new list of file identifiers of favorite stickers
-	StickerIDs []int32 `json:"sticker_ids"`
+	StickerIDs []int64 `json:"sticker_ids"`
 }
 
 func (entity *UpdateFavoriteStickers) MarshalJSON() ([]byte, error) {
@@ -27592,7 +27592,7 @@ func (*UpdateFavoriteStickers) UpdateType() string {
 type UpdateSavedAnimations struct {
 	meta
 	// The new list of file identifiers of saved animations
-	AnimationIDs []int32 `json:"animation_ids"`
+	AnimationIDs []int64 `json:"animation_ids"`
 }
 
 func (entity *UpdateSavedAnimations) MarshalJSON() ([]byte, error) {
@@ -27885,7 +27885,7 @@ type UpdateNewInlineQuery struct {
 	// Unique query identifier
 	ID JsonInt64 `json:"id"`
 	// Identifier of the user who sent the query
-	SenderUserID int32 `json:"sender_user_id"`
+	SenderUserID int64 `json:"sender_user_id"`
 	// User location; may be null
 	UserLocation *Location `json:"user_location"`
 	// Text of the query
@@ -27918,7 +27918,7 @@ func (*UpdateNewInlineQuery) UpdateType() string {
 type UpdateNewChosenInlineResult struct {
 	meta
 	// Identifier of the user who sent the query
-	SenderUserID int32 `json:"sender_user_id"`
+	SenderUserID int64 `json:"sender_user_id"`
 	// User location; may be null
 	UserLocation *Location `json:"user_location"`
 	// Text of the query
@@ -27955,7 +27955,7 @@ type UpdateNewCallbackQuery struct {
 	// Unique query identifier
 	ID JsonInt64 `json:"id"`
 	// Identifier of the user who sent the query
-	SenderUserID int32 `json:"sender_user_id"`
+	SenderUserID int64 `json:"sender_user_id"`
 	// Identifier of the chat where the query was sent
 	ChatID int64 `json:"chat_id"`
 	// Identifier of the message, from which the query originated
@@ -27989,7 +27989,7 @@ func (*UpdateNewCallbackQuery) UpdateType() string {
 func (updateNewCallbackQuery *UpdateNewCallbackQuery) UnmarshalJSON(data []byte) error {
 	var tmp struct {
 		ID           JsonInt64       `json:"id"`
-		SenderUserID int32           `json:"sender_user_id"`
+		SenderUserID int64           `json:"sender_user_id"`
 		ChatID       int64           `json:"chat_id"`
 		MessageID    int64           `json:"message_id"`
 		ChatInstance JsonInt64       `json:"chat_instance"`
@@ -28019,7 +28019,7 @@ type UpdateNewInlineCallbackQuery struct {
 	// Unique query identifier
 	ID JsonInt64 `json:"id"`
 	// Identifier of the user who sent the query
-	SenderUserID int32 `json:"sender_user_id"`
+	SenderUserID int64 `json:"sender_user_id"`
 	// Identifier of the inline message, from which the query originated
 	InlineMessageID string `json:"inline_message_id"`
 	// An identifier uniquely corresponding to the chat a message was sent to
@@ -28079,7 +28079,7 @@ type UpdateNewShippingQuery struct {
 	// Unique query identifier
 	ID JsonInt64 `json:"id"`
 	// Identifier of the user who sent the query
-	SenderUserID int32 `json:"sender_user_id"`
+	SenderUserID int64 `json:"sender_user_id"`
 	// Invoice payload
 	InvoicePayload string `json:"invoice_payload"`
 	// User shipping address
@@ -28112,7 +28112,7 @@ type UpdateNewPreCheckoutQuery struct {
 	// Unique query identifier
 	ID JsonInt64 `json:"id"`
 	// Identifier of the user who sent the query
-	SenderUserID int32 `json:"sender_user_id"`
+	SenderUserID int64 `json:"sender_user_id"`
 	// Currency for the product price
 	Currency string `json:"currency"`
 	// Total price for the product, in the minimal quantity of the currency
@@ -28236,9 +28236,9 @@ type UpdatePollAnswer struct {
 	// Unique poll identifier
 	PollID JsonInt64 `json:"poll_id"`
 	// The user, who changed the answer to the poll
-	UserID int32 `json:"user_id"`
+	UserID int64 `json:"user_id"`
 	// 0-based identifiers of answer options, chosen by the user
-	OptionIDs []int32 `json:"option_ids"`
+	OptionIDs []int64 `json:"option_ids"`
 }
 
 func (entity *UpdatePollAnswer) MarshalJSON() ([]byte, error) {
