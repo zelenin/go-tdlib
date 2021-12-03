@@ -4368,7 +4368,7 @@ func (*ChatMemberStatusBanned) ChatMemberStatusType() string {
 type ChatMember struct {
 	meta
 	// User identifier of the chat member
-	UserID int64 `json:"user_id"`
+	MemberID *MessageSenderUser `json:"member_id"`
 	// Identifier of a user that invited/promoted/banned this member in the chat; 0 if unknown
 	InviterUserID int64 `json:"inviter_user_id"`
 	// Point in time (Unix timestamp) when the user joined the chat
@@ -4397,9 +4397,7 @@ func (*ChatMember) GetType() string {
 
 func (chatMember *ChatMember) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		MemberID struct {
-			UserID int64 `json:"user_id"`
-		} `json:"member_id"`
+		MemberID       json.RawMessage `json:"member_id"`
 		InviterUserID  int64           `json:"inviter_user_id"`
 		JoinedChatDate int32           `json:"joined_chat_date"`
 		Status         json.RawMessage `json:"status"`
@@ -4411,7 +4409,7 @@ func (chatMember *ChatMember) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	chatMember.UserID = tmp.MemberID.UserID
+	chatMember.MemberID, _ = UnmarshalMessageSenderUser(tmp.MemberID)
 	chatMember.InviterUserID = tmp.InviterUserID
 	chatMember.JoinedChatDate = tmp.JoinedChatDate
 	chatMember.BotInfo = tmp.BotInfo
