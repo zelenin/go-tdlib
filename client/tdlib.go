@@ -1,6 +1,12 @@
 package client
 
 /*
+#cgo linux CFLAGS: -I/usr/local/include
+#cgo linux LDFLAGS: -L/usr/local/lib -ltdjson_static -ltdjson_private -ltdclient -ltdcore -ltdapi -ltdactor -ltddb -ltdsqlite -ltdnet -ltdutils -lgcc -lssl -lcrypto -ldl -lz -lm
+#cgo darwin CFLAGS: -I/usr/local/include
+#cgo darwin LDFLAGS: -L/usr/local/lib -L/usr/local/opt/openssl/lib -ltdjson_static -ltdjson_private -ltdclient -ltdcore -ltdapi -ltdactor -ltddb -ltdsqlite -ltdnet -ltdutils -lc++ -lssl -lcrypto -ldl -lz -lm
+#cgo windows CFLAGS: -I${SRCDIR}/../../td -I${SRCDIR}/../../td/build
+#cgo windows LDFLAGS: -L${SRCDIR}/../../td/tdlib/lib -ltdjson
 #include <stdlib.h>
 #include <td/telegram/td_json_client.h>
 */
@@ -25,7 +31,7 @@ func NewJsonClient() *JsonClient {
 	}
 }
 
-// Sends request to the TDLib client. May be called from any thread.
+//Sends request to the TDLib client. May be called from any thread.
 func (jsonClient *JsonClient) Send(req Request) {
 	data, _ := json.Marshal(req)
 
@@ -54,7 +60,7 @@ func (jsonClient *JsonClient) Receive(timeout time.Duration) (*Response, error) 
 		return nil, err
 	}
 
-	if resp.ClientId != jsonClient.id {
+	if resp.ClientID != jsonClient.id {
 		return nil, errors.New("wrong @client_id")
 	}
 
@@ -94,7 +100,7 @@ func (jsonClient *JsonClient) Execute(req Request) (*Response, error) {
 type meta struct {
 	Type     string `json:"@type"`
 	Extra    string `json:"@extra"`
-	ClientId int    `json:"@client_id"`
+	ClientID int    `json:"@client_id"`
 }
 
 type Request struct {

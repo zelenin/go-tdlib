@@ -117,8 +117,8 @@ func UnmarshalInputFile(data json.RawMessage) (InputFile, error) {
 	}
 
 	switch meta.Type {
-	case TypeInputFileId:
-		return UnmarshalInputFileId(data)
+	case TypeInputFileID:
+		return UnmarshalInputFileID(data)
 
 	case TypeInputFileRemote:
 		return UnmarshalInputFileRemote(data)
@@ -1630,7 +1630,8 @@ func UnmarshalInputPassportElementErrorSource(data json.RawMessage) (InputPasspo
 	}
 }
 
-func UnmarshalListOfInputPassportElementErrorSource(dataList []json.RawMessage) ([]InputPassportElementErrorSource, error) {
+func UnmarshalListOfInputPassportElementErrorSource(dataList []json.RawMessage) ([]InputPassportElementErrorSource,
+	error) {
 	list := []InputPassportElementErrorSource{}
 
 	for _, data := range dataList {
@@ -4191,7 +4192,8 @@ func UnmarshalTdlibParameters(data json.RawMessage) (*TdlibParameters, error) {
 	return &resp, err
 }
 
-func UnmarshalAuthenticationCodeTypeTelegramMessage(data json.RawMessage) (*AuthenticationCodeTypeTelegramMessage, error) {
+func UnmarshalAuthenticationCodeTypeTelegramMessage(data json.RawMessage) (*AuthenticationCodeTypeTelegramMessage,
+	error) {
 	var resp AuthenticationCodeTypeTelegramMessage
 
 	err := json.Unmarshal(data, &resp)
@@ -4271,7 +4273,8 @@ func UnmarshalTermsOfService(data json.RawMessage) (*TermsOfService, error) {
 	return &resp, err
 }
 
-func UnmarshalAuthorizationStateWaitTdlibParameters(data json.RawMessage) (*AuthorizationStateWaitTdlibParameters, error) {
+func UnmarshalAuthorizationStateWaitTdlibParameters(data json.RawMessage) (*AuthorizationStateWaitTdlibParameters,
+	error) {
 	var resp AuthorizationStateWaitTdlibParameters
 
 	err := json.Unmarshal(data, &resp)
@@ -4303,7 +4306,8 @@ func UnmarshalAuthorizationStateWaitCode(data json.RawMessage) (*AuthorizationSt
 	return &resp, err
 }
 
-func UnmarshalAuthorizationStateWaitOtherDeviceConfirmation(data json.RawMessage) (*AuthorizationStateWaitOtherDeviceConfirmation, error) {
+func UnmarshalAuthorizationStateWaitOtherDeviceConfirmation(data json.RawMessage) (*AuthorizationStateWaitOtherDeviceConfirmation,
+	error) {
 	var resp AuthorizationStateWaitOtherDeviceConfirmation
 
 	err := json.Unmarshal(data, &resp)
@@ -4407,8 +4411,8 @@ func UnmarshalFile(data json.RawMessage) (*File, error) {
 	return &resp, err
 }
 
-func UnmarshalInputFileId(data json.RawMessage) (*InputFileId, error) {
-	var resp InputFileId
+func UnmarshalInputFileID(data json.RawMessage) (*InputFileID, error) {
+	var resp InputFileID
 
 	err := json.Unmarshal(data, &resp)
 
@@ -4983,7 +4987,8 @@ func UnmarshalSupergroupMembersFilterContacts(data json.RawMessage) (*Supergroup
 	return &resp, err
 }
 
-func UnmarshalSupergroupMembersFilterAdministrators(data json.RawMessage) (*SupergroupMembersFilterAdministrators, error) {
+func UnmarshalSupergroupMembersFilterAdministrators(data json.RawMessage) (*SupergroupMembersFilterAdministrators,
+	error) {
 	var resp SupergroupMembersFilterAdministrators
 
 	err := json.Unmarshal(data, &resp)
@@ -5215,7 +5220,8 @@ func UnmarshalFoundMessages(data json.RawMessage) (*FoundMessages, error) {
 	return &resp, err
 }
 
-func UnmarshalNotificationSettingsScopePrivateChats(data json.RawMessage) (*NotificationSettingsScopePrivateChats, error) {
+func UnmarshalNotificationSettingsScopePrivateChats(data json.RawMessage) (*NotificationSettingsScopePrivateChats,
+	error) {
 	var resp NotificationSettingsScopePrivateChats
 
 	err := json.Unmarshal(data, &resp)
@@ -5231,7 +5237,8 @@ func UnmarshalNotificationSettingsScopeGroupChats(data json.RawMessage) (*Notifi
 	return &resp, err
 }
 
-func UnmarshalNotificationSettingsScopeChannelChats(data json.RawMessage) (*NotificationSettingsScopeChannelChats, error) {
+func UnmarshalNotificationSettingsScopeChannelChats(data json.RawMessage) (*NotificationSettingsScopeChannelChats,
+	error) {
 	var resp NotificationSettingsScopeChannelChats
 
 	err := json.Unmarshal(data, &resp)
@@ -5455,7 +5462,8 @@ func UnmarshalChatActionBarReportSpam(data json.RawMessage) (*ChatActionBarRepor
 	return &resp, err
 }
 
-func UnmarshalChatActionBarReportUnrelatedLocation(data json.RawMessage) (*ChatActionBarReportUnrelatedLocation, error) {
+func UnmarshalChatActionBarReportUnrelatedLocation(data json.RawMessage) (*ChatActionBarReportUnrelatedLocation,
+	error) {
 	var resp ChatActionBarReportUnrelatedLocation
 
 	err := json.Unmarshal(data, &resp)
@@ -5495,7 +5503,8 @@ func UnmarshalKeyboardButtonTypeText(data json.RawMessage) (*KeyboardButtonTypeT
 	return &resp, err
 }
 
-func UnmarshalKeyboardButtonTypeRequestPhoneNumber(data json.RawMessage) (*KeyboardButtonTypeRequestPhoneNumber, error) {
+func UnmarshalKeyboardButtonTypeRequestPhoneNumber(data json.RawMessage) (*KeyboardButtonTypeRequestPhoneNumber,
+	error) {
 	var resp KeyboardButtonTypeRequestPhoneNumber
 
 	err := json.Unmarshal(data, &resp)
@@ -5551,7 +5560,8 @@ func UnmarshalInlineKeyboardButtonTypeCallback(data json.RawMessage) (*InlineKey
 	return &resp, err
 }
 
-func UnmarshalInlineKeyboardButtonTypeCallbackWithPassword(data json.RawMessage) (*InlineKeyboardButtonTypeCallbackWithPassword, error) {
+func UnmarshalInlineKeyboardButtonTypeCallbackWithPassword(data json.RawMessage) (*InlineKeyboardButtonTypeCallbackWithPassword,
+	error) {
 	var resp InlineKeyboardButtonTypeCallbackWithPassword
 
 	err := json.Unmarshal(data, &resp)
@@ -5559,7 +5569,8 @@ func UnmarshalInlineKeyboardButtonTypeCallbackWithPassword(data json.RawMessage)
 	return &resp, err
 }
 
-func UnmarshalInlineKeyboardButtonTypeCallbackGame(data json.RawMessage) (*InlineKeyboardButtonTypeCallbackGame, error) {
+func UnmarshalInlineKeyboardButtonTypeCallbackGame(data json.RawMessage) (*InlineKeyboardButtonTypeCallbackGame,
+	error) {
 	var resp InlineKeyboardButtonTypeCallbackGame
 
 	err := json.Unmarshal(data, &resp)
@@ -5567,7 +5578,8 @@ func UnmarshalInlineKeyboardButtonTypeCallbackGame(data json.RawMessage) (*Inlin
 	return &resp, err
 }
 
-func UnmarshalInlineKeyboardButtonTypeSwitchInline(data json.RawMessage) (*InlineKeyboardButtonTypeSwitchInline, error) {
+func UnmarshalInlineKeyboardButtonTypeSwitchInline(data json.RawMessage) (*InlineKeyboardButtonTypeSwitchInline,
+	error) {
 	var resp InlineKeyboardButtonTypeSwitchInline
 
 	err := json.Unmarshal(data, &resp)
@@ -6351,7 +6363,8 @@ func UnmarshalPassportElementTypeRentalAgreement(data json.RawMessage) (*Passpor
 	return &resp, err
 }
 
-func UnmarshalPassportElementTypePassportRegistration(data json.RawMessage) (*PassportElementTypePassportRegistration, error) {
+func UnmarshalPassportElementTypePassportRegistration(data json.RawMessage) (*PassportElementTypePassportRegistration,
+	error) {
 	var resp PassportElementTypePassportRegistration
 
 	err := json.Unmarshal(data, &resp)
@@ -6359,7 +6372,8 @@ func UnmarshalPassportElementTypePassportRegistration(data json.RawMessage) (*Pa
 	return &resp, err
 }
 
-func UnmarshalPassportElementTypeTemporaryRegistration(data json.RawMessage) (*PassportElementTypeTemporaryRegistration, error) {
+func UnmarshalPassportElementTypeTemporaryRegistration(data json.RawMessage) (*PassportElementTypeTemporaryRegistration,
+	error) {
 	var resp PassportElementTypeTemporaryRegistration
 
 	err := json.Unmarshal(data, &resp)
@@ -6511,7 +6525,8 @@ func UnmarshalPassportElementPassportRegistration(data json.RawMessage) (*Passpo
 	return &resp, err
 }
 
-func UnmarshalPassportElementTemporaryRegistration(data json.RawMessage) (*PassportElementTemporaryRegistration, error) {
+func UnmarshalPassportElementTemporaryRegistration(data json.RawMessage) (*PassportElementTemporaryRegistration,
+	error) {
 	var resp PassportElementTemporaryRegistration
 
 	err := json.Unmarshal(data, &resp)
@@ -6567,7 +6582,8 @@ func UnmarshalInputPassportElementIdentityCard(data json.RawMessage) (*InputPass
 	return &resp, err
 }
 
-func UnmarshalInputPassportElementInternalPassport(data json.RawMessage) (*InputPassportElementInternalPassport, error) {
+func UnmarshalInputPassportElementInternalPassport(data json.RawMessage) (*InputPassportElementInternalPassport,
+	error) {
 	var resp InputPassportElementInternalPassport
 
 	err := json.Unmarshal(data, &resp)
@@ -6607,7 +6623,8 @@ func UnmarshalInputPassportElementRentalAgreement(data json.RawMessage) (*InputP
 	return &resp, err
 }
 
-func UnmarshalInputPassportElementPassportRegistration(data json.RawMessage) (*InputPassportElementPassportRegistration, error) {
+func UnmarshalInputPassportElementPassportRegistration(data json.RawMessage) (*InputPassportElementPassportRegistration,
+	error) {
 	var resp InputPassportElementPassportRegistration
 
 	err := json.Unmarshal(data, &resp)
@@ -6615,7 +6632,8 @@ func UnmarshalInputPassportElementPassportRegistration(data json.RawMessage) (*I
 	return &resp, err
 }
 
-func UnmarshalInputPassportElementTemporaryRegistration(data json.RawMessage) (*InputPassportElementTemporaryRegistration, error) {
+func UnmarshalInputPassportElementTemporaryRegistration(data json.RawMessage) (*InputPassportElementTemporaryRegistration,
+	error) {
 	var resp InputPassportElementTemporaryRegistration
 
 	err := json.Unmarshal(data, &resp)
@@ -6647,7 +6665,8 @@ func UnmarshalPassportElements(data json.RawMessage) (*PassportElements, error) 
 	return &resp, err
 }
 
-func UnmarshalPassportElementErrorSourceUnspecified(data json.RawMessage) (*PassportElementErrorSourceUnspecified, error) {
+func UnmarshalPassportElementErrorSourceUnspecified(data json.RawMessage) (*PassportElementErrorSourceUnspecified,
+	error) {
 	var resp PassportElementErrorSourceUnspecified
 
 	err := json.Unmarshal(data, &resp)
@@ -6671,7 +6690,8 @@ func UnmarshalPassportElementErrorSourceFrontSide(data json.RawMessage) (*Passpo
 	return &resp, err
 }
 
-func UnmarshalPassportElementErrorSourceReverseSide(data json.RawMessage) (*PassportElementErrorSourceReverseSide, error) {
+func UnmarshalPassportElementErrorSourceReverseSide(data json.RawMessage) (*PassportElementErrorSourceReverseSide,
+	error) {
 	var resp PassportElementErrorSourceReverseSide
 
 	err := json.Unmarshal(data, &resp)
@@ -6687,7 +6707,8 @@ func UnmarshalPassportElementErrorSourceSelfie(data json.RawMessage) (*PassportE
 	return &resp, err
 }
 
-func UnmarshalPassportElementErrorSourceTranslationFile(data json.RawMessage) (*PassportElementErrorSourceTranslationFile, error) {
+func UnmarshalPassportElementErrorSourceTranslationFile(data json.RawMessage) (*PassportElementErrorSourceTranslationFile,
+	error) {
 	var resp PassportElementErrorSourceTranslationFile
 
 	err := json.Unmarshal(data, &resp)
@@ -6695,7 +6716,8 @@ func UnmarshalPassportElementErrorSourceTranslationFile(data json.RawMessage) (*
 	return &resp, err
 }
 
-func UnmarshalPassportElementErrorSourceTranslationFiles(data json.RawMessage) (*PassportElementErrorSourceTranslationFiles, error) {
+func UnmarshalPassportElementErrorSourceTranslationFiles(data json.RawMessage) (*PassportElementErrorSourceTranslationFiles,
+	error) {
 	var resp PassportElementErrorSourceTranslationFiles
 
 	err := json.Unmarshal(data, &resp)
@@ -6775,7 +6797,8 @@ func UnmarshalEncryptedPassportElement(data json.RawMessage) (*EncryptedPassport
 	return &resp, err
 }
 
-func UnmarshalInputPassportElementErrorSourceUnspecified(data json.RawMessage) (*InputPassportElementErrorSourceUnspecified, error) {
+func UnmarshalInputPassportElementErrorSourceUnspecified(data json.RawMessage) (*InputPassportElementErrorSourceUnspecified,
+	error) {
 	var resp InputPassportElementErrorSourceUnspecified
 
 	err := json.Unmarshal(data, &resp)
@@ -6783,7 +6806,8 @@ func UnmarshalInputPassportElementErrorSourceUnspecified(data json.RawMessage) (
 	return &resp, err
 }
 
-func UnmarshalInputPassportElementErrorSourceDataField(data json.RawMessage) (*InputPassportElementErrorSourceDataField, error) {
+func UnmarshalInputPassportElementErrorSourceDataField(data json.RawMessage) (*InputPassportElementErrorSourceDataField,
+	error) {
 	var resp InputPassportElementErrorSourceDataField
 
 	err := json.Unmarshal(data, &resp)
@@ -6791,7 +6815,8 @@ func UnmarshalInputPassportElementErrorSourceDataField(data json.RawMessage) (*I
 	return &resp, err
 }
 
-func UnmarshalInputPassportElementErrorSourceFrontSide(data json.RawMessage) (*InputPassportElementErrorSourceFrontSide, error) {
+func UnmarshalInputPassportElementErrorSourceFrontSide(data json.RawMessage) (*InputPassportElementErrorSourceFrontSide,
+	error) {
 	var resp InputPassportElementErrorSourceFrontSide
 
 	err := json.Unmarshal(data, &resp)
@@ -6799,7 +6824,8 @@ func UnmarshalInputPassportElementErrorSourceFrontSide(data json.RawMessage) (*I
 	return &resp, err
 }
 
-func UnmarshalInputPassportElementErrorSourceReverseSide(data json.RawMessage) (*InputPassportElementErrorSourceReverseSide, error) {
+func UnmarshalInputPassportElementErrorSourceReverseSide(data json.RawMessage) (*InputPassportElementErrorSourceReverseSide,
+	error) {
 	var resp InputPassportElementErrorSourceReverseSide
 
 	err := json.Unmarshal(data, &resp)
@@ -6807,7 +6833,8 @@ func UnmarshalInputPassportElementErrorSourceReverseSide(data json.RawMessage) (
 	return &resp, err
 }
 
-func UnmarshalInputPassportElementErrorSourceSelfie(data json.RawMessage) (*InputPassportElementErrorSourceSelfie, error) {
+func UnmarshalInputPassportElementErrorSourceSelfie(data json.RawMessage) (*InputPassportElementErrorSourceSelfie,
+	error) {
 	var resp InputPassportElementErrorSourceSelfie
 
 	err := json.Unmarshal(data, &resp)
@@ -6815,7 +6842,8 @@ func UnmarshalInputPassportElementErrorSourceSelfie(data json.RawMessage) (*Inpu
 	return &resp, err
 }
 
-func UnmarshalInputPassportElementErrorSourceTranslationFile(data json.RawMessage) (*InputPassportElementErrorSourceTranslationFile, error) {
+func UnmarshalInputPassportElementErrorSourceTranslationFile(data json.RawMessage) (*InputPassportElementErrorSourceTranslationFile,
+	error) {
 	var resp InputPassportElementErrorSourceTranslationFile
 
 	err := json.Unmarshal(data, &resp)
@@ -6823,7 +6851,8 @@ func UnmarshalInputPassportElementErrorSourceTranslationFile(data json.RawMessag
 	return &resp, err
 }
 
-func UnmarshalInputPassportElementErrorSourceTranslationFiles(data json.RawMessage) (*InputPassportElementErrorSourceTranslationFiles, error) {
+func UnmarshalInputPassportElementErrorSourceTranslationFiles(data json.RawMessage) (*InputPassportElementErrorSourceTranslationFiles,
+	error) {
 	var resp InputPassportElementErrorSourceTranslationFiles
 
 	err := json.Unmarshal(data, &resp)
@@ -6839,7 +6868,8 @@ func UnmarshalInputPassportElementErrorSourceFile(data json.RawMessage) (*InputP
 	return &resp, err
 }
 
-func UnmarshalInputPassportElementErrorSourceFiles(data json.RawMessage) (*InputPassportElementErrorSourceFiles, error) {
+func UnmarshalInputPassportElementErrorSourceFiles(data json.RawMessage) (*InputPassportElementErrorSourceFiles,
+	error) {
 	var resp InputPassportElementErrorSourceFiles
 
 	err := json.Unmarshal(data, &resp)
@@ -7343,7 +7373,8 @@ func UnmarshalMessageSchedulingStateSendAtDate(data json.RawMessage) (*MessageSc
 	return &resp, err
 }
 
-func UnmarshalMessageSchedulingStateSendWhenOnline(data json.RawMessage) (*MessageSchedulingStateSendWhenOnline, error) {
+func UnmarshalMessageSchedulingStateSendWhenOnline(data json.RawMessage) (*MessageSchedulingStateSendWhenOnline,
+	error) {
 	var resp MessageSchedulingStateSendWhenOnline
 
 	err := json.Unmarshal(data, &resp)
@@ -7607,7 +7638,8 @@ func UnmarshalSearchMessagesFilterVideoNote(data json.RawMessage) (*SearchMessag
 	return &resp, err
 }
 
-func UnmarshalSearchMessagesFilterVoiceAndVideoNote(data json.RawMessage) (*SearchMessagesFilterVoiceAndVideoNote, error) {
+func UnmarshalSearchMessagesFilterVoiceAndVideoNote(data json.RawMessage) (*SearchMessagesFilterVoiceAndVideoNote,
+	error) {
 	var resp SearchMessagesFilterVoiceAndVideoNote
 
 	err := json.Unmarshal(data, &resp)
@@ -7911,8 +7943,8 @@ func UnmarshalCallServer(data json.RawMessage) (*CallServer, error) {
 	return &resp, err
 }
 
-func UnmarshalCallId(data json.RawMessage) (*CallId, error) {
-	var resp CallId
+func UnmarshalCallID(data json.RawMessage) (*CallID, error) {
+	var resp CallID
 
 	err := json.Unmarshal(data, &resp)
 
@@ -8303,7 +8335,8 @@ func UnmarshalCallbackQueryPayloadData(data json.RawMessage) (*CallbackQueryPayl
 	return &resp, err
 }
 
-func UnmarshalCallbackQueryPayloadDataWithPassword(data json.RawMessage) (*CallbackQueryPayloadDataWithPassword, error) {
+func UnmarshalCallbackQueryPayloadDataWithPassword(data json.RawMessage) (*CallbackQueryPayloadDataWithPassword,
+	error) {
 	var resp CallbackQueryPayloadDataWithPassword
 
 	err := json.Unmarshal(data, &resp)
@@ -8519,7 +8552,8 @@ func UnmarshalChatEventLocationChanged(data json.RawMessage) (*ChatEventLocation
 	return &resp, err
 }
 
-func UnmarshalChatEventIsAllHistoryAvailableToggled(data json.RawMessage) (*ChatEventIsAllHistoryAvailableToggled, error) {
+func UnmarshalChatEventIsAllHistoryAvailableToggled(data json.RawMessage) (*ChatEventIsAllHistoryAvailableToggled,
+	error) {
 	var resp ChatEventIsAllHistoryAvailableToggled
 
 	err := json.Unmarshal(data, &resp)
@@ -8695,8 +8729,8 @@ func UnmarshalDeviceTokenTizenPush(data json.RawMessage) (*DeviceTokenTizenPush,
 	return &resp, err
 }
 
-func UnmarshalPushReceiverId(data json.RawMessage) (*PushReceiverId, error) {
-	var resp PushReceiverId
+func UnmarshalPushReceiverID(data json.RawMessage) (*PushReceiverID, error) {
+	var resp PushReceiverID
 
 	err := json.Unmarshal(data, &resp)
 
@@ -8791,7 +8825,8 @@ func UnmarshalCanTransferOwnershipResultOk(data json.RawMessage) (*CanTransferOw
 	return &resp, err
 }
 
-func UnmarshalCanTransferOwnershipResultPasswordNeeded(data json.RawMessage) (*CanTransferOwnershipResultPasswordNeeded, error) {
+func UnmarshalCanTransferOwnershipResultPasswordNeeded(data json.RawMessage) (*CanTransferOwnershipResultPasswordNeeded,
+	error) {
 	var resp CanTransferOwnershipResultPasswordNeeded
 
 	err := json.Unmarshal(data, &resp)
@@ -8799,7 +8834,8 @@ func UnmarshalCanTransferOwnershipResultPasswordNeeded(data json.RawMessage) (*C
 	return &resp, err
 }
 
-func UnmarshalCanTransferOwnershipResultPasswordTooFresh(data json.RawMessage) (*CanTransferOwnershipResultPasswordTooFresh, error) {
+func UnmarshalCanTransferOwnershipResultPasswordTooFresh(data json.RawMessage) (*CanTransferOwnershipResultPasswordTooFresh,
+	error) {
 	var resp CanTransferOwnershipResultPasswordTooFresh
 
 	err := json.Unmarshal(data, &resp)
@@ -8807,7 +8843,8 @@ func UnmarshalCanTransferOwnershipResultPasswordTooFresh(data json.RawMessage) (
 	return &resp, err
 }
 
-func UnmarshalCanTransferOwnershipResultSessionTooFresh(data json.RawMessage) (*CanTransferOwnershipResultSessionTooFresh, error) {
+func UnmarshalCanTransferOwnershipResultSessionTooFresh(data json.RawMessage) (*CanTransferOwnershipResultSessionTooFresh,
+	error) {
 	var resp CanTransferOwnershipResultSessionTooFresh
 
 	err := json.Unmarshal(data, &resp)
@@ -8823,7 +8860,8 @@ func UnmarshalCheckChatUsernameResultOk(data json.RawMessage) (*CheckChatUsernam
 	return &resp, err
 }
 
-func UnmarshalCheckChatUsernameResultUsernameInvalid(data json.RawMessage) (*CheckChatUsernameResultUsernameInvalid, error) {
+func UnmarshalCheckChatUsernameResultUsernameInvalid(data json.RawMessage) (*CheckChatUsernameResultUsernameInvalid,
+	error) {
 	var resp CheckChatUsernameResultUsernameInvalid
 
 	err := json.Unmarshal(data, &resp)
@@ -8831,7 +8869,8 @@ func UnmarshalCheckChatUsernameResultUsernameInvalid(data json.RawMessage) (*Che
 	return &resp, err
 }
 
-func UnmarshalCheckChatUsernameResultUsernameOccupied(data json.RawMessage) (*CheckChatUsernameResultUsernameOccupied, error) {
+func UnmarshalCheckChatUsernameResultUsernameOccupied(data json.RawMessage) (*CheckChatUsernameResultUsernameOccupied,
+	error) {
 	var resp CheckChatUsernameResultUsernameOccupied
 
 	err := json.Unmarshal(data, &resp)
@@ -8839,7 +8878,8 @@ func UnmarshalCheckChatUsernameResultUsernameOccupied(data json.RawMessage) (*Ch
 	return &resp, err
 }
 
-func UnmarshalCheckChatUsernameResultPublicChatsTooMuch(data json.RawMessage) (*CheckChatUsernameResultPublicChatsTooMuch, error) {
+func UnmarshalCheckChatUsernameResultPublicChatsTooMuch(data json.RawMessage) (*CheckChatUsernameResultPublicChatsTooMuch,
+	error) {
 	var resp CheckChatUsernameResultPublicChatsTooMuch
 
 	err := json.Unmarshal(data, &resp)
@@ -8847,7 +8887,8 @@ func UnmarshalCheckChatUsernameResultPublicChatsTooMuch(data json.RawMessage) (*
 	return &resp, err
 }
 
-func UnmarshalCheckChatUsernameResultPublicGroupsUnavailable(data json.RawMessage) (*CheckChatUsernameResultPublicGroupsUnavailable, error) {
+func UnmarshalCheckChatUsernameResultPublicGroupsUnavailable(data json.RawMessage) (*CheckChatUsernameResultPublicGroupsUnavailable,
+	error) {
 	var resp CheckChatUsernameResultPublicGroupsUnavailable
 
 	err := json.Unmarshal(data, &resp)
@@ -8999,7 +9040,8 @@ func UnmarshalPushMessageContentVoiceNote(data json.RawMessage) (*PushMessageCon
 	return &resp, err
 }
 
-func UnmarshalPushMessageContentBasicGroupChatCreate(data json.RawMessage) (*PushMessageContentBasicGroupChatCreate, error) {
+func UnmarshalPushMessageContentBasicGroupChatCreate(data json.RawMessage) (*PushMessageContentBasicGroupChatCreate,
+	error) {
 	var resp PushMessageContentBasicGroupChatCreate
 
 	err := json.Unmarshal(data, &resp)
@@ -9255,7 +9297,8 @@ func UnmarshalUserPrivacySettingRuleAllowUsers(data json.RawMessage) (*UserPriva
 	return &resp, err
 }
 
-func UnmarshalUserPrivacySettingRuleAllowChatMembers(data json.RawMessage) (*UserPrivacySettingRuleAllowChatMembers, error) {
+func UnmarshalUserPrivacySettingRuleAllowChatMembers(data json.RawMessage) (*UserPrivacySettingRuleAllowChatMembers,
+	error) {
 	var resp UserPrivacySettingRuleAllowChatMembers
 
 	err := json.Unmarshal(data, &resp)
@@ -9271,7 +9314,8 @@ func UnmarshalUserPrivacySettingRuleRestrictAll(data json.RawMessage) (*UserPriv
 	return &resp, err
 }
 
-func UnmarshalUserPrivacySettingRuleRestrictContacts(data json.RawMessage) (*UserPrivacySettingRuleRestrictContacts, error) {
+func UnmarshalUserPrivacySettingRuleRestrictContacts(data json.RawMessage) (*UserPrivacySettingRuleRestrictContacts,
+	error) {
 	var resp UserPrivacySettingRuleRestrictContacts
 
 	err := json.Unmarshal(data, &resp)
@@ -9287,7 +9331,8 @@ func UnmarshalUserPrivacySettingRuleRestrictUsers(data json.RawMessage) (*UserPr
 	return &resp, err
 }
 
-func UnmarshalUserPrivacySettingRuleRestrictChatMembers(data json.RawMessage) (*UserPrivacySettingRuleRestrictChatMembers, error) {
+func UnmarshalUserPrivacySettingRuleRestrictChatMembers(data json.RawMessage) (*UserPrivacySettingRuleRestrictChatMembers,
+	error) {
 	var resp UserPrivacySettingRuleRestrictChatMembers
 
 	err := json.Unmarshal(data, &resp)
@@ -9319,7 +9364,8 @@ func UnmarshalUserPrivacySettingShowProfilePhoto(data json.RawMessage) (*UserPri
 	return &resp, err
 }
 
-func UnmarshalUserPrivacySettingShowLinkInForwardedMessages(data json.RawMessage) (*UserPrivacySettingShowLinkInForwardedMessages, error) {
+func UnmarshalUserPrivacySettingShowLinkInForwardedMessages(data json.RawMessage) (*UserPrivacySettingShowLinkInForwardedMessages,
+	error) {
 	var resp UserPrivacySettingShowLinkInForwardedMessages
 
 	err := json.Unmarshal(data, &resp)
@@ -9351,7 +9397,8 @@ func UnmarshalUserPrivacySettingAllowCalls(data json.RawMessage) (*UserPrivacySe
 	return &resp, err
 }
 
-func UnmarshalUserPrivacySettingAllowPeerToPeerCalls(data json.RawMessage) (*UserPrivacySettingAllowPeerToPeerCalls, error) {
+func UnmarshalUserPrivacySettingAllowPeerToPeerCalls(data json.RawMessage) (*UserPrivacySettingAllowPeerToPeerCalls,
+	error) {
 	var resp UserPrivacySettingAllowPeerToPeerCalls
 
 	err := json.Unmarshal(data, &resp)
@@ -9359,7 +9406,8 @@ func UnmarshalUserPrivacySettingAllowPeerToPeerCalls(data json.RawMessage) (*Use
 	return &resp, err
 }
 
-func UnmarshalUserPrivacySettingAllowFindingByPhoneNumber(data json.RawMessage) (*UserPrivacySettingAllowFindingByPhoneNumber, error) {
+func UnmarshalUserPrivacySettingAllowFindingByPhoneNumber(data json.RawMessage) (*UserPrivacySettingAllowFindingByPhoneNumber,
+	error) {
 	var resp UserPrivacySettingAllowFindingByPhoneNumber
 
 	err := json.Unmarshal(data, &resp)
@@ -9879,7 +9927,8 @@ func UnmarshalTMeUrls(data json.RawMessage) (*TMeUrls, error) {
 	return &resp, err
 }
 
-func UnmarshalSuggestedActionEnableArchiveAndMuteNewChats(data json.RawMessage) (*SuggestedActionEnableArchiveAndMuteNewChats, error) {
+func UnmarshalSuggestedActionEnableArchiveAndMuteNewChats(data json.RawMessage) (*SuggestedActionEnableArchiveAndMuteNewChats,
+	error) {
 	var resp SuggestedActionEnableArchiveAndMuteNewChats
 
 	err := json.Unmarshal(data, &resp)
@@ -10039,7 +10088,8 @@ func UnmarshalStatisticalGraphError(data json.RawMessage) (*StatisticalGraphErro
 	return &resp, err
 }
 
-func UnmarshalChatStatisticsMessageInteractionInfo(data json.RawMessage) (*ChatStatisticsMessageInteractionInfo, error) {
+func UnmarshalChatStatisticsMessageInteractionInfo(data json.RawMessage) (*ChatStatisticsMessageInteractionInfo,
+	error) {
 	var resp ChatStatisticsMessageInteractionInfo
 
 	err := json.Unmarshal(data, &resp)
@@ -10055,7 +10105,8 @@ func UnmarshalChatStatisticsMessageSenderInfo(data json.RawMessage) (*ChatStatis
 	return &resp, err
 }
 
-func UnmarshalChatStatisticsAdministratorActionsInfo(data json.RawMessage) (*ChatStatisticsAdministratorActionsInfo, error) {
+func UnmarshalChatStatisticsAdministratorActionsInfo(data json.RawMessage) (*ChatStatisticsAdministratorActionsInfo,
+	error) {
 	var resp ChatStatisticsAdministratorActionsInfo
 
 	err := json.Unmarshal(data, &resp)
@@ -10263,7 +10314,8 @@ func UnmarshalUpdateChatHasScheduledMessages(data json.RawMessage) (*UpdateChatH
 	return &resp, err
 }
 
-func UnmarshalUpdateChatDefaultDisableNotification(data json.RawMessage) (*UpdateChatDefaultDisableNotification, error) {
+func UnmarshalUpdateChatDefaultDisableNotification(data json.RawMessage) (*UpdateChatDefaultDisableNotification,
+	error) {
 	var resp UpdateChatDefaultDisableNotification
 
 	err := json.Unmarshal(data, &resp)
@@ -10938,8 +10990,8 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 	case TypeFile:
 		return UnmarshalFile(data)
 
-	case TypeInputFileId:
-		return UnmarshalInputFileId(data)
+	case TypeInputFileID:
+		return UnmarshalInputFileID(data)
 
 	case TypeInputFileRemote:
 		return UnmarshalInputFileRemote(data)
@@ -12252,8 +12304,8 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 	case TypeCallServer:
 		return UnmarshalCallServer(data)
 
-	case TypeCallId:
-		return UnmarshalCallId(data)
+	case TypeCallID:
+		return UnmarshalCallID(data)
 
 	case TypeCallStatePending:
 		return UnmarshalCallStatePending(data)
@@ -12546,8 +12598,8 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 	case TypeDeviceTokenTizenPush:
 		return UnmarshalDeviceTokenTizenPush(data)
 
-	case TypePushReceiverId:
-		return UnmarshalPushReceiverId(data)
+	case TypePushReceiverID:
+		return UnmarshalPushReceiverID(data)
 
 	case TypeBackgroundFillSolid:
 		return UnmarshalBackgroundFillSolid(data)

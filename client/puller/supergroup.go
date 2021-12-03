@@ -4,7 +4,7 @@ import (
 	"github.com/zelenin/go-tdlib/client"
 )
 
-func SupergroupMembers(tdlibClient *client.Client, supergroupId int32) (chan *client.ChatMember, chan error) {
+func SupergroupMembers(tdlibClient *client.Client, supergroupID int32) (chan *client.ChatMember, chan error) {
 	chatMemberChan := make(chan *client.ChatMember, 10)
 	errChan := make(chan error, 1)
 
@@ -12,12 +12,12 @@ func SupergroupMembers(tdlibClient *client.Client, supergroupId int32) (chan *cl
 	var offset int32 = 0
 	var limit int32 = 200
 
-	go supergroupMembers(tdlibClient, chatMemberChan, errChan, supergroupId, filter, offset, limit)
+	go supergroupMembers(tdlibClient, chatMemberChan, errChan, supergroupID, filter, offset, limit)
 
 	return chatMemberChan, errChan
 }
 
-func supergroupMembers(tdlibClient *client.Client, chatMemberChan chan *client.ChatMember, errChan chan error, supergroupId int32, filter client.SupergroupMembersFilter, offset int32, limit int32) {
+func supergroupMembers(tdlibClient *client.Client, chatMemberChan chan *client.ChatMember, errChan chan error, supergroupID int32, filter client.SupergroupMembersFilter, offset int32, limit int32) {
 	defer func() {
 		close(chatMemberChan)
 		close(errChan)
@@ -27,7 +27,7 @@ func supergroupMembers(tdlibClient *client.Client, chatMemberChan chan *client.C
 
 	for {
 		chatMembers, err := tdlibClient.GetSupergroupMembers(&client.GetSupergroupMembersRequest{
-			SupergroupId: supergroupId,
+			SupergroupID: supergroupID,
 			Filter:       filter,
 			Offset:       page*limit + offset,
 			Limit:        limit,

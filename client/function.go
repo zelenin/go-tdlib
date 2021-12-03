@@ -189,7 +189,7 @@ func (client *Client) CheckAuthenticationCode(req *CheckAuthenticationCodeReques
 
 type RequestQrCodeAuthenticationRequest struct {
 	// List of user identifiers of other users currently using the application
-	OtherUserIds []int32 `json:"other_user_ids"`
+	OtherUserIDs []int32 `json:"other_user_ids"`
 }
 
 // Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
@@ -199,7 +199,7 @@ func (client *Client) RequestQrCodeAuthentication(req *RequestQrCodeAuthenticati
 			Type: "requestQrCodeAuthentication",
 		},
 		Data: map[string]interface{}{
-			"other_user_ids": req.OtherUserIds,
+			"other_user_ids": req.OtherUserIDs,
 		},
 	})
 	if err != nil {
@@ -738,7 +738,7 @@ func (client *Client) GetMe() (*User, error) {
 
 type GetUserRequest struct {
 	// User identifier
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 }
 
 // Returns information about a user by their identifier. This is an offline request if the current user is not a bot
@@ -748,7 +748,7 @@ func (client *Client) GetUser(req *GetUserRequest) (*User, error) {
 			Type: "getUser",
 		},
 		Data: map[string]interface{}{
-			"user_id": req.UserId,
+			"user_id": req.UserID,
 		},
 	})
 	if err != nil {
@@ -764,7 +764,7 @@ func (client *Client) GetUser(req *GetUserRequest) (*User, error) {
 
 type GetUserFullInfoRequest struct {
 	// User identifier
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 }
 
 // Returns full information about a user by their identifier
@@ -774,7 +774,7 @@ func (client *Client) GetUserFullInfo(req *GetUserFullInfoRequest) (*UserFullInf
 			Type: "getUserFullInfo",
 		},
 		Data: map[string]interface{}{
-			"user_id": req.UserId,
+			"user_id": req.UserID,
 		},
 	})
 	if err != nil {
@@ -790,7 +790,7 @@ func (client *Client) GetUserFullInfo(req *GetUserFullInfoRequest) (*UserFullInf
 
 type GetBasicGroupRequest struct {
 	// Basic group identifier
-	BasicGroupId int32 `json:"basic_group_id"`
+	BasicGroupID int32 `json:"basic_group_id"`
 }
 
 // Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot
@@ -800,7 +800,7 @@ func (client *Client) GetBasicGroup(req *GetBasicGroupRequest) (*BasicGroup, err
 			Type: "getBasicGroup",
 		},
 		Data: map[string]interface{}{
-			"basic_group_id": req.BasicGroupId,
+			"basic_group_id": req.BasicGroupID,
 		},
 	})
 	if err != nil {
@@ -816,7 +816,7 @@ func (client *Client) GetBasicGroup(req *GetBasicGroupRequest) (*BasicGroup, err
 
 type GetBasicGroupFullInfoRequest struct {
 	// Basic group identifier
-	BasicGroupId int32 `json:"basic_group_id"`
+	BasicGroupID int32 `json:"basic_group_id"`
 }
 
 // Returns full information about a basic group by its identifier
@@ -826,7 +826,7 @@ func (client *Client) GetBasicGroupFullInfo(req *GetBasicGroupFullInfoRequest) (
 			Type: "getBasicGroupFullInfo",
 		},
 		Data: map[string]interface{}{
-			"basic_group_id": req.BasicGroupId,
+			"basic_group_id": req.BasicGroupID,
 		},
 	})
 	if err != nil {
@@ -842,7 +842,7 @@ func (client *Client) GetBasicGroupFullInfo(req *GetBasicGroupFullInfoRequest) (
 
 type GetSupergroupRequest struct {
 	// Supergroup or channel identifier
-	SupergroupId int32 `json:"supergroup_id"`
+	SupergroupID int32 `json:"supergroup_id"`
 }
 
 // Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot
@@ -852,7 +852,7 @@ func (client *Client) GetSupergroup(req *GetSupergroupRequest) (*Supergroup, err
 			Type: "getSupergroup",
 		},
 		Data: map[string]interface{}{
-			"supergroup_id": req.SupergroupId,
+			"supergroup_id": req.SupergroupID,
 		},
 	})
 	if err != nil {
@@ -868,7 +868,7 @@ func (client *Client) GetSupergroup(req *GetSupergroupRequest) (*Supergroup, err
 
 type GetSupergroupFullInfoRequest struct {
 	// Supergroup or channel identifier
-	SupergroupId int32 `json:"supergroup_id"`
+	SupergroupID int32 `json:"supergroup_id"`
 }
 
 // Returns full information about a supergroup or a channel by its identifier, cached for up to 1 minute
@@ -878,7 +878,7 @@ func (client *Client) GetSupergroupFullInfo(req *GetSupergroupFullInfoRequest) (
 			Type: "getSupergroupFullInfo",
 		},
 		Data: map[string]interface{}{
-			"supergroup_id": req.SupergroupId,
+			"supergroup_id": req.SupergroupID,
 		},
 	})
 	if err != nil {
@@ -894,7 +894,7 @@ func (client *Client) GetSupergroupFullInfo(req *GetSupergroupFullInfoRequest) (
 
 type GetSecretChatRequest struct {
 	// Secret chat identifier
-	SecretChatId int32 `json:"secret_chat_id"`
+	SecretChatID int32 `json:"secret_chat_id"`
 }
 
 // Returns information about a secret chat by its identifier. This is an offline request
@@ -904,7 +904,7 @@ func (client *Client) GetSecretChat(req *GetSecretChatRequest) (*SecretChat, err
 			Type: "getSecretChat",
 		},
 		Data: map[string]interface{}{
-			"secret_chat_id": req.SecretChatId,
+			"secret_chat_id": req.SecretChatID,
 		},
 	})
 	if err != nil {
@@ -920,7 +920,7 @@ func (client *Client) GetSecretChat(req *GetSecretChatRequest) (*SecretChat, err
 
 type GetChatRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Returns information about a chat by its identifier, this is an offline request if the current user is not a bot
@@ -930,7 +930,7 @@ func (client *Client) GetChat(req *GetChatRequest) (*Chat, error) {
 			Type: "getChat",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -946,9 +946,9 @@ func (client *Client) GetChat(req *GetChatRequest) (*Chat, error) {
 
 type GetMessageRequest struct {
 	// Identifier of the chat the message belongs to
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message to get
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 }
 
 // Returns information about a message
@@ -958,8 +958,8 @@ func (client *Client) GetMessage(req *GetMessageRequest) (*Message, error) {
 			Type: "getMessage",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
 		},
 	})
 	if err != nil {
@@ -975,9 +975,9 @@ func (client *Client) GetMessage(req *GetMessageRequest) (*Message, error) {
 
 type GetMessageLocallyRequest struct {
 	// Identifier of the chat the message belongs to
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message to get
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 }
 
 // Returns information about a message, if it is available locally without sending network request. This is an offline request
@@ -987,8 +987,8 @@ func (client *Client) GetMessageLocally(req *GetMessageLocallyRequest) (*Message
 			Type: "getMessageLocally",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
 		},
 	})
 	if err != nil {
@@ -1004,9 +1004,9 @@ func (client *Client) GetMessageLocally(req *GetMessageLocallyRequest) (*Message
 
 type GetRepliedMessageRequest struct {
 	// Identifier of the chat the message belongs to
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message reply to which to get
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 }
 
 // Returns information about a message that is replied by a given message. Also returns the pinned message, the game message, and the invoice message for messages of the types messagePinMessage, messageGameScore, and messagePaymentSuccessful respectively
@@ -1016,8 +1016,8 @@ func (client *Client) GetRepliedMessage(req *GetRepliedMessageRequest) (*Message
 			Type: "getRepliedMessage",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
 		},
 	})
 	if err != nil {
@@ -1033,7 +1033,7 @@ func (client *Client) GetRepliedMessage(req *GetRepliedMessageRequest) (*Message
 
 type GetChatPinnedMessageRequest struct {
 	// Identifier of the chat the message belongs to
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Returns information about a newest pinned message in the chat
@@ -1043,7 +1043,7 @@ func (client *Client) GetChatPinnedMessage(req *GetChatPinnedMessageRequest) (*M
 			Type: "getChatPinnedMessage",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -1059,11 +1059,11 @@ func (client *Client) GetChatPinnedMessage(req *GetChatPinnedMessageRequest) (*M
 
 type GetCallbackQueryMessageRequest struct {
 	// Identifier of the chat the message belongs to
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Message identifier
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// Identifier of the callback query
-	CallbackQueryId JsonInt64 `json:"callback_query_id"`
+	CallbackQueryID JsonInt64 `json:"callback_query_id"`
 }
 
 // Returns information about a message with the callback button that originated a callback query; for bots only
@@ -1073,9 +1073,9 @@ func (client *Client) GetCallbackQueryMessage(req *GetCallbackQueryMessageReques
 			Type: "getCallbackQueryMessage",
 		},
 		Data: map[string]interface{}{
-			"chat_id":           req.ChatId,
-			"message_id":        req.MessageId,
-			"callback_query_id": req.CallbackQueryId,
+			"chat_id":           req.ChatID,
+			"message_id":        req.MessageID,
+			"callback_query_id": req.CallbackQueryID,
 		},
 	})
 	if err != nil {
@@ -1091,9 +1091,9 @@ func (client *Client) GetCallbackQueryMessage(req *GetCallbackQueryMessageReques
 
 type GetMessagesRequest struct {
 	// Identifier of the chat the messages belong to
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifiers of the messages to get
-	MessageIds []int64 `json:"message_ids"`
+	MessageIDs []int64 `json:"message_ids"`
 }
 
 // Returns information about messages. If a message is not found, returns null on the corresponding position of the result
@@ -1103,8 +1103,8 @@ func (client *Client) GetMessages(req *GetMessagesRequest) (*Messages, error) {
 			Type: "getMessages",
 		},
 		Data: map[string]interface{}{
-			"chat_id":     req.ChatId,
-			"message_ids": req.MessageIds,
+			"chat_id":     req.ChatID,
+			"message_ids": req.MessageIDs,
 		},
 	})
 	if err != nil {
@@ -1120,9 +1120,9 @@ func (client *Client) GetMessages(req *GetMessagesRequest) (*Messages, error) {
 
 type GetMessageThreadRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 }
 
 // Returns information about a message thread. Can be used only if message.can_get_message_thread == true
@@ -1132,8 +1132,8 @@ func (client *Client) GetMessageThread(req *GetMessageThreadRequest) (*MessageTh
 			Type: "getMessageThread",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
 		},
 	})
 	if err != nil {
@@ -1149,7 +1149,7 @@ func (client *Client) GetMessageThread(req *GetMessageThreadRequest) (*MessageTh
 
 type GetFileRequest struct {
 	// Identifier of the file to get
-	FileId int32 `json:"file_id"`
+	FileID int32 `json:"file_id"`
 }
 
 // Returns information about a file; this is an offline request
@@ -1159,7 +1159,7 @@ func (client *Client) GetFile(req *GetFileRequest) (*File, error) {
 			Type: "getFile",
 		},
 		Data: map[string]interface{}{
-			"file_id": req.FileId,
+			"file_id": req.FileID,
 		},
 	})
 	if err != nil {
@@ -1175,7 +1175,7 @@ func (client *Client) GetFile(req *GetFileRequest) (*File, error) {
 
 type GetRemoteFileRequest struct {
 	// Remote identifier of the file to get
-	RemoteFileId string `json:"remote_file_id"`
+	RemoteFileID string `json:"remote_file_id"`
 	// File type, if known
 	FileType FileType `json:"file_type"`
 }
@@ -1187,7 +1187,7 @@ func (client *Client) GetRemoteFile(req *GetRemoteFileRequest) (*File, error) {
 			Type: "getRemoteFile",
 		},
 		Data: map[string]interface{}{
-			"remote_file_id": req.RemoteFileId,
+			"remote_file_id": req.RemoteFileID,
 			"file_type":      req.FileType,
 		},
 	})
@@ -1208,7 +1208,7 @@ type GetChatsRequest struct {
 	// Chat order to return chats from
 	OffsetOrder JsonInt64 `json:"offset_order"`
 	// Chat identifier to return chats from
-	OffsetChatId int64 `json:"offset_chat_id"`
+	OffsetChatID int64 `json:"offset_chat_id"`
 	// The maximum number of chats to be returned. It is possible that fewer chats than the limit are returned even if the end of the list is not reached
 	Limit int32 `json:"limit"`
 }
@@ -1222,7 +1222,7 @@ func (client *Client) GetChats(req *GetChatsRequest) (*Chats, error) {
 		Data: map[string]interface{}{
 			"chat_list":      req.ChatList,
 			"offset_order":   req.OffsetOrder,
-			"offset_chat_id": req.OffsetChatId,
+			"offset_chat_id": req.OffsetChatID,
 			"limit":          req.Limit,
 		},
 	})
@@ -1406,7 +1406,7 @@ type RemoveTopChatRequest struct {
 	// Category of frequently used chats
 	Category TopChatCategory `json:"category"`
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Removes a chat from the list of frequently used chats. Supported only if the chat info database is enabled
@@ -1417,7 +1417,7 @@ func (client *Client) RemoveTopChat(req *RemoveTopChatRequest) (*Ok, error) {
 		},
 		Data: map[string]interface{}{
 			"category": req.Category,
-			"chat_id":  req.ChatId,
+			"chat_id":  req.ChatID,
 		},
 	})
 	if err != nil {
@@ -1433,7 +1433,7 @@ func (client *Client) RemoveTopChat(req *RemoveTopChatRequest) (*Ok, error) {
 
 type AddRecentlyFoundChatRequest struct {
 	// Identifier of the chat to add
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Adds a chat to the list of recently found chats. The chat is added to the beginning of the list. If the chat is already in the list, it will be removed from the list first
@@ -1443,7 +1443,7 @@ func (client *Client) AddRecentlyFoundChat(req *AddRecentlyFoundChatRequest) (*O
 			Type: "addRecentlyFoundChat",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -1459,7 +1459,7 @@ func (client *Client) AddRecentlyFoundChat(req *AddRecentlyFoundChatRequest) (*O
 
 type RemoveRecentlyFoundChatRequest struct {
 	// Identifier of the chat to be removed
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Removes a chat from the list of recently found chats
@@ -1469,7 +1469,7 @@ func (client *Client) RemoveRecentlyFoundChat(req *RemoveRecentlyFoundChatReques
 			Type: "removeRecentlyFoundChat",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -1504,7 +1504,7 @@ func (client *Client) ClearRecentlyFoundChats() (*Ok, error) {
 
 type CheckChatUsernameRequest struct {
 	// Chat identifier; should be identifier of a supergroup chat, or a channel chat, or a private chat with self, or zero if chat is being created
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Username to be checked
 	Username string `json:"username"`
 }
@@ -1516,7 +1516,7 @@ func (client *Client) CheckChatUsername(req *CheckChatUsernameRequest) (CheckCha
 			Type: "checkChatUsername",
 		},
 		Data: map[string]interface{}{
-			"chat_id":  req.ChatId,
+			"chat_id":  req.ChatID,
 			"username": req.Username,
 		},
 	})
@@ -1641,9 +1641,9 @@ func (client *Client) GetInactiveSupergroupChats() (*Chats, error) {
 
 type GetGroupsInCommonRequest struct {
 	// User identifier
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// Chat identifier starting from which to return chats; use 0 for the first request
-	OffsetChatId int64 `json:"offset_chat_id"`
+	OffsetChatID int64 `json:"offset_chat_id"`
 	// The maximum number of chats to be returned; up to 100
 	Limit int32 `json:"limit"`
 }
@@ -1655,8 +1655,8 @@ func (client *Client) GetGroupsInCommon(req *GetGroupsInCommonRequest) (*Chats, 
 			Type: "getGroupsInCommon",
 		},
 		Data: map[string]interface{}{
-			"user_id":        req.UserId,
-			"offset_chat_id": req.OffsetChatId,
+			"user_id":        req.UserID,
+			"offset_chat_id": req.OffsetChatID,
 			"limit":          req.Limit,
 		},
 	})
@@ -1673,9 +1673,9 @@ func (client *Client) GetGroupsInCommon(req *GetGroupsInCommonRequest) (*Chats, 
 
 type GetChatHistoryRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-	FromMessageId int64 `json:"from_message_id"`
+	FromMessageID int64 `json:"from_message_id"`
 	// Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
 	Offset int32 `json:"offset"`
 	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
@@ -1691,8 +1691,8 @@ func (client *Client) GetChatHistory(req *GetChatHistoryRequest) (*Messages, err
 			Type: "getChatHistory",
 		},
 		Data: map[string]interface{}{
-			"chat_id":         req.ChatId,
-			"from_message_id": req.FromMessageId,
+			"chat_id":         req.ChatID,
+			"from_message_id": req.FromMessageID,
 			"offset":          req.Offset,
 			"limit":           req.Limit,
 			"only_local":      req.OnlyLocal,
@@ -1711,11 +1711,11 @@ func (client *Client) GetChatHistory(req *GetChatHistoryRequest) (*Messages, err
 
 type GetMessageThreadHistoryRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Message identifier, which thread history needs to be returned
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-	FromMessageId int64 `json:"from_message_id"`
+	FromMessageID int64 `json:"from_message_id"`
 	// Specify 0 to get results from exactly the from_message_id or a negative offset up to 99 to get additionally some newer messages
 	Offset int32 `json:"offset"`
 	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than or equal to -offset. Fewer messages may be returned than specified by the limit, even if the end of the message thread history has not been reached
@@ -1729,9 +1729,9 @@ func (client *Client) GetMessageThreadHistory(req *GetMessageThreadHistoryReques
 			Type: "getMessageThreadHistory",
 		},
 		Data: map[string]interface{}{
-			"chat_id":         req.ChatId,
-			"message_id":      req.MessageId,
-			"from_message_id": req.FromMessageId,
+			"chat_id":         req.ChatID,
+			"message_id":      req.MessageID,
+			"from_message_id": req.FromMessageID,
 			"offset":          req.Offset,
 			"limit":           req.Limit,
 		},
@@ -1749,7 +1749,7 @@ func (client *Client) GetMessageThreadHistory(req *GetMessageThreadHistoryReques
 
 type DeleteChatHistoryRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Pass true if the chat should be removed from the chat list
 	RemoveFromChatList bool `json:"remove_from_chat_list"`
 	// Pass true to try to delete chat history for all users
@@ -1763,7 +1763,7 @@ func (client *Client) DeleteChatHistory(req *DeleteChatHistoryRequest) (*Ok, err
 			Type: "deleteChatHistory",
 		},
 		Data: map[string]interface{}{
-			"chat_id":               req.ChatId,
+			"chat_id":               req.ChatID,
 			"remove_from_chat_list": req.RemoveFromChatList,
 			"revoke":                req.Revoke,
 		},
@@ -1781,13 +1781,13 @@ func (client *Client) DeleteChatHistory(req *DeleteChatHistoryRequest) (*Ok, err
 
 type SearchChatMessagesRequest struct {
 	// Identifier of the chat in which to search messages
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Query to search for
 	Query string `json:"query"`
 	// If not null, only messages sent by the specified sender will be returned. Not supported in secret chats
 	Sender MessageSender `json:"sender"`
 	// Identifier of the message starting from which history must be fetched; use 0 to get results from the last message
-	FromMessageId int64 `json:"from_message_id"`
+	FromMessageID int64 `json:"from_message_id"`
 	// Specify 0 to get results from exactly the from_message_id or a negative offset to get the specified message and some newer messages
 	Offset int32 `json:"offset"`
 	// The maximum number of messages to be returned; must be positive and can't be greater than 100. If the offset is negative, the limit must be greater than -offset. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
@@ -1795,7 +1795,7 @@ type SearchChatMessagesRequest struct {
 	// Filter for message content in the search results
 	Filter SearchMessagesFilter `json:"filter"`
 	// If not 0, only messages in the specified thread will be returned; supergroups only
-	MessageThreadId int64 `json:"message_thread_id"`
+	MessageThreadID int64 `json:"message_thread_id"`
 }
 
 // Searches for messages with given words in the chat. Returns the results in reverse chronological order, i.e. in order of decreasing message_id. Cannot be used in secret chats with a non-empty query (searchSecretMessages should be used instead), or without an enabled message database. For optimal performance the number of returned messages is chosen by the library
@@ -1805,14 +1805,14 @@ func (client *Client) SearchChatMessages(req *SearchChatMessagesRequest) (*Messa
 			Type: "searchChatMessages",
 		},
 		Data: map[string]interface{}{
-			"chat_id":           req.ChatId,
+			"chat_id":           req.ChatID,
 			"query":             req.Query,
 			"sender":            req.Sender,
-			"from_message_id":   req.FromMessageId,
+			"from_message_id":   req.FromMessageID,
 			"offset":            req.Offset,
 			"limit":             req.Limit,
 			"filter":            req.Filter,
-			"message_thread_id": req.MessageThreadId,
+			"message_thread_id": req.MessageThreadID,
 		},
 	})
 	if err != nil {
@@ -1834,9 +1834,9 @@ type SearchMessagesRequest struct {
 	// The date of the message starting from which the results should be fetched. Use 0 or any date in the future to get results from the last message
 	OffsetDate int32 `json:"offset_date"`
 	// The chat identifier of the last found message, or 0 for the first request
-	OffsetChatId int64 `json:"offset_chat_id"`
+	OffsetChatID int64 `json:"offset_chat_id"`
 	// The message identifier of the last found message, or 0 for the first request
-	OffsetMessageId int64 `json:"offset_message_id"`
+	OffsetMessageID int64 `json:"offset_message_id"`
 	// The maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
 	Limit int32 `json:"limit"`
 	// Filter for message content in the search results; searchMessagesFilterCall, searchMessagesFilterMissedCall, searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterFailedToSend and searchMessagesFilterPinned are unsupported in this function
@@ -1857,8 +1857,8 @@ func (client *Client) SearchMessages(req *SearchMessagesRequest) (*Messages, err
 			"chat_list":         req.ChatList,
 			"query":             req.Query,
 			"offset_date":       req.OffsetDate,
-			"offset_chat_id":    req.OffsetChatId,
-			"offset_message_id": req.OffsetMessageId,
+			"offset_chat_id":    req.OffsetChatID,
+			"offset_message_id": req.OffsetMessageID,
 			"limit":             req.Limit,
 			"filter":            req.Filter,
 			"min_date":          req.MinDate,
@@ -1878,7 +1878,7 @@ func (client *Client) SearchMessages(req *SearchMessagesRequest) (*Messages, err
 
 type SearchSecretMessagesRequest struct {
 	// Identifier of the chat in which to search. Specify 0 to search in all secret chats
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Query to search for. If empty, searchChatMessages should be used instead
 	Query string `json:"query"`
 	// Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
@@ -1896,7 +1896,7 @@ func (client *Client) SearchSecretMessages(req *SearchSecretMessagesRequest) (*F
 			Type: "searchSecretMessages",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 			"query":   req.Query,
 			"offset":  req.Offset,
 			"limit":   req.Limit,
@@ -1916,7 +1916,7 @@ func (client *Client) SearchSecretMessages(req *SearchSecretMessagesRequest) (*F
 
 type SearchCallMessagesRequest struct {
 	// Identifier of the message from which to search; use 0 to get results from the last message
-	FromMessageId int64 `json:"from_message_id"`
+	FromMessageID int64 `json:"from_message_id"`
 	// The maximum number of messages to be returned; up to 100. Fewer messages may be returned than specified by the limit, even if the end of the message history has not been reached
 	Limit int32 `json:"limit"`
 	// If true, returns only messages with missed calls
@@ -1930,7 +1930,7 @@ func (client *Client) SearchCallMessages(req *SearchCallMessagesRequest) (*Messa
 			Type: "searchCallMessages",
 		},
 		Data: map[string]interface{}{
-			"from_message_id": req.FromMessageId,
+			"from_message_id": req.FromMessageID,
 			"limit":           req.Limit,
 			"only_missed":     req.OnlyMissed,
 		},
@@ -1948,19 +1948,20 @@ func (client *Client) SearchCallMessages(req *SearchCallMessagesRequest) (*Messa
 
 type SearchChatRecentLocationMessagesRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// The maximum number of messages to be returned
 	Limit int32 `json:"limit"`
 }
 
 // Returns information about the recent locations of chat members that were sent to the chat. Returns up to 1 location message per user
-func (client *Client) SearchChatRecentLocationMessages(req *SearchChatRecentLocationMessagesRequest) (*Messages, error) {
+func (client *Client) SearchChatRecentLocationMessages(req *SearchChatRecentLocationMessagesRequest) (*Messages,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "searchChatRecentLocationMessages",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 			"limit":   req.Limit,
 		},
 	})
@@ -1996,7 +1997,7 @@ func (client *Client) GetActiveLiveLocationMessages() (*Messages, error) {
 
 type GetChatMessageByDateRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Point in time (Unix timestamp) relative to which to search for messages
 	Date int32 `json:"date"`
 }
@@ -2008,7 +2009,7 @@ func (client *Client) GetChatMessageByDate(req *GetChatMessageByDateRequest) (*M
 			Type: "getChatMessageByDate",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 			"date":    req.Date,
 		},
 	})
@@ -2025,7 +2026,7 @@ func (client *Client) GetChatMessageByDate(req *GetChatMessageByDateRequest) (*M
 
 type GetChatMessageCountRequest struct {
 	// Identifier of the chat in which to count messages
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Filter for message content; searchMessagesFilterEmpty is unsupported in this function
 	Filter SearchMessagesFilter `json:"filter"`
 	// If true, returns count that is available locally without sending network requests, returning -1 if the number of messages is unknown
@@ -2039,7 +2040,7 @@ func (client *Client) GetChatMessageCount(req *GetChatMessageCountRequest) (*Cou
 			Type: "getChatMessageCount",
 		},
 		Data: map[string]interface{}{
-			"chat_id":      req.ChatId,
+			"chat_id":      req.ChatID,
 			"filter":       req.Filter,
 			"return_local": req.ReturnLocal,
 		},
@@ -2057,7 +2058,7 @@ func (client *Client) GetChatMessageCount(req *GetChatMessageCountRequest) (*Cou
 
 type GetChatScheduledMessagesRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Returns all scheduled messages in a chat. The messages are returned in a reverse chronological order (i.e., in order of decreasing message_id)
@@ -2067,7 +2068,7 @@ func (client *Client) GetChatScheduledMessages(req *GetChatScheduledMessagesRequ
 			Type: "getChatScheduledMessages",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -2083,9 +2084,9 @@ func (client *Client) GetChatScheduledMessages(req *GetChatScheduledMessagesRequ
 
 type GetMessagePublicForwardsRequest struct {
 	// Chat identifier of the message
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Message identifier
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// Offset of the first entry to return as received from the previous request; use empty string to get first chunk of results
 	Offset string `json:"offset"`
 	// The maximum number of messages to be returned; must be positive and can't be greater than 100. Fewer messages may be returned than specified by the limit, even if the end of the list has not been reached
@@ -2099,8 +2100,8 @@ func (client *Client) GetMessagePublicForwards(req *GetMessagePublicForwardsRequ
 			Type: "getMessagePublicForwards",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
 			"offset":     req.Offset,
 			"limit":      req.Limit,
 		},
@@ -2118,9 +2119,9 @@ func (client *Client) GetMessagePublicForwards(req *GetMessagePublicForwardsRequ
 
 type RemoveNotificationRequest struct {
 	// Identifier of notification group to which the notification belongs
-	NotificationGroupId int32 `json:"notification_group_id"`
+	NotificationGroupID int32 `json:"notification_group_id"`
 	// Identifier of removed notification
-	NotificationId int32 `json:"notification_id"`
+	NotificationID int32 `json:"notification_id"`
 }
 
 // Removes an active notification from notification list. Needs to be called only if the notification is removed by the current user
@@ -2130,8 +2131,8 @@ func (client *Client) RemoveNotification(req *RemoveNotificationRequest) (*Ok, e
 			Type: "removeNotification",
 		},
 		Data: map[string]interface{}{
-			"notification_group_id": req.NotificationGroupId,
-			"notification_id":       req.NotificationId,
+			"notification_group_id": req.NotificationGroupID,
+			"notification_id":       req.NotificationID,
 		},
 	})
 	if err != nil {
@@ -2147,9 +2148,9 @@ func (client *Client) RemoveNotification(req *RemoveNotificationRequest) (*Ok, e
 
 type RemoveNotificationGroupRequest struct {
 	// Notification group identifier
-	NotificationGroupId int32 `json:"notification_group_id"`
+	NotificationGroupID int32 `json:"notification_group_id"`
 	// The maximum identifier of removed notifications
-	MaxNotificationId int32 `json:"max_notification_id"`
+	MaxNotificationID int32 `json:"max_notification_id"`
 }
 
 // Removes a group of active notifications. Needs to be called only if the notification group is removed by the current user
@@ -2159,8 +2160,8 @@ func (client *Client) RemoveNotificationGroup(req *RemoveNotificationGroupReques
 			Type: "removeNotificationGroup",
 		},
 		Data: map[string]interface{}{
-			"notification_group_id": req.NotificationGroupId,
-			"max_notification_id":   req.MaxNotificationId,
+			"notification_group_id": req.NotificationGroupID,
+			"max_notification_id":   req.MaxNotificationID,
 		},
 	})
 	if err != nil {
@@ -2176,9 +2177,9 @@ func (client *Client) RemoveNotificationGroup(req *RemoveNotificationGroupReques
 
 type GetMessageLinkRequest struct {
 	// Identifier of the chat to which the message belongs
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// Pass true to create a link for the whole media album
 	ForAlbum bool `json:"for_album"`
 	// Pass true to create a link to the message as a channel post comment, or from a message thread
@@ -2192,8 +2193,8 @@ func (client *Client) GetMessageLink(req *GetMessageLinkRequest) (*MessageLink, 
 			Type: "getMessageLink",
 		},
 		Data: map[string]interface{}{
-			"chat_id":     req.ChatId,
-			"message_id":  req.MessageId,
+			"chat_id":     req.ChatID,
+			"message_id":  req.MessageID,
 			"for_album":   req.ForAlbum,
 			"for_comment": req.ForComment,
 		},
@@ -2211,9 +2212,9 @@ func (client *Client) GetMessageLink(req *GetMessageLinkRequest) (*MessageLink, 
 
 type GetMessageEmbeddingCodeRequest struct {
 	// Identifier of the chat to which the message belongs
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// Pass true to return an HTML code for embedding of the whole media album
 	ForAlbum bool `json:"for_album"`
 }
@@ -2225,8 +2226,8 @@ func (client *Client) GetMessageEmbeddingCode(req *GetMessageEmbeddingCodeReques
 			Type: "getMessageEmbeddingCode",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
 			"for_album":  req.ForAlbum,
 		},
 	})
@@ -2269,11 +2270,11 @@ func (client *Client) GetMessageLinkInfo(req *GetMessageLinkInfoRequest) (*Messa
 
 type SendMessageRequest struct {
 	// Target chat
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// If not 0, a message thread identifier in which the message will be sent
-	MessageThreadId int64 `json:"message_thread_id"`
+	MessageThreadID int64 `json:"message_thread_id"`
 	// Identifier of the message to reply to or 0
-	ReplyToMessageId int64 `json:"reply_to_message_id"`
+	ReplyToMessageID int64 `json:"reply_to_message_id"`
 	// Options to be used to send the message
 	Options *MessageSendOptions `json:"options"`
 	// Markup for replying to the message; for bots only
@@ -2289,9 +2290,9 @@ func (client *Client) SendMessage(req *SendMessageRequest) (*Message, error) {
 			Type: "sendMessage",
 		},
 		Data: map[string]interface{}{
-			"chat_id":               req.ChatId,
-			"message_thread_id":     req.MessageThreadId,
-			"reply_to_message_id":   req.ReplyToMessageId,
+			"chat_id":               req.ChatID,
+			"message_thread_id":     req.MessageThreadID,
+			"reply_to_message_id":   req.ReplyToMessageID,
 			"options":               req.Options,
 			"reply_markup":          req.ReplyMarkup,
 			"input_message_content": req.InputMessageContent,
@@ -2310,11 +2311,11 @@ func (client *Client) SendMessage(req *SendMessageRequest) (*Message, error) {
 
 type SendMessageAlbumRequest struct {
 	// Target chat
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// If not 0, a message thread identifier in which the messages will be sent
-	MessageThreadId int64 `json:"message_thread_id"`
+	MessageThreadID int64 `json:"message_thread_id"`
 	// Identifier of a message to reply to or 0
-	ReplyToMessageId int64 `json:"reply_to_message_id"`
+	ReplyToMessageID int64 `json:"reply_to_message_id"`
 	// Options to be used to send the messages
 	Options *MessageSendOptions `json:"options"`
 	// Contents of messages to be sent
@@ -2328,9 +2329,9 @@ func (client *Client) SendMessageAlbum(req *SendMessageAlbumRequest) (*Messages,
 			Type: "sendMessageAlbum",
 		},
 		Data: map[string]interface{}{
-			"chat_id":                req.ChatId,
-			"message_thread_id":      req.MessageThreadId,
-			"reply_to_message_id":    req.ReplyToMessageId,
+			"chat_id":                req.ChatID,
+			"message_thread_id":      req.MessageThreadID,
+			"reply_to_message_id":    req.ReplyToMessageID,
 			"options":                req.Options,
 			"input_message_contents": req.InputMessageContents,
 		},
@@ -2348,9 +2349,9 @@ func (client *Client) SendMessageAlbum(req *SendMessageAlbumRequest) (*Messages,
 
 type SendBotStartMessageRequest struct {
 	// Identifier of the bot
-	BotUserId int32 `json:"bot_user_id"`
+	BotUserID int32 `json:"bot_user_id"`
 	// Identifier of the target chat
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// A hidden parameter sent to the bot for deep linking purposes (https://core.telegram.org/bots#deep-linking)
 	Parameter string `json:"parameter"`
 }
@@ -2362,8 +2363,8 @@ func (client *Client) SendBotStartMessage(req *SendBotStartMessageRequest) (*Mes
 			Type: "sendBotStartMessage",
 		},
 		Data: map[string]interface{}{
-			"bot_user_id": req.BotUserId,
-			"chat_id":     req.ChatId,
+			"bot_user_id": req.BotUserID,
+			"chat_id":     req.ChatID,
 			"parameter":   req.Parameter,
 		},
 	})
@@ -2380,17 +2381,17 @@ func (client *Client) SendBotStartMessage(req *SendBotStartMessageRequest) (*Mes
 
 type SendInlineQueryResultMessageRequest struct {
 	// Target chat
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// If not 0, a message thread identifier in which the message will be sent
-	MessageThreadId int64 `json:"message_thread_id"`
+	MessageThreadID int64 `json:"message_thread_id"`
 	// Identifier of a message to reply to or 0
-	ReplyToMessageId int64 `json:"reply_to_message_id"`
+	ReplyToMessageID int64 `json:"reply_to_message_id"`
 	// Options to be used to send the message
 	Options *MessageSendOptions `json:"options"`
 	// Identifier of the inline query
-	QueryId JsonInt64 `json:"query_id"`
+	QueryID JsonInt64 `json:"query_id"`
 	// Identifier of the inline result
-	ResultId string `json:"result_id"`
+	ResultID string `json:"result_id"`
 	// If true, there will be no mention of a bot, via which the message is sent. Can be used only for bots GetOption("animation_search_bot_username"), GetOption("photo_search_bot_username") and GetOption("venue_search_bot_username")
 	HideViaBot bool `json:"hide_via_bot"`
 }
@@ -2402,12 +2403,12 @@ func (client *Client) SendInlineQueryResultMessage(req *SendInlineQueryResultMes
 			Type: "sendInlineQueryResultMessage",
 		},
 		Data: map[string]interface{}{
-			"chat_id":             req.ChatId,
-			"message_thread_id":   req.MessageThreadId,
-			"reply_to_message_id": req.ReplyToMessageId,
+			"chat_id":             req.ChatID,
+			"message_thread_id":   req.MessageThreadID,
+			"reply_to_message_id": req.ReplyToMessageID,
 			"options":             req.Options,
-			"query_id":            req.QueryId,
-			"result_id":           req.ResultId,
+			"query_id":            req.QueryID,
+			"result_id":           req.ResultID,
 			"hide_via_bot":        req.HideViaBot,
 		},
 	})
@@ -2424,11 +2425,11 @@ func (client *Client) SendInlineQueryResultMessage(req *SendInlineQueryResultMes
 
 type ForwardMessagesRequest struct {
 	// Identifier of the chat to which to forward messages
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the chat from which to forward messages
-	FromChatId int64 `json:"from_chat_id"`
+	FromChatID int64 `json:"from_chat_id"`
 	// Identifiers of the messages to forward. Message identifiers must be in a strictly increasing order
-	MessageIds []int64 `json:"message_ids"`
+	MessageIDs []int64 `json:"message_ids"`
 	// Options to be used to send the messages
 	Options *MessageSendOptions `json:"options"`
 	// True, if content of the messages needs to be copied without links to the original messages. Always true if the messages are forwarded to a secret chat
@@ -2444,9 +2445,9 @@ func (client *Client) ForwardMessages(req *ForwardMessagesRequest) (*Messages, e
 			Type: "forwardMessages",
 		},
 		Data: map[string]interface{}{
-			"chat_id":        req.ChatId,
-			"from_chat_id":   req.FromChatId,
-			"message_ids":    req.MessageIds,
+			"chat_id":        req.ChatID,
+			"from_chat_id":   req.FromChatID,
+			"message_ids":    req.MessageIDs,
 			"options":        req.Options,
 			"send_copy":      req.SendCopy,
 			"remove_caption": req.RemoveCaption,
@@ -2465,9 +2466,9 @@ func (client *Client) ForwardMessages(req *ForwardMessagesRequest) (*Messages, e
 
 type ResendMessagesRequest struct {
 	// Identifier of the chat to send messages
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifiers of the messages to resend. Message identifiers must be in a strictly increasing order
-	MessageIds []int64 `json:"message_ids"`
+	MessageIDs []int64 `json:"message_ids"`
 }
 
 // Resends messages which failed to send. Can be called only for messages for which messageSendingStateFailed.can_retry is true and after specified in messageSendingStateFailed.retry_after time passed. If a message is re-sent, the corresponding failed to send message is deleted. Returns the sent messages in the same order as the message identifiers passed in message_ids. If a message can't be re-sent, null will be returned instead of the message
@@ -2477,8 +2478,8 @@ func (client *Client) ResendMessages(req *ResendMessagesRequest) (*Messages, err
 			Type: "resendMessages",
 		},
 		Data: map[string]interface{}{
-			"chat_id":     req.ChatId,
-			"message_ids": req.MessageIds,
+			"chat_id":     req.ChatID,
+			"message_ids": req.MessageIDs,
 		},
 	})
 	if err != nil {
@@ -2494,7 +2495,7 @@ func (client *Client) ResendMessages(req *ResendMessagesRequest) (*Messages, err
 
 type SendChatSetTtlMessageRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// New TTL value, in seconds
 	Ttl int32 `json:"ttl"`
 }
@@ -2506,7 +2507,7 @@ func (client *Client) SendChatSetTtlMessage(req *SendChatSetTtlMessageRequest) (
 			Type: "sendChatSetTtlMessage",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 			"ttl":     req.Ttl,
 		},
 	})
@@ -2523,17 +2524,18 @@ func (client *Client) SendChatSetTtlMessage(req *SendChatSetTtlMessageRequest) (
 
 type SendChatScreenshotTakenNotificationRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Sends a notification about a screenshot taken in a chat. Supported only in private and secret chats
-func (client *Client) SendChatScreenshotTakenNotification(req *SendChatScreenshotTakenNotificationRequest) (*Ok, error) {
+func (client *Client) SendChatScreenshotTakenNotification(req *SendChatScreenshotTakenNotificationRequest) (*Ok,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "sendChatScreenshotTakenNotification",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -2549,11 +2551,11 @@ func (client *Client) SendChatScreenshotTakenNotification(req *SendChatScreensho
 
 type AddLocalMessageRequest struct {
 	// Target chat
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// The sender sender of the message
 	Sender MessageSender `json:"sender"`
 	// Identifier of the message to reply to or 0
-	ReplyToMessageId int64 `json:"reply_to_message_id"`
+	ReplyToMessageID int64 `json:"reply_to_message_id"`
 	// Pass true to disable notification for the message
 	DisableNotification bool `json:"disable_notification"`
 	// The content of the message to be added
@@ -2567,9 +2569,9 @@ func (client *Client) AddLocalMessage(req *AddLocalMessageRequest) (*Message, er
 			Type: "addLocalMessage",
 		},
 		Data: map[string]interface{}{
-			"chat_id":               req.ChatId,
+			"chat_id":               req.ChatID,
 			"sender":                req.Sender,
-			"reply_to_message_id":   req.ReplyToMessageId,
+			"reply_to_message_id":   req.ReplyToMessageID,
 			"disable_notification":  req.DisableNotification,
 			"input_message_content": req.InputMessageContent,
 		},
@@ -2587,9 +2589,9 @@ func (client *Client) AddLocalMessage(req *AddLocalMessageRequest) (*Message, er
 
 type DeleteMessagesRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifiers of the messages to be deleted
-	MessageIds []int64 `json:"message_ids"`
+	MessageIDs []int64 `json:"message_ids"`
 	// Pass true to try to delete messages for all chat members. Always true for supergroups, channels and secret chats
 	Revoke bool `json:"revoke"`
 }
@@ -2601,8 +2603,8 @@ func (client *Client) DeleteMessages(req *DeleteMessagesRequest) (*Ok, error) {
 			Type: "deleteMessages",
 		},
 		Data: map[string]interface{}{
-			"chat_id":     req.ChatId,
-			"message_ids": req.MessageIds,
+			"chat_id":     req.ChatID,
+			"message_ids": req.MessageIDs,
 			"revoke":      req.Revoke,
 		},
 	})
@@ -2619,9 +2621,9 @@ func (client *Client) DeleteMessages(req *DeleteMessagesRequest) (*Ok, error) {
 
 type DeleteChatMessagesFromUserRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// User identifier
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 }
 
 // Deletes all messages sent by the specified user to a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
@@ -2631,8 +2633,8 @@ func (client *Client) DeleteChatMessagesFromUser(req *DeleteChatMessagesFromUser
 			Type: "deleteChatMessagesFromUser",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
-			"user_id": req.UserId,
+			"chat_id": req.ChatID,
+			"user_id": req.UserID,
 		},
 	})
 	if err != nil {
@@ -2648,9 +2650,9 @@ func (client *Client) DeleteChatMessagesFromUser(req *DeleteChatMessagesFromUser
 
 type EditMessageTextRequest struct {
 	// The chat the message belongs to
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// The new message reply markup; for bots only
 	ReplyMarkup ReplyMarkup `json:"reply_markup"`
 	// New text content of the message. Should be of type InputMessageText
@@ -2664,8 +2666,8 @@ func (client *Client) EditMessageText(req *EditMessageTextRequest) (*Message, er
 			Type: "editMessageText",
 		},
 		Data: map[string]interface{}{
-			"chat_id":               req.ChatId,
-			"message_id":            req.MessageId,
+			"chat_id":               req.ChatID,
+			"message_id":            req.MessageID,
 			"reply_markup":          req.ReplyMarkup,
 			"input_message_content": req.InputMessageContent,
 		},
@@ -2683,9 +2685,9 @@ func (client *Client) EditMessageText(req *EditMessageTextRequest) (*Message, er
 
 type EditMessageLiveLocationRequest struct {
 	// The chat the message belongs to
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// The new message reply markup; for bots only
 	ReplyMarkup ReplyMarkup `json:"reply_markup"`
 	// New location content of the message; may be null. Pass null to stop sharing the live location
@@ -2703,8 +2705,8 @@ func (client *Client) EditMessageLiveLocation(req *EditMessageLiveLocationReques
 			Type: "editMessageLiveLocation",
 		},
 		Data: map[string]interface{}{
-			"chat_id":                req.ChatId,
-			"message_id":             req.MessageId,
+			"chat_id":                req.ChatID,
+			"message_id":             req.MessageID,
 			"reply_markup":           req.ReplyMarkup,
 			"location":               req.Location,
 			"heading":                req.Heading,
@@ -2724,9 +2726,9 @@ func (client *Client) EditMessageLiveLocation(req *EditMessageLiveLocationReques
 
 type EditMessageMediaRequest struct {
 	// The chat the message belongs to
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// The new message reply markup; for bots only
 	ReplyMarkup ReplyMarkup `json:"reply_markup"`
 	// New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
@@ -2740,8 +2742,8 @@ func (client *Client) EditMessageMedia(req *EditMessageMediaRequest) (*Message, 
 			Type: "editMessageMedia",
 		},
 		Data: map[string]interface{}{
-			"chat_id":               req.ChatId,
-			"message_id":            req.MessageId,
+			"chat_id":               req.ChatID,
+			"message_id":            req.MessageID,
 			"reply_markup":          req.ReplyMarkup,
 			"input_message_content": req.InputMessageContent,
 		},
@@ -2759,9 +2761,9 @@ func (client *Client) EditMessageMedia(req *EditMessageMediaRequest) (*Message, 
 
 type EditMessageCaptionRequest struct {
 	// The chat the message belongs to
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// The new message reply markup; for bots only
 	ReplyMarkup ReplyMarkup `json:"reply_markup"`
 	// New message content caption; 0-GetOption("message_caption_length_max") characters
@@ -2775,8 +2777,8 @@ func (client *Client) EditMessageCaption(req *EditMessageCaptionRequest) (*Messa
 			Type: "editMessageCaption",
 		},
 		Data: map[string]interface{}{
-			"chat_id":      req.ChatId,
-			"message_id":   req.MessageId,
+			"chat_id":      req.ChatID,
+			"message_id":   req.MessageID,
 			"reply_markup": req.ReplyMarkup,
 			"caption":      req.Caption,
 		},
@@ -2794,9 +2796,9 @@ func (client *Client) EditMessageCaption(req *EditMessageCaptionRequest) (*Messa
 
 type EditMessageReplyMarkupRequest struct {
 	// The chat the message belongs to
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// The new message reply markup
 	ReplyMarkup ReplyMarkup `json:"reply_markup"`
 }
@@ -2808,8 +2810,8 @@ func (client *Client) EditMessageReplyMarkup(req *EditMessageReplyMarkupRequest)
 			Type: "editMessageReplyMarkup",
 		},
 		Data: map[string]interface{}{
-			"chat_id":      req.ChatId,
-			"message_id":   req.MessageId,
+			"chat_id":      req.ChatID,
+			"message_id":   req.MessageID,
 			"reply_markup": req.ReplyMarkup,
 		},
 	})
@@ -2826,7 +2828,7 @@ func (client *Client) EditMessageReplyMarkup(req *EditMessageReplyMarkupRequest)
 
 type EditInlineMessageTextRequest struct {
 	// Inline message identifier
-	InlineMessageId string `json:"inline_message_id"`
+	InlineMessageID string `json:"inline_message_id"`
 	// The new message reply markup
 	ReplyMarkup ReplyMarkup `json:"reply_markup"`
 	// New text content of the message. Should be of type InputMessageText
@@ -2840,7 +2842,7 @@ func (client *Client) EditInlineMessageText(req *EditInlineMessageTextRequest) (
 			Type: "editInlineMessageText",
 		},
 		Data: map[string]interface{}{
-			"inline_message_id":     req.InlineMessageId,
+			"inline_message_id":     req.InlineMessageID,
 			"reply_markup":          req.ReplyMarkup,
 			"input_message_content": req.InputMessageContent,
 		},
@@ -2858,7 +2860,7 @@ func (client *Client) EditInlineMessageText(req *EditInlineMessageTextRequest) (
 
 type EditInlineMessageLiveLocationRequest struct {
 	// Inline message identifier
-	InlineMessageId string `json:"inline_message_id"`
+	InlineMessageID string `json:"inline_message_id"`
 	// The new message reply markup
 	ReplyMarkup ReplyMarkup `json:"reply_markup"`
 	// New location content of the message; may be null. Pass null to stop sharing the live location
@@ -2876,7 +2878,7 @@ func (client *Client) EditInlineMessageLiveLocation(req *EditInlineMessageLiveLo
 			Type: "editInlineMessageLiveLocation",
 		},
 		Data: map[string]interface{}{
-			"inline_message_id":      req.InlineMessageId,
+			"inline_message_id":      req.InlineMessageID,
 			"reply_markup":           req.ReplyMarkup,
 			"location":               req.Location,
 			"heading":                req.Heading,
@@ -2896,7 +2898,7 @@ func (client *Client) EditInlineMessageLiveLocation(req *EditInlineMessageLiveLo
 
 type EditInlineMessageMediaRequest struct {
 	// Inline message identifier
-	InlineMessageId string `json:"inline_message_id"`
+	InlineMessageID string `json:"inline_message_id"`
 	// The new message reply markup; for bots only
 	ReplyMarkup ReplyMarkup `json:"reply_markup"`
 	// New content of the message. Must be one of the following types: InputMessageAnimation, InputMessageAudio, InputMessageDocument, InputMessagePhoto or InputMessageVideo
@@ -2910,7 +2912,7 @@ func (client *Client) EditInlineMessageMedia(req *EditInlineMessageMediaRequest)
 			Type: "editInlineMessageMedia",
 		},
 		Data: map[string]interface{}{
-			"inline_message_id":     req.InlineMessageId,
+			"inline_message_id":     req.InlineMessageID,
 			"reply_markup":          req.ReplyMarkup,
 			"input_message_content": req.InputMessageContent,
 		},
@@ -2928,7 +2930,7 @@ func (client *Client) EditInlineMessageMedia(req *EditInlineMessageMediaRequest)
 
 type EditInlineMessageCaptionRequest struct {
 	// Inline message identifier
-	InlineMessageId string `json:"inline_message_id"`
+	InlineMessageID string `json:"inline_message_id"`
 	// The new message reply markup
 	ReplyMarkup ReplyMarkup `json:"reply_markup"`
 	// New message content caption; 0-GetOption("message_caption_length_max") characters
@@ -2942,7 +2944,7 @@ func (client *Client) EditInlineMessageCaption(req *EditInlineMessageCaptionRequ
 			Type: "editInlineMessageCaption",
 		},
 		Data: map[string]interface{}{
-			"inline_message_id": req.InlineMessageId,
+			"inline_message_id": req.InlineMessageID,
 			"reply_markup":      req.ReplyMarkup,
 			"caption":           req.Caption,
 		},
@@ -2960,7 +2962,7 @@ func (client *Client) EditInlineMessageCaption(req *EditInlineMessageCaptionRequ
 
 type EditInlineMessageReplyMarkupRequest struct {
 	// Inline message identifier
-	InlineMessageId string `json:"inline_message_id"`
+	InlineMessageID string `json:"inline_message_id"`
 	// The new message reply markup
 	ReplyMarkup ReplyMarkup `json:"reply_markup"`
 }
@@ -2972,7 +2974,7 @@ func (client *Client) EditInlineMessageReplyMarkup(req *EditInlineMessageReplyMa
 			Type: "editInlineMessageReplyMarkup",
 		},
 		Data: map[string]interface{}{
-			"inline_message_id": req.InlineMessageId,
+			"inline_message_id": req.InlineMessageID,
 			"reply_markup":      req.ReplyMarkup,
 		},
 	})
@@ -2989,9 +2991,9 @@ func (client *Client) EditInlineMessageReplyMarkup(req *EditInlineMessageReplyMa
 
 type EditMessageSchedulingStateRequest struct {
 	// The chat the message belongs to
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// The new message scheduling state. Pass null to send the message immediately
 	SchedulingState MessageSchedulingState `json:"scheduling_state"`
 }
@@ -3003,8 +3005,8 @@ func (client *Client) EditMessageSchedulingState(req *EditMessageSchedulingState
 			Type: "editMessageSchedulingState",
 		},
 		Data: map[string]interface{}{
-			"chat_id":          req.ChatId,
-			"message_id":       req.MessageId,
+			"chat_id":          req.ChatID,
+			"message_id":       req.MessageID,
 			"scheduling_state": req.SchedulingState,
 		},
 	})
@@ -3210,7 +3212,7 @@ type GetLanguagePackStringRequest struct {
 	// Localization target to which the language pack belongs
 	LocalizationTarget string `json:"localization_target"`
 	// Language pack identifier
-	LanguagePackId string `json:"language_pack_id"`
+	LanguagePackID string `json:"language_pack_id"`
 	// Language pack key of the string to be returned
 	Key string `json:"key"`
 }
@@ -3224,7 +3226,7 @@ func (client *Client) GetLanguagePackString(req *GetLanguagePackStringRequest) (
 		Data: map[string]interface{}{
 			"language_pack_database_path": req.LanguagePackDatabasePath,
 			"localization_target":         req.LocalizationTarget,
-			"language_pack_id":            req.LanguagePackId,
+			"language_pack_id":            req.LanguagePackID,
 			"key":                         req.Key,
 		},
 	})
@@ -3326,11 +3328,11 @@ func (client *Client) GetJsonString(req *GetJsonStringRequest) (*Text, error) {
 
 type SetPollAnswerRequest struct {
 	// Identifier of the chat to which the poll belongs
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message containing the poll
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// 0-based identifiers of answer options, chosen by the user. User can choose more than 1 answer option only is the poll allows multiple answers
-	OptionIds []int32 `json:"option_ids"`
+	OptionIDs []int32 `json:"option_ids"`
 }
 
 // Changes the user answer to a poll. A poll in quiz mode can be answered only once
@@ -3340,9 +3342,9 @@ func (client *Client) SetPollAnswer(req *SetPollAnswerRequest) (*Ok, error) {
 			Type: "setPollAnswer",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
-			"option_ids": req.OptionIds,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
+			"option_ids": req.OptionIDs,
 		},
 	})
 	if err != nil {
@@ -3358,11 +3360,11 @@ func (client *Client) SetPollAnswer(req *SetPollAnswerRequest) (*Ok, error) {
 
 type GetPollVotersRequest struct {
 	// Identifier of the chat to which the poll belongs
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message containing the poll
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// 0-based identifier of the answer option
-	OptionId int32 `json:"option_id"`
+	OptionID int32 `json:"option_id"`
 	// Number of users to skip in the result; must be non-negative
 	Offset int32 `json:"offset"`
 	// The maximum number of users to be returned; must be positive and can't be greater than 50. Fewer users may be returned than specified by the limit, even if the end of the voter list has not been reached
@@ -3376,9 +3378,9 @@ func (client *Client) GetPollVoters(req *GetPollVotersRequest) (*Users, error) {
 			Type: "getPollVoters",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
-			"option_id":  req.OptionId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
+			"option_id":  req.OptionID,
 			"offset":     req.Offset,
 			"limit":      req.Limit,
 		},
@@ -3396,9 +3398,9 @@ func (client *Client) GetPollVoters(req *GetPollVotersRequest) (*Users, error) {
 
 type StopPollRequest struct {
 	// Identifier of the chat to which the poll belongs
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message containing the poll
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// The new message reply markup; for bots only
 	ReplyMarkup ReplyMarkup `json:"reply_markup"`
 }
@@ -3410,8 +3412,8 @@ func (client *Client) StopPoll(req *StopPollRequest) (*Ok, error) {
 			Type: "stopPoll",
 		},
 		Data: map[string]interface{}{
-			"chat_id":      req.ChatId,
-			"message_id":   req.MessageId,
+			"chat_id":      req.ChatID,
+			"message_id":   req.MessageID,
 			"reply_markup": req.ReplyMarkup,
 		},
 	})
@@ -3454,11 +3456,11 @@ func (client *Client) HideSuggestedAction(req *HideSuggestedActionRequest) (*Ok,
 
 type GetLoginUrlInfoRequest struct {
 	// Chat identifier of the message with the button
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Message identifier of the message with the button
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// Button identifier
-	ButtonId int32 `json:"button_id"`
+	ButtonID int32 `json:"button_id"`
 }
 
 // Returns information about a button of type inlineKeyboardButtonTypeLoginUrl. The method needs to be called when the user presses the button
@@ -3468,9 +3470,9 @@ func (client *Client) GetLoginUrlInfo(req *GetLoginUrlInfoRequest) (LoginUrlInfo
 			Type: "getLoginUrlInfo",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
-			"button_id":  req.ButtonId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
+			"button_id":  req.ButtonID,
 		},
 	})
 	if err != nil {
@@ -3495,11 +3497,11 @@ func (client *Client) GetLoginUrlInfo(req *GetLoginUrlInfoRequest) (LoginUrlInfo
 
 type GetLoginUrlRequest struct {
 	// Chat identifier of the message with the button
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Message identifier of the message with the button
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// Button identifier
-	ButtonId int32 `json:"button_id"`
+	ButtonID int32 `json:"button_id"`
 	// True, if the user allowed the bot to send them messages
 	AllowWriteAccess bool `json:"allow_write_access"`
 }
@@ -3511,9 +3513,9 @@ func (client *Client) GetLoginUrl(req *GetLoginUrlRequest) (*HttpUrl, error) {
 			Type: "getLoginUrl",
 		},
 		Data: map[string]interface{}{
-			"chat_id":            req.ChatId,
-			"message_id":         req.MessageId,
-			"button_id":          req.ButtonId,
+			"chat_id":            req.ChatID,
+			"message_id":         req.MessageID,
+			"button_id":          req.ButtonID,
 			"allow_write_access": req.AllowWriteAccess,
 		},
 	})
@@ -3530,9 +3532,9 @@ func (client *Client) GetLoginUrl(req *GetLoginUrlRequest) (*HttpUrl, error) {
 
 type GetInlineQueryResultsRequest struct {
 	// The identifier of the target bot
-	BotUserId int32 `json:"bot_user_id"`
+	BotUserID int32 `json:"bot_user_id"`
 	// Identifier of the chat where the query was sent
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Location of the user, only if needed
 	UserLocation *Location `json:"user_location"`
 	// Text of the query
@@ -3548,8 +3550,8 @@ func (client *Client) GetInlineQueryResults(req *GetInlineQueryResultsRequest) (
 			Type: "getInlineQueryResults",
 		},
 		Data: map[string]interface{}{
-			"bot_user_id":   req.BotUserId,
-			"chat_id":       req.ChatId,
+			"bot_user_id":   req.BotUserID,
+			"chat_id":       req.ChatID,
 			"user_location": req.UserLocation,
 			"query":         req.Query,
 			"offset":        req.Offset,
@@ -3568,7 +3570,7 @@ func (client *Client) GetInlineQueryResults(req *GetInlineQueryResultsRequest) (
 
 type AnswerInlineQueryRequest struct {
 	// Identifier of the inline query
-	InlineQueryId JsonInt64 `json:"inline_query_id"`
+	InlineQueryID JsonInt64 `json:"inline_query_id"`
 	// True, if the result of the query can be cached for the specified user
 	IsPersonal bool `json:"is_personal"`
 	// The results of the query
@@ -3590,7 +3592,7 @@ func (client *Client) AnswerInlineQuery(req *AnswerInlineQueryRequest) (*Ok, err
 			Type: "answerInlineQuery",
 		},
 		Data: map[string]interface{}{
-			"inline_query_id":     req.InlineQueryId,
+			"inline_query_id":     req.InlineQueryID,
 			"is_personal":         req.IsPersonal,
 			"results":             req.Results,
 			"cache_time":          req.CacheTime,
@@ -3612,9 +3614,9 @@ func (client *Client) AnswerInlineQuery(req *AnswerInlineQueryRequest) (*Ok, err
 
 type GetCallbackQueryAnswerRequest struct {
 	// Identifier of the chat with the message
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message from which the query originated
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// Query payload
 	Payload CallbackQueryPayload `json:"payload"`
 }
@@ -3626,8 +3628,8 @@ func (client *Client) GetCallbackQueryAnswer(req *GetCallbackQueryAnswerRequest)
 			Type: "getCallbackQueryAnswer",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
 			"payload":    req.Payload,
 		},
 	})
@@ -3644,7 +3646,7 @@ func (client *Client) GetCallbackQueryAnswer(req *GetCallbackQueryAnswerRequest)
 
 type AnswerCallbackQueryRequest struct {
 	// Identifier of the callback query
-	CallbackQueryId JsonInt64 `json:"callback_query_id"`
+	CallbackQueryID JsonInt64 `json:"callback_query_id"`
 	// Text of the answer
 	Text string `json:"text"`
 	// If true, an alert should be shown to the user instead of a toast notification
@@ -3662,7 +3664,7 @@ func (client *Client) AnswerCallbackQuery(req *AnswerCallbackQueryRequest) (*Ok,
 			Type: "answerCallbackQuery",
 		},
 		Data: map[string]interface{}{
-			"callback_query_id": req.CallbackQueryId,
+			"callback_query_id": req.CallbackQueryID,
 			"text":              req.Text,
 			"show_alert":        req.ShowAlert,
 			"url":               req.Url,
@@ -3682,7 +3684,7 @@ func (client *Client) AnswerCallbackQuery(req *AnswerCallbackQueryRequest) (*Ok,
 
 type AnswerShippingQueryRequest struct {
 	// Identifier of the shipping query
-	ShippingQueryId JsonInt64 `json:"shipping_query_id"`
+	ShippingQueryID JsonInt64 `json:"shipping_query_id"`
 	// Available shipping options
 	ShippingOptions []*ShippingOption `json:"shipping_options"`
 	// An error message, empty on success
@@ -3696,7 +3698,7 @@ func (client *Client) AnswerShippingQuery(req *AnswerShippingQueryRequest) (*Ok,
 			Type: "answerShippingQuery",
 		},
 		Data: map[string]interface{}{
-			"shipping_query_id": req.ShippingQueryId,
+			"shipping_query_id": req.ShippingQueryID,
 			"shipping_options":  req.ShippingOptions,
 			"error_message":     req.ErrorMessage,
 		},
@@ -3714,7 +3716,7 @@ func (client *Client) AnswerShippingQuery(req *AnswerShippingQueryRequest) (*Ok,
 
 type AnswerPreCheckoutQueryRequest struct {
 	// Identifier of the pre-checkout query
-	PreCheckoutQueryId JsonInt64 `json:"pre_checkout_query_id"`
+	PreCheckoutQueryID JsonInt64 `json:"pre_checkout_query_id"`
 	// An error message, empty on success
 	ErrorMessage string `json:"error_message"`
 }
@@ -3726,7 +3728,7 @@ func (client *Client) AnswerPreCheckoutQuery(req *AnswerPreCheckoutQueryRequest)
 			Type: "answerPreCheckoutQuery",
 		},
 		Data: map[string]interface{}{
-			"pre_checkout_query_id": req.PreCheckoutQueryId,
+			"pre_checkout_query_id": req.PreCheckoutQueryID,
 			"error_message":         req.ErrorMessage,
 		},
 	})
@@ -3743,13 +3745,13 @@ func (client *Client) AnswerPreCheckoutQuery(req *AnswerPreCheckoutQueryRequest)
 
 type SetGameScoreRequest struct {
 	// The chat to which the message with the game belongs
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// True, if the message should be edited
 	EditMessage bool `json:"edit_message"`
 	// User identifier
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// The new score
 	Score int32 `json:"score"`
 	// Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
@@ -3763,10 +3765,10 @@ func (client *Client) SetGameScore(req *SetGameScoreRequest) (*Message, error) {
 			Type: "setGameScore",
 		},
 		Data: map[string]interface{}{
-			"chat_id":      req.ChatId,
-			"message_id":   req.MessageId,
+			"chat_id":      req.ChatID,
+			"message_id":   req.MessageID,
 			"edit_message": req.EditMessage,
-			"user_id":      req.UserId,
+			"user_id":      req.UserID,
 			"score":        req.Score,
 			"force":        req.Force,
 		},
@@ -3784,11 +3786,11 @@ func (client *Client) SetGameScore(req *SetGameScoreRequest) (*Message, error) {
 
 type SetInlineGameScoreRequest struct {
 	// Inline message identifier
-	InlineMessageId string `json:"inline_message_id"`
+	InlineMessageID string `json:"inline_message_id"`
 	// True, if the message should be edited
 	EditMessage bool `json:"edit_message"`
 	// User identifier
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// The new score
 	Score int32 `json:"score"`
 	// Pass true to update the score even if it decreases. If the score is 0, the user will be deleted from the high score table
@@ -3802,9 +3804,9 @@ func (client *Client) SetInlineGameScore(req *SetInlineGameScoreRequest) (*Ok, e
 			Type: "setInlineGameScore",
 		},
 		Data: map[string]interface{}{
-			"inline_message_id": req.InlineMessageId,
+			"inline_message_id": req.InlineMessageID,
 			"edit_message":      req.EditMessage,
-			"user_id":           req.UserId,
+			"user_id":           req.UserID,
 			"score":             req.Score,
 			"force":             req.Force,
 		},
@@ -3822,11 +3824,11 @@ func (client *Client) SetInlineGameScore(req *SetInlineGameScoreRequest) (*Ok, e
 
 type GetGameHighScoresRequest struct {
 	// The chat that contains the message with the game
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// User identifier
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 }
 
 // Returns the high scores for a game and some part of the high score table in the range of the specified user; for bots only
@@ -3836,9 +3838,9 @@ func (client *Client) GetGameHighScores(req *GetGameHighScoresRequest) (*GameHig
 			Type: "getGameHighScores",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
-			"user_id":    req.UserId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
+			"user_id":    req.UserID,
 		},
 	})
 	if err != nil {
@@ -3854,9 +3856,9 @@ func (client *Client) GetGameHighScores(req *GetGameHighScoresRequest) (*GameHig
 
 type GetInlineGameHighScoresRequest struct {
 	// Inline message identifier
-	InlineMessageId string `json:"inline_message_id"`
+	InlineMessageID string `json:"inline_message_id"`
 	// User identifier
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 }
 
 // Returns game high scores and some part of the high score table in the range of the specified user; for bots only
@@ -3866,8 +3868,8 @@ func (client *Client) GetInlineGameHighScores(req *GetInlineGameHighScoresReques
 			Type: "getInlineGameHighScores",
 		},
 		Data: map[string]interface{}{
-			"inline_message_id": req.InlineMessageId,
-			"user_id":           req.UserId,
+			"inline_message_id": req.InlineMessageID,
+			"user_id":           req.UserID,
 		},
 	})
 	if err != nil {
@@ -3883,9 +3885,9 @@ func (client *Client) GetInlineGameHighScores(req *GetInlineGameHighScoresReques
 
 type DeleteChatReplyMarkupRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// The message identifier of the used keyboard
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 }
 
 // Deletes the default reply markup from a chat. Must be called after a one-time keyboard or a ForceReply reply markup has been used. UpdateChatReplyMarkup will be sent if the reply markup will be changed
@@ -3895,8 +3897,8 @@ func (client *Client) DeleteChatReplyMarkup(req *DeleteChatReplyMarkupRequest) (
 			Type: "deleteChatReplyMarkup",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
 		},
 	})
 	if err != nil {
@@ -3912,9 +3914,9 @@ func (client *Client) DeleteChatReplyMarkup(req *DeleteChatReplyMarkupRequest) (
 
 type SendChatActionRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// If not 0, a message thread identifier in which the action was performed
-	MessageThreadId int64 `json:"message_thread_id"`
+	MessageThreadID int64 `json:"message_thread_id"`
 	// The action description
 	Action ChatAction `json:"action"`
 }
@@ -3926,8 +3928,8 @@ func (client *Client) SendChatAction(req *SendChatActionRequest) (*Ok, error) {
 			Type: "sendChatAction",
 		},
 		Data: map[string]interface{}{
-			"chat_id":           req.ChatId,
-			"message_thread_id": req.MessageThreadId,
+			"chat_id":           req.ChatID,
+			"message_thread_id": req.MessageThreadID,
 			"action":            req.Action,
 		},
 	})
@@ -3944,7 +3946,7 @@ func (client *Client) SendChatAction(req *SendChatActionRequest) (*Ok, error) {
 
 type OpenChatRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Informs TDLib that the chat is opened by the user. Many useful activities depend on the chat being opened or closed (e.g., in supergroups and channels all updates are received only for opened chats)
@@ -3954,7 +3956,7 @@ func (client *Client) OpenChat(req *OpenChatRequest) (*Ok, error) {
 			Type: "openChat",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -3970,7 +3972,7 @@ func (client *Client) OpenChat(req *OpenChatRequest) (*Ok, error) {
 
 type CloseChatRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Informs TDLib that the chat is closed by the user. Many useful activities depend on the chat being opened or closed
@@ -3980,7 +3982,7 @@ func (client *Client) CloseChat(req *CloseChatRequest) (*Ok, error) {
 			Type: "closeChat",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -3996,11 +3998,11 @@ func (client *Client) CloseChat(req *CloseChatRequest) (*Ok, error) {
 
 type ViewMessagesRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// If not 0, a message thread identifier in which the messages are being viewed
-	MessageThreadId int64 `json:"message_thread_id"`
+	MessageThreadID int64 `json:"message_thread_id"`
 	// The identifiers of the messages being viewed
-	MessageIds []int64 `json:"message_ids"`
+	MessageIDs []int64 `json:"message_ids"`
 	// True, if messages in closed chats should be marked as read by the request
 	ForceRead bool `json:"force_read"`
 }
@@ -4012,9 +4014,9 @@ func (client *Client) ViewMessages(req *ViewMessagesRequest) (*Ok, error) {
 			Type: "viewMessages",
 		},
 		Data: map[string]interface{}{
-			"chat_id":           req.ChatId,
-			"message_thread_id": req.MessageThreadId,
-			"message_ids":       req.MessageIds,
+			"chat_id":           req.ChatID,
+			"message_thread_id": req.MessageThreadID,
+			"message_ids":       req.MessageIDs,
 			"force_read":        req.ForceRead,
 		},
 	})
@@ -4031,9 +4033,9 @@ func (client *Client) ViewMessages(req *ViewMessagesRequest) (*Ok, error) {
 
 type OpenMessageContentRequest struct {
 	// Chat identifier of the message
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the message with the opened content
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 }
 
 // Informs TDLib that the message content has been opened (e.g., the user has opened a photo, video, document, location or venue, or has listened to an audio file or voice note message). An updateMessageContentOpened update will be generated if something has changed
@@ -4043,8 +4045,8 @@ func (client *Client) OpenMessageContent(req *OpenMessageContentRequest) (*Ok, e
 			Type: "openMessageContent",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
 		},
 	})
 	if err != nil {
@@ -4060,7 +4062,7 @@ func (client *Client) OpenMessageContent(req *OpenMessageContentRequest) (*Ok, e
 
 type ReadAllChatMentionsRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Marks all mentions in a chat as read
@@ -4070,7 +4072,7 @@ func (client *Client) ReadAllChatMentions(req *ReadAllChatMentionsRequest) (*Ok,
 			Type: "readAllChatMentions",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -4086,7 +4088,7 @@ func (client *Client) ReadAllChatMentions(req *ReadAllChatMentionsRequest) (*Ok,
 
 type CreatePrivateChatRequest struct {
 	// User identifier
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
 	Force bool `json:"force"`
 }
@@ -4098,7 +4100,7 @@ func (client *Client) CreatePrivateChat(req *CreatePrivateChatRequest) (*Chat, e
 			Type: "createPrivateChat",
 		},
 		Data: map[string]interface{}{
-			"user_id": req.UserId,
+			"user_id": req.UserID,
 			"force":   req.Force,
 		},
 	})
@@ -4115,7 +4117,7 @@ func (client *Client) CreatePrivateChat(req *CreatePrivateChatRequest) (*Chat, e
 
 type CreateBasicGroupChatRequest struct {
 	// Basic group identifier
-	BasicGroupId int32 `json:"basic_group_id"`
+	BasicGroupID int32 `json:"basic_group_id"`
 	// If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
 	Force bool `json:"force"`
 }
@@ -4127,7 +4129,7 @@ func (client *Client) CreateBasicGroupChat(req *CreateBasicGroupChatRequest) (*C
 			Type: "createBasicGroupChat",
 		},
 		Data: map[string]interface{}{
-			"basic_group_id": req.BasicGroupId,
+			"basic_group_id": req.BasicGroupID,
 			"force":          req.Force,
 		},
 	})
@@ -4144,7 +4146,7 @@ func (client *Client) CreateBasicGroupChat(req *CreateBasicGroupChatRequest) (*C
 
 type CreateSupergroupChatRequest struct {
 	// Supergroup or channel identifier
-	SupergroupId int32 `json:"supergroup_id"`
+	SupergroupID int32 `json:"supergroup_id"`
 	// If true, the chat will be created without network request. In this case all information about the chat except its type, title and photo can be incorrect
 	Force bool `json:"force"`
 }
@@ -4156,7 +4158,7 @@ func (client *Client) CreateSupergroupChat(req *CreateSupergroupChatRequest) (*C
 			Type: "createSupergroupChat",
 		},
 		Data: map[string]interface{}{
-			"supergroup_id": req.SupergroupId,
+			"supergroup_id": req.SupergroupID,
 			"force":         req.Force,
 		},
 	})
@@ -4173,7 +4175,7 @@ func (client *Client) CreateSupergroupChat(req *CreateSupergroupChatRequest) (*C
 
 type CreateSecretChatRequest struct {
 	// Secret chat identifier
-	SecretChatId int32 `json:"secret_chat_id"`
+	SecretChatID int32 `json:"secret_chat_id"`
 }
 
 // Returns an existing chat corresponding to a known secret chat
@@ -4183,7 +4185,7 @@ func (client *Client) CreateSecretChat(req *CreateSecretChatRequest) (*Chat, err
 			Type: "createSecretChat",
 		},
 		Data: map[string]interface{}{
-			"secret_chat_id": req.SecretChatId,
+			"secret_chat_id": req.SecretChatID,
 		},
 	})
 	if err != nil {
@@ -4199,7 +4201,7 @@ func (client *Client) CreateSecretChat(req *CreateSecretChatRequest) (*Chat, err
 
 type CreateNewBasicGroupChatRequest struct {
 	// Identifiers of users to be added to the basic group
-	UserIds []int32 `json:"user_ids"`
+	UserIDs []int32 `json:"user_ids"`
 	// Title of the new basic group; 1-128 characters
 	Title string `json:"title"`
 }
@@ -4211,7 +4213,7 @@ func (client *Client) CreateNewBasicGroupChat(req *CreateNewBasicGroupChatReques
 			Type: "createNewBasicGroupChat",
 		},
 		Data: map[string]interface{}{
-			"user_ids": req.UserIds,
+			"user_ids": req.UserIDs,
 			"title":    req.Title,
 		},
 	})
@@ -4263,7 +4265,7 @@ func (client *Client) CreateNewSupergroupChat(req *CreateNewSupergroupChatReques
 
 type CreateNewSecretChatRequest struct {
 	// Identifier of the target user
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 }
 
 // Creates a new secret chat. Returns the newly created chat
@@ -4273,7 +4275,7 @@ func (client *Client) CreateNewSecretChat(req *CreateNewSecretChatRequest) (*Cha
 			Type: "createNewSecretChat",
 		},
 		Data: map[string]interface{}{
-			"user_id": req.UserId,
+			"user_id": req.UserID,
 		},
 	})
 	if err != nil {
@@ -4289,17 +4291,18 @@ func (client *Client) CreateNewSecretChat(req *CreateNewSecretChatRequest) (*Cha
 
 type UpgradeBasicGroupChatToSupergroupChatRequest struct {
 	// Identifier of the chat to upgrade
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Creates a new supergroup from an existing basic group and sends a corresponding messageChatUpgradeTo and messageChatUpgradeFrom; requires creator privileges. Deactivates the original basic group
-func (client *Client) UpgradeBasicGroupChatToSupergroupChat(req *UpgradeBasicGroupChatToSupergroupChatRequest) (*Chat, error) {
+func (client *Client) UpgradeBasicGroupChatToSupergroupChat(req *UpgradeBasicGroupChatToSupergroupChatRequest) (*Chat,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "upgradeBasicGroupChatToSupergroupChat",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -4315,7 +4318,7 @@ func (client *Client) UpgradeBasicGroupChatToSupergroupChat(req *UpgradeBasicGro
 
 type GetChatListsToAddChatRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Returns chat lists to which the chat can be added. This is an offline request
@@ -4325,7 +4328,7 @@ func (client *Client) GetChatListsToAddChat(req *GetChatListsToAddChatRequest) (
 			Type: "getChatListsToAddChat",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -4341,7 +4344,7 @@ func (client *Client) GetChatListsToAddChat(req *GetChatListsToAddChatRequest) (
 
 type AddChatToListRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// The chat list. Use getChatListsToAddChat to get suitable chat lists
 	ChatList ChatList `json:"chat_list"`
 }
@@ -4353,7 +4356,7 @@ func (client *Client) AddChatToList(req *AddChatToListRequest) (*Ok, error) {
 			Type: "addChatToList",
 		},
 		Data: map[string]interface{}{
-			"chat_id":   req.ChatId,
+			"chat_id":   req.ChatID,
 			"chat_list": req.ChatList,
 		},
 	})
@@ -4370,7 +4373,7 @@ func (client *Client) AddChatToList(req *AddChatToListRequest) (*Ok, error) {
 
 type GetChatFilterRequest struct {
 	// Chat filter identifier
-	ChatFilterId int32 `json:"chat_filter_id"`
+	ChatFilterID int32 `json:"chat_filter_id"`
 }
 
 // Returns information about a chat filter by its identifier
@@ -4380,7 +4383,7 @@ func (client *Client) GetChatFilter(req *GetChatFilterRequest) (*ChatFilter, err
 			Type: "getChatFilter",
 		},
 		Data: map[string]interface{}{
-			"chat_filter_id": req.ChatFilterId,
+			"chat_filter_id": req.ChatFilterID,
 		},
 	})
 	if err != nil {
@@ -4422,7 +4425,7 @@ func (client *Client) CreateChatFilter(req *CreateChatFilterRequest) (*ChatFilte
 
 type EditChatFilterRequest struct {
 	// Chat filter identifier
-	ChatFilterId int32 `json:"chat_filter_id"`
+	ChatFilterID int32 `json:"chat_filter_id"`
 	// The edited chat filter
 	Filter *ChatFilter `json:"filter"`
 }
@@ -4434,7 +4437,7 @@ func (client *Client) EditChatFilter(req *EditChatFilterRequest) (*ChatFilterInf
 			Type: "editChatFilter",
 		},
 		Data: map[string]interface{}{
-			"chat_filter_id": req.ChatFilterId,
+			"chat_filter_id": req.ChatFilterID,
 			"filter":         req.Filter,
 		},
 	})
@@ -4451,7 +4454,7 @@ func (client *Client) EditChatFilter(req *EditChatFilterRequest) (*ChatFilterInf
 
 type DeleteChatFilterRequest struct {
 	// Chat filter identifier
-	ChatFilterId int32 `json:"chat_filter_id"`
+	ChatFilterID int32 `json:"chat_filter_id"`
 }
 
 // Deletes existing chat filter
@@ -4461,7 +4464,7 @@ func (client *Client) DeleteChatFilter(req *DeleteChatFilterRequest) (*Ok, error
 			Type: "deleteChatFilter",
 		},
 		Data: map[string]interface{}{
-			"chat_filter_id": req.ChatFilterId,
+			"chat_filter_id": req.ChatFilterID,
 		},
 	})
 	if err != nil {
@@ -4477,7 +4480,7 @@ func (client *Client) DeleteChatFilter(req *DeleteChatFilterRequest) (*Ok, error
 
 type ReorderChatFiltersRequest struct {
 	// Identifiers of chat filters in the new correct order
-	ChatFilterIds []int32 `json:"chat_filter_ids"`
+	ChatFilterIDs []int32 `json:"chat_filter_ids"`
 }
 
 // Changes the order of chat filters
@@ -4487,7 +4490,7 @@ func (client *Client) ReorderChatFilters(req *ReorderChatFiltersRequest) (*Ok, e
 			Type: "reorderChatFilters",
 		},
 		Data: map[string]interface{}{
-			"chat_filter_ids": req.ChatFilterIds,
+			"chat_filter_ids": req.ChatFilterIDs,
 		},
 	})
 	if err != nil {
@@ -4548,7 +4551,7 @@ func (client *Client) GetChatFilterDefaultIconName(req *GetChatFilterDefaultIcon
 
 type SetChatTitleRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// New title of the chat; 1-128 characters
 	Title string `json:"title"`
 }
@@ -4560,7 +4563,7 @@ func (client *Client) SetChatTitle(req *SetChatTitleRequest) (*Ok, error) {
 			Type: "setChatTitle",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 			"title":   req.Title,
 		},
 	})
@@ -4577,7 +4580,7 @@ func (client *Client) SetChatTitle(req *SetChatTitleRequest) (*Ok, error) {
 
 type SetChatPhotoRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// New chat photo. Pass null to delete the chat photo
 	Photo InputChatPhoto `json:"photo"`
 }
@@ -4589,7 +4592,7 @@ func (client *Client) SetChatPhoto(req *SetChatPhotoRequest) (*Ok, error) {
 			Type: "setChatPhoto",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 			"photo":   req.Photo,
 		},
 	})
@@ -4606,7 +4609,7 @@ func (client *Client) SetChatPhoto(req *SetChatPhotoRequest) (*Ok, error) {
 
 type SetChatPermissionsRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// New non-administrator members permissions in the chat
 	Permissions *ChatPermissions `json:"permissions"`
 }
@@ -4618,7 +4621,7 @@ func (client *Client) SetChatPermissions(req *SetChatPermissionsRequest) (*Ok, e
 			Type: "setChatPermissions",
 		},
 		Data: map[string]interface{}{
-			"chat_id":     req.ChatId,
+			"chat_id":     req.ChatID,
 			"permissions": req.Permissions,
 		},
 	})
@@ -4635,9 +4638,9 @@ func (client *Client) SetChatPermissions(req *SetChatPermissionsRequest) (*Ok, e
 
 type SetChatDraftMessageRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// If not 0, a message thread identifier in which the draft was changed
-	MessageThreadId int64 `json:"message_thread_id"`
+	MessageThreadID int64 `json:"message_thread_id"`
 	// New draft message; may be null
 	DraftMessage *DraftMessage `json:"draft_message"`
 }
@@ -4649,8 +4652,8 @@ func (client *Client) SetChatDraftMessage(req *SetChatDraftMessageRequest) (*Ok,
 			Type: "setChatDraftMessage",
 		},
 		Data: map[string]interface{}{
-			"chat_id":           req.ChatId,
-			"message_thread_id": req.MessageThreadId,
+			"chat_id":           req.ChatID,
+			"message_thread_id": req.MessageThreadID,
 			"draft_message":     req.DraftMessage,
 		},
 	})
@@ -4667,7 +4670,7 @@ func (client *Client) SetChatDraftMessage(req *SetChatDraftMessageRequest) (*Ok,
 
 type SetChatNotificationSettingsRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// New notification settings for the chat. If the chat is muted for more than 1 week, it is considered to be muted forever
 	NotificationSettings *ChatNotificationSettings `json:"notification_settings"`
 }
@@ -4679,7 +4682,7 @@ func (client *Client) SetChatNotificationSettings(req *SetChatNotificationSettin
 			Type: "setChatNotificationSettings",
 		},
 		Data: map[string]interface{}{
-			"chat_id":               req.ChatId,
+			"chat_id":               req.ChatID,
 			"notification_settings": req.NotificationSettings,
 		},
 	})
@@ -4696,7 +4699,7 @@ func (client *Client) SetChatNotificationSettings(req *SetChatNotificationSettin
 
 type ToggleChatIsMarkedAsUnreadRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// New value of is_marked_as_unread
 	IsMarkedAsUnread bool `json:"is_marked_as_unread"`
 }
@@ -4708,7 +4711,7 @@ func (client *Client) ToggleChatIsMarkedAsUnread(req *ToggleChatIsMarkedAsUnread
 			Type: "toggleChatIsMarkedAsUnread",
 		},
 		Data: map[string]interface{}{
-			"chat_id":             req.ChatId,
+			"chat_id":             req.ChatID,
 			"is_marked_as_unread": req.IsMarkedAsUnread,
 		},
 	})
@@ -4725,19 +4728,20 @@ func (client *Client) ToggleChatIsMarkedAsUnread(req *ToggleChatIsMarkedAsUnread
 
 type ToggleChatDefaultDisableNotificationRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// New value of default_disable_notification
 	DefaultDisableNotification bool `json:"default_disable_notification"`
 }
 
 // Changes the value of the default disable_notification parameter, used when a message is sent to a chat
-func (client *Client) ToggleChatDefaultDisableNotification(req *ToggleChatDefaultDisableNotificationRequest) (*Ok, error) {
+func (client *Client) ToggleChatDefaultDisableNotification(req *ToggleChatDefaultDisableNotificationRequest) (*Ok,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "toggleChatDefaultDisableNotification",
 		},
 		Data: map[string]interface{}{
-			"chat_id":                      req.ChatId,
+			"chat_id":                      req.ChatID,
 			"default_disable_notification": req.DefaultDisableNotification,
 		},
 	})
@@ -4754,7 +4758,7 @@ func (client *Client) ToggleChatDefaultDisableNotification(req *ToggleChatDefaul
 
 type SetChatClientDataRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// New value of client_data
 	ClientData string `json:"client_data"`
 }
@@ -4766,7 +4770,7 @@ func (client *Client) SetChatClientData(req *SetChatClientDataRequest) (*Ok, err
 			Type: "setChatClientData",
 		},
 		Data: map[string]interface{}{
-			"chat_id":     req.ChatId,
+			"chat_id":     req.ChatID,
 			"client_data": req.ClientData,
 		},
 	})
@@ -4783,7 +4787,7 @@ func (client *Client) SetChatClientData(req *SetChatClientDataRequest) (*Ok, err
 
 type SetChatDescriptionRequest struct {
 	// Identifier of the chat
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// New chat description; 0-255 characters
 	Description string `json:"description"`
 }
@@ -4795,7 +4799,7 @@ func (client *Client) SetChatDescription(req *SetChatDescriptionRequest) (*Ok, e
 			Type: "setChatDescription",
 		},
 		Data: map[string]interface{}{
-			"chat_id":     req.ChatId,
+			"chat_id":     req.ChatID,
 			"description": req.Description,
 		},
 	})
@@ -4812,9 +4816,9 @@ func (client *Client) SetChatDescription(req *SetChatDescriptionRequest) (*Ok, e
 
 type SetChatDiscussionGroupRequest struct {
 	// Identifier of the channel chat. Pass 0 to remove a link from the supergroup passed in the second argument to a linked channel chat (requires can_pin_messages rights in the supergroup)
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of a new channel's discussion group. Use 0 to remove the discussion group. Use the method getSuitableDiscussionChats to find all suitable groups. Basic group chats must be first upgraded to supergroup chats. If new chat members don't have access to old messages in the supergroup, then toggleSupergroupIsAllHistoryAvailable must be used first to change that
-	DiscussionChatId int64 `json:"discussion_chat_id"`
+	DiscussionChatID int64 `json:"discussion_chat_id"`
 }
 
 // Changes the discussion group of a channel chat; requires can_change_info rights in the channel if it is specified
@@ -4824,8 +4828,8 @@ func (client *Client) SetChatDiscussionGroup(req *SetChatDiscussionGroupRequest)
 			Type: "setChatDiscussionGroup",
 		},
 		Data: map[string]interface{}{
-			"chat_id":            req.ChatId,
-			"discussion_chat_id": req.DiscussionChatId,
+			"chat_id":            req.ChatID,
+			"discussion_chat_id": req.DiscussionChatID,
 		},
 	})
 	if err != nil {
@@ -4841,7 +4845,7 @@ func (client *Client) SetChatDiscussionGroup(req *SetChatDiscussionGroupRequest)
 
 type SetChatLocationRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// New location for the chat; must be valid and not null
 	Location *ChatLocation `json:"location"`
 }
@@ -4853,7 +4857,7 @@ func (client *Client) SetChatLocation(req *SetChatLocationRequest) (*Ok, error) 
 			Type: "setChatLocation",
 		},
 		Data: map[string]interface{}{
-			"chat_id":  req.ChatId,
+			"chat_id":  req.ChatID,
 			"location": req.Location,
 		},
 	})
@@ -4870,7 +4874,7 @@ func (client *Client) SetChatLocation(req *SetChatLocationRequest) (*Ok, error) 
 
 type SetChatSlowModeDelayRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// New slow mode delay for the chat; must be one of 0, 10, 30, 60, 300, 900, 3600
 	SlowModeDelay int32 `json:"slow_mode_delay"`
 }
@@ -4882,7 +4886,7 @@ func (client *Client) SetChatSlowModeDelay(req *SetChatSlowModeDelayRequest) (*O
 			Type: "setChatSlowModeDelay",
 		},
 		Data: map[string]interface{}{
-			"chat_id":         req.ChatId,
+			"chat_id":         req.ChatID,
 			"slow_mode_delay": req.SlowModeDelay,
 		},
 	})
@@ -4899,9 +4903,9 @@ func (client *Client) SetChatSlowModeDelay(req *SetChatSlowModeDelayRequest) (*O
 
 type PinChatMessageRequest struct {
 	// Identifier of the chat
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the new pinned message
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// True, if there should be no notification about the pinned message. Notifications are always disabled in channels and private chats
 	DisableNotification bool `json:"disable_notification"`
 	// True, if the message needs to be pinned for one side only; private chats only
@@ -4915,8 +4919,8 @@ func (client *Client) PinChatMessage(req *PinChatMessageRequest) (*Ok, error) {
 			Type: "pinChatMessage",
 		},
 		Data: map[string]interface{}{
-			"chat_id":              req.ChatId,
-			"message_id":           req.MessageId,
+			"chat_id":              req.ChatID,
+			"message_id":           req.MessageID,
 			"disable_notification": req.DisableNotification,
 			"only_for_self":        req.OnlyForSelf,
 		},
@@ -4934,9 +4938,9 @@ func (client *Client) PinChatMessage(req *PinChatMessageRequest) (*Ok, error) {
 
 type UnpinChatMessageRequest struct {
 	// Identifier of the chat
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the removed pinned message
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 }
 
 // Removes a pinned message from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
@@ -4946,8 +4950,8 @@ func (client *Client) UnpinChatMessage(req *UnpinChatMessageRequest) (*Ok, error
 			Type: "unpinChatMessage",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
 		},
 	})
 	if err != nil {
@@ -4963,7 +4967,7 @@ func (client *Client) UnpinChatMessage(req *UnpinChatMessageRequest) (*Ok, error
 
 type UnpinAllChatMessagesRequest struct {
 	// Identifier of the chat
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Removes all pinned messages from a chat; requires can_pin_messages rights in the group or can_edit_messages rights in the channel
@@ -4973,7 +4977,7 @@ func (client *Client) UnpinAllChatMessages(req *UnpinAllChatMessagesRequest) (*O
 			Type: "unpinAllChatMessages",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -4989,7 +4993,7 @@ func (client *Client) UnpinAllChatMessages(req *UnpinAllChatMessagesRequest) (*O
 
 type JoinChatRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Adds current user as a new member to a chat. Private and secret chats can't be joined using this method
@@ -4999,7 +5003,7 @@ func (client *Client) JoinChat(req *JoinChatRequest) (*Ok, error) {
 			Type: "joinChat",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -5015,7 +5019,7 @@ func (client *Client) JoinChat(req *JoinChatRequest) (*Ok, error) {
 
 type LeaveChatRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Removes current user from chat members. Private and secret chats can't be left using this method
@@ -5025,7 +5029,7 @@ func (client *Client) LeaveChat(req *LeaveChatRequest) (*Ok, error) {
 			Type: "leaveChat",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -5041,9 +5045,9 @@ func (client *Client) LeaveChat(req *LeaveChatRequest) (*Ok, error) {
 
 type AddChatMemberRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the user
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// The number of earlier messages from the chat to be forwarded to the new member; up to 100. Ignored for supergroups and channels
 	ForwardLimit int32 `json:"forward_limit"`
 }
@@ -5055,8 +5059,8 @@ func (client *Client) AddChatMember(req *AddChatMemberRequest) (*Ok, error) {
 			Type: "addChatMember",
 		},
 		Data: map[string]interface{}{
-			"chat_id":       req.ChatId,
-			"user_id":       req.UserId,
+			"chat_id":       req.ChatID,
+			"user_id":       req.UserID,
 			"forward_limit": req.ForwardLimit,
 		},
 	})
@@ -5073,9 +5077,9 @@ func (client *Client) AddChatMember(req *AddChatMemberRequest) (*Ok, error) {
 
 type AddChatMembersRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifiers of the users to be added to the chat
-	UserIds []int32 `json:"user_ids"`
+	UserIDs []int32 `json:"user_ids"`
 }
 
 // Adds multiple new members to a chat. Currently this option is only available for supergroups and channels. This option can't be used to join a chat. Members can't be added to a channel if it has more than 200 members. Members will not be added until the chat state has been synchronized with the server
@@ -5085,8 +5089,8 @@ func (client *Client) AddChatMembers(req *AddChatMembersRequest) (*Ok, error) {
 			Type: "addChatMembers",
 		},
 		Data: map[string]interface{}{
-			"chat_id":  req.ChatId,
-			"user_ids": req.UserIds,
+			"chat_id":  req.ChatID,
+			"user_ids": req.UserIDs,
 		},
 	})
 	if err != nil {
@@ -5102,9 +5106,9 @@ func (client *Client) AddChatMembers(req *AddChatMembersRequest) (*Ok, error) {
 
 type SetChatMemberStatusRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// User identifier
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// The new status of the member in the chat
 	Status ChatMemberStatus `json:"status"`
 }
@@ -5116,8 +5120,8 @@ func (client *Client) SetChatMemberStatus(req *SetChatMemberStatusRequest) (*Ok,
 			Type: "setChatMemberStatus",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
-			"user_id": req.UserId,
+			"chat_id": req.ChatID,
+			"user_id": req.UserID,
 			"status":  req.Status,
 		},
 	})
@@ -5168,9 +5172,9 @@ func (client *Client) CanTransferOwnership() (CanTransferOwnershipResult, error)
 
 type TransferChatOwnershipRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Identifier of the user to which transfer the ownership. The ownership can't be transferred to a bot or to a deleted user
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// The password of the current user
 	Password string `json:"password"`
 }
@@ -5182,8 +5186,8 @@ func (client *Client) TransferChatOwnership(req *TransferChatOwnershipRequest) (
 			Type: "transferChatOwnership",
 		},
 		Data: map[string]interface{}{
-			"chat_id":  req.ChatId,
-			"user_id":  req.UserId,
+			"chat_id":  req.ChatID,
+			"user_id":  req.UserID,
 			"password": req.Password,
 		},
 	})
@@ -5200,9 +5204,9 @@ func (client *Client) TransferChatOwnership(req *TransferChatOwnershipRequest) (
 
 type GetChatMemberRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// User identifier
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 }
 
 // Returns information about a single member of a chat
@@ -5212,8 +5216,8 @@ func (client *Client) GetChatMember(req *GetChatMemberRequest) (*ChatMember, err
 			Type: "getChatMember",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
-			"user_id": req.UserId,
+			"chat_id": req.ChatID,
+			"user_id": req.UserID,
 		},
 	})
 	if err != nil {
@@ -5229,7 +5233,7 @@ func (client *Client) GetChatMember(req *GetChatMemberRequest) (*ChatMember, err
 
 type SearchChatMembersRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Query to search for
 	Query string `json:"query"`
 	// The maximum number of users to be returned
@@ -5245,7 +5249,7 @@ func (client *Client) SearchChatMembers(req *SearchChatMembersRequest) (*ChatMem
 			Type: "searchChatMembers",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 			"query":   req.Query,
 			"limit":   req.Limit,
 			"filter":  req.Filter,
@@ -5264,7 +5268,7 @@ func (client *Client) SearchChatMembers(req *SearchChatMembersRequest) (*ChatMem
 
 type GetChatAdministratorsRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Returns a list of administrators of the chat with their custom titles
@@ -5274,7 +5278,7 @@ func (client *Client) GetChatAdministrators(req *GetChatAdministratorsRequest) (
 			Type: "getChatAdministrators",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -5322,7 +5326,8 @@ type GetChatNotificationSettingsExceptionsRequest struct {
 }
 
 // Returns list of chats with non-default notification settings
-func (client *Client) GetChatNotificationSettingsExceptions(req *GetChatNotificationSettingsExceptionsRequest) (*Chats, error) {
+func (client *Client) GetChatNotificationSettingsExceptions(req *GetChatNotificationSettingsExceptionsRequest) (*Chats,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "getChatNotificationSettingsExceptions",
@@ -5349,7 +5354,8 @@ type GetScopeNotificationSettingsRequest struct {
 }
 
 // Returns the notification settings for chats of a given type
-func (client *Client) GetScopeNotificationSettings(req *GetScopeNotificationSettingsRequest) (*ScopeNotificationSettings, error) {
+func (client *Client) GetScopeNotificationSettings(req *GetScopeNotificationSettingsRequest) (*ScopeNotificationSettings,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "getScopeNotificationSettings",
@@ -5421,7 +5427,7 @@ type ToggleChatIsPinnedRequest struct {
 	// Chat list in which to change the pinned state of the chat
 	ChatList ChatList `json:"chat_list"`
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// True, if the chat is pinned
 	IsPinned bool `json:"is_pinned"`
 }
@@ -5434,7 +5440,7 @@ func (client *Client) ToggleChatIsPinned(req *ToggleChatIsPinnedRequest) (*Ok, e
 		},
 		Data: map[string]interface{}{
 			"chat_list": req.ChatList,
-			"chat_id":   req.ChatId,
+			"chat_id":   req.ChatID,
 			"is_pinned": req.IsPinned,
 		},
 	})
@@ -5453,7 +5459,7 @@ type SetPinnedChatsRequest struct {
 	// Chat list in which to change the order of pinned chats
 	ChatList ChatList `json:"chat_list"`
 	// The new list of pinned chats
-	ChatIds []int64 `json:"chat_ids"`
+	ChatIDs []int64 `json:"chat_ids"`
 }
 
 // Changes the order of pinned chats
@@ -5464,7 +5470,7 @@ func (client *Client) SetPinnedChats(req *SetPinnedChatsRequest) (*Ok, error) {
 		},
 		Data: map[string]interface{}{
 			"chat_list": req.ChatList,
-			"chat_ids":  req.ChatIds,
+			"chat_ids":  req.ChatIDs,
 		},
 	})
 	if err != nil {
@@ -5480,7 +5486,7 @@ func (client *Client) SetPinnedChats(req *SetPinnedChatsRequest) (*Ok, error) {
 
 type DownloadFileRequest struct {
 	// Identifier of the file to download
-	FileId int32 `json:"file_id"`
+	FileID int32 `json:"file_id"`
 	// Priority of the download (1-32). The higher the priority, the earlier the file will be downloaded. If the priorities of two files are equal, then the last one for which downloadFile was called will be downloaded first
 	Priority int32 `json:"priority"`
 	// The starting position from which the file should be downloaded
@@ -5498,7 +5504,7 @@ func (client *Client) DownloadFile(req *DownloadFileRequest) (*File, error) {
 			Type: "downloadFile",
 		},
 		Data: map[string]interface{}{
-			"file_id":     req.FileId,
+			"file_id":     req.FileID,
 			"priority":    req.Priority,
 			"offset":      req.Offset,
 			"limit":       req.Limit,
@@ -5518,7 +5524,7 @@ func (client *Client) DownloadFile(req *DownloadFileRequest) (*File, error) {
 
 type GetFileDownloadedPrefixSizeRequest struct {
 	// Identifier of the file
-	FileId int32 `json:"file_id"`
+	FileID int32 `json:"file_id"`
 	// Offset from which downloaded prefix size should be calculated
 	Offset int32 `json:"offset"`
 }
@@ -5530,7 +5536,7 @@ func (client *Client) GetFileDownloadedPrefixSize(req *GetFileDownloadedPrefixSi
 			Type: "getFileDownloadedPrefixSize",
 		},
 		Data: map[string]interface{}{
-			"file_id": req.FileId,
+			"file_id": req.FileID,
 			"offset":  req.Offset,
 		},
 	})
@@ -5547,7 +5553,7 @@ func (client *Client) GetFileDownloadedPrefixSize(req *GetFileDownloadedPrefixSi
 
 type CancelDownloadFileRequest struct {
 	// Identifier of a file to stop downloading
-	FileId int32 `json:"file_id"`
+	FileID int32 `json:"file_id"`
 	// Pass true to stop downloading only if it hasn't been started, i.e. request hasn't been sent to server
 	OnlyIfPending bool `json:"only_if_pending"`
 }
@@ -5559,7 +5565,7 @@ func (client *Client) CancelDownloadFile(req *CancelDownloadFileRequest) (*Ok, e
 			Type: "cancelDownloadFile",
 		},
 		Data: map[string]interface{}{
-			"file_id":         req.FileId,
+			"file_id":         req.FileID,
 			"only_if_pending": req.OnlyIfPending,
 		},
 	})
@@ -5608,7 +5614,7 @@ func (client *Client) UploadFile(req *UploadFileRequest) (*File, error) {
 
 type CancelUploadFileRequest struct {
 	// Identifier of the file to stop uploading
-	FileId int32 `json:"file_id"`
+	FileID int32 `json:"file_id"`
 }
 
 // Stops the uploading of a file. Supported only for files uploaded by using uploadFile. For other files the behavior is undefined
@@ -5618,7 +5624,7 @@ func (client *Client) CancelUploadFile(req *CancelUploadFileRequest) (*Ok, error
 			Type: "cancelUploadFile",
 		},
 		Data: map[string]interface{}{
-			"file_id": req.FileId,
+			"file_id": req.FileID,
 		},
 	})
 	if err != nil {
@@ -5634,7 +5640,7 @@ func (client *Client) CancelUploadFile(req *CancelUploadFileRequest) (*Ok, error
 
 type WriteGeneratedFilePartRequest struct {
 	// The identifier of the generation process
-	GenerationId JsonInt64 `json:"generation_id"`
+	GenerationID JsonInt64 `json:"generation_id"`
 	// The offset from which to write the data to the file
 	Offset int32 `json:"offset"`
 	// The data to write
@@ -5648,7 +5654,7 @@ func (client *Client) WriteGeneratedFilePart(req *WriteGeneratedFilePartRequest)
 			Type: "writeGeneratedFilePart",
 		},
 		Data: map[string]interface{}{
-			"generation_id": req.GenerationId,
+			"generation_id": req.GenerationID,
 			"offset":        req.Offset,
 			"data":          req.Data,
 		},
@@ -5666,7 +5672,7 @@ func (client *Client) WriteGeneratedFilePart(req *WriteGeneratedFilePartRequest)
 
 type SetFileGenerationProgressRequest struct {
 	// The identifier of the generation process
-	GenerationId JsonInt64 `json:"generation_id"`
+	GenerationID JsonInt64 `json:"generation_id"`
 	// Expected size of the generated file, in bytes; 0 if unknown
 	ExpectedSize int32 `json:"expected_size"`
 	// The number of bytes already generated
@@ -5680,7 +5686,7 @@ func (client *Client) SetFileGenerationProgress(req *SetFileGenerationProgressRe
 			Type: "setFileGenerationProgress",
 		},
 		Data: map[string]interface{}{
-			"generation_id":     req.GenerationId,
+			"generation_id":     req.GenerationID,
 			"expected_size":     req.ExpectedSize,
 			"local_prefix_size": req.LocalPrefixSize,
 		},
@@ -5698,7 +5704,7 @@ func (client *Client) SetFileGenerationProgress(req *SetFileGenerationProgressRe
 
 type FinishFileGenerationRequest struct {
 	// The identifier of the generation process
-	GenerationId JsonInt64 `json:"generation_id"`
+	GenerationID JsonInt64 `json:"generation_id"`
 	// If set, means that file generation has failed and should be terminated
 	Error *Error `json:"error"`
 }
@@ -5710,7 +5716,7 @@ func (client *Client) FinishFileGeneration(req *FinishFileGenerationRequest) (*O
 			Type: "finishFileGeneration",
 		},
 		Data: map[string]interface{}{
-			"generation_id": req.GenerationId,
+			"generation_id": req.GenerationID,
 			"error":         req.Error,
 		},
 	})
@@ -5727,7 +5733,7 @@ func (client *Client) FinishFileGeneration(req *FinishFileGenerationRequest) (*O
 
 type ReadFilePartRequest struct {
 	// Identifier of the file. The file must be located in the TDLib file cache
-	FileId int32 `json:"file_id"`
+	FileID int32 `json:"file_id"`
 	// The offset from which to read the file
 	Offset int32 `json:"offset"`
 	// Number of bytes to read. An error will be returned if there are not enough bytes available in the file from the specified position. Pass 0 to read all available data from the specified position
@@ -5741,7 +5747,7 @@ func (client *Client) ReadFilePart(req *ReadFilePartRequest) (*FilePart, error) 
 			Type: "readFilePart",
 		},
 		Data: map[string]interface{}{
-			"file_id": req.FileId,
+			"file_id": req.FileID,
 			"offset":  req.Offset,
 			"count":   req.Count,
 		},
@@ -5759,7 +5765,7 @@ func (client *Client) ReadFilePart(req *ReadFilePartRequest) (*FilePart, error) 
 
 type DeleteFileRequest struct {
 	// Identifier of the file to delete
-	FileId int32 `json:"file_id"`
+	FileID int32 `json:"file_id"`
 }
 
 // Deletes a file from the TDLib file cache
@@ -5769,7 +5775,7 @@ func (client *Client) DeleteFile(req *DeleteFileRequest) (*Ok, error) {
 			Type: "deleteFile",
 		},
 		Data: map[string]interface{}{
-			"file_id": req.FileId,
+			"file_id": req.FileID,
 		},
 	})
 	if err != nil {
@@ -5785,7 +5791,7 @@ func (client *Client) DeleteFile(req *DeleteFileRequest) (*Ok, error) {
 
 type GenerateChatInviteLinkRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Generates a new invite link for a chat; the previously generated link is revoked. Available for basic groups, supergroups, and channels. Requires administrator privileges and can_invite_users right
@@ -5795,7 +5801,7 @@ func (client *Client) GenerateChatInviteLink(req *GenerateChatInviteLinkRequest)
 			Type: "generateChatInviteLink",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -5863,7 +5869,7 @@ func (client *Client) JoinChatByInviteLink(req *JoinChatByInviteLinkRequest) (*C
 
 type CreateCallRequest struct {
 	// Identifier of the user to be called
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// Description of the call protocols supported by the application
 	Protocol *CallProtocol `json:"protocol"`
 	// True, if a video call needs to be created
@@ -5871,13 +5877,13 @@ type CreateCallRequest struct {
 }
 
 // Creates a new call
-func (client *Client) CreateCall(req *CreateCallRequest) (*CallId, error) {
+func (client *Client) CreateCall(req *CreateCallRequest) (*CallID, error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "createCall",
 		},
 		Data: map[string]interface{}{
-			"user_id":  req.UserId,
+			"user_id":  req.UserID,
 			"protocol": req.Protocol,
 			"is_video": req.IsVideo,
 		},
@@ -5890,12 +5896,12 @@ func (client *Client) CreateCall(req *CreateCallRequest) (*CallId, error) {
 		return nil, buildResponseError(result.Data)
 	}
 
-	return UnmarshalCallId(result.Data)
+	return UnmarshalCallID(result.Data)
 }
 
 type AcceptCallRequest struct {
 	// Call identifier
-	CallId int32 `json:"call_id"`
+	CallID int32 `json:"call_id"`
 	// Description of the call protocols supported by the application
 	Protocol *CallProtocol `json:"protocol"`
 }
@@ -5907,7 +5913,7 @@ func (client *Client) AcceptCall(req *AcceptCallRequest) (*Ok, error) {
 			Type: "acceptCall",
 		},
 		Data: map[string]interface{}{
-			"call_id":  req.CallId,
+			"call_id":  req.CallID,
 			"protocol": req.Protocol,
 		},
 	})
@@ -5924,7 +5930,7 @@ func (client *Client) AcceptCall(req *AcceptCallRequest) (*Ok, error) {
 
 type SendCallSignalingDataRequest struct {
 	// Call identifier
-	CallId int32 `json:"call_id"`
+	CallID int32 `json:"call_id"`
 	// The data
 	Data []byte `json:"data"`
 }
@@ -5936,7 +5942,7 @@ func (client *Client) SendCallSignalingData(req *SendCallSignalingDataRequest) (
 			Type: "sendCallSignalingData",
 		},
 		Data: map[string]interface{}{
-			"call_id": req.CallId,
+			"call_id": req.CallID,
 			"data":    req.Data,
 		},
 	})
@@ -5953,7 +5959,7 @@ func (client *Client) SendCallSignalingData(req *SendCallSignalingDataRequest) (
 
 type DiscardCallRequest struct {
 	// Call identifier
-	CallId int32 `json:"call_id"`
+	CallID int32 `json:"call_id"`
 	// True, if the user was disconnected
 	IsDisconnected bool `json:"is_disconnected"`
 	// The call duration, in seconds
@@ -5961,7 +5967,7 @@ type DiscardCallRequest struct {
 	// True, if the call was a video call
 	IsVideo bool `json:"is_video"`
 	// Identifier of the connection used during the call
-	ConnectionId JsonInt64 `json:"connection_id"`
+	ConnectionID JsonInt64 `json:"connection_id"`
 }
 
 // Discards a call
@@ -5971,11 +5977,11 @@ func (client *Client) DiscardCall(req *DiscardCallRequest) (*Ok, error) {
 			Type: "discardCall",
 		},
 		Data: map[string]interface{}{
-			"call_id":         req.CallId,
+			"call_id":         req.CallID,
 			"is_disconnected": req.IsDisconnected,
 			"duration":        req.Duration,
 			"is_video":        req.IsVideo,
-			"connection_id":   req.ConnectionId,
+			"connection_id":   req.ConnectionID,
 		},
 	})
 	if err != nil {
@@ -5991,7 +5997,7 @@ func (client *Client) DiscardCall(req *DiscardCallRequest) (*Ok, error) {
 
 type SendCallRatingRequest struct {
 	// Call identifier
-	CallId int32 `json:"call_id"`
+	CallID int32 `json:"call_id"`
 	// Call rating; 1-5
 	Rating int32 `json:"rating"`
 	// An optional user comment if the rating is less than 5
@@ -6007,7 +6013,7 @@ func (client *Client) SendCallRating(req *SendCallRatingRequest) (*Ok, error) {
 			Type: "sendCallRating",
 		},
 		Data: map[string]interface{}{
-			"call_id":  req.CallId,
+			"call_id":  req.CallID,
 			"rating":   req.Rating,
 			"comment":  req.Comment,
 			"problems": req.Problems,
@@ -6026,7 +6032,7 @@ func (client *Client) SendCallRating(req *SendCallRatingRequest) (*Ok, error) {
 
 type SendCallDebugInformationRequest struct {
 	// Call identifier
-	CallId int32 `json:"call_id"`
+	CallID int32 `json:"call_id"`
 	// Debug information in application-specific format
 	DebugInformation string `json:"debug_information"`
 }
@@ -6038,7 +6044,7 @@ func (client *Client) SendCallDebugInformation(req *SendCallDebugInformationRequ
 			Type: "sendCallDebugInformation",
 		},
 		Data: map[string]interface{}{
-			"call_id":           req.CallId,
+			"call_id":           req.CallID,
 			"debug_information": req.DebugInformation,
 		},
 	})
@@ -6084,7 +6090,7 @@ func (client *Client) ToggleMessageSenderIsBlocked(req *ToggleMessageSenderIsBlo
 
 type BlockMessageSenderFromRepliesRequest struct {
 	// The identifier of an incoming message in the Replies chat
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// Pass true if the message must be deleted
 	DeleteMessage bool `json:"delete_message"`
 	// Pass true if all messages from the same sender must be deleted
@@ -6100,7 +6106,7 @@ func (client *Client) BlockMessageSenderFromReplies(req *BlockMessageSenderFromR
 			Type: "blockMessageSenderFromReplies",
 		},
 		Data: map[string]interface{}{
-			"message_id":          req.MessageId,
+			"message_id":          req.MessageID,
 			"delete_message":      req.DeleteMessage,
 			"delete_all_messages": req.DeleteAllMessages,
 			"report_spam":         req.ReportSpam,
@@ -6251,7 +6257,7 @@ func (client *Client) SearchContacts(req *SearchContactsRequest) (*Users, error)
 
 type RemoveContactsRequest struct {
 	// Identifiers of users to be deleted
-	UserIds []int32 `json:"user_ids"`
+	UserIDs []int32 `json:"user_ids"`
 }
 
 // Removes users from the contact list
@@ -6261,7 +6267,7 @@ func (client *Client) RemoveContacts(req *RemoveContactsRequest) (*Ok, error) {
 			Type: "removeContacts",
 		},
 		Data: map[string]interface{}{
-			"user_ids": req.UserIds,
+			"user_ids": req.UserIDs,
 		},
 	})
 	if err != nil {
@@ -6341,7 +6347,7 @@ func (client *Client) ClearImportedContacts() (*Ok, error) {
 
 type SharePhoneNumberRequest struct {
 	// Identifier of the user with whom to share the phone number. The user must be a mutual contact
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 }
 
 // Shares the phone number of the current user with a mutual contact. Supposed to be called when the user clicks on chatActionBarSharePhoneNumber
@@ -6351,7 +6357,7 @@ func (client *Client) SharePhoneNumber(req *SharePhoneNumberRequest) (*Ok, error
 			Type: "sharePhoneNumber",
 		},
 		Data: map[string]interface{}{
-			"user_id": req.UserId,
+			"user_id": req.UserID,
 		},
 	})
 	if err != nil {
@@ -6367,7 +6373,7 @@ func (client *Client) SharePhoneNumber(req *SharePhoneNumberRequest) (*Ok, error
 
 type GetUserProfilePhotosRequest struct {
 	// User identifier
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// The number of photos to skip; must be non-negative
 	Offset int32 `json:"offset"`
 	// The maximum number of photos to be returned; up to 100
@@ -6381,7 +6387,7 @@ func (client *Client) GetUserProfilePhotos(req *GetUserProfilePhotosRequest) (*C
 			Type: "getUserProfilePhotos",
 		},
 		Data: map[string]interface{}{
-			"user_id": req.UserId,
+			"user_id": req.UserID,
 			"offset":  req.Offset,
 			"limit":   req.Limit,
 		},
@@ -6485,7 +6491,7 @@ type GetArchivedStickerSetsRequest struct {
 	// Pass true to return mask stickers sets; pass false to return ordinary sticker sets
 	IsMasks bool `json:"is_masks"`
 	// Identifier of the sticker set from which to return the result
-	OffsetStickerSetId JsonInt64 `json:"offset_sticker_set_id"`
+	OffsetStickerSetID JsonInt64 `json:"offset_sticker_set_id"`
 	// The maximum number of sticker sets to return
 	Limit int32 `json:"limit"`
 }
@@ -6498,7 +6504,7 @@ func (client *Client) GetArchivedStickerSets(req *GetArchivedStickerSetsRequest)
 		},
 		Data: map[string]interface{}{
 			"is_masks":              req.IsMasks,
-			"offset_sticker_set_id": req.OffsetStickerSetId,
+			"offset_sticker_set_id": req.OffsetStickerSetID,
 			"limit":                 req.Limit,
 		},
 	})
@@ -6544,7 +6550,7 @@ func (client *Client) GetTrendingStickerSets(req *GetTrendingStickerSetsRequest)
 
 type GetAttachedStickerSetsRequest struct {
 	// File identifier
-	FileId int32 `json:"file_id"`
+	FileID int32 `json:"file_id"`
 }
 
 // Returns a list of sticker sets attached to a file. Currently only photos and videos can have attached sticker sets
@@ -6554,7 +6560,7 @@ func (client *Client) GetAttachedStickerSets(req *GetAttachedStickerSetsRequest)
 			Type: "getAttachedStickerSets",
 		},
 		Data: map[string]interface{}{
-			"file_id": req.FileId,
+			"file_id": req.FileID,
 		},
 	})
 	if err != nil {
@@ -6570,7 +6576,7 @@ func (client *Client) GetAttachedStickerSets(req *GetAttachedStickerSetsRequest)
 
 type GetStickerSetRequest struct {
 	// Identifier of the sticker set
-	SetId JsonInt64 `json:"set_id"`
+	SetID JsonInt64 `json:"set_id"`
 }
 
 // Returns information about a sticker set by its identifier
@@ -6580,7 +6586,7 @@ func (client *Client) GetStickerSet(req *GetStickerSetRequest) (*StickerSet, err
 			Type: "getStickerSet",
 		},
 		Data: map[string]interface{}{
-			"set_id": req.SetId,
+			"set_id": req.SetID,
 		},
 	})
 	if err != nil {
@@ -6680,7 +6686,7 @@ func (client *Client) SearchStickerSets(req *SearchStickerSetsRequest) (*Sticker
 
 type ChangeStickerSetRequest struct {
 	// Identifier of the sticker set
-	SetId JsonInt64 `json:"set_id"`
+	SetID JsonInt64 `json:"set_id"`
 	// The new value of is_installed
 	IsInstalled bool `json:"is_installed"`
 	// The new value of is_archived. A sticker set can't be installed and archived simultaneously
@@ -6694,7 +6700,7 @@ func (client *Client) ChangeStickerSet(req *ChangeStickerSetRequest) (*Ok, error
 			Type: "changeStickerSet",
 		},
 		Data: map[string]interface{}{
-			"set_id":       req.SetId,
+			"set_id":       req.SetID,
 			"is_installed": req.IsInstalled,
 			"is_archived":  req.IsArchived,
 		},
@@ -6712,7 +6718,7 @@ func (client *Client) ChangeStickerSet(req *ChangeStickerSetRequest) (*Ok, error
 
 type ViewTrendingStickerSetsRequest struct {
 	// Identifiers of viewed trending sticker sets
-	StickerSetIds []JsonInt64 `json:"sticker_set_ids"`
+	StickerSetIDs []JsonInt64 `json:"sticker_set_ids"`
 }
 
 // Informs the server that some trending sticker sets have been viewed by the user
@@ -6722,7 +6728,7 @@ func (client *Client) ViewTrendingStickerSets(req *ViewTrendingStickerSetsReques
 			Type: "viewTrendingStickerSets",
 		},
 		Data: map[string]interface{}{
-			"sticker_set_ids": req.StickerSetIds,
+			"sticker_set_ids": req.StickerSetIDs,
 		},
 	})
 	if err != nil {
@@ -6740,7 +6746,7 @@ type ReorderInstalledStickerSetsRequest struct {
 	// Pass true to change the order of mask sticker sets; pass false to change the order of ordinary sticker sets
 	IsMasks bool `json:"is_masks"`
 	// Identifiers of installed sticker sets in the new correct order
-	StickerSetIds []JsonInt64 `json:"sticker_set_ids"`
+	StickerSetIDs []JsonInt64 `json:"sticker_set_ids"`
 }
 
 // Changes the order of installed sticker sets
@@ -6751,7 +6757,7 @@ func (client *Client) ReorderInstalledStickerSets(req *ReorderInstalledStickerSe
 		},
 		Data: map[string]interface{}{
 			"is_masks":        req.IsMasks,
-			"sticker_set_ids": req.StickerSetIds,
+			"sticker_set_ids": req.StickerSetIDs,
 		},
 	})
 	if err != nil {
@@ -7258,7 +7264,7 @@ func (client *Client) SetProfilePhoto(req *SetProfilePhotoRequest) (*Ok, error) 
 
 type DeleteProfilePhotoRequest struct {
 	// Identifier of the profile photo to delete
-	ProfilePhotoId JsonInt64 `json:"profile_photo_id"`
+	ProfilePhotoID JsonInt64 `json:"profile_photo_id"`
 }
 
 // Deletes a profile photo
@@ -7268,7 +7274,7 @@ func (client *Client) DeleteProfilePhoto(req *DeleteProfilePhotoRequest) (*Ok, e
 			Type: "deleteProfilePhoto",
 		},
 		Data: map[string]interface{}{
-			"profile_photo_id": req.ProfilePhotoId,
+			"profile_photo_id": req.ProfilePhotoID,
 		},
 	})
 	if err != nil {
@@ -7510,7 +7516,7 @@ func (client *Client) GetActiveSessions() (*Sessions, error) {
 
 type TerminateSessionRequest struct {
 	// Session identifier
-	SessionId JsonInt64 `json:"session_id"`
+	SessionID JsonInt64 `json:"session_id"`
 }
 
 // Terminates a session of the current user
@@ -7520,7 +7526,7 @@ func (client *Client) TerminateSession(req *TerminateSessionRequest) (*Ok, error
 			Type: "terminateSession",
 		},
 		Data: map[string]interface{}{
-			"session_id": req.SessionId,
+			"session_id": req.SessionID,
 		},
 	})
 	if err != nil {
@@ -7574,7 +7580,7 @@ func (client *Client) GetConnectedWebsites() (*ConnectedWebsites, error) {
 
 type DisconnectWebsiteRequest struct {
 	// Website identifier
-	WebsiteId JsonInt64 `json:"website_id"`
+	WebsiteID JsonInt64 `json:"website_id"`
 }
 
 // Disconnects website from the current user's Telegram account
@@ -7584,7 +7590,7 @@ func (client *Client) DisconnectWebsite(req *DisconnectWebsiteRequest) (*Ok, err
 			Type: "disconnectWebsite",
 		},
 		Data: map[string]interface{}{
-			"website_id": req.WebsiteId,
+			"website_id": req.WebsiteID,
 		},
 	})
 	if err != nil {
@@ -7619,7 +7625,7 @@ func (client *Client) DisconnectAllWebsites() (*Ok, error) {
 
 type SetSupergroupUsernameRequest struct {
 	// Identifier of the supergroup or channel
-	SupergroupId int32 `json:"supergroup_id"`
+	SupergroupID int32 `json:"supergroup_id"`
 	// New value of the username. Use an empty string to remove the username
 	Username string `json:"username"`
 }
@@ -7631,7 +7637,7 @@ func (client *Client) SetSupergroupUsername(req *SetSupergroupUsernameRequest) (
 			Type: "setSupergroupUsername",
 		},
 		Data: map[string]interface{}{
-			"supergroup_id": req.SupergroupId,
+			"supergroup_id": req.SupergroupID,
 			"username":      req.Username,
 		},
 	})
@@ -7648,9 +7654,9 @@ func (client *Client) SetSupergroupUsername(req *SetSupergroupUsernameRequest) (
 
 type SetSupergroupStickerSetRequest struct {
 	// Identifier of the supergroup
-	SupergroupId int32 `json:"supergroup_id"`
+	SupergroupID int32 `json:"supergroup_id"`
 	// New value of the supergroup sticker set identifier. Use 0 to remove the supergroup sticker set
-	StickerSetId JsonInt64 `json:"sticker_set_id"`
+	StickerSetID JsonInt64 `json:"sticker_set_id"`
 }
 
 // Changes the sticker set of a supergroup; requires can_change_info rights
@@ -7660,8 +7666,8 @@ func (client *Client) SetSupergroupStickerSet(req *SetSupergroupStickerSetReques
 			Type: "setSupergroupStickerSet",
 		},
 		Data: map[string]interface{}{
-			"supergroup_id":  req.SupergroupId,
-			"sticker_set_id": req.StickerSetId,
+			"supergroup_id":  req.SupergroupID,
+			"sticker_set_id": req.StickerSetID,
 		},
 	})
 	if err != nil {
@@ -7677,7 +7683,7 @@ func (client *Client) SetSupergroupStickerSet(req *SetSupergroupStickerSetReques
 
 type ToggleSupergroupSignMessagesRequest struct {
 	// Identifier of the channel
-	SupergroupId int32 `json:"supergroup_id"`
+	SupergroupID int32 `json:"supergroup_id"`
 	// New value of sign_messages
 	SignMessages bool `json:"sign_messages"`
 }
@@ -7689,7 +7695,7 @@ func (client *Client) ToggleSupergroupSignMessages(req *ToggleSupergroupSignMess
 			Type: "toggleSupergroupSignMessages",
 		},
 		Data: map[string]interface{}{
-			"supergroup_id": req.SupergroupId,
+			"supergroup_id": req.SupergroupID,
 			"sign_messages": req.SignMessages,
 		},
 	})
@@ -7706,19 +7712,20 @@ func (client *Client) ToggleSupergroupSignMessages(req *ToggleSupergroupSignMess
 
 type ToggleSupergroupIsAllHistoryAvailableRequest struct {
 	// The identifier of the supergroup
-	SupergroupId int32 `json:"supergroup_id"`
+	SupergroupID int32 `json:"supergroup_id"`
 	// The new value of is_all_history_available
 	IsAllHistoryAvailable bool `json:"is_all_history_available"`
 }
 
 // Toggles whether the message history of a supergroup is available to new members; requires can_change_info rights
-func (client *Client) ToggleSupergroupIsAllHistoryAvailable(req *ToggleSupergroupIsAllHistoryAvailableRequest) (*Ok, error) {
+func (client *Client) ToggleSupergroupIsAllHistoryAvailable(req *ToggleSupergroupIsAllHistoryAvailableRequest) (*Ok,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "toggleSupergroupIsAllHistoryAvailable",
 		},
 		Data: map[string]interface{}{
-			"supergroup_id":            req.SupergroupId,
+			"supergroup_id":            req.SupergroupID,
 			"is_all_history_available": req.IsAllHistoryAvailable,
 		},
 	})
@@ -7735,11 +7742,11 @@ func (client *Client) ToggleSupergroupIsAllHistoryAvailable(req *ToggleSupergrou
 
 type ReportSupergroupSpamRequest struct {
 	// Supergroup identifier
-	SupergroupId int32 `json:"supergroup_id"`
+	SupergroupID int32 `json:"supergroup_id"`
 	// User identifier
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// Identifiers of messages sent in the supergroup by the user. This list must be non-empty
-	MessageIds []int64 `json:"message_ids"`
+	MessageIDs []int64 `json:"message_ids"`
 }
 
 // Reports some messages from a user in a supergroup as spam; requires administrator rights in the supergroup
@@ -7749,9 +7756,9 @@ func (client *Client) ReportSupergroupSpam(req *ReportSupergroupSpamRequest) (*O
 			Type: "reportSupergroupSpam",
 		},
 		Data: map[string]interface{}{
-			"supergroup_id": req.SupergroupId,
-			"user_id":       req.UserId,
-			"message_ids":   req.MessageIds,
+			"supergroup_id": req.SupergroupID,
+			"user_id":       req.UserID,
+			"message_ids":   req.MessageIDs,
 		},
 	})
 	if err != nil {
@@ -7767,7 +7774,7 @@ func (client *Client) ReportSupergroupSpam(req *ReportSupergroupSpamRequest) (*O
 
 type GetSupergroupMembersRequest struct {
 	// Identifier of the supergroup or channel
-	SupergroupId int32 `json:"supergroup_id"`
+	SupergroupID int32 `json:"supergroup_id"`
 	// The type of users to return. By default, supergroupMembersFilterRecent
 	Filter SupergroupMembersFilter `json:"filter"`
 	// Number of users to skip
@@ -7783,7 +7790,7 @@ func (client *Client) GetSupergroupMembers(req *GetSupergroupMembersRequest) (*C
 			Type: "getSupergroupMembers",
 		},
 		Data: map[string]interface{}{
-			"supergroup_id": req.SupergroupId,
+			"supergroup_id": req.SupergroupID,
 			"filter":        req.Filter,
 			"offset":        req.Offset,
 			"limit":         req.Limit,
@@ -7802,7 +7809,7 @@ func (client *Client) GetSupergroupMembers(req *GetSupergroupMembersRequest) (*C
 
 type DeleteSupergroupRequest struct {
 	// Identifier of the supergroup or channel
-	SupergroupId int32 `json:"supergroup_id"`
+	SupergroupID int32 `json:"supergroup_id"`
 }
 
 // Deletes a supergroup or channel along with all messages in the corresponding chat. This will release the supergroup or channel username and remove all members; requires owner privileges in the supergroup or channel. Chats with more than 1000 members can't be deleted using this method
@@ -7812,7 +7819,7 @@ func (client *Client) DeleteSupergroup(req *DeleteSupergroupRequest) (*Ok, error
 			Type: "deleteSupergroup",
 		},
 		Data: map[string]interface{}{
-			"supergroup_id": req.SupergroupId,
+			"supergroup_id": req.SupergroupID,
 		},
 	})
 	if err != nil {
@@ -7828,7 +7835,7 @@ func (client *Client) DeleteSupergroup(req *DeleteSupergroupRequest) (*Ok, error
 
 type CloseSecretChatRequest struct {
 	// Secret chat identifier
-	SecretChatId int32 `json:"secret_chat_id"`
+	SecretChatID int32 `json:"secret_chat_id"`
 }
 
 // Closes a secret chat, effectively transferring its state to secretChatStateClosed
@@ -7838,7 +7845,7 @@ func (client *Client) CloseSecretChat(req *CloseSecretChatRequest) (*Ok, error) 
 			Type: "closeSecretChat",
 		},
 		Data: map[string]interface{}{
-			"secret_chat_id": req.SecretChatId,
+			"secret_chat_id": req.SecretChatID,
 		},
 	})
 	if err != nil {
@@ -7854,17 +7861,17 @@ func (client *Client) CloseSecretChat(req *CloseSecretChatRequest) (*Ok, error) 
 
 type GetChatEventLogRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Search query by which to filter events
 	Query string `json:"query"`
 	// Identifier of an event from which to return results. Use 0 to get results from the latest events
-	FromEventId JsonInt64 `json:"from_event_id"`
+	FromEventID JsonInt64 `json:"from_event_id"`
 	// The maximum number of events to return; up to 100
 	Limit int32 `json:"limit"`
 	// The types of events to return. By default, all types will be returned
 	Filters *ChatEventLogFilters `json:"filters"`
 	// User identifiers by which to filter events. By default, events relating to all users will be returned
-	UserIds []int32 `json:"user_ids"`
+	UserIDs []int32 `json:"user_ids"`
 }
 
 // Returns a list of service actions taken by chat members and administrators in the last 48 hours. Available only for supergroups and channels. Requires administrator rights. Returns results in reverse chronological order (i. e., in order of decreasing event_id)
@@ -7874,12 +7881,12 @@ func (client *Client) GetChatEventLog(req *GetChatEventLogRequest) (*ChatEvents,
 			Type: "getChatEventLog",
 		},
 		Data: map[string]interface{}{
-			"chat_id":       req.ChatId,
+			"chat_id":       req.ChatID,
 			"query":         req.Query,
-			"from_event_id": req.FromEventId,
+			"from_event_id": req.FromEventID,
 			"limit":         req.Limit,
 			"filters":       req.Filters,
-			"user_ids":      req.UserIds,
+			"user_ids":      req.UserIDs,
 		},
 	})
 	if err != nil {
@@ -7895,9 +7902,9 @@ func (client *Client) GetChatEventLog(req *GetChatEventLogRequest) (*ChatEvents,
 
 type GetPaymentFormRequest struct {
 	// Chat identifier of the Invoice message
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Message identifier
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 }
 
 // Returns an invoice payment form. This method should be called when the user presses inlineKeyboardButtonBuy
@@ -7907,8 +7914,8 @@ func (client *Client) GetPaymentForm(req *GetPaymentFormRequest) (*PaymentForm, 
 			Type: "getPaymentForm",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
 		},
 	})
 	if err != nil {
@@ -7924,9 +7931,9 @@ func (client *Client) GetPaymentForm(req *GetPaymentFormRequest) (*PaymentForm, 
 
 type ValidateOrderInfoRequest struct {
 	// Chat identifier of the Invoice message
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Message identifier
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// The order information, provided by the user
 	OrderInfo *OrderInfo `json:"order_info"`
 	// True, if the order information can be saved
@@ -7940,8 +7947,8 @@ func (client *Client) ValidateOrderInfo(req *ValidateOrderInfoRequest) (*Validat
 			Type: "validateOrderInfo",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
 			"order_info": req.OrderInfo,
 			"allow_save": req.AllowSave,
 		},
@@ -7959,13 +7966,13 @@ func (client *Client) ValidateOrderInfo(req *ValidateOrderInfoRequest) (*Validat
 
 type SendPaymentFormRequest struct {
 	// Chat identifier of the Invoice message
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Message identifier
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// Identifier returned by ValidateOrderInfo, or an empty string
-	OrderInfoId string `json:"order_info_id"`
+	OrderInfoID string `json:"order_info_id"`
 	// Identifier of a chosen shipping option, if applicable
-	ShippingOptionId string `json:"shipping_option_id"`
+	ShippingOptionID string `json:"shipping_option_id"`
 	// The credentials chosen by user for payment
 	Credentials InputCredentials `json:"credentials"`
 }
@@ -7977,10 +7984,10 @@ func (client *Client) SendPaymentForm(req *SendPaymentFormRequest) (*PaymentResu
 			Type: "sendPaymentForm",
 		},
 		Data: map[string]interface{}{
-			"chat_id":            req.ChatId,
-			"message_id":         req.MessageId,
-			"order_info_id":      req.OrderInfoId,
-			"shipping_option_id": req.ShippingOptionId,
+			"chat_id":            req.ChatID,
+			"message_id":         req.MessageID,
+			"order_info_id":      req.OrderInfoID,
+			"shipping_option_id": req.ShippingOptionID,
 			"credentials":        req.Credentials,
 		},
 	})
@@ -7997,9 +8004,9 @@ func (client *Client) SendPaymentForm(req *SendPaymentFormRequest) (*PaymentResu
 
 type GetPaymentReceiptRequest struct {
 	// Chat identifier of the PaymentSuccessful message
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Message identifier
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 }
 
 // Returns information about a successful payment
@@ -8009,8 +8016,8 @@ func (client *Client) GetPaymentReceipt(req *GetPaymentReceiptRequest) (*Payment
 			Type: "getPaymentReceipt",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
 		},
 	})
 	if err != nil {
@@ -8215,7 +8222,7 @@ func (client *Client) SetBackground(req *SetBackgroundRequest) (*Background, err
 
 type RemoveBackgroundRequest struct {
 	// The background identifier
-	BackgroundId JsonInt64 `json:"background_id"`
+	BackgroundID JsonInt64 `json:"background_id"`
 }
 
 // Removes background from the list of installed backgrounds
@@ -8225,7 +8232,7 @@ func (client *Client) RemoveBackground(req *RemoveBackgroundRequest) (*Ok, error
 			Type: "removeBackground",
 		},
 		Data: map[string]interface{}{
-			"background_id": req.BackgroundId,
+			"background_id": req.BackgroundID,
 		},
 	})
 	if err != nil {
@@ -8264,7 +8271,8 @@ type GetLocalizationTargetInfoRequest struct {
 }
 
 // Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
-func (client *Client) GetLocalizationTargetInfo(req *GetLocalizationTargetInfoRequest) (*LocalizationTargetInfo, error) {
+func (client *Client) GetLocalizationTargetInfo(req *GetLocalizationTargetInfoRequest) (*LocalizationTargetInfo,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "getLocalizationTargetInfo",
@@ -8286,7 +8294,7 @@ func (client *Client) GetLocalizationTargetInfo(req *GetLocalizationTargetInfoRe
 
 type GetLanguagePackInfoRequest struct {
 	// Language pack identifier
-	LanguagePackId string `json:"language_pack_id"`
+	LanguagePackID string `json:"language_pack_id"`
 }
 
 // Returns information about a language pack. Returned language pack identifier may be different from a provided one. Can be called before authorization
@@ -8296,7 +8304,7 @@ func (client *Client) GetLanguagePackInfo(req *GetLanguagePackInfoRequest) (*Lan
 			Type: "getLanguagePackInfo",
 		},
 		Data: map[string]interface{}{
-			"language_pack_id": req.LanguagePackId,
+			"language_pack_id": req.LanguagePackID,
 		},
 	})
 	if err != nil {
@@ -8312,7 +8320,7 @@ func (client *Client) GetLanguagePackInfo(req *GetLanguagePackInfoRequest) (*Lan
 
 type GetLanguagePackStringsRequest struct {
 	// Language pack identifier of the strings to be returned
-	LanguagePackId string `json:"language_pack_id"`
+	LanguagePackID string `json:"language_pack_id"`
 	// Language pack keys of the strings to be returned; leave empty to request all available strings
 	Keys []string `json:"keys"`
 }
@@ -8324,7 +8332,7 @@ func (client *Client) GetLanguagePackStrings(req *GetLanguagePackStringsRequest)
 			Type: "getLanguagePackStrings",
 		},
 		Data: map[string]interface{}{
-			"language_pack_id": req.LanguagePackId,
+			"language_pack_id": req.LanguagePackID,
 			"keys":             req.Keys,
 		},
 	})
@@ -8341,7 +8349,7 @@ func (client *Client) GetLanguagePackStrings(req *GetLanguagePackStringsRequest)
 
 type SynchronizeLanguagePackRequest struct {
 	// Language pack identifier
-	LanguagePackId string `json:"language_pack_id"`
+	LanguagePackID string `json:"language_pack_id"`
 }
 
 // Fetches the latest versions of all strings from a language pack in the current localization target from the server. This method shouldn't be called explicitly for the current used/base language packs. Can be called before authorization
@@ -8351,7 +8359,7 @@ func (client *Client) SynchronizeLanguagePack(req *SynchronizeLanguagePackReques
 			Type: "synchronizeLanguagePack",
 		},
 		Data: map[string]interface{}{
-			"language_pack_id": req.LanguagePackId,
+			"language_pack_id": req.LanguagePackID,
 		},
 	})
 	if err != nil {
@@ -8367,7 +8375,7 @@ func (client *Client) SynchronizeLanguagePack(req *SynchronizeLanguagePackReques
 
 type AddCustomServerLanguagePackRequest struct {
 	// Identifier of a language pack to be added; may be different from a name that is used in an "https://t.me/setlanguage/" link
-	LanguagePackId string `json:"language_pack_id"`
+	LanguagePackID string `json:"language_pack_id"`
 }
 
 // Adds a custom server language pack to the list of installed language packs in current localization target. Can be called before authorization
@@ -8377,7 +8385,7 @@ func (client *Client) AddCustomServerLanguagePack(req *AddCustomServerLanguagePa
 			Type: "addCustomServerLanguagePack",
 		},
 		Data: map[string]interface{}{
-			"language_pack_id": req.LanguagePackId,
+			"language_pack_id": req.LanguagePackID,
 		},
 	})
 	if err != nil {
@@ -8448,7 +8456,7 @@ func (client *Client) EditCustomLanguagePackInfo(req *EditCustomLanguagePackInfo
 
 type SetCustomLanguagePackStringRequest struct {
 	// Identifier of a previously added custom local language pack in the current localization target
-	LanguagePackId string `json:"language_pack_id"`
+	LanguagePackID string `json:"language_pack_id"`
 	// New language pack string
 	NewString *LanguagePackString `json:"new_string"`
 }
@@ -8460,7 +8468,7 @@ func (client *Client) SetCustomLanguagePackString(req *SetCustomLanguagePackStri
 			Type: "setCustomLanguagePackString",
 		},
 		Data: map[string]interface{}{
-			"language_pack_id": req.LanguagePackId,
+			"language_pack_id": req.LanguagePackID,
 			"new_string":       req.NewString,
 		},
 	})
@@ -8477,7 +8485,7 @@ func (client *Client) SetCustomLanguagePackString(req *SetCustomLanguagePackStri
 
 type DeleteLanguagePackRequest struct {
 	// Identifier of the language pack to delete
-	LanguagePackId string `json:"language_pack_id"`
+	LanguagePackID string `json:"language_pack_id"`
 }
 
 // Deletes all information about a language pack in the current localization target. The language pack which is currently in use (including base language pack) or is being synchronized can't be deleted. Can be called before authorization
@@ -8487,7 +8495,7 @@ func (client *Client) DeleteLanguagePack(req *DeleteLanguagePackRequest) (*Ok, e
 			Type: "deleteLanguagePack",
 		},
 		Data: map[string]interface{}{
-			"language_pack_id": req.LanguagePackId,
+			"language_pack_id": req.LanguagePackID,
 		},
 	})
 	if err != nil {
@@ -8505,18 +8513,18 @@ type RegisterDeviceRequest struct {
 	// Device token
 	DeviceToken DeviceToken `json:"device_token"`
 	// List of user identifiers of other users currently using the application
-	OtherUserIds []int32 `json:"other_user_ids"`
+	OtherUserIDs []int32 `json:"other_user_ids"`
 }
 
 // Registers the currently used device for receiving push notifications. Returns a globally unique identifier of the push notification subscription
-func (client *Client) RegisterDevice(req *RegisterDeviceRequest) (*PushReceiverId, error) {
+func (client *Client) RegisterDevice(req *RegisterDeviceRequest) (*PushReceiverID, error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "registerDevice",
 		},
 		Data: map[string]interface{}{
 			"device_token":   req.DeviceToken,
-			"other_user_ids": req.OtherUserIds,
+			"other_user_ids": req.OtherUserIDs,
 		},
 	})
 	if err != nil {
@@ -8527,7 +8535,7 @@ func (client *Client) RegisterDevice(req *RegisterDeviceRequest) (*PushReceiverI
 		return nil, buildResponseError(result.Data)
 	}
 
-	return UnmarshalPushReceiverId(result.Data)
+	return UnmarshalPushReceiverID(result.Data)
 }
 
 type ProcessPushNotificationRequest struct {
@@ -8562,7 +8570,7 @@ type GetPushReceiverIdRequest struct {
 }
 
 // Returns a globally unique push notification subscription identifier for identification of an account, which has received a push notification. Can be called synchronously
-func (client *Client) GetPushReceiverId(req *GetPushReceiverIdRequest) (*PushReceiverId, error) {
+func (client *Client) GetPushReceiverId(req *GetPushReceiverIdRequest) (*PushReceiverID, error) {
 	result, err := client.jsonClient.Execute(Request{
 		meta: meta{
 			Type: "getPushReceiverId",
@@ -8579,7 +8587,7 @@ func (client *Client) GetPushReceiverId(req *GetPushReceiverIdRequest) (*PushRec
 		return nil, buildResponseError(result.Data)
 	}
 
-	return UnmarshalPushReceiverId(result.Data)
+	return UnmarshalPushReceiverID(result.Data)
 }
 
 type GetRecentlyVisitedTMeUrlsRequest struct {
@@ -8643,7 +8651,8 @@ type GetUserPrivacySettingRulesRequest struct {
 }
 
 // Returns the current privacy settings
-func (client *Client) GetUserPrivacySettingRules(req *GetUserPrivacySettingRulesRequest) (*UserPrivacySettingRules, error) {
+func (client *Client) GetUserPrivacySettingRules(req *GetUserPrivacySettingRulesRequest) (*UserPrivacySettingRules,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "getUserPrivacySettingRules",
@@ -8806,7 +8815,7 @@ func (client *Client) DeleteAccount(req *DeleteAccountRequest) (*Ok, error) {
 
 type RemoveChatActionBarRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Removes a chat action bar without any other action
@@ -8816,7 +8825,7 @@ func (client *Client) RemoveChatActionBar(req *RemoveChatActionBarRequest) (*Ok,
 			Type: "removeChatActionBar",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 		},
 	})
 	if err != nil {
@@ -8832,11 +8841,11 @@ func (client *Client) RemoveChatActionBar(req *RemoveChatActionBarRequest) (*Ok,
 
 type ReportChatRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// The reason for reporting the chat
 	Reason ChatReportReason `json:"reason"`
 	// Identifiers of reported messages, if any
-	MessageIds []int64 `json:"message_ids"`
+	MessageIDs []int64 `json:"message_ids"`
 }
 
 // Reports a chat to the Telegram moderators. A chat can be reported only from the chat action bar, or if this is a private chats with a bot, a private chat with a user sharing their location, a supergroup, or a channel, since other chats can't be checked by moderators
@@ -8846,9 +8855,9 @@ func (client *Client) ReportChat(req *ReportChatRequest) (*Ok, error) {
 			Type: "reportChat",
 		},
 		Data: map[string]interface{}{
-			"chat_id":     req.ChatId,
+			"chat_id":     req.ChatID,
 			"reason":      req.Reason,
-			"message_ids": req.MessageIds,
+			"message_ids": req.MessageIDs,
 		},
 	})
 	if err != nil {
@@ -8864,7 +8873,7 @@ func (client *Client) ReportChat(req *ReportChatRequest) (*Ok, error) {
 
 type GetChatStatisticsUrlRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Parameters from "tg://statsrefresh?params=******" link
 	Parameters string `json:"parameters"`
 	// Pass true if a URL with the dark theme must be returned
@@ -8878,7 +8887,7 @@ func (client *Client) GetChatStatisticsUrl(req *GetChatStatisticsUrlRequest) (*H
 			Type: "getChatStatisticsUrl",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
+			"chat_id":    req.ChatID,
 			"parameters": req.Parameters,
 			"is_dark":    req.IsDark,
 		},
@@ -8896,7 +8905,7 @@ func (client *Client) GetChatStatisticsUrl(req *GetChatStatisticsUrlRequest) (*H
 
 type GetChatStatisticsRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Pass true if a dark theme is used by the application
 	IsDark bool `json:"is_dark"`
 }
@@ -8908,7 +8917,7 @@ func (client *Client) GetChatStatistics(req *GetChatStatisticsRequest) (ChatStat
 			Type: "getChatStatistics",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 			"is_dark": req.IsDark,
 		},
 	})
@@ -8934,9 +8943,9 @@ func (client *Client) GetChatStatistics(req *GetChatStatisticsRequest) (ChatStat
 
 type GetMessageStatisticsRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// Message identifier
-	MessageId int64 `json:"message_id"`
+	MessageID int64 `json:"message_id"`
 	// Pass true if a dark theme is used by the application
 	IsDark bool `json:"is_dark"`
 }
@@ -8948,8 +8957,8 @@ func (client *Client) GetMessageStatistics(req *GetMessageStatisticsRequest) (*M
 			Type: "getMessageStatistics",
 		},
 		Data: map[string]interface{}{
-			"chat_id":    req.ChatId,
-			"message_id": req.MessageId,
+			"chat_id":    req.ChatID,
+			"message_id": req.MessageID,
 			"is_dark":    req.IsDark,
 		},
 	})
@@ -8966,7 +8975,7 @@ func (client *Client) GetMessageStatistics(req *GetMessageStatisticsRequest) (*M
 
 type GetStatisticalGraphRequest struct {
 	// Chat identifier
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// The token for graph loading
 	Token string `json:"token"`
 	// X-value for zoomed in graph or 0 otherwise
@@ -8980,7 +8989,7 @@ func (client *Client) GetStatisticalGraph(req *GetStatisticalGraphRequest) (Stat
 			Type: "getStatisticalGraph",
 		},
 		Data: map[string]interface{}{
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 			"token":   req.Token,
 			"x":       req.X,
 		},
@@ -9084,9 +9093,9 @@ type OptimizeStorageRequest struct {
 	// If not empty, only files with the given type(s) are considered. By default, all types except thumbnails, profile photos, stickers and wallpapers are deleted
 	FileTypes []FileType `json:"file_types"`
 	// If not empty, only files from the given chats are considered. Use 0 as chat identifier to delete files not belonging to any chat (e.g., profile photos)
-	ChatIds []int64 `json:"chat_ids"`
+	ChatIDs []int64 `json:"chat_ids"`
 	// If not empty, files from the given chats are excluded. Use 0 as chat identifier to exclude all files not belonging to any chat (e.g., profile photos)
-	ExcludeChatIds []int64 `json:"exclude_chat_ids"`
+	ExcludeChatIDs []int64 `json:"exclude_chat_ids"`
 	// Pass true if statistics about the files that were deleted must be returned instead of the whole storage usage statistics. Affects only returned statistics
 	ReturnDeletedFileStatistics bool `json:"return_deleted_file_statistics"`
 	// Same as in getStorageStatistics. Affects only returned statistics
@@ -9105,8 +9114,8 @@ func (client *Client) OptimizeStorage(req *OptimizeStorageRequest) (*StorageStat
 			"count":                          req.Count,
 			"immunity_delay":                 req.ImmunityDelay,
 			"file_types":                     req.FileTypes,
-			"chat_ids":                       req.ChatIds,
-			"exclude_chat_ids":               req.ExcludeChatIds,
+			"chat_ids":                       req.ChatIDs,
+			"exclude_chat_ids":               req.ExcludeChatIDs,
 			"return_deleted_file_statistics": req.ReturnDeletedFileStatistics,
 			"chat_limit":                     req.ChatLimit,
 		},
@@ -9489,7 +9498,7 @@ func (client *Client) DeletePassportElement(req *DeletePassportElementRequest) (
 
 type SetPassportElementErrorsRequest struct {
 	// User identifier
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// The errors
 	Errors []*InputPassportElementError `json:"errors"`
 }
@@ -9501,7 +9510,7 @@ func (client *Client) SetPassportElementErrors(req *SetPassportElementErrorsRequ
 			Type: "setPassportElementErrors",
 		},
 		Data: map[string]interface{}{
-			"user_id": req.UserId,
+			"user_id": req.UserID,
 			"errors":  req.Errors,
 		},
 	})
@@ -9550,7 +9559,8 @@ type SendPhoneNumberVerificationCodeRequest struct {
 }
 
 // Sends a code to verify a phone number to be added to a user's Telegram Passport
-func (client *Client) SendPhoneNumberVerificationCode(req *SendPhoneNumberVerificationCodeRequest) (*AuthenticationCodeInfo, error) {
+func (client *Client) SendPhoneNumberVerificationCode(req *SendPhoneNumberVerificationCodeRequest) (*AuthenticationCodeInfo,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "sendPhoneNumberVerificationCode",
@@ -9622,7 +9632,8 @@ type SendEmailAddressVerificationCodeRequest struct {
 }
 
 // Sends a code to verify an email address to be added to a user's Telegram Passport
-func (client *Client) SendEmailAddressVerificationCode(req *SendEmailAddressVerificationCodeRequest) (*EmailAddressAuthenticationCodeInfo, error) {
+func (client *Client) SendEmailAddressVerificationCode(req *SendEmailAddressVerificationCodeRequest) (*EmailAddressAuthenticationCodeInfo,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "sendEmailAddressVerificationCode",
@@ -9689,7 +9700,7 @@ func (client *Client) CheckEmailAddressVerificationCode(req *CheckEmailAddressVe
 
 type GetPassportAuthorizationFormRequest struct {
 	// User identifier of the service's bot
-	BotUserId int32 `json:"bot_user_id"`
+	BotUserID int32 `json:"bot_user_id"`
 	// Telegram Passport element types requested by the service
 	Scope string `json:"scope"`
 	// Service's public_key
@@ -9699,13 +9710,14 @@ type GetPassportAuthorizationFormRequest struct {
 }
 
 // Returns a Telegram Passport authorization form for sharing data with a service
-func (client *Client) GetPassportAuthorizationForm(req *GetPassportAuthorizationFormRequest) (*PassportAuthorizationForm, error) {
+func (client *Client) GetPassportAuthorizationForm(req *GetPassportAuthorizationFormRequest) (*PassportAuthorizationForm,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "getPassportAuthorizationForm",
 		},
 		Data: map[string]interface{}{
-			"bot_user_id": req.BotUserId,
+			"bot_user_id": req.BotUserID,
 			"scope":       req.Scope,
 			"public_key":  req.PublicKey,
 			"nonce":       req.Nonce,
@@ -9724,19 +9736,20 @@ func (client *Client) GetPassportAuthorizationForm(req *GetPassportAuthorization
 
 type GetPassportAuthorizationFormAvailableElementsRequest struct {
 	// Authorization form identifier
-	AutorizationFormId int32 `json:"autorization_form_id"`
+	AutorizationFormID int32 `json:"autorization_form_id"`
 	// Password of the current user
 	Password string `json:"password"`
 }
 
 // Returns already available Telegram Passport elements suitable for completing a Telegram Passport authorization form. Result can be received only once for each authorization form
-func (client *Client) GetPassportAuthorizationFormAvailableElements(req *GetPassportAuthorizationFormAvailableElementsRequest) (*PassportElementsWithErrors, error) {
+func (client *Client) GetPassportAuthorizationFormAvailableElements(req *GetPassportAuthorizationFormAvailableElementsRequest) (*PassportElementsWithErrors,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "getPassportAuthorizationFormAvailableElements",
 		},
 		Data: map[string]interface{}{
-			"autorization_form_id": req.AutorizationFormId,
+			"autorization_form_id": req.AutorizationFormID,
 			"password":             req.Password,
 		},
 	})
@@ -9753,7 +9766,7 @@ func (client *Client) GetPassportAuthorizationFormAvailableElements(req *GetPass
 
 type SendPassportAuthorizationFormRequest struct {
 	// Authorization form identifier
-	AutorizationFormId int32 `json:"autorization_form_id"`
+	AutorizationFormID int32 `json:"autorization_form_id"`
 	// Types of Telegram Passport elements chosen by user to complete the authorization form
 	Types []PassportElementType `json:"types"`
 }
@@ -9765,7 +9778,7 @@ func (client *Client) SendPassportAuthorizationForm(req *SendPassportAuthorizati
 			Type: "sendPassportAuthorizationForm",
 		},
 		Data: map[string]interface{}{
-			"autorization_form_id": req.AutorizationFormId,
+			"autorization_form_id": req.AutorizationFormID,
 			"types":                req.Types,
 		},
 	})
@@ -9790,7 +9803,8 @@ type SendPhoneNumberConfirmationCodeRequest struct {
 }
 
 // Sends phone number confirmation code. Should be called when user presses "https://t.me/confirmphone?phone=*******&hash=**********" or "tg://confirmphone?phone=*******&hash=**********" link
-func (client *Client) SendPhoneNumberConfirmationCode(req *SendPhoneNumberConfirmationCodeRequest) (*AuthenticationCodeInfo, error) {
+func (client *Client) SendPhoneNumberConfirmationCode(req *SendPhoneNumberConfirmationCodeRequest) (*AuthenticationCodeInfo,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "sendPhoneNumberConfirmationCode",
@@ -9888,7 +9902,7 @@ func (client *Client) SetBotUpdatesStatus(req *SetBotUpdatesStatusRequest) (*Ok,
 
 type UploadStickerFileRequest struct {
 	// Sticker file owner
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// PNG image with the sticker; must be up to 512 KB in size and fit in 512x512 square
 	PngSticker InputFile `json:"png_sticker"`
 }
@@ -9900,7 +9914,7 @@ func (client *Client) UploadStickerFile(req *UploadStickerFileRequest) (*File, e
 			Type: "uploadStickerFile",
 		},
 		Data: map[string]interface{}{
-			"user_id":     req.UserId,
+			"user_id":     req.UserID,
 			"png_sticker": req.PngSticker,
 		},
 	})
@@ -9917,7 +9931,7 @@ func (client *Client) UploadStickerFile(req *UploadStickerFileRequest) (*File, e
 
 type CreateNewStickerSetRequest struct {
 	// Sticker set owner
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// Sticker set title; 1-64 characters
 	Title string `json:"title"`
 	// Sticker set name. Can contain only English letters, digits and underscores. Must end with *"_by_<bot username>"* (*<bot_username>* is case insensitive); 1-64 characters
@@ -9935,7 +9949,7 @@ func (client *Client) CreateNewStickerSet(req *CreateNewStickerSetRequest) (*Sti
 			Type: "createNewStickerSet",
 		},
 		Data: map[string]interface{}{
-			"user_id":  req.UserId,
+			"user_id":  req.UserID,
 			"title":    req.Title,
 			"name":     req.Name,
 			"is_masks": req.IsMasks,
@@ -9955,7 +9969,7 @@ func (client *Client) CreateNewStickerSet(req *CreateNewStickerSetRequest) (*Sti
 
 type AddStickerToSetRequest struct {
 	// Sticker set owner
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// Sticker set name
 	Name string `json:"name"`
 	// Sticker to add to the set
@@ -9969,7 +9983,7 @@ func (client *Client) AddStickerToSet(req *AddStickerToSetRequest) (*StickerSet,
 			Type: "addStickerToSet",
 		},
 		Data: map[string]interface{}{
-			"user_id": req.UserId,
+			"user_id": req.UserID,
 			"name":    req.Name,
 			"sticker": req.Sticker,
 		},
@@ -9987,10 +10001,10 @@ func (client *Client) AddStickerToSet(req *AddStickerToSetRequest) (*StickerSet,
 
 type SetStickerSetThumbnailRequest struct {
 	// Sticker set owner
-	UserId int32 `json:"user_id"`
+	UserID int32 `json:"user_id"`
 	// Sticker set name
 	Name string `json:"name"`
-	// Thumbnail to set in PNG or TGS format. Animated thumbnail must be set for animated sticker sets and only for them. Pass a zero InputFileId to delete the thumbnail
+	// Thumbnail to set in PNG or TGS format. Animated thumbnail must be set for animated sticker sets and only for them. Pass a zero InputFileID to delete the thumbnail
 	Thumbnail InputFile `json:"thumbnail"`
 }
 
@@ -10001,7 +10015,7 @@ func (client *Client) SetStickerSetThumbnail(req *SetStickerSetThumbnailRequest)
 			Type: "setStickerSetThumbnail",
 		},
 		Data: map[string]interface{}{
-			"user_id":   req.UserId,
+			"user_id":   req.UserID,
 			"name":      req.Name,
 			"thumbnail": req.Thumbnail,
 		},
@@ -10084,7 +10098,7 @@ type GetMapThumbnailFileRequest struct {
 	// Map scale; 1-3
 	Scale int32 `json:"scale"`
 	// Identifier of a chat, in which the thumbnail will be shown. Use 0 if unknown
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 }
 
 // Returns information about a file with a map thumbnail in PNG format. Only map thumbnail files with size less than 1MB can be downloaded
@@ -10099,7 +10113,7 @@ func (client *Client) GetMapThumbnailFile(req *GetMapThumbnailFileRequest) (*Fil
 			"width":    req.Width,
 			"height":   req.Height,
 			"scale":    req.Scale,
-			"chat_id":  req.ChatId,
+			"chat_id":  req.ChatID,
 		},
 	})
 	if err != nil {
@@ -10115,7 +10129,7 @@ func (client *Client) GetMapThumbnailFile(req *GetMapThumbnailFileRequest) (*Fil
 
 type AcceptTermsOfServiceRequest struct {
 	// Terms of service identifier
-	TermsOfServiceId string `json:"terms_of_service_id"`
+	TermsOfServiceID string `json:"terms_of_service_id"`
 }
 
 // Accepts Telegram terms of services
@@ -10125,7 +10139,7 @@ func (client *Client) AcceptTermsOfService(req *AcceptTermsOfServiceRequest) (*O
 			Type: "acceptTermsOfService",
 		},
 		Data: map[string]interface{}{
-			"terms_of_service_id": req.TermsOfServiceId,
+			"terms_of_service_id": req.TermsOfServiceID,
 		},
 	})
 	if err != nil {
@@ -10170,7 +10184,7 @@ func (client *Client) SendCustomRequest(req *SendCustomRequestRequest) (*CustomR
 
 type AnswerCustomQueryRequest struct {
 	// Identifier of a custom query
-	CustomQueryId JsonInt64 `json:"custom_query_id"`
+	CustomQueryID JsonInt64 `json:"custom_query_id"`
 	// JSON-serialized answer to the query
 	Data string `json:"data"`
 }
@@ -10182,7 +10196,7 @@ func (client *Client) AnswerCustomQuery(req *AnswerCustomQueryRequest) (*Ok, err
 			Type: "answerCustomQuery",
 		},
 		Data: map[string]interface{}{
-			"custom_query_id": req.CustomQueryId,
+			"custom_query_id": req.CustomQueryID,
 			"data":            req.Data,
 		},
 	})
@@ -10376,7 +10390,7 @@ type SaveApplicationLogEventRequest struct {
 	// Event type
 	Type string `json:"type"`
 	// Optional chat identifier, associated with the event
-	ChatId int64 `json:"chat_id"`
+	ChatID int64 `json:"chat_id"`
 	// The log event data
 	Data JsonValue `json:"data"`
 }
@@ -10389,7 +10403,7 @@ func (client *Client) SaveApplicationLogEvent(req *SaveApplicationLogEventReques
 		},
 		Data: map[string]interface{}{
 			"type":    req.Type,
-			"chat_id": req.ChatId,
+			"chat_id": req.ChatID,
 			"data":    req.Data,
 		},
 	})
@@ -10441,7 +10455,7 @@ func (client *Client) AddProxy(req *AddProxyRequest) (*Proxy, error) {
 
 type EditProxyRequest struct {
 	// Proxy identifier
-	ProxyId int32 `json:"proxy_id"`
+	ProxyID int32 `json:"proxy_id"`
 	// Proxy server IP address
 	Server string `json:"server"`
 	// Proxy server port
@@ -10459,7 +10473,7 @@ func (client *Client) EditProxy(req *EditProxyRequest) (*Proxy, error) {
 			Type: "editProxy",
 		},
 		Data: map[string]interface{}{
-			"proxy_id": req.ProxyId,
+			"proxy_id": req.ProxyID,
 			"server":   req.Server,
 			"port":     req.Port,
 			"enable":   req.Enable,
@@ -10479,7 +10493,7 @@ func (client *Client) EditProxy(req *EditProxyRequest) (*Proxy, error) {
 
 type EnableProxyRequest struct {
 	// Proxy identifier
-	ProxyId int32 `json:"proxy_id"`
+	ProxyID int32 `json:"proxy_id"`
 }
 
 // Enables a proxy. Only one proxy can be enabled at a time. Can be called before authorization
@@ -10489,7 +10503,7 @@ func (client *Client) EnableProxy(req *EnableProxyRequest) (*Ok, error) {
 			Type: "enableProxy",
 		},
 		Data: map[string]interface{}{
-			"proxy_id": req.ProxyId,
+			"proxy_id": req.ProxyID,
 		},
 	})
 	if err != nil {
@@ -10524,7 +10538,7 @@ func (client *Client) DisableProxy() (*Ok, error) {
 
 type RemoveProxyRequest struct {
 	// Proxy identifier
-	ProxyId int32 `json:"proxy_id"`
+	ProxyID int32 `json:"proxy_id"`
 }
 
 // Removes a proxy server. Can be called before authorization
@@ -10534,7 +10548,7 @@ func (client *Client) RemoveProxy(req *RemoveProxyRequest) (*Ok, error) {
 			Type: "removeProxy",
 		},
 		Data: map[string]interface{}{
-			"proxy_id": req.ProxyId,
+			"proxy_id": req.ProxyID,
 		},
 	})
 	if err != nil {
@@ -10569,7 +10583,7 @@ func (client *Client) GetProxies() (*Proxies, error) {
 
 type GetProxyLinkRequest struct {
 	// Proxy identifier
-	ProxyId int32 `json:"proxy_id"`
+	ProxyID int32 `json:"proxy_id"`
 }
 
 // Returns an HTTPS link, which can be used to add a proxy. Available only for SOCKS5 and MTProto proxies. Can be called before authorization
@@ -10579,7 +10593,7 @@ func (client *Client) GetProxyLink(req *GetProxyLinkRequest) (*Text, error) {
 			Type: "getProxyLink",
 		},
 		Data: map[string]interface{}{
-			"proxy_id": req.ProxyId,
+			"proxy_id": req.ProxyID,
 		},
 	})
 	if err != nil {
@@ -10595,7 +10609,7 @@ func (client *Client) GetProxyLink(req *GetProxyLinkRequest) (*Text, error) {
 
 type PingProxyRequest struct {
 	// Proxy identifier. Use 0 to ping a Telegram server without a proxy
-	ProxyId int32 `json:"proxy_id"`
+	ProxyID int32 `json:"proxy_id"`
 }
 
 // Computes time needed to receive a response from a Telegram server through a proxy. Can be called before authorization
@@ -10605,7 +10619,7 @@ func (client *Client) PingProxy(req *PingProxyRequest) (*Seconds, error) {
 			Type: "pingProxy",
 		},
 		Data: map[string]interface{}{
-			"proxy_id": req.ProxyId,
+			"proxy_id": req.ProxyID,
 		},
 	})
 	if err != nil {
@@ -10979,7 +10993,8 @@ type TestCallVectorStringObjectRequest struct {
 }
 
 // Returns the received vector of objects containing a string; for testing only. This is an offline method. Can be called before authorization
-func (client *Client) TestCallVectorStringObject(req *TestCallVectorStringObjectRequest) (*TestVectorStringObject, error) {
+func (client *Client) TestCallVectorStringObject(req *TestCallVectorStringObjectRequest) (*TestVectorStringObject,
+	error) {
 	result, err := client.Send(Request{
 		meta: meta{
 			Type: "testCallVectorStringObject",
@@ -11052,7 +11067,7 @@ type TestProxyRequest struct {
 	// Proxy type
 	Type ProxyType `json:"type"`
 	// Identifier of a datacenter, with which to test connection
-	DcId int32 `json:"dc_id"`
+	DcID int32 `json:"dc_id"`
 	// The maximum overall timeout for the request
 	Timeout float64 `json:"timeout"`
 }
@@ -11067,7 +11082,7 @@ func (client *Client) TestProxy(req *TestProxyRequest) (*Ok, error) {
 			"server":  req.Server,
 			"port":    req.Port,
 			"type":    req.Type,
-			"dc_id":   req.DcId,
+			"dc_id":   req.DcID,
 			"timeout": req.Timeout,
 		},
 	})
