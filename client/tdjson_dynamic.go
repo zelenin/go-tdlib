@@ -1,3 +1,4 @@
+//go:build libtdjson && (linux || darwin || windows)
 // +build libtdjson
 // +build linux darwin windows
 

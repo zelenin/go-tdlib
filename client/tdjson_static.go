@@ -1,3 +1,4 @@
+//go:build !libtdjson && (linux || darwin)
 // +build !libtdjson
 // +build linux darwin
 
