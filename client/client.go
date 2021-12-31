@@ -3,9 +3,13 @@ package client
 import (
 	"context"
 	"errors"
+	"log"
 	"sync"
+	"sync/atomic"
 	"time"
 )
+
+var clients = &sync.Map{}
 
 type Client struct {
 	jsonClient     *JsonClient
@@ -59,6 +63,8 @@ func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...O
 		catchersStore: &sync.Map{},
 	}
 
+	clients.Store(client.jsonClient.id, client)
+
 	client.extraGenerator = UuidV4Generator()
 	client.catchTimeout = 60 * time.Second
 	client.updatesTimeout = 60 * time.Second
@@ -67,7 +73,7 @@ func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...O
 		option(client)
 	}
 
-	go client.receive()
+	go receive(client)
 	go client.catch(catchersListener)
 
 	err := Authorize(client, authorizationStateHandler)
@@ -78,12 +84,28 @@ func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...O
 	return client, nil
 }
 
-func (client *Client) receive() {
+var alreadyRunning uint32
+
+func receive(client *Client) {
+	if atomic.LoadUint32(&alreadyRunning) != 0 {
+		return
+	}
+	atomic.StoreUint32(&alreadyRunning, 1)
+
 	for {
-		resp, err := client.jsonClient.Receive(client.updatesTimeout)
+		resp, err := Receive(client.updatesTimeout)
 		if err != nil {
 			continue
 		}
+
+		value, ok := clients.Load(resp.ClientId)
+		if !ok {
+			log.Printf("Response with wrong clientId: %d", resp.ClientId)
+			continue
+		}
+
+		client := value.(*Client)
+
 		client.catcher <- resp
 
 		typ, err := UnmarshalType(resp.Data)
