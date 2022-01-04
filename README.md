@@ -4,7 +4,22 @@ Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) 
 
 ## TDLib installation
 
-Use [TDLib build instructions](https://tdlib.github.io/td/build.html)
+Use [TDLib build instructions](https://tdlib.github.io/td/build.html) to build.
+
+### Windows
+
+Build with environment variables:
+
+```
+CGO_CFLAGS=-IC:/path/to/tdlib/build/tdlib/include
+CGO_LDFLAGS=-LC:/path/to/tdlib/build/tdlib/bin -ltdjson
+```
+
+Example for PowerShell:
+
+```powershell
+$env:CGO_CFLAGS="-IC:/td/tdlib/include"; $env:CGO_LDFLAGS="-LC:/td/tdlib/bin -ltdjson"; go build -trimpath -ldflags="-s -w" -o demo.exe .\cmd\demo.go
+```
 
 ## Usage
 
