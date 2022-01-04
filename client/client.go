@@ -3,18 +3,14 @@ package client
 import (
 	"context"
 	"errors"
-	"log"
 	"sync"
-	"sync/atomic"
 	"time"
 )
-
-var clients = &sync.Map{}
 
 type Client struct {
 	jsonClient     *JsonClient
 	extraGenerator ExtraGenerator
-	catcher        chan *Response
+	responses      chan *Response
 	listenerStore  *listenerStore
 	catchersStore  *sync.Map
 	updatesTimeout time.Duration
@@ -35,12 +31,6 @@ func WithCatchTimeout(timeout time.Duration) Option {
 	}
 }
 
-func WithUpdatesTimeout(timeout time.Duration) Option {
-	return func(client *Client) {
-		client.updatesTimeout = timeout
-	}
-}
-
 func WithProxy(req *AddProxyRequest) Option {
 	return func(client *Client) {
 		client.AddProxy(req)
@@ -54,27 +44,23 @@ func WithLogVerbosity(req *SetLogVerbosityLevelRequest) Option {
 }
 
 func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...Option) (*Client, error) {
-	catchersListener := make(chan *Response, 1000)
-
 	client := &Client{
 		jsonClient:    NewJsonClient(),
-		catcher:       catchersListener,
+		responses:     make(chan *Response, 1000),
 		listenerStore: newListenerStore(),
 		catchersStore: &sync.Map{},
 	}
 
-	clients.Store(client.jsonClient.id, client)
-
 	client.extraGenerator = UuidV4Generator()
 	client.catchTimeout = 60 * time.Second
-	client.updatesTimeout = 60 * time.Second
 
 	for _, option := range options {
 		option(client)
 	}
 
-	go receive(client)
-	go client.catch(catchersListener)
+	tdlibInstance.addClient(client)
+
+	go client.receiver()
 
 	err := Authorize(client, authorizationStateHandler)
 	if err != nil {
@@ -84,31 +70,16 @@ func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...O
 	return client, nil
 }
 
-var alreadyRunning uint32
-
-func receive(client *Client) {
-	if atomic.LoadUint32(&alreadyRunning) != 0 {
-		return
-	}
-	atomic.StoreUint32(&alreadyRunning, 1)
-
-	for {
-		resp, err := Receive(client.updatesTimeout)
-		if err != nil {
-			continue
+func (client *Client) receiver() {
+	for response := range client.responses {
+		if response.Extra != "" {
+			value, ok := client.catchersStore.Load(response.Extra)
+			if ok {
+				value.(chan *Response) <- response
+			}
 		}
 
-		value, ok := clients.Load(resp.ClientId)
-		if !ok {
-			log.Printf("Response with wrong clientId: %d", resp.ClientId)
-			continue
-		}
-
-		client := value.(*Client)
-
-		client.catcher <- resp
-
-		typ, err := UnmarshalType(resp.Data)
+		typ, err := UnmarshalType(response.Data)
 		if err != nil {
 			continue
 		}
@@ -123,17 +94,6 @@ func receive(client *Client) {
 		}
 		if needGc {
 			client.listenerStore.gc()
-		}
-	}
-}
-
-func (client *Client) catch(updates chan *Response) {
-	for update := range updates {
-		if update.Extra != "" {
-			value, ok := client.catchersStore.Load(update.Extra)
-			if ok {
-				value.(chan *Response) <- update
-			}
 		}
 	}
 }

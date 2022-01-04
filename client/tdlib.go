@@ -10,10 +10,92 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
 	"strconv"
+	"sync"
 	"time"
 	"unsafe"
 )
+
+var tdlibInstance *tdlib
+
+func init() {
+	tdlibInstance = &tdlib{
+		timeout: 60 * time.Second,
+		clients: map[int]*Client{},
+	}
+}
+
+type tdlib struct {
+	once    sync.Once
+	timeout time.Duration
+	mu      sync.Mutex
+	clients map[int]*Client
+}
+
+func (instance *tdlib) addClient(client *Client) {
+	instance.mu.Lock()
+	defer instance.mu.Unlock()
+
+	instance.clients[client.jsonClient.id] = client
+
+	instance.once.Do(func() {
+		go instance.receiver()
+	})
+}
+
+func (instance *tdlib) getClient(id int) (*Client, error) {
+	instance.mu.Lock()
+	defer instance.mu.Unlock()
+
+	client, ok := instance.clients[id]
+	if !ok {
+		return nil, fmt.Errorf("client [id: %d] does not exist", id)
+	}
+
+	return client, nil
+}
+
+func (instance *tdlib) receiver() {
+	for {
+		resp, err := instance.receive(instance.timeout)
+		if err != nil {
+			continue
+		}
+
+		client, err := instance.getClient(resp.ClientId)
+		if err != nil {
+			log.Print(err)
+			continue
+		}
+
+		client.responses <- resp
+	}
+}
+
+// Receives incoming updates and request responses from the TDLib client. May be called from any thread, but
+// shouldn't be called simultaneously from two different threads.
+// Returned pointer will be deallocated by TDLib during next call to td_json_client_receive or td_json_client_execute
+// in the same thread, so it can't be used after that.
+func (instance *tdlib) receive(timeout time.Duration) (*Response, error) {
+	result := C.td_receive(C.double(float64(timeout) / float64(time.Second)))
+	if result == nil {
+		return nil, errors.New("update receiving timeout")
+	}
+
+	data := []byte(C.GoString(result))
+
+	var resp Response
+
+	err := json.Unmarshal(data, &resp)
+	if err != nil {
+		return nil, err
+	}
+
+	resp.Data = data
+
+	return &resp, nil
+}
 
 type JsonClient struct {
 	id int
@@ -33,30 +115,6 @@ func (jsonClient *JsonClient) Send(req Request) {
 	defer C.free(unsafe.Pointer(query))
 
 	C.td_send(C.int(jsonClient.id), query)
-}
-
-// Receives incoming updates and request responses from the TDLib client. May be called from any thread, but
-// shouldn't be called simultaneously from two different threads.
-// Returned pointer will be deallocated by TDLib during next call to td_json_client_receive or td_json_client_execute
-// in the same thread, so it can't be used after that.
-func Receive(timeout time.Duration) (*Response, error) {
-	result := C.td_receive(C.double(float64(timeout) / float64(time.Second)))
-	if result == nil {
-		return nil, errors.New("update receiving timeout")
-	}
-
-	data := []byte(C.GoString(result))
-
-	var resp Response
-
-	err := json.Unmarshal(data, &resp)
-	if err != nil {
-		return nil, err
-	}
-
-	resp.Data = data
-
-	return &resp, nil
 }
 
 // Synchronously executes TDLib request. May be called from any thread.
