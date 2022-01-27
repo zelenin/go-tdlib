@@ -97,6 +97,30 @@ func (instance *tdlib) receive(timeout time.Duration) (*Response, error) {
 	return &resp, nil
 }
 
+func Execute(req Request) (*Response, error) {
+	data, _ := json.Marshal(req)
+
+	query := C.CString(string(data))
+	defer C.free(unsafe.Pointer(query))
+	result := C.td_execute(query)
+	if result == nil {
+		return nil, errors.New("request can't be parsed")
+	}
+
+	data = []byte(C.GoString(result))
+
+	var resp Response
+
+	err := json.Unmarshal(data, &resp)
+	if err != nil {
+		return nil, err
+	}
+
+	resp.Data = data
+
+	return &resp, nil
+}
+
 type JsonClient struct {
 	id int
 }
@@ -122,27 +146,7 @@ func (jsonClient *JsonClient) Send(req Request) {
 // Returned pointer will be deallocated by TDLib during next call to td_json_client_receive or td_json_client_execute
 // in the same thread, so it can't be used after that.
 func (jsonClient *JsonClient) Execute(req Request) (*Response, error) {
-	data, _ := json.Marshal(req)
-
-	query := C.CString(string(data))
-	defer C.free(unsafe.Pointer(query))
-	result := C.td_execute(query)
-	if result == nil {
-		return nil, errors.New("request can't be parsed")
-	}
-
-	data = []byte(C.GoString(result))
-
-	var resp Response
-
-	err := json.Unmarshal(data, &resp)
-	if err != nil {
-		return nil, err
-	}
-
-	resp.Data = data
-
-	return &resp, nil
+	return Execute(req)
 }
 
 type meta struct {

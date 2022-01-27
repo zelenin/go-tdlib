@@ -34,7 +34,84 @@ func GenerateFunctions(schema *tlparser.Schema, packageName string) []byte {
 			buf.WriteString("}\n")
 		}
 
+		if function.IsSynchronous {
+			buf.WriteString("\n")
+			buf.WriteString("// " + function.Description)
+			buf.WriteString("\n")
+
+			requestArgument := ""
+			if len(function.Properties) > 0 {
+				requestArgument = fmt.Sprintf("req *%sRequest", tdlibFunction.ToGoName())
+			}
+
+			buf.WriteString(fmt.Sprintf("func %s(%s) (%s, error) {\n", tdlibFunction.ToGoName(), requestArgument, tdlibFunctionReturn.ToGoReturn()))
+
+			if len(function.Properties) > 0 {
+				buf.WriteString(fmt.Sprintf(`    result, err := Execute(Request{
+        meta: meta{
+            Type: "%s",
+        },
+        Data: map[string]interface{}{
+`, function.Name))
+
+				for _, property := range function.Properties {
+					tdlibTypeProperty := TdlibTypeProperty(property.Name, property.Type, schema)
+
+					buf.WriteString(fmt.Sprintf("            \"%s\": req.%s,\n", property.Name, tdlibTypeProperty.ToGoName()))
+				}
+
+				buf.WriteString(`        },
+    })
+`)
+			} else {
+				buf.WriteString(fmt.Sprintf(`    result, err := Execute(Request{
+        meta: meta{
+            Type: "%s",
+        },
+        Data: map[string]interface{}{},
+    })
+`, function.Name))
+			}
+
+			buf.WriteString(`    if err != nil {
+        return nil, err
+    }
+
+    if result.Type == "error" {
+        return nil, buildResponseError(result.Data)
+    }
+
+`)
+
+			if tdlibFunctionReturn.IsClass() {
+				buf.WriteString("    switch result.Type {\n")
+
+				for _, subType := range tdlibFunctionReturn.GetClass().GetSubTypes() {
+					buf.WriteString(fmt.Sprintf(`    case %s:
+        return Unmarshal%s(result.Data)
+
+`, subType.ToTypeConst(), subType.ToGoType()))
+
+				}
+
+				buf.WriteString(`    default:
+        return nil, errors.New("invalid type")
+`)
+
+				buf.WriteString("   }\n")
+			} else {
+				buf.WriteString(fmt.Sprintf(`    return Unmarshal%s(result.Data)
+`, tdlibFunctionReturn.ToGoType()))
+			}
+
+			buf.WriteString("}\n")
+		}
+
 		buf.WriteString("\n")
+		if function.IsSynchronous {
+			buf.WriteString("// deprecated")
+			buf.WriteString("\n")
+		}
 		buf.WriteString("// " + function.Description)
 		buf.WriteString("\n")
 
@@ -45,39 +122,41 @@ func GenerateFunctions(schema *tlparser.Schema, packageName string) []byte {
 
 		buf.WriteString(fmt.Sprintf("func (client *Client) %s(%s) (%s, error) {\n", tdlibFunction.ToGoName(), requestArgument, tdlibFunctionReturn.ToGoReturn()))
 
-		sendMethod := "Send"
 		if function.IsSynchronous {
-			sendMethod = "jsonClient.Execute"
-		}
-
-		if len(function.Properties) > 0 {
-			buf.WriteString(fmt.Sprintf(`    result, err := client.%s(Request{
+			requestArgument = ""
+			if len(function.Properties) > 0 {
+				requestArgument = "req"
+			}
+			buf.WriteString(fmt.Sprintf(`    return %s(%s)`, tdlibFunction.ToGoName(), requestArgument))
+		} else {
+			if len(function.Properties) > 0 {
+				buf.WriteString(fmt.Sprintf(`    result, err := client.Send(Request{
         meta: meta{
             Type: "%s",
         },
         Data: map[string]interface{}{
-`, sendMethod, function.Name))
+`, function.Name))
 
-			for _, property := range function.Properties {
-				tdlibTypeProperty := TdlibTypeProperty(property.Name, property.Type, schema)
+				for _, property := range function.Properties {
+					tdlibTypeProperty := TdlibTypeProperty(property.Name, property.Type, schema)
 
-				buf.WriteString(fmt.Sprintf("            \"%s\": req.%s,\n", property.Name, tdlibTypeProperty.ToGoName()))
-			}
+					buf.WriteString(fmt.Sprintf("            \"%s\": req.%s,\n", property.Name, tdlibTypeProperty.ToGoName()))
+				}
 
-			buf.WriteString(`        },
+				buf.WriteString(`        },
     })
 `)
-		} else {
-			buf.WriteString(fmt.Sprintf(`    result, err := client.%s(Request{
+			} else {
+				buf.WriteString(fmt.Sprintf(`    result, err := client.Send(Request{
         meta: meta{
             Type: "%s",
         },
         Data: map[string]interface{}{},
     })
-`, sendMethod, function.Name))
-		}
+`, function.Name))
+			}
 
-		buf.WriteString(`    if err != nil {
+			buf.WriteString(`    if err != nil {
         return nil, err
     }
 
@@ -87,25 +166,26 @@ func GenerateFunctions(schema *tlparser.Schema, packageName string) []byte {
 
 `)
 
-		if tdlibFunctionReturn.IsClass() {
-			buf.WriteString("    switch result.Type {\n")
+			if tdlibFunctionReturn.IsClass() {
+				buf.WriteString("    switch result.Type {\n")
 
-			for _, subType := range tdlibFunctionReturn.GetClass().GetSubTypes() {
-				buf.WriteString(fmt.Sprintf(`    case %s:
+				for _, subType := range tdlibFunctionReturn.GetClass().GetSubTypes() {
+					buf.WriteString(fmt.Sprintf(`    case %s:
         return Unmarshal%s(result.Data)
 
 `, subType.ToTypeConst(), subType.ToGoType()))
 
-			}
+				}
 
-			buf.WriteString(`    default:
+				buf.WriteString(`    default:
         return nil, errors.New("invalid type")
 `)
 
-			buf.WriteString("   }\n")
-		} else {
-			buf.WriteString(fmt.Sprintf(`    return Unmarshal%s(result.Data)
+				buf.WriteString("   }\n")
+			} else {
+				buf.WriteString(fmt.Sprintf(`    return Unmarshal%s(result.Data)
 `, tdlibFunctionReturn.ToGoType()))
+			}
 		}
 
 		buf.WriteString("}\n")
