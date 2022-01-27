@@ -69,11 +69,14 @@ func main() {
         IgnoreFileNames:        false,
     }
 
-    logVerbosity := client.WithLogVerbosity(&client.SetLogVerbosityLevelRequest{
-        NewVerbosityLevel: 0,
-    })
-
-    tdlibClient, err := client.NewClient(authorizer, logVerbosity)
+	_, err := client.SetLogVerbosityLevel(&client.SetLogVerbosityLevelRequest{
+		NewVerbosityLevel: 1,
+	})
+	if err != nil {
+		log.Fatalf("SetLogVerbosityLevel error: %s", err)
+	}
+	
+    tdlibClient, err := client.NewClient(authorizer)
     if err != nil {
         log.Fatalf("NewClient error: %s", err)
     }
