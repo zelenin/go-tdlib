@@ -1,4 +1,7 @@
-TAG := v1.8.0
+# TAG := v1.8.0
+
+# github.com/tdlib/td master is v1.8.4 (as of 2022-07-16), they don't tag patch versions
+TAG := master
 
 schema-update:
 	curl https://raw.githubusercontent.com/tdlib/td/${TAG}/td/generate/scheme/td_api.tl 2>/dev/null > ./data/td_api.tl

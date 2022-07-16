@@ -1,6 +1,6 @@
 # go-tdlib
 
-Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) with full support of TDLib v1.8.0
+Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) with full support of TDLib v1.8.4
 
 ## TDLib installation
 
@@ -21,11 +21,28 @@ Example for PowerShell:
 $env:CGO_CFLAGS="-IC:/td/tdlib/include"; $env:CGO_LDFLAGS="-LC:/td/tdlib/bin -ltdjson"; go build -trimpath -ldflags="-s -w" -o demo.exe .\cmd\demo.go
 ```
 
+### Linux
+
+Replace `<install-path>` with your tdlib installation dir and build with these flags:
+
+```shell
+CGO_CFLAGS="-I /path/to/tdlib/build/tdlib/include"
+CGO_LDFLAGS="-L/path/to/tdlib/build/tdlib/lib"
+```
+
+Example for pretty much any Linux shell (`bash`, `sh` etc):
+
+```shell
+CGO_CFLAGS="-I /path/to/tdlib/build/tdlib/include" \
+CGO_LDFLAGS="-L/path/to/tdlib/build/tdlib/lib" \
+    go build -trimpath -ldflags="-s -w" -o demo ./cmd/demo.go
+```
+
 ## Usage
 
 ### Client
 
-[Register an application](https://my.telegram.org/apps) to obtain an api_id and api_hash 
+[Register an application](https://my.telegram.org/apps) to obtain an api_id and api_hash
 
 ```go
 package main
@@ -75,7 +92,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("SetLogVerbosityLevel error: %s", err)
 	}
-	
+
     tdlibClient, err := client.NewClient(authorizer)
     if err != nil {
         log.Fatalf("NewClient error: %s", err)
@@ -110,7 +127,7 @@ if err != nil {
 
 listener := tdlibClient.GetListener()
 defer listener.Close()
- 
+
 for update := range listener.Updates {
     if update.GetClass() == client.ClassUpdate {
         log.Printf("%#v", update)
