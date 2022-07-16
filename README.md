@@ -23,14 +23,14 @@ $env:CGO_CFLAGS="-IC:/td/tdlib/include"; $env:CGO_LDFLAGS="-LC:/td/tdlib/bin -lt
 
 ### Linux
 
-Replace `<install-path>` with your tdlib installation dir and build with these flags:
+Build with environment variables:
 
 ```shell
 CGO_CFLAGS="-I /path/to/tdlib/build/tdlib/include"
 CGO_LDFLAGS="-L/path/to/tdlib/build/tdlib/lib"
 ```
 
-Example for pretty much any Linux shell (`bash`, `sh` etc):
+Example for `sh`, `bash` etc:
 
 ```shell
 CGO_CFLAGS="-I /path/to/tdlib/build/tdlib/include" \
