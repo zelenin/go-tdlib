@@ -135,6 +135,10 @@ tdlibClient, err := client.NewClient(authorizer, proxy)
 
 ```
 
+## Example
+
+[Example application](https://github.com/zelenin/go-tdlib/tree/master/example)
+
 ## Notes
 
 * WIP. Library API can be changed in the future
