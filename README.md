@@ -139,6 +139,13 @@ tdlibClient, err := client.NewClient(authorizer, proxy)
 
 [Example application](https://github.com/zelenin/go-tdlib/tree/master/example)
 
+```
+cd example
+docker build --network host --build-arg TD_TAG=v1.8.0 --tag tdlib-test .
+docker run --rm -it -e "API_ID=00000" -e "API_HASH=abcdef0123456789" tdlib-test ash
+./app
+```
+
 ## Notes
 
 * WIP. Library API can be changed in the future
