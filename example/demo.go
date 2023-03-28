@@ -8,10 +8,16 @@ import (
 	"strconv"
 	"syscall"
 
+	"github.com/joho/godotenv"
 	"github.com/zelenin/go-tdlib/client"
 )
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalf("load env error: %s", err)
+	}
+
 	authorizer := client.ClientAuthorizer()
 	go client.CliInteractor(authorizer)
 
@@ -27,7 +33,7 @@ func main() {
 
 	apiId := int32(apiId64)
 
-	authorizer.TdlibParameters <- &client.TdlibParameters{
+	authorizer.TdlibParameters <- &client.SetTdlibParametersRequest{
 		UseTestDc:              false,
 		DatabaseDirectory:      filepath.Join(".tdlib", "database"),
 		FilesDirectory:         filepath.Join(".tdlib", "files"),
@@ -71,7 +77,7 @@ func main() {
 		log.Fatalf("GetMe error: %s", err)
 	}
 
-	log.Printf("Me: %s %s [%s]", me.FirstName, me.LastName, me.Username)
+	log.Printf("Me: %s %s [%v]", me.FirstName, me.LastName, me.Usernames)
 
 	ch := make(chan os.Signal, 2)
 	signal.Notify(ch, os.Interrupt, syscall.SIGTERM)
