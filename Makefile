@@ -1,4 +1,4 @@
-TAG := v1.8.0
+TAG := master
 
 schema-update:
 	curl https://raw.githubusercontent.com/tdlib/td/${TAG}/td/generate/scheme/td_api.tl 2>/dev/null > ./data/td_api.tl
