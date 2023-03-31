@@ -6,6 +6,8 @@ Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) 
 
 Use [TDLib build instructions](https://tdlib.github.io/td/build.html) with checkmarked `Install built TDLib to /usr/local instead of placing the files to td/tdlib`.
 
+### Note: Compatible with TDLib v1.8.0 only!
+
 ### Windows
 
 Build with environment variables:
