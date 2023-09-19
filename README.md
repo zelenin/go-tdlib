@@ -1,12 +1,10 @@
 # go-tdlib
 
-Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) with full support of TDLib v1.8.0
+Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) with full support of the newest TDLib (as of 2023/09/19)
 
 ## TDLib installation
 
 Use [TDLib build instructions](https://tdlib.github.io/td/build.html) with checkmarked `Install built TDLib to /usr/local instead of placing the files to td/tdlib`.
-
-### Note: Compatible with TDLib v1.8.0 only!
 
 ### Windows
 
