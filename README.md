@@ -150,7 +150,6 @@ docker run --rm -it -e "API_ID=00000" -e "API_HASH=abcdef0123456789" tdlib-test 
 ## Notes
 
 * WIP. Library API can be changed in the future
-* The library supports only the [latest tagged version of tdlib](https://github.com/tdlib/td/tags). Don't use it with an arbitrary commit.
 * The package includes a .tl-parser and generated [json-schema](https://github.com/zelenin/go-tdlib/tree/master/data) for creating libraries in other languages
 
 ## Author
