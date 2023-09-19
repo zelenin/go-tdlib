@@ -1,6 +1,6 @@
-//go:build libtdjson && (linux || darwin || windows)
+//go:build libtdjson && (linux || darwin)
 // +build libtdjson
-// +build linux darwin windows
+// +build linux darwin
 
 package client
 
@@ -9,7 +9,5 @@ package client
 #cgo linux LDFLAGS: -L/usr/local/lib -ltdjson -lstdc++ -lssl -lcrypto -ldl -lz -lm
 #cgo darwin CFLAGS: -I/usr/local/include
 #cgo darwin LDFLAGS: -L/usr/local/lib -ltdjson -lstdc++ -lssl -lcrypto -ldl -lz -lm
-#cgo windows CFLAGS: -Ic:/td -Ic:/td/example/csharp/build
-#cgo windows LDFLAGS: -Lc:/td/example/csharp/build/Release -ltdjson
 */
 import "C"

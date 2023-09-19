@@ -4,7 +4,24 @@ Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) 
 
 ## TDLib installation
 
-Use [TDLib build instructions](https://tdlib.github.io/td/build.html)
+Use [TDLib build instructions](https://tdlib.github.io/td/build.html) with checkmarked `Install built TDLib to /usr/local instead of placing the files to td/tdlib`.
+
+### Note: Compatible with TDLib v1.8.0 only!
+
+### Windows
+
+Build with environment variables:
+
+```
+CGO_CFLAGS=-IC:/path/to/tdlib/build/tdlib/include
+CGO_LDFLAGS=-LC:/path/to/tdlib/build/tdlib/bin -ltdjson
+```
+
+Example for PowerShell:
+
+```powershell
+$env:CGO_CFLAGS="-IC:/td/tdlib/include"; $env:CGO_LDFLAGS="-LC:/td/tdlib/bin -ltdjson"; go build -trimpath -ldflags="-s -w" -o demo.exe .\cmd\demo.go
+```
 
 ## Usage
 
@@ -54,11 +71,14 @@ func main() {
         IgnoreFileNames:        false,
     }
 
-    logVerbosity := client.WithLogVerbosity(&client.SetLogVerbosityLevelRequest{
-        NewVerbosityLevel: 0,
-    })
-
-    tdlibClient, err := client.NewClient(authorizer, logVerbosity)
+	_, err := client.SetLogVerbosityLevel(&client.SetLogVerbosityLevelRequest{
+		NewVerbosityLevel: 1,
+	})
+	if err != nil {
+		log.Fatalf("SetLogVerbosityLevel error: %s", err)
+	}
+	
+    tdlibClient, err := client.NewClient(authorizer)
     if err != nil {
         log.Fatalf("NewClient error: %s", err)
     }
@@ -115,6 +135,17 @@ proxy := client.WithProxy(&client.AddProxyRequest{
 
 tdlibClient, err := client.NewClient(authorizer, proxy)
 
+```
+
+## Example
+
+[Example application](https://github.com/zelenin/go-tdlib/tree/master/example)
+
+```
+cd example
+docker build --network host --build-arg TD_TAG=v1.8.0 --tag tdlib-test .
+docker run --rm -it -e "API_ID=00000" -e "API_HASH=abcdef0123456789" tdlib-test ash
+./app
 ```
 
 ## Notes
