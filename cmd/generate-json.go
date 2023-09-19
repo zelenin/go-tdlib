@@ -4,12 +4,13 @@ import (
 	"bufio"
 	"encoding/json"
 	"flag"
-	"github.com/zelenin/go-tdlib/tlparser"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/zelenin/go-tdlib/tlparser"
 )
 
 func main() {
