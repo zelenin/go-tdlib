@@ -120,6 +120,7 @@ tdlibClient, err := client.NewClient(authorizer, proxy)
 ## Notes
 
 * WIP. Library API can be changed in the future
+* The library supports only the [latest tagged version of tdlib](https://github.com/tdlib/td/tags). Don't use it with an arbitrary commit.
 * The package includes a .tl-parser and generated [json-schema](https://github.com/zelenin/go-tdlib/tree/master/data) for creating libraries in other languages
 
 ## Author
