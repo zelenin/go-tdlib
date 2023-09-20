@@ -52,7 +52,7 @@ func main() {
         apiHash = "8pu9yg32qkuukj83ozaqo5zzjwhkxhnk"
     )
 
-    authorizer.TdlibParameters <- &client.TdlibParameters{
+    authorizer.TdlibParameters <- &client.SetTdlibParametersRequest{
         UseTestDc:              false,
         DatabaseDirectory:      filepath.Join(".tdlib", "database"),
         FilesDirectory:         filepath.Join(".tdlib", "files"),
@@ -82,7 +82,7 @@ func main() {
         log.Fatalf("NewClient error: %s", err)
     }
 
-    optionValue, err := tdlibClient.GetOption(&client.GetOptionRequest{
+    optionValue, err := client.GetOption(&client.GetOptionRequest{
         Name: "version",
     })
     if err != nil {
