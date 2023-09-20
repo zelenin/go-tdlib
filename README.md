@@ -142,7 +142,7 @@ tdlibClient, err := client.NewClient(authorizer, proxy)
 
 ```
 cd example
-docker build --network host --build-arg TD_TAG=v1.8.0 --tag tdlib-test .
+docker build --network host --build-arg TD_COMMIT=daf4801 --tag tdlib-test .
 docker run --rm -it -e "API_ID=00000" -e "API_HASH=abcdef0123456789" tdlib-test ash
 ./app
 ```

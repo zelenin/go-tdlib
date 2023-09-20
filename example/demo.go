@@ -27,7 +27,7 @@ func main() {
 
 	apiId := int32(apiId64)
 
-	authorizer.TdlibParameters <- &client.TdlibParameters{
+	authorizer.TdlibParameters <- &client.SetTdlibParametersRequest{
 		UseTestDc:              false,
 		DatabaseDirectory:      filepath.Join(".tdlib", "database"),
 		FilesDirectory:         filepath.Join(".tdlib", "files"),
@@ -57,7 +57,7 @@ func main() {
 		log.Fatalf("NewClient error: %s", err)
 	}
 
-	optionValue, err := tdlibClient.GetOption(&client.GetOptionRequest{
+	optionValue, err := client.GetOption(&client.GetOptionRequest{
 		Name: "version",
 	})
 	if err != nil {
@@ -71,7 +71,7 @@ func main() {
 		log.Fatalf("GetMe error: %s", err)
 	}
 
-	log.Printf("Me: %s %s [%s]", me.FirstName, me.LastName, me.Username)
+	log.Printf("Me: %s %s [%v]", me.FirstName, me.LastName, me.Usernames)
 
 	ch := make(chan os.Signal, 2)
 	signal.Notify(ch, os.Interrupt, syscall.SIGTERM)

@@ -1,9 +1,9 @@
-FROM alpine:3.17 as tdlib-builder
+FROM alpine:3.18.3 as tdlib-builder
 
 ENV LANG en_US.UTF-8
 ENV TZ UTC
 
-ARG TD_TAG
+ARG TD_COMMIT
 
 RUN apk update && \
     apk upgrade && \
@@ -20,9 +20,11 @@ RUN apk update && \
         php-ctype \
         readline-dev \
         zlib-dev && \
-    git clone -b "${TD_TAG}" "https://github.com/tdlib/td.git" /src && \
-    mkdir /src/build && \
-    cd /src/build && \
+    git clone "https://github.com/tdlib/td.git" /src && \
+    cd /src && \
+    git checkout ${TD_COMMIT} && \
+    mkdir ./build && \
+    cd ./build && \
     cmake \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_INSTALL_PREFIX:PATH=/usr/local \
@@ -35,7 +37,7 @@ RUN apk update && \
     ls -lah /usr/local
 
 
-FROM golang:1.20.2-alpine3.17 as go-builder
+FROM golang:1.21.1-alpine3.18 as go-builder
 
 ENV LANG en_US.UTF-8
 ENV TZ UTC
@@ -68,7 +70,7 @@ RUN go build \
     ls -lah
 
 
-FROM alpine:3.17
+FROM alpine:3.18.3
 
 ENV LANG en_US.UTF-8
 ENV TZ UTC
