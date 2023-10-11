@@ -1,8 +1,6 @@
 package puller
 
-import (
-	"github.com/zelenin/go-tdlib/client"
-)
+import "github.com/zelenin/go-tdlib/client"
 
 func ChatHistory(tdlibClient *client.Client, chatId int64) (chan *client.Message, chan error) {
 	messageChan := make(chan *client.Message, 10)

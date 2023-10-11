@@ -1,8 +1,6 @@
 package client
 
-import (
-	"sync"
-)
+import "sync"
 
 func newListenerStore() *listenerStore {
 	return &listenerStore{
