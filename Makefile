@@ -2,7 +2,7 @@
 
 REV := 986f1ab469b9bbff2b95850cc4485e16798a26b7
 
-all: schema-update generate-json generate-code
+all: schema-update generate-json generate-code format
 .PHONY: all
 
 schema-update:
@@ -23,5 +23,8 @@ generate-code:
 		-functionFile function.go \
 		-typeFile type.go \
 		-unmarshalerFile unmarshaler.go
-	goimports -local $(go list -m) -w ./..
 .PHONY: generate-code
+
+format:
+	goimports -local $$(go list -m) -w ./..
+.PHONY: format

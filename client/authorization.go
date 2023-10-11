@@ -1,6 +1,7 @@
 package client
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"time"
@@ -9,17 +10,21 @@ import (
 var ErrNotSupportedAuthorizationState = errors.New("not supported state")
 
 type AuthorizationStateHandler interface {
-	Handle(client *Client, state AuthorizationState) error
+	Handle(context.Context, *Client, AuthorizationState) error
 	Close()
 }
 
-func Authorize(client *Client, authorizationStateHandler AuthorizationStateHandler) error {
-	defer authorizationStateHandler.Close()
+func Authorize(
+	ctx context.Context,
+	client *Client,
+	handler AuthorizationStateHandler,
+) error {
+	defer handler.Close()
 
 	var authorizationError error
 
 	for {
-		state, err := client.GetAuthorizationState()
+		state, err := client.GetAuthorizationState(ctx)
 		if err != nil {
 			return err
 		}
@@ -34,15 +39,15 @@ func Authorize(client *Client, authorizationStateHandler AuthorizationStateHandl
 			return nil
 		}
 
-		err = authorizationStateHandler.Handle(client, state)
+		err = handler.Handle(ctx, client, state)
 		if err != nil {
 			authorizationError = err
-			client.Close()
+			_, _ = client.Close(ctx)
 		}
 	}
 }
 
-type clientAuthorizer struct {
+type AppAuthorizer struct {
 	TdlibParameters chan *SetTdlibParametersRequest
 	PhoneNumber     chan string
 	Code            chan string
@@ -50,8 +55,8 @@ type clientAuthorizer struct {
 	Password        chan string
 }
 
-func ClientAuthorizer() *clientAuthorizer {
-	return &clientAuthorizer{
+func NewAppAuthorizer() *AppAuthorizer {
+	return &AppAuthorizer{
 		TdlibParameters: make(chan *SetTdlibParametersRequest, 1),
 		PhoneNumber:     make(chan string, 1),
 		Code:            make(chan string, 1),
@@ -60,12 +65,16 @@ func ClientAuthorizer() *clientAuthorizer {
 	}
 }
 
-func (stateHandler *clientAuthorizer) Handle(client *Client, state AuthorizationState) error {
+func (stateHandler *AppAuthorizer) Handle(
+	ctx context.Context,
+	client *Client,
+	state AuthorizationState,
+) error {
 	stateHandler.State <- state
 
 	switch state.AuthorizationStateType() {
 	case TypeAuthorizationStateWaitTdlibParameters:
-		_, err := client.SetTdlibParameters(<-stateHandler.TdlibParameters)
+		_, err := client.SetTdlibParameters(ctx, <-stateHandler.TdlibParameters)
 		return err
 
 	case TypeAuthorizationStateWaitEmailAddress:
@@ -78,29 +87,32 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 		return ErrNotSupportedAuthorizationState
 
 	case TypeAuthorizationStateWaitPhoneNumber:
-		_, err := client.SetAuthenticationPhoneNumber(&SetAuthenticationPhoneNumberRequest{
+		req := &SetAuthenticationPhoneNumberRequest{
 			PhoneNumber: <-stateHandler.PhoneNumber,
 			Settings: &PhoneNumberAuthenticationSettings{
 				AllowFlashCall:       false,
 				IsCurrentPhoneNumber: false,
 				AllowSmsRetrieverApi: false,
 			},
-		})
+		}
+		_, err := client.SetAuthenticationPhoneNumber(ctx, req)
 		return err
 
 	case TypeAuthorizationStateWaitCode:
-		_, err := client.CheckAuthenticationCode(&CheckAuthenticationCodeRequest{
+		req := &CheckAuthenticationCodeRequest{
 			Code: <-stateHandler.Code,
-		})
+		}
+		_, err := client.CheckAuthenticationCode(ctx, req)
 		return err
 
 	case TypeAuthorizationStateWaitRegistration:
 		return ErrNotSupportedAuthorizationState
 
 	case TypeAuthorizationStateWaitPassword:
-		_, err := client.CheckAuthenticationPassword(&CheckAuthenticationPasswordRequest{
+		req := &CheckAuthenticationPasswordRequest{
 			Password: <-stateHandler.Password,
-		})
+		}
+		_, err := client.CheckAuthenticationPassword(ctx, req)
 		return err
 
 	case TypeAuthorizationStateReady:
@@ -119,7 +131,7 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 	return ErrNotSupportedAuthorizationState
 }
 
-func (stateHandler *clientAuthorizer) Close() {
+func (stateHandler *AppAuthorizer) Close() {
 	close(stateHandler.TdlibParameters)
 	close(stateHandler.PhoneNumber)
 	close(stateHandler.Code)
@@ -127,7 +139,7 @@ func (stateHandler *clientAuthorizer) Close() {
 	close(stateHandler.Password)
 }
 
-func CliInteractor(clientAuthorizer *clientAuthorizer) {
+func CliInteractor(clientAuthorizer *AppAuthorizer) {
 	for {
 		select {
 		case state, ok := <-clientAuthorizer.State:
@@ -137,24 +149,24 @@ func CliInteractor(clientAuthorizer *clientAuthorizer) {
 
 			switch state.AuthorizationStateType() {
 			case TypeAuthorizationStateWaitPhoneNumber:
-				fmt.Println("Enter phone number: ")
+				fmt.Println("Enter phone number:")
 				var phoneNumber string
-				fmt.Scanln(&phoneNumber)
+				_, _ = fmt.Scanln(&phoneNumber)
 
 				clientAuthorizer.PhoneNumber <- phoneNumber
 
 			case TypeAuthorizationStateWaitCode:
 				var code string
 
-				fmt.Println("Enter code: ")
-				fmt.Scanln(&code)
+				fmt.Println("Enter code:")
+				_, _ = fmt.Scanln(&code)
 
 				clientAuthorizer.Code <- code
 
 			case TypeAuthorizationStateWaitPassword:
-				fmt.Println("Enter password: ")
+				fmt.Println("Enter password:")
 				var password string
-				fmt.Scanln(&password)
+				_, _ = fmt.Scanln(&password)
 
 				clientAuthorizer.Password <- password
 
@@ -165,14 +177,14 @@ func CliInteractor(clientAuthorizer *clientAuthorizer) {
 	}
 }
 
-type botAuthorizer struct {
+type BotAuthorizer struct {
 	TdlibParameters chan *SetTdlibParametersRequest
 	Token           chan string
 	State           chan AuthorizationState
 }
 
-func BotAuthorizer(token string) *botAuthorizer {
-	botAuthorizer := &botAuthorizer{
+func NewBotAuthorizer(token string) *BotAuthorizer {
+	botAuthorizer := &BotAuthorizer{
 		TdlibParameters: make(chan *SetTdlibParametersRequest, 1),
 		Token:           make(chan string, 1),
 		State:           make(chan AuthorizationState, 10),
@@ -183,18 +195,23 @@ func BotAuthorizer(token string) *botAuthorizer {
 	return botAuthorizer
 }
 
-func (stateHandler *botAuthorizer) Handle(client *Client, state AuthorizationState) error {
+func (stateHandler *BotAuthorizer) Handle(
+	ctx context.Context,
+	client *Client,
+	state AuthorizationState,
+) error {
 	stateHandler.State <- state
 
 	switch state.AuthorizationStateType() {
 	case TypeAuthorizationStateWaitTdlibParameters:
-		_, err := client.SetTdlibParameters(<-stateHandler.TdlibParameters)
+		_, err := client.SetTdlibParameters(ctx, <-stateHandler.TdlibParameters)
 		return err
 
 	case TypeAuthorizationStateWaitPhoneNumber:
-		_, err := client.CheckAuthenticationBotToken(&CheckAuthenticationBotTokenRequest{
+		req := &CheckAuthenticationBotTokenRequest{
 			Token: <-stateHandler.Token,
-		})
+		}
+		_, err := client.CheckAuthenticationBotToken(ctx, req)
 		return err
 
 	case TypeAuthorizationStateWaitCode:
@@ -219,7 +236,7 @@ func (stateHandler *botAuthorizer) Handle(client *Client, state AuthorizationSta
 	return ErrNotSupportedAuthorizationState
 }
 
-func (stateHandler *botAuthorizer) Close() {
+func (stateHandler *BotAuthorizer) Close() {
 	close(stateHandler.TdlibParameters)
 	close(stateHandler.Token)
 	close(stateHandler.State)

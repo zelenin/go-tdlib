@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"log"
 	"os"
 	"os/signal"
@@ -8,26 +9,26 @@ import (
 	"strconv"
 	"syscall"
 
-	"github.com/zelenin/go-tdlib/client"
+	tdlib "github.com/zelenin/go-tdlib/client"
 )
 
 func main() {
-	authorizer := client.ClientAuthorizer()
-	go client.CliInteractor(authorizer)
+	ctx := context.Background()
+
+	auth := tdlib.NewAppAuthorizer()
+	go tdlib.CliInteractor(auth)
 
 	var (
 		apiIdRaw = os.Getenv("API_ID")
 		apiHash  = os.Getenv("API_HASH")
 	)
-
 	apiId64, err := strconv.ParseInt(apiIdRaw, 10, 32)
 	if err != nil {
 		log.Fatalf("strconv.Atoi error: %s", err)
 	}
-
 	apiId := int32(apiId64)
 
-	authorizer.TdlibParameters <- &client.SetTdlibParametersRequest{
+	auth.TdlibParameters <- &tdlib.SetTdlibParametersRequest{
 		UseTestDc:              false,
 		DatabaseDirectory:      filepath.Join(".tdlib", "database"),
 		FilesDirectory:         filepath.Join(".tdlib", "files"),
@@ -45,28 +46,28 @@ func main() {
 		IgnoreFileNames:        false,
 	}
 
-	_, err = client.SetLogVerbosityLevel(&client.SetLogVerbosityLevelRequest{
+	_, err = tdlib.SetLogVerbosityLevel(&tdlib.SetLogVerbosityLevelRequest{
 		NewVerbosityLevel: 1,
 	})
 	if err != nil {
 		log.Fatalf("SetLogVerbosityLevel error: %s", err)
 	}
 
-	tdlibClient, err := client.NewClient(authorizer)
-	if err != nil {
-		log.Fatalf("NewClient error: %s", err)
+	client := tdlib.NewClient()
+	if err := tdlib.Authorize(ctx, client, auth); err != nil {
+		log.Fatalf("Authorize error: %s", err)
 	}
 
-	optionValue, err := client.GetOption(&client.GetOptionRequest{
+	optionValue, err := tdlib.GetOption(&tdlib.GetOptionRequest{
 		Name: "version",
 	})
 	if err != nil {
 		log.Fatalf("GetOption error: %s", err)
 	}
 
-	log.Printf("TDLib version: %s", optionValue.(*client.OptionValueString).Value)
+	log.Printf("TDLib version: %s", optionValue.(*tdlib.OptionValueString).Value)
 
-	me, err := tdlibClient.GetMe()
+	me, err := client.GetMe(ctx)
 	if err != nil {
 		log.Fatalf("GetMe error: %s", err)
 	}
@@ -77,7 +78,7 @@ func main() {
 	signal.Notify(ch, os.Interrupt, syscall.SIGTERM)
 	go func() {
 		<-ch
-		tdlibClient.Stop()
+		client.Stop(ctx)
 		os.Exit(1)
 	}()
 }

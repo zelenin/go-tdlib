@@ -14,7 +14,6 @@ type Client struct {
 	listenerStore  *listenerStore
 	catchersStore  *sync.Map
 	updatesTimeout time.Duration
-	catchTimeout   time.Duration
 }
 
 type Option func(*Client)
@@ -25,25 +24,19 @@ func WithExtraGenerator(extraGenerator ExtraGenerator) Option {
 	}
 }
 
-func WithCatchTimeout(timeout time.Duration) Option {
+func WithProxy(ctx context.Context, req *AddProxyRequest) Option {
 	return func(client *Client) {
-		client.catchTimeout = timeout
-	}
-}
-
-func WithProxy(req *AddProxyRequest) Option {
-	return func(client *Client) {
-		client.AddProxy(req)
+		_, _ = client.AddProxy(ctx, req)
 	}
 }
 
 func WithLogVerbosity(req *SetLogVerbosityLevelRequest) Option {
 	return func(client *Client) {
-		client.SetLogVerbosityLevel(req)
+		_, _ = client.SetLogVerbosityLevel(req)
 	}
 }
 
-func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...Option) (*Client, error) {
+func NewClient(options ...Option) *Client {
 	client := &Client{
 		jsonClient:    NewJsonClient(),
 		responses:     make(chan *Response, 1000),
@@ -52,7 +45,6 @@ func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...O
 	}
 
 	client.extraGenerator = UuidV4Generator()
-	client.catchTimeout = 60 * time.Second
 
 	for _, option := range options {
 		option(client)
@@ -62,12 +54,7 @@ func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...O
 
 	go client.receiver()
 
-	err := Authorize(client, authorizationStateHandler)
-	if err != nil {
-		return nil, err
-	}
-
-	return client, nil
+	return client
 }
 
 func (client *Client) receiver() {
@@ -98,7 +85,7 @@ func (client *Client) receiver() {
 	}
 }
 
-func (client *Client) Send(req Request) (*Response, error) {
+func (client *Client) Send(ctx context.Context, req Request) (*Response, error) {
 	req.Extra = client.extraGenerator()
 
 	catcher := make(chan *Response, 1)
@@ -111,9 +98,6 @@ func (client *Client) Send(req Request) (*Response, error) {
 	}()
 
 	client.jsonClient.Send(req)
-
-	ctx, cancel := context.WithTimeout(context.Background(), client.catchTimeout)
-	defer cancel()
 
 	select {
 	case response := <-catcher:
@@ -134,6 +118,6 @@ func (client *Client) GetListener() *Listener {
 	return listener
 }
 
-func (client *Client) Stop() {
-	client.Destroy()
+func (client *Client) Stop(ctx context.Context) {
+	_, _ = client.Destroy(ctx)
 }
