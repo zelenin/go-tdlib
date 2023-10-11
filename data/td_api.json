@@ -2148,12 +2148,12 @@
                 {
                     "name": "can_send_photos",
                     "type": "Bool",
-                    "description": "True, if the user can send audio photos"
+                    "description": "True, if the user can send photos"
                 },
                 {
                     "name": "can_send_videos",
                     "type": "Bool",
-                    "description": "True, if the user can send audio videos"
+                    "description": "True, if the user can send videos"
                 },
                 {
                     "name": "can_send_video_notes",
@@ -2210,7 +2210,7 @@
                 {
                     "name": "can_manage_chat",
                     "type": "Bool",
-                    "description": "True, if the administrator can get chat event log, get chat statistics, get message statistics in channels, get channel members, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only"
+                    "description": "True, if the administrator can get chat event log, get chat boosts in channels, get channel members, report supergroup spam messages, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only"
                 },
                 {
                     "name": "can_change_info",
@@ -2220,7 +2220,7 @@
                 {
                     "name": "can_post_messages",
                     "type": "Bool",
-                    "description": "True, if the administrator can create channel posts; applicable to channels only"
+                    "description": "True, if the administrator can create channel posts or view channel statistics; applicable to channels only"
                 },
                 {
                     "name": "can_edit_messages",
@@ -2240,7 +2240,7 @@
                 {
                     "name": "can_restrict_members",
                     "type": "Bool",
-                    "description": "True, if the administrator can restrict, ban, or unban chat members; always true for channels"
+                    "description": "True, if the administrator can restrict, ban, or unban chat members or view supergroup statistics; always true for channels"
                 },
                 {
                     "name": "can_pin_messages",
@@ -2261,6 +2261,21 @@
                     "name": "can_manage_video_chats",
                     "type": "Bool",
                     "description": "True, if the administrator can manage video chats"
+                },
+                {
+                    "name": "can_post_stories",
+                    "type": "Bool",
+                    "description": "True, if the administrator can create new channel stories, or edit and delete posted stories; applicable to channels only"
+                },
+                {
+                    "name": "can_edit_stories",
+                    "type": "Bool",
+                    "description": "True, if the administrator can edit stories posted by other users, pin stories and access story archive; applicable to channels only"
+                },
+                {
+                    "name": "can_delete_stories",
+                    "type": "Bool",
+                    "description": "True, if the administrator can delete stories posted by other users; applicable to channels only"
                 },
                 {
                     "name": "is_anonymous",
@@ -3452,6 +3467,16 @@
                     "name": "is_fake",
                     "type": "Bool",
                     "description": "True, if many users reported this supergroup or channel as a fake account"
+                },
+                {
+                    "name": "has_active_stories",
+                    "type": "Bool",
+                    "description": "True, if the channel has non-expired stories available to the current user"
+                },
+                {
+                    "name": "has_unread_active_stories",
+                    "type": "Bool",
+                    "description": "True, if the channel has unread non-expired stories available to the current user"
                 }
             ]
         },
@@ -3549,6 +3574,11 @@
                     "name": "has_aggressive_anti_spam_enabled",
                     "type": "Bool",
                     "description": "True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available to chat administrators"
+                },
+                {
+                    "name": "has_pinned_stories",
+                    "type": "Bool",
+                    "description": "True, if the channel has pinned stories"
                 },
                 {
                     "name": "sticker_set_id",
@@ -3993,14 +4023,9 @@
             "class": "MessageSendingState",
             "properties": [
                 {
-                    "name": "error_code",
-                    "type": "int32",
-                    "description": "An error code; 0 if unknown"
-                },
-                {
-                    "name": "error_message",
-                    "type": "string",
-                    "description": "Error message"
+                    "name": "error",
+                    "type": "error",
+                    "description": "The cause of the message sending failure"
                 },
                 {
                     "name": "can_retry",
@@ -7528,6 +7553,11 @@
                     "description": "An HTTP URL with terms of service for recurring payments. If non-empty, the invoice payment will result in recurring payments and the user must accept the terms of service before allowed to pay"
                 },
                 {
+                    "name": "terms_of_service_url",
+                    "type": "string",
+                    "description": "An HTTP URL with terms of service for non-recurring payments. If non-empty, then the user must accept the terms of service before allowed to pay"
+                },
+                {
                     "name": "is_test",
                     "type": "Bool",
                     "description": "True, if the payment is a test payment"
@@ -10245,7 +10275,7 @@
                 {
                     "name": "media_timestamp",
                     "type": "int32",
-                    "description": "Timestamp from which a video/audio/video note/voice note playing must start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message"
+                    "description": "Timestamp from which a video/audio/video note/voice note/story playing must start, in seconds. The media can be in the content or the web page preview of the current message, or in the same places in the replied message"
                 }
             ]
         },
@@ -11539,7 +11569,7 @@
                 {
                     "name": "height_percentage",
                     "type": "double",
-                    "description": "The ordinate of the rectangle's center, as a percentage of the media height"
+                    "description": "The height of the rectangle, as a percentage of the media height"
                 },
                 {
                     "name": "rotation_angle",
@@ -11569,6 +11599,33 @@
                     "name": "venue",
                     "type": "venue",
                     "description": "Information about the venue"
+                }
+            ]
+        },
+        {
+            "name": "storyAreaTypeSuggestedReaction",
+            "description": "An area pointing to a suggested reaction. App needs to show a clickable reaction on the area and call setStoryReaction when the are is clicked",
+            "class": "StoryAreaType",
+            "properties": [
+                {
+                    "name": "reaction_type",
+                    "type": "ReactionType",
+                    "description": "Type of the reaction"
+                },
+                {
+                    "name": "total_count",
+                    "type": "int32",
+                    "description": "Number of times the reaction was added"
+                },
+                {
+                    "name": "is_dark",
+                    "type": "Bool",
+                    "description": "True, if reaction has a dark background"
+                },
+                {
+                    "name": "is_flipped",
+                    "type": "Bool",
+                    "description": "True, if reaction corner is flipped"
                 }
             ]
         },
@@ -11632,6 +11689,28 @@
                     "name": "venue_id",
                     "type": "string",
                     "description": "Identifier of the venue in the provider database"
+                }
+            ]
+        },
+        {
+            "name": "inputStoryAreaTypeSuggestedReaction",
+            "description": "An area pointing to a suggested reaction",
+            "class": "InputStoryAreaType",
+            "properties": [
+                {
+                    "name": "reaction_type",
+                    "type": "ReactionType",
+                    "description": "Type of the reaction"
+                },
+                {
+                    "name": "is_dark",
+                    "type": "Bool",
+                    "description": "True, if reaction has a dark background"
+                },
+                {
+                    "name": "is_flipped",
+                    "type": "Bool",
+                    "description": "True, if reaction corner is flipped"
                 }
             ]
         },
@@ -11818,9 +11897,14 @@
                     "description": "Number of times the story was viewed"
                 },
                 {
+                    "name": "forward_count",
+                    "type": "int32",
+                    "description": "Number of times the story was forwarded; 0 if none or unknown"
+                },
+                {
                     "name": "reaction_count",
                     "type": "int32",
-                    "description": "Number of reactions added to the story"
+                    "description": "Number of reactions added to the story; 0 if none or unknown"
                 },
                 {
                     "name": "recent_viewer_user_ids",
@@ -11875,6 +11959,16 @@
                     "description": "True, if the story is visible only for the current user"
                 },
                 {
+                    "name": "can_be_deleted",
+                    "type": "Bool",
+                    "description": "True, if the story can be deleted"
+                },
+                {
+                    "name": "can_be_edited",
+                    "type": "Bool",
+                    "description": "True, if the story can be edited"
+                },
+                {
                     "name": "can_be_forwarded",
                     "type": "Bool",
                     "description": "True, if the story can be forwarded as a message. Otherwise, screenshots and saving of the story content must be also forbidden"
@@ -11883,6 +11977,11 @@
                     "name": "can_be_replied",
                     "type": "Bool",
                     "description": "True, if the story can be replied in the chat with the story sender"
+                },
+                {
+                    "name": "can_toggle_is_pinned",
+                    "type": "Bool",
+                    "description": "True, if the story's is_pinned value can be changed"
                 },
                 {
                     "name": "can_get_viewers",
@@ -11994,6 +12093,87 @@
                     "name": "stories",
                     "type": "vector\u003cstoryInfo\u003e",
                     "description": "Basic information about the stories; use getStory to get full information about the stories. The stories are in a chronological order (i.e., in order of increasing story identifiers)"
+                }
+            ]
+        },
+        {
+            "name": "chatBoostStatus",
+            "description": "Describes current boost status of a chat",
+            "class": "ChatBoostStatus",
+            "properties": [
+                {
+                    "name": "is_boosted",
+                    "type": "Bool",
+                    "description": "True, if the current user has already boosted the chat"
+                },
+                {
+                    "name": "level",
+                    "type": "int32",
+                    "description": "Current boost level of the chat"
+                },
+                {
+                    "name": "boost_count",
+                    "type": "int32",
+                    "description": "The number of times the chat was boosted"
+                },
+                {
+                    "name": "current_level_boost_count",
+                    "type": "int32",
+                    "description": "The number of boosts added to reach the current level"
+                },
+                {
+                    "name": "next_level_boost_count",
+                    "type": "int32",
+                    "description": "The number of boosts needed to reach the next level; 0 if the next level isn't available"
+                },
+                {
+                    "name": "premium_member_count",
+                    "type": "int32",
+                    "description": "Approximate number of Telegram Premium subscribers joined the chat; always 0 if the current user isn't an administrator in the chat"
+                },
+                {
+                    "name": "premium_member_percentage",
+                    "type": "double",
+                    "description": "A percentage of Telegram Premium subscribers joined the chat; always 0 if the current user isn't an administrator in the chat"
+                }
+            ]
+        },
+        {
+            "name": "chatBoost",
+            "description": "Describes a boost of a chat",
+            "class": "ChatBoost",
+            "properties": [
+                {
+                    "name": "user_id",
+                    "type": "int53",
+                    "description": "Identifier of a user that boosted the chat"
+                },
+                {
+                    "name": "expiration_date",
+                    "type": "int32",
+                    "description": "Point in time (Unix timestamp) when the boost will automatically expire if the user will not prolongate their Telegram Premium subscription"
+                }
+            ]
+        },
+        {
+            "name": "foundChatBoosts",
+            "description": "Contains a list of boosts applied to a chat",
+            "class": "FoundChatBoosts",
+            "properties": [
+                {
+                    "name": "total_count",
+                    "type": "int32",
+                    "description": "Total number of boosts applied to the chat"
+                },
+                {
+                    "name": "boosts",
+                    "type": "vector\u003cchatBoost\u003e",
+                    "description": "List of boosts"
+                },
+                {
+                    "name": "next_offset",
+                    "type": "string",
+                    "description": "The offset for the next request. If empty, there are no more results"
                 }
             ]
         },
@@ -15235,6 +15415,12 @@
             "properties": []
         },
         {
+            "name": "premiumLimitTypeStorySuggestedReactionAreaCount",
+            "description": "The maximum number of suggested reaction areas on a story",
+            "class": "PremiumLimitType",
+            "properties": []
+        },
+        {
             "name": "premiumFeatureIncreasedLimits",
             "description": "Increased limits",
             "class": "PremiumFeature",
@@ -15331,8 +15517,14 @@
             "properties": []
         },
         {
+            "name": "premiumFeatureChatBoost",
+            "description": "The ability to boost chats",
+            "class": "PremiumFeature",
+            "properties": []
+        },
+        {
             "name": "premiumStoryFeaturePriorityOrder",
-            "description": "User stories are displayed before stories of non-premium contacts",
+            "description": "User stories are displayed before stories of non-premium contacts and channels",
             "class": "PremiumStoryFeature",
             "properties": []
         },
@@ -15950,6 +16142,12 @@
             "properties": []
         },
         {
+            "name": "canSendStoryResultBoostNeeded",
+            "description": "The channel chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat",
+            "class": "CanSendStoryResult",
+            "properties": []
+        },
+        {
             "name": "canSendStoryResultActiveStoryLimitExceeded",
             "description": "The limit for the number of active stories exceeded. The user can buy Telegram Premium, delete an active story, or wait for the oldest story to expire",
             "class": "CanSendStoryResult",
@@ -15976,6 +16174,54 @@
                     "name": "retry_after",
                     "type": "int32",
                     "description": "Time left before the user can send the next story"
+                }
+            ]
+        },
+        {
+            "name": "canBoostChatResultOk",
+            "description": "The chat can be boosted",
+            "class": "CanBoostChatResult",
+            "properties": [
+                {
+                    "name": "currently_boosted_chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the currently boosted chat from which boost will be removed; 0 if none"
+                }
+            ]
+        },
+        {
+            "name": "canBoostChatResultInvalidChat",
+            "description": "The chat can't be boosted",
+            "class": "CanBoostChatResult",
+            "properties": []
+        },
+        {
+            "name": "canBoostChatResultAlreadyBoosted",
+            "description": "The chat is already boosted by the user",
+            "class": "CanBoostChatResult",
+            "properties": []
+        },
+        {
+            "name": "canBoostChatResultPremiumNeeded",
+            "description": "The user must subscribe to Telegram Premium to be able to boost chats",
+            "class": "CanBoostChatResult",
+            "properties": []
+        },
+        {
+            "name": "canBoostChatResultPremiumSubscriptionNeeded",
+            "description": "The user must have Telegram Premium subscription instead of a gifted Telegram Premium",
+            "class": "CanBoostChatResult",
+            "properties": []
+        },
+        {
+            "name": "canBoostChatResultWaitNeeded",
+            "description": "The user must wait the specified time before the boost can be moved to another chat",
+            "class": "CanBoostChatResult",
+            "properties": [
+                {
+                    "name": "retry_after",
+                    "type": "int32",
+                    "description": "Time left before the user can boost another chat"
                 }
             ]
         },
@@ -17692,6 +17938,18 @@
             "properties": []
         },
         {
+            "name": "internalLinkTypeChatBoost",
+            "description": "The link is a link to boost a Telegram chat. Call getChatBoostLinkInfo with the given URL to process the link. If the chat is found, then call getChatBoostStatus and canBoostChat to get the current boost status and check whether the chat can be boosted. If the user wants to boost the chat and the chat can be boosted, then call boostChat",
+            "class": "InternalLinkType",
+            "properties": [
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "URL to be passed to getChatBoostLinkInfo"
+                }
+            ]
+        },
+        {
             "name": "internalLinkTypeChatFolderInvite",
             "description": "The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link",
             "class": "InternalLinkType",
@@ -18080,7 +18338,7 @@
         },
         {
             "name": "internalLinkTypeWebApp",
-            "description": "The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being a third-party apps instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then call getWebAppLinkUrl and open the returned URL as a Web App",
+            "description": "The link is a link to a Web App. Call searchPublicChat with the given bot username, check that the user is a bot, then call searchWebApp with the received bot and the given web_app_short_name. Process received foundWebApp by showing a confirmation dialog if needed. If the bot can be added to attachment or side menu, but isn't added yet, then show a disclaimer about Mini Apps being a third-party apps instead of the dialog and ask the user to accept their Terms of service. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. Then, call getWebAppLinkUrl and open the returned URL as a Web App",
             "class": "InternalLinkType",
             "properties": [
                 {
@@ -18145,12 +18403,46 @@
                 {
                     "name": "media_timestamp",
                     "type": "int32",
-                    "description": "Timestamp from which the video/audio/video note/voice note playing must start, in seconds; 0 if not specified. The media can be in the message content or in its web page preview"
+                    "description": "Timestamp from which the video/audio/video note/voice note/story playing must start, in seconds; 0 if not specified. The media can be in the message content or in its web page preview"
                 },
                 {
                     "name": "for_album",
                     "type": "Bool",
                     "description": "True, if the whole media album to which the message belongs is linked"
+                }
+            ]
+        },
+        {
+            "name": "chatBoostLink",
+            "description": "Contains an HTTPS link to boost a chat",
+            "class": "ChatBoostLink",
+            "properties": [
+                {
+                    "name": "link",
+                    "type": "string",
+                    "description": "The link"
+                },
+                {
+                    "name": "is_public",
+                    "type": "Bool",
+                    "description": "True, if the link will work for non-members of the chat"
+                }
+            ]
+        },
+        {
+            "name": "chatBoostLinkInfo",
+            "description": "Contains information about a link to boost a chat",
+            "class": "ChatBoostLinkInfo",
+            "properties": [
+                {
+                    "name": "is_public",
+                    "type": "Bool",
+                    "description": "True, if the link will work for non-members of the chat"
+                },
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat to which the link points; 0 if the chat isn't found"
                 }
             ]
         },
@@ -19403,7 +19695,7 @@
                 {
                     "name": "enabled_notifications_percentage",
                     "type": "double",
-                    "description": "A percentage of users with enabled notifications for the chat"
+                    "description": "A percentage of users with enabled notifications for the chat; 0-100"
                 },
                 {
                     "name": "member_count_graph",
@@ -19659,14 +19951,9 @@
                     "description": "The previous temporary message identifier"
                 },
                 {
-                    "name": "error_code",
-                    "type": "int32",
-                    "description": "An error code"
-                },
-                {
-                    "name": "error_message",
-                    "type": "string",
-                    "description": "Error message"
+                    "name": "error",
+                    "type": "error",
+                    "description": "The cause of the message sending failure"
                 }
             ]
         },
@@ -20989,18 +21276,13 @@
                 },
                 {
                     "name": "error",
+                    "type": "error",
+                    "description": "The cause of the story sending failure"
+                },
+                {
+                    "name": "error_type",
                     "type": "CanSendStoryResult",
-                    "description": "The cause of the failure; may be null if unknown"
-                },
-                {
-                    "name": "error_code",
-                    "type": "int32",
-                    "description": "An error code"
-                },
-                {
-                    "name": "error_message",
-                    "type": "string",
-                    "description": "Error message"
+                    "description": "Type of the error; may be null if unknown"
                 }
             ]
         },
@@ -22292,7 +22574,11 @@
         },
         {
             "name": "CanSendStoryResult",
-            "description": "Represents result of checking whether the current user can send a story"
+            "description": "Represents result of checking whether the current user can send a story in the specific chat"
+        },
+        {
+            "name": "CanBoostChatResult",
+            "description": "Represents result of checking whether the current user can boost the specific chat"
         },
         {
             "name": "CanTransferOwnershipResult",
@@ -24083,35 +24369,6 @@
             "type": 2
         },
         {
-            "name": "getMessagePublicForwards",
-            "description": "Returns forwarded copies of a channel message to different public channels. For optimal performance, the number of returned messages is chosen by TDLib",
-            "class": "FoundMessages",
-            "properties": [
-                {
-                    "name": "chat_id",
-                    "type": "int53",
-                    "description": "Chat identifier of the message"
-                },
-                {
-                    "name": "message_id",
-                    "type": "int53",
-                    "description": "Message identifier"
-                },
-                {
-                    "name": "offset",
-                    "type": "string",
-                    "description": "Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results"
-                },
-                {
-                    "name": "limit",
-                    "type": "int32",
-                    "description": "The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit"
-                }
-            ],
-            "is_synchronous": false,
-            "type": 2
-        },
-        {
             "name": "getChatSponsoredMessages",
             "description": "Returns sponsored messages to be shown in a chat; for channel chats only",
             "class": "SponsoredMessages",
@@ -24200,7 +24457,7 @@
                 {
                     "name": "media_timestamp",
                     "type": "int32",
-                    "description": "If not 0, timestamp from which the video/audio/video note/voice note playing must start, in seconds. The media can be in the message content or in its web page preview"
+                    "description": "If not 0, timestamp from which the video/audio/video note/voice note/story playing must start, in seconds. The media can be in the message content or in its web page preview"
                 },
                 {
                     "name": "for_album",
@@ -25658,7 +25915,7 @@
         },
         {
             "name": "stopPoll",
-            "description": "Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag set",
+            "description": "Stops a poll. A poll in a message can be stopped when the message has can_be_edited flag is set",
             "class": "Ok",
             "properties": [
                 {
@@ -26701,7 +26958,7 @@
                 {
                     "name": "for_import",
                     "type": "Bool",
-                    "description": "Pass true to create a supergroup for importing messages using importMessage"
+                    "description": "Pass true to create a supergroup for importing messages using importMessages"
                 }
             ],
             "is_synchronous": false,
@@ -27953,18 +28210,37 @@
             "type": 2
         },
         {
-            "name": "canSendStory",
-            "description": "Checks whether the current user can send a story",
-            "class": "CanSendStoryResult",
+            "name": "getChatsToSendStories",
+            "description": "Returns channel chats in which the current user has the right to post stories. The chats must be rechecked with canSendStory before actually trying to post a story there",
+            "class": "Chats",
             "properties": [],
             "is_synchronous": false,
             "type": 2
         },
         {
+            "name": "canSendStory",
+            "description": "Checks whether the current user can send a story on behalf of a chat; requires can_post_stories rights for channel chats",
+            "class": "CanSendStoryResult",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
             "name": "sendStory",
-            "description": "Sends a new story. Returns a temporary story",
+            "description": "Sends a new story to a chat; requires can_post_stories rights for channel chats. Returns a temporary story",
             "class": "Story",
             "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat that will post the story"
+                },
                 {
                     "name": "content",
                     "type": "InputStoryContent",
@@ -28006,9 +28282,14 @@
         },
         {
             "name": "editStory",
-            "description": "Changes content and caption of a previously sent story",
+            "description": "Changes content and caption of a story. Can be called only if story.can_be_edited == true",
             "class": "Ok",
             "properties": [
+                {
+                    "name": "story_sender_chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat that posted the story"
+                },
                 {
                     "name": "story_id",
                     "type": "int32",
@@ -28035,9 +28316,14 @@
         },
         {
             "name": "setStoryPrivacySettings",
-            "description": "Changes privacy settings of a previously sent story",
+            "description": "Changes privacy settings of a story. Can be called only if story.can_be_edited == true",
             "class": "Ok",
             "properties": [
+                {
+                    "name": "story_sender_chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat that posted the story"
+                },
                 {
                     "name": "story_id",
                     "type": "int32",
@@ -28054,9 +28340,14 @@
         },
         {
             "name": "toggleStoryIsPinned",
-            "description": "Toggles whether a story is accessible after expiration",
+            "description": "Toggles whether a story is accessible after expiration. Can be called only if story.can_toggle_is_pinned == true",
             "class": "Ok",
             "properties": [
+                {
+                    "name": "story_sender_chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat that posted the story"
+                },
                 {
                     "name": "story_id",
                     "type": "int32",
@@ -28073,9 +28364,14 @@
         },
         {
             "name": "deleteStory",
-            "description": "Deletes a previously sent story",
+            "description": "Deletes a previously sent story. Can be called only if story.can_be_deleted == true",
             "class": "Ok",
             "properties": [
+                {
+                    "name": "story_sender_chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat that posted the story"
+                },
                 {
                     "name": "story_id",
                     "type": "int32",
@@ -28165,10 +28461,15 @@
             "type": 2
         },
         {
-            "name": "getArchivedStories",
-            "description": "Returns the list of all stories of the current user. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib",
+            "name": "getChatArchivedStories",
+            "description": "Returns the list of all stories posted by the given chat; requires can_edit_stories rights for channel chats. The stories are returned in a reverse chronological order (i.e., in order of decreasing story_id). For optimal performance, the number of returned stories is chosen by TDLib",
             "class": "Stories",
             "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier"
+                },
                 {
                     "name": "from_story_id",
                     "type": "int32",
@@ -28266,7 +28567,7 @@
         },
         {
             "name": "getStoryViewers",
-            "description": "Returns viewers of a story. The method can be called if story.can_get_viewers == true",
+            "description": "Returns viewers of a story. The method can be called only for stories posted on behalf of the current user",
             "class": "StoryViewers",
             "properties": [
                 {
@@ -28339,6 +28640,100 @@
             "properties": [],
             "is_synchronous": false,
             "type": 1
+        },
+        {
+            "name": "getChatBoostStatus",
+            "description": "Returns the current boost status for a channel chat",
+            "class": "ChatBoostStatus",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the channel chat"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "canBoostChat",
+            "description": "Checks whether the current user can boost a chat",
+            "class": "CanBoostChatResult",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "boostChat",
+            "description": "Boosts a chat",
+            "class": "Ok",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "getChatBoostLink",
+            "description": "Returns an HTTPS link to boost the specified channel chat",
+            "class": "ChatBoostLink",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
+            "name": "getChatBoostLinkInfo",
+            "description": "Returns information about a link to boost a chat. Can be called for any internal link of the type internalLinkTypeChatBoost",
+            "class": "ChatBoostLinkInfo",
+            "properties": [
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "The link to boost a chat"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 1
+        },
+        {
+            "name": "getChatBoosts",
+            "description": "Returns list of boosts applied to a chat. The user must be an administrator in the channel chat to get the list of boosts",
+            "class": "FoundChatBoosts",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Identifier of the chat"
+                },
+                {
+                    "name": "offset",
+                    "type": "string",
+                    "description": "Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results"
+                },
+                {
+                    "name": "limit",
+                    "type": "int32",
+                    "description": "The maximum number of boosts to be returned; up to 100. For optimal performance, the number of returned boosts can be smaller than the specified limit"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
         },
         {
             "name": "getAttachmentMenuBot",
@@ -29631,7 +30026,7 @@
         },
         {
             "name": "inviteGroupCallParticipants",
-            "description": "Invites users to an active group call. Sends a service message of type messageInviteToGroupCall for video chats",
+            "description": "Invites users to an active group call. Sends a service message of type messageInviteVideoChatParticipants for video chats",
             "class": "Ok",
             "properties": [
                 {
@@ -31918,7 +32313,7 @@
         },
         {
             "name": "getPaymentForm",
-            "description": "Returns an invoice payment form. This method must be called when the user presses inlineKeyboardButtonBuy",
+            "description": "Returns an invoice payment form. This method must be called when the user presses inline button of the type inlineKeyboardButtonTypeBuy",
             "class": "PaymentForm",
             "properties": [
                 {
@@ -32621,6 +33016,35 @@
                     "name": "is_dark",
                     "type": "Bool",
                     "description": "Pass true if a dark theme is used by the application"
+                }
+            ],
+            "is_synchronous": false,
+            "type": 2
+        },
+        {
+            "name": "getMessagePublicForwards",
+            "description": "Returns forwarded copies of a channel message to different public channels. Can be used only if message.can_get_statistics == true. For optimal performance, the number of returned messages is chosen by TDLib",
+            "class": "FoundMessages",
+            "properties": [
+                {
+                    "name": "chat_id",
+                    "type": "int53",
+                    "description": "Chat identifier of the message"
+                },
+                {
+                    "name": "message_id",
+                    "type": "int53",
+                    "description": "Message identifier"
+                },
+                {
+                    "name": "offset",
+                    "type": "string",
+                    "description": "Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results"
+                },
+                {
+                    "name": "limit",
+                    "type": "int32",
+                    "description": "The maximum number of messages to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned messages is chosen by TDLib and can be smaller than the specified limit"
                 }
             ],
             "is_synchronous": false,

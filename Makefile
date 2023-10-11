@@ -1,19 +1,27 @@
-TAG := daf480138d482e7970f6d7a681d778a98f11fdd2
+.DEFAULT_GOAL = all
+
+REV := 986f1ab469b9bbff2b95850cc4485e16798a26b7
+
+all: schema-update generate-json generate-code
+.PHONY: all
 
 schema-update:
-	curl https://raw.githubusercontent.com/tdlib/td/${TAG}/td/generate/scheme/td_api.tl 2>/dev/null > ./data/td_api.tl
+	curl -sSf https://raw.githubusercontent.com/tdlib/td/${REV}/td/generate/scheme/td_api.tl > ./data/td_api.tl
+.PHONY: schema-update
 
 generate-json:
 	go run ./cmd/generate-json.go \
-		-version "${TAG}" \
-		-output "./data/td_api.json"
+		-version ${REV} \
+		-output ./data/td_api.json
+.PHONY: generate-json
 
 generate-code:
 	go run ./cmd/generate-code.go \
-		-version "${TAG}" \
-		-outputDir "./client" \
+		-version ${REV} \
+		-outputDir ./client \
 		-package client \
 		-functionFile function.go \
 		-typeFile type.go \
 		-unmarshalerFile unmarshaler.go
-	go fmt ./...
+	goimports -local $(go list -m) -w ./..
+.PHONY: generate-code
