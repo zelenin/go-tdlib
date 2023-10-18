@@ -2,7 +2,6 @@ package client
 
 import (
 	"errors"
-	"fmt"
 	"time"
 )
 
@@ -127,7 +126,7 @@ func (stateHandler *clientAuthorizer) Close() {
 	close(stateHandler.Password)
 }
 
-func SemiInteractiveCredentialsProvider(clientAuthorizer *clientAuthorizer, phoneNum string, password string) {
+func NonInteractiveCredentialsProvider(clientAuthorizer *clientAuthorizer, phoneNum string, password string, chCode chan string) {
 	for {
 		select {
 		case state, ok := <-clientAuthorizer.State:
@@ -138,10 +137,7 @@ func SemiInteractiveCredentialsProvider(clientAuthorizer *clientAuthorizer, phon
 			case TypeAuthorizationStateWaitPhoneNumber:
 				clientAuthorizer.PhoneNumber <- phoneNum
 			case TypeAuthorizationStateWaitCode:
-				var code string
-				fmt.Println("Enter code: ")
-				fmt.Scanln(&code)
-				clientAuthorizer.Code <- code
+				clientAuthorizer.Code <- <-chCode
 			case TypeAuthorizationStateWaitPassword:
 				clientAuthorizer.Password <- password
 			case TypeAuthorizationStateReady:
