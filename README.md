@@ -10,9 +10,10 @@ Use [TDLib build instructions](https://tdlib.github.io/td/build.html) with check
 
 ### Windows
 
-Build with environment variables:
+Build with environment variables (use full paths):
 
 ```
+CGO_ENABLED=1
 CGO_CFLAGS=-IC:/path/to/tdlib/build/tdlib/include
 CGO_LDFLAGS=-LC:/path/to/tdlib/build/tdlib/bin -ltdjson
 ```
@@ -20,8 +21,9 @@ CGO_LDFLAGS=-LC:/path/to/tdlib/build/tdlib/bin -ltdjson
 Example for PowerShell:
 
 ```powershell
-$env:CGO_CFLAGS="-IC:/td/tdlib/include"; $env:CGO_LDFLAGS="-LC:/td/tdlib/bin -ltdjson"; go build -trimpath -ldflags="-s -w" -o demo.exe .\cmd\demo.go
+$env:CGO_ENABLED=1; $env:CGO_CFLAGS="-IC:/td/tdlib/include"; $env:CGO_LDFLAGS="-LC:/td/tdlib/bin -ltdjson"; go build -trimpath -ldflags="-s -w" -o demo.exe .\cmd\demo.go
 ```
+To run, put the .dll from C:/td/tdlib/bin to the directory with the compiled .exe.
 
 ## Usage
 
