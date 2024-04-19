@@ -19,6 +19,7 @@ const (
 	ClassStickerFullType                        = "StickerFullType"
 	ClassPollType                               = "PollType"
 	ClassUserType                               = "UserType"
+	ClassBusinessAwayMessageSchedule            = "BusinessAwayMessageSchedule"
 	ClassChatPhotoStickerType                   = "ChatPhotoStickerType"
 	ClassInputChatPhoto                         = "InputChatPhoto"
 	ClassPremiumGiveawayParticipantStatus       = "PremiumGiveawayParticipantStatus"
@@ -29,6 +30,7 @@ const (
 	ClassInviteLinkChatType                     = "InviteLinkChatType"
 	ClassSecretChatState                        = "SecretChatState"
 	ClassMessageSender                          = "MessageSender"
+	ClassMessageReadDate                        = "MessageReadDate"
 	ClassMessageOrigin                          = "MessageOrigin"
 	ClassReactionType                           = "ReactionType"
 	ClassMessageSendingState                    = "MessageSendingState"
@@ -36,6 +38,7 @@ const (
 	ClassInputMessageReplyTo                    = "InputMessageReplyTo"
 	ClassMessageSource                          = "MessageSource"
 	ClassMessageSponsorType                     = "MessageSponsorType"
+	ClassReportChatSponsoredMessageResult       = "ReportChatSponsoredMessageResult"
 	ClassNotificationSettingsScope              = "NotificationSettingsScope"
 	ClassChatType                               = "ChatType"
 	ClassChatList                               = "ChatList"
@@ -47,10 +50,12 @@ const (
 	ClassInlineKeyboardButtonType               = "InlineKeyboardButtonType"
 	ClassReplyMarkup                            = "ReplyMarkup"
 	ClassLoginUrlInfo                           = "LoginUrlInfo"
+	ClassSavedMessagesTopicType                 = "SavedMessagesTopicType"
 	ClassRichText                               = "RichText"
 	ClassPageBlockHorizontalAlignment           = "PageBlockHorizontalAlignment"
 	ClassPageBlockVerticalAlignment             = "PageBlockVerticalAlignment"
 	ClassPageBlock                              = "PageBlock"
+	ClassCollectibleItemType                    = "CollectibleItemType"
 	ClassInputCredentials                       = "InputCredentials"
 	ClassPaymentProvider                        = "PaymentProvider"
 	ClassInputInvoice                           = "InputInvoice"
@@ -75,7 +80,8 @@ const (
 	ClassInputStoryContent                      = "InputStoryContent"
 	ClassStoryList                              = "StoryList"
 	ClassStoryOrigin                            = "StoryOrigin"
-	ClassStoryPublicForward                     = "StoryPublicForward"
+	ClassStoryInteractionType                   = "StoryInteractionType"
+	ClassPublicForward                          = "PublicForward"
 	ClassChatBoostSource                        = "ChatBoostSource"
 	ClassCallDiscardReason                      = "CallDiscardReason"
 	ClassCallServerType                         = "CallServerType"
@@ -83,6 +89,7 @@ const (
 	ClassGroupCallVideoQuality                  = "GroupCallVideoQuality"
 	ClassCallProblem                            = "CallProblem"
 	ClassFirebaseAuthenticationSettings         = "FirebaseAuthenticationSettings"
+	ClassReactionUnavailabilityReason           = "ReactionUnavailabilityReason"
 	ClassDiceStickers                           = "DiceStickers"
 	ClassSpeechRecognitionResult                = "SpeechRecognitionResult"
 	ClassBotWriteAccessAllowReason              = "BotWriteAccessAllowReason"
@@ -94,6 +101,7 @@ const (
 	ClassLanguagePackStringValue                = "LanguagePackStringValue"
 	ClassPremiumLimitType                       = "PremiumLimitType"
 	ClassPremiumFeature                         = "PremiumFeature"
+	ClassBusinessFeature                        = "BusinessFeature"
 	ClassPremiumStoryFeature                    = "PremiumStoryFeature"
 	ClassPremiumSource                          = "PremiumSource"
 	ClassStorePaymentPurpose                    = "StorePaymentPurpose"
@@ -116,6 +124,7 @@ const (
 	ClassStoryPrivacySettings                   = "StoryPrivacySettings"
 	ClassUserPrivacySettingRule                 = "UserPrivacySettingRule"
 	ClassUserPrivacySetting                     = "UserPrivacySetting"
+	ClassCanSendMessageToUserResult             = "CanSendMessageToUserResult"
 	ClassSessionType                            = "SessionType"
 	ClassReportReason                           = "ReportReason"
 	ClassTargetChat                             = "TargetChat"
@@ -182,6 +191,18 @@ const (
 	ClassBotCommands                            = "BotCommands"
 	ClassBotMenuButton                          = "BotMenuButton"
 	ClassChatLocation                           = "ChatLocation"
+	ClassBirthdate                              = "Birthdate"
+	ClassCloseBirthdayUser                      = "CloseBirthdayUser"
+	ClassBusinessLocation                       = "BusinessLocation"
+	ClassBusinessRecipients                     = "BusinessRecipients"
+	ClassBusinessAwayMessageSettings            = "BusinessAwayMessageSettings"
+	ClassBusinessGreetingMessageSettings        = "BusinessGreetingMessageSettings"
+	ClassBusinessConnectedBot                   = "BusinessConnectedBot"
+	ClassBusinessIntro                          = "BusinessIntro"
+	ClassInputBusinessIntro                     = "InputBusinessIntro"
+	ClassBusinessOpeningHoursInterval           = "BusinessOpeningHoursInterval"
+	ClassBusinessOpeningHours                   = "BusinessOpeningHours"
+	ClassBusinessInfo                           = "BusinessInfo"
 	ClassChatPhotoSticker                       = "ChatPhotoSticker"
 	ClassAnimatedChatPhoto                      = "AnimatedChatPhoto"
 	ClassChatPhoto                              = "ChatPhoto"
@@ -227,10 +248,12 @@ const (
 	ClassChatMessageSenders                     = "ChatMessageSenders"
 	ClassMessageViewer                          = "MessageViewer"
 	ClassMessageViewers                         = "MessageViewers"
+	ClassForwardSource                          = "ForwardSource"
 	ClassMessageForwardInfo                     = "MessageForwardInfo"
 	ClassMessageImportInfo                      = "MessageImportInfo"
 	ClassMessageReplyInfo                       = "MessageReplyInfo"
 	ClassMessageReaction                        = "MessageReaction"
+	ClassMessageReactions                       = "MessageReactions"
 	ClassMessageInteractionInfo                 = "MessageInteractionInfo"
 	ClassUnreadReaction                         = "UnreadReaction"
 	ClassTextQuote                              = "TextQuote"
@@ -243,9 +266,12 @@ const (
 	ClassMessagePositions                       = "MessagePositions"
 	ClassMessageCalendarDay                     = "MessageCalendarDay"
 	ClassMessageCalendar                        = "MessageCalendar"
+	ClassBusinessMessage                        = "BusinessMessage"
+	ClassBusinessMessages                       = "BusinessMessages"
 	ClassMessageSponsor                         = "MessageSponsor"
 	ClassSponsoredMessage                       = "SponsoredMessage"
 	ClassSponsoredMessages                      = "SponsoredMessages"
+	ClassReportChatSponsoredMessageOption       = "ReportChatSponsoredMessageOption"
 	ClassFileDownload                           = "FileDownload"
 	ClassDownloadedFileCounts                   = "DownloadedFileCounts"
 	ClassFoundFileDownloads                     = "FoundFileDownloads"
@@ -263,6 +289,8 @@ const (
 	ClassArchiveChatListSettings                = "ArchiveChatListSettings"
 	ClassChatLists                              = "ChatLists"
 	ClassChatPosition                           = "ChatPosition"
+	ClassSavedMessagesTag                       = "SavedMessagesTag"
+	ClassSavedMessagesTags                      = "SavedMessagesTags"
 	ClassVideoChat                              = "VideoChat"
 	ClassChat                                   = "Chat"
 	ClassChats                                  = "Chats"
@@ -273,11 +301,14 @@ const (
 	ClassFoundWebApp                            = "FoundWebApp"
 	ClassWebAppInfo                             = "WebAppInfo"
 	ClassMessageThreadInfo                      = "MessageThreadInfo"
+	ClassSavedMessagesTopic                     = "SavedMessagesTopic"
 	ClassForumTopicIcon                         = "ForumTopicIcon"
 	ClassForumTopicInfo                         = "ForumTopicInfo"
 	ClassForumTopic                             = "ForumTopic"
 	ClassForumTopics                            = "ForumTopics"
 	ClassLinkPreviewOptions                     = "LinkPreviewOptions"
+	ClassSharedUser                             = "SharedUser"
+	ClassSharedChat                             = "SharedChat"
 	ClassPageBlockCaption                       = "PageBlockCaption"
 	ClassPageBlockListItem                      = "PageBlockListItem"
 	ClassPageBlockTableCell                     = "PageBlockTableCell"
@@ -287,6 +318,7 @@ const (
 	ClassCountryInfo                            = "CountryInfo"
 	ClassCountries                              = "Countries"
 	ClassPhoneNumberInfo                        = "PhoneNumberInfo"
+	ClassCollectibleItemInfo                    = "CollectibleItemInfo"
 	ClassBankCardActionOpenUrl                  = "BankCardActionOpenUrl"
 	ClassBankCardInfo                           = "BankCardInfo"
 	ClassAddress                                = "Address"
@@ -321,6 +353,8 @@ const (
 	ClassInputThumbnail                         = "InputThumbnail"
 	ClassMessageSendOptions                     = "MessageSendOptions"
 	ClassMessageCopyOptions                     = "MessageCopyOptions"
+	ClassEmojiKeyword                           = "EmojiKeyword"
+	ClassEmojiKeywords                          = "EmojiKeywords"
 	ClassStickers                               = "Stickers"
 	ClassEmojis                                 = "Emojis"
 	ClassStickerSet                             = "StickerSet"
@@ -329,8 +363,6 @@ const (
 	ClassTrendingStickerSets                    = "TrendingStickerSets"
 	ClassEmojiCategory                          = "EmojiCategory"
 	ClassEmojiCategories                        = "EmojiCategories"
-	ClassStoryViewer                            = "StoryViewer"
-	ClassStoryViewers                           = "StoryViewers"
 	ClassStoryAreaPosition                      = "StoryAreaPosition"
 	ClassStoryArea                              = "StoryArea"
 	ClassInputStoryArea                         = "InputStoryArea"
@@ -343,7 +375,13 @@ const (
 	ClassStoryFullId                            = "StoryFullId"
 	ClassStoryInfo                              = "StoryInfo"
 	ClassChatActiveStories                      = "ChatActiveStories"
-	ClassStoryPublicForwards                    = "StoryPublicForwards"
+	ClassStoryInteraction                       = "StoryInteraction"
+	ClassStoryInteractions                      = "StoryInteractions"
+	ClassQuickReplyMessage                      = "QuickReplyMessage"
+	ClassQuickReplyShortcut                     = "QuickReplyShortcut"
+	ClassPublicForwards                         = "PublicForwards"
+	ClassChatBoostLevelFeatures                 = "ChatBoostLevelFeatures"
+	ClassChatBoostFeatures                      = "ChatBoostFeatures"
 	ClassPrepaidPremiumGiveaway                 = "PrepaidPremiumGiveaway"
 	ClassChatBoostStatus                        = "ChatBoostStatus"
 	ClassChatBoost                              = "ChatBoost"
@@ -371,6 +409,7 @@ const (
 	ClassEmojiReaction                          = "EmojiReaction"
 	ClassAnimations                             = "Animations"
 	ClassImportedContacts                       = "ImportedContacts"
+	ClassBusinessConnection                     = "BusinessConnection"
 	ClassAttachmentMenuBotColor                 = "AttachmentMenuBotColor"
 	ClassAttachmentMenuBot                      = "AttachmentMenuBot"
 	ClassSentWebAppMessage                      = "SentWebAppMessage"
@@ -391,11 +430,15 @@ const (
 	ClassLocalizationTargetInfo                 = "LocalizationTargetInfo"
 	ClassPremiumLimit                           = "PremiumLimit"
 	ClassPremiumFeatures                        = "PremiumFeatures"
+	ClassBusinessFeatures                       = "BusinessFeatures"
 	ClassPremiumFeaturePromotionAnimation       = "PremiumFeaturePromotionAnimation"
+	ClassBusinessFeaturePromotionAnimation      = "BusinessFeaturePromotionAnimation"
 	ClassPremiumState                           = "PremiumState"
 	ClassPushReceiverId                         = "PushReceiverId"
 	ClassThemeSettings                          = "ThemeSettings"
 	ClassChatTheme                              = "ChatTheme"
+	ClassTimeZone                               = "TimeZone"
+	ClassTimeZones                              = "TimeZones"
 	ClassHashtags                               = "Hashtags"
 	ClassNotificationSound                      = "NotificationSound"
 	ClassNotificationSounds                     = "NotificationSounds"
@@ -403,6 +446,8 @@ const (
 	ClassNotificationGroup                      = "NotificationGroup"
 	ClassJsonObjectMember                       = "JsonObjectMember"
 	ClassUserPrivacySettingRules                = "UserPrivacySettingRules"
+	ClassReadDatePrivacySettings                = "ReadDatePrivacySettings"
+	ClassNewChatPrivacySettings                 = "NewChatPrivacySettings"
 	ClassAccountTtl                             = "AccountTtl"
 	ClassMessageAutoDeleteTime                  = "MessageAutoDeleteTime"
 	ClassSession                                = "Session"
@@ -560,6 +605,21 @@ const (
 	TypeBotCommands                                             = "botCommands"
 	TypeBotMenuButton                                           = "botMenuButton"
 	TypeChatLocation                                            = "chatLocation"
+	TypeBirthdate                                               = "birthdate"
+	TypeCloseBirthdayUser                                       = "closeBirthdayUser"
+	TypeBusinessAwayMessageScheduleAlways                       = "businessAwayMessageScheduleAlways"
+	TypeBusinessAwayMessageScheduleOutsideOfOpeningHours        = "businessAwayMessageScheduleOutsideOfOpeningHours"
+	TypeBusinessAwayMessageScheduleCustom                       = "businessAwayMessageScheduleCustom"
+	TypeBusinessLocation                                        = "businessLocation"
+	TypeBusinessRecipients                                      = "businessRecipients"
+	TypeBusinessAwayMessageSettings                             = "businessAwayMessageSettings"
+	TypeBusinessGreetingMessageSettings                         = "businessGreetingMessageSettings"
+	TypeBusinessConnectedBot                                    = "businessConnectedBot"
+	TypeBusinessIntro                                           = "businessIntro"
+	TypeInputBusinessIntro                                      = "inputBusinessIntro"
+	TypeBusinessOpeningHoursInterval                            = "businessOpeningHoursInterval"
+	TypeBusinessOpeningHours                                    = "businessOpeningHours"
+	TypeBusinessInfo                                            = "businessInfo"
 	TypeChatPhotoStickerTypeRegularOrMask                       = "chatPhotoStickerTypeRegularOrMask"
 	TypeChatPhotoStickerTypeCustomEmoji                         = "chatPhotoStickerTypeCustomEmoji"
 	TypeChatPhotoSticker                                        = "chatPhotoSticker"
@@ -645,18 +705,25 @@ const (
 	TypeMessageSenders                                          = "messageSenders"
 	TypeChatMessageSender                                       = "chatMessageSender"
 	TypeChatMessageSenders                                      = "chatMessageSenders"
+	TypeMessageReadDateRead                                     = "messageReadDateRead"
+	TypeMessageReadDateUnread                                   = "messageReadDateUnread"
+	TypeMessageReadDateTooOld                                   = "messageReadDateTooOld"
+	TypeMessageReadDateUserPrivacyRestricted                    = "messageReadDateUserPrivacyRestricted"
+	TypeMessageReadDateMyPrivacyRestricted                      = "messageReadDateMyPrivacyRestricted"
 	TypeMessageViewer                                           = "messageViewer"
 	TypeMessageViewers                                          = "messageViewers"
 	TypeMessageOriginUser                                       = "messageOriginUser"
 	TypeMessageOriginHiddenUser                                 = "messageOriginHiddenUser"
 	TypeMessageOriginChat                                       = "messageOriginChat"
 	TypeMessageOriginChannel                                    = "messageOriginChannel"
+	TypeForwardSource                                           = "forwardSource"
 	TypeReactionTypeEmoji                                       = "reactionTypeEmoji"
 	TypeReactionTypeCustomEmoji                                 = "reactionTypeCustomEmoji"
 	TypeMessageForwardInfo                                      = "messageForwardInfo"
 	TypeMessageImportInfo                                       = "messageImportInfo"
 	TypeMessageReplyInfo                                        = "messageReplyInfo"
 	TypeMessageReaction                                         = "messageReaction"
+	TypeMessageReactions                                        = "messageReactions"
 	TypeMessageInteractionInfo                                  = "messageInteractionInfo"
 	TypeUnreadReaction                                          = "unreadReaction"
 	TypeMessageSendingStatePending                              = "messageSendingStatePending"
@@ -675,6 +742,8 @@ const (
 	TypeMessagePositions                                        = "messagePositions"
 	TypeMessageCalendarDay                                      = "messageCalendarDay"
 	TypeMessageCalendar                                         = "messageCalendar"
+	TypeBusinessMessage                                         = "businessMessage"
+	TypeBusinessMessages                                        = "businessMessages"
 	TypeMessageSourceChatHistory                                = "messageSourceChatHistory"
 	TypeMessageSourceMessageThreadHistory                       = "messageSourceMessageThreadHistory"
 	TypeMessageSourceForumTopicHistory                          = "messageSourceForumTopicHistory"
@@ -693,6 +762,12 @@ const (
 	TypeMessageSponsor                                          = "messageSponsor"
 	TypeSponsoredMessage                                        = "sponsoredMessage"
 	TypeSponsoredMessages                                       = "sponsoredMessages"
+	TypeReportChatSponsoredMessageOption                        = "reportChatSponsoredMessageOption"
+	TypeReportChatSponsoredMessageResultOk                      = "reportChatSponsoredMessageResultOk"
+	TypeReportChatSponsoredMessageResultFailed                  = "reportChatSponsoredMessageResultFailed"
+	TypeReportChatSponsoredMessageResultOptionRequired          = "reportChatSponsoredMessageResultOptionRequired"
+	TypeReportChatSponsoredMessageResultAdsHidden               = "reportChatSponsoredMessageResultAdsHidden"
+	TypeReportChatSponsoredMessageResultPremiumRequired         = "reportChatSponsoredMessageResultPremiumRequired"
 	TypeFileDownload                                            = "fileDownload"
 	TypeDownloadedFileCounts                                    = "downloadedFileCounts"
 	TypeFoundFileDownloads                                      = "foundFileDownloads"
@@ -724,6 +799,8 @@ const (
 	TypeChatPosition                                            = "chatPosition"
 	TypeChatAvailableReactionsAll                               = "chatAvailableReactionsAll"
 	TypeChatAvailableReactionsSome                              = "chatAvailableReactionsSome"
+	TypeSavedMessagesTag                                        = "savedMessagesTag"
+	TypeSavedMessagesTags                                       = "savedMessagesTags"
 	TypeVideoChat                                               = "videoChat"
 	TypeChat                                                    = "chat"
 	TypeChats                                                   = "chats"
@@ -742,7 +819,7 @@ const (
 	TypeKeyboardButtonTypeRequestPhoneNumber                    = "keyboardButtonTypeRequestPhoneNumber"
 	TypeKeyboardButtonTypeRequestLocation                       = "keyboardButtonTypeRequestLocation"
 	TypeKeyboardButtonTypeRequestPoll                           = "keyboardButtonTypeRequestPoll"
-	TypeKeyboardButtonTypeRequestUser                           = "keyboardButtonTypeRequestUser"
+	TypeKeyboardButtonTypeRequestUsers                          = "keyboardButtonTypeRequestUsers"
 	TypeKeyboardButtonTypeRequestChat                           = "keyboardButtonTypeRequestChat"
 	TypeKeyboardButtonTypeWebApp                                = "keyboardButtonTypeWebApp"
 	TypeKeyboardButton                                          = "keyboardButton"
@@ -765,11 +842,17 @@ const (
 	TypeFoundWebApp                                             = "foundWebApp"
 	TypeWebAppInfo                                              = "webAppInfo"
 	TypeMessageThreadInfo                                       = "messageThreadInfo"
+	TypeSavedMessagesTopicTypeMyNotes                           = "savedMessagesTopicTypeMyNotes"
+	TypeSavedMessagesTopicTypeAuthorHidden                      = "savedMessagesTopicTypeAuthorHidden"
+	TypeSavedMessagesTopicTypeSavedFromChat                     = "savedMessagesTopicTypeSavedFromChat"
+	TypeSavedMessagesTopic                                      = "savedMessagesTopic"
 	TypeForumTopicIcon                                          = "forumTopicIcon"
 	TypeForumTopicInfo                                          = "forumTopicInfo"
 	TypeForumTopic                                              = "forumTopic"
 	TypeForumTopics                                             = "forumTopics"
 	TypeLinkPreviewOptions                                      = "linkPreviewOptions"
+	TypeSharedUser                                              = "sharedUser"
+	TypeSharedChat                                              = "sharedChat"
 	TypeRichTextPlain                                           = "richTextPlain"
 	TypeRichTextBold                                            = "richTextBold"
 	TypeRichTextItalic                                          = "richTextItalic"
@@ -831,6 +914,9 @@ const (
 	TypeCountryInfo                                             = "countryInfo"
 	TypeCountries                                               = "countries"
 	TypePhoneNumberInfo                                         = "phoneNumberInfo"
+	TypeCollectibleItemTypeUsername                             = "collectibleItemTypeUsername"
+	TypeCollectibleItemTypePhoneNumber                          = "collectibleItemTypePhoneNumber"
+	TypeCollectibleItemInfo                                     = "collectibleItemInfo"
 	TypeBankCardActionOpenUrl                                   = "bankCardActionOpenUrl"
 	TypeBankCardInfo                                            = "bankCardInfo"
 	TypeAddress                                                 = "address"
@@ -938,12 +1024,14 @@ const (
 	TypeMessageAudio                                            = "messageAudio"
 	TypeMessageDocument                                         = "messageDocument"
 	TypeMessagePhoto                                            = "messagePhoto"
-	TypeMessageExpiredPhoto                                     = "messageExpiredPhoto"
 	TypeMessageSticker                                          = "messageSticker"
 	TypeMessageVideo                                            = "messageVideo"
-	TypeMessageExpiredVideo                                     = "messageExpiredVideo"
 	TypeMessageVideoNote                                        = "messageVideoNote"
 	TypeMessageVoiceNote                                        = "messageVoiceNote"
+	TypeMessageExpiredPhoto                                     = "messageExpiredPhoto"
+	TypeMessageExpiredVideo                                     = "messageExpiredVideo"
+	TypeMessageExpiredVideoNote                                 = "messageExpiredVideoNote"
+	TypeMessageExpiredVoiceNote                                 = "messageExpiredVoiceNote"
 	TypeMessageLocation                                         = "messageLocation"
 	TypeMessageVenue                                            = "messageVenue"
 	TypeMessageContact                                          = "messageContact"
@@ -974,6 +1062,7 @@ const (
 	TypeMessageChatSetBackground                                = "messageChatSetBackground"
 	TypeMessageChatSetTheme                                     = "messageChatSetTheme"
 	TypeMessageChatSetMessageAutoDeleteTime                     = "messageChatSetMessageAutoDeleteTime"
+	TypeMessageChatBoost                                        = "messageChatBoost"
 	TypeMessageForumTopicCreated                                = "messageForumTopicCreated"
 	TypeMessageForumTopicEdited                                 = "messageForumTopicEdited"
 	TypeMessageForumTopicIsClosedToggled                        = "messageForumTopicIsClosedToggled"
@@ -988,8 +1077,9 @@ const (
 	TypeMessagePremiumGiveawayCreated                           = "messagePremiumGiveawayCreated"
 	TypeMessagePremiumGiveaway                                  = "messagePremiumGiveaway"
 	TypeMessagePremiumGiveawayCompleted                         = "messagePremiumGiveawayCompleted"
+	TypeMessagePremiumGiveawayWinners                           = "messagePremiumGiveawayWinners"
 	TypeMessageContactRegistered                                = "messageContactRegistered"
-	TypeMessageUserShared                                       = "messageUserShared"
+	TypeMessageUsersShared                                      = "messageUsersShared"
 	TypeMessageChatShared                                       = "messageChatShared"
 	TypeMessageBotWriteAccessAllowed                            = "messageBotWriteAccessAllowed"
 	TypeMessageWebAppDataSent                                   = "messageWebAppDataSent"
@@ -1082,6 +1172,8 @@ const (
 	TypeUserStatusRecently                                      = "userStatusRecently"
 	TypeUserStatusLastWeek                                      = "userStatusLastWeek"
 	TypeUserStatusLastMonth                                     = "userStatusLastMonth"
+	TypeEmojiKeyword                                            = "emojiKeyword"
+	TypeEmojiKeywords                                           = "emojiKeywords"
 	TypeStickers                                                = "stickers"
 	TypeEmojis                                                  = "emojis"
 	TypeStickerSet                                              = "stickerSet"
@@ -1093,17 +1185,17 @@ const (
 	TypeEmojiCategoryTypeDefault                                = "emojiCategoryTypeDefault"
 	TypeEmojiCategoryTypeEmojiStatus                            = "emojiCategoryTypeEmojiStatus"
 	TypeEmojiCategoryTypeChatPhoto                              = "emojiCategoryTypeChatPhoto"
-	TypeStoryViewer                                             = "storyViewer"
-	TypeStoryViewers                                            = "storyViewers"
 	TypeStoryAreaPosition                                       = "storyAreaPosition"
 	TypeStoryAreaTypeLocation                                   = "storyAreaTypeLocation"
 	TypeStoryAreaTypeVenue                                      = "storyAreaTypeVenue"
 	TypeStoryAreaTypeSuggestedReaction                          = "storyAreaTypeSuggestedReaction"
+	TypeStoryAreaTypeMessage                                    = "storyAreaTypeMessage"
 	TypeStoryArea                                               = "storyArea"
 	TypeInputStoryAreaTypeLocation                              = "inputStoryAreaTypeLocation"
 	TypeInputStoryAreaTypeFoundVenue                            = "inputStoryAreaTypeFoundVenue"
 	TypeInputStoryAreaTypePreviousVenue                         = "inputStoryAreaTypePreviousVenue"
 	TypeInputStoryAreaTypeSuggestedReaction                     = "inputStoryAreaTypeSuggestedReaction"
+	TypeInputStoryAreaTypeMessage                               = "inputStoryAreaTypeMessage"
 	TypeInputStoryArea                                          = "inputStoryArea"
 	TypeInputStoryAreas                                         = "inputStoryAreas"
 	TypeStoryVideo                                              = "storyVideo"
@@ -1123,9 +1215,18 @@ const (
 	TypeStoryFullId                                             = "storyFullId"
 	TypeStoryInfo                                               = "storyInfo"
 	TypeChatActiveStories                                       = "chatActiveStories"
-	TypeStoryPublicForwardMessage                               = "storyPublicForwardMessage"
-	TypeStoryPublicForwardStory                                 = "storyPublicForwardStory"
-	TypeStoryPublicForwards                                     = "storyPublicForwards"
+	TypeStoryInteractionTypeView                                = "storyInteractionTypeView"
+	TypeStoryInteractionTypeForward                             = "storyInteractionTypeForward"
+	TypeStoryInteractionTypeRepost                              = "storyInteractionTypeRepost"
+	TypeStoryInteraction                                        = "storyInteraction"
+	TypeStoryInteractions                                       = "storyInteractions"
+	TypeQuickReplyMessage                                       = "quickReplyMessage"
+	TypeQuickReplyShortcut                                      = "quickReplyShortcut"
+	TypePublicForwardMessage                                    = "publicForwardMessage"
+	TypePublicForwardStory                                      = "publicForwardStory"
+	TypePublicForwards                                          = "publicForwards"
+	TypeChatBoostLevelFeatures                                  = "chatBoostLevelFeatures"
+	TypeChatBoostFeatures                                       = "chatBoostFeatures"
 	TypeChatBoostSourceGiftCode                                 = "chatBoostSourceGiftCode"
 	TypeChatBoostSourceGiveaway                                 = "chatBoostSourceGiveaway"
 	TypeChatBoostSourcePremium                                  = "chatBoostSourcePremium"
@@ -1181,6 +1282,8 @@ const (
 	TypeAvailableReaction                                       = "availableReaction"
 	TypeAvailableReactions                                      = "availableReactions"
 	TypeEmojiReaction                                           = "emojiReaction"
+	TypeReactionUnavailabilityReasonAnonymousAdministrator      = "reactionUnavailabilityReasonAnonymousAdministrator"
+	TypeReactionUnavailabilityReasonGuest                       = "reactionUnavailabilityReasonGuest"
 	TypeAnimations                                              = "animations"
 	TypeDiceStickersRegular                                     = "diceStickersRegular"
 	TypeDiceStickersSlotMachine                                 = "diceStickersSlotMachine"
@@ -1188,6 +1291,7 @@ const (
 	TypeSpeechRecognitionResultPending                          = "speechRecognitionResultPending"
 	TypeSpeechRecognitionResultText                             = "speechRecognitionResultText"
 	TypeSpeechRecognitionResultError                            = "speechRecognitionResultError"
+	TypeBusinessConnection                                      = "businessConnection"
 	TypeAttachmentMenuBotColor                                  = "attachmentMenuBotColor"
 	TypeAttachmentMenuBot                                       = "attachmentMenuBot"
 	TypeSentWebAppMessage                                       = "sentWebAppMessage"
@@ -1245,7 +1349,9 @@ const (
 	TypeChatEventMemberPromoted                                 = "chatEventMemberPromoted"
 	TypeChatEventMemberRestricted                               = "chatEventMemberRestricted"
 	TypeChatEventAvailableReactionsChanged                      = "chatEventAvailableReactionsChanged"
+	TypeChatEventBackgroundChanged                              = "chatEventBackgroundChanged"
 	TypeChatEventDescriptionChanged                             = "chatEventDescriptionChanged"
+	TypeChatEventEmojiStatusChanged                             = "chatEventEmojiStatusChanged"
 	TypeChatEventLinkedChatChanged                              = "chatEventLinkedChatChanged"
 	TypeChatEventLocationChanged                                = "chatEventLocationChanged"
 	TypeChatEventMessageAutoDeleteTimeChanged                   = "chatEventMessageAutoDeleteTimeChanged"
@@ -1253,11 +1359,12 @@ const (
 	TypeChatEventPhotoChanged                                   = "chatEventPhotoChanged"
 	TypeChatEventSlowModeDelayChanged                           = "chatEventSlowModeDelayChanged"
 	TypeChatEventStickerSetChanged                              = "chatEventStickerSetChanged"
+	TypeChatEventCustomEmojiStickerSetChanged                   = "chatEventCustomEmojiStickerSetChanged"
 	TypeChatEventTitleChanged                                   = "chatEventTitleChanged"
 	TypeChatEventUsernameChanged                                = "chatEventUsernameChanged"
 	TypeChatEventActiveUsernamesChanged                         = "chatEventActiveUsernamesChanged"
 	TypeChatEventAccentColorChanged                             = "chatEventAccentColorChanged"
-	TypeChatEventBackgroundCustomEmojiChanged                   = "chatEventBackgroundCustomEmojiChanged"
+	TypeChatEventProfileAccentColorChanged                      = "chatEventProfileAccentColorChanged"
 	TypeChatEventHasProtectedContentToggled                     = "chatEventHasProtectedContentToggled"
 	TypeChatEventInvitesToggled                                 = "chatEventInvitesToggled"
 	TypeChatEventIsAllHistoryAvailableToggled                   = "chatEventIsAllHistoryAvailableToggled"
@@ -1296,6 +1403,7 @@ const (
 	TypePremiumLimitTypeChatFolderCount                         = "premiumLimitTypeChatFolderCount"
 	TypePremiumLimitTypeChatFolderChosenChatCount               = "premiumLimitTypeChatFolderChosenChatCount"
 	TypePremiumLimitTypePinnedArchivedChatCount                 = "premiumLimitTypePinnedArchivedChatCount"
+	TypePremiumLimitTypePinnedSavedMessagesTopicCount           = "premiumLimitTypePinnedSavedMessagesTopicCount"
 	TypePremiumLimitTypeCaptionLength                           = "premiumLimitTypeCaptionLength"
 	TypePremiumLimitTypeBioLength                               = "premiumLimitTypeBioLength"
 	TypePremiumLimitTypeChatFolderInviteLinkCount               = "premiumLimitTypeChatFolderInviteLinkCount"
@@ -1325,20 +1433,39 @@ const (
 	TypePremiumFeatureChatBoost                                 = "premiumFeatureChatBoost"
 	TypePremiumFeatureAccentColor                               = "premiumFeatureAccentColor"
 	TypePremiumFeatureBackgroundForBoth                         = "premiumFeatureBackgroundForBoth"
+	TypePremiumFeatureSavedMessagesTags                         = "premiumFeatureSavedMessagesTags"
+	TypePremiumFeatureMessagePrivacy                            = "premiumFeatureMessagePrivacy"
+	TypePremiumFeatureLastSeenTimes                             = "premiumFeatureLastSeenTimes"
+	TypePremiumFeatureBusiness                                  = "premiumFeatureBusiness"
+	TypeBusinessFeatureLocation                                 = "businessFeatureLocation"
+	TypeBusinessFeatureOpeningHours                             = "businessFeatureOpeningHours"
+	TypeBusinessFeatureQuickReplies                             = "businessFeatureQuickReplies"
+	TypeBusinessFeatureGreetingMessage                          = "businessFeatureGreetingMessage"
+	TypeBusinessFeatureAwayMessage                              = "businessFeatureAwayMessage"
+	TypeBusinessFeatureAccountLinks                             = "businessFeatureAccountLinks"
+	TypeBusinessFeatureIntro                                    = "businessFeatureIntro"
+	TypeBusinessFeatureBots                                     = "businessFeatureBots"
+	TypeBusinessFeatureEmojiStatus                              = "businessFeatureEmojiStatus"
+	TypeBusinessFeatureChatFolderTags                           = "businessFeatureChatFolderTags"
+	TypeBusinessFeatureUpgradedStories                          = "businessFeatureUpgradedStories"
 	TypePremiumStoryFeaturePriorityOrder                        = "premiumStoryFeaturePriorityOrder"
 	TypePremiumStoryFeatureStealthMode                          = "premiumStoryFeatureStealthMode"
 	TypePremiumStoryFeaturePermanentViewsHistory                = "premiumStoryFeaturePermanentViewsHistory"
 	TypePremiumStoryFeatureCustomExpirationDuration             = "premiumStoryFeatureCustomExpirationDuration"
 	TypePremiumStoryFeatureSaveStories                          = "premiumStoryFeatureSaveStories"
 	TypePremiumStoryFeatureLinksAndFormatting                   = "premiumStoryFeatureLinksAndFormatting"
+	TypePremiumStoryFeatureVideoQuality                         = "premiumStoryFeatureVideoQuality"
 	TypePremiumLimit                                            = "premiumLimit"
 	TypePremiumFeatures                                         = "premiumFeatures"
+	TypeBusinessFeatures                                        = "businessFeatures"
 	TypePremiumSourceLimitExceeded                              = "premiumSourceLimitExceeded"
 	TypePremiumSourceFeature                                    = "premiumSourceFeature"
+	TypePremiumSourceBusinessFeature                            = "premiumSourceBusinessFeature"
 	TypePremiumSourceStoryFeature                               = "premiumSourceStoryFeature"
 	TypePremiumSourceLink                                       = "premiumSourceLink"
 	TypePremiumSourceSettings                                   = "premiumSourceSettings"
 	TypePremiumFeaturePromotionAnimation                        = "premiumFeaturePromotionAnimation"
+	TypeBusinessFeaturePromotionAnimation                       = "businessFeaturePromotionAnimation"
 	TypePremiumState                                            = "premiumState"
 	TypeStorePaymentPurposePremiumSubscription                  = "storePaymentPurposePremiumSubscription"
 	TypeStorePaymentPurposeGiftedPremium                        = "storePaymentPurposeGiftedPremium"
@@ -1365,11 +1492,14 @@ const (
 	TypeBackgroundTypeWallpaper                                 = "backgroundTypeWallpaper"
 	TypeBackgroundTypePattern                                   = "backgroundTypePattern"
 	TypeBackgroundTypeFill                                      = "backgroundTypeFill"
+	TypeBackgroundTypeChatTheme                                 = "backgroundTypeChatTheme"
 	TypeInputBackgroundLocal                                    = "inputBackgroundLocal"
 	TypeInputBackgroundRemote                                   = "inputBackgroundRemote"
 	TypeInputBackgroundPrevious                                 = "inputBackgroundPrevious"
 	TypeThemeSettings                                           = "themeSettings"
 	TypeChatTheme                                               = "chatTheme"
+	TypeTimeZone                                                = "timeZone"
+	TypeTimeZones                                               = "timeZones"
 	TypeHashtags                                                = "hashtags"
 	TypeCanSendStoryResultOk                                    = "canSendStoryResultOk"
 	TypeCanSendStoryResultPremiumNeeded                         = "canSendStoryResultPremiumNeeded"
@@ -1459,6 +1589,7 @@ const (
 	TypeStoryPrivacySettingsSelectedUsers                       = "storyPrivacySettingsSelectedUsers"
 	TypeUserPrivacySettingRuleAllowAll                          = "userPrivacySettingRuleAllowAll"
 	TypeUserPrivacySettingRuleAllowContacts                     = "userPrivacySettingRuleAllowContacts"
+	TypeUserPrivacySettingRuleAllowPremiumUsers                 = "userPrivacySettingRuleAllowPremiumUsers"
 	TypeUserPrivacySettingRuleAllowUsers                        = "userPrivacySettingRuleAllowUsers"
 	TypeUserPrivacySettingRuleAllowChatMembers                  = "userPrivacySettingRuleAllowChatMembers"
 	TypeUserPrivacySettingRuleRestrictAll                       = "userPrivacySettingRuleRestrictAll"
@@ -1471,11 +1602,17 @@ const (
 	TypeUserPrivacySettingShowLinkInForwardedMessages           = "userPrivacySettingShowLinkInForwardedMessages"
 	TypeUserPrivacySettingShowPhoneNumber                       = "userPrivacySettingShowPhoneNumber"
 	TypeUserPrivacySettingShowBio                               = "userPrivacySettingShowBio"
+	TypeUserPrivacySettingShowBirthdate                         = "userPrivacySettingShowBirthdate"
 	TypeUserPrivacySettingAllowChatInvites                      = "userPrivacySettingAllowChatInvites"
 	TypeUserPrivacySettingAllowCalls                            = "userPrivacySettingAllowCalls"
 	TypeUserPrivacySettingAllowPeerToPeerCalls                  = "userPrivacySettingAllowPeerToPeerCalls"
 	TypeUserPrivacySettingAllowFindingByPhoneNumber             = "userPrivacySettingAllowFindingByPhoneNumber"
 	TypeUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages = "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
+	TypeReadDatePrivacySettings                                 = "readDatePrivacySettings"
+	TypeNewChatPrivacySettings                                  = "newChatPrivacySettings"
+	TypeCanSendMessageToUserResultOk                            = "canSendMessageToUserResultOk"
+	TypeCanSendMessageToUserResultUserIsDeleted                 = "canSendMessageToUserResultUserIsDeleted"
+	TypeCanSendMessageToUserResultUserRestrictsNewChats         = "canSendMessageToUserResultUserRestrictsNewChats"
 	TypeAccountTtl                                              = "accountTtl"
 	TypeMessageAutoDeleteTime                                   = "messageAutoDeleteTime"
 	TypeSessionTypeAndroid                                      = "sessionTypeAndroid"
@@ -1537,6 +1674,7 @@ const (
 	TypeInternalLinkTypePassportDataRequest                     = "internalLinkTypePassportDataRequest"
 	TypeInternalLinkTypePhoneNumberConfirmation                 = "internalLinkTypePhoneNumberConfirmation"
 	TypeInternalLinkTypePremiumFeatures                         = "internalLinkTypePremiumFeatures"
+	TypeInternalLinkTypePremiumGift                             = "internalLinkTypePremiumGift"
 	TypeInternalLinkTypePremiumGiftCode                         = "internalLinkTypePremiumGiftCode"
 	TypeInternalLinkTypePrivacyAndSecuritySettings              = "internalLinkTypePrivacyAndSecuritySettings"
 	TypeInternalLinkTypeProxy                                   = "internalLinkTypeProxy"
@@ -1632,6 +1770,8 @@ const (
 	TypeSuggestedActionUpgradePremium                           = "suggestedActionUpgradePremium"
 	TypeSuggestedActionRestorePremium                           = "suggestedActionRestorePremium"
 	TypeSuggestedActionSubscribeToAnnualPremium                 = "suggestedActionSubscribeToAnnualPremium"
+	TypeSuggestedActionGiftPremiumForChristmas                  = "suggestedActionGiftPremiumForChristmas"
+	TypeSuggestedActionSetBirthdate                             = "suggestedActionSetBirthdate"
 	TypeCount                                                   = "count"
 	TypeText                                                    = "text"
 	TypeSeconds                                                 = "seconds"
@@ -1686,16 +1826,18 @@ const (
 	TypeUpdateNewChat                                           = "updateNewChat"
 	TypeUpdateChatTitle                                         = "updateChatTitle"
 	TypeUpdateChatPhoto                                         = "updateChatPhoto"
-	TypeUpdateChatAccentColor                                   = "updateChatAccentColor"
-	TypeUpdateChatBackgroundCustomEmoji                         = "updateChatBackgroundCustomEmoji"
+	TypeUpdateChatAccentColors                                  = "updateChatAccentColors"
 	TypeUpdateChatPermissions                                   = "updateChatPermissions"
 	TypeUpdateChatLastMessage                                   = "updateChatLastMessage"
 	TypeUpdateChatPosition                                      = "updateChatPosition"
+	TypeUpdateChatAddedToList                                   = "updateChatAddedToList"
+	TypeUpdateChatRemovedFromList                               = "updateChatRemovedFromList"
 	TypeUpdateChatReadInbox                                     = "updateChatReadInbox"
 	TypeUpdateChatReadOutbox                                    = "updateChatReadOutbox"
 	TypeUpdateChatActionBar                                     = "updateChatActionBar"
 	TypeUpdateChatAvailableReactions                            = "updateChatAvailableReactions"
 	TypeUpdateChatDraftMessage                                  = "updateChatDraftMessage"
+	TypeUpdateChatEmojiStatus                                   = "updateChatEmojiStatus"
 	TypeUpdateChatMessageSender                                 = "updateChatMessageSender"
 	TypeUpdateChatMessageAutoDeleteTime                         = "updateChatMessageAutoDeleteTime"
 	TypeUpdateChatNotificationSettings                          = "updateChatNotificationSettings"
@@ -1715,6 +1857,12 @@ const (
 	TypeUpdateChatHasScheduledMessages                          = "updateChatHasScheduledMessages"
 	TypeUpdateChatFolders                                       = "updateChatFolders"
 	TypeUpdateChatOnlineMemberCount                             = "updateChatOnlineMemberCount"
+	TypeUpdateSavedMessagesTopic                                = "updateSavedMessagesTopic"
+	TypeUpdateSavedMessagesTopicCount                           = "updateSavedMessagesTopicCount"
+	TypeUpdateQuickReplyShortcut                                = "updateQuickReplyShortcut"
+	TypeUpdateQuickReplyShortcutDeleted                         = "updateQuickReplyShortcutDeleted"
+	TypeUpdateQuickReplyShortcuts                               = "updateQuickReplyShortcuts"
+	TypeUpdateQuickReplyShortcutMessages                        = "updateQuickReplyShortcutMessages"
 	TypeUpdateForumTopicInfo                                    = "updateForumTopicInfo"
 	TypeUpdateScopeNotificationSettings                         = "updateScopeNotificationSettings"
 	TypeUpdateNotification                                      = "updateNotification"
@@ -1761,7 +1909,7 @@ const (
 	TypeUpdateFavoriteStickers                                  = "updateFavoriteStickers"
 	TypeUpdateSavedAnimations                                   = "updateSavedAnimations"
 	TypeUpdateSavedNotificationSounds                           = "updateSavedNotificationSounds"
-	TypeUpdateSelectedBackground                                = "updateSelectedBackground"
+	TypeUpdateDefaultBackground                                 = "updateDefaultBackground"
 	TypeUpdateChatThemes                                        = "updateChatThemes"
 	TypeUpdateAccentColors                                      = "updateAccentColors"
 	TypeUpdateProfileAccentColors                               = "updateProfileAccentColors"
@@ -1774,13 +1922,19 @@ const (
 	TypeUpdateWebAppMessageSent                                 = "updateWebAppMessageSent"
 	TypeUpdateActiveEmojiReactions                              = "updateActiveEmojiReactions"
 	TypeUpdateDefaultReactionType                               = "updateDefaultReactionType"
+	TypeUpdateSavedMessagesTags                                 = "updateSavedMessagesTags"
 	TypeUpdateSpeechRecognitionTrial                            = "updateSpeechRecognitionTrial"
 	TypeUpdateDiceEmojis                                        = "updateDiceEmojis"
 	TypeUpdateAnimatedEmojiMessageClicked                       = "updateAnimatedEmojiMessageClicked"
 	TypeUpdateAnimationSearchParameters                         = "updateAnimationSearchParameters"
 	TypeUpdateSuggestedActions                                  = "updateSuggestedActions"
+	TypeUpdateContactCloseBirthdays                             = "updateContactCloseBirthdays"
 	TypeUpdateAddChatMembersPrivacyForbidden                    = "updateAddChatMembersPrivacyForbidden"
 	TypeUpdateAutosaveSettings                                  = "updateAutosaveSettings"
+	TypeUpdateBusinessConnection                                = "updateBusinessConnection"
+	TypeUpdateNewBusinessMessage                                = "updateNewBusinessMessage"
+	TypeUpdateBusinessMessageEdited                             = "updateBusinessMessageEdited"
+	TypeUpdateBusinessMessagesDeleted                           = "updateBusinessMessagesDeleted"
 	TypeUpdateNewInlineQuery                                    = "updateNewInlineQuery"
 	TypeUpdateNewChosenInlineResult                             = "updateNewChosenInlineResult"
 	TypeUpdateNewCallbackQuery                                  = "updateNewCallbackQuery"
@@ -1794,6 +1948,8 @@ const (
 	TypeUpdateChatMember                                        = "updateChatMember"
 	TypeUpdateNewChatJoinRequest                                = "updateNewChatJoinRequest"
 	TypeUpdateChatBoost                                         = "updateChatBoost"
+	TypeUpdateMessageReaction                                   = "updateMessageReaction"
+	TypeUpdateMessageReactions                                  = "updateMessageReactions"
 	TypeUpdates                                                 = "updates"
 	TypeLogStreamDefault                                        = "logStreamDefault"
 	TypeLogStreamFile                                           = "logStreamFile"
@@ -1870,6 +2026,11 @@ type UserType interface {
 	UserTypeType() string
 }
 
+// Describes conditions for sending of away messages by a Telegram Business account
+type BusinessAwayMessageSchedule interface {
+	BusinessAwayMessageScheduleType() string
+}
+
 // Describes type of a sticker, which was used to create a chat photo
 type ChatPhotoStickerType interface {
 	ChatPhotoStickerTypeType() string
@@ -1920,6 +2081,11 @@ type MessageSender interface {
 	MessageSenderType() string
 }
 
+// Describes read date of a recent outgoing message in a private chat
+type MessageReadDate interface {
+	MessageReadDateType() string
+}
+
 // Contains information about the origin of a message
 type MessageOrigin interface {
 	MessageOriginType() string
@@ -1953,6 +2119,11 @@ type MessageSource interface {
 // Describes type of a message sponsor
 type MessageSponsorType interface {
 	MessageSponsorTypeType() string
+}
+
+// Describes result of sponsored message report
+type ReportChatSponsoredMessageResult interface {
+	ReportChatSponsoredMessageResultType() string
 }
 
 // Describes the types of chats to which notification settings are relevant
@@ -2010,6 +2181,11 @@ type LoginUrlInfo interface {
 	LoginUrlInfoType() string
 }
 
+// Describes type of a Saved Messages topic
+type SavedMessagesTopicType interface {
+	SavedMessagesTopicTypeType() string
+}
+
 // Describes a text object inside an instant-view web page
 type RichText interface {
 	RichTextType() string
@@ -2028,6 +2204,11 @@ type PageBlockVerticalAlignment interface {
 // Describes a block of an instant view web page
 type PageBlock interface {
 	PageBlockType() string
+}
+
+// Describes a collectible item that can be purchased at https://fragment.com
+type CollectibleItemType interface {
+	CollectibleItemTypeType() string
 }
 
 // Contains information about the payment method chosen by the user
@@ -2150,9 +2331,14 @@ type StoryOrigin interface {
 	StoryOriginType() string
 }
 
+// Describes type of interaction with a story
+type StoryInteractionType interface {
+	StoryInteractionTypeType() string
+}
+
 // Describes a public forward or repost of a story
-type StoryPublicForward interface {
-	StoryPublicForwardType() string
+type PublicForward interface {
+	PublicForwardType() string
 }
 
 // Describes source of a chat boost
@@ -2188,6 +2374,11 @@ type CallProblem interface {
 // Contains settings for Firebase Authentication in the official applications
 type FirebaseAuthenticationSettings interface {
 	FirebaseAuthenticationSettingsType() string
+}
+
+// Describes why the current user can't add reactions to the message, despite some other users can
+type ReactionUnavailabilityReason interface {
+	ReactionUnavailabilityReasonType() string
 }
 
 // Contains animated stickers which must be used for dice animation rendering
@@ -2243,6 +2434,11 @@ type PremiumLimitType interface {
 // Describes a feature available to Premium users
 type PremiumFeature interface {
 	PremiumFeatureType() string
+}
+
+// Describes a feature available to Business user accounts
+type BusinessFeature interface {
+	BusinessFeatureType() string
 }
 
 // Describes a story feature available to Premium users
@@ -2353,6 +2549,11 @@ type UserPrivacySettingRule interface {
 // Describes available user privacy settings
 type UserPrivacySetting interface {
 	UserPrivacySettingType() string
+}
+
+// Describes result of canSendMessageToUser
+type CanSendMessageToUserResult interface {
+	CanSendMessageToUserResultType() string
 }
 
 // Represents the type of a session
@@ -3875,7 +4076,7 @@ func (*ThumbnailFormatPng) ThumbnailFormatType() string {
 	return TypeThumbnailFormatPng
 }
 
-// The thumbnail is in TGS format. It will be used only for TGS sticker sets
+// The thumbnail is in TGS format. It will be used only for sticker sets
 type ThumbnailFormatTgs struct {
 	meta
 }
@@ -3900,7 +4101,7 @@ func (*ThumbnailFormatTgs) ThumbnailFormatType() string {
 	return TypeThumbnailFormatTgs
 }
 
-// The thumbnail is in WEBM format. It will be used only for WEBM sticker sets
+// The thumbnail is in WEBM format. It will be used only for sticker sets
 type ThumbnailFormatWebm struct {
 	meta
 }
@@ -3925,7 +4126,7 @@ func (*ThumbnailFormatWebm) ThumbnailFormatType() string {
 	return TypeThumbnailFormatWebm
 }
 
-// The thumbnail is in WEBP format. It will be used only for some stickers
+// The thumbnail is in WEBP format. It will be used only for some stickers and sticker sets
 type ThumbnailFormatWebp struct {
 	meta
 }
@@ -4891,7 +5092,7 @@ func (voiceNote *VoiceNote) UnmarshalJSON(data []byte) error {
 // Describes an animated or custom representation of an emoji
 type AnimatedEmoji struct {
 	meta
-	// Sticker for the emoji; may be null if yet unknown for a custom emoji. If the sticker is a custom emoji, it can have arbitrary format different from stickerFormatTgs
+	// Sticker for the emoji; may be null if yet unknown for a custom emoji. If the sticker is a custom emoji, then it can have arbitrary format
 	Sticker *Sticker `json:"sticker"`
 	// Expected width of the sticker, which can be used if the sticker is null
 	StickerWidth int32 `json:"sticker_width"`
@@ -5165,7 +5366,7 @@ type Background struct {
 	IsDark bool `json:"is_dark"`
 	// Unique background name
 	Name string `json:"name"`
-	// Document with the background; may be null. Null only for filled backgrounds
+	// Document with the background; may be null. Null only for filled and chat theme backgrounds
 	Document *Document `json:"document"`
 	// Type of the background
 	Type BackgroundType `json:"type"`
@@ -5242,7 +5443,7 @@ type ChatBackground struct {
 	meta
 	// The background
 	Background *Background `json:"background"`
-	// Dimming of the background in dark themes, as a percentage; 0-100
+	// Dimming of the background in dark themes, as a percentage; 0-100. Applied only to Wallpaper and Fill types of background
 	DarkThemeDimming int32 `json:"dark_theme_dimming"`
 }
 
@@ -5391,6 +5592,8 @@ type UserTypeBot struct {
 	InlineQueryPlaceholder string `json:"inline_query_placeholder"`
 	// True, if the location of the user is expected to be sent with every inline query to this bot
 	NeedLocation bool `json:"need_location"`
+	// True, if the bot supports connection to Telegram Business accounts
+	CanConnectToBusiness bool `json:"can_connect_to_business"`
 	// True, if the bot can be added to attachment or side menu
 	CanBeAddedToAttachmentMenu bool `json:"can_be_added_to_attachment_menu"`
 }
@@ -5538,6 +5741,459 @@ func (*ChatLocation) GetClass() string {
 
 func (*ChatLocation) GetType() string {
 	return TypeChatLocation
+}
+
+// Represents a birthdate of a user
+type Birthdate struct {
+	meta
+	// Day of the month; 1-31
+	Day int32 `json:"day"`
+	// Month of the year; 1-12
+	Month int32 `json:"month"`
+	// Birth year; 0 if unknown
+	Year int32 `json:"year"`
+}
+
+func (entity *Birthdate) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub Birthdate
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*Birthdate) GetClass() string {
+	return ClassBirthdate
+}
+
+func (*Birthdate) GetType() string {
+	return TypeBirthdate
+}
+
+// Describes a user that had or will have a birthday soon
+type CloseBirthdayUser struct {
+	meta
+	// User identifier
+	UserId int64 `json:"user_id"`
+	// Birthdate of the user
+	Birthdate *Birthdate `json:"birthdate"`
+}
+
+func (entity *CloseBirthdayUser) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub CloseBirthdayUser
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*CloseBirthdayUser) GetClass() string {
+	return ClassCloseBirthdayUser
+}
+
+func (*CloseBirthdayUser) GetType() string {
+	return TypeCloseBirthdayUser
+}
+
+// Send away messages always
+type BusinessAwayMessageScheduleAlways struct {
+	meta
+}
+
+func (entity *BusinessAwayMessageScheduleAlways) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessAwayMessageScheduleAlways
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessAwayMessageScheduleAlways) GetClass() string {
+	return ClassBusinessAwayMessageSchedule
+}
+
+func (*BusinessAwayMessageScheduleAlways) GetType() string {
+	return TypeBusinessAwayMessageScheduleAlways
+}
+
+func (*BusinessAwayMessageScheduleAlways) BusinessAwayMessageScheduleType() string {
+	return TypeBusinessAwayMessageScheduleAlways
+}
+
+// Send away messages outside of the business opening hours
+type BusinessAwayMessageScheduleOutsideOfOpeningHours struct {
+	meta
+}
+
+func (entity *BusinessAwayMessageScheduleOutsideOfOpeningHours) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessAwayMessageScheduleOutsideOfOpeningHours
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessAwayMessageScheduleOutsideOfOpeningHours) GetClass() string {
+	return ClassBusinessAwayMessageSchedule
+}
+
+func (*BusinessAwayMessageScheduleOutsideOfOpeningHours) GetType() string {
+	return TypeBusinessAwayMessageScheduleOutsideOfOpeningHours
+}
+
+func (*BusinessAwayMessageScheduleOutsideOfOpeningHours) BusinessAwayMessageScheduleType() string {
+	return TypeBusinessAwayMessageScheduleOutsideOfOpeningHours
+}
+
+// Send away messages only in the specified time span
+type BusinessAwayMessageScheduleCustom struct {
+	meta
+	// Point in time (Unix timestamp) when the away messages will start to be sent
+	StartDate int32 `json:"start_date"`
+	// Point in time (Unix timestamp) when the away messages will stop to be sent
+	EndDate int32 `json:"end_date"`
+}
+
+func (entity *BusinessAwayMessageScheduleCustom) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessAwayMessageScheduleCustom
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessAwayMessageScheduleCustom) GetClass() string {
+	return ClassBusinessAwayMessageSchedule
+}
+
+func (*BusinessAwayMessageScheduleCustom) GetType() string {
+	return TypeBusinessAwayMessageScheduleCustom
+}
+
+func (*BusinessAwayMessageScheduleCustom) BusinessAwayMessageScheduleType() string {
+	return TypeBusinessAwayMessageScheduleCustom
+}
+
+// Represents a location of a business
+type BusinessLocation struct {
+	meta
+	// The location; may be null if not specified
+	Location *Location `json:"location"`
+	// Location address; 1-96 characters
+	Address string `json:"address"`
+}
+
+func (entity *BusinessLocation) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessLocation
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessLocation) GetClass() string {
+	return ClassBusinessLocation
+}
+
+func (*BusinessLocation) GetType() string {
+	return TypeBusinessLocation
+}
+
+// Describes private chats chosen for automatic interaction with a business
+type BusinessRecipients struct {
+	meta
+	// Identifiers of selected private chats
+	ChatIds []int64 `json:"chat_ids"`
+	// Identifiers of private chats that are always excluded; for businessConnectedBot only
+	ExcludedChatIds []int64 `json:"excluded_chat_ids"`
+	// True, if all existing private chats are selected
+	SelectExistingChats bool `json:"select_existing_chats"`
+	// True, if all new private chats are selected
+	SelectNewChats bool `json:"select_new_chats"`
+	// True, if all private chats with contacts are selected
+	SelectContacts bool `json:"select_contacts"`
+	// True, if all private chats with non-contacts are selected
+	SelectNonContacts bool `json:"select_non_contacts"`
+	// If true, then all private chats except the selected are chosen. Otherwise, only the selected chats are chosen
+	ExcludeSelected bool `json:"exclude_selected"`
+}
+
+func (entity *BusinessRecipients) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessRecipients
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessRecipients) GetClass() string {
+	return ClassBusinessRecipients
+}
+
+func (*BusinessRecipients) GetType() string {
+	return TypeBusinessRecipients
+}
+
+// Describes settings for messages that are automatically sent by a Telegram Business account when it is away
+type BusinessAwayMessageSettings struct {
+	meta
+	// Unique quick reply shortcut identifier for the away messages
+	ShortcutId int32 `json:"shortcut_id"`
+	// Chosen recipients of the away messages
+	Recipients *BusinessRecipients `json:"recipients"`
+	// Settings used to check whether the current user is away
+	Schedule BusinessAwayMessageSchedule `json:"schedule"`
+	// True, if the messages must not be sent if the account was online in the last 10 minutes
+	OfflineOnly bool `json:"offline_only"`
+}
+
+func (entity *BusinessAwayMessageSettings) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessAwayMessageSettings
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessAwayMessageSettings) GetClass() string {
+	return ClassBusinessAwayMessageSettings
+}
+
+func (*BusinessAwayMessageSettings) GetType() string {
+	return TypeBusinessAwayMessageSettings
+}
+
+func (businessAwayMessageSettings *BusinessAwayMessageSettings) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		ShortcutId  int32               `json:"shortcut_id"`
+		Recipients  *BusinessRecipients `json:"recipients"`
+		Schedule    json.RawMessage     `json:"schedule"`
+		OfflineOnly bool                `json:"offline_only"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	businessAwayMessageSettings.ShortcutId = tmp.ShortcutId
+	businessAwayMessageSettings.Recipients = tmp.Recipients
+	businessAwayMessageSettings.OfflineOnly = tmp.OfflineOnly
+
+	fieldSchedule, _ := UnmarshalBusinessAwayMessageSchedule(tmp.Schedule)
+	businessAwayMessageSettings.Schedule = fieldSchedule
+
+	return nil
+}
+
+// Describes settings for greeting messages that are automatically sent by a Telegram Business account as response to incoming messages in an inactive private chat
+type BusinessGreetingMessageSettings struct {
+	meta
+	// Unique quick reply shortcut identifier for the greeting messages
+	ShortcutId int32 `json:"shortcut_id"`
+	// Chosen recipients of the greeting messages
+	Recipients *BusinessRecipients `json:"recipients"`
+	// The number of days after which a chat will be considered as inactive; currently, must be on of 7, 14, 21, or 28
+	InactivityDays int32 `json:"inactivity_days"`
+}
+
+func (entity *BusinessGreetingMessageSettings) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessGreetingMessageSettings
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessGreetingMessageSettings) GetClass() string {
+	return ClassBusinessGreetingMessageSettings
+}
+
+func (*BusinessGreetingMessageSettings) GetType() string {
+	return TypeBusinessGreetingMessageSettings
+}
+
+// Describes a bot connected to a business account
+type BusinessConnectedBot struct {
+	meta
+	// User identifier of the bot
+	BotUserId int64 `json:"bot_user_id"`
+	// Private chats that will be accessible to the bot
+	Recipients *BusinessRecipients `json:"recipients"`
+	// True, if the bot can send messages to the private chats; false otherwise
+	CanReply bool `json:"can_reply"`
+}
+
+func (entity *BusinessConnectedBot) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessConnectedBot
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessConnectedBot) GetClass() string {
+	return ClassBusinessConnectedBot
+}
+
+func (*BusinessConnectedBot) GetType() string {
+	return TypeBusinessConnectedBot
+}
+
+// Describes settings for a business account intro
+type BusinessIntro struct {
+	meta
+	// Title text of the intro
+	Title string `json:"title"`
+	// Message text of the intro
+	Message string `json:"message"`
+	// Greeting sticker of the intro; may be null if none
+	Sticker *Sticker `json:"sticker"`
+}
+
+func (entity *BusinessIntro) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessIntro
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessIntro) GetClass() string {
+	return ClassBusinessIntro
+}
+
+func (*BusinessIntro) GetType() string {
+	return TypeBusinessIntro
+}
+
+// Describes settings for a business account intro to set
+type InputBusinessIntro struct {
+	meta
+	// Title text of the intro; 0-getOption("business_intro_title_length_max") characters
+	Title string `json:"title"`
+	// Message text of the intro; 0-getOption("business_intro_message_length_max") characters
+	Message string `json:"message"`
+	// Greeting sticker of the intro; pass null if none. The sticker must belong to a sticker set and must not be a custom emoji
+	Sticker InputFile `json:"sticker"`
+}
+
+func (entity *InputBusinessIntro) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub InputBusinessIntro
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*InputBusinessIntro) GetClass() string {
+	return ClassInputBusinessIntro
+}
+
+func (*InputBusinessIntro) GetType() string {
+	return TypeInputBusinessIntro
+}
+
+func (inputBusinessIntro *InputBusinessIntro) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Title   string          `json:"title"`
+		Message string          `json:"message"`
+		Sticker json.RawMessage `json:"sticker"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	inputBusinessIntro.Title = tmp.Title
+	inputBusinessIntro.Message = tmp.Message
+
+	fieldSticker, _ := UnmarshalInputFile(tmp.Sticker)
+	inputBusinessIntro.Sticker = fieldSticker
+
+	return nil
+}
+
+// Describes an interval of time when the business is open
+type BusinessOpeningHoursInterval struct {
+	meta
+	// The first minute of the interval since start of the week; 0-7*24*60
+	StartMinute int32 `json:"start_minute"`
+	// The first minute after the end of the interval since start of the week; 1-8*24*60
+	EndMinute int32 `json:"end_minute"`
+}
+
+func (entity *BusinessOpeningHoursInterval) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessOpeningHoursInterval
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessOpeningHoursInterval) GetClass() string {
+	return ClassBusinessOpeningHoursInterval
+}
+
+func (*BusinessOpeningHoursInterval) GetType() string {
+	return TypeBusinessOpeningHoursInterval
+}
+
+// Describes opening hours of a business
+type BusinessOpeningHours struct {
+	meta
+	// Unique time zone identifier
+	TimeZoneId string `json:"time_zone_id"`
+	// Intervals of the time when the business is open
+	OpeningHours []*BusinessOpeningHoursInterval `json:"opening_hours"`
+}
+
+func (entity *BusinessOpeningHours) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessOpeningHours
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessOpeningHours) GetClass() string {
+	return ClassBusinessOpeningHours
+}
+
+func (*BusinessOpeningHours) GetType() string {
+	return TypeBusinessOpeningHours
+}
+
+// Contains information about a Telegram Business account
+type BusinessInfo struct {
+	meta
+	// Location of the business; may be null if none
+	Location *BusinessLocation `json:"location"`
+	// Opening hours of the business; may be null if none. The hours are guaranteed to be valid and has already been split by week days
+	OpeningHours *BusinessOpeningHours `json:"opening_hours"`
+	// The greeting message; may be null if none or the Business account is not of the current user
+	GreetingMessageSettings *BusinessGreetingMessageSettings `json:"greeting_message_settings"`
+	// The away message; may be null if none or the Business account is not of the current user
+	AwayMessageSettings *BusinessAwayMessageSettings `json:"away_message_settings"`
+	// Information about intro of the business; may be null if none
+	Intro *BusinessIntro `json:"intro"`
+}
+
+func (entity *BusinessInfo) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessInfo
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessInfo) GetClass() string {
+	return ClassBusinessInfo
+}
+
+func (*BusinessInfo) GetType() string {
+	return TypeBusinessInfo
 }
 
 // Information about the sticker, which was used to create the chat photo
@@ -5876,7 +6532,7 @@ func (*InputChatPhotoSticker) InputChatPhotoType() string {
 // Describes actions that a user is allowed to take in a chat
 type ChatPermissions struct {
 	meta
-	// True, if the user can send text messages, contacts, giveaways, invoices, locations, and venues
+	// True, if the user can send text messages, contacts, giveaways, giveaway winners, invoices, locations, and venues
 	CanSendBasicMessages bool `json:"can_send_basic_messages"`
 	// True, if the user can send music files
 	CanSendAudios bool `json:"can_send_audios"`
@@ -5902,8 +6558,8 @@ type ChatPermissions struct {
 	CanInviteUsers bool `json:"can_invite_users"`
 	// True, if the user can pin messages
 	CanPinMessages bool `json:"can_pin_messages"`
-	// True, if the user can manage topics
-	CanManageTopics bool `json:"can_manage_topics"`
+	// True, if the user can create topics
+	CanCreateTopics bool `json:"can_create_topics"`
 }
 
 func (entity *ChatPermissions) MarshalJSON() ([]byte, error) {
@@ -5925,7 +6581,7 @@ func (*ChatPermissions) GetType() string {
 // Describes rights of the administrator
 type ChatAdministratorRights struct {
 	meta
-	// True, if the administrator can get chat event log, get chat boosts in channels, get channel members, report supergroup spam messages, see anonymous administrators in supergroups and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
+	// True, if the administrator can access the chat event log, get boost list, see hidden supergroup and channel members, report supergroup spam messages and ignore slow mode. Implied by any other privilege; applicable to supergroups and channels only
 	CanManageChat bool `json:"can_manage_chat"`
 	// True, if the administrator can change the chat title, photo, and other settings
 	CanChangeInfo bool `json:"can_change_info"`
@@ -5941,17 +6597,17 @@ type ChatAdministratorRights struct {
 	CanRestrictMembers bool `json:"can_restrict_members"`
 	// True, if the administrator can pin messages; applicable to basic groups and supergroups only
 	CanPinMessages bool `json:"can_pin_messages"`
-	// True, if the administrator can manage topics; applicable to forum supergroups only
+	// True, if the administrator can create, rename, close, reopen, hide, and unhide forum topics; applicable to forum supergroups only
 	CanManageTopics bool `json:"can_manage_topics"`
 	// True, if the administrator can add new administrators with a subset of their own privileges or demote administrators that were directly or indirectly promoted by them
 	CanPromoteMembers bool `json:"can_promote_members"`
 	// True, if the administrator can manage video chats
 	CanManageVideoChats bool `json:"can_manage_video_chats"`
-	// True, if the administrator can create new channel stories, or edit and delete posted stories; applicable to channels only
+	// True, if the administrator can create new chat stories, or edit and delete posted stories; applicable to supergroups and channels only
 	CanPostStories bool `json:"can_post_stories"`
-	// True, if the administrator can edit stories posted by other users, pin stories and access story archive; applicable to channels only
+	// True, if the administrator can edit stories posted by other users, pin stories and access story archive; applicable to supergroups and channels only
 	CanEditStories bool `json:"can_edit_stories"`
-	// True, if the administrator can delete stories posted by other users; applicable to channels only
+	// True, if the administrator can delete stories posted by other users; applicable to supergroups and channels only
 	CanDeleteStories bool `json:"can_delete_stories"`
 	// True, if the administrator isn't shown in the chat member list and sends messages anonymously; applicable to supergroups only
 	IsAnonymous bool `json:"is_anonymous"`
@@ -5982,7 +6638,7 @@ type PremiumPaymentOption struct {
 	Amount int64 `json:"amount"`
 	// The discount associated with this option, as a percentage
 	DiscountPercentage int32 `json:"discount_percentage"`
-	// Number of month the Telegram Premium subscription will be active
+	// Number of months the Telegram Premium subscription will be active
 	MonthCount int32 `json:"month_count"`
 	// Identifier of the store product associated with the option
 	StoreProductId string `json:"store_product_id"`
@@ -6071,7 +6727,7 @@ type PremiumGiftCodePaymentOption struct {
 	Amount int64 `json:"amount"`
 	// Number of users which will be able to activate the gift codes
 	UserCount int32 `json:"user_count"`
-	// Number of month the Telegram Premium subscription will be active
+	// Number of months the Telegram Premium subscription will be active
 	MonthCount int32 `json:"month_count"`
 	// Identifier of the store product associated with the option; may be empty if none
 	StoreProductId string `json:"store_product_id"`
@@ -6121,7 +6777,7 @@ func (*PremiumGiftCodePaymentOptions) GetType() string {
 // Contains information about a Telegram Premium gift code
 type PremiumGiftCodeInfo struct {
 	meta
-	// Identifier of a chat or a user that created the gift code
+	// Identifier of a chat or a user that created the gift code; may be null if unknown. If null and the code is from messagePremiumGiftCode message, then creator_id from the message can be used
 	CreatorId MessageSender `json:"creator_id"`
 	// Point in time (Unix timestamp) when the code was created
 	CreationDate int32 `json:"creation_date"`
@@ -6129,7 +6785,7 @@ type PremiumGiftCodeInfo struct {
 	IsFromGiveaway bool `json:"is_from_giveaway"`
 	// Identifier of the corresponding giveaway message in the creator_id chat; can be 0 or an identifier of a deleted message
 	GiveawayMessageId int64 `json:"giveaway_message_id"`
-	// Number of month the Telegram Premium subscription will be active after code activation
+	// Number of months the Telegram Premium subscription will be active after code activation
 	MonthCount int32 `json:"month_count"`
 	// Identifier of a user for which the code was created; 0 if none
 	UserId int64 `json:"user_id"`
@@ -6413,6 +7069,8 @@ type AccentColor struct {
 	LightThemeColors []int32 `json:"light_theme_colors"`
 	// The list of 1-3 colors in RGB format, describing the accent color, as expected to be shown in dark themes
 	DarkThemeColors []int32 `json:"dark_theme_colors"`
+	// The minimum chat boost level required to use the color in a channel chat
+	MinChannelChatBoostLevel int32 `json:"min_channel_chat_boost_level"`
 }
 
 func (entity *AccentColor) MarshalJSON() ([]byte, error) {
@@ -6463,10 +7121,14 @@ type ProfileAccentColor struct {
 	meta
 	// Profile accent color identifier
 	Id int32 `json:"id"`
-	// Description of accent colors expected to be used in light themes
+	// Accent colors expected to be used in light themes
 	LightThemeColors *ProfileAccentColors `json:"light_theme_colors"`
-	// Description of accent colors expected to be used in dark themes
+	// Accent colors expected to be used in dark themes
 	DarkThemeColors *ProfileAccentColors `json:"dark_theme_colors"`
+	// The minimum chat boost level required to use the color in a supergroup chat
+	MinSupergroupChatBoostLevel int32 `json:"min_supergroup_chat_boost_level"`
+	// The minimum chat boost level required to use the color in a channel chat
+	MinChannelChatBoostLevel int32 `json:"min_channel_chat_boost_level"`
 }
 
 func (entity *ProfileAccentColor) MarshalJSON() ([]byte, error) {
@@ -6510,7 +7172,7 @@ func (*EmojiStatus) GetType() string {
 	return TypeEmojiStatus
 }
 
-// Contains a list of custom emoji identifiers, which can be set as emoji statuses
+// Contains a list of custom emoji identifiers for emoji statuses
 type EmojiStatuses struct {
 	meta
 	// The list of custom emoji identifiers
@@ -6540,7 +7202,7 @@ type Usernames struct {
 	ActiveUsernames []string `json:"active_usernames"`
 	// List of currently disabled usernames; the username can be activated with toggleUsernameIsActive, toggleBotUsernameIsActive, or toggleSupergroupUsernameIsActive
 	DisabledUsernames []string `json:"disabled_usernames"`
-	// The active username, which can be changed with setUsername or setSupergroupUsername
+	// The active username, which can be changed with setUsername or setSupergroupUsername. Information about other active usernames can be received using getCollectibleItemInfo
 	EditableUsername string `json:"editable_username"`
 }
 
@@ -6579,7 +7241,7 @@ type User struct {
 	ProfilePhoto *ProfilePhoto `json:"profile_photo"`
 	// Identifier of the accent color for name, and backgrounds of profile photo, reply header, and link preview. For Telegram Premium users only
 	AccentColorId int32 `json:"accent_color_id"`
-	// Identifier of a custom emoji to be shown on the reply header background; 0 if none. For Telegram Premium users only
+	// Identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none. For Telegram Premium users only
 	BackgroundCustomEmojiId JsonInt64 `json:"background_custom_emoji_id"`
 	// Identifier of the accent color for the user's profile; -1 if none. For Telegram Premium users only
 	ProfileAccentColorId int32 `json:"profile_accent_color_id"`
@@ -6609,6 +7271,8 @@ type User struct {
 	HasActiveStories bool `json:"has_active_stories"`
 	// True, if the user has unread non-expired stories available to the current user
 	HasUnreadActiveStories bool `json:"has_unread_active_stories"`
+	// True, if the user may restrict new chats with non-contacts. Use canSendMessageToUser to check whether the current user can message the user or try to create a chat with them
+	RestrictsNewChats bool `json:"restricts_new_chats"`
 	// If false, the user is inaccessible, and the only information known about the user is inside this class. Identifier of the user can't be passed to any method
 	HaveAccess bool `json:"have_access"`
 	// Type of the user
@@ -6660,6 +7324,7 @@ func (user *User) UnmarshalJSON(data []byte) error {
 		IsFake                         bool            `json:"is_fake"`
 		HasActiveStories               bool            `json:"has_active_stories"`
 		HasUnreadActiveStories         bool            `json:"has_unread_active_stories"`
+		RestrictsNewChats              bool            `json:"restricts_new_chats"`
 		HaveAccess                     bool            `json:"have_access"`
 		Type                           json.RawMessage `json:"type"`
 		LanguageCode                   string          `json:"language_code"`
@@ -6693,6 +7358,7 @@ func (user *User) UnmarshalJSON(data []byte) error {
 	user.IsFake = tmp.IsFake
 	user.HasActiveStories = tmp.HasActiveStories
 	user.HasUnreadActiveStories = tmp.HasUnreadActiveStories
+	user.RestrictsNewChats = tmp.RestrictsNewChats
 	user.HaveAccess = tmp.HaveAccess
 	user.LanguageCode = tmp.LanguageCode
 	user.AddedToAttachmentMenu = tmp.AddedToAttachmentMenu
@@ -6825,10 +7491,16 @@ type UserFullInfo struct {
 	SetChatBackground bool `json:"set_chat_background"`
 	// A short user bio; may be null for bots
 	Bio *FormattedText `json:"bio"`
+	// Birthdate of the user; may be null if unknown
+	Birthdate *Birthdate `json:"birthdate"`
+	// Identifier of the personal chat of the user; 0 if none
+	PersonalChatId int64 `json:"personal_chat_id"`
 	// The list of available options for gifting Telegram Premium to the user
 	PremiumGiftOptions []*PremiumPaymentOption `json:"premium_gift_options"`
 	// Number of group chats where both the other user and the current user are a member; 0 for the current user
 	GroupInCommonCount int32 `json:"group_in_common_count"`
+	// Information about business settings for Telegram Business accounts; may be null if none
+	BusinessInfo *BusinessInfo `json:"business_info"`
 	// For bots, information about the bot; may be null if the user isn't a bot
 	BotInfo *BotInfo `json:"bot_info"`
 }
@@ -6864,8 +7536,11 @@ func (userFullInfo *UserFullInfo) UnmarshalJSON(data []byte) error {
 		NeedPhoneNumberPrivacyException        bool                    `json:"need_phone_number_privacy_exception"`
 		SetChatBackground                      bool                    `json:"set_chat_background"`
 		Bio                                    *FormattedText          `json:"bio"`
+		Birthdate                              *Birthdate              `json:"birthdate"`
+		PersonalChatId                         int64                   `json:"personal_chat_id"`
 		PremiumGiftOptions                     []*PremiumPaymentOption `json:"premium_gift_options"`
 		GroupInCommonCount                     int32                   `json:"group_in_common_count"`
+		BusinessInfo                           *BusinessInfo           `json:"business_info"`
 		BotInfo                                *BotInfo                `json:"bot_info"`
 	}
 
@@ -6886,8 +7561,11 @@ func (userFullInfo *UserFullInfo) UnmarshalJSON(data []byte) error {
 	userFullInfo.NeedPhoneNumberPrivacyException = tmp.NeedPhoneNumberPrivacyException
 	userFullInfo.SetChatBackground = tmp.SetChatBackground
 	userFullInfo.Bio = tmp.Bio
+	userFullInfo.Birthdate = tmp.Birthdate
+	userFullInfo.PersonalChatId = tmp.PersonalChatId
 	userFullInfo.PremiumGiftOptions = tmp.PremiumGiftOptions
 	userFullInfo.GroupInCommonCount = tmp.GroupInCommonCount
+	userFullInfo.BusinessInfo = tmp.BusinessInfo
 	userFullInfo.BotInfo = tmp.BotInfo
 
 	fieldBlockList, _ := UnmarshalBlockList(tmp.BlockList)
@@ -8131,8 +8809,10 @@ type Supergroup struct {
 	Date int32 `json:"date"`
 	// Status of the current user in the supergroup or channel; custom title will always be empty
 	Status ChatMemberStatus `json:"status"`
-	// Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through getChatSimilarChats, getChatsToSendStories, getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats, getSuitableDiscussionChats, getUserPrivacySettingRules, getVideoChatAvailableParticipants, searchChatsNearby, searchPublicChats, or in chatFolderInviteLinkInfo.missing_chat_ids, or for public chats in which where sent messages and posted stories from storyPublicForwards, or for public chats in which where sent messages from getMessagePublicForwards response
+	// Number of members in the supergroup or channel; 0 if unknown. Currently, it is guaranteed to be known only if the supergroup or channel was received through getChatSimilarChats, getChatsToSendStories, getCreatedPublicChats, getGroupsInCommon, getInactiveSupergroupChats, getSuitableDiscussionChats, getUserPrivacySettingRules, getVideoChatAvailableParticipants, searchChatsNearby, searchPublicChats, or in chatFolderInviteLinkInfo.missing_chat_ids, or for public chats in which where sent messages and posted stories from publicForwards, or for public chats in which where sent messages from getMessagePublicForwards response
 	MemberCount int32 `json:"member_count"`
+	// Approximate boost level for the chat
+	BoostLevel int32 `json:"boost_level"`
 	// True, if the channel has a discussion group, or the supergroup is the designated discussion group for a channel
 	HasLinkedChat bool `json:"has_linked_chat"`
 	// True, if the supergroup is connected to a location, i.e. the supergroup is a location-based supergroup
@@ -8159,9 +8839,9 @@ type Supergroup struct {
 	IsScam bool `json:"is_scam"`
 	// True, if many users reported this supergroup or channel as a fake account
 	IsFake bool `json:"is_fake"`
-	// True, if the channel has non-expired stories available to the current user
+	// True, if the supergroup or channel has non-expired stories available to the current user
 	HasActiveStories bool `json:"has_active_stories"`
-	// True, if the channel has unread non-expired stories available to the current user
+	// True, if the supergroup or channel has unread non-expired stories available to the current user
 	HasUnreadActiveStories bool `json:"has_unread_active_stories"`
 }
 
@@ -8188,6 +8868,7 @@ func (supergroup *Supergroup) UnmarshalJSON(data []byte) error {
 		Date                   int32           `json:"date"`
 		Status                 json.RawMessage `json:"status"`
 		MemberCount            int32           `json:"member_count"`
+		BoostLevel             int32           `json:"boost_level"`
 		HasLinkedChat          bool            `json:"has_linked_chat"`
 		HasLocation            bool            `json:"has_location"`
 		SignMessages           bool            `json:"sign_messages"`
@@ -8214,6 +8895,7 @@ func (supergroup *Supergroup) UnmarshalJSON(data []byte) error {
 	supergroup.Usernames = tmp.Usernames
 	supergroup.Date = tmp.Date
 	supergroup.MemberCount = tmp.MemberCount
+	supergroup.BoostLevel = tmp.BoostLevel
 	supergroup.HasLinkedChat = tmp.HasLinkedChat
 	supergroup.HasLocation = tmp.HasLocation
 	supergroup.SignMessages = tmp.SignMessages
@@ -8275,10 +8957,16 @@ type SupergroupFullInfo struct {
 	IsAllHistoryAvailable bool `json:"is_all_history_available"`
 	// True, if aggressive anti-spam checks are enabled in the supergroup. The value of this field is only available to chat administrators
 	HasAggressiveAntiSpamEnabled bool `json:"has_aggressive_anti_spam_enabled"`
-	// True, if the channel has pinned stories
+	// True, if the supergroup or channel has pinned stories
 	HasPinnedStories bool `json:"has_pinned_stories"`
-	// Identifier of the supergroup sticker set; 0 if none
+	// Number of times the current user boosted the supergroup or channel
+	MyBoostCount int32 `json:"my_boost_count"`
+	// Number of times the supergroup must be boosted by a user to ignore slow mode and chat permission restrictions; 0 if unspecified
+	UnrestrictBoostCount int32 `json:"unrestrict_boost_count"`
+	// Identifier of the supergroup sticker set that must be shown before user sticker sets; 0 if none
 	StickerSetId JsonInt64 `json:"sticker_set_id"`
+	// Identifier of the custom emoji sticker set that can be used in the supergroup without Telegram Premium subscription; 0 if none
+	CustomEmojiStickerSetId JsonInt64 `json:"custom_emoji_sticker_set_id"`
 	// Location to which the supergroup is connected; may be null if none
 	Location *ChatLocation `json:"location"`
 	// Primary invite link for the chat; may be null. For chat administrators with can_invite_users right only
@@ -8607,6 +9295,133 @@ func (*ChatMessageSenders) GetType() string {
 	return TypeChatMessageSenders
 }
 
+// Contains read date of the message
+type MessageReadDateRead struct {
+	meta
+	// Point in time (Unix timestamp) when the message was read by the other user
+	ReadDate int32 `json:"read_date"`
+}
+
+func (entity *MessageReadDateRead) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub MessageReadDateRead
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*MessageReadDateRead) GetClass() string {
+	return ClassMessageReadDate
+}
+
+func (*MessageReadDateRead) GetType() string {
+	return TypeMessageReadDateRead
+}
+
+func (*MessageReadDateRead) MessageReadDateType() string {
+	return TypeMessageReadDateRead
+}
+
+// The message is unread yet
+type MessageReadDateUnread struct {
+	meta
+}
+
+func (entity *MessageReadDateUnread) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub MessageReadDateUnread
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*MessageReadDateUnread) GetClass() string {
+	return ClassMessageReadDate
+}
+
+func (*MessageReadDateUnread) GetType() string {
+	return TypeMessageReadDateUnread
+}
+
+func (*MessageReadDateUnread) MessageReadDateType() string {
+	return TypeMessageReadDateUnread
+}
+
+// The message is too old to get read date
+type MessageReadDateTooOld struct {
+	meta
+}
+
+func (entity *MessageReadDateTooOld) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub MessageReadDateTooOld
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*MessageReadDateTooOld) GetClass() string {
+	return ClassMessageReadDate
+}
+
+func (*MessageReadDateTooOld) GetType() string {
+	return TypeMessageReadDateTooOld
+}
+
+func (*MessageReadDateTooOld) MessageReadDateType() string {
+	return TypeMessageReadDateTooOld
+}
+
+// The read date is unknown due to privacy settings of the other user
+type MessageReadDateUserPrivacyRestricted struct {
+	meta
+}
+
+func (entity *MessageReadDateUserPrivacyRestricted) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub MessageReadDateUserPrivacyRestricted
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*MessageReadDateUserPrivacyRestricted) GetClass() string {
+	return ClassMessageReadDate
+}
+
+func (*MessageReadDateUserPrivacyRestricted) GetType() string {
+	return TypeMessageReadDateUserPrivacyRestricted
+}
+
+func (*MessageReadDateUserPrivacyRestricted) MessageReadDateType() string {
+	return TypeMessageReadDateUserPrivacyRestricted
+}
+
+// The read date is unknown due to privacy settings of the current user, but will be known if the user subscribes to Telegram Premium
+type MessageReadDateMyPrivacyRestricted struct {
+	meta
+}
+
+func (entity *MessageReadDateMyPrivacyRestricted) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub MessageReadDateMyPrivacyRestricted
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*MessageReadDateMyPrivacyRestricted) GetClass() string {
+	return ClassMessageReadDate
+}
+
+func (*MessageReadDateMyPrivacyRestricted) GetType() string {
+	return TypeMessageReadDateMyPrivacyRestricted
+}
+
+func (*MessageReadDateMyPrivacyRestricted) MessageReadDateType() string {
+	return TypeMessageReadDateMyPrivacyRestricted
+}
+
 // Represents a viewer of a message
 type MessageViewer struct {
 	meta
@@ -8769,6 +9584,66 @@ func (*MessageOriginChannel) MessageOriginType() string {
 	return TypeMessageOriginChannel
 }
 
+// Contains information about the last message from which a new message was forwarded last time
+type ForwardSource struct {
+	meta
+	// Identifier of the chat to which the message that was forwarded belonged; may be 0 if unknown
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message; may be 0 if unknown
+	MessageId int64 `json:"message_id"`
+	// Identifier of the sender of the message; may be null if unknown or the new message was forwarded not to Saved Messages
+	SenderId MessageSender `json:"sender_id"`
+	// Name of the sender of the message if the sender is hidden by their privacy settings
+	SenderName string `json:"sender_name"`
+	// Point in time (Unix timestamp) when the message is sent; 0 if unknown
+	Date int32 `json:"date"`
+	// True, if the message that was forwarded is outgoing; always false if sender is unknown
+	IsOutgoing bool `json:"is_outgoing"`
+}
+
+func (entity *ForwardSource) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ForwardSource
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ForwardSource) GetClass() string {
+	return ClassForwardSource
+}
+
+func (*ForwardSource) GetType() string {
+	return TypeForwardSource
+}
+
+func (forwardSource *ForwardSource) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		ChatId     int64           `json:"chat_id"`
+		MessageId  int64           `json:"message_id"`
+		SenderId   json.RawMessage `json:"sender_id"`
+		SenderName string          `json:"sender_name"`
+		Date       int32           `json:"date"`
+		IsOutgoing bool            `json:"is_outgoing"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	forwardSource.ChatId = tmp.ChatId
+	forwardSource.MessageId = tmp.MessageId
+	forwardSource.SenderName = tmp.SenderName
+	forwardSource.Date = tmp.Date
+	forwardSource.IsOutgoing = tmp.IsOutgoing
+
+	fieldSenderId, _ := UnmarshalMessageSender(tmp.SenderId)
+	forwardSource.SenderId = fieldSenderId
+
+	return nil
+}
+
 // A reaction with an emoji
 type ReactionTypeEmoji struct {
 	meta
@@ -8830,12 +9705,10 @@ type MessageForwardInfo struct {
 	Origin MessageOrigin `json:"origin"`
 	// Point in time (Unix timestamp) when the message was originally sent
 	Date int32 `json:"date"`
+	// For messages forwarded to the chat with the current user (Saved Messages), to the Replies bot chat, or to the channel's discussion group, information about the source message from which the message was forwarded last time; may be null for other forwards or if unknown
+	Source *ForwardSource `json:"source"`
 	// The type of a public service announcement for the forwarded message
 	PublicServiceAnnouncementType string `json:"public_service_announcement_type"`
-	// For messages forwarded to the chat with the current user (Saved Messages), to the Replies bot chat, or to the channel's discussion group, the identifier of the chat from which the message was forwarded last time; 0 if unknown
-	FromChatId int64 `json:"from_chat_id"`
-	// For messages forwarded to the chat with the current user (Saved Messages), to the Replies bot chat, or to the channel's discussion group, the identifier of the original message from which the new message was forwarded last time; 0 if unknown
-	FromMessageId int64 `json:"from_message_id"`
 }
 
 func (entity *MessageForwardInfo) MarshalJSON() ([]byte, error) {
@@ -8858,9 +9731,8 @@ func (messageForwardInfo *MessageForwardInfo) UnmarshalJSON(data []byte) error {
 	var tmp struct {
 		Origin                        json.RawMessage `json:"origin"`
 		Date                          int32           `json:"date"`
+		Source                        *ForwardSource  `json:"source"`
 		PublicServiceAnnouncementType string          `json:"public_service_announcement_type"`
-		FromChatId                    int64           `json:"from_chat_id"`
-		FromMessageId                 int64           `json:"from_message_id"`
 	}
 
 	err := json.Unmarshal(data, &tmp)
@@ -8869,9 +9741,8 @@ func (messageForwardInfo *MessageForwardInfo) UnmarshalJSON(data []byte) error {
 	}
 
 	messageForwardInfo.Date = tmp.Date
+	messageForwardInfo.Source = tmp.Source
 	messageForwardInfo.PublicServiceAnnouncementType = tmp.PublicServiceAnnouncementType
-	messageForwardInfo.FromChatId = tmp.FromChatId
-	messageForwardInfo.FromMessageId = tmp.FromMessageId
 
 	fieldOrigin, _ := UnmarshalMessageOrigin(tmp.Origin)
 	messageForwardInfo.Origin = fieldOrigin
@@ -9020,6 +9891,31 @@ func (messageReaction *MessageReaction) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// Contains a list of reactions added to a message
+type MessageReactions struct {
+	meta
+	// List of added reactions
+	Reactions []*MessageReaction `json:"reactions"`
+	// True, if the reactions are tags and Telegram Premium users can filter messages by them
+	AreTags bool `json:"are_tags"`
+}
+
+func (entity *MessageReactions) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub MessageReactions
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*MessageReactions) GetClass() string {
+	return ClassMessageReactions
+}
+
+func (*MessageReactions) GetType() string {
+	return TypeMessageReactions
+}
+
 // Contains information about interactions with a message
 type MessageInteractionInfo struct {
 	meta
@@ -9029,8 +9925,8 @@ type MessageInteractionInfo struct {
 	ForwardCount int32 `json:"forward_count"`
 	// Information about direct or indirect replies to the message; may be null. Currently, available only in channels with a discussion supergroup and discussion supergroups for messages, which are not replies itself
 	ReplyInfo *MessageReplyInfo `json:"reply_info"`
-	// The list of reactions added to the message
-	Reactions []*MessageReaction `json:"reactions"`
+	// The list of reactions or tags added to the message; may be null
+	Reactions *MessageReactions `json:"reactions"`
 }
 
 func (entity *MessageInteractionInfo) MarshalJSON() ([]byte, error) {
@@ -9228,7 +10124,7 @@ type MessageReplyToMessage struct {
 	Origin MessageOrigin `json:"origin"`
 	// Point in time (Unix timestamp) when the message was sent if the message was from another chat or topic; 0 for messages from the same chat
 	OriginSendDate int32 `json:"origin_send_date"`
-	// Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageContact, messageDice, messageDocument, messageGame, messageInvoice, messageLocation, messagePhoto, messagePoll, messagePremiumGiveaway, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote
+	// Media content of the message if the message was from another chat or topic; may be null for messages from the same chat and messages without media. Can be only one of the following types: messageAnimation, messageAudio, messageContact, messageDice, messageDocument, messageGame, messageInvoice, messageLocation, messagePhoto, messagePoll, messagePremiumGiveaway, messagePremiumGiveawayWinners, messageSticker, messageStory, messageText (for link preview), messageVenue, messageVideo, messageVideoNote, or messageVoiceNote
 	Content MessageContent `json:"content"`
 }
 
@@ -9344,7 +10240,7 @@ func (*InputMessageReplyToMessage) InputMessageReplyToType() string {
 // Describes a story to be replied
 type InputMessageReplyToStory struct {
 	meta
-	// The identifier of the sender of the story. Currently, stories can be replied only in the sender's chat
+	// The identifier of the sender of the story. Currently, stories can be replied only in the sender's chat and channel stories can't be replied
 	StorySenderChatId int64 `json:"story_sender_chat_id"`
 	// The identifier of the story
 	StoryId int32 `json:"story_id"`
@@ -9387,6 +10283,8 @@ type Message struct {
 	IsOutgoing bool `json:"is_outgoing"`
 	// True, if the message is pinned
 	IsPinned bool `json:"is_pinned"`
+	// True, if the message was sent because of a scheduled action by the message sender, for example, as away, or greeting service message
+	IsFromOffline bool `json:"is_from_offline"`
 	// True, if the message can be edited. For live location and poll messages this fields shows whether editMessageLiveLocation or stopPoll can be used with this message by the application
 	CanBeEdited bool `json:"can_be_edited"`
 	// True, if the message can be forwarded
@@ -9405,6 +10303,8 @@ type Message struct {
 	CanGetStatistics bool `json:"can_get_statistics"`
 	// True, if information about the message thread is available through getMessageThread and getMessageThreadHistory
 	CanGetMessageThread bool `json:"can_get_message_thread"`
+	// True, if read date of the message can be received through getMessageReadDate
+	CanGetReadDate bool `json:"can_get_read_date"`
 	// True, if chat members already viewed the message can be received through getMessageViewers
 	CanGetViewers bool `json:"can_get_viewers"`
 	// True, if media timestamp links can be generated for media timestamp entities in the message text, caption or web page description through getMessageLink
@@ -9435,14 +10335,20 @@ type Message struct {
 	ReplyTo MessageReplyTo `json:"reply_to"`
 	// If non-zero, the identifier of the message thread the message belongs to; unique within the chat to which the message belongs
 	MessageThreadId int64 `json:"message_thread_id"`
+	// Identifier of the Saved Messages topic for the message; 0 for messages not from Saved Messages
+	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
 	// The message's self-destruct type; may be null if none
 	SelfDestructType MessageSelfDestructType `json:"self_destruct_type"`
 	// Time left before the message self-destruct timer expires, in seconds; 0 if self-destruction isn't scheduled yet
 	SelfDestructIn float64 `json:"self_destruct_in"`
 	// Time left before the message will be automatically deleted by message_auto_delete_time setting of the chat, in seconds; 0 if never
 	AutoDeleteIn float64 `json:"auto_delete_in"`
-	// If non-zero, the user identifier of the bot through which this message was sent
+	// If non-zero, the user identifier of the inline bot through which this message was sent
 	ViaBotUserId int64 `json:"via_bot_user_id"`
+	// If non-zero, the user identifier of the business bot that sent this message
+	SenderBusinessBotUserId int64 `json:"sender_business_bot_user_id"`
+	// Number of times the sender of the message boosted the supergroup at the time the message was sent; 0 if none or unknown. For messages sent by the current user, supergroupFullInfo.my_boost_count must be used instead
+	SenderBoostCount int32 `json:"sender_boost_count"`
 	// For channel posts and anonymous group messages, optional author signature
 	AuthorSignature string `json:"author_signature"`
 	// Unique identifier of an album this message belongs to. Only audios, documents, photos and videos can be grouped together in albums
@@ -9480,6 +10386,7 @@ func (message *Message) UnmarshalJSON(data []byte) error {
 		SchedulingState           json.RawMessage         `json:"scheduling_state"`
 		IsOutgoing                bool                    `json:"is_outgoing"`
 		IsPinned                  bool                    `json:"is_pinned"`
+		IsFromOffline             bool                    `json:"is_from_offline"`
 		CanBeEdited               bool                    `json:"can_be_edited"`
 		CanBeForwarded            bool                    `json:"can_be_forwarded"`
 		CanBeRepliedInAnotherChat bool                    `json:"can_be_replied_in_another_chat"`
@@ -9489,6 +10396,7 @@ func (message *Message) UnmarshalJSON(data []byte) error {
 		CanGetAddedReactions      bool                    `json:"can_get_added_reactions"`
 		CanGetStatistics          bool                    `json:"can_get_statistics"`
 		CanGetMessageThread       bool                    `json:"can_get_message_thread"`
+		CanGetReadDate            bool                    `json:"can_get_read_date"`
 		CanGetViewers             bool                    `json:"can_get_viewers"`
 		CanGetMediaTimestampLinks bool                    `json:"can_get_media_timestamp_links"`
 		CanReportReactions        bool                    `json:"can_report_reactions"`
@@ -9504,10 +10412,13 @@ func (message *Message) UnmarshalJSON(data []byte) error {
 		UnreadReactions           []*UnreadReaction       `json:"unread_reactions"`
 		ReplyTo                   json.RawMessage         `json:"reply_to"`
 		MessageThreadId           int64                   `json:"message_thread_id"`
+		SavedMessagesTopicId      int64                   `json:"saved_messages_topic_id"`
 		SelfDestructType          json.RawMessage         `json:"self_destruct_type"`
 		SelfDestructIn            float64                 `json:"self_destruct_in"`
 		AutoDeleteIn              float64                 `json:"auto_delete_in"`
 		ViaBotUserId              int64                   `json:"via_bot_user_id"`
+		SenderBusinessBotUserId   int64                   `json:"sender_business_bot_user_id"`
+		SenderBoostCount          int32                   `json:"sender_boost_count"`
 		AuthorSignature           string                  `json:"author_signature"`
 		MediaAlbumId              JsonInt64               `json:"media_album_id"`
 		RestrictionReason         string                  `json:"restriction_reason"`
@@ -9524,6 +10435,7 @@ func (message *Message) UnmarshalJSON(data []byte) error {
 	message.ChatId = tmp.ChatId
 	message.IsOutgoing = tmp.IsOutgoing
 	message.IsPinned = tmp.IsPinned
+	message.IsFromOffline = tmp.IsFromOffline
 	message.CanBeEdited = tmp.CanBeEdited
 	message.CanBeForwarded = tmp.CanBeForwarded
 	message.CanBeRepliedInAnotherChat = tmp.CanBeRepliedInAnotherChat
@@ -9533,6 +10445,7 @@ func (message *Message) UnmarshalJSON(data []byte) error {
 	message.CanGetAddedReactions = tmp.CanGetAddedReactions
 	message.CanGetStatistics = tmp.CanGetStatistics
 	message.CanGetMessageThread = tmp.CanGetMessageThread
+	message.CanGetReadDate = tmp.CanGetReadDate
 	message.CanGetViewers = tmp.CanGetViewers
 	message.CanGetMediaTimestampLinks = tmp.CanGetMediaTimestampLinks
 	message.CanReportReactions = tmp.CanReportReactions
@@ -9547,9 +10460,12 @@ func (message *Message) UnmarshalJSON(data []byte) error {
 	message.InteractionInfo = tmp.InteractionInfo
 	message.UnreadReactions = tmp.UnreadReactions
 	message.MessageThreadId = tmp.MessageThreadId
+	message.SavedMessagesTopicId = tmp.SavedMessagesTopicId
 	message.SelfDestructIn = tmp.SelfDestructIn
 	message.AutoDeleteIn = tmp.AutoDeleteIn
 	message.ViaBotUserId = tmp.ViaBotUserId
+	message.SenderBusinessBotUserId = tmp.SenderBusinessBotUserId
+	message.SenderBoostCount = tmp.SenderBoostCount
 	message.AuthorSignature = tmp.AuthorSignature
 	message.MediaAlbumId = tmp.MediaAlbumId
 	message.RestrictionReason = tmp.RestrictionReason
@@ -9757,6 +10673,54 @@ func (*MessageCalendar) GetClass() string {
 
 func (*MessageCalendar) GetType() string {
 	return TypeMessageCalendar
+}
+
+// Describes a message from a business account as received by a bot
+type BusinessMessage struct {
+	meta
+	// The message
+	Message *Message `json:"message"`
+	// Message that is replied by the message in the same chat; may be null if none
+	ReplyToMessage *Message `json:"reply_to_message"`
+}
+
+func (entity *BusinessMessage) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessMessage
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessMessage) GetClass() string {
+	return ClassBusinessMessage
+}
+
+func (*BusinessMessage) GetType() string {
+	return TypeBusinessMessage
+}
+
+// Contains a list of messages from a business account as received by a bot
+type BusinessMessages struct {
+	meta
+	// List of business messages
+	Messages []*BusinessMessage `json:"messages"`
+}
+
+func (entity *BusinessMessages) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessMessages
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessMessages) GetClass() string {
+	return ClassBusinessMessages
+}
+
+func (*BusinessMessages) GetType() string {
+	return TypeBusinessMessages
 }
 
 // The message is from a chat history
@@ -10266,6 +11230,8 @@ type SponsoredMessage struct {
 	MessageId int64 `json:"message_id"`
 	// True, if the message needs to be labeled as "recommended" instead of "sponsored"
 	IsRecommended bool `json:"is_recommended"`
+	// True, if the message can be reported to Telegram moderators through reportChatSponsoredMessage
+	CanBeReported bool `json:"can_be_reported"`
 	// Content of the message. Currently, can be only of the type messageText
 	Content MessageContent `json:"content"`
 	// Information about the sponsor of the message
@@ -10296,6 +11262,7 @@ func (sponsoredMessage *SponsoredMessage) UnmarshalJSON(data []byte) error {
 	var tmp struct {
 		MessageId      int64           `json:"message_id"`
 		IsRecommended  bool            `json:"is_recommended"`
+		CanBeReported  bool            `json:"can_be_reported"`
 		Content        json.RawMessage `json:"content"`
 		Sponsor        *MessageSponsor `json:"sponsor"`
 		ButtonText     string          `json:"button_text"`
@@ -10309,6 +11276,7 @@ func (sponsoredMessage *SponsoredMessage) UnmarshalJSON(data []byte) error {
 
 	sponsoredMessage.MessageId = tmp.MessageId
 	sponsoredMessage.IsRecommended = tmp.IsRecommended
+	sponsoredMessage.CanBeReported = tmp.CanBeReported
 	sponsoredMessage.Sponsor = tmp.Sponsor
 	sponsoredMessage.ButtonText = tmp.ButtonText
 	sponsoredMessage.AdditionalInfo = tmp.AdditionalInfo
@@ -10342,6 +11310,160 @@ func (*SponsoredMessages) GetClass() string {
 
 func (*SponsoredMessages) GetType() string {
 	return TypeSponsoredMessages
+}
+
+// Describes an option to report a sponsored message
+type ReportChatSponsoredMessageOption struct {
+	meta
+	// Unique identifier of the option
+	Id []byte `json:"id"`
+	// Text of the option
+	Text string `json:"text"`
+}
+
+func (entity *ReportChatSponsoredMessageOption) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ReportChatSponsoredMessageOption
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ReportChatSponsoredMessageOption) GetClass() string {
+	return ClassReportChatSponsoredMessageOption
+}
+
+func (*ReportChatSponsoredMessageOption) GetType() string {
+	return TypeReportChatSponsoredMessageOption
+}
+
+// The message was reported successfully
+type ReportChatSponsoredMessageResultOk struct {
+	meta
+}
+
+func (entity *ReportChatSponsoredMessageResultOk) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ReportChatSponsoredMessageResultOk
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ReportChatSponsoredMessageResultOk) GetClass() string {
+	return ClassReportChatSponsoredMessageResult
+}
+
+func (*ReportChatSponsoredMessageResultOk) GetType() string {
+	return TypeReportChatSponsoredMessageResultOk
+}
+
+func (*ReportChatSponsoredMessageResultOk) ReportChatSponsoredMessageResultType() string {
+	return TypeReportChatSponsoredMessageResultOk
+}
+
+// The sponsored message is too old or not found
+type ReportChatSponsoredMessageResultFailed struct {
+	meta
+}
+
+func (entity *ReportChatSponsoredMessageResultFailed) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ReportChatSponsoredMessageResultFailed
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ReportChatSponsoredMessageResultFailed) GetClass() string {
+	return ClassReportChatSponsoredMessageResult
+}
+
+func (*ReportChatSponsoredMessageResultFailed) GetType() string {
+	return TypeReportChatSponsoredMessageResultFailed
+}
+
+func (*ReportChatSponsoredMessageResultFailed) ReportChatSponsoredMessageResultType() string {
+	return TypeReportChatSponsoredMessageResultFailed
+}
+
+// The user must choose an option to report the message and repeat request with the chosen option
+type ReportChatSponsoredMessageResultOptionRequired struct {
+	meta
+	// Title for the option choice
+	Title string `json:"title"`
+	// List of available options
+	Options []*ReportChatSponsoredMessageOption `json:"options"`
+}
+
+func (entity *ReportChatSponsoredMessageResultOptionRequired) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ReportChatSponsoredMessageResultOptionRequired
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ReportChatSponsoredMessageResultOptionRequired) GetClass() string {
+	return ClassReportChatSponsoredMessageResult
+}
+
+func (*ReportChatSponsoredMessageResultOptionRequired) GetType() string {
+	return TypeReportChatSponsoredMessageResultOptionRequired
+}
+
+func (*ReportChatSponsoredMessageResultOptionRequired) ReportChatSponsoredMessageResultType() string {
+	return TypeReportChatSponsoredMessageResultOptionRequired
+}
+
+// Sponsored messages were hidden for the user in all chats
+type ReportChatSponsoredMessageResultAdsHidden struct {
+	meta
+}
+
+func (entity *ReportChatSponsoredMessageResultAdsHidden) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ReportChatSponsoredMessageResultAdsHidden
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ReportChatSponsoredMessageResultAdsHidden) GetClass() string {
+	return ClassReportChatSponsoredMessageResult
+}
+
+func (*ReportChatSponsoredMessageResultAdsHidden) GetType() string {
+	return TypeReportChatSponsoredMessageResultAdsHidden
+}
+
+func (*ReportChatSponsoredMessageResultAdsHidden) ReportChatSponsoredMessageResultType() string {
+	return TypeReportChatSponsoredMessageResultAdsHidden
+}
+
+// The user asked to hide sponsored messages, but Telegram Premium is required for this
+type ReportChatSponsoredMessageResultPremiumRequired struct {
+	meta
+}
+
+func (entity *ReportChatSponsoredMessageResultPremiumRequired) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ReportChatSponsoredMessageResultPremiumRequired
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ReportChatSponsoredMessageResultPremiumRequired) GetClass() string {
+	return ClassReportChatSponsoredMessageResult
+}
+
+func (*ReportChatSponsoredMessageResultPremiumRequired) GetType() string {
+	return TypeReportChatSponsoredMessageResultPremiumRequired
+}
+
+func (*ReportChatSponsoredMessageResultPremiumRequired) ReportChatSponsoredMessageResultType() string {
+	return TypeReportChatSponsoredMessageResultPremiumRequired
 }
 
 // Describes a file added to file download list
@@ -10603,7 +11725,7 @@ type DraftMessage struct {
 	ReplyTo InputMessageReplyTo `json:"reply_to"`
 	// Point in time (Unix timestamp) when the draft was created
 	Date int32 `json:"date"`
-	// Content of the message draft; must be of the type inputMessageText
+	// Content of the message draft; must be of the type inputMessageText, inputMessageVideoNote, or inputMessageVoiceNote
 	InputMessageText InputMessageContent `json:"input_message_text"`
 }
 
@@ -10788,6 +11910,8 @@ type ChatFolder struct {
 	Title string `json:"title"`
 	// The chosen icon for the chat folder; may be null. If null, use getChatFolderDefaultIconName to get default icon name for the folder
 	Icon *ChatFolderIcon `json:"icon"`
+	// The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is didabled. Can't be changed if folder tags are disabled or the current user doesn't have Telegram Premium subscription
+	ColorId int32 `json:"color_id"`
 	// True, if at least one link has been created for the folder
 	IsShareable bool `json:"is_shareable"`
 	// The chat identifiers of pinned chats in the folder. There can be up to getOption("chat_folder_chosen_chat_count_max") pinned and always included non-secret chats and the same number of secret chats, but the limit can be increased with Telegram Premium
@@ -10839,6 +11963,8 @@ type ChatFolderInfo struct {
 	Title string `json:"title"`
 	// The chosen or default icon for the chat folder
 	Icon *ChatFolderIcon `json:"icon"`
+	// The identifier of the chosen color for the chat folder icon; from -1 to 6. If -1, then color is didabled
+	ColorId int32 `json:"color_id"`
 	// True, if at least one link has been created for the folder
 	IsShareable bool `json:"is_shareable"`
 	// True, if the chat folder has invite links created by the current user
@@ -11305,6 +12431,77 @@ func (chatAvailableReactionsSome *ChatAvailableReactionsSome) UnmarshalJSON(data
 	return nil
 }
 
+// Represents a tag used in Saved Messages or a Saved Messages topic
+type SavedMessagesTag struct {
+	meta
+	// The tag
+	Tag ReactionType `json:"tag"`
+	// Label of the tag; 0-12 characters. Always empty if the tag is returned for a Saved Messages topic
+	Label string `json:"label"`
+	// Number of times the tag was used; may be 0 if the tag has non-empty label
+	Count int32 `json:"count"`
+}
+
+func (entity *SavedMessagesTag) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub SavedMessagesTag
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*SavedMessagesTag) GetClass() string {
+	return ClassSavedMessagesTag
+}
+
+func (*SavedMessagesTag) GetType() string {
+	return TypeSavedMessagesTag
+}
+
+func (savedMessagesTag *SavedMessagesTag) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Tag   json.RawMessage `json:"tag"`
+		Label string          `json:"label"`
+		Count int32           `json:"count"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	savedMessagesTag.Label = tmp.Label
+	savedMessagesTag.Count = tmp.Count
+
+	fieldTag, _ := UnmarshalReactionType(tmp.Tag)
+	savedMessagesTag.Tag = fieldTag
+
+	return nil
+}
+
+// Contains a list of tags used in Saved Messages
+type SavedMessagesTags struct {
+	meta
+	// List of tags
+	Tags []*SavedMessagesTag `json:"tags"`
+}
+
+func (entity *SavedMessagesTags) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub SavedMessagesTags
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*SavedMessagesTags) GetClass() string {
+	return ClassSavedMessagesTags
+}
+
+func (*SavedMessagesTags) GetType() string {
+	return TypeSavedMessagesTags
+}
+
 // Describes a video chat
 type VideoChat struct {
 	meta
@@ -11366,14 +12563,20 @@ type Chat struct {
 	Photo *ChatPhotoInfo `json:"photo"`
 	// Identifier of the accent color for message sender name, and backgrounds of chat photo, reply header, and link preview
 	AccentColorId int32 `json:"accent_color_id"`
-	// Identifier of a custom emoji to be shown on the reply header background in replies to messages sent by the chat; 0 if none
+	// Identifier of a custom emoji to be shown on the reply header and link preview background for messages sent by the chat; 0 if none
 	BackgroundCustomEmojiId JsonInt64 `json:"background_custom_emoji_id"`
+	// Identifier of the profile accent color for the chat's profile; -1 if none
+	ProfileAccentColorId int32 `json:"profile_accent_color_id"`
+	// Identifier of a custom emoji to be shown on the background of the chat's profile; 0 if none
+	ProfileBackgroundCustomEmojiId JsonInt64 `json:"profile_background_custom_emoji_id"`
 	// Actions that non-administrator chat members are allowed to take in the chat
 	Permissions *ChatPermissions `json:"permissions"`
 	// Last message in the chat; may be null if none or unknown
 	LastMessage *Message `json:"last_message"`
 	// Positions of the chat in chat lists
 	Positions []*ChatPosition `json:"positions"`
+	// Chat lists to which the chat belongs. A chat can have a non-zero position in a chat list even it doesn't belong to the chat list and have no position in a chat list even it belongs to the chat list
+	ChatLists []ChatList `json:"chat_lists"`
 	// Identifier of a user or chat that is selected to send messages in the chat; may be null if the user can't change message sender
 	MessageSenderId MessageSender `json:"message_sender_id"`
 	// Block list to which the chat is added; may be null if none
@@ -11384,7 +12587,7 @@ type Chat struct {
 	IsTranslatable bool `json:"is_translatable"`
 	// True, if the chat is marked as unread
 	IsMarkedAsUnread bool `json:"is_marked_as_unread"`
-	// True, if the chat is a forum supergroup that must be shown in the "View as topics" mode
+	// True, if the chat is a forum supergroup that must be shown in the "View as topics" mode, or Saved Messages chat that must be shown in the "View as chats"
 	ViewAsTopics bool `json:"view_as_topics"`
 	// True, if the chat has scheduled messages
 	HasScheduledMessages bool `json:"has_scheduled_messages"`
@@ -11412,6 +12615,8 @@ type Chat struct {
 	AvailableReactions ChatAvailableReactions `json:"available_reactions"`
 	// Current message auto-delete or self-destruct timer setting for the chat, in seconds; 0 if disabled. Self-destruct timer in secret chats starts after the message or its content is viewed. Auto-delete timer in other chats starts from the send date
 	MessageAutoDeleteTime int32 `json:"message_auto_delete_time"`
+	// Emoji status to be shown along with chat title; may be null
+	EmojiStatus *EmojiStatus `json:"emoji_status"`
 	// Background set for the chat; may be null if none
 	Background *ChatBackground `json:"background"`
 	// If non-empty, name of a theme, set for the chat
@@ -11448,42 +12653,46 @@ func (*Chat) GetType() string {
 
 func (chat *Chat) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		Id                         int64                     `json:"id"`
-		Type                       json.RawMessage           `json:"type"`
-		Title                      string                    `json:"title"`
-		Photo                      *ChatPhotoInfo            `json:"photo"`
-		AccentColorId              int32                     `json:"accent_color_id"`
-		BackgroundCustomEmojiId    JsonInt64                 `json:"background_custom_emoji_id"`
-		Permissions                *ChatPermissions          `json:"permissions"`
-		LastMessage                *Message                  `json:"last_message"`
-		Positions                  []*ChatPosition           `json:"positions"`
-		MessageSenderId            json.RawMessage           `json:"message_sender_id"`
-		BlockList                  json.RawMessage           `json:"block_list"`
-		HasProtectedContent        bool                      `json:"has_protected_content"`
-		IsTranslatable             bool                      `json:"is_translatable"`
-		IsMarkedAsUnread           bool                      `json:"is_marked_as_unread"`
-		ViewAsTopics               bool                      `json:"view_as_topics"`
-		HasScheduledMessages       bool                      `json:"has_scheduled_messages"`
-		CanBeDeletedOnlyForSelf    bool                      `json:"can_be_deleted_only_for_self"`
-		CanBeDeletedForAllUsers    bool                      `json:"can_be_deleted_for_all_users"`
-		CanBeReported              bool                      `json:"can_be_reported"`
-		DefaultDisableNotification bool                      `json:"default_disable_notification"`
-		UnreadCount                int32                     `json:"unread_count"`
-		LastReadInboxMessageId     int64                     `json:"last_read_inbox_message_id"`
-		LastReadOutboxMessageId    int64                     `json:"last_read_outbox_message_id"`
-		UnreadMentionCount         int32                     `json:"unread_mention_count"`
-		UnreadReactionCount        int32                     `json:"unread_reaction_count"`
-		NotificationSettings       *ChatNotificationSettings `json:"notification_settings"`
-		AvailableReactions         json.RawMessage           `json:"available_reactions"`
-		MessageAutoDeleteTime      int32                     `json:"message_auto_delete_time"`
-		Background                 *ChatBackground           `json:"background"`
-		ThemeName                  string                    `json:"theme_name"`
-		ActionBar                  json.RawMessage           `json:"action_bar"`
-		VideoChat                  *VideoChat                `json:"video_chat"`
-		PendingJoinRequests        *ChatJoinRequestsInfo     `json:"pending_join_requests"`
-		ReplyMarkupMessageId       int64                     `json:"reply_markup_message_id"`
-		DraftMessage               *DraftMessage             `json:"draft_message"`
-		ClientData                 string                    `json:"client_data"`
+		Id                             int64                     `json:"id"`
+		Type                           json.RawMessage           `json:"type"`
+		Title                          string                    `json:"title"`
+		Photo                          *ChatPhotoInfo            `json:"photo"`
+		AccentColorId                  int32                     `json:"accent_color_id"`
+		BackgroundCustomEmojiId        JsonInt64                 `json:"background_custom_emoji_id"`
+		ProfileAccentColorId           int32                     `json:"profile_accent_color_id"`
+		ProfileBackgroundCustomEmojiId JsonInt64                 `json:"profile_background_custom_emoji_id"`
+		Permissions                    *ChatPermissions          `json:"permissions"`
+		LastMessage                    *Message                  `json:"last_message"`
+		Positions                      []*ChatPosition           `json:"positions"`
+		ChatLists                      []json.RawMessage         `json:"chat_lists"`
+		MessageSenderId                json.RawMessage           `json:"message_sender_id"`
+		BlockList                      json.RawMessage           `json:"block_list"`
+		HasProtectedContent            bool                      `json:"has_protected_content"`
+		IsTranslatable                 bool                      `json:"is_translatable"`
+		IsMarkedAsUnread               bool                      `json:"is_marked_as_unread"`
+		ViewAsTopics                   bool                      `json:"view_as_topics"`
+		HasScheduledMessages           bool                      `json:"has_scheduled_messages"`
+		CanBeDeletedOnlyForSelf        bool                      `json:"can_be_deleted_only_for_self"`
+		CanBeDeletedForAllUsers        bool                      `json:"can_be_deleted_for_all_users"`
+		CanBeReported                  bool                      `json:"can_be_reported"`
+		DefaultDisableNotification     bool                      `json:"default_disable_notification"`
+		UnreadCount                    int32                     `json:"unread_count"`
+		LastReadInboxMessageId         int64                     `json:"last_read_inbox_message_id"`
+		LastReadOutboxMessageId        int64                     `json:"last_read_outbox_message_id"`
+		UnreadMentionCount             int32                     `json:"unread_mention_count"`
+		UnreadReactionCount            int32                     `json:"unread_reaction_count"`
+		NotificationSettings           *ChatNotificationSettings `json:"notification_settings"`
+		AvailableReactions             json.RawMessage           `json:"available_reactions"`
+		MessageAutoDeleteTime          int32                     `json:"message_auto_delete_time"`
+		EmojiStatus                    *EmojiStatus              `json:"emoji_status"`
+		Background                     *ChatBackground           `json:"background"`
+		ThemeName                      string                    `json:"theme_name"`
+		ActionBar                      json.RawMessage           `json:"action_bar"`
+		VideoChat                      *VideoChat                `json:"video_chat"`
+		PendingJoinRequests            *ChatJoinRequestsInfo     `json:"pending_join_requests"`
+		ReplyMarkupMessageId           int64                     `json:"reply_markup_message_id"`
+		DraftMessage                   *DraftMessage             `json:"draft_message"`
+		ClientData                     string                    `json:"client_data"`
 	}
 
 	err := json.Unmarshal(data, &tmp)
@@ -11496,6 +12705,8 @@ func (chat *Chat) UnmarshalJSON(data []byte) error {
 	chat.Photo = tmp.Photo
 	chat.AccentColorId = tmp.AccentColorId
 	chat.BackgroundCustomEmojiId = tmp.BackgroundCustomEmojiId
+	chat.ProfileAccentColorId = tmp.ProfileAccentColorId
+	chat.ProfileBackgroundCustomEmojiId = tmp.ProfileBackgroundCustomEmojiId
 	chat.Permissions = tmp.Permissions
 	chat.LastMessage = tmp.LastMessage
 	chat.Positions = tmp.Positions
@@ -11515,6 +12726,7 @@ func (chat *Chat) UnmarshalJSON(data []byte) error {
 	chat.UnreadReactionCount = tmp.UnreadReactionCount
 	chat.NotificationSettings = tmp.NotificationSettings
 	chat.MessageAutoDeleteTime = tmp.MessageAutoDeleteTime
+	chat.EmojiStatus = tmp.EmojiStatus
 	chat.Background = tmp.Background
 	chat.ThemeName = tmp.ThemeName
 	chat.VideoChat = tmp.VideoChat
@@ -11525,6 +12737,9 @@ func (chat *Chat) UnmarshalJSON(data []byte) error {
 
 	fieldType, _ := UnmarshalChatType(tmp.Type)
 	chat.Type = fieldType
+
+	fieldChatLists, _ := UnmarshalListOfChatList(tmp.ChatLists)
+	chat.ChatLists = fieldChatLists
 
 	fieldMessageSenderId, _ := UnmarshalMessageSender(tmp.MessageSenderId)
 	chat.MessageSenderId = fieldMessageSenderId
@@ -11957,39 +13172,47 @@ func (*KeyboardButtonTypeRequestPoll) KeyboardButtonTypeType() string {
 	return TypeKeyboardButtonTypeRequestPoll
 }
 
-// A button that requests a user to be shared by the current user; available only in private chats. Use the method shareUserWithBot to complete the request
-type KeyboardButtonTypeRequestUser struct {
+// A button that requests users to be shared by the current user; available only in private chats. Use the method shareUsersWithBot to complete the request
+type KeyboardButtonTypeRequestUsers struct {
 	meta
 	// Unique button identifier
 	Id int32 `json:"id"`
-	// True, if the shared user must or must not be a bot
+	// True, if the shared users must or must not be bots
 	RestrictUserIsBot bool `json:"restrict_user_is_bot"`
-	// True, if the shared user must be a bot; otherwise, the shared user must no be a bot. Ignored if restrict_user_is_bot is false
+	// True, if the shared users must be bots; otherwise, the shared users must not be bots. Ignored if restrict_user_is_bot is false
 	UserIsBot bool `json:"user_is_bot"`
-	// True, if the shared user must or must not be a Telegram Premium user
+	// True, if the shared users must or must not be Telegram Premium users
 	RestrictUserIsPremium bool `json:"restrict_user_is_premium"`
-	// True, if the shared user must be a Telegram Premium user; otherwise, the shared user must no be a Telegram Premium user. Ignored if restrict_user_is_premium is false
+	// True, if the shared users must be Telegram Premium users; otherwise, the shared users must not be Telegram Premium users. Ignored if restrict_user_is_premium is false
 	UserIsPremium bool `json:"user_is_premium"`
+	// The maximum number of users to share
+	MaxQuantity int32 `json:"max_quantity"`
+	// Pass true to request name of the users; bots only
+	RequestName bool `json:"request_name"`
+	// Pass true to request username of the users; bots only
+	RequestUsername bool `json:"request_username"`
+	// Pass true to request photo of the users; bots only
+	RequestPhoto bool `json:"request_photo"`
 }
 
-func (entity *KeyboardButtonTypeRequestUser) MarshalJSON() ([]byte, error) {
+func (entity *KeyboardButtonTypeRequestUsers) MarshalJSON() ([]byte, error) {
 	entity.meta.Type = entity.GetType()
 
-	type stub KeyboardButtonTypeRequestUser
+	type stub KeyboardButtonTypeRequestUsers
 
 	return json.Marshal((*stub)(entity))
 }
 
-func (*KeyboardButtonTypeRequestUser) GetClass() string {
+func (*KeyboardButtonTypeRequestUsers) GetClass() string {
 	return ClassKeyboardButtonType
 }
 
-func (*KeyboardButtonTypeRequestUser) GetType() string {
-	return TypeKeyboardButtonTypeRequestUser
+func (*KeyboardButtonTypeRequestUsers) GetType() string {
+	return TypeKeyboardButtonTypeRequestUsers
 }
 
-func (*KeyboardButtonTypeRequestUser) KeyboardButtonTypeType() string {
-	return TypeKeyboardButtonTypeRequestUser
+func (*KeyboardButtonTypeRequestUsers) KeyboardButtonTypeType() string {
+	return TypeKeyboardButtonTypeRequestUsers
 }
 
 // A button that requests a chat to be shared by the current user; available only in private chats. Use the method shareChatWithBot to complete the request
@@ -12015,6 +13238,12 @@ type KeyboardButtonTypeRequestChat struct {
 	BotAdministratorRights *ChatAdministratorRights `json:"bot_administrator_rights"`
 	// True, if the bot must be a member of the chat; for basic group and supergroup chats only
 	BotIsMember bool `json:"bot_is_member"`
+	// Pass true to request title of the chat; bots only
+	RequestTitle bool `json:"request_title"`
+	// Pass true to request username of the chat; bots only
+	RequestUsername bool `json:"request_username"`
+	// Pass true to request photo of the chat; bots only
+	RequestPhoto bool `json:"request_photo"`
 }
 
 func (entity *KeyboardButtonTypeRequestChat) MarshalJSON() ([]byte, error) {
@@ -12683,6 +13912,143 @@ func (*MessageThreadInfo) GetType() string {
 	return TypeMessageThreadInfo
 }
 
+// Topic containing messages sent by the current user of forwarded from an unknown chat
+type SavedMessagesTopicTypeMyNotes struct {
+	meta
+}
+
+func (entity *SavedMessagesTopicTypeMyNotes) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub SavedMessagesTopicTypeMyNotes
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*SavedMessagesTopicTypeMyNotes) GetClass() string {
+	return ClassSavedMessagesTopicType
+}
+
+func (*SavedMessagesTopicTypeMyNotes) GetType() string {
+	return TypeSavedMessagesTopicTypeMyNotes
+}
+
+func (*SavedMessagesTopicTypeMyNotes) SavedMessagesTopicTypeType() string {
+	return TypeSavedMessagesTopicTypeMyNotes
+}
+
+// Topic containing messages forwarded from a user with hidden privacy
+type SavedMessagesTopicTypeAuthorHidden struct {
+	meta
+}
+
+func (entity *SavedMessagesTopicTypeAuthorHidden) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub SavedMessagesTopicTypeAuthorHidden
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*SavedMessagesTopicTypeAuthorHidden) GetClass() string {
+	return ClassSavedMessagesTopicType
+}
+
+func (*SavedMessagesTopicTypeAuthorHidden) GetType() string {
+	return TypeSavedMessagesTopicTypeAuthorHidden
+}
+
+func (*SavedMessagesTopicTypeAuthorHidden) SavedMessagesTopicTypeType() string {
+	return TypeSavedMessagesTopicTypeAuthorHidden
+}
+
+// Topic containing messages forwarded from a specific chat
+type SavedMessagesTopicTypeSavedFromChat struct {
+	meta
+	// Identifier of the chat
+	ChatId int64 `json:"chat_id"`
+}
+
+func (entity *SavedMessagesTopicTypeSavedFromChat) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub SavedMessagesTopicTypeSavedFromChat
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*SavedMessagesTopicTypeSavedFromChat) GetClass() string {
+	return ClassSavedMessagesTopicType
+}
+
+func (*SavedMessagesTopicTypeSavedFromChat) GetType() string {
+	return TypeSavedMessagesTopicTypeSavedFromChat
+}
+
+func (*SavedMessagesTopicTypeSavedFromChat) SavedMessagesTopicTypeType() string {
+	return TypeSavedMessagesTopicTypeSavedFromChat
+}
+
+// Contains information about a Saved Messages topic
+type SavedMessagesTopic struct {
+	meta
+	// Unique topic identifier
+	Id int64 `json:"id"`
+	// Type of the topic
+	Type SavedMessagesTopicType `json:"type"`
+	// True, if the topic is pinned
+	IsPinned bool `json:"is_pinned"`
+	// A parameter used to determine order of the topic in the topic list. Topics must be sorted by the order in descending order
+	Order JsonInt64 `json:"order"`
+	// Last message in the topic; may be null if none or unknown
+	LastMessage *Message `json:"last_message"`
+	// A draft of a message in the topic; may be null if none
+	DraftMessage *DraftMessage `json:"draft_message"`
+}
+
+func (entity *SavedMessagesTopic) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub SavedMessagesTopic
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*SavedMessagesTopic) GetClass() string {
+	return ClassSavedMessagesTopic
+}
+
+func (*SavedMessagesTopic) GetType() string {
+	return TypeSavedMessagesTopic
+}
+
+func (savedMessagesTopic *SavedMessagesTopic) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Id           int64           `json:"id"`
+		Type         json.RawMessage `json:"type"`
+		IsPinned     bool            `json:"is_pinned"`
+		Order        JsonInt64       `json:"order"`
+		LastMessage  *Message        `json:"last_message"`
+		DraftMessage *DraftMessage   `json:"draft_message"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	savedMessagesTopic.Id = tmp.Id
+	savedMessagesTopic.IsPinned = tmp.IsPinned
+	savedMessagesTopic.Order = tmp.Order
+	savedMessagesTopic.LastMessage = tmp.LastMessage
+	savedMessagesTopic.DraftMessage = tmp.DraftMessage
+
+	fieldType, _ := UnmarshalSavedMessagesTopicType(tmp.Type)
+	savedMessagesTopic.Type = fieldType
+
+	return nil
+}
+
 // Describes a forum topic icon
 type ForumTopicIcon struct {
 	meta
@@ -12881,6 +14247,66 @@ func (*LinkPreviewOptions) GetClass() string {
 
 func (*LinkPreviewOptions) GetType() string {
 	return TypeLinkPreviewOptions
+}
+
+// Contains information about a user shared with a bot
+type SharedUser struct {
+	meta
+	// User identifier
+	UserId int64 `json:"user_id"`
+	// First name of the user; for bots only
+	FirstName string `json:"first_name"`
+	// Last name of the user; for bots only
+	LastName string `json:"last_name"`
+	// Username of the user; for bots only
+	Username string `json:"username"`
+	// Profile photo of the user; for bots only; may be null
+	Photo *Photo `json:"photo"`
+}
+
+func (entity *SharedUser) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub SharedUser
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*SharedUser) GetClass() string {
+	return ClassSharedUser
+}
+
+func (*SharedUser) GetType() string {
+	return TypeSharedUser
+}
+
+// Contains information about a chat shared with a bot
+type SharedChat struct {
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Title of the chat; for bots only
+	Title string `json:"title"`
+	// Username of the chat; for bots only
+	Username string `json:"username"`
+	// Photo of the chat; for bots only; may be null
+	Photo *Photo `json:"photo"`
+}
+
+func (entity *SharedChat) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub SharedChat
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*SharedChat) GetClass() string {
+	return ClassSharedChat
+}
+
+func (*SharedChat) GetType() string {
+	return TypeSharedChat
 }
 
 // A plain text
@@ -15340,7 +16766,7 @@ type PhoneNumberInfo struct {
 	CountryCallingCode string `json:"country_calling_code"`
 	// The phone number without country calling code formatted accordingly to local rules. Expected digits are returned as '-', but even more digits might be entered by the user
 	FormattedPhoneNumber string `json:"formatted_phone_number"`
-	// True, if the phone number was bought on Fragment and isn't tied to a SIM card
+	// True, if the phone number was bought at https://fragment.com and isn't tied to a SIM card. Information about the phone number can be received using getCollectibleItemInfo
 	IsAnonymous bool `json:"is_anonymous"`
 }
 
@@ -15358,6 +16784,93 @@ func (*PhoneNumberInfo) GetClass() string {
 
 func (*PhoneNumberInfo) GetType() string {
 	return TypePhoneNumberInfo
+}
+
+// A username
+type CollectibleItemTypeUsername struct {
+	meta
+	// The username
+	Username string `json:"username"`
+}
+
+func (entity *CollectibleItemTypeUsername) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub CollectibleItemTypeUsername
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*CollectibleItemTypeUsername) GetClass() string {
+	return ClassCollectibleItemType
+}
+
+func (*CollectibleItemTypeUsername) GetType() string {
+	return TypeCollectibleItemTypeUsername
+}
+
+func (*CollectibleItemTypeUsername) CollectibleItemTypeType() string {
+	return TypeCollectibleItemTypeUsername
+}
+
+// A phone number
+type CollectibleItemTypePhoneNumber struct {
+	meta
+	// The phone number
+	PhoneNumber string `json:"phone_number"`
+}
+
+func (entity *CollectibleItemTypePhoneNumber) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub CollectibleItemTypePhoneNumber
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*CollectibleItemTypePhoneNumber) GetClass() string {
+	return ClassCollectibleItemType
+}
+
+func (*CollectibleItemTypePhoneNumber) GetType() string {
+	return TypeCollectibleItemTypePhoneNumber
+}
+
+func (*CollectibleItemTypePhoneNumber) CollectibleItemTypeType() string {
+	return TypeCollectibleItemTypePhoneNumber
+}
+
+// Contains information about a collectible item and its last purchase
+type CollectibleItemInfo struct {
+	meta
+	// Point in time (Unix timestamp) when the item was purchased
+	PurchaseDate int32 `json:"purchase_date"`
+	// Currency for the paid amount
+	Currency string `json:"currency"`
+	// The paid amount, in the smallest units of the currency
+	Amount int64 `json:"amount"`
+	// Cryptocurrency used to pay for the item
+	Cryptocurrency string `json:"cryptocurrency"`
+	// The paid amount, in the smallest units of the cryptocurrency
+	CryptocurrencyAmount JsonInt64 `json:"cryptocurrency_amount"`
+	// Individual URL for the item on https://fragment.com
+	Url string `json:"url"`
+}
+
+func (entity *CollectibleItemInfo) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub CollectibleItemInfo
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*CollectibleItemInfo) GetClass() string {
+	return ClassCollectibleItemInfo
+}
+
+func (*CollectibleItemInfo) GetType() string {
+	return TypeCollectibleItemInfo
 }
 
 // Describes an action associated with a bank card number
@@ -15760,6 +17273,8 @@ type PaymentProviderSmartGlocal struct {
 	meta
 	// Public payment token
 	PublicToken string `json:"public_token"`
+	// URL for sending card tokenization requests
+	TokenizeUrl string `json:"tokenize_url"`
 }
 
 func (entity *PaymentProviderSmartGlocal) MarshalJSON() ([]byte, error) {
@@ -16154,7 +17669,7 @@ type MessageExtendedMediaPreview struct {
 	Width int32 `json:"width"`
 	// Media height; 0 if unknown
 	Height int32 `json:"height"`
-	// Media duration; 0 if unknown
+	// Media duration, in seconds; 0 if unknown
 	Duration int32 `json:"duration"`
 	// Media minithumbnail; may be null
 	Minithumbnail *Minithumbnail `json:"minithumbnail"`
@@ -16270,16 +17785,20 @@ func (*MessageExtendedMediaUnsupported) MessageExtendedMediaType() string {
 // Describes parameters of a Telegram Premium giveaway
 type PremiumGiveawayParameters struct {
 	meta
-	// Identifier of the channel chat, which will be automatically boosted by the winners of the giveaway for duration of the Premium subscription
+	// Identifier of the supergroup or channel chat, which will be automatically boosted by the winners of the giveaway for duration of the Premium subscription. If the chat is a channel, then can_post_messages right is required in the channel, otherwise, the user must be an administrator in the supergroup
 	BoostedChatId int64 `json:"boosted_chat_id"`
-	// Identifiers of other channel chats that must be subscribed by the users to be eligible for the giveaway. There can be up to getOption("giveaway_additional_chat_count_max") additional chats
+	// Identifiers of other supergroup or channel chats that must be subscribed by the users to be eligible for the giveaway. There can be up to getOption("giveaway_additional_chat_count_max") additional chats
 	AdditionalChatIds []int64 `json:"additional_chat_ids"`
 	// Point in time (Unix timestamp) when the giveaway is expected to be performed; must be 60-getOption("giveaway_duration_max") seconds in the future in scheduled giveaways
 	WinnersSelectionDate int32 `json:"winners_selection_date"`
 	// True, if only new members of the chats will be eligible for the giveaway
 	OnlyNewMembers bool `json:"only_new_members"`
-	// The list of two-letter ISO 3166-1 alpha-2 codes of countries, users from which will be eligible for the giveaway. If empty, then all users can participate in the giveaway. There can be up to getOption("giveaway_country_count_max") chosen countries. Users with phone number that was bought on Fragment can participate in any giveaway and the country code "FT" must not be specified in the list
+	// True, if the list of winners of the giveaway will be available to everyone
+	HasPublicWinners bool `json:"has_public_winners"`
+	// The list of two-letter ISO 3166-1 alpha-2 codes of countries, users from which will be eligible for the giveaway. If empty, then all users can participate in the giveaway. There can be up to getOption("giveaway_country_count_max") chosen countries. Users with phone number that was bought at https://fragment.com can participate in any giveaway and the country code "FT" must not be specified in the list
 	CountryCodes []string `json:"country_codes"`
+	// Additional description of the giveaway prize; 0-128 characters
+	PrizeDescription string `json:"prize_description"`
 }
 
 func (entity *PremiumGiveawayParameters) MarshalJSON() ([]byte, error) {
@@ -18602,31 +20121,6 @@ func (*MessagePhoto) MessageContentType() string {
 	return TypeMessagePhoto
 }
 
-// A self-destructed photo message
-type MessageExpiredPhoto struct {
-	meta
-}
-
-func (entity *MessageExpiredPhoto) MarshalJSON() ([]byte, error) {
-	entity.meta.Type = entity.GetType()
-
-	type stub MessageExpiredPhoto
-
-	return json.Marshal((*stub)(entity))
-}
-
-func (*MessageExpiredPhoto) GetClass() string {
-	return ClassMessageContent
-}
-
-func (*MessageExpiredPhoto) GetType() string {
-	return TypeMessageExpiredPhoto
-}
-
-func (*MessageExpiredPhoto) MessageContentType() string {
-	return TypeMessageExpiredPhoto
-}
-
 // A sticker message
 type MessageSticker struct {
 	meta
@@ -18689,31 +20183,6 @@ func (*MessageVideo) MessageContentType() string {
 	return TypeMessageVideo
 }
 
-// A self-destructed video message
-type MessageExpiredVideo struct {
-	meta
-}
-
-func (entity *MessageExpiredVideo) MarshalJSON() ([]byte, error) {
-	entity.meta.Type = entity.GetType()
-
-	type stub MessageExpiredVideo
-
-	return json.Marshal((*stub)(entity))
-}
-
-func (*MessageExpiredVideo) GetClass() string {
-	return ClassMessageContent
-}
-
-func (*MessageExpiredVideo) GetType() string {
-	return TypeMessageExpiredVideo
-}
-
-func (*MessageExpiredVideo) MessageContentType() string {
-	return TypeMessageExpiredVideo
-}
-
 // A video note message
 type MessageVideoNote struct {
 	meta
@@ -18774,6 +20243,106 @@ func (*MessageVoiceNote) GetType() string {
 
 func (*MessageVoiceNote) MessageContentType() string {
 	return TypeMessageVoiceNote
+}
+
+// A self-destructed photo message
+type MessageExpiredPhoto struct {
+	meta
+}
+
+func (entity *MessageExpiredPhoto) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub MessageExpiredPhoto
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*MessageExpiredPhoto) GetClass() string {
+	return ClassMessageContent
+}
+
+func (*MessageExpiredPhoto) GetType() string {
+	return TypeMessageExpiredPhoto
+}
+
+func (*MessageExpiredPhoto) MessageContentType() string {
+	return TypeMessageExpiredPhoto
+}
+
+// A self-destructed video message
+type MessageExpiredVideo struct {
+	meta
+}
+
+func (entity *MessageExpiredVideo) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub MessageExpiredVideo
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*MessageExpiredVideo) GetClass() string {
+	return ClassMessageContent
+}
+
+func (*MessageExpiredVideo) GetType() string {
+	return TypeMessageExpiredVideo
+}
+
+func (*MessageExpiredVideo) MessageContentType() string {
+	return TypeMessageExpiredVideo
+}
+
+// A self-destructed video note message
+type MessageExpiredVideoNote struct {
+	meta
+}
+
+func (entity *MessageExpiredVideoNote) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub MessageExpiredVideoNote
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*MessageExpiredVideoNote) GetClass() string {
+	return ClassMessageContent
+}
+
+func (*MessageExpiredVideoNote) GetType() string {
+	return TypeMessageExpiredVideoNote
+}
+
+func (*MessageExpiredVideoNote) MessageContentType() string {
+	return TypeMessageExpiredVideoNote
+}
+
+// A self-destructed voice note message
+type MessageExpiredVoiceNote struct {
+	meta
+}
+
+func (entity *MessageExpiredVoiceNote) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub MessageExpiredVoiceNote
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*MessageExpiredVoiceNote) GetClass() string {
+	return ClassMessageContent
+}
+
+func (*MessageExpiredVoiceNote) GetType() string {
+	return TypeMessageExpiredVoiceNote
+}
+
+func (*MessageExpiredVoiceNote) MessageContentType() string {
+	return TypeMessageExpiredVoiceNote
 }
 
 // A message with a location
@@ -19719,6 +21288,33 @@ func (*MessageChatSetMessageAutoDeleteTime) MessageContentType() string {
 	return TypeMessageChatSetMessageAutoDeleteTime
 }
 
+// The chat was boosted by the sender of the message
+type MessageChatBoost struct {
+	meta
+	// Number of times the chat was boosted
+	BoostCount int32 `json:"boost_count"`
+}
+
+func (entity *MessageChatBoost) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub MessageChatBoost
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*MessageChatBoost) GetClass() string {
+	return ClassMessageContent
+}
+
+func (*MessageChatBoost) GetType() string {
+	return TypeMessageChatBoost
+}
+
+func (*MessageChatBoost) MessageContentType() string {
+	return TypeMessageChatBoost
+}
+
 // A forum topic has been created
 type MessageForumTopicCreated struct {
 	meta
@@ -20011,9 +21607,9 @@ type MessageGiftedPremium struct {
 	Amount int64 `json:"amount"`
 	// Cryptocurrency used to pay for the gift; may be empty if none
 	Cryptocurrency string `json:"cryptocurrency"`
-	// The paid amount, in the smallest units of the cryptocurrency
+	// The paid amount, in the smallest units of the cryptocurrency; 0 if none
 	CryptocurrencyAmount JsonInt64 `json:"cryptocurrency_amount"`
-	// Number of month the Telegram Premium subscription will be active
+	// Number of months the Telegram Premium subscription will be active
 	MonthCount int32 `json:"month_count"`
 	// A sticker to be shown in the message; may be null if unknown
 	Sticker *Sticker `json:"sticker"`
@@ -20042,13 +21638,21 @@ func (*MessageGiftedPremium) MessageContentType() string {
 // A Telegram Premium gift code was created for the user
 type MessagePremiumGiftCode struct {
 	meta
-	// Identifier of a chat or a user that created the gift code
+	// Identifier of a chat or a user that created the gift code; may be null if unknown
 	CreatorId MessageSender `json:"creator_id"`
 	// True, if the gift code was created for a giveaway
 	IsFromGiveaway bool `json:"is_from_giveaway"`
 	// True, if the winner for the corresponding Telegram Premium subscription wasn't chosen
 	IsUnclaimed bool `json:"is_unclaimed"`
-	// Number of month the Telegram Premium subscription will be active after code activation
+	// Currency for the paid amount; empty if unknown
+	Currency string `json:"currency"`
+	// The paid amount, in the smallest units of the currency; 0 if unknown
+	Amount int64 `json:"amount"`
+	// Cryptocurrency used to pay for the gift; may be empty if none or unknown
+	Cryptocurrency string `json:"cryptocurrency"`
+	// The paid amount, in the smallest units of the cryptocurrency; 0 if unknown
+	CryptocurrencyAmount JsonInt64 `json:"cryptocurrency_amount"`
+	// Number of months the Telegram Premium subscription will be active after code activation
 	MonthCount int32 `json:"month_count"`
 	// A sticker to be shown in the message; may be null if unknown
 	Sticker *Sticker `json:"sticker"`
@@ -20078,12 +21682,16 @@ func (*MessagePremiumGiftCode) MessageContentType() string {
 
 func (messagePremiumGiftCode *MessagePremiumGiftCode) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		CreatorId      json.RawMessage `json:"creator_id"`
-		IsFromGiveaway bool            `json:"is_from_giveaway"`
-		IsUnclaimed    bool            `json:"is_unclaimed"`
-		MonthCount     int32           `json:"month_count"`
-		Sticker        *Sticker        `json:"sticker"`
-		Code           string          `json:"code"`
+		CreatorId            json.RawMessage `json:"creator_id"`
+		IsFromGiveaway       bool            `json:"is_from_giveaway"`
+		IsUnclaimed          bool            `json:"is_unclaimed"`
+		Currency             string          `json:"currency"`
+		Amount               int64           `json:"amount"`
+		Cryptocurrency       string          `json:"cryptocurrency"`
+		CryptocurrencyAmount JsonInt64       `json:"cryptocurrency_amount"`
+		MonthCount           int32           `json:"month_count"`
+		Sticker              *Sticker        `json:"sticker"`
+		Code                 string          `json:"code"`
 	}
 
 	err := json.Unmarshal(data, &tmp)
@@ -20093,6 +21701,10 @@ func (messagePremiumGiftCode *MessagePremiumGiftCode) UnmarshalJSON(data []byte)
 
 	messagePremiumGiftCode.IsFromGiveaway = tmp.IsFromGiveaway
 	messagePremiumGiftCode.IsUnclaimed = tmp.IsUnclaimed
+	messagePremiumGiftCode.Currency = tmp.Currency
+	messagePremiumGiftCode.Amount = tmp.Amount
+	messagePremiumGiftCode.Cryptocurrency = tmp.Cryptocurrency
+	messagePremiumGiftCode.CryptocurrencyAmount = tmp.CryptocurrencyAmount
 	messagePremiumGiftCode.MonthCount = tmp.MonthCount
 	messagePremiumGiftCode.Sticker = tmp.Sticker
 	messagePremiumGiftCode.Code = tmp.Code
@@ -20135,7 +21747,7 @@ type MessagePremiumGiveaway struct {
 	Parameters *PremiumGiveawayParameters `json:"parameters"`
 	// Number of users which will receive Telegram Premium subscription gift codes
 	WinnerCount int32 `json:"winner_count"`
-	// Number of month the Telegram Premium subscription will be active after code activation
+	// Number of months the Telegram Premium subscription will be active after code activation
 	MonthCount int32 `json:"month_count"`
 	// A sticker to be shown in the message; may be null if unknown
 	Sticker *Sticker `json:"sticker"`
@@ -20161,10 +21773,10 @@ func (*MessagePremiumGiveaway) MessageContentType() string {
 	return TypeMessagePremiumGiveaway
 }
 
-// A Telegram Premium giveaway has been completed for the chat
+// A Telegram Premium giveaway without public winners has been completed for the chat
 type MessagePremiumGiveawayCompleted struct {
 	meta
-	// Identifier of the message with the giveaway, can be an identifier of a deleted message
+	// Identifier of the message with the giveaway; can be 0 if the message was deleted
 	GiveawayMessageId int64 `json:"giveaway_message_id"`
 	// Number of winners in the giveaway
 	WinnerCount int32 `json:"winner_count"`
@@ -20192,6 +21804,53 @@ func (*MessagePremiumGiveawayCompleted) MessageContentType() string {
 	return TypeMessagePremiumGiveawayCompleted
 }
 
+// A Telegram Premium giveaway with public winners has been completed for the chat
+type MessagePremiumGiveawayWinners struct {
+	meta
+	// Identifier of the channel chat, which was automatically boosted by the winners of the giveaway for duration of the Premium subscription
+	BoostedChatId int64 `json:"boosted_chat_id"`
+	// Identifier of the message with the giveaway in the boosted chat
+	GiveawayMessageId int64 `json:"giveaway_message_id"`
+	// Number of other chats that participated in the giveaway
+	AdditionalChatCount int32 `json:"additional_chat_count"`
+	// Point in time (Unix timestamp) when the winners were selected. May be bigger than winners selection date specified in parameters of the giveaway
+	ActualWinnersSelectionDate int32 `json:"actual_winners_selection_date"`
+	// True, if only new members of the chats were eligible for the giveaway
+	OnlyNewMembers bool `json:"only_new_members"`
+	// True, if the giveaway was canceled and was fully refunded
+	WasRefunded bool `json:"was_refunded"`
+	// Number of months the Telegram Premium subscription will be active after code activation
+	MonthCount int32 `json:"month_count"`
+	// Additional description of the giveaway prize
+	PrizeDescription string `json:"prize_description"`
+	// Total number of winners in the giveaway
+	WinnerCount int32 `json:"winner_count"`
+	// Up to 100 user identifiers of the winners of the giveaway
+	WinnerUserIds []int64 `json:"winner_user_ids"`
+	// Number of undistributed prizes
+	UnclaimedPrizeCount int32 `json:"unclaimed_prize_count"`
+}
+
+func (entity *MessagePremiumGiveawayWinners) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub MessagePremiumGiveawayWinners
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*MessagePremiumGiveawayWinners) GetClass() string {
+	return ClassMessageContent
+}
+
+func (*MessagePremiumGiveawayWinners) GetType() string {
+	return TypeMessagePremiumGiveawayWinners
+}
+
+func (*MessagePremiumGiveawayWinners) MessageContentType() string {
+	return TypeMessagePremiumGiveawayWinners
+}
+
 // A contact has registered with Telegram
 type MessageContactRegistered struct {
 	meta
@@ -20217,40 +21876,40 @@ func (*MessageContactRegistered) MessageContentType() string {
 	return TypeMessageContactRegistered
 }
 
-// The current user shared a user, which was requested by the bot
-type MessageUserShared struct {
+// The current user shared users, which were requested by the bot
+type MessageUsersShared struct {
 	meta
-	// Identifier of the shared user
-	UserId int64 `json:"user_id"`
+	// The shared users
+	Users []*SharedUser `json:"users"`
 	// Identifier of the keyboard button with the request
 	ButtonId int32 `json:"button_id"`
 }
 
-func (entity *MessageUserShared) MarshalJSON() ([]byte, error) {
+func (entity *MessageUsersShared) MarshalJSON() ([]byte, error) {
 	entity.meta.Type = entity.GetType()
 
-	type stub MessageUserShared
+	type stub MessageUsersShared
 
 	return json.Marshal((*stub)(entity))
 }
 
-func (*MessageUserShared) GetClass() string {
+func (*MessageUsersShared) GetClass() string {
 	return ClassMessageContent
 }
 
-func (*MessageUserShared) GetType() string {
-	return TypeMessageUserShared
+func (*MessageUsersShared) GetType() string {
+	return TypeMessageUsersShared
 }
 
-func (*MessageUserShared) MessageContentType() string {
-	return TypeMessageUserShared
+func (*MessageUsersShared) MessageContentType() string {
+	return TypeMessageUsersShared
 }
 
 // The current user shared a chat, which was requested by the bot
 type MessageChatShared struct {
 	meta
-	// Identifier of the shared chat
-	ChatId int64 `json:"chat_id"`
+	// The shared chat
+	Chat *SharedChat `json:"chat"`
 	// Identifier of the keyboard button with the request
 	ButtonId int32 `json:"button_id"`
 }
@@ -21276,7 +22935,7 @@ func (messageSendOptions *MessageSendOptions) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// Options to be used when a message content is copied without reference to the original sender. Service messages, and messages with messageInvoice or messagePremiumGiveaway content can't be copied
+// Options to be used when a message content is copied without reference to the original sender. Service messages, messages with messageInvoice, messagePremiumGiveaway, or messagePremiumGiveawayWinners content can't be copied
 type MessageCopyOptions struct {
 	meta
 	// True, if content of the message needs to be copied without reference to the original sender. Always true if the message is forwarded to a secret chat or is local
@@ -21308,7 +22967,7 @@ type InputMessageText struct {
 	meta
 	// Formatted text to be sent; 0-getOption("message_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, CustomEmoji, BlockQuote, Code, Pre, PreCode, TextUrl and MentionName entities are allowed to be specified manually
 	Text *FormattedText `json:"text"`
-	// Options to be used for generation of a link preview; pass null to use default link preview options
+	// Options to be used for generation of a link preview; may be null if none; pass null to use default link preview options
 	LinkPreviewOptions *LinkPreviewOptions `json:"link_preview_options"`
 	// True, if a chat message draft must be deleted
 	ClearDraft bool `json:"clear_draft"`
@@ -21747,12 +23406,14 @@ type InputMessageVideoNote struct {
 	meta
 	// Video note to be sent
 	VideoNote InputFile `json:"video_note"`
-	// Video thumbnail; pass null to skip thumbnail uploading
+	// Video thumbnail; may be null if empty; pass null to skip thumbnail uploading
 	Thumbnail *InputThumbnail `json:"thumbnail"`
-	// Duration of the video, in seconds
+	// Duration of the video, in seconds; 0-60
 	Duration int32 `json:"duration"`
 	// Video width and height; must be positive and not greater than 640
 	Length int32 `json:"length"`
+	// Video note self-destruct type; may be null if none; pass null if none; private chats only
+	SelfDestructType MessageSelfDestructType `json:"self_destruct_type"`
 }
 
 func (entity *InputMessageVideoNote) MarshalJSON() ([]byte, error) {
@@ -21777,10 +23438,11 @@ func (*InputMessageVideoNote) InputMessageContentType() string {
 
 func (inputMessageVideoNote *InputMessageVideoNote) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		VideoNote json.RawMessage `json:"video_note"`
-		Thumbnail *InputThumbnail `json:"thumbnail"`
-		Duration  int32           `json:"duration"`
-		Length    int32           `json:"length"`
+		VideoNote        json.RawMessage `json:"video_note"`
+		Thumbnail        *InputThumbnail `json:"thumbnail"`
+		Duration         int32           `json:"duration"`
+		Length           int32           `json:"length"`
+		SelfDestructType json.RawMessage `json:"self_destruct_type"`
 	}
 
 	err := json.Unmarshal(data, &tmp)
@@ -21795,6 +23457,9 @@ func (inputMessageVideoNote *InputMessageVideoNote) UnmarshalJSON(data []byte) e
 	fieldVideoNote, _ := UnmarshalInputFile(tmp.VideoNote)
 	inputMessageVideoNote.VideoNote = fieldVideoNote
 
+	fieldSelfDestructType, _ := UnmarshalMessageSelfDestructType(tmp.SelfDestructType)
+	inputMessageVideoNote.SelfDestructType = fieldSelfDestructType
+
 	return nil
 }
 
@@ -21807,8 +23472,10 @@ type InputMessageVoiceNote struct {
 	Duration int32 `json:"duration"`
 	// Waveform representation of the voice note in 5-bit format
 	Waveform []byte `json:"waveform"`
-	// Voice note caption; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
+	// Voice note caption; may be null if empty; pass null to use an empty caption; 0-getOption("message_caption_length_max") characters
 	Caption *FormattedText `json:"caption"`
+	// Voice note self-destruct type; may be null if none; pass null if none; private chats only
+	SelfDestructType MessageSelfDestructType `json:"self_destruct_type"`
 }
 
 func (entity *InputMessageVoiceNote) MarshalJSON() ([]byte, error) {
@@ -21833,10 +23500,11 @@ func (*InputMessageVoiceNote) InputMessageContentType() string {
 
 func (inputMessageVoiceNote *InputMessageVoiceNote) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		VoiceNote json.RawMessage `json:"voice_note"`
-		Duration  int32           `json:"duration"`
-		Waveform  []byte          `json:"waveform"`
-		Caption   *FormattedText  `json:"caption"`
+		VoiceNote        json.RawMessage `json:"voice_note"`
+		Duration         int32           `json:"duration"`
+		Waveform         []byte          `json:"waveform"`
+		Caption          *FormattedText  `json:"caption"`
+		SelfDestructType json.RawMessage `json:"self_destruct_type"`
 	}
 
 	err := json.Unmarshal(data, &tmp)
@@ -21850,6 +23518,9 @@ func (inputMessageVoiceNote *InputMessageVoiceNote) UnmarshalJSON(data []byte) e
 
 	fieldVoiceNote, _ := UnmarshalInputFile(tmp.VoiceNote)
 	inputMessageVoiceNote.VoiceNote = fieldVoiceNote
+
+	fieldSelfDestructType, _ := UnmarshalMessageSelfDestructType(tmp.SelfDestructType)
+	inputMessageVoiceNote.SelfDestructType = fieldSelfDestructType
 
 	return nil
 }
@@ -23029,7 +24700,7 @@ func (*ChatActionCancel) ChatActionType() string {
 	return TypeChatActionCancel
 }
 
-// The user status was never changed
+// The user's status has never been changed
 type UserStatusEmpty struct {
 	meta
 }
@@ -23111,6 +24782,8 @@ func (*UserStatusOffline) UserStatusType() string {
 // The user was online recently
 type UserStatusRecently struct {
 	meta
+	// Exact user's status is hidden because the current user enabled userPrivacySettingShowStatus privacy setting for the user and has no Telegram Premium
+	ByMyPrivacySettings bool `json:"by_my_privacy_settings"`
 }
 
 func (entity *UserStatusRecently) MarshalJSON() ([]byte, error) {
@@ -23136,6 +24809,8 @@ func (*UserStatusRecently) UserStatusType() string {
 // The user is offline, but was online last week
 type UserStatusLastWeek struct {
 	meta
+	// Exact user's status is hidden because the current user enabled userPrivacySettingShowStatus privacy setting for the user and has no Telegram Premium
+	ByMyPrivacySettings bool `json:"by_my_privacy_settings"`
 }
 
 func (entity *UserStatusLastWeek) MarshalJSON() ([]byte, error) {
@@ -23161,6 +24836,8 @@ func (*UserStatusLastWeek) UserStatusType() string {
 // The user is offline, but was online last month
 type UserStatusLastMonth struct {
 	meta
+	// Exact user's status is hidden because the current user enabled userPrivacySettingShowStatus privacy setting for the user and has no Telegram Premium
+	ByMyPrivacySettings bool `json:"by_my_privacy_settings"`
 }
 
 func (entity *UserStatusLastMonth) MarshalJSON() ([]byte, error) {
@@ -23181,6 +24858,54 @@ func (*UserStatusLastMonth) GetType() string {
 
 func (*UserStatusLastMonth) UserStatusType() string {
 	return TypeUserStatusLastMonth
+}
+
+// Represents an emoji with its keyword
+type EmojiKeyword struct {
+	meta
+	// The emoji
+	Emoji string `json:"emoji"`
+	// The keyword
+	Keyword string `json:"keyword"`
+}
+
+func (entity *EmojiKeyword) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub EmojiKeyword
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*EmojiKeyword) GetClass() string {
+	return ClassEmojiKeyword
+}
+
+func (*EmojiKeyword) GetType() string {
+	return TypeEmojiKeyword
+}
+
+// Represents a list of emoji with their keywords
+type EmojiKeywords struct {
+	meta
+	// List of emoji with their keywords
+	EmojiKeywords []*EmojiKeyword `json:"emoji_keywords"`
+}
+
+func (entity *EmojiKeywords) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub EmojiKeywords
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*EmojiKeywords) GetClass() string {
+	return ClassEmojiKeywords
+}
+
+func (*EmojiKeywords) GetType() string {
+	return TypeEmojiKeywords
 }
 
 // Represents a list of stickers
@@ -23242,18 +24967,20 @@ type StickerSet struct {
 	Thumbnail *Thumbnail `json:"thumbnail"`
 	// Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
 	ThumbnailOutline []*ClosedVectorPath `json:"thumbnail_outline"`
+	// True, if the sticker set is owned by the current user
+	IsOwned bool `json:"is_owned"`
 	// True, if the sticker set has been installed by the current user
 	IsInstalled bool `json:"is_installed"`
 	// True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
 	IsArchived bool `json:"is_archived"`
 	// True, if the sticker set is official
 	IsOfficial bool `json:"is_official"`
-	// Format of the stickers in the set
-	StickerFormat StickerFormat `json:"sticker_format"`
 	// Type of the stickers in the set
 	StickerType StickerType `json:"sticker_type"`
 	// True, if stickers in the sticker set are custom emoji that must be repainted; for custom emoji sticker sets only
 	NeedsRepainting bool `json:"needs_repainting"`
+	// True, if stickers in the sticker set are custom emoji that can be used as chat emoji status; for custom emoji sticker sets only
+	IsAllowedAsChatEmojiStatus bool `json:"is_allowed_as_chat_emoji_status"`
 	// True for already viewed trending sticker sets
 	IsViewed bool `json:"is_viewed"`
 	// List of stickers in this set
@@ -23280,20 +25007,21 @@ func (*StickerSet) GetType() string {
 
 func (stickerSet *StickerSet) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		Id               JsonInt64           `json:"id"`
-		Title            string              `json:"title"`
-		Name             string              `json:"name"`
-		Thumbnail        *Thumbnail          `json:"thumbnail"`
-		ThumbnailOutline []*ClosedVectorPath `json:"thumbnail_outline"`
-		IsInstalled      bool                `json:"is_installed"`
-		IsArchived       bool                `json:"is_archived"`
-		IsOfficial       bool                `json:"is_official"`
-		StickerFormat    json.RawMessage     `json:"sticker_format"`
-		StickerType      json.RawMessage     `json:"sticker_type"`
-		NeedsRepainting  bool                `json:"needs_repainting"`
-		IsViewed         bool                `json:"is_viewed"`
-		Stickers         []*Sticker          `json:"stickers"`
-		Emojis           []*Emojis           `json:"emojis"`
+		Id                         JsonInt64           `json:"id"`
+		Title                      string              `json:"title"`
+		Name                       string              `json:"name"`
+		Thumbnail                  *Thumbnail          `json:"thumbnail"`
+		ThumbnailOutline           []*ClosedVectorPath `json:"thumbnail_outline"`
+		IsOwned                    bool                `json:"is_owned"`
+		IsInstalled                bool                `json:"is_installed"`
+		IsArchived                 bool                `json:"is_archived"`
+		IsOfficial                 bool                `json:"is_official"`
+		StickerType                json.RawMessage     `json:"sticker_type"`
+		NeedsRepainting            bool                `json:"needs_repainting"`
+		IsAllowedAsChatEmojiStatus bool                `json:"is_allowed_as_chat_emoji_status"`
+		IsViewed                   bool                `json:"is_viewed"`
+		Stickers                   []*Sticker          `json:"stickers"`
+		Emojis                     []*Emojis           `json:"emojis"`
 	}
 
 	err := json.Unmarshal(data, &tmp)
@@ -23306,16 +25034,15 @@ func (stickerSet *StickerSet) UnmarshalJSON(data []byte) error {
 	stickerSet.Name = tmp.Name
 	stickerSet.Thumbnail = tmp.Thumbnail
 	stickerSet.ThumbnailOutline = tmp.ThumbnailOutline
+	stickerSet.IsOwned = tmp.IsOwned
 	stickerSet.IsInstalled = tmp.IsInstalled
 	stickerSet.IsArchived = tmp.IsArchived
 	stickerSet.IsOfficial = tmp.IsOfficial
 	stickerSet.NeedsRepainting = tmp.NeedsRepainting
+	stickerSet.IsAllowedAsChatEmojiStatus = tmp.IsAllowedAsChatEmojiStatus
 	stickerSet.IsViewed = tmp.IsViewed
 	stickerSet.Stickers = tmp.Stickers
 	stickerSet.Emojis = tmp.Emojis
-
-	fieldStickerFormat, _ := UnmarshalStickerFormat(tmp.StickerFormat)
-	stickerSet.StickerFormat = fieldStickerFormat
 
 	fieldStickerType, _ := UnmarshalStickerType(tmp.StickerType)
 	stickerSet.StickerType = fieldStickerType
@@ -23332,22 +25059,24 @@ type StickerSetInfo struct {
 	Title string `json:"title"`
 	// Name of the sticker set
 	Name string `json:"name"`
-	// Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null
+	// Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed
 	Thumbnail *Thumbnail `json:"thumbnail"`
 	// Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
 	ThumbnailOutline []*ClosedVectorPath `json:"thumbnail_outline"`
+	// True, if the sticker set is owned by the current user
+	IsOwned bool `json:"is_owned"`
 	// True, if the sticker set has been installed by the current user
 	IsInstalled bool `json:"is_installed"`
 	// True, if the sticker set has been archived. A sticker set can't be installed and archived simultaneously
 	IsArchived bool `json:"is_archived"`
 	// True, if the sticker set is official
 	IsOfficial bool `json:"is_official"`
-	// Format of the stickers in the set
-	StickerFormat StickerFormat `json:"sticker_format"`
 	// Type of the stickers in the set
 	StickerType StickerType `json:"sticker_type"`
 	// True, if stickers in the sticker set are custom emoji that must be repainted; for custom emoji sticker sets only
 	NeedsRepainting bool `json:"needs_repainting"`
+	// True, if stickers in the sticker set are custom emoji that can be used as chat emoji status; for custom emoji sticker sets only
+	IsAllowedAsChatEmojiStatus bool `json:"is_allowed_as_chat_emoji_status"`
 	// True for already viewed trending sticker sets
 	IsViewed bool `json:"is_viewed"`
 	// Total number of stickers in the set
@@ -23374,20 +25103,21 @@ func (*StickerSetInfo) GetType() string {
 
 func (stickerSetInfo *StickerSetInfo) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		Id               JsonInt64           `json:"id"`
-		Title            string              `json:"title"`
-		Name             string              `json:"name"`
-		Thumbnail        *Thumbnail          `json:"thumbnail"`
-		ThumbnailOutline []*ClosedVectorPath `json:"thumbnail_outline"`
-		IsInstalled      bool                `json:"is_installed"`
-		IsArchived       bool                `json:"is_archived"`
-		IsOfficial       bool                `json:"is_official"`
-		StickerFormat    json.RawMessage     `json:"sticker_format"`
-		StickerType      json.RawMessage     `json:"sticker_type"`
-		NeedsRepainting  bool                `json:"needs_repainting"`
-		IsViewed         bool                `json:"is_viewed"`
-		Size             int32               `json:"size"`
-		Covers           []*Sticker          `json:"covers"`
+		Id                         JsonInt64           `json:"id"`
+		Title                      string              `json:"title"`
+		Name                       string              `json:"name"`
+		Thumbnail                  *Thumbnail          `json:"thumbnail"`
+		ThumbnailOutline           []*ClosedVectorPath `json:"thumbnail_outline"`
+		IsOwned                    bool                `json:"is_owned"`
+		IsInstalled                bool                `json:"is_installed"`
+		IsArchived                 bool                `json:"is_archived"`
+		IsOfficial                 bool                `json:"is_official"`
+		StickerType                json.RawMessage     `json:"sticker_type"`
+		NeedsRepainting            bool                `json:"needs_repainting"`
+		IsAllowedAsChatEmojiStatus bool                `json:"is_allowed_as_chat_emoji_status"`
+		IsViewed                   bool                `json:"is_viewed"`
+		Size                       int32               `json:"size"`
+		Covers                     []*Sticker          `json:"covers"`
 	}
 
 	err := json.Unmarshal(data, &tmp)
@@ -23400,16 +25130,15 @@ func (stickerSetInfo *StickerSetInfo) UnmarshalJSON(data []byte) error {
 	stickerSetInfo.Name = tmp.Name
 	stickerSetInfo.Thumbnail = tmp.Thumbnail
 	stickerSetInfo.ThumbnailOutline = tmp.ThumbnailOutline
+	stickerSetInfo.IsOwned = tmp.IsOwned
 	stickerSetInfo.IsInstalled = tmp.IsInstalled
 	stickerSetInfo.IsArchived = tmp.IsArchived
 	stickerSetInfo.IsOfficial = tmp.IsOfficial
 	stickerSetInfo.NeedsRepainting = tmp.NeedsRepainting
+	stickerSetInfo.IsAllowedAsChatEmojiStatus = tmp.IsAllowedAsChatEmojiStatus
 	stickerSetInfo.IsViewed = tmp.IsViewed
 	stickerSetInfo.Size = tmp.Size
 	stickerSetInfo.Covers = tmp.Covers
-
-	fieldStickerFormat, _ := UnmarshalStickerFormat(tmp.StickerFormat)
-	stickerSetInfo.StickerFormat = fieldStickerFormat
 
 	fieldStickerType, _ := UnmarshalStickerType(tmp.StickerType)
 	stickerSetInfo.StickerType = fieldStickerType
@@ -23594,89 +25323,6 @@ func (*EmojiCategoryTypeChatPhoto) EmojiCategoryTypeType() string {
 	return TypeEmojiCategoryTypeChatPhoto
 }
 
-// Represents a viewer of a story
-type StoryViewer struct {
-	meta
-	// User identifier of the viewer
-	UserId int64 `json:"user_id"`
-	// Approximate point in time (Unix timestamp) when the story was viewed
-	ViewDate int32 `json:"view_date"`
-	// Block list to which the user is added; may be null if none
-	BlockList BlockList `json:"block_list"`
-	// Type of the reaction that was chosen by the user; may be null if none
-	ChosenReactionType ReactionType `json:"chosen_reaction_type"`
-}
-
-func (entity *StoryViewer) MarshalJSON() ([]byte, error) {
-	entity.meta.Type = entity.GetType()
-
-	type stub StoryViewer
-
-	return json.Marshal((*stub)(entity))
-}
-
-func (*StoryViewer) GetClass() string {
-	return ClassStoryViewer
-}
-
-func (*StoryViewer) GetType() string {
-	return TypeStoryViewer
-}
-
-func (storyViewer *StoryViewer) UnmarshalJSON(data []byte) error {
-	var tmp struct {
-		UserId             int64           `json:"user_id"`
-		ViewDate           int32           `json:"view_date"`
-		BlockList          json.RawMessage `json:"block_list"`
-		ChosenReactionType json.RawMessage `json:"chosen_reaction_type"`
-	}
-
-	err := json.Unmarshal(data, &tmp)
-	if err != nil {
-		return err
-	}
-
-	storyViewer.UserId = tmp.UserId
-	storyViewer.ViewDate = tmp.ViewDate
-
-	fieldBlockList, _ := UnmarshalBlockList(tmp.BlockList)
-	storyViewer.BlockList = fieldBlockList
-
-	fieldChosenReactionType, _ := UnmarshalReactionType(tmp.ChosenReactionType)
-	storyViewer.ChosenReactionType = fieldChosenReactionType
-
-	return nil
-}
-
-// Represents a list of story viewers
-type StoryViewers struct {
-	meta
-	// Approximate total number of story viewers found
-	TotalCount int32 `json:"total_count"`
-	// Approximate total number of reactions set by found story viewers
-	TotalReactionCount int32 `json:"total_reaction_count"`
-	// List of story viewers
-	Viewers []*StoryViewer `json:"viewers"`
-	// The offset for the next request. If empty, then there are no more results
-	NextOffset string `json:"next_offset"`
-}
-
-func (entity *StoryViewers) MarshalJSON() ([]byte, error) {
-	entity.meta.Type = entity.GetType()
-
-	type stub StoryViewers
-
-	return json.Marshal((*stub)(entity))
-}
-
-func (*StoryViewers) GetClass() string {
-	return ClassStoryViewers
-}
-
-func (*StoryViewers) GetType() string {
-	return TypeStoryViewers
-}
-
 // Describes position of a clickable rectangle area on a story media
 type StoryAreaPosition struct {
 	meta
@@ -23816,6 +25462,35 @@ func (storyAreaTypeSuggestedReaction *StoryAreaTypeSuggestedReaction) UnmarshalJ
 	storyAreaTypeSuggestedReaction.ReactionType = fieldReactionType
 
 	return nil
+}
+
+// An area pointing to a message
+type StoryAreaTypeMessage struct {
+	meta
+	// Identifier of the chat with the message
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+}
+
+func (entity *StoryAreaTypeMessage) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub StoryAreaTypeMessage
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*StoryAreaTypeMessage) GetClass() string {
+	return ClassStoryAreaType
+}
+
+func (*StoryAreaTypeMessage) GetType() string {
+	return TypeStoryAreaTypeMessage
+}
+
+func (*StoryAreaTypeMessage) StoryAreaTypeType() string {
+	return TypeStoryAreaTypeMessage
 }
 
 // Describes a clickable rectangle area on a story media
@@ -23999,6 +25674,35 @@ func (inputStoryAreaTypeSuggestedReaction *InputStoryAreaTypeSuggestedReaction) 
 	return nil
 }
 
+// An area pointing to a message
+type InputStoryAreaTypeMessage struct {
+	meta
+	// Identifier of the chat with the message. Currently, the chat must be a supergroup or a channel chat
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message. Only successfully sent non-scheduled messages can be specified
+	MessageId int64 `json:"message_id"`
+}
+
+func (entity *InputStoryAreaTypeMessage) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub InputStoryAreaTypeMessage
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*InputStoryAreaTypeMessage) GetClass() string {
+	return ClassInputStoryAreaType
+}
+
+func (*InputStoryAreaTypeMessage) GetType() string {
+	return TypeInputStoryAreaTypeMessage
+}
+
+func (*InputStoryAreaTypeMessage) InputStoryAreaTypeType() string {
+	return TypeInputStoryAreaTypeMessage
+}
+
 // Describes a clickable rectangle area on a story media to be added
 type InputStoryArea struct {
 	meta
@@ -24046,7 +25750,7 @@ func (inputStoryArea *InputStoryArea) UnmarshalJSON(data []byte) error {
 // Contains a list of story areas to be added
 type InputStoryAreas struct {
 	meta
-	// List of 0-10 input story areas
+	// List of input story areas. Currently, a story can have up to 10 inputStoryAreaTypeLocation, inputStoryAreaTypeFoundVenue, and inputStoryAreaTypePreviousVenue areas, up to getOption("story_suggested_reaction_area_count_max") inputStoryAreaTypeSuggestedReaction areas, and up to 1 inputStoryAreaTypeMessage area
 	Areas []*InputStoryArea `json:"areas"`
 }
 
@@ -24476,6 +26180,8 @@ type Story struct {
 	Id int32 `json:"id"`
 	// Identifier of the chat that posted the story
 	SenderChatId int64 `json:"sender_chat_id"`
+	// Identifier of the sender of the story; may be null if the story is posted on behalf of the sender_chat_id
+	SenderId MessageSender `json:"sender_id"`
 	// Point in time (Unix timestamp) when the story was published
 	Date int32 `json:"date"`
 	// True, if the story is being sent by the current user
@@ -24500,8 +26206,8 @@ type Story struct {
 	CanToggleIsPinned bool `json:"can_toggle_is_pinned"`
 	// True, if the story statistics are available through getStoryStatistics
 	CanGetStatistics bool `json:"can_get_statistics"`
-	// True, if users viewed the story can be received through getStoryViewers
-	CanGetViewers bool `json:"can_get_viewers"`
+	// True, if interactions with the story can be received through getStoryInteractions
+	CanGetInteractions bool `json:"can_get_interactions"`
 	// True, if users viewed the story can't be received, because the story has expired more than getOption("story_viewers_expiration_delay") seconds ago
 	HasExpiredViewers bool `json:"has_expired_viewers"`
 	// Information about the original story; may be null if the story wasn't reposted
@@ -24540,6 +26246,7 @@ func (story *Story) UnmarshalJSON(data []byte) error {
 	var tmp struct {
 		Id                   int32                 `json:"id"`
 		SenderChatId         int64                 `json:"sender_chat_id"`
+		SenderId             json.RawMessage       `json:"sender_id"`
 		Date                 int32                 `json:"date"`
 		IsBeingSent          bool                  `json:"is_being_sent"`
 		IsBeingEdited        bool                  `json:"is_being_edited"`
@@ -24552,7 +26259,7 @@ func (story *Story) UnmarshalJSON(data []byte) error {
 		CanBeReplied         bool                  `json:"can_be_replied"`
 		CanToggleIsPinned    bool                  `json:"can_toggle_is_pinned"`
 		CanGetStatistics     bool                  `json:"can_get_statistics"`
-		CanGetViewers        bool                  `json:"can_get_viewers"`
+		CanGetInteractions   bool                  `json:"can_get_interactions"`
 		HasExpiredViewers    bool                  `json:"has_expired_viewers"`
 		RepostInfo           *StoryRepostInfo      `json:"repost_info"`
 		InteractionInfo      *StoryInteractionInfo `json:"interaction_info"`
@@ -24582,12 +26289,15 @@ func (story *Story) UnmarshalJSON(data []byte) error {
 	story.CanBeReplied = tmp.CanBeReplied
 	story.CanToggleIsPinned = tmp.CanToggleIsPinned
 	story.CanGetStatistics = tmp.CanGetStatistics
-	story.CanGetViewers = tmp.CanGetViewers
+	story.CanGetInteractions = tmp.CanGetInteractions
 	story.HasExpiredViewers = tmp.HasExpiredViewers
 	story.RepostInfo = tmp.RepostInfo
 	story.InteractionInfo = tmp.InteractionInfo
 	story.Areas = tmp.Areas
 	story.Caption = tmp.Caption
+
+	fieldSenderId, _ := UnmarshalMessageSender(tmp.SenderId)
+	story.SenderId = fieldSenderId
 
 	fieldChosenReactionType, _ := UnmarshalReactionType(tmp.ChosenReactionType)
 	story.ChosenReactionType = fieldChosenReactionType
@@ -24734,88 +26444,373 @@ func (chatActiveStories *ChatActiveStories) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// Contains a public forward of a story as a message
-type StoryPublicForwardMessage struct {
+// A view of the story
+type StoryInteractionTypeView struct {
 	meta
-	// Information about the message with the story
+	// Type of the reaction that was chosen by the viewer; may be null if none
+	ChosenReactionType ReactionType `json:"chosen_reaction_type"`
+}
+
+func (entity *StoryInteractionTypeView) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub StoryInteractionTypeView
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*StoryInteractionTypeView) GetClass() string {
+	return ClassStoryInteractionType
+}
+
+func (*StoryInteractionTypeView) GetType() string {
+	return TypeStoryInteractionTypeView
+}
+
+func (*StoryInteractionTypeView) StoryInteractionTypeType() string {
+	return TypeStoryInteractionTypeView
+}
+
+func (storyInteractionTypeView *StoryInteractionTypeView) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		ChosenReactionType json.RawMessage `json:"chosen_reaction_type"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	fieldChosenReactionType, _ := UnmarshalReactionType(tmp.ChosenReactionType)
+	storyInteractionTypeView.ChosenReactionType = fieldChosenReactionType
+
+	return nil
+}
+
+// A forward of the story as a message
+type StoryInteractionTypeForward struct {
+	meta
+	// The message with story forward
 	Message *Message `json:"message"`
 }
 
-func (entity *StoryPublicForwardMessage) MarshalJSON() ([]byte, error) {
+func (entity *StoryInteractionTypeForward) MarshalJSON() ([]byte, error) {
 	entity.meta.Type = entity.GetType()
 
-	type stub StoryPublicForwardMessage
+	type stub StoryInteractionTypeForward
 
 	return json.Marshal((*stub)(entity))
 }
 
-func (*StoryPublicForwardMessage) GetClass() string {
-	return ClassStoryPublicForward
+func (*StoryInteractionTypeForward) GetClass() string {
+	return ClassStoryInteractionType
 }
 
-func (*StoryPublicForwardMessage) GetType() string {
-	return TypeStoryPublicForwardMessage
+func (*StoryInteractionTypeForward) GetType() string {
+	return TypeStoryInteractionTypeForward
 }
 
-func (*StoryPublicForwardMessage) StoryPublicForwardType() string {
-	return TypeStoryPublicForwardMessage
+func (*StoryInteractionTypeForward) StoryInteractionTypeType() string {
+	return TypeStoryInteractionTypeForward
 }
 
-// Contains a public repost of a story as a story
-type StoryPublicForwardStory struct {
+// A repost of the story as a story
+type StoryInteractionTypeRepost struct {
 	meta
-	// Information about the reposted story
+	// The reposted story
 	Story *Story `json:"story"`
 }
 
-func (entity *StoryPublicForwardStory) MarshalJSON() ([]byte, error) {
+func (entity *StoryInteractionTypeRepost) MarshalJSON() ([]byte, error) {
 	entity.meta.Type = entity.GetType()
 
-	type stub StoryPublicForwardStory
+	type stub StoryInteractionTypeRepost
 
 	return json.Marshal((*stub)(entity))
 }
 
-func (*StoryPublicForwardStory) GetClass() string {
-	return ClassStoryPublicForward
+func (*StoryInteractionTypeRepost) GetClass() string {
+	return ClassStoryInteractionType
 }
 
-func (*StoryPublicForwardStory) GetType() string {
-	return TypeStoryPublicForwardStory
+func (*StoryInteractionTypeRepost) GetType() string {
+	return TypeStoryInteractionTypeRepost
 }
 
-func (*StoryPublicForwardStory) StoryPublicForwardType() string {
-	return TypeStoryPublicForwardStory
+func (*StoryInteractionTypeRepost) StoryInteractionTypeType() string {
+	return TypeStoryInteractionTypeRepost
 }
 
-// Represents a list of public forwards and reposts of a story
-type StoryPublicForwards struct {
+// Represents interaction with a story
+type StoryInteraction struct {
 	meta
-	// Approximate total number of messages and stories found
+	// Identifier of the user or chat that made the interaction
+	ActorId MessageSender `json:"actor_id"`
+	// Approximate point in time (Unix timestamp) when the interaction happened
+	InteractionDate int32 `json:"interaction_date"`
+	// Block list to which the actor is added; may be null if none or for chat stories
+	BlockList BlockList `json:"block_list"`
+	// Type of the interaction
+	Type StoryInteractionType `json:"type"`
+}
+
+func (entity *StoryInteraction) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub StoryInteraction
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*StoryInteraction) GetClass() string {
+	return ClassStoryInteraction
+}
+
+func (*StoryInteraction) GetType() string {
+	return TypeStoryInteraction
+}
+
+func (storyInteraction *StoryInteraction) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		ActorId         json.RawMessage `json:"actor_id"`
+		InteractionDate int32           `json:"interaction_date"`
+		BlockList       json.RawMessage `json:"block_list"`
+		Type            json.RawMessage `json:"type"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	storyInteraction.InteractionDate = tmp.InteractionDate
+
+	fieldActorId, _ := UnmarshalMessageSender(tmp.ActorId)
+	storyInteraction.ActorId = fieldActorId
+
+	fieldBlockList, _ := UnmarshalBlockList(tmp.BlockList)
+	storyInteraction.BlockList = fieldBlockList
+
+	fieldType, _ := UnmarshalStoryInteractionType(tmp.Type)
+	storyInteraction.Type = fieldType
+
+	return nil
+}
+
+// Represents a list of interactions with a story
+type StoryInteractions struct {
+	meta
+	// Approximate total number of interactions found
 	TotalCount int32 `json:"total_count"`
-	// List of found public forwards and reposts
-	Forwards []StoryPublicForward `json:"forwards"`
+	// Approximate total number of found forwards and reposts; always 0 for chat stories
+	TotalForwardCount int32 `json:"total_forward_count"`
+	// Approximate total number of found reactions; always 0 for chat stories
+	TotalReactionCount int32 `json:"total_reaction_count"`
+	// List of story interactions
+	Interactions []*StoryInteraction `json:"interactions"`
 	// The offset for the next request. If empty, then there are no more results
 	NextOffset string `json:"next_offset"`
 }
 
-func (entity *StoryPublicForwards) MarshalJSON() ([]byte, error) {
+func (entity *StoryInteractions) MarshalJSON() ([]byte, error) {
 	entity.meta.Type = entity.GetType()
 
-	type stub StoryPublicForwards
+	type stub StoryInteractions
 
 	return json.Marshal((*stub)(entity))
 }
 
-func (*StoryPublicForwards) GetClass() string {
-	return ClassStoryPublicForwards
+func (*StoryInteractions) GetClass() string {
+	return ClassStoryInteractions
 }
 
-func (*StoryPublicForwards) GetType() string {
-	return TypeStoryPublicForwards
+func (*StoryInteractions) GetType() string {
+	return TypeStoryInteractions
 }
 
-func (storyPublicForwards *StoryPublicForwards) UnmarshalJSON(data []byte) error {
+// Describes a message that can be used for quick reply
+type QuickReplyMessage struct {
+	meta
+	// Unique message identifier among all quick replies
+	Id int64 `json:"id"`
+	// The sending state of the message; may be null if the message isn't being sent and didn't fail to be sent
+	SendingState MessageSendingState `json:"sending_state"`
+	// True, if the message can be edited
+	CanBeEdited bool `json:"can_be_edited"`
+	// Information about the identifier of the quick reply message to which the message replies
+	ReplyToMessageId int64 `json:"reply_to_message_id"`
+	// If non-zero, the user identifier of the bot through which this message was sent
+	ViaBotUserId int64 `json:"via_bot_user_id"`
+	// Unique identifier of an album this message belongs to. Only audios, documents, photos and videos can be grouped together in albums
+	MediaAlbumId JsonInt64 `json:"media_album_id"`
+	// Content of the message
+	Content MessageContent `json:"content"`
+	// Inline keyboard reply markup for the message; may be null if none
+	ReplyMarkup ReplyMarkup `json:"reply_markup"`
+}
+
+func (entity *QuickReplyMessage) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub QuickReplyMessage
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*QuickReplyMessage) GetClass() string {
+	return ClassQuickReplyMessage
+}
+
+func (*QuickReplyMessage) GetType() string {
+	return TypeQuickReplyMessage
+}
+
+func (quickReplyMessage *QuickReplyMessage) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Id               int64           `json:"id"`
+		SendingState     json.RawMessage `json:"sending_state"`
+		CanBeEdited      bool            `json:"can_be_edited"`
+		ReplyToMessageId int64           `json:"reply_to_message_id"`
+		ViaBotUserId     int64           `json:"via_bot_user_id"`
+		MediaAlbumId     JsonInt64       `json:"media_album_id"`
+		Content          json.RawMessage `json:"content"`
+		ReplyMarkup      json.RawMessage `json:"reply_markup"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	quickReplyMessage.Id = tmp.Id
+	quickReplyMessage.CanBeEdited = tmp.CanBeEdited
+	quickReplyMessage.ReplyToMessageId = tmp.ReplyToMessageId
+	quickReplyMessage.ViaBotUserId = tmp.ViaBotUserId
+	quickReplyMessage.MediaAlbumId = tmp.MediaAlbumId
+
+	fieldSendingState, _ := UnmarshalMessageSendingState(tmp.SendingState)
+	quickReplyMessage.SendingState = fieldSendingState
+
+	fieldContent, _ := UnmarshalMessageContent(tmp.Content)
+	quickReplyMessage.Content = fieldContent
+
+	fieldReplyMarkup, _ := UnmarshalReplyMarkup(tmp.ReplyMarkup)
+	quickReplyMessage.ReplyMarkup = fieldReplyMarkup
+
+	return nil
+}
+
+// Describes a shortcut that can be used for a quick reply
+type QuickReplyShortcut struct {
+	meta
+	// Unique shortcut identifier
+	Id int32 `json:"id"`
+	// The name of the shortcut that can be used to use the shortcut
+	Name string `json:"name"`
+	// The first shortcut message
+	FirstMessage *QuickReplyMessage `json:"first_message"`
+	// The total number of messages in the shortcut
+	MessageCount int32 `json:"message_count"`
+}
+
+func (entity *QuickReplyShortcut) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub QuickReplyShortcut
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*QuickReplyShortcut) GetClass() string {
+	return ClassQuickReplyShortcut
+}
+
+func (*QuickReplyShortcut) GetType() string {
+	return TypeQuickReplyShortcut
+}
+
+// Contains a public forward as a message
+type PublicForwardMessage struct {
+	meta
+	// Information about the message
+	Message *Message `json:"message"`
+}
+
+func (entity *PublicForwardMessage) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub PublicForwardMessage
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*PublicForwardMessage) GetClass() string {
+	return ClassPublicForward
+}
+
+func (*PublicForwardMessage) GetType() string {
+	return TypePublicForwardMessage
+}
+
+func (*PublicForwardMessage) PublicForwardType() string {
+	return TypePublicForwardMessage
+}
+
+// Contains a public repost to a story
+type PublicForwardStory struct {
+	meta
+	// Information about the story
+	Story *Story `json:"story"`
+}
+
+func (entity *PublicForwardStory) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub PublicForwardStory
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*PublicForwardStory) GetClass() string {
+	return ClassPublicForward
+}
+
+func (*PublicForwardStory) GetType() string {
+	return TypePublicForwardStory
+}
+
+func (*PublicForwardStory) PublicForwardType() string {
+	return TypePublicForwardStory
+}
+
+// Represents a list of public forwards and reposts as a story of a message or a story
+type PublicForwards struct {
+	meta
+	// Approximate total number of messages and stories found
+	TotalCount int32 `json:"total_count"`
+	// List of found public forwards and reposts
+	Forwards []PublicForward `json:"forwards"`
+	// The offset for the next request. If empty, then there are no more results
+	NextOffset string `json:"next_offset"`
+}
+
+func (entity *PublicForwards) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub PublicForwards
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*PublicForwards) GetClass() string {
+	return ClassPublicForwards
+}
+
+func (*PublicForwards) GetType() string {
+	return TypePublicForwards
+}
+
+func (publicForwards *PublicForwards) UnmarshalJSON(data []byte) error {
 	var tmp struct {
 		TotalCount int32             `json:"total_count"`
 		Forwards   []json.RawMessage `json:"forwards"`
@@ -24827,13 +26822,97 @@ func (storyPublicForwards *StoryPublicForwards) UnmarshalJSON(data []byte) error
 		return err
 	}
 
-	storyPublicForwards.TotalCount = tmp.TotalCount
-	storyPublicForwards.NextOffset = tmp.NextOffset
+	publicForwards.TotalCount = tmp.TotalCount
+	publicForwards.NextOffset = tmp.NextOffset
 
-	fieldForwards, _ := UnmarshalListOfStoryPublicForward(tmp.Forwards)
-	storyPublicForwards.Forwards = fieldForwards
+	fieldForwards, _ := UnmarshalListOfPublicForward(tmp.Forwards)
+	publicForwards.Forwards = fieldForwards
 
 	return nil
+}
+
+// Contains a list of features available on a specific chat boost level
+type ChatBoostLevelFeatures struct {
+	meta
+	// Target chat boost level
+	Level int32 `json:"level"`
+	// Number of stories that the chat can publish daily
+	StoryPerDayCount int32 `json:"story_per_day_count"`
+	// Number of custom emoji reactions that can be added to the list of available reactions
+	CustomEmojiReactionCount int32 `json:"custom_emoji_reaction_count"`
+	// Number of custom colors for chat title
+	TitleColorCount int32 `json:"title_color_count"`
+	// Number of custom colors for profile photo background
+	ProfileAccentColorCount int32 `json:"profile_accent_color_count"`
+	// True, if custom emoji for profile background can be set
+	CanSetProfileBackgroundCustomEmoji bool `json:"can_set_profile_background_custom_emoji"`
+	// Number of custom colors for background of empty chat photo, replies to messages and link previews
+	AccentColorCount int32 `json:"accent_color_count"`
+	// True, if custom emoji for reply header and link preview background can be set
+	CanSetBackgroundCustomEmoji bool `json:"can_set_background_custom_emoji"`
+	// True, if emoji status can be set
+	CanSetEmojiStatus bool `json:"can_set_emoji_status"`
+	// Number of chat theme backgrounds that can be set as chat background
+	ChatThemeBackgroundCount int32 `json:"chat_theme_background_count"`
+	// True, if custom background can be set in the chat for all users
+	CanSetCustomBackground bool `json:"can_set_custom_background"`
+	// True, if custom emoji sticker set can be set for the chat
+	CanSetCustomEmojiStickerSet bool `json:"can_set_custom_emoji_sticker_set"`
+	// True, if speech recognition can be used for video note and voice note messages by all users
+	CanRecognizeSpeech bool `json:"can_recognize_speech"`
+}
+
+func (entity *ChatBoostLevelFeatures) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ChatBoostLevelFeatures
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ChatBoostLevelFeatures) GetClass() string {
+	return ClassChatBoostLevelFeatures
+}
+
+func (*ChatBoostLevelFeatures) GetType() string {
+	return TypeChatBoostLevelFeatures
+}
+
+// Contains a list of features available on the first chat boost levels
+type ChatBoostFeatures struct {
+	meta
+	// The list of features
+	Features []*ChatBoostLevelFeatures `json:"features"`
+	// The minimum boost level required to set custom emoji for profile background
+	MinProfileBackgroundCustomEmojiBoostLevel int32 `json:"min_profile_background_custom_emoji_boost_level"`
+	// The minimum boost level required to set custom emoji for reply header and link preview background; for channel chats only
+	MinBackgroundCustomEmojiBoostLevel int32 `json:"min_background_custom_emoji_boost_level"`
+	// The minimum boost level required to set emoji status
+	MinEmojiStatusBoostLevel int32 `json:"min_emoji_status_boost_level"`
+	// The minimum boost level required to set a chat theme background as chat background
+	MinChatThemeBackgroundBoostLevel int32 `json:"min_chat_theme_background_boost_level"`
+	// The minimum boost level required to set custom chat background
+	MinCustomBackgroundBoostLevel int32 `json:"min_custom_background_boost_level"`
+	// The minimum boost level required to set custom emoji sticker set for the chat; for supergroup chats only
+	MinCustomEmojiStickerSetBoostLevel int32 `json:"min_custom_emoji_sticker_set_boost_level"`
+	// The minimum boost level allowing to recognize speech in video note and voice note messages for non-Premium users; for supergroup chats only
+	MinSpeechRecognitionBoostLevel int32 `json:"min_speech_recognition_boost_level"`
+}
+
+func (entity *ChatBoostFeatures) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ChatBoostFeatures
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ChatBoostFeatures) GetClass() string {
+	return ClassChatBoostFeatures
+}
+
+func (*ChatBoostFeatures) GetType() string {
+	return TypeChatBoostFeatures
 }
 
 // The chat created a Telegram Premium gift code for a user
@@ -24932,7 +27011,7 @@ type PrepaidPremiumGiveaway struct {
 	Id JsonInt64 `json:"id"`
 	// Number of users which will receive Telegram Premium subscription gift codes
 	WinnerCount int32 `json:"winner_count"`
-	// Number of month the Telegram Premium subscription will be active after code activation
+	// Number of months the Telegram Premium subscription will be active after code activation
 	MonthCount int32 `json:"month_count"`
 	// Point in time (Unix timestamp) when the giveaway was paid
 	PaymentDate int32 `json:"payment_date"`
@@ -26599,6 +28678,10 @@ type AvailableReactions struct {
 	PopularReactions []*AvailableReaction `json:"popular_reactions"`
 	// True, if any custom emoji reaction can be added by Telegram Premium subscribers
 	AllowCustomEmoji bool `json:"allow_custom_emoji"`
+	// True, if the reactions will be tags and the message can be found by them
+	AreTags bool `json:"are_tags"`
+	// The reason why the current user can't add reactions to the message, despite some other users can; may be null if none
+	UnavailabilityReason ReactionUnavailabilityReason `json:"unavailability_reason"`
 }
 
 func (entity *AvailableReactions) MarshalJSON() ([]byte, error) {
@@ -26617,7 +28700,34 @@ func (*AvailableReactions) GetType() string {
 	return TypeAvailableReactions
 }
 
-// Contains information about a emoji reaction
+func (availableReactions *AvailableReactions) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		TopReactions         []*AvailableReaction `json:"top_reactions"`
+		RecentReactions      []*AvailableReaction `json:"recent_reactions"`
+		PopularReactions     []*AvailableReaction `json:"popular_reactions"`
+		AllowCustomEmoji     bool                 `json:"allow_custom_emoji"`
+		AreTags              bool                 `json:"are_tags"`
+		UnavailabilityReason json.RawMessage      `json:"unavailability_reason"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	availableReactions.TopReactions = tmp.TopReactions
+	availableReactions.RecentReactions = tmp.RecentReactions
+	availableReactions.PopularReactions = tmp.PopularReactions
+	availableReactions.AllowCustomEmoji = tmp.AllowCustomEmoji
+	availableReactions.AreTags = tmp.AreTags
+
+	fieldUnavailabilityReason, _ := UnmarshalReactionUnavailabilityReason(tmp.UnavailabilityReason)
+	availableReactions.UnavailabilityReason = fieldUnavailabilityReason
+
+	return nil
+}
+
+// Contains information about an emoji reaction
 type EmojiReaction struct {
 	meta
 	// Text representation of the reaction
@@ -26656,6 +28766,56 @@ func (*EmojiReaction) GetClass() string {
 
 func (*EmojiReaction) GetType() string {
 	return TypeEmojiReaction
+}
+
+// The user is an anonymous administrator in the supergroup, but isn't a creator of it, so they can't vote on behalf of the supergroup
+type ReactionUnavailabilityReasonAnonymousAdministrator struct {
+	meta
+}
+
+func (entity *ReactionUnavailabilityReasonAnonymousAdministrator) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ReactionUnavailabilityReasonAnonymousAdministrator
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ReactionUnavailabilityReasonAnonymousAdministrator) GetClass() string {
+	return ClassReactionUnavailabilityReason
+}
+
+func (*ReactionUnavailabilityReasonAnonymousAdministrator) GetType() string {
+	return TypeReactionUnavailabilityReasonAnonymousAdministrator
+}
+
+func (*ReactionUnavailabilityReasonAnonymousAdministrator) ReactionUnavailabilityReasonType() string {
+	return TypeReactionUnavailabilityReasonAnonymousAdministrator
+}
+
+// The user isn't a member of the supergroup and can't send messages and reactions there without joining
+type ReactionUnavailabilityReasonGuest struct {
+	meta
+}
+
+func (entity *ReactionUnavailabilityReasonGuest) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ReactionUnavailabilityReasonGuest
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ReactionUnavailabilityReasonGuest) GetClass() string {
+	return ClassReactionUnavailabilityReason
+}
+
+func (*ReactionUnavailabilityReasonGuest) GetType() string {
+	return TypeReactionUnavailabilityReasonGuest
+}
+
+func (*ReactionUnavailabilityReasonGuest) ReactionUnavailabilityReasonType() string {
+	return TypeReactionUnavailabilityReasonGuest
 }
 
 // Represents a list of animations
@@ -26847,6 +29007,39 @@ func (*SpeechRecognitionResultError) GetType() string {
 
 func (*SpeechRecognitionResultError) SpeechRecognitionResultType() string {
 	return TypeSpeechRecognitionResultError
+}
+
+// Describes a connection of the bot with a business account
+type BusinessConnection struct {
+	meta
+	// Unique identifier of the connection
+	Id string `json:"id"`
+	// Identifier of the business user that created the connection
+	UserId int64 `json:"user_id"`
+	// Chat identifier of the private chat with the user
+	UserChatId int64 `json:"user_chat_id"`
+	// Point in time (Unix timestamp) when the connection was established
+	Date int32 `json:"date"`
+	// True, if the bot can send messages to the connected user; false otherwise
+	CanReply bool `json:"can_reply"`
+	// True, if the connection is enabled; false otherwise
+	IsEnabled bool `json:"is_enabled"`
+}
+
+func (entity *BusinessConnection) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessConnection
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessConnection) GetClass() string {
+	return ClassBusinessConnection
+}
+
+func (*BusinessConnection) GetType() string {
+	return TypeBusinessConnection
 }
 
 // Describes a color to highlight a bot added to attachment menu
@@ -29172,6 +31365,35 @@ func (chatEventAvailableReactionsChanged *ChatEventAvailableReactionsChanged) Un
 	return nil
 }
 
+// The chat background was changed
+type ChatEventBackgroundChanged struct {
+	meta
+	// Previous background; may be null if none
+	OldBackground *ChatBackground `json:"old_background"`
+	// New background; may be null if none
+	NewBackground *ChatBackground `json:"new_background"`
+}
+
+func (entity *ChatEventBackgroundChanged) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ChatEventBackgroundChanged
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ChatEventBackgroundChanged) GetClass() string {
+	return ClassChatEventAction
+}
+
+func (*ChatEventBackgroundChanged) GetType() string {
+	return TypeChatEventBackgroundChanged
+}
+
+func (*ChatEventBackgroundChanged) ChatEventActionType() string {
+	return TypeChatEventBackgroundChanged
+}
+
 // The chat description was changed
 type ChatEventDescriptionChanged struct {
 	meta
@@ -29199,6 +31421,35 @@ func (*ChatEventDescriptionChanged) GetType() string {
 
 func (*ChatEventDescriptionChanged) ChatEventActionType() string {
 	return TypeChatEventDescriptionChanged
+}
+
+// The chat emoji status was changed
+type ChatEventEmojiStatusChanged struct {
+	meta
+	// Previous emoji status; may be null if none
+	OldEmojiStatus *EmojiStatus `json:"old_emoji_status"`
+	// New emoji status; may be null if none
+	NewEmojiStatus *EmojiStatus `json:"new_emoji_status"`
+}
+
+func (entity *ChatEventEmojiStatusChanged) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ChatEventEmojiStatusChanged
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ChatEventEmojiStatusChanged) GetClass() string {
+	return ClassChatEventAction
+}
+
+func (*ChatEventEmojiStatusChanged) GetType() string {
+	return TypeChatEventEmojiStatusChanged
+}
+
+func (*ChatEventEmojiStatusChanged) ChatEventActionType() string {
+	return TypeChatEventEmojiStatusChanged
 }
 
 // The linked chat of a supergroup was changed
@@ -29404,6 +31655,35 @@ func (*ChatEventStickerSetChanged) ChatEventActionType() string {
 	return TypeChatEventStickerSetChanged
 }
 
+// The supergroup sticker set with allowed custom emoji was changed
+type ChatEventCustomEmojiStickerSetChanged struct {
+	meta
+	// Previous identifier of the chat sticker set; 0 if none
+	OldStickerSetId JsonInt64 `json:"old_sticker_set_id"`
+	// New identifier of the chat sticker set; 0 if none
+	NewStickerSetId JsonInt64 `json:"new_sticker_set_id"`
+}
+
+func (entity *ChatEventCustomEmojiStickerSetChanged) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ChatEventCustomEmojiStickerSetChanged
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ChatEventCustomEmojiStickerSetChanged) GetClass() string {
+	return ClassChatEventAction
+}
+
+func (*ChatEventCustomEmojiStickerSetChanged) GetType() string {
+	return TypeChatEventCustomEmojiStickerSetChanged
+}
+
+func (*ChatEventCustomEmojiStickerSetChanged) ChatEventActionType() string {
+	return TypeChatEventCustomEmojiStickerSetChanged
+}
+
 // The chat title was changed
 type ChatEventTitleChanged struct {
 	meta
@@ -29491,13 +31771,17 @@ func (*ChatEventActiveUsernamesChanged) ChatEventActionType() string {
 	return TypeChatEventActiveUsernamesChanged
 }
 
-// The chat accent color was changed
+// The chat accent color or background custom emoji were changed
 type ChatEventAccentColorChanged struct {
 	meta
 	// Previous identifier of chat accent color
 	OldAccentColorId int32 `json:"old_accent_color_id"`
+	// Previous identifier of the custom emoji; 0 if none
+	OldBackgroundCustomEmojiId JsonInt64 `json:"old_background_custom_emoji_id"`
 	// New identifier of chat accent color
 	NewAccentColorId int32 `json:"new_accent_color_id"`
+	// New identifier of the custom emoji; 0 if none
+	NewBackgroundCustomEmojiId JsonInt64 `json:"new_background_custom_emoji_id"`
 }
 
 func (entity *ChatEventAccentColorChanged) MarshalJSON() ([]byte, error) {
@@ -29520,33 +31804,37 @@ func (*ChatEventAccentColorChanged) ChatEventActionType() string {
 	return TypeChatEventAccentColorChanged
 }
 
-// The chat's custom emoji for reply background was changed
-type ChatEventBackgroundCustomEmojiChanged struct {
+// The chat's profile accent color or profile background custom emoji were changed
+type ChatEventProfileAccentColorChanged struct {
 	meta
+	// Previous identifier of chat's profile accent color; -1 if none
+	OldProfileAccentColorId int32 `json:"old_profile_accent_color_id"`
 	// Previous identifier of the custom emoji; 0 if none
-	OldBackgroundCustomEmojiId JsonInt64 `json:"old_background_custom_emoji_id"`
+	OldProfileBackgroundCustomEmojiId JsonInt64 `json:"old_profile_background_custom_emoji_id"`
+	// New identifier of chat's profile accent color; -1 if none
+	NewProfileAccentColorId int32 `json:"new_profile_accent_color_id"`
 	// New identifier of the custom emoji; 0 if none
-	NewBackgroundCustomEmojiId JsonInt64 `json:"new_background_custom_emoji_id"`
+	NewProfileBackgroundCustomEmojiId JsonInt64 `json:"new_profile_background_custom_emoji_id"`
 }
 
-func (entity *ChatEventBackgroundCustomEmojiChanged) MarshalJSON() ([]byte, error) {
+func (entity *ChatEventProfileAccentColorChanged) MarshalJSON() ([]byte, error) {
 	entity.meta.Type = entity.GetType()
 
-	type stub ChatEventBackgroundCustomEmojiChanged
+	type stub ChatEventProfileAccentColorChanged
 
 	return json.Marshal((*stub)(entity))
 }
 
-func (*ChatEventBackgroundCustomEmojiChanged) GetClass() string {
+func (*ChatEventProfileAccentColorChanged) GetClass() string {
 	return ClassChatEventAction
 }
 
-func (*ChatEventBackgroundCustomEmojiChanged) GetType() string {
-	return TypeChatEventBackgroundCustomEmojiChanged
+func (*ChatEventProfileAccentColorChanged) GetType() string {
+	return TypeChatEventProfileAccentColorChanged
 }
 
-func (*ChatEventBackgroundCustomEmojiChanged) ChatEventActionType() string {
-	return TypeChatEventBackgroundCustomEmojiChanged
+func (*ChatEventProfileAccentColorChanged) ChatEventActionType() string {
+	return TypeChatEventProfileAccentColorChanged
 }
 
 // The has_protected_content setting of a channel was toggled
@@ -30687,6 +32975,31 @@ func (*PremiumLimitTypePinnedArchivedChatCount) PremiumLimitTypeType() string {
 	return TypePremiumLimitTypePinnedArchivedChatCount
 }
 
+// The maximum number of pinned Saved Messages topics
+type PremiumLimitTypePinnedSavedMessagesTopicCount struct {
+	meta
+}
+
+func (entity *PremiumLimitTypePinnedSavedMessagesTopicCount) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub PremiumLimitTypePinnedSavedMessagesTopicCount
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*PremiumLimitTypePinnedSavedMessagesTopicCount) GetClass() string {
+	return ClassPremiumLimitType
+}
+
+func (*PremiumLimitTypePinnedSavedMessagesTopicCount) GetType() string {
+	return TypePremiumLimitTypePinnedSavedMessagesTopicCount
+}
+
+func (*PremiumLimitTypePinnedSavedMessagesTopicCount) PremiumLimitTypeType() string {
+	return TypePremiumLimitTypePinnedSavedMessagesTopicCount
+}
+
 // The maximum length of sent media caption
 type PremiumLimitTypeCaptionLength struct {
 	meta
@@ -31187,7 +33500,7 @@ func (*PremiumFeatureProfileBadge) PremiumFeatureType() string {
 	return TypePremiumFeatureProfileBadge
 }
 
-// An emoji status shown along with the user's name
+// The ability to show an emoji status along with the user's name
 type PremiumFeatureEmojiStatus struct {
 	meta
 }
@@ -31412,7 +33725,382 @@ func (*PremiumFeatureBackgroundForBoth) PremiumFeatureType() string {
 	return TypePremiumFeatureBackgroundForBoth
 }
 
-// User stories are displayed before stories of non-premium contacts and channels
+// The ability to use tags in Saved Messages
+type PremiumFeatureSavedMessagesTags struct {
+	meta
+}
+
+func (entity *PremiumFeatureSavedMessagesTags) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub PremiumFeatureSavedMessagesTags
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*PremiumFeatureSavedMessagesTags) GetClass() string {
+	return ClassPremiumFeature
+}
+
+func (*PremiumFeatureSavedMessagesTags) GetType() string {
+	return TypePremiumFeatureSavedMessagesTags
+}
+
+func (*PremiumFeatureSavedMessagesTags) PremiumFeatureType() string {
+	return TypePremiumFeatureSavedMessagesTags
+}
+
+// The ability to disallow incoming voice and video note messages in private chats using setUserPrivacySettingRules with userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages and to restrict incoming messages from non-contacts using setNewChatPrivacySettings
+type PremiumFeatureMessagePrivacy struct {
+	meta
+}
+
+func (entity *PremiumFeatureMessagePrivacy) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub PremiumFeatureMessagePrivacy
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*PremiumFeatureMessagePrivacy) GetClass() string {
+	return ClassPremiumFeature
+}
+
+func (*PremiumFeatureMessagePrivacy) GetType() string {
+	return TypePremiumFeatureMessagePrivacy
+}
+
+func (*PremiumFeatureMessagePrivacy) PremiumFeatureType() string {
+	return TypePremiumFeatureMessagePrivacy
+}
+
+// The ability to view last seen and read times of other users even they can't view last seen or read time for the current user
+type PremiumFeatureLastSeenTimes struct {
+	meta
+}
+
+func (entity *PremiumFeatureLastSeenTimes) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub PremiumFeatureLastSeenTimes
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*PremiumFeatureLastSeenTimes) GetClass() string {
+	return ClassPremiumFeature
+}
+
+func (*PremiumFeatureLastSeenTimes) GetType() string {
+	return TypePremiumFeatureLastSeenTimes
+}
+
+func (*PremiumFeatureLastSeenTimes) PremiumFeatureType() string {
+	return TypePremiumFeatureLastSeenTimes
+}
+
+// The ability to use Business features
+type PremiumFeatureBusiness struct {
+	meta
+}
+
+func (entity *PremiumFeatureBusiness) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub PremiumFeatureBusiness
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*PremiumFeatureBusiness) GetClass() string {
+	return ClassPremiumFeature
+}
+
+func (*PremiumFeatureBusiness) GetType() string {
+	return TypePremiumFeatureBusiness
+}
+
+func (*PremiumFeatureBusiness) PremiumFeatureType() string {
+	return TypePremiumFeatureBusiness
+}
+
+// The ability to set location
+type BusinessFeatureLocation struct {
+	meta
+}
+
+func (entity *BusinessFeatureLocation) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessFeatureLocation
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessFeatureLocation) GetClass() string {
+	return ClassBusinessFeature
+}
+
+func (*BusinessFeatureLocation) GetType() string {
+	return TypeBusinessFeatureLocation
+}
+
+func (*BusinessFeatureLocation) BusinessFeatureType() string {
+	return TypeBusinessFeatureLocation
+}
+
+// The ability to set opening hours
+type BusinessFeatureOpeningHours struct {
+	meta
+}
+
+func (entity *BusinessFeatureOpeningHours) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessFeatureOpeningHours
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessFeatureOpeningHours) GetClass() string {
+	return ClassBusinessFeature
+}
+
+func (*BusinessFeatureOpeningHours) GetType() string {
+	return TypeBusinessFeatureOpeningHours
+}
+
+func (*BusinessFeatureOpeningHours) BusinessFeatureType() string {
+	return TypeBusinessFeatureOpeningHours
+}
+
+// The ability to use quick replies
+type BusinessFeatureQuickReplies struct {
+	meta
+}
+
+func (entity *BusinessFeatureQuickReplies) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessFeatureQuickReplies
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessFeatureQuickReplies) GetClass() string {
+	return ClassBusinessFeature
+}
+
+func (*BusinessFeatureQuickReplies) GetType() string {
+	return TypeBusinessFeatureQuickReplies
+}
+
+func (*BusinessFeatureQuickReplies) BusinessFeatureType() string {
+	return TypeBusinessFeatureQuickReplies
+}
+
+// The ability to set up a greeting message
+type BusinessFeatureGreetingMessage struct {
+	meta
+}
+
+func (entity *BusinessFeatureGreetingMessage) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessFeatureGreetingMessage
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessFeatureGreetingMessage) GetClass() string {
+	return ClassBusinessFeature
+}
+
+func (*BusinessFeatureGreetingMessage) GetType() string {
+	return TypeBusinessFeatureGreetingMessage
+}
+
+func (*BusinessFeatureGreetingMessage) BusinessFeatureType() string {
+	return TypeBusinessFeatureGreetingMessage
+}
+
+// The ability to set up an away message
+type BusinessFeatureAwayMessage struct {
+	meta
+}
+
+func (entity *BusinessFeatureAwayMessage) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessFeatureAwayMessage
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessFeatureAwayMessage) GetClass() string {
+	return ClassBusinessFeature
+}
+
+func (*BusinessFeatureAwayMessage) GetType() string {
+	return TypeBusinessFeatureAwayMessage
+}
+
+func (*BusinessFeatureAwayMessage) BusinessFeatureType() string {
+	return TypeBusinessFeatureAwayMessage
+}
+
+// The ability to create links to the business account with predefined message text
+type BusinessFeatureAccountLinks struct {
+	meta
+}
+
+func (entity *BusinessFeatureAccountLinks) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessFeatureAccountLinks
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessFeatureAccountLinks) GetClass() string {
+	return ClassBusinessFeature
+}
+
+func (*BusinessFeatureAccountLinks) GetType() string {
+	return TypeBusinessFeatureAccountLinks
+}
+
+func (*BusinessFeatureAccountLinks) BusinessFeatureType() string {
+	return TypeBusinessFeatureAccountLinks
+}
+
+// The ability to customize intro
+type BusinessFeatureIntro struct {
+	meta
+}
+
+func (entity *BusinessFeatureIntro) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessFeatureIntro
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessFeatureIntro) GetClass() string {
+	return ClassBusinessFeature
+}
+
+func (*BusinessFeatureIntro) GetType() string {
+	return TypeBusinessFeatureIntro
+}
+
+func (*BusinessFeatureIntro) BusinessFeatureType() string {
+	return TypeBusinessFeatureIntro
+}
+
+// The ability to connect a bot to the account
+type BusinessFeatureBots struct {
+	meta
+}
+
+func (entity *BusinessFeatureBots) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessFeatureBots
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessFeatureBots) GetClass() string {
+	return ClassBusinessFeature
+}
+
+func (*BusinessFeatureBots) GetType() string {
+	return TypeBusinessFeatureBots
+}
+
+func (*BusinessFeatureBots) BusinessFeatureType() string {
+	return TypeBusinessFeatureBots
+}
+
+// The ability to show an emoji status along with the business name
+type BusinessFeatureEmojiStatus struct {
+	meta
+}
+
+func (entity *BusinessFeatureEmojiStatus) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessFeatureEmojiStatus
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessFeatureEmojiStatus) GetClass() string {
+	return ClassBusinessFeature
+}
+
+func (*BusinessFeatureEmojiStatus) GetType() string {
+	return TypeBusinessFeatureEmojiStatus
+}
+
+func (*BusinessFeatureEmojiStatus) BusinessFeatureType() string {
+	return TypeBusinessFeatureEmojiStatus
+}
+
+// The ability to display folder names for each chat in the chat list
+type BusinessFeatureChatFolderTags struct {
+	meta
+}
+
+func (entity *BusinessFeatureChatFolderTags) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessFeatureChatFolderTags
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessFeatureChatFolderTags) GetClass() string {
+	return ClassBusinessFeature
+}
+
+func (*BusinessFeatureChatFolderTags) GetType() string {
+	return TypeBusinessFeatureChatFolderTags
+}
+
+func (*BusinessFeatureChatFolderTags) BusinessFeatureType() string {
+	return TypeBusinessFeatureChatFolderTags
+}
+
+// Allowed to use many additional features for stories
+type BusinessFeatureUpgradedStories struct {
+	meta
+}
+
+func (entity *BusinessFeatureUpgradedStories) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessFeatureUpgradedStories
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessFeatureUpgradedStories) GetClass() string {
+	return ClassBusinessFeature
+}
+
+func (*BusinessFeatureUpgradedStories) GetType() string {
+	return TypeBusinessFeatureUpgradedStories
+}
+
+func (*BusinessFeatureUpgradedStories) BusinessFeatureType() string {
+	return TypeBusinessFeatureUpgradedStories
+}
+
+// Stories of the current user are displayed before stories of non-Premium contacts, supergroups, and channels
 type PremiumStoryFeaturePriorityOrder struct {
 	meta
 }
@@ -31562,6 +34250,31 @@ func (*PremiumStoryFeatureLinksAndFormatting) PremiumStoryFeatureType() string {
 	return TypePremiumStoryFeatureLinksAndFormatting
 }
 
+// The ability to choose better quality for viewed stories
+type PremiumStoryFeatureVideoQuality struct {
+	meta
+}
+
+func (entity *PremiumStoryFeatureVideoQuality) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub PremiumStoryFeatureVideoQuality
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*PremiumStoryFeatureVideoQuality) GetClass() string {
+	return ClassPremiumStoryFeature
+}
+
+func (*PremiumStoryFeatureVideoQuality) GetType() string {
+	return TypePremiumStoryFeatureVideoQuality
+}
+
+func (*PremiumStoryFeatureVideoQuality) PremiumStoryFeatureType() string {
+	return TypePremiumStoryFeatureVideoQuality
+}
+
 // Contains information about a limit, increased for Premium users
 type PremiumLimit struct {
 	meta
@@ -31660,6 +34373,45 @@ func (premiumFeatures *PremiumFeatures) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// Contains information about features, available to Business user accounts
+type BusinessFeatures struct {
+	meta
+	// The list of available business features
+	Features []BusinessFeature `json:"features"`
+}
+
+func (entity *BusinessFeatures) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessFeatures
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessFeatures) GetClass() string {
+	return ClassBusinessFeatures
+}
+
+func (*BusinessFeatures) GetType() string {
+	return TypeBusinessFeatures
+}
+
+func (businessFeatures *BusinessFeatures) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Features []json.RawMessage `json:"features"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	fieldFeatures, _ := UnmarshalListOfBusinessFeature(tmp.Features)
+	businessFeatures.Features = fieldFeatures
+
+	return nil
+}
+
 // A limit was exceeded
 type PremiumSourceLimitExceeded struct {
 	meta
@@ -31742,6 +34494,49 @@ func (premiumSourceFeature *PremiumSourceFeature) UnmarshalJSON(data []byte) err
 
 	fieldFeature, _ := UnmarshalPremiumFeature(tmp.Feature)
 	premiumSourceFeature.Feature = fieldFeature
+
+	return nil
+}
+
+// A user tried to use a Business feature
+type PremiumSourceBusinessFeature struct {
+	meta
+	// The used feature; pass null if none specific feature was used
+	Feature BusinessFeature `json:"feature"`
+}
+
+func (entity *PremiumSourceBusinessFeature) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub PremiumSourceBusinessFeature
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*PremiumSourceBusinessFeature) GetClass() string {
+	return ClassPremiumSource
+}
+
+func (*PremiumSourceBusinessFeature) GetType() string {
+	return TypePremiumSourceBusinessFeature
+}
+
+func (*PremiumSourceBusinessFeature) PremiumSourceType() string {
+	return TypePremiumSourceBusinessFeature
+}
+
+func (premiumSourceBusinessFeature *PremiumSourceBusinessFeature) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Feature json.RawMessage `json:"feature"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	fieldFeature, _ := UnmarshalBusinessFeature(tmp.Feature)
+	premiumSourceBusinessFeature.Feature = fieldFeature
 
 	return nil
 }
@@ -31885,6 +34680,50 @@ func (premiumFeaturePromotionAnimation *PremiumFeaturePromotionAnimation) Unmars
 	return nil
 }
 
+// Describes a promotion animation for a Business feature
+type BusinessFeaturePromotionAnimation struct {
+	meta
+	// Business feature
+	Feature BusinessFeature `json:"feature"`
+	// Promotion animation for the feature
+	Animation *Animation `json:"animation"`
+}
+
+func (entity *BusinessFeaturePromotionAnimation) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BusinessFeaturePromotionAnimation
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BusinessFeaturePromotionAnimation) GetClass() string {
+	return ClassBusinessFeaturePromotionAnimation
+}
+
+func (*BusinessFeaturePromotionAnimation) GetType() string {
+	return TypeBusinessFeaturePromotionAnimation
+}
+
+func (businessFeaturePromotionAnimation *BusinessFeaturePromotionAnimation) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Feature   json.RawMessage `json:"feature"`
+		Animation *Animation      `json:"animation"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	businessFeaturePromotionAnimation.Animation = tmp.Animation
+
+	fieldFeature, _ := UnmarshalBusinessFeature(tmp.Feature)
+	businessFeaturePromotionAnimation.Feature = fieldFeature
+
+	return nil
+}
+
 // Contains state of Telegram Premium subscription and promotion videos for Premium features
 type PremiumState struct {
 	meta
@@ -31894,6 +34733,8 @@ type PremiumState struct {
 	PaymentOptions []*PremiumStatePaymentOption `json:"payment_options"`
 	// The list of available promotion animations for Premium features
 	Animations []*PremiumFeaturePromotionAnimation `json:"animations"`
+	// The list of available promotion animations for Business features
+	BusinessAnimations []*BusinessFeaturePromotionAnimation `json:"business_animations"`
 }
 
 func (entity *PremiumState) MarshalJSON() ([]byte, error) {
@@ -31975,7 +34816,7 @@ func (*StorePaymentPurposeGiftedPremium) StorePaymentPurposeType() string {
 // The user creating Telegram Premium gift codes for other users
 type StorePaymentPurposePremiumGiftCodes struct {
 	meta
-	// Identifier of the channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
+	// Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
 	BoostedChatId int64 `json:"boosted_chat_id"`
 	// ISO 4217 currency code of the payment currency
 	Currency string `json:"currency"`
@@ -32005,7 +34846,7 @@ func (*StorePaymentPurposePremiumGiftCodes) StorePaymentPurposeType() string {
 	return TypeStorePaymentPurposePremiumGiftCodes
 }
 
-// The user creating a Telegram Premium giveaway for subscribers of channel chats; requires can_post_messages rights in the channels
+// The user creating a Telegram Premium giveaway
 type StorePaymentPurposePremiumGiveaway struct {
 	meta
 	// Giveaway parameters
@@ -32039,7 +34880,7 @@ func (*StorePaymentPurposePremiumGiveaway) StorePaymentPurposeType() string {
 // The user creating Telegram Premium gift codes for other users
 type TelegramPaymentPurposePremiumGiftCodes struct {
 	meta
-	// Identifier of the channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
+	// Identifier of the supergroup or channel chat, which will be automatically boosted by the users for duration of the Premium subscription and which is administered by the user; 0 if none
 	BoostedChatId int64 `json:"boosted_chat_id"`
 	// ISO 4217 currency code of the payment currency
 	Currency string `json:"currency"`
@@ -32047,7 +34888,7 @@ type TelegramPaymentPurposePremiumGiftCodes struct {
 	Amount int64 `json:"amount"`
 	// Identifiers of the users which can activate the gift codes
 	UserIds []int64 `json:"user_ids"`
-	// Number of month the Telegram Premium subscription will be active for the users
+	// Number of months the Telegram Premium subscription will be active for the users
 	MonthCount int32 `json:"month_count"`
 }
 
@@ -32071,7 +34912,7 @@ func (*TelegramPaymentPurposePremiumGiftCodes) TelegramPaymentPurposeType() stri
 	return TypeTelegramPaymentPurposePremiumGiftCodes
 }
 
-// The user creating a Telegram Premium giveaway for subscribers of channel chats; requires can_post_messages rights in the channels
+// The user creating a Telegram Premium giveaway
 type TelegramPaymentPurposePremiumGiveaway struct {
 	meta
 	// Giveaway parameters
@@ -32082,7 +34923,7 @@ type TelegramPaymentPurposePremiumGiveaway struct {
 	Amount int64 `json:"amount"`
 	// Number of users which will be able to activate the gift codes
 	WinnerCount int32 `json:"winner_count"`
-	// Number of month the Telegram Premium subscription will be active for the users
+	// Number of months the Telegram Premium subscription will be active for the users
 	MonthCount int32 `json:"month_count"`
 }
 
@@ -32680,6 +35521,33 @@ func (backgroundTypeFill *BackgroundTypeFill) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// A background from a chat theme; can be used only as a chat background in channels
+type BackgroundTypeChatTheme struct {
+	meta
+	// Name of the chat theme
+	ThemeName string `json:"theme_name"`
+}
+
+func (entity *BackgroundTypeChatTheme) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BackgroundTypeChatTheme
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BackgroundTypeChatTheme) GetClass() string {
+	return ClassBackgroundType
+}
+
+func (*BackgroundTypeChatTheme) GetType() string {
+	return TypeBackgroundTypeChatTheme
+}
+
+func (*BackgroundTypeChatTheme) BackgroundTypeType() string {
+	return TypeBackgroundTypeChatTheme
+}
+
 // A background from a local file
 type InputBackgroundLocal struct {
 	meta
@@ -32860,6 +35728,56 @@ func (*ChatTheme) GetType() string {
 	return TypeChatTheme
 }
 
+// Describes a time zone
+type TimeZone struct {
+	meta
+	// Unique time zone identifier
+	Id string `json:"id"`
+	// Time zone name
+	Name string `json:"name"`
+	// Current UTC time offset for the time zone
+	UtcTimeOffset int32 `json:"utc_time_offset"`
+}
+
+func (entity *TimeZone) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub TimeZone
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*TimeZone) GetClass() string {
+	return ClassTimeZone
+}
+
+func (*TimeZone) GetType() string {
+	return TypeTimeZone
+}
+
+// Contains a list of time zones
+type TimeZones struct {
+	meta
+	// A list of time zones
+	TimeZones []*TimeZone `json:"time_zones"`
+}
+
+func (entity *TimeZones) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub TimeZones
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*TimeZones) GetClass() string {
+	return ClassTimeZones
+}
+
+func (*TimeZones) GetType() string {
+	return TypeTimeZones
+}
+
 // Contains a list of hashtags
 type Hashtags struct {
 	meta
@@ -32933,7 +35851,7 @@ func (*CanSendStoryResultPremiumNeeded) CanSendStoryResultType() string {
 	return TypeCanSendStoryResultPremiumNeeded
 }
 
-// The channel chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat
+// The chat must be boosted first by Telegram Premium subscribers to post more stories. Call getChatBoostStatus to get current boost status of the chat
 type CanSendStoryResultBoostNeeded struct {
 	meta
 }
@@ -33216,7 +36134,7 @@ func (*CheckChatUsernameResultUsernameOccupied) CheckChatUsernameResultType() st
 	return TypeCheckChatUsernameResultUsernameOccupied
 }
 
-// The username can be purchased at fragment.com
+// The username can be purchased at https://fragment.com. Information about the username can be received using getCollectibleItemInfo
 type CheckChatUsernameResultUsernamePurchasable struct {
 	meta
 }
@@ -33879,7 +36797,7 @@ func (*PushMessageContentPoll) PushMessageContentType() string {
 // A message with a Telegram Premium gift code created for the user
 type PushMessageContentPremiumGiftCode struct {
 	meta
-	// Number of month the Telegram Premium subscription will be active after code activation
+	// Number of months the Telegram Premium subscription will be active after code activation
 	MonthCount int32 `json:"month_count"`
 }
 
@@ -33908,7 +36826,7 @@ type PushMessageContentPremiumGiveaway struct {
 	meta
 	// Number of users which will receive Telegram Premium subscription gift codes; 0 for pinned message
 	WinnerCount int32 `json:"winner_count"`
-	// Number of month the Telegram Premium subscription will be active after code activation; 0 for pinned message
+	// Number of months the Telegram Premium subscription will be active after code activation; 0 for pinned message
 	MonthCount int32 `json:"month_count"`
 	// True, if the message is a pinned message with the specified content
 	IsPinned bool `json:"is_pinned"`
@@ -35383,6 +38301,31 @@ func (*UserPrivacySettingRuleAllowContacts) UserPrivacySettingRuleType() string 
 	return TypeUserPrivacySettingRuleAllowContacts
 }
 
+// A rule to allow all Premium Users to do something; currently, allowed only for userPrivacySettingAllowChatInvites
+type UserPrivacySettingRuleAllowPremiumUsers struct {
+	meta
+}
+
+func (entity *UserPrivacySettingRuleAllowPremiumUsers) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UserPrivacySettingRuleAllowPremiumUsers
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UserPrivacySettingRuleAllowPremiumUsers) GetClass() string {
+	return ClassUserPrivacySettingRule
+}
+
+func (*UserPrivacySettingRuleAllowPremiumUsers) GetType() string {
+	return TypeUserPrivacySettingRuleAllowPremiumUsers
+}
+
+func (*UserPrivacySettingRuleAllowPremiumUsers) UserPrivacySettingRuleType() string {
+	return TypeUserPrivacySettingRuleAllowPremiumUsers
+}
+
 // A rule to allow certain specified users to do something
 type UserPrivacySettingRuleAllowUsers struct {
 	meta
@@ -35705,6 +38648,31 @@ func (*UserPrivacySettingShowBio) UserPrivacySettingType() string {
 	return TypeUserPrivacySettingShowBio
 }
 
+// A privacy setting for managing whether the user's birthdate is visible
+type UserPrivacySettingShowBirthdate struct {
+	meta
+}
+
+func (entity *UserPrivacySettingShowBirthdate) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UserPrivacySettingShowBirthdate
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UserPrivacySettingShowBirthdate) GetClass() string {
+	return ClassUserPrivacySetting
+}
+
+func (*UserPrivacySettingShowBirthdate) GetType() string {
+	return TypeUserPrivacySettingShowBirthdate
+}
+
+func (*UserPrivacySettingShowBirthdate) UserPrivacySettingType() string {
+	return TypeUserPrivacySettingShowBirthdate
+}
+
 // A privacy setting for managing whether the user can be invited to chats
 type UserPrivacySettingAllowChatInvites struct {
 	meta
@@ -35805,7 +38773,7 @@ func (*UserPrivacySettingAllowFindingByPhoneNumber) UserPrivacySettingType() str
 	return TypeUserPrivacySettingAllowFindingByPhoneNumber
 }
 
-// A privacy setting for managing whether the user can receive voice and video messages in private chats
+// A privacy setting for managing whether the user can receive voice and video messages in private chats; for Telegram Premium users only
 type UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages struct {
 	meta
 }
@@ -35828,6 +38796,127 @@ func (*UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages) GetType() string
 
 func (*UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages) UserPrivacySettingType() string {
 	return TypeUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
+}
+
+// Contains privacy settings for message read date in private chats. Read dates are always shown to the users that can see online status of the current user regardless of this setting
+type ReadDatePrivacySettings struct {
+	meta
+	// True, if message read date is shown to other users in private chats. If false and the current user isn't a Telegram Premium user, then they will not be able to see other's message read date.
+	ShowReadDate bool `json:"show_read_date"`
+}
+
+func (entity *ReadDatePrivacySettings) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ReadDatePrivacySettings
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ReadDatePrivacySettings) GetClass() string {
+	return ClassReadDatePrivacySettings
+}
+
+func (*ReadDatePrivacySettings) GetType() string {
+	return TypeReadDatePrivacySettings
+}
+
+// Contains privacy settings for new chats with non-contacts
+type NewChatPrivacySettings struct {
+	meta
+	// True, if non-contacts users are able to write first to the current user. Telegram Premium subscribers are able to write first regardless of this setting
+	AllowNewChatsFromUnknownUsers bool `json:"allow_new_chats_from_unknown_users"`
+}
+
+func (entity *NewChatPrivacySettings) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub NewChatPrivacySettings
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*NewChatPrivacySettings) GetClass() string {
+	return ClassNewChatPrivacySettings
+}
+
+func (*NewChatPrivacySettings) GetType() string {
+	return TypeNewChatPrivacySettings
+}
+
+// The user can be messaged
+type CanSendMessageToUserResultOk struct {
+	meta
+}
+
+func (entity *CanSendMessageToUserResultOk) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub CanSendMessageToUserResultOk
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*CanSendMessageToUserResultOk) GetClass() string {
+	return ClassCanSendMessageToUserResult
+}
+
+func (*CanSendMessageToUserResultOk) GetType() string {
+	return TypeCanSendMessageToUserResultOk
+}
+
+func (*CanSendMessageToUserResultOk) CanSendMessageToUserResultType() string {
+	return TypeCanSendMessageToUserResultOk
+}
+
+// The user can't be messaged, because they are deleted or unknown
+type CanSendMessageToUserResultUserIsDeleted struct {
+	meta
+}
+
+func (entity *CanSendMessageToUserResultUserIsDeleted) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub CanSendMessageToUserResultUserIsDeleted
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*CanSendMessageToUserResultUserIsDeleted) GetClass() string {
+	return ClassCanSendMessageToUserResult
+}
+
+func (*CanSendMessageToUserResultUserIsDeleted) GetType() string {
+	return TypeCanSendMessageToUserResultUserIsDeleted
+}
+
+func (*CanSendMessageToUserResultUserIsDeleted) CanSendMessageToUserResultType() string {
+	return TypeCanSendMessageToUserResultUserIsDeleted
+}
+
+// The user can't be messaged, because they restrict new chats with non-contacts
+type CanSendMessageToUserResultUserRestrictsNewChats struct {
+	meta
+}
+
+func (entity *CanSendMessageToUserResultUserRestrictsNewChats) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub CanSendMessageToUserResultUserRestrictsNewChats
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*CanSendMessageToUserResultUserRestrictsNewChats) GetClass() string {
+	return ClassCanSendMessageToUserResult
+}
+
+func (*CanSendMessageToUserResultUserRestrictsNewChats) GetType() string {
+	return TypeCanSendMessageToUserResultUserRestrictsNewChats
+}
+
+func (*CanSendMessageToUserResultUserRestrictsNewChats) CanSendMessageToUserResultType() string {
+	return TypeCanSendMessageToUserResultUserRestrictsNewChats
 }
 
 // Contains information about the period of inactivity after which the current user's account will automatically be deleted
@@ -36876,7 +39965,7 @@ func (targetChatInternalLink *TargetChatInternalLink) UnmarshalJSON(data []byte)
 	return nil
 }
 
-// The link is a link to the active sessions section of the application. Use getActiveSessions to handle the link
+// The link is a link to the Devices section of the application. Use getActiveSessions to get the list of active sessions and show them to the user
 type InternalLinkTypeActiveSessions struct {
 	meta
 }
@@ -36980,7 +40069,7 @@ func (*InternalLinkTypeAuthenticationCode) InternalLinkTypeType() string {
 	return TypeInternalLinkTypeAuthenticationCode
 }
 
-// The link is a link to a background. Call searchBackground with the given background name to process the link
+// The link is a link to a background. Call searchBackground with the given background name to process the link If background is found and the user wants to apply it, then call setDefaultBackground
 type InternalLinkTypeBackground struct {
 	meta
 	// Name of the background
@@ -37150,7 +40239,7 @@ func (*InternalLinkTypeChatBoost) InternalLinkTypeType() string {
 	return TypeInternalLinkTypeChatBoost
 }
 
-// The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link
+// The link is an invite link to a chat folder. Call checkChatFolderInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat folder, then call addChatFolderByInviteLink
 type InternalLinkTypeChatFolderInvite struct {
 	meta
 	// Internal representation of the invite link
@@ -37202,7 +40291,7 @@ func (*InternalLinkTypeChatFolderSettings) InternalLinkTypeType() string {
 	return TypeInternalLinkTypeChatFolderSettings
 }
 
-// The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link
+// The link is a chat invite link. Call checkChatInviteLink with the given invite link to process the link. If the link is valid and the user wants to join the chat, then call joinChatByInviteLink
 type InternalLinkTypeChatInvite struct {
 	meta
 	// Internal representation of the invite link
@@ -37308,7 +40397,7 @@ func (*InternalLinkTypeGame) InternalLinkTypeType() string {
 	return TypeInternalLinkTypeGame
 }
 
-// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link
+// The link must be opened in an Instant View. Call getWebPageInstantView with the given URL to process the link. If Instant View is found, then show it, otherwise, open the fallback URL in an external browser
 type InternalLinkTypeInstantView struct {
 	meta
 	// URL to be passed to getWebPageInstantView
@@ -37364,7 +40453,7 @@ func (*InternalLinkTypeInvoice) InternalLinkTypeType() string {
 	return TypeInternalLinkTypeInvoice
 }
 
-// The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link
+// The link is a link to a language pack. Call getLanguagePackInfo with the given language pack identifier to process the link. If the language pack is found and the user wants to apply it, then call setOption for the option "language_pack_id"
 type InternalLinkTypeLanguagePack struct {
 	meta
 	// Language pack identifier
@@ -37416,7 +40505,7 @@ func (*InternalLinkTypeLanguageSettings) InternalLinkTypeType() string {
 	return TypeInternalLinkTypeLanguageSettings
 }
 
-// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link
+// The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open received forum topic or chat and show the message there
 type InternalLinkTypeMessage struct {
 	meta
 	// URL to be passed to getMessageLinkInfo
@@ -37475,7 +40564,7 @@ func (*InternalLinkTypeMessageDraft) InternalLinkTypeType() string {
 // The link contains a request of Telegram passport data. Call getPassportAuthorizationForm with the given parameters to process the link if the link was received from outside of the application; otherwise, ignore it
 type InternalLinkTypePassportDataRequest struct {
 	meta
-	// User identifier of the service's bot
+	// User identifier of the service's bot; the corresponding user may be unknown yet
 	BotUserId int64 `json:"bot_user_id"`
 	// Telegram Passport element types requested by the service
 	Scope string `json:"scope"`
@@ -37507,7 +40596,7 @@ func (*InternalLinkTypePassportDataRequest) InternalLinkTypeType() string {
 	return TypeInternalLinkTypePassportDataRequest
 }
 
-// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link
+// The link can be used to confirm ownership of a phone number to prevent account deletion. Call sendPhoneNumberConfirmationCode with the given hash and phone number to process the link. If succeeded, call checkPhoneNumberConfirmationCode to check entered by the user code, or resendPhoneNumberConfirmationCode to resend it
 type InternalLinkTypePhoneNumberConfirmation struct {
 	meta
 	// Hash value from the link
@@ -37561,6 +40650,33 @@ func (*InternalLinkTypePremiumFeatures) GetType() string {
 
 func (*InternalLinkTypePremiumFeatures) InternalLinkTypeType() string {
 	return TypeInternalLinkTypePremiumFeatures
+}
+
+// The link is a link to the screen for gifting Telegram Premium subscriptions to friends via inputInvoiceTelegram payments or in-store purchases
+type InternalLinkTypePremiumGift struct {
+	meta
+	// Referrer specified in the link
+	Referrer string `json:"referrer"`
+}
+
+func (entity *InternalLinkTypePremiumGift) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub InternalLinkTypePremiumGift
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*InternalLinkTypePremiumGift) GetClass() string {
+	return ClassInternalLinkType
+}
+
+func (*InternalLinkTypePremiumGift) GetType() string {
+	return TypeInternalLinkTypePremiumGift
+}
+
+func (*InternalLinkTypePremiumGift) InternalLinkTypeType() string {
+	return TypeInternalLinkTypePremiumGift
 }
 
 // The link is a link with a Telegram Premium gift code. Call checkPremiumGiftCode with the given code to process the link. If the code is valid and the user wants to apply it, then call applyPremiumGiftCode
@@ -37667,7 +40783,7 @@ func (internalLinkTypeProxy *InternalLinkTypeProxy) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link
+// The link is a link to a chat by its username. Call searchPublicChat with the given chat username to process the link If the chat is found, open its profile information screen or the chat itself
 type InternalLinkTypePublicChat struct {
 	meta
 	// Username of the chat
@@ -37769,7 +40885,7 @@ func (*InternalLinkTypeSettings) InternalLinkTypeType() string {
 	return TypeInternalLinkTypeSettings
 }
 
-// The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL
+// The link is a link to a bot, which can be installed to the side menu. Call searchPublicChat with the given bot username, check that the user is a bot and can be added to attachment menu. Then, use getAttachmentMenuBot to receive information about the bot. If the bot isn't added to side menu, then show a disclaimer about Mini Apps being a third-party apps, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu. If the user accept the terms and confirms adding, then use toggleBotIsAddedToAttachmentMenu to add the bot. If the bot is added to side menu, then use getWebAppUrl with the given URL and open the returned URL as a Web App
 type InternalLinkTypeSideMenuBot struct {
 	meta
 	// Username of the bot
@@ -37798,7 +40914,7 @@ func (*InternalLinkTypeSideMenuBot) InternalLinkTypeType() string {
 	return TypeInternalLinkTypeSideMenuBot
 }
 
-// The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set
+// The link is a link to a sticker set. Call searchStickerSet with the given sticker set name to process the link and show the sticker set. If the sticker set is found and the user wants to add it, then call changeStickerSet
 type InternalLinkTypeStickerSet struct {
 	meta
 	// Name of the sticker set
@@ -37827,7 +40943,7 @@ func (*InternalLinkTypeStickerSet) InternalLinkTypeType() string {
 	return TypeInternalLinkTypeStickerSet
 }
 
-// The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier
+// The link is a link to a story. Call searchPublicChat with the given sender username, then call getStory with the received chat identifier and the given story identifier, then show the story if received
 type InternalLinkTypeStory struct {
 	meta
 	// Username of the sender of the story
@@ -37960,7 +41076,7 @@ func (*InternalLinkTypeUnsupportedProxy) InternalLinkTypeType() string {
 	return TypeInternalLinkTypeUnsupportedProxy
 }
 
-// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link
+// The link is a link to a user by its phone number. Call searchUserByPhoneNumber with the given phone number to process the link. If the user is found, then call createPrivateChat and open the chat
 type InternalLinkTypeUserPhoneNumber struct {
 	meta
 	// Phone number of the user
@@ -37987,7 +41103,7 @@ func (*InternalLinkTypeUserPhoneNumber) InternalLinkTypeType() string {
 	return TypeInternalLinkTypeUserPhoneNumber
 }
 
-// The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link
+// The link is a link to a user by a temporary token. Call searchUserByToken with the given token to process the link. If the user is found, then call createPrivateChat and open the chat
 type InternalLinkTypeUserToken struct {
 	meta
 	// The token
@@ -40174,6 +43290,56 @@ func (*SuggestedActionSubscribeToAnnualPremium) SuggestedActionType() string {
 	return TypeSuggestedActionSubscribeToAnnualPremium
 }
 
+// Suggests the user to gift Telegram Premium to friends for Christmas
+type SuggestedActionGiftPremiumForChristmas struct {
+	meta
+}
+
+func (entity *SuggestedActionGiftPremiumForChristmas) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub SuggestedActionGiftPremiumForChristmas
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*SuggestedActionGiftPremiumForChristmas) GetClass() string {
+	return ClassSuggestedAction
+}
+
+func (*SuggestedActionGiftPremiumForChristmas) GetType() string {
+	return TypeSuggestedActionGiftPremiumForChristmas
+}
+
+func (*SuggestedActionGiftPremiumForChristmas) SuggestedActionType() string {
+	return TypeSuggestedActionGiftPremiumForChristmas
+}
+
+// Suggests the user to set birthdate
+type SuggestedActionSetBirthdate struct {
+	meta
+}
+
+func (entity *SuggestedActionSetBirthdate) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub SuggestedActionSetBirthdate
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*SuggestedActionSetBirthdate) GetClass() string {
+	return ClassSuggestedAction
+}
+
+func (*SuggestedActionSetBirthdate) GetType() string {
+	return TypeSuggestedActionSetBirthdate
+}
+
+func (*SuggestedActionSetBirthdate) SuggestedActionType() string {
+	return TypeSuggestedActionSetBirthdate
+}
+
 // Contains a counter
 type Count struct {
 	meta
@@ -40518,6 +43684,8 @@ type InputSticker struct {
 	meta
 	// File with the sticker; must fit in a 512x512 square. For WEBP stickers the file must be in WEBP or PNG format, which will be converted to WEBP server-side. See https://core.telegram.org/animated_stickers#technical-requirements for technical requirements
 	Sticker InputFile `json:"sticker"`
+	// Format of the sticker
+	Format StickerFormat `json:"format"`
 	// String with 1-20 emoji corresponding to the sticker
 	Emojis string `json:"emojis"`
 	// Position where the mask is placed; pass null if not specified
@@ -40545,6 +43713,7 @@ func (*InputSticker) GetType() string {
 func (inputSticker *InputSticker) UnmarshalJSON(data []byte) error {
 	var tmp struct {
 		Sticker      json.RawMessage `json:"sticker"`
+		Format       json.RawMessage `json:"format"`
 		Emojis       string          `json:"emojis"`
 		MaskPosition *MaskPosition   `json:"mask_position"`
 		Keywords     []string        `json:"keywords"`
@@ -40561,6 +43730,9 @@ func (inputSticker *InputSticker) UnmarshalJSON(data []byte) error {
 
 	fieldSticker, _ := UnmarshalInputFile(tmp.Sticker)
 	inputSticker.Sticker = fieldSticker
+
+	fieldFormat, _ := UnmarshalStickerFormat(tmp.Format)
+	inputSticker.Format = fieldFormat
 
 	return nil
 }
@@ -42047,62 +45219,39 @@ func (*UpdateChatPhoto) UpdateType() string {
 	return TypeUpdateChatPhoto
 }
 
-// A chat accent color has changed
-type UpdateChatAccentColor struct {
+// Chat accent colors have changed
+type UpdateChatAccentColors struct {
 	meta
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
 	// The new chat accent color identifier
 	AccentColorId int32 `json:"accent_color_id"`
-}
-
-func (entity *UpdateChatAccentColor) MarshalJSON() ([]byte, error) {
-	entity.meta.Type = entity.GetType()
-
-	type stub UpdateChatAccentColor
-
-	return json.Marshal((*stub)(entity))
-}
-
-func (*UpdateChatAccentColor) GetClass() string {
-	return ClassUpdate
-}
-
-func (*UpdateChatAccentColor) GetType() string {
-	return TypeUpdateChatAccentColor
-}
-
-func (*UpdateChatAccentColor) UpdateType() string {
-	return TypeUpdateChatAccentColor
-}
-
-// A chat's custom emoji for reply background has changed
-type UpdateChatBackgroundCustomEmoji struct {
-	meta
-	// Chat identifier
-	ChatId int64 `json:"chat_id"`
-	// The new identifier of a custom emoji to be shown on the reply header background; 0 if none
+	// The new identifier of a custom emoji to be shown on the reply header and link preview background; 0 if none
 	BackgroundCustomEmojiId JsonInt64 `json:"background_custom_emoji_id"`
+	// The new chat profile accent color identifier; -1 if none
+	ProfileAccentColorId int32 `json:"profile_accent_color_id"`
+	// The new identifier of a custom emoji to be shown on the profile background; 0 if none
+	ProfileBackgroundCustomEmojiId JsonInt64 `json:"profile_background_custom_emoji_id"`
 }
 
-func (entity *UpdateChatBackgroundCustomEmoji) MarshalJSON() ([]byte, error) {
+func (entity *UpdateChatAccentColors) MarshalJSON() ([]byte, error) {
 	entity.meta.Type = entity.GetType()
 
-	type stub UpdateChatBackgroundCustomEmoji
+	type stub UpdateChatAccentColors
 
 	return json.Marshal((*stub)(entity))
 }
 
-func (*UpdateChatBackgroundCustomEmoji) GetClass() string {
+func (*UpdateChatAccentColors) GetClass() string {
 	return ClassUpdate
 }
 
-func (*UpdateChatBackgroundCustomEmoji) GetType() string {
-	return TypeUpdateChatBackgroundCustomEmoji
+func (*UpdateChatAccentColors) GetType() string {
+	return TypeUpdateChatAccentColors
 }
 
-func (*UpdateChatBackgroundCustomEmoji) UpdateType() string {
-	return TypeUpdateChatBackgroundCustomEmoji
+func (*UpdateChatAccentColors) UpdateType() string {
+	return TypeUpdateChatAccentColors
 }
 
 // Chat permissions were changed
@@ -42192,6 +45341,102 @@ func (*UpdateChatPosition) GetType() string {
 
 func (*UpdateChatPosition) UpdateType() string {
 	return TypeUpdateChatPosition
+}
+
+// A chat was added to a chat list
+type UpdateChatAddedToList struct {
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The chat list to which the chat was added
+	ChatList ChatList `json:"chat_list"`
+}
+
+func (entity *UpdateChatAddedToList) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateChatAddedToList
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateChatAddedToList) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateChatAddedToList) GetType() string {
+	return TypeUpdateChatAddedToList
+}
+
+func (*UpdateChatAddedToList) UpdateType() string {
+	return TypeUpdateChatAddedToList
+}
+
+func (updateChatAddedToList *UpdateChatAddedToList) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		ChatId   int64           `json:"chat_id"`
+		ChatList json.RawMessage `json:"chat_list"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	updateChatAddedToList.ChatId = tmp.ChatId
+
+	fieldChatList, _ := UnmarshalChatList(tmp.ChatList)
+	updateChatAddedToList.ChatList = fieldChatList
+
+	return nil
+}
+
+// A chat was removed from a chat list
+type UpdateChatRemovedFromList struct {
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The chat list from which the chat was removed
+	ChatList ChatList `json:"chat_list"`
+}
+
+func (entity *UpdateChatRemovedFromList) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateChatRemovedFromList
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateChatRemovedFromList) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateChatRemovedFromList) GetType() string {
+	return TypeUpdateChatRemovedFromList
+}
+
+func (*UpdateChatRemovedFromList) UpdateType() string {
+	return TypeUpdateChatRemovedFromList
+}
+
+func (updateChatRemovedFromList *UpdateChatRemovedFromList) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		ChatId   int64           `json:"chat_id"`
+		ChatList json.RawMessage `json:"chat_list"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	updateChatRemovedFromList.ChatId = tmp.ChatId
+
+	fieldChatList, _ := UnmarshalChatList(tmp.ChatList)
+	updateChatRemovedFromList.ChatList = fieldChatList
+
+	return nil
 }
 
 // Incoming messages were read or the number of unread messages has been changed
@@ -42355,7 +45600,7 @@ type UpdateChatDraftMessage struct {
 	meta
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// The new draft message; may be null
+	// The new draft message; may be null if none
 	DraftMessage *DraftMessage `json:"draft_message"`
 	// The new chat positions in the chat lists
 	Positions []*ChatPosition `json:"positions"`
@@ -42379,6 +45624,35 @@ func (*UpdateChatDraftMessage) GetType() string {
 
 func (*UpdateChatDraftMessage) UpdateType() string {
 	return TypeUpdateChatDraftMessage
+}
+
+// Chat emoji status has changed
+type UpdateChatEmojiStatus struct {
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// The new chat emoji status; may be null
+	EmojiStatus *EmojiStatus `json:"emoji_status"`
+}
+
+func (entity *UpdateChatEmojiStatus) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateChatEmojiStatus
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateChatEmojiStatus) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateChatEmojiStatus) GetType() string {
+	return TypeUpdateChatEmojiStatus
+}
+
+func (*UpdateChatEmojiStatus) UpdateType() string {
+	return TypeUpdateChatEmojiStatus
 }
 
 // The message sender that is selected to send messages in a chat has changed
@@ -42919,6 +46193,8 @@ type UpdateChatFolders struct {
 	ChatFolders []*ChatFolderInfo `json:"chat_folders"`
 	// Position of the main chat list among chat folders, 0-based
 	MainChatListPosition int32 `json:"main_chat_list_position"`
+	// True, if folder tags are enabled
+	AreTagsEnabled bool `json:"are_tags_enabled"`
 }
 
 func (entity *UpdateChatFolders) MarshalJSON() ([]byte, error) {
@@ -42968,6 +46244,170 @@ func (*UpdateChatOnlineMemberCount) GetType() string {
 
 func (*UpdateChatOnlineMemberCount) UpdateType() string {
 	return TypeUpdateChatOnlineMemberCount
+}
+
+// Basic information about a Saved Messages topic has changed. This update is guaranteed to come before the topic identifier is returned to the application
+type UpdateSavedMessagesTopic struct {
+	meta
+	// New data about the topic
+	Topic *SavedMessagesTopic `json:"topic"`
+}
+
+func (entity *UpdateSavedMessagesTopic) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateSavedMessagesTopic
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateSavedMessagesTopic) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateSavedMessagesTopic) GetType() string {
+	return TypeUpdateSavedMessagesTopic
+}
+
+func (*UpdateSavedMessagesTopic) UpdateType() string {
+	return TypeUpdateSavedMessagesTopic
+}
+
+// Number of Saved Messages topics has changed
+type UpdateSavedMessagesTopicCount struct {
+	meta
+	// Approximate total number of Saved Messages topics
+	TopicCount int32 `json:"topic_count"`
+}
+
+func (entity *UpdateSavedMessagesTopicCount) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateSavedMessagesTopicCount
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateSavedMessagesTopicCount) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateSavedMessagesTopicCount) GetType() string {
+	return TypeUpdateSavedMessagesTopicCount
+}
+
+func (*UpdateSavedMessagesTopicCount) UpdateType() string {
+	return TypeUpdateSavedMessagesTopicCount
+}
+
+// Basic information about a quick reply shortcut has changed. This update is guaranteed to come before the quick shortcut name is returned to the application
+type UpdateQuickReplyShortcut struct {
+	meta
+	// New data about the shortcut
+	Shortcut *QuickReplyShortcut `json:"shortcut"`
+}
+
+func (entity *UpdateQuickReplyShortcut) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateQuickReplyShortcut
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateQuickReplyShortcut) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateQuickReplyShortcut) GetType() string {
+	return TypeUpdateQuickReplyShortcut
+}
+
+func (*UpdateQuickReplyShortcut) UpdateType() string {
+	return TypeUpdateQuickReplyShortcut
+}
+
+// A quick reply shortcut and all its messages were deleted
+type UpdateQuickReplyShortcutDeleted struct {
+	meta
+	// The identifier of the deleted shortcut
+	ShortcutId int32 `json:"shortcut_id"`
+}
+
+func (entity *UpdateQuickReplyShortcutDeleted) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateQuickReplyShortcutDeleted
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateQuickReplyShortcutDeleted) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateQuickReplyShortcutDeleted) GetType() string {
+	return TypeUpdateQuickReplyShortcutDeleted
+}
+
+func (*UpdateQuickReplyShortcutDeleted) UpdateType() string {
+	return TypeUpdateQuickReplyShortcutDeleted
+}
+
+// The list of quick reply shortcuts has changed
+type UpdateQuickReplyShortcuts struct {
+	meta
+	// The new list of identifiers of quick reply shortcuts
+	ShortcutIds []int32 `json:"shortcut_ids"`
+}
+
+func (entity *UpdateQuickReplyShortcuts) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateQuickReplyShortcuts
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateQuickReplyShortcuts) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateQuickReplyShortcuts) GetType() string {
+	return TypeUpdateQuickReplyShortcuts
+}
+
+func (*UpdateQuickReplyShortcuts) UpdateType() string {
+	return TypeUpdateQuickReplyShortcuts
+}
+
+// The list of quick reply shortcut messages has changed
+type UpdateQuickReplyShortcutMessages struct {
+	meta
+	// The identifier of the shortcut
+	ShortcutId int32 `json:"shortcut_id"`
+	// The new list of quick reply messages for the shortcut in order from the first to the last sent
+	Messages []*QuickReplyMessage `json:"messages"`
+}
+
+func (entity *UpdateQuickReplyShortcutMessages) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateQuickReplyShortcutMessages
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateQuickReplyShortcutMessages) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateQuickReplyShortcutMessages) GetType() string {
+	return TypeUpdateQuickReplyShortcutMessages
+}
+
+func (*UpdateQuickReplyShortcutMessages) UpdateType() string {
+	return TypeUpdateQuickReplyShortcutMessages
 }
 
 // Basic information about a topic in a forum chat was changed
@@ -43242,7 +46682,7 @@ type UpdateChatAction struct {
 	meta
 	// Chat identifier
 	ChatId int64 `json:"chat_id"`
-	// If not 0, a message thread identifier in which the action was performed
+	// If not 0, the message thread identifier in which the action was performed
 	MessageThreadId int64 `json:"message_thread_id"`
 	// Identifier of a message sender performing the action
 	SenderId MessageSender `json:"sender_id"`
@@ -44593,33 +48033,33 @@ func (*UpdateSavedNotificationSounds) UpdateType() string {
 	return TypeUpdateSavedNotificationSounds
 }
 
-// The selected background has changed
-type UpdateSelectedBackground struct {
+// The default background has changed
+type UpdateDefaultBackground struct {
 	meta
-	// True, if background for dark theme has changed
+	// True, if default background for dark theme has changed
 	ForDarkTheme bool `json:"for_dark_theme"`
-	// The new selected background; may be null
+	// The new default background; may be null
 	Background *Background `json:"background"`
 }
 
-func (entity *UpdateSelectedBackground) MarshalJSON() ([]byte, error) {
+func (entity *UpdateDefaultBackground) MarshalJSON() ([]byte, error) {
 	entity.meta.Type = entity.GetType()
 
-	type stub UpdateSelectedBackground
+	type stub UpdateDefaultBackground
 
 	return json.Marshal((*stub)(entity))
 }
 
-func (*UpdateSelectedBackground) GetClass() string {
+func (*UpdateDefaultBackground) GetClass() string {
 	return ClassUpdate
 }
 
-func (*UpdateSelectedBackground) GetType() string {
-	return TypeUpdateSelectedBackground
+func (*UpdateDefaultBackground) GetType() string {
+	return TypeUpdateDefaultBackground
 }
 
-func (*UpdateSelectedBackground) UpdateType() string {
-	return TypeUpdateSelectedBackground
+func (*UpdateDefaultBackground) UpdateType() string {
+	return TypeUpdateDefaultBackground
 }
 
 // The list of available chat themes has changed
@@ -44683,7 +48123,7 @@ type UpdateProfileAccentColors struct {
 	meta
 	// Information about supported colors
 	Colors []*ProfileAccentColor `json:"colors"`
-	// The list of accent color identifiers, which can be set through setProfileAccentColor. The colors must be shown in the specififed order
+	// The list of accent color identifiers, which can be set through setProfileAccentColor and setChatProfileAccentColor. The colors must be shown in the specififed order
 	AvailableAccentColorIds []int32 `json:"available_accent_color_ids"`
 }
 
@@ -44988,10 +48428,39 @@ func (updateDefaultReactionType *UpdateDefaultReactionType) UnmarshalJSON(data [
 	return nil
 }
 
+// Tags used in Saved Messages or a Saved Messages topic have changed
+type UpdateSavedMessagesTags struct {
+	meta
+	// Identifier of Saved Messages topic which tags were changed; 0 if tags for the whole chat has changed
+	SavedMessagesTopicId int64 `json:"saved_messages_topic_id"`
+	// The new tags
+	Tags *SavedMessagesTags `json:"tags"`
+}
+
+func (entity *UpdateSavedMessagesTags) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateSavedMessagesTags
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateSavedMessagesTags) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateSavedMessagesTags) GetType() string {
+	return TypeUpdateSavedMessagesTags
+}
+
+func (*UpdateSavedMessagesTags) UpdateType() string {
+	return TypeUpdateSavedMessagesTags
+}
+
 // The parameters of speech recognition without Telegram Premium subscription has changed
 type UpdateSpeechRecognitionTrial struct {
 	meta
-	// The maximum allowed duration of media for speech recognition without Telegram Premium subscription
+	// The maximum allowed duration of media for speech recognition without Telegram Premium subscription, in seconds
 	MaxMediaDuration int32 `json:"max_media_duration"`
 	// The total number of allowed speech recognitions per week; 0 if none
 	WeeklyCount int32 `json:"weekly_count"`
@@ -45157,6 +48626,33 @@ func (updateSuggestedActions *UpdateSuggestedActions) UnmarshalJSON(data []byte)
 	return nil
 }
 
+// The list of contacts that had birthdays recently or will have birthday soon has changed
+type UpdateContactCloseBirthdays struct {
+	meta
+	// List of contact users with close birthday
+	CloseBirthdayUsers []*CloseBirthdayUser `json:"close_birthday_users"`
+}
+
+func (entity *UpdateContactCloseBirthdays) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateContactCloseBirthdays
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateContactCloseBirthdays) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateContactCloseBirthdays) GetType() string {
+	return TypeUpdateContactCloseBirthdays
+}
+
+func (*UpdateContactCloseBirthdays) UpdateType() string {
+	return TypeUpdateContactCloseBirthdays
+}
+
 // Adding users to a chat has failed because of their privacy settings. An invite link can be shared with the users if appropriate
 type UpdateAddChatMembersPrivacyForbidden struct {
 	meta
@@ -45232,6 +48728,122 @@ func (updateAutosaveSettings *UpdateAutosaveSettings) UnmarshalJSON(data []byte)
 	updateAutosaveSettings.Scope = fieldScope
 
 	return nil
+}
+
+// A business connection has changed; for bots only
+type UpdateBusinessConnection struct {
+	meta
+	// New data about the connection
+	Connection *BusinessConnection `json:"connection"`
+}
+
+func (entity *UpdateBusinessConnection) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateBusinessConnection
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateBusinessConnection) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateBusinessConnection) GetType() string {
+	return TypeUpdateBusinessConnection
+}
+
+func (*UpdateBusinessConnection) UpdateType() string {
+	return TypeUpdateBusinessConnection
+}
+
+// A new message was added to a business account; for bots only
+type UpdateNewBusinessMessage struct {
+	meta
+	// Unique identifier of the business connection
+	ConnectionId string `json:"connection_id"`
+	// The new message
+	Message *BusinessMessage `json:"message"`
+}
+
+func (entity *UpdateNewBusinessMessage) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateNewBusinessMessage
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateNewBusinessMessage) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateNewBusinessMessage) GetType() string {
+	return TypeUpdateNewBusinessMessage
+}
+
+func (*UpdateNewBusinessMessage) UpdateType() string {
+	return TypeUpdateNewBusinessMessage
+}
+
+// A message in a business account was edited; for bots only
+type UpdateBusinessMessageEdited struct {
+	meta
+	// Unique identifier of the business connection
+	ConnectionId string `json:"connection_id"`
+	// The edited message
+	Message *BusinessMessage `json:"message"`
+}
+
+func (entity *UpdateBusinessMessageEdited) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateBusinessMessageEdited
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateBusinessMessageEdited) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateBusinessMessageEdited) GetType() string {
+	return TypeUpdateBusinessMessageEdited
+}
+
+func (*UpdateBusinessMessageEdited) UpdateType() string {
+	return TypeUpdateBusinessMessageEdited
+}
+
+// Messages in a business account were deleted; for bots only
+type UpdateBusinessMessagesDeleted struct {
+	meta
+	// Unique identifier of the business connection
+	ConnectionId string `json:"connection_id"`
+	// Identifier of a chat in the business account in which messages were deleted
+	ChatId int64 `json:"chat_id"`
+	// Unique message identifiers of the deleted messages
+	MessageIds []int64 `json:"message_ids"`
+}
+
+func (entity *UpdateBusinessMessagesDeleted) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateBusinessMessagesDeleted
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateBusinessMessagesDeleted) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateBusinessMessagesDeleted) GetType() string {
+	return TypeUpdateBusinessMessagesDeleted
+}
+
+func (*UpdateBusinessMessagesDeleted) UpdateType() string {
+	return TypeUpdateBusinessMessagesDeleted
 }
 
 // A new incoming inline query; for bots only
@@ -45765,6 +49377,107 @@ func (*UpdateChatBoost) GetType() string {
 
 func (*UpdateChatBoost) UpdateType() string {
 	return TypeUpdateChatBoost
+}
+
+// User changed its reactions on a message with public reactions; for bots only
+type UpdateMessageReaction struct {
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Message identifier
+	MessageId int64 `json:"message_id"`
+	// Identifier of the user or chat that changed reactions
+	ActorId MessageSender `json:"actor_id"`
+	// Point in time (Unix timestamp) when the reactions were changed
+	Date int32 `json:"date"`
+	// Old list of chosen reactions
+	OldReactionTypes []ReactionType `json:"old_reaction_types"`
+	// New list of chosen reactions
+	NewReactionTypes []ReactionType `json:"new_reaction_types"`
+}
+
+func (entity *UpdateMessageReaction) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateMessageReaction
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateMessageReaction) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateMessageReaction) GetType() string {
+	return TypeUpdateMessageReaction
+}
+
+func (*UpdateMessageReaction) UpdateType() string {
+	return TypeUpdateMessageReaction
+}
+
+func (updateMessageReaction *UpdateMessageReaction) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		ChatId           int64             `json:"chat_id"`
+		MessageId        int64             `json:"message_id"`
+		ActorId          json.RawMessage   `json:"actor_id"`
+		Date             int32             `json:"date"`
+		OldReactionTypes []json.RawMessage `json:"old_reaction_types"`
+		NewReactionTypes []json.RawMessage `json:"new_reaction_types"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	updateMessageReaction.ChatId = tmp.ChatId
+	updateMessageReaction.MessageId = tmp.MessageId
+	updateMessageReaction.Date = tmp.Date
+
+	fieldActorId, _ := UnmarshalMessageSender(tmp.ActorId)
+	updateMessageReaction.ActorId = fieldActorId
+
+	fieldOldReactionTypes, _ := UnmarshalListOfReactionType(tmp.OldReactionTypes)
+	updateMessageReaction.OldReactionTypes = fieldOldReactionTypes
+
+	fieldNewReactionTypes, _ := UnmarshalListOfReactionType(tmp.NewReactionTypes)
+	updateMessageReaction.NewReactionTypes = fieldNewReactionTypes
+
+	return nil
+}
+
+// Reactions added to a message with anonymous reactions have changed; for bots only
+type UpdateMessageReactions struct {
+	meta
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+	// Message identifier
+	MessageId int64 `json:"message_id"`
+	// Point in time (Unix timestamp) when the reactions were changed
+	Date int32 `json:"date"`
+	// The list of reactions added to the message
+	Reactions []*MessageReaction `json:"reactions"`
+}
+
+func (entity *UpdateMessageReactions) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UpdateMessageReactions
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UpdateMessageReactions) GetClass() string {
+	return ClassUpdate
+}
+
+func (*UpdateMessageReactions) GetType() string {
+	return TypeUpdateMessageReactions
+}
+
+func (*UpdateMessageReactions) UpdateType() string {
+	return TypeUpdateMessageReactions
 }
 
 // Contains a list of updates
