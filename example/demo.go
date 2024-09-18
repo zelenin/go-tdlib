@@ -12,8 +12,14 @@ import (
 )
 
 func main() {
+	// userbot authorizer
+
 	authorizer := client.ClientAuthorizer()
 	go client.CliInteractor(authorizer)
+
+	// bot authorizer
+	// botToken := "1234567:abcdefg"
+	// authorizer := client.BotAuthorizer(botToken)
 
 	var (
 		apiIdRaw = os.Getenv("API_ID")
@@ -28,21 +34,19 @@ func main() {
 	apiId := int32(apiId64)
 
 	authorizer.TdlibParameters <- &client.SetTdlibParametersRequest{
-		UseTestDc:              false,
-		DatabaseDirectory:      filepath.Join(".tdlib", "database"),
-		FilesDirectory:         filepath.Join(".tdlib", "files"),
-		UseFileDatabase:        true,
-		UseChatInfoDatabase:    true,
-		UseMessageDatabase:     true,
-		UseSecretChats:         false,
-		ApiId:                  apiId,
-		ApiHash:                apiHash,
-		SystemLanguageCode:     "en",
-		DeviceModel:            "Server",
-		SystemVersion:          "1.0.0",
-		ApplicationVersion:     "1.0.0",
-		EnableStorageOptimizer: true,
-		IgnoreFileNames:        false,
+		UseTestDc:           false,
+		DatabaseDirectory:   filepath.Join(".tdlib", "database"),
+		FilesDirectory:      filepath.Join(".tdlib", "files"),
+		UseFileDatabase:     true,
+		UseChatInfoDatabase: true,
+		UseMessageDatabase:  true,
+		UseSecretChats:      false,
+		ApiId:               apiId,
+		ApiHash:             apiHash,
+		SystemLanguageCode:  "en",
+		DeviceModel:         "Server",
+		SystemVersion:       "1.0.0",
+		ApplicationVersion:  "1.0.0",
 	}
 
 	_, err = client.SetLogVerbosityLevel(&client.SetLogVerbosityLevelRequest{
