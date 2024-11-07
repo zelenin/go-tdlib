@@ -69,8 +69,6 @@ func main() {
         DeviceModel:            "Server",
         SystemVersion:          "1.0.0",
         ApplicationVersion:     "1.0.0",
-        EnableStorageOptimizer: true,
-        IgnoreFileNames:        false,
     }
 
 	_, err := client.SetLogVerbosityLevel(&client.SetLogVerbosityLevelRequest{
