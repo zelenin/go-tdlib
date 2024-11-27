@@ -23,6 +23,7 @@ const (
 	ClassBusinessAwayMessageSchedule            = "BusinessAwayMessageSchedule"
 	ClassChatPhotoStickerType                   = "ChatPhotoStickerType"
 	ClassInputChatPhoto                         = "InputChatPhoto"
+	ClassStarSubscriptionType                   = "StarSubscriptionType"
 	ClassStarTransactionDirection               = "StarTransactionDirection"
 	ClassBotTransactionPurpose                  = "BotTransactionPurpose"
 	ClassChatTransactionPurpose                 = "ChatTransactionPurpose"
@@ -58,6 +59,7 @@ const (
 	ClassInlineKeyboardButtonType               = "InlineKeyboardButtonType"
 	ClassReplyMarkup                            = "ReplyMarkup"
 	ClassLoginUrlInfo                           = "LoginUrlInfo"
+	ClassWebAppOpenMode                         = "WebAppOpenMode"
 	ClassSavedMessagesTopicType                 = "SavedMessagesTopicType"
 	ClassRichText                               = "RichText"
 	ClassPageBlockHorizontalAlignment           = "PageBlockHorizontalAlignment"
@@ -108,6 +110,7 @@ const (
 	ClassDiceStickers                           = "DiceStickers"
 	ClassSpeechRecognitionResult                = "SpeechRecognitionResult"
 	ClassBotWriteAccessAllowReason              = "BotWriteAccessAllowReason"
+	ClassTargetChat                             = "TargetChat"
 	ClassInputInlineQueryResult                 = "InputInlineQueryResult"
 	ClassInlineQueryResult                      = "InlineQueryResult"
 	ClassInlineQueryResultsButtonType           = "InlineQueryResultsButtonType"
@@ -144,7 +147,6 @@ const (
 	ClassReportReason                           = "ReportReason"
 	ClassReportChatResult                       = "ReportChatResult"
 	ClassReportStoryResult                      = "ReportStoryResult"
-	ClassTargetChat                             = "TargetChat"
 	ClassInternalLinkType                       = "InternalLinkType"
 	ClassBlockList                              = "BlockList"
 	ClassFileType                               = "FileType"
@@ -186,6 +188,7 @@ const (
 	ClassThumbnail                              = "Thumbnail"
 	ClassMaskPosition                           = "MaskPosition"
 	ClassClosedVectorPath                       = "ClosedVectorPath"
+	ClassOutline                                = "Outline"
 	ClassPollOption                             = "PollOption"
 	ClassAnimation                              = "Animation"
 	ClassAudio                                  = "Audio"
@@ -346,9 +349,11 @@ const (
 	ClassCreatedBasicGroupChat                  = "CreatedBasicGroupChat"
 	ClassKeyboardButton                         = "KeyboardButton"
 	ClassInlineKeyboardButton                   = "InlineKeyboardButton"
+	ClassThemeParameters                        = "ThemeParameters"
 	ClassFoundWebApp                            = "FoundWebApp"
 	ClassWebAppInfo                             = "WebAppInfo"
 	ClassMainWebApp                             = "MainWebApp"
+	ClassWebAppOpenParameters                   = "WebAppOpenParameters"
 	ClassMessageThreadInfo                      = "MessageThreadInfo"
 	ClassSavedMessagesTopic                     = "SavedMessagesTopic"
 	ClassForumTopicIcon                         = "ForumTopicIcon"
@@ -373,7 +378,6 @@ const (
 	ClassBankCardInfo                           = "BankCardInfo"
 	ClassAddress                                = "Address"
 	ClassLocationAddress                        = "LocationAddress"
-	ClassThemeParameters                        = "ThemeParameters"
 	ClassLabeledPricePart                       = "LabeledPricePart"
 	ClassInvoice                                = "Invoice"
 	ClassOrderInfo                              = "OrderInfo"
@@ -474,8 +478,11 @@ const (
 	ClassSentWebAppMessage                      = "SentWebAppMessage"
 	ClassHttpUrl                                = "HttpUrl"
 	ClassUserLink                               = "UserLink"
+	ClassTargetChatTypes                        = "TargetChatTypes"
 	ClassInlineQueryResultsButton               = "InlineQueryResultsButton"
 	ClassInlineQueryResults                     = "InlineQueryResults"
+	ClassPreparedInlineMessageId                = "PreparedInlineMessageId"
+	ClassPreparedInlineMessage                  = "PreparedInlineMessage"
 	ClassCallbackQueryAnswer                    = "CallbackQueryAnswer"
 	ClassCustomRequestResult                    = "CustomRequestResult"
 	ClassGameHighScore                          = "GameHighScore"
@@ -642,6 +649,7 @@ const (
 	TypeStickerFullTypeMask                                     = "stickerFullTypeMask"
 	TypeStickerFullTypeCustomEmoji                              = "stickerFullTypeCustomEmoji"
 	TypeClosedVectorPath                                        = "closedVectorPath"
+	TypeOutline                                                 = "outline"
 	TypePollOption                                              = "pollOption"
 	TypePollTypeRegular                                         = "pollTypeRegular"
 	TypePollTypeQuiz                                            = "pollTypeQuiz"
@@ -705,6 +713,8 @@ const (
 	TypeInputChatPhotoSticker                                   = "inputChatPhotoSticker"
 	TypeChatPermissions                                         = "chatPermissions"
 	TypeChatAdministratorRights                                 = "chatAdministratorRights"
+	TypeStarSubscriptionTypeChannel                             = "starSubscriptionTypeChannel"
+	TypeStarSubscriptionTypeBot                                 = "starSubscriptionTypeBot"
 	TypeStarSubscriptionPricing                                 = "starSubscriptionPricing"
 	TypeStarSubscription                                        = "starSubscription"
 	TypeStarSubscriptions                                       = "starSubscriptions"
@@ -727,6 +737,7 @@ const (
 	TypeStarTransactionDirectionOutgoing                        = "starTransactionDirectionOutgoing"
 	TypeBotTransactionPurposePaidMedia                          = "botTransactionPurposePaidMedia"
 	TypeBotTransactionPurposeInvoicePayment                     = "botTransactionPurposeInvoicePayment"
+	TypeBotTransactionPurposeSubscription                       = "botTransactionPurposeSubscription"
 	TypeChatTransactionPurposePaidMedia                         = "chatTransactionPurposePaidMedia"
 	TypeChatTransactionPurposeJoin                              = "chatTransactionPurposeJoin"
 	TypeChatTransactionPurposeReaction                          = "chatTransactionPurposeReaction"
@@ -961,9 +972,14 @@ const (
 	TypeReplyMarkupInlineKeyboard                               = "replyMarkupInlineKeyboard"
 	TypeLoginUrlInfoOpen                                        = "loginUrlInfoOpen"
 	TypeLoginUrlInfoRequestConfirmation                         = "loginUrlInfoRequestConfirmation"
+	TypeThemeParameters                                         = "themeParameters"
+	TypeWebAppOpenModeCompact                                   = "webAppOpenModeCompact"
+	TypeWebAppOpenModeFullSize                                  = "webAppOpenModeFullSize"
+	TypeWebAppOpenModeFullScreen                                = "webAppOpenModeFullScreen"
 	TypeFoundWebApp                                             = "foundWebApp"
 	TypeWebAppInfo                                              = "webAppInfo"
 	TypeMainWebApp                                              = "mainWebApp"
+	TypeWebAppOpenParameters                                    = "webAppOpenParameters"
 	TypeMessageThreadInfo                                       = "messageThreadInfo"
 	TypeSavedMessagesTopicTypeMyNotes                           = "savedMessagesTopicTypeMyNotes"
 	TypeSavedMessagesTopicTypeAuthorHidden                      = "savedMessagesTopicTypeAuthorHidden"
@@ -1078,7 +1094,6 @@ const (
 	TypeBankCardInfo                                            = "bankCardInfo"
 	TypeAddress                                                 = "address"
 	TypeLocationAddress                                         = "locationAddress"
-	TypeThemeParameters                                         = "themeParameters"
 	TypeLabeledPricePart                                        = "labeledPricePart"
 	TypeInvoice                                                 = "invoice"
 	TypeOrderInfo                                               = "orderInfo"
@@ -1094,6 +1109,7 @@ const (
 	TypePaymentOption                                           = "paymentOption"
 	TypePaymentFormTypeRegular                                  = "paymentFormTypeRegular"
 	TypePaymentFormTypeStars                                    = "paymentFormTypeStars"
+	TypePaymentFormTypeStarSubscription                         = "paymentFormTypeStarSubscription"
 	TypePaymentForm                                             = "paymentForm"
 	TypeValidatedOrderInfo                                      = "validatedOrderInfo"
 	TypePaymentResult                                           = "paymentResult"
@@ -1490,6 +1506,10 @@ const (
 	TypeBotWriteAccessAllowReasonAcceptedRequest                = "botWriteAccessAllowReasonAcceptedRequest"
 	TypeHttpUrl                                                 = "httpUrl"
 	TypeUserLink                                                = "userLink"
+	TypeTargetChatTypes                                         = "targetChatTypes"
+	TypeTargetChatCurrent                                       = "targetChatCurrent"
+	TypeTargetChatChosen                                        = "targetChatChosen"
+	TypeTargetChatInternalLink                                  = "targetChatInternalLink"
 	TypeInputInlineQueryResultAnimation                         = "inputInlineQueryResultAnimation"
 	TypeInputInlineQueryResultArticle                           = "inputInlineQueryResultArticle"
 	TypeInputInlineQueryResultAudio                             = "inputInlineQueryResultAudio"
@@ -1518,6 +1538,8 @@ const (
 	TypeInlineQueryResultsButtonTypeWebApp                      = "inlineQueryResultsButtonTypeWebApp"
 	TypeInlineQueryResultsButton                                = "inlineQueryResultsButton"
 	TypeInlineQueryResults                                      = "inlineQueryResults"
+	TypePreparedInlineMessageId                                 = "preparedInlineMessageId"
+	TypePreparedInlineMessage                                   = "preparedInlineMessage"
 	TypeCallbackQueryPayloadData                                = "callbackQueryPayloadData"
 	TypeCallbackQueryPayloadDataWithPassword                    = "callbackQueryPayloadDataWithPassword"
 	TypeCallbackQueryPayloadGame                                = "callbackQueryPayloadGame"
@@ -1788,11 +1810,13 @@ const (
 	TypeStoryPrivacySettingsSelectedUsers                       = "storyPrivacySettingsSelectedUsers"
 	TypeUserPrivacySettingRuleAllowAll                          = "userPrivacySettingRuleAllowAll"
 	TypeUserPrivacySettingRuleAllowContacts                     = "userPrivacySettingRuleAllowContacts"
+	TypeUserPrivacySettingRuleAllowBots                         = "userPrivacySettingRuleAllowBots"
 	TypeUserPrivacySettingRuleAllowPremiumUsers                 = "userPrivacySettingRuleAllowPremiumUsers"
 	TypeUserPrivacySettingRuleAllowUsers                        = "userPrivacySettingRuleAllowUsers"
 	TypeUserPrivacySettingRuleAllowChatMembers                  = "userPrivacySettingRuleAllowChatMembers"
 	TypeUserPrivacySettingRuleRestrictAll                       = "userPrivacySettingRuleRestrictAll"
 	TypeUserPrivacySettingRuleRestrictContacts                  = "userPrivacySettingRuleRestrictContacts"
+	TypeUserPrivacySettingRuleRestrictBots                      = "userPrivacySettingRuleRestrictBots"
 	TypeUserPrivacySettingRuleRestrictUsers                     = "userPrivacySettingRuleRestrictUsers"
 	TypeUserPrivacySettingRuleRestrictChatMembers               = "userPrivacySettingRuleRestrictChatMembers"
 	TypeUserPrivacySettingRules                                 = "userPrivacySettingRules"
@@ -1807,6 +1831,7 @@ const (
 	TypeUserPrivacySettingAllowPeerToPeerCalls                  = "userPrivacySettingAllowPeerToPeerCalls"
 	TypeUserPrivacySettingAllowFindingByPhoneNumber             = "userPrivacySettingAllowFindingByPhoneNumber"
 	TypeUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages = "userPrivacySettingAllowPrivateVoiceAndVideoNoteMessages"
+	TypeUserPrivacySettingAutosaveGifts                         = "userPrivacySettingAutosaveGifts"
 	TypeReadDatePrivacySettings                                 = "readDatePrivacySettings"
 	TypeNewChatPrivacySettings                                  = "newChatPrivacySettings"
 	TypeCanSendMessageToUserResultOk                            = "canSendMessageToUserResultOk"
@@ -1853,9 +1878,6 @@ const (
 	TypeReportStoryResultOk                                     = "reportStoryResultOk"
 	TypeReportStoryResultOptionRequired                         = "reportStoryResultOptionRequired"
 	TypeReportStoryResultTextRequired                           = "reportStoryResultTextRequired"
-	TypeTargetChatCurrent                                       = "targetChatCurrent"
-	TypeTargetChatChosen                                        = "targetChatChosen"
-	TypeTargetChatInternalLink                                  = "targetChatInternalLink"
 	TypeInternalLinkTypeActiveSessions                          = "internalLinkTypeActiveSessions"
 	TypeInternalLinkTypeAttachmentMenuBot                       = "internalLinkTypeAttachmentMenuBot"
 	TypeInternalLinkTypeAuthenticationCode                      = "internalLinkTypeAuthenticationCode"
@@ -2283,6 +2305,11 @@ type InputChatPhoto interface {
 	InputChatPhotoType() string
 }
 
+// Describes type of subscription paid in Telegram Stars
+type StarSubscriptionType interface {
+	StarSubscriptionTypeType() string
+}
+
 // Describes direction of a transaction with Telegram Stars
 type StarTransactionDirection interface {
 	StarTransactionDirectionType() string
@@ -2456,6 +2483,11 @@ type ReplyMarkup interface {
 // Contains information about an inline button of type inlineKeyboardButtonTypeLoginUrl
 type LoginUrlInfo interface {
 	LoginUrlInfoType() string
+}
+
+// Describes mode in which a Web App is opened
+type WebAppOpenMode interface {
+	WebAppOpenModeType() string
 }
 
 // Describes type of Saved Messages topic
@@ -2708,6 +2740,11 @@ type BotWriteAccessAllowReason interface {
 	BotWriteAccessAllowReasonType() string
 }
 
+// Describes the target chat to be opened
+type TargetChat interface {
+	TargetChatType() string
+}
+
 // Represents a single result of an inline query; for bots only
 type InputInlineQueryResult interface {
 	InputInlineQueryResultType() string
@@ -2886,11 +2923,6 @@ type ReportChatResult interface {
 // Describes result of story report
 type ReportStoryResult interface {
 	ReportStoryResultType() string
-}
-
-// Describes the target chat to be opened
-type TargetChat interface {
-	TargetChatType() string
 }
 
 // Describes an internal https://t.me or tg: link, which must be processed by the application in a special way
@@ -5054,7 +5086,7 @@ func (*StickerFullTypeCustomEmoji) StickerFullTypeType() string {
 	return TypeStickerFullTypeCustomEmoji
 }
 
-// Represents a closed vector path. The path begins at the end point of the last command
+// Represents a closed vector path. The path begins at the end point of the last command. The coordinate system origin is in the upper-left corner
 type ClosedVectorPath struct {
 	meta
 	// List of vector path commands
@@ -5091,6 +5123,29 @@ func (closedVectorPath *ClosedVectorPath) UnmarshalJSON(data []byte) error {
 	closedVectorPath.Commands = fieldCommands
 
 	return nil
+}
+
+// Represents outline of an image
+type Outline struct {
+	meta
+	// The list of closed vector paths
+	Paths []*ClosedVectorPath `json:"paths"`
+}
+
+func (entity *Outline) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub Outline
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*Outline) GetClass() string {
+	return ClassOutline
+}
+
+func (*Outline) GetType() string {
+	return TypeOutline
 }
 
 // Describes one answer option of a poll
@@ -5333,8 +5388,6 @@ type Sticker struct {
 	Format StickerFormat `json:"format"`
 	// Sticker's full type
 	FullType StickerFullType `json:"full_type"`
-	// Sticker's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
-	Outline []*ClosedVectorPath `json:"outline"`
 	// Sticker thumbnail in WEBP or JPEG format; may be null
 	Thumbnail *Thumbnail `json:"thumbnail"`
 	// File containing the sticker
@@ -5359,16 +5412,15 @@ func (*Sticker) GetType() string {
 
 func (sticker *Sticker) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		Id        JsonInt64           `json:"id"`
-		SetId     JsonInt64           `json:"set_id"`
-		Width     int32               `json:"width"`
-		Height    int32               `json:"height"`
-		Emoji     string              `json:"emoji"`
-		Format    json.RawMessage     `json:"format"`
-		FullType  json.RawMessage     `json:"full_type"`
-		Outline   []*ClosedVectorPath `json:"outline"`
-		Thumbnail *Thumbnail          `json:"thumbnail"`
-		Sticker   *File               `json:"sticker"`
+		Id        JsonInt64       `json:"id"`
+		SetId     JsonInt64       `json:"set_id"`
+		Width     int32           `json:"width"`
+		Height    int32           `json:"height"`
+		Emoji     string          `json:"emoji"`
+		Format    json.RawMessage `json:"format"`
+		FullType  json.RawMessage `json:"full_type"`
+		Thumbnail *Thumbnail      `json:"thumbnail"`
+		Sticker   *File           `json:"sticker"`
 	}
 
 	err := json.Unmarshal(data, &tmp)
@@ -5381,7 +5433,6 @@ func (sticker *Sticker) UnmarshalJSON(data []byte) error {
 	sticker.Width = tmp.Width
 	sticker.Height = tmp.Height
 	sticker.Emoji = tmp.Emoji
-	sticker.Outline = tmp.Outline
 	sticker.Thumbnail = tmp.Thumbnail
 	sticker.Sticker = tmp.Sticker
 
@@ -5821,7 +5872,7 @@ func (poll *Poll) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// Describes an alternative reencoded quality of a video file
+// Describes an alternative re-encoded quality of a video file
 type AlternativeVideo struct {
 	meta
 	// Video width
@@ -7238,6 +7289,68 @@ func (*ChatAdministratorRights) GetType() string {
 	return TypeChatAdministratorRights
 }
 
+// Describes a subscription to a channel chat
+type StarSubscriptionTypeChannel struct {
+	meta
+	// True, if the subscription is active and the user can use the method reuseStarSubscription to join the subscribed chat again
+	CanReuse bool `json:"can_reuse"`
+	// The invite link that can be used to renew the subscription if it has been expired; may be empty, if the link isn't available anymore
+	InviteLink string `json:"invite_link"`
+}
+
+func (entity *StarSubscriptionTypeChannel) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub StarSubscriptionTypeChannel
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*StarSubscriptionTypeChannel) GetClass() string {
+	return ClassStarSubscriptionType
+}
+
+func (*StarSubscriptionTypeChannel) GetType() string {
+	return TypeStarSubscriptionTypeChannel
+}
+
+func (*StarSubscriptionTypeChannel) StarSubscriptionTypeType() string {
+	return TypeStarSubscriptionTypeChannel
+}
+
+// Describes a subscription in a bot or a business account
+type StarSubscriptionTypeBot struct {
+	meta
+	// True, if the subscription was canceled by the bot and can't be extended
+	IsCanceledByBot bool `json:"is_canceled_by_bot"`
+	// Subscription invoice title
+	Title string `json:"title"`
+	// Subscription invoice photo
+	Photo *Photo `json:"photo"`
+	// The link to the subscription invoice
+	InvoiceLink string `json:"invoice_link"`
+}
+
+func (entity *StarSubscriptionTypeBot) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub StarSubscriptionTypeBot
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*StarSubscriptionTypeBot) GetClass() string {
+	return ClassStarSubscriptionType
+}
+
+func (*StarSubscriptionTypeBot) GetType() string {
+	return TypeStarSubscriptionTypeBot
+}
+
+func (*StarSubscriptionTypeBot) StarSubscriptionTypeType() string {
+	return TypeStarSubscriptionTypeBot
+}
+
 // Describes subscription plan paid in Telegram Stars
 type StarSubscriptionPricing struct {
 	meta
@@ -7263,25 +7376,23 @@ func (*StarSubscriptionPricing) GetType() string {
 	return TypeStarSubscriptionPricing
 }
 
-// Contains information about subscription to a channel chat paid in Telegram Stars
+// Contains information about subscription to a channel chat, a bot, or a business account that was paid in Telegram Stars
 type StarSubscription struct {
 	meta
 	// Unique identifier of the subscription
 	Id string `json:"id"`
-	// Identifier of the channel chat that is subscribed
+	// Identifier of the chat that is subscribed
 	ChatId int64 `json:"chat_id"`
 	// Point in time (Unix timestamp) when the subscription will expire or expired
 	ExpirationDate int32 `json:"expiration_date"`
-	// True, if the subscription is active and the user can use the method reuseStarSubscription to join the subscribed chat again
-	CanReuse bool `json:"can_reuse"`
 	// True, if the subscription was canceled
 	IsCanceled bool `json:"is_canceled"`
 	// True, if the subscription expires soon and there are no enough Telegram Stars on the user's balance to extend it
 	IsExpiring bool `json:"is_expiring"`
-	// The invite link that can be used to renew the subscription if it has been expired; may be empty, if the link isn't available anymore
-	InviteLink string `json:"invite_link"`
 	// The subscription plan
 	Pricing *StarSubscriptionPricing `json:"pricing"`
+	// Type of the subscription
+	Type StarSubscriptionType `json:"type"`
 }
 
 func (entity *StarSubscription) MarshalJSON() ([]byte, error) {
@@ -7298,6 +7409,35 @@ func (*StarSubscription) GetClass() string {
 
 func (*StarSubscription) GetType() string {
 	return TypeStarSubscription
+}
+
+func (starSubscription *StarSubscription) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Id             string                   `json:"id"`
+		ChatId         int64                    `json:"chat_id"`
+		ExpirationDate int32                    `json:"expiration_date"`
+		IsCanceled     bool                     `json:"is_canceled"`
+		IsExpiring     bool                     `json:"is_expiring"`
+		Pricing        *StarSubscriptionPricing `json:"pricing"`
+		Type           json.RawMessage          `json:"type"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	starSubscription.Id = tmp.Id
+	starSubscription.ChatId = tmp.ChatId
+	starSubscription.ExpirationDate = tmp.ExpirationDate
+	starSubscription.IsCanceled = tmp.IsCanceled
+	starSubscription.IsExpiring = tmp.IsExpiring
+	starSubscription.Pricing = tmp.Pricing
+
+	fieldType, _ := UnmarshalStarSubscriptionType(tmp.Type)
+	starSubscription.Type = fieldType
+
+	return nil
 }
 
 // Represents a list of Telegram Star subscriptions
@@ -7721,6 +7861,8 @@ type Gift struct {
 	StarCount int64 `json:"star_count"`
 	// Number of Telegram Stars that can be claimed by the receiver instead of the gift by default. If the gift was paid with just bought Telegram Stars, then full value can be claimed
 	DefaultSellStarCount int64 `json:"default_sell_star_count"`
+	// True, if the gift is a birthday gift
+	IsForBirthday bool `json:"is_for_birthday"`
 	// Number of remaining times the gift can be purchased by all users; 0 if not limited or the gift was sold out
 	RemainingCount int32 `json:"remaining_count"`
 	// Number of total times the gift can be purchased by all users; 0 if not limited
@@ -7787,7 +7929,7 @@ type UserGift struct {
 	Gift *Gift `json:"gift"`
 	// Identifier of the message with the gift in the chat with the sender of the gift; can be 0 or an identifier of a deleted message; only for the gift receiver
 	MessageId int64 `json:"message_id"`
-	// Number of Telegram Stars that can be claimed by the receiver instead of the gift; only for the gift receiver
+	// Number of Telegram Stars that can be claimed by the receiver instead of the gift; 0 if the gift can't be sold by the current user
 	SellStarCount int64 `json:"sell_star_count"`
 }
 
@@ -7961,6 +8103,37 @@ func (*BotTransactionPurposeInvoicePayment) BotTransactionPurposeType() string {
 	return TypeBotTransactionPurposeInvoicePayment
 }
 
+// User bought a subscription in a bot or a business account
+type BotTransactionPurposeSubscription struct {
+	meta
+	// The number of seconds between consecutive Telegram Star debiting
+	Period int32 `json:"period"`
+	// Information about the bought subscription; may be null if not applicable
+	ProductInfo *ProductInfo `json:"product_info"`
+	// Invoice payload; for bots only
+	InvoicePayload []byte `json:"invoice_payload"`
+}
+
+func (entity *BotTransactionPurposeSubscription) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub BotTransactionPurposeSubscription
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*BotTransactionPurposeSubscription) GetClass() string {
+	return ClassBotTransactionPurpose
+}
+
+func (*BotTransactionPurposeSubscription) GetType() string {
+	return TypeBotTransactionPurposeSubscription
+}
+
+func (*BotTransactionPurposeSubscription) BotTransactionPurposeType() string {
+	return TypeBotTransactionPurposeSubscription
+}
+
 // Paid media were bought
 type ChatTransactionPurposePaidMedia struct {
 	meta
@@ -8117,7 +8290,7 @@ func (*UserTransactionPurposeGiftedStars) UserTransactionPurposeType() string {
 	return TypeUserTransactionPurposeGiftedStars
 }
 
-// The current user sold a gift received from another user
+// The user sold a gift received from another user or bot
 type UserTransactionPurposeGiftSell struct {
 	meta
 	// The gift
@@ -8144,7 +8317,7 @@ func (*UserTransactionPurposeGiftSell) UserTransactionPurposeType() string {
 	return TypeUserTransactionPurposeGiftSell
 }
 
-// The current user sent a gift to another user
+// The user or the bot sent a gift to a user
 type UserTransactionPurposeGiftSend struct {
 	meta
 	// The gift
@@ -9254,8 +9427,18 @@ type BotInfo struct {
 	DefaultGroupAdministratorRights *ChatAdministratorRights `json:"default_group_administrator_rights"`
 	// Default administrator rights for adding the bot to channels; may be null
 	DefaultChannelAdministratorRights *ChatAdministratorRights `json:"default_channel_administrator_rights"`
-	// True, if the bot's revenue statistics are available
+	// Default light background color for bot Web Apps; -1 if not specified
+	WebAppBackgroundLightColor int32 `json:"web_app_background_light_color"`
+	// Default dark background color for bot Web Apps; -1 if not specified
+	WebAppBackgroundDarkColor int32 `json:"web_app_background_dark_color"`
+	// Default light header color for bot Web Apps; -1 if not specified
+	WebAppHeaderLightColor int32 `json:"web_app_header_light_color"`
+	// Default dark header color for bot Web Apps; -1 if not specified
+	WebAppHeaderDarkColor int32 `json:"web_app_header_dark_color"`
+	// True, if the bot's revenue statistics are available to the current user
 	CanGetRevenueStatistics bool `json:"can_get_revenue_statistics"`
+	// True, if the bot can manage emoji status of the current user
+	CanManageEmojiStatus bool `json:"can_manage_emoji_status"`
 	// True, if the bot has media previews
 	HasMediaPreviews bool `json:"has_media_previews"`
 	// The internal link, which can be used to edit bot commands; may be null
@@ -9295,7 +9478,12 @@ func (botInfo *BotInfo) UnmarshalJSON(data []byte) error {
 		PrivacyPolicyUrl                  string                   `json:"privacy_policy_url"`
 		DefaultGroupAdministratorRights   *ChatAdministratorRights `json:"default_group_administrator_rights"`
 		DefaultChannelAdministratorRights *ChatAdministratorRights `json:"default_channel_administrator_rights"`
+		WebAppBackgroundLightColor        int32                    `json:"web_app_background_light_color"`
+		WebAppBackgroundDarkColor         int32                    `json:"web_app_background_dark_color"`
+		WebAppHeaderLightColor            int32                    `json:"web_app_header_light_color"`
+		WebAppHeaderDarkColor             int32                    `json:"web_app_header_dark_color"`
 		CanGetRevenueStatistics           bool                     `json:"can_get_revenue_statistics"`
+		CanManageEmojiStatus              bool                     `json:"can_manage_emoji_status"`
 		HasMediaPreviews                  bool                     `json:"has_media_previews"`
 		EditCommandsLink                  json.RawMessage          `json:"edit_commands_link"`
 		EditDescriptionLink               json.RawMessage          `json:"edit_description_link"`
@@ -9317,7 +9505,12 @@ func (botInfo *BotInfo) UnmarshalJSON(data []byte) error {
 	botInfo.PrivacyPolicyUrl = tmp.PrivacyPolicyUrl
 	botInfo.DefaultGroupAdministratorRights = tmp.DefaultGroupAdministratorRights
 	botInfo.DefaultChannelAdministratorRights = tmp.DefaultChannelAdministratorRights
+	botInfo.WebAppBackgroundLightColor = tmp.WebAppBackgroundLightColor
+	botInfo.WebAppBackgroundDarkColor = tmp.WebAppBackgroundDarkColor
+	botInfo.WebAppHeaderLightColor = tmp.WebAppHeaderLightColor
+	botInfo.WebAppHeaderDarkColor = tmp.WebAppHeaderDarkColor
 	botInfo.CanGetRevenueStatistics = tmp.CanGetRevenueStatistics
+	botInfo.CanManageEmojiStatus = tmp.CanManageEmojiStatus
 	botInfo.HasMediaPreviews = tmp.HasMediaPreviews
 
 	fieldEditCommandsLink, _ := UnmarshalInternalLinkType(tmp.EditCommandsLink)
@@ -15986,6 +16179,132 @@ func (*LoginUrlInfoRequestConfirmation) LoginUrlInfoType() string {
 	return TypeLoginUrlInfoRequestConfirmation
 }
 
+// Contains parameters of the application theme
+type ThemeParameters struct {
+	meta
+	// A color of the background in the RGB format
+	BackgroundColor int32 `json:"background_color"`
+	// A secondary color for the background in the RGB format
+	SecondaryBackgroundColor int32 `json:"secondary_background_color"`
+	// A color of the header background in the RGB format
+	HeaderBackgroundColor int32 `json:"header_background_color"`
+	// A color of the bottom bar background in the RGB format
+	BottomBarBackgroundColor int32 `json:"bottom_bar_background_color"`
+	// A color of the section background in the RGB format
+	SectionBackgroundColor int32 `json:"section_background_color"`
+	// A color of the section separator in the RGB format
+	SectionSeparatorColor int32 `json:"section_separator_color"`
+	// A color of text in the RGB format
+	TextColor int32 `json:"text_color"`
+	// An accent color of the text in the RGB format
+	AccentTextColor int32 `json:"accent_text_color"`
+	// A color of text on the section headers in the RGB format
+	SectionHeaderTextColor int32 `json:"section_header_text_color"`
+	// A color of the subtitle text in the RGB format
+	SubtitleTextColor int32 `json:"subtitle_text_color"`
+	// A color of the text for destructive actions in the RGB format
+	DestructiveTextColor int32 `json:"destructive_text_color"`
+	// A color of hints in the RGB format
+	HintColor int32 `json:"hint_color"`
+	// A color of links in the RGB format
+	LinkColor int32 `json:"link_color"`
+	// A color of the buttons in the RGB format
+	ButtonColor int32 `json:"button_color"`
+	// A color of text on the buttons in the RGB format
+	ButtonTextColor int32 `json:"button_text_color"`
+}
+
+func (entity *ThemeParameters) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub ThemeParameters
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*ThemeParameters) GetClass() string {
+	return ClassThemeParameters
+}
+
+func (*ThemeParameters) GetType() string {
+	return TypeThemeParameters
+}
+
+// The Web App is opened in the compact mode
+type WebAppOpenModeCompact struct {
+	meta
+}
+
+func (entity *WebAppOpenModeCompact) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub WebAppOpenModeCompact
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*WebAppOpenModeCompact) GetClass() string {
+	return ClassWebAppOpenMode
+}
+
+func (*WebAppOpenModeCompact) GetType() string {
+	return TypeWebAppOpenModeCompact
+}
+
+func (*WebAppOpenModeCompact) WebAppOpenModeType() string {
+	return TypeWebAppOpenModeCompact
+}
+
+// The Web App is opened in the full-size mode
+type WebAppOpenModeFullSize struct {
+	meta
+}
+
+func (entity *WebAppOpenModeFullSize) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub WebAppOpenModeFullSize
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*WebAppOpenModeFullSize) GetClass() string {
+	return ClassWebAppOpenMode
+}
+
+func (*WebAppOpenModeFullSize) GetType() string {
+	return TypeWebAppOpenModeFullSize
+}
+
+func (*WebAppOpenModeFullSize) WebAppOpenModeType() string {
+	return TypeWebAppOpenModeFullSize
+}
+
+// The Web App is opened in the full-screen mode
+type WebAppOpenModeFullScreen struct {
+	meta
+}
+
+func (entity *WebAppOpenModeFullScreen) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub WebAppOpenModeFullScreen
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*WebAppOpenModeFullScreen) GetClass() string {
+	return ClassWebAppOpenMode
+}
+
+func (*WebAppOpenModeFullScreen) GetType() string {
+	return TypeWebAppOpenModeFullScreen
+}
+
+func (*WebAppOpenModeFullScreen) WebAppOpenModeType() string {
+	return TypeWebAppOpenModeFullScreen
+}
+
 // Contains information about a Web App found by its short name
 type FoundWebApp struct {
 	meta
@@ -16043,8 +16362,8 @@ type MainWebApp struct {
 	meta
 	// URL of the Web App to open
 	Url string `json:"url"`
-	// True, if the Web App must always be opened in the compact mode instead of the full-size mode
-	IsCompact bool `json:"is_compact"`
+	// The mode in which the Web App must be opened
+	Mode WebAppOpenMode `json:"mode"`
 }
 
 func (entity *MainWebApp) MarshalJSON() ([]byte, error) {
@@ -16061,6 +16380,73 @@ func (*MainWebApp) GetClass() string {
 
 func (*MainWebApp) GetType() string {
 	return TypeMainWebApp
+}
+
+func (mainWebApp *MainWebApp) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Url  string          `json:"url"`
+		Mode json.RawMessage `json:"mode"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	mainWebApp.Url = tmp.Url
+
+	fieldMode, _ := UnmarshalWebAppOpenMode(tmp.Mode)
+	mainWebApp.Mode = fieldMode
+
+	return nil
+}
+
+// Options to be used when a Web App is opened
+type WebAppOpenParameters struct {
+	meta
+	// Preferred Web App theme; pass null to use the default theme
+	Theme *ThemeParameters `json:"theme"`
+	// Short name of the current application; 0-64 English letters, digits, and underscores
+	ApplicationName string `json:"application_name"`
+	// The mode in which the Web App is opened; pass null to open in webAppOpenModeFullSize
+	Mode WebAppOpenMode `json:"mode"`
+}
+
+func (entity *WebAppOpenParameters) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub WebAppOpenParameters
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*WebAppOpenParameters) GetClass() string {
+	return ClassWebAppOpenParameters
+}
+
+func (*WebAppOpenParameters) GetType() string {
+	return TypeWebAppOpenParameters
+}
+
+func (webAppOpenParameters *WebAppOpenParameters) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Theme           *ThemeParameters `json:"theme"`
+		ApplicationName string           `json:"application_name"`
+		Mode            json.RawMessage  `json:"mode"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	webAppOpenParameters.Theme = tmp.Theme
+	webAppOpenParameters.ApplicationName = tmp.ApplicationName
+
+	fieldMode, _ := UnmarshalWebAppOpenMode(tmp.Mode)
+	webAppOpenParameters.Mode = fieldMode
+
+	return nil
 }
 
 // Contains information about a message thread
@@ -20230,57 +20616,6 @@ func (*LocationAddress) GetType() string {
 	return TypeLocationAddress
 }
 
-// Contains parameters of the application theme
-type ThemeParameters struct {
-	meta
-	// A color of the background in the RGB format
-	BackgroundColor int32 `json:"background_color"`
-	// A secondary color for the background in the RGB format
-	SecondaryBackgroundColor int32 `json:"secondary_background_color"`
-	// A color of the header background in the RGB format
-	HeaderBackgroundColor int32 `json:"header_background_color"`
-	// A color of the bottom bar background in the RGB format
-	BottomBarBackgroundColor int32 `json:"bottom_bar_background_color"`
-	// A color of the section background in the RGB format
-	SectionBackgroundColor int32 `json:"section_background_color"`
-	// A color of the section separator in the RGB format
-	SectionSeparatorColor int32 `json:"section_separator_color"`
-	// A color of text in the RGB format
-	TextColor int32 `json:"text_color"`
-	// An accent color of the text in the RGB format
-	AccentTextColor int32 `json:"accent_text_color"`
-	// A color of text on the section headers in the RGB format
-	SectionHeaderTextColor int32 `json:"section_header_text_color"`
-	// A color of the subtitle text in the RGB format
-	SubtitleTextColor int32 `json:"subtitle_text_color"`
-	// A color of the text for destructive actions in the RGB format
-	DestructiveTextColor int32 `json:"destructive_text_color"`
-	// A color of hints in the RGB format
-	HintColor int32 `json:"hint_color"`
-	// A color of links in the RGB format
-	LinkColor int32 `json:"link_color"`
-	// A color of the buttons in the RGB format
-	ButtonColor int32 `json:"button_color"`
-	// A color of text on the buttons in the RGB format
-	ButtonTextColor int32 `json:"button_text_color"`
-}
-
-func (entity *ThemeParameters) MarshalJSON() ([]byte, error) {
-	entity.meta.Type = entity.GetType()
-
-	type stub ThemeParameters
-
-	return json.Marshal((*stub)(entity))
-}
-
-func (*ThemeParameters) GetClass() string {
-	return ClassThemeParameters
-}
-
-func (*ThemeParameters) GetType() string {
-	return TypeThemeParameters
-}
-
 // Portion of the price of a product (e.g., "delivery cost", "tax amount")
 type LabeledPricePart struct {
 	meta
@@ -20313,6 +20648,8 @@ type Invoice struct {
 	Currency string `json:"currency"`
 	// A list of objects used to calculate the total price of the product
 	PriceParts []*LabeledPricePart `json:"price_parts"`
+	// The number of seconds between consecutive Telegram Star debiting for subscription invoices; 0 if the invoice doesn't create subscription
+	SubscriptionPeriod int32 `json:"subscription_period"`
 	// The maximum allowed amount of tip in the smallest units of the currency
 	MaxTipAmount int64 `json:"max_tip_amount"`
 	// Suggested amounts of tip in the smallest units of the currency
@@ -20757,6 +21094,33 @@ func (*PaymentFormTypeStars) GetType() string {
 
 func (*PaymentFormTypeStars) PaymentFormTypeType() string {
 	return TypePaymentFormTypeStars
+}
+
+// The payment form is for a payment in Telegram Stars for subscription
+type PaymentFormTypeStarSubscription struct {
+	meta
+	// Information about subscription plan
+	Pricing *StarSubscriptionPricing `json:"pricing"`
+}
+
+func (entity *PaymentFormTypeStarSubscription) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub PaymentFormTypeStarSubscription
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*PaymentFormTypeStarSubscription) GetClass() string {
+	return ClassPaymentFormType
+}
+
+func (*PaymentFormTypeStarSubscription) GetType() string {
+	return TypePaymentFormTypeStarSubscription
+}
+
+func (*PaymentFormTypeStarSubscription) PaymentFormTypeType() string {
+	return TypePaymentFormTypeStarSubscription
 }
 
 // Contains information about an invoice payment form
@@ -24982,7 +25346,7 @@ func (*MessageGameScore) MessageContentType() string {
 	return TypeMessageGameScore
 }
 
-// A payment has been completed
+// A payment has been sent to a bot or a business account
 type MessagePaymentSuccessful struct {
 	meta
 	// Identifier of the chat, containing the corresponding invoice message
@@ -24993,6 +25357,8 @@ type MessagePaymentSuccessful struct {
 	Currency string `json:"currency"`
 	// Total price for the product, in the smallest units of the currency
 	TotalAmount int64 `json:"total_amount"`
+	// Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring
+	SubscriptionUntilDate int32 `json:"subscription_until_date"`
 	// True, if this is a recurring payment
 	IsRecurring bool `json:"is_recurring"`
 	// True, if this is the first recurring payment
@@ -25021,22 +25387,24 @@ func (*MessagePaymentSuccessful) MessageContentType() string {
 	return TypeMessagePaymentSuccessful
 }
 
-// A payment has been completed; for bots only
+// A payment has been received by the bot or the business account
 type MessagePaymentSuccessfulBot struct {
 	meta
 	// Currency for price of the product
 	Currency string `json:"currency"`
 	// Total price for the product, in the smallest units of the currency
 	TotalAmount int64 `json:"total_amount"`
+	// Point in time (Unix timestamp) when the subscription will expire; 0 if unknown or the payment isn't recurring
+	SubscriptionUntilDate int32 `json:"subscription_until_date"`
 	// True, if this is a recurring payment
 	IsRecurring bool `json:"is_recurring"`
 	// True, if this is the first recurring payment
 	IsFirstRecurring bool `json:"is_first_recurring"`
 	// Invoice payload
 	InvoicePayload []byte `json:"invoice_payload"`
-	// Identifier of the shipping option chosen by the user; may be empty if not applicable
+	// Identifier of the shipping option chosen by the user; may be empty if not applicable; for bots only
 	ShippingOptionId string `json:"shipping_option_id"`
-	// Information about the order; may be null
+	// Information about the order; may be null; for bots only
 	OrderInfo *OrderInfo `json:"order_info"`
 	// Telegram payment identifier
 	TelegramPaymentChargeId string `json:"telegram_payment_charge_id"`
@@ -25542,7 +25910,7 @@ type MessageGift struct {
 	Gift *Gift `json:"gift"`
 	// Message added to the gift
 	Text *FormattedText `json:"text"`
-	// Number of Telegram Stars that can be claimed by the receiver instead of the gift
+	// Number of Telegram Stars that can be claimed by the receiver instead of the gift; 0 if the gift can't be sold by the receiver
 	SellStarCount int64 `json:"sell_star_count"`
 	// True, if the sender and gift text are shown only to the gift receiver; otherwise, everyone will be able to see them
 	IsPrivate bool `json:"is_private"`
@@ -27264,7 +27632,7 @@ func (inputMessageSticker *InputMessageSticker) UnmarshalJSON(data []byte) error
 // A video message
 type InputMessageVideo struct {
 	meta
-	// Video to be sent. The video is expected to be reencoded to MPEG4 format with H.264 codec by the sender
+	// Video to be sent. The video is expected to be re-encoded to MPEG4 format with H.264 codec by the sender
 	Video InputFile `json:"video"`
 	// Video thumbnail; pass null to skip thumbnail uploading
 	Thumbnail *InputThumbnail `json:"thumbnail"`
@@ -28947,8 +29315,8 @@ type StickerSet struct {
 	Name string `json:"name"`
 	// Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed
 	Thumbnail *Thumbnail `json:"thumbnail"`
-	// Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
-	ThumbnailOutline []*ClosedVectorPath `json:"thumbnail_outline"`
+	// Sticker set thumbnail's outline; may be null if unknown
+	ThumbnailOutline *Outline `json:"thumbnail_outline"`
 	// True, if the sticker set is owned by the current user
 	IsOwned bool `json:"is_owned"`
 	// True, if the sticker set has been installed by the current user
@@ -28989,21 +29357,21 @@ func (*StickerSet) GetType() string {
 
 func (stickerSet *StickerSet) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		Id                         JsonInt64           `json:"id"`
-		Title                      string              `json:"title"`
-		Name                       string              `json:"name"`
-		Thumbnail                  *Thumbnail          `json:"thumbnail"`
-		ThumbnailOutline           []*ClosedVectorPath `json:"thumbnail_outline"`
-		IsOwned                    bool                `json:"is_owned"`
-		IsInstalled                bool                `json:"is_installed"`
-		IsArchived                 bool                `json:"is_archived"`
-		IsOfficial                 bool                `json:"is_official"`
-		StickerType                json.RawMessage     `json:"sticker_type"`
-		NeedsRepainting            bool                `json:"needs_repainting"`
-		IsAllowedAsChatEmojiStatus bool                `json:"is_allowed_as_chat_emoji_status"`
-		IsViewed                   bool                `json:"is_viewed"`
-		Stickers                   []*Sticker          `json:"stickers"`
-		Emojis                     []*Emojis           `json:"emojis"`
+		Id                         JsonInt64       `json:"id"`
+		Title                      string          `json:"title"`
+		Name                       string          `json:"name"`
+		Thumbnail                  *Thumbnail      `json:"thumbnail"`
+		ThumbnailOutline           *Outline        `json:"thumbnail_outline"`
+		IsOwned                    bool            `json:"is_owned"`
+		IsInstalled                bool            `json:"is_installed"`
+		IsArchived                 bool            `json:"is_archived"`
+		IsOfficial                 bool            `json:"is_official"`
+		StickerType                json.RawMessage `json:"sticker_type"`
+		NeedsRepainting            bool            `json:"needs_repainting"`
+		IsAllowedAsChatEmojiStatus bool            `json:"is_allowed_as_chat_emoji_status"`
+		IsViewed                   bool            `json:"is_viewed"`
+		Stickers                   []*Sticker      `json:"stickers"`
+		Emojis                     []*Emojis       `json:"emojis"`
 	}
 
 	err := json.Unmarshal(data, &tmp)
@@ -29043,8 +29411,8 @@ type StickerSetInfo struct {
 	Name string `json:"name"`
 	// Sticker set thumbnail in WEBP, TGS, or WEBM format with width and height 100; may be null. The file can be downloaded only before the thumbnail is changed
 	Thumbnail *Thumbnail `json:"thumbnail"`
-	// Sticker set thumbnail's outline represented as a list of closed vector paths; may be empty. The coordinate system origin is in the upper-left corner
-	ThumbnailOutline []*ClosedVectorPath `json:"thumbnail_outline"`
+	// Sticker set thumbnail's outline; may be null if unknown
+	ThumbnailOutline *Outline `json:"thumbnail_outline"`
 	// True, if the sticker set is owned by the current user
 	IsOwned bool `json:"is_owned"`
 	// True, if the sticker set has been installed by the current user
@@ -29085,21 +29453,21 @@ func (*StickerSetInfo) GetType() string {
 
 func (stickerSetInfo *StickerSetInfo) UnmarshalJSON(data []byte) error {
 	var tmp struct {
-		Id                         JsonInt64           `json:"id"`
-		Title                      string              `json:"title"`
-		Name                       string              `json:"name"`
-		Thumbnail                  *Thumbnail          `json:"thumbnail"`
-		ThumbnailOutline           []*ClosedVectorPath `json:"thumbnail_outline"`
-		IsOwned                    bool                `json:"is_owned"`
-		IsInstalled                bool                `json:"is_installed"`
-		IsArchived                 bool                `json:"is_archived"`
-		IsOfficial                 bool                `json:"is_official"`
-		StickerType                json.RawMessage     `json:"sticker_type"`
-		NeedsRepainting            bool                `json:"needs_repainting"`
-		IsAllowedAsChatEmojiStatus bool                `json:"is_allowed_as_chat_emoji_status"`
-		IsViewed                   bool                `json:"is_viewed"`
-		Size                       int32               `json:"size"`
-		Covers                     []*Sticker          `json:"covers"`
+		Id                         JsonInt64       `json:"id"`
+		Title                      string          `json:"title"`
+		Name                       string          `json:"name"`
+		Thumbnail                  *Thumbnail      `json:"thumbnail"`
+		ThumbnailOutline           *Outline        `json:"thumbnail_outline"`
+		IsOwned                    bool            `json:"is_owned"`
+		IsInstalled                bool            `json:"is_installed"`
+		IsArchived                 bool            `json:"is_archived"`
+		IsOfficial                 bool            `json:"is_official"`
+		StickerType                json.RawMessage `json:"sticker_type"`
+		NeedsRepainting            bool            `json:"needs_repainting"`
+		IsAllowedAsChatEmojiStatus bool            `json:"is_allowed_as_chat_emoji_status"`
+		IsViewed                   bool            `json:"is_viewed"`
+		Size                       int32           `json:"size"`
+		Covers                     []*Sticker      `json:"covers"`
 	}
 
 	err := json.Unmarshal(data, &tmp)
@@ -33781,6 +34149,130 @@ func (*UserLink) GetType() string {
 	return TypeUserLink
 }
 
+// Describes allowed types for the target chat
+type TargetChatTypes struct {
+	meta
+	// True, if private chats with ordinary users are allowed
+	AllowUserChats bool `json:"allow_user_chats"`
+	// True, if private chats with other bots are allowed
+	AllowBotChats bool `json:"allow_bot_chats"`
+	// True, if basic group and supergroup chats are allowed
+	AllowGroupChats bool `json:"allow_group_chats"`
+	// True, if channel chats are allowed
+	AllowChannelChats bool `json:"allow_channel_chats"`
+}
+
+func (entity *TargetChatTypes) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub TargetChatTypes
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*TargetChatTypes) GetClass() string {
+	return ClassTargetChatTypes
+}
+
+func (*TargetChatTypes) GetType() string {
+	return TypeTargetChatTypes
+}
+
+// The currently opened chat needs to be kept
+type TargetChatCurrent struct {
+	meta
+}
+
+func (entity *TargetChatCurrent) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub TargetChatCurrent
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*TargetChatCurrent) GetClass() string {
+	return ClassTargetChat
+}
+
+func (*TargetChatCurrent) GetType() string {
+	return TypeTargetChatCurrent
+}
+
+func (*TargetChatCurrent) TargetChatType() string {
+	return TypeTargetChatCurrent
+}
+
+// The chat needs to be chosen by the user among chats of the specified types
+type TargetChatChosen struct {
+	meta
+	// Allowed types for the chat
+	Types *TargetChatTypes `json:"types"`
+}
+
+func (entity *TargetChatChosen) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub TargetChatChosen
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*TargetChatChosen) GetClass() string {
+	return ClassTargetChat
+}
+
+func (*TargetChatChosen) GetType() string {
+	return TypeTargetChatChosen
+}
+
+func (*TargetChatChosen) TargetChatType() string {
+	return TypeTargetChatChosen
+}
+
+// The chat needs to be open with the provided internal link
+type TargetChatInternalLink struct {
+	meta
+	// An internal link pointing to the chat
+	Link InternalLinkType `json:"link"`
+}
+
+func (entity *TargetChatInternalLink) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub TargetChatInternalLink
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*TargetChatInternalLink) GetClass() string {
+	return ClassTargetChat
+}
+
+func (*TargetChatInternalLink) GetType() string {
+	return TypeTargetChatInternalLink
+}
+
+func (*TargetChatInternalLink) TargetChatType() string {
+	return TypeTargetChatInternalLink
+}
+
+func (targetChatInternalLink *TargetChatInternalLink) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		Link json.RawMessage `json:"link"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	fieldLink, _ := UnmarshalInternalLinkType(tmp.Link)
+	targetChatInternalLink.Link = fieldLink
+
+	return nil
+}
+
 // Represents a link to an animated GIF or an animated (i.e., without sound) H.264/MPEG-4 AVC video
 type InputInlineQueryResultAnimation struct {
 	meta
@@ -35197,6 +35689,79 @@ func (inlineQueryResults *InlineQueryResults) UnmarshalJSON(data []byte) error {
 
 	fieldResults, _ := UnmarshalListOfInlineQueryResult(tmp.Results)
 	inlineQueryResults.Results = fieldResults
+
+	return nil
+}
+
+// Represents an inline message that can be sent via the bot
+type PreparedInlineMessageId struct {
+	meta
+	// Unique identifier for the message
+	Id string `json:"id"`
+	// Point in time (Unix timestamp) when the message can't be used anymore
+	ExpirationDate int32 `json:"expiration_date"`
+}
+
+func (entity *PreparedInlineMessageId) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub PreparedInlineMessageId
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*PreparedInlineMessageId) GetClass() string {
+	return ClassPreparedInlineMessageId
+}
+
+func (*PreparedInlineMessageId) GetType() string {
+	return TypePreparedInlineMessageId
+}
+
+// Represents a ready to send inline message. Use sendInlineQueryResultMessage to send the message
+type PreparedInlineMessage struct {
+	meta
+	// Unique identifier of the inline query to pass to sendInlineQueryResultMessage
+	InlineQueryId JsonInt64 `json:"inline_query_id"`
+	// Resulted inline message of the query
+	Result InlineQueryResult `json:"result"`
+	// Types of the chats to which the message can be sent
+	ChatTypes *TargetChatTypes `json:"chat_types"`
+}
+
+func (entity *PreparedInlineMessage) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub PreparedInlineMessage
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*PreparedInlineMessage) GetClass() string {
+	return ClassPreparedInlineMessage
+}
+
+func (*PreparedInlineMessage) GetType() string {
+	return TypePreparedInlineMessage
+}
+
+func (preparedInlineMessage *PreparedInlineMessage) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		InlineQueryId JsonInt64        `json:"inline_query_id"`
+		Result        json.RawMessage  `json:"result"`
+		ChatTypes     *TargetChatTypes `json:"chat_types"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	preparedInlineMessage.InlineQueryId = tmp.InlineQueryId
+	preparedInlineMessage.ChatTypes = tmp.ChatTypes
+
+	fieldResult, _ := UnmarshalInlineQueryResult(tmp.Result)
+	preparedInlineMessage.Result = fieldResult
 
 	return nil
 }
@@ -43100,6 +43665,31 @@ func (*UserPrivacySettingRuleAllowContacts) UserPrivacySettingRuleType() string 
 	return TypeUserPrivacySettingRuleAllowContacts
 }
 
+// A rule to allow all bots to do something
+type UserPrivacySettingRuleAllowBots struct {
+	meta
+}
+
+func (entity *UserPrivacySettingRuleAllowBots) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UserPrivacySettingRuleAllowBots
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UserPrivacySettingRuleAllowBots) GetClass() string {
+	return ClassUserPrivacySettingRule
+}
+
+func (*UserPrivacySettingRuleAllowBots) GetType() string {
+	return TypeUserPrivacySettingRuleAllowBots
+}
+
+func (*UserPrivacySettingRuleAllowBots) UserPrivacySettingRuleType() string {
+	return TypeUserPrivacySettingRuleAllowBots
+}
+
 // A rule to allow all Premium Users to do something; currently, allowed only for userPrivacySettingAllowChatInvites
 type UserPrivacySettingRuleAllowPremiumUsers struct {
 	meta
@@ -43227,6 +43817,31 @@ func (*UserPrivacySettingRuleRestrictContacts) GetType() string {
 
 func (*UserPrivacySettingRuleRestrictContacts) UserPrivacySettingRuleType() string {
 	return TypeUserPrivacySettingRuleRestrictContacts
+}
+
+// A rule to restrict all bots from doing something
+type UserPrivacySettingRuleRestrictBots struct {
+	meta
+}
+
+func (entity *UserPrivacySettingRuleRestrictBots) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UserPrivacySettingRuleRestrictBots
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UserPrivacySettingRuleRestrictBots) GetClass() string {
+	return ClassUserPrivacySettingRule
+}
+
+func (*UserPrivacySettingRuleRestrictBots) GetType() string {
+	return TypeUserPrivacySettingRuleRestrictBots
+}
+
+func (*UserPrivacySettingRuleRestrictBots) UserPrivacySettingRuleType() string {
+	return TypeUserPrivacySettingRuleRestrictBots
 }
 
 // A rule to restrict all specified users from doing something
@@ -43595,6 +44210,31 @@ func (*UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages) GetType() string
 
 func (*UserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages) UserPrivacySettingType() string {
 	return TypeUserPrivacySettingAllowPrivateVoiceAndVideoNoteMessages
+}
+
+// A privacy setting for managing whether received gifts are automatically shown on the user's profile page
+type UserPrivacySettingAutosaveGifts struct {
+	meta
+}
+
+func (entity *UserPrivacySettingAutosaveGifts) MarshalJSON() ([]byte, error) {
+	entity.meta.Type = entity.GetType()
+
+	type stub UserPrivacySettingAutosaveGifts
+
+	return json.Marshal((*stub)(entity))
+}
+
+func (*UserPrivacySettingAutosaveGifts) GetClass() string {
+	return ClassUserPrivacySetting
+}
+
+func (*UserPrivacySettingAutosaveGifts) GetType() string {
+	return TypeUserPrivacySettingAutosaveGifts
+}
+
+func (*UserPrivacySettingAutosaveGifts) UserPrivacySettingType() string {
+	return TypeUserPrivacySettingAutosaveGifts
 }
 
 // Contains privacy settings for message read date in private chats. Read dates are always shown to the users that can see online status of the current user regardless of this setting
@@ -44854,107 +45494,6 @@ func (*ReportStoryResultTextRequired) ReportStoryResultType() string {
 	return TypeReportStoryResultTextRequired
 }
 
-// The currently opened chat needs to be kept
-type TargetChatCurrent struct {
-	meta
-}
-
-func (entity *TargetChatCurrent) MarshalJSON() ([]byte, error) {
-	entity.meta.Type = entity.GetType()
-
-	type stub TargetChatCurrent
-
-	return json.Marshal((*stub)(entity))
-}
-
-func (*TargetChatCurrent) GetClass() string {
-	return ClassTargetChat
-}
-
-func (*TargetChatCurrent) GetType() string {
-	return TypeTargetChatCurrent
-}
-
-func (*TargetChatCurrent) TargetChatType() string {
-	return TypeTargetChatCurrent
-}
-
-// The chat needs to be chosen by the user among chats of the specified types
-type TargetChatChosen struct {
-	meta
-	// True, if private chats with ordinary users are allowed
-	AllowUserChats bool `json:"allow_user_chats"`
-	// True, if private chats with other bots are allowed
-	AllowBotChats bool `json:"allow_bot_chats"`
-	// True, if basic group and supergroup chats are allowed
-	AllowGroupChats bool `json:"allow_group_chats"`
-	// True, if channel chats are allowed
-	AllowChannelChats bool `json:"allow_channel_chats"`
-}
-
-func (entity *TargetChatChosen) MarshalJSON() ([]byte, error) {
-	entity.meta.Type = entity.GetType()
-
-	type stub TargetChatChosen
-
-	return json.Marshal((*stub)(entity))
-}
-
-func (*TargetChatChosen) GetClass() string {
-	return ClassTargetChat
-}
-
-func (*TargetChatChosen) GetType() string {
-	return TypeTargetChatChosen
-}
-
-func (*TargetChatChosen) TargetChatType() string {
-	return TypeTargetChatChosen
-}
-
-// The chat needs to be open with the provided internal link
-type TargetChatInternalLink struct {
-	meta
-	// An internal link pointing to the chat
-	Link InternalLinkType `json:"link"`
-}
-
-func (entity *TargetChatInternalLink) MarshalJSON() ([]byte, error) {
-	entity.meta.Type = entity.GetType()
-
-	type stub TargetChatInternalLink
-
-	return json.Marshal((*stub)(entity))
-}
-
-func (*TargetChatInternalLink) GetClass() string {
-	return ClassTargetChat
-}
-
-func (*TargetChatInternalLink) GetType() string {
-	return TypeTargetChatInternalLink
-}
-
-func (*TargetChatInternalLink) TargetChatType() string {
-	return TypeTargetChatInternalLink
-}
-
-func (targetChatInternalLink *TargetChatInternalLink) UnmarshalJSON(data []byte) error {
-	var tmp struct {
-		Link json.RawMessage `json:"link"`
-	}
-
-	err := json.Unmarshal(data, &tmp)
-	if err != nil {
-		return err
-	}
-
-	fieldLink, _ := UnmarshalInternalLinkType(tmp.Link)
-	targetChatInternalLink.Link = fieldLink
-
-	return nil
-}
-
 // The link is a link to the Devices section of the application. Use getActiveSessions to get the list of active sessions and show them to the user
 type InternalLinkTypeActiveSessions struct {
 	meta
@@ -45551,15 +46090,15 @@ func (*InternalLinkTypeLanguageSettings) InternalLinkTypeType() string {
 	return TypeInternalLinkTypeLanguageSettings
 }
 
-// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and open the returned URL as a Web App
+// The link is a link to the main Web App of a bot. Call searchPublicChat with the given bot username, check that the user is a bot and has the main Web App. If the bot can be added to attachment menu, then use getAttachmentMenuBot to receive information about the bot, then if the bot isn't added to side menu, show a disclaimer about Mini Apps being third-party applications, ask the user to accept their Terms of service and confirm adding the bot to side and attachment menu, then if the user accepts the terms and confirms adding, use toggleBotIsAddedToAttachmentMenu to add the bot. Then, use getMainWebApp with the given start parameter and mode and open the returned URL as a Web App
 type InternalLinkTypeMainWebApp struct {
 	meta
 	// Username of the bot
 	BotUsername string `json:"bot_username"`
 	// Start parameter to be passed to getMainWebApp
 	StartParameter string `json:"start_parameter"`
-	// True, if the Web App must be opened in the compact mode instead of the full-size mode
-	IsCompact bool `json:"is_compact"`
+	// The mode to be passed to getMainWebApp
+	Mode WebAppOpenMode `json:"mode"`
 }
 
 func (entity *InternalLinkTypeMainWebApp) MarshalJSON() ([]byte, error) {
@@ -45580,6 +46119,27 @@ func (*InternalLinkTypeMainWebApp) GetType() string {
 
 func (*InternalLinkTypeMainWebApp) InternalLinkTypeType() string {
 	return TypeInternalLinkTypeMainWebApp
+}
+
+func (internalLinkTypeMainWebApp *InternalLinkTypeMainWebApp) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		BotUsername    string          `json:"bot_username"`
+		StartParameter string          `json:"start_parameter"`
+		Mode           json.RawMessage `json:"mode"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	internalLinkTypeMainWebApp.BotUsername = tmp.BotUsername
+	internalLinkTypeMainWebApp.StartParameter = tmp.StartParameter
+
+	fieldMode, _ := UnmarshalWebAppOpenMode(tmp.Mode)
+	internalLinkTypeMainWebApp.Mode = fieldMode
+
+	return nil
 }
 
 // The link is a link to a Telegram message or a forum topic. Call getMessageLinkInfo with the given URL to process the link, and then open received forum topic or chat and show the message there
@@ -46226,8 +46786,8 @@ type InternalLinkTypeWebApp struct {
 	WebAppShortName string `json:"web_app_short_name"`
 	// Start parameter to be passed to getWebAppLinkUrl
 	StartParameter string `json:"start_parameter"`
-	// True, if the Web App must be opened in the compact mode instead of the full-size mode
-	IsCompact bool `json:"is_compact"`
+	// The mode in which the Web App must be opened
+	Mode WebAppOpenMode `json:"mode"`
 }
 
 func (entity *InternalLinkTypeWebApp) MarshalJSON() ([]byte, error) {
@@ -46248,6 +46808,29 @@ func (*InternalLinkTypeWebApp) GetType() string {
 
 func (*InternalLinkTypeWebApp) InternalLinkTypeType() string {
 	return TypeInternalLinkTypeWebApp
+}
+
+func (internalLinkTypeWebApp *InternalLinkTypeWebApp) UnmarshalJSON(data []byte) error {
+	var tmp struct {
+		BotUsername     string          `json:"bot_username"`
+		WebAppShortName string          `json:"web_app_short_name"`
+		StartParameter  string          `json:"start_parameter"`
+		Mode            json.RawMessage `json:"mode"`
+	}
+
+	err := json.Unmarshal(data, &tmp)
+	if err != nil {
+		return err
+	}
+
+	internalLinkTypeWebApp.BotUsername = tmp.BotUsername
+	internalLinkTypeWebApp.WebAppShortName = tmp.WebAppShortName
+	internalLinkTypeWebApp.StartParameter = tmp.StartParameter
+
+	fieldMode, _ := UnmarshalWebAppOpenMode(tmp.Mode)
+	internalLinkTypeWebApp.Mode = fieldMode
+
+	return nil
 }
 
 // Contains an HTTPS link to a message in a supergroup or channel, or a forum topic

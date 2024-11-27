@@ -7033,6 +7033,67 @@ func (client *Client) AnswerInlineQuery(req *AnswerInlineQueryRequest) (*Ok, err
 	return UnmarshalOk(result.Data)
 }
 
+type SavePreparedInlineMessageRequest struct {
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
+	// The description of the message
+	Result InputInlineQueryResult `json:"result"`
+	// Types of the chats to which the message can be sent
+	ChatTypes *TargetChatTypes `json:"chat_types"`
+}
+
+// Saves an inline message to be sent by the given user; for bots only
+func (client *Client) SavePreparedInlineMessage(req *SavePreparedInlineMessageRequest) (*PreparedInlineMessageId, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "savePreparedInlineMessage",
+		},
+		Data: map[string]interface{}{
+			"user_id":    req.UserId,
+			"result":     req.Result,
+			"chat_types": req.ChatTypes,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalPreparedInlineMessageId(result.Data)
+}
+
+type GetPreparedInlineMessageRequest struct {
+	// Identifier of the bot that created the message
+	BotUserId int64 `json:"bot_user_id"`
+	// Identifier of the prepared message
+	PreparedMessageId string `json:"prepared_message_id"`
+}
+
+// Saves an inline message to be sent by the given user; for bots only
+func (client *Client) GetPreparedInlineMessage(req *GetPreparedInlineMessageRequest) (*PreparedInlineMessage, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "getPreparedInlineMessage",
+		},
+		Data: map[string]interface{}{
+			"bot_user_id":         req.BotUserId,
+			"prepared_message_id": req.PreparedMessageId,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalPreparedInlineMessage(result.Data)
+}
+
 type GetGrossingWebAppBotsRequest struct {
 	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
 	Offset string `json:"offset"`
@@ -7091,6 +7152,32 @@ func (client *Client) SearchWebApp(req *SearchWebAppRequest) (*FoundWebApp, erro
 	return UnmarshalFoundWebApp(result.Data)
 }
 
+type GetWebAppPlaceholderRequest struct {
+	// Identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+// Returns a default placeholder for Web Apps of a bot; this is an offline request. Returns a 404 error if the placeholder isn't known
+func (client *Client) GetWebAppPlaceholder(req *GetWebAppPlaceholderRequest) (*Outline, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "getWebAppPlaceholder",
+		},
+		Data: map[string]interface{}{
+			"bot_user_id": req.BotUserId,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOutline(result.Data)
+}
+
 type GetWebAppLinkUrlRequest struct {
 	// Identifier of the chat in which the link was clicked; pass 0 if none
 	ChatId int64 `json:"chat_id"`
@@ -7100,12 +7187,10 @@ type GetWebAppLinkUrlRequest struct {
 	WebAppShortName string `json:"web_app_short_name"`
 	// Start parameter from internalLinkTypeWebApp
 	StartParameter string `json:"start_parameter"`
-	// Preferred Web App theme; pass null to use the default theme
-	Theme *ThemeParameters `json:"theme"`
-	// Short name of the current application; 0-64 English letters, digits, and underscores
-	ApplicationName string `json:"application_name"`
 	// Pass true if the current user allowed the bot to send them messages
 	AllowWriteAccess bool `json:"allow_write_access"`
+	// Parameters to use to open the Web App
+	Parameters *WebAppOpenParameters `json:"parameters"`
 }
 
 // Returns an HTTPS URL of a Web App to open after a link of the type internalLinkTypeWebApp is clicked
@@ -7119,9 +7204,8 @@ func (client *Client) GetWebAppLinkUrl(req *GetWebAppLinkUrlRequest) (*HttpUrl, 
 			"bot_user_id":        req.BotUserId,
 			"web_app_short_name": req.WebAppShortName,
 			"start_parameter":    req.StartParameter,
-			"theme":              req.Theme,
-			"application_name":   req.ApplicationName,
 			"allow_write_access": req.AllowWriteAccess,
+			"parameters":         req.Parameters,
 		},
 	})
 	if err != nil {
@@ -7142,10 +7226,8 @@ type GetMainWebAppRequest struct {
 	BotUserId int64 `json:"bot_user_id"`
 	// Start parameter from internalLinkTypeMainWebApp
 	StartParameter string `json:"start_parameter"`
-	// Preferred Web App theme; pass null to use the default theme
-	Theme *ThemeParameters `json:"theme"`
-	// Short name of the current application; 0-64 English letters, digits, and underscores
-	ApplicationName string `json:"application_name"`
+	// Parameters to use to open the Web App
+	Parameters *WebAppOpenParameters `json:"parameters"`
 }
 
 // Returns information needed to open the main Web App of a bot
@@ -7155,11 +7237,10 @@ func (client *Client) GetMainWebApp(req *GetMainWebAppRequest) (*MainWebApp, err
 			Type: "getMainWebApp",
 		},
 		Data: map[string]interface{}{
-			"chat_id":          req.ChatId,
-			"bot_user_id":      req.BotUserId,
-			"start_parameter":  req.StartParameter,
-			"theme":            req.Theme,
-			"application_name": req.ApplicationName,
+			"chat_id":         req.ChatId,
+			"bot_user_id":     req.BotUserId,
+			"start_parameter": req.StartParameter,
+			"parameters":      req.Parameters,
 		},
 	})
 	if err != nil {
@@ -7178,10 +7259,8 @@ type GetWebAppUrlRequest struct {
 	BotUserId int64 `json:"bot_user_id"`
 	// The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
 	Url string `json:"url"`
-	// Preferred Web App theme; pass null to use the default theme
-	Theme *ThemeParameters `json:"theme"`
-	// Short name of the current application; 0-64 English letters, digits, and underscores
-	ApplicationName string `json:"application_name"`
+	// Parameters to use to open the Web App
+	Parameters *WebAppOpenParameters `json:"parameters"`
 }
 
 // Returns an HTTPS URL of a Web App to open from the side menu, a keyboardButtonTypeWebApp button, or an inlineQueryResultsButtonTypeWebApp button
@@ -7191,10 +7270,9 @@ func (client *Client) GetWebAppUrl(req *GetWebAppUrlRequest) (*HttpUrl, error) {
 			Type: "getWebAppUrl",
 		},
 		Data: map[string]interface{}{
-			"bot_user_id":      req.BotUserId,
-			"url":              req.Url,
-			"theme":            req.Theme,
-			"application_name": req.ApplicationName,
+			"bot_user_id": req.BotUserId,
+			"url":         req.Url,
+			"parameters":  req.Parameters,
 		},
 	})
 	if err != nil {
@@ -7247,14 +7325,12 @@ type OpenWebAppRequest struct {
 	BotUserId int64 `json:"bot_user_id"`
 	// The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
 	Url string `json:"url"`
-	// Preferred Web App theme; pass null to use the default theme
-	Theme *ThemeParameters `json:"theme"`
-	// Short name of the current application; 0-64 English letters, digits, and underscores
-	ApplicationName string `json:"application_name"`
 	// If not 0, the message thread identifier in which the message will be sent
 	MessageThreadId int64 `json:"message_thread_id"`
 	// Information about the message or story to be replied in the message sent by the Web App; pass null if none
 	ReplyTo InputMessageReplyTo `json:"reply_to"`
+	// Parameters to use to open the Web App
+	Parameters *WebAppOpenParameters `json:"parameters"`
 }
 
 // Informs TDLib that a Web App is being opened from the attachment menu, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an inlineKeyboardButtonTypeWebApp button. For each bot, a confirmation alert about data sent to the bot must be shown once
@@ -7267,10 +7343,9 @@ func (client *Client) OpenWebApp(req *OpenWebAppRequest) (*WebAppInfo, error) {
 			"chat_id":           req.ChatId,
 			"bot_user_id":       req.BotUserId,
 			"url":               req.Url,
-			"theme":             req.Theme,
-			"application_name":  req.ApplicationName,
 			"message_thread_id": req.MessageThreadId,
 			"reply_to":          req.ReplyTo,
+			"parameters":        req.Parameters,
 		},
 	})
 	if err != nil {
@@ -7337,6 +7412,38 @@ func (client *Client) AnswerWebAppQuery(req *AnswerWebAppQueryRequest) (*SentWeb
 	}
 
 	return UnmarshalSentWebAppMessage(result.Data)
+}
+
+type CheckWebAppFileDownloadRequest struct {
+	// Identifier of the bot, providing the Web App
+	BotUserId int64 `json:"bot_user_id"`
+	// Name of the file
+	FileName string `json:"file_name"`
+	// URL of the file
+	Url string `json:"url"`
+}
+
+// Checks whether a file can be downloaded and saved locally by Web App request
+func (client *Client) CheckWebAppFileDownload(req *CheckWebAppFileDownloadRequest) (*Ok, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "checkWebAppFileDownload",
+		},
+		Data: map[string]interface{}{
+			"bot_user_id": req.BotUserId,
+			"file_name":   req.FileName,
+			"url":         req.Url,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
 }
 
 type GetCallbackQueryAnswerRequest struct {
@@ -13308,7 +13415,7 @@ type GetVideoChatRtmpUrlRequest struct {
 	ChatId int64 `json:"chat_id"`
 }
 
-// Returns RTMP URL for streaming to the chat; requires owner privileges
+// Returns RTMP URL for streaming to the chat; requires can_manage_video_chats administrator right
 func (client *Client) GetVideoChatRtmpUrl(req *GetVideoChatRtmpUrlRequest) (*RtmpUrl, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -14493,6 +14600,64 @@ func (client *Client) SuggestUserProfilePhoto(req *SuggestUserProfilePhotoReques
 	return UnmarshalOk(result.Data)
 }
 
+type ToggleBotCanManageEmojiStatusRequest struct {
+	// User identifier of the bot
+	BotUserId int64 `json:"bot_user_id"`
+	// Pass true if the bot is allowed to change emoji status of the user; pass false otherwise
+	CanManageEmojiStatus bool `json:"can_manage_emoji_status"`
+}
+
+// Toggles whether the bot can manage emoji status of the current user
+func (client *Client) ToggleBotCanManageEmojiStatus(req *ToggleBotCanManageEmojiStatusRequest) (*Ok, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "toggleBotCanManageEmojiStatus",
+		},
+		Data: map[string]interface{}{
+			"bot_user_id":             req.BotUserId,
+			"can_manage_emoji_status": req.CanManageEmojiStatus,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type SetUserEmojiStatusRequest struct {
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
+	// New emoji status; pass null to switch to the default badge
+	EmojiStatus *EmojiStatus `json:"emoji_status"`
+}
+
+// Changes the emoji status of a user; for bots only
+func (client *Client) SetUserEmojiStatus(req *SetUserEmojiStatusRequest) (*Ok, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "setUserEmojiStatus",
+		},
+		Data: map[string]interface{}{
+			"user_id":      req.UserId,
+			"emoji_status": req.EmojiStatus,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
 type SearchUserByPhoneNumberRequest struct {
 	// Phone number to search for
 	PhoneNumber string `json:"phone_number"`
@@ -14578,6 +14743,38 @@ func (client *Client) GetUserProfilePhotos(req *GetUserProfilePhotosRequest) (*C
 	}
 
 	return UnmarshalChatPhotos(result.Data)
+}
+
+type GetStickerOutlineRequest struct {
+	// File identifier of the sticker
+	StickerFileId int32 `json:"sticker_file_id"`
+	// Pass true to get the outline scaled for animated emoji
+	ForAnimatedEmoji bool `json:"for_animated_emoji"`
+	// Pass true to get the outline scaled for clicked animated emoji message
+	ForClickedAnimatedEmojiMessage bool `json:"for_clicked_animated_emoji_message"`
+}
+
+// Returns outline of a sticker; this is an offline request. Returns a 404 error if the outline isn't known
+func (client *Client) GetStickerOutline(req *GetStickerOutlineRequest) (*Outline, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "getStickerOutline",
+		},
+		Data: map[string]interface{}{
+			"sticker_file_id":                    req.StickerFileId,
+			"for_animated_emoji":                 req.ForAnimatedEmoji,
+			"for_clicked_animated_emoji_message": req.ForClickedAnimatedEmojiMessage,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOutline(result.Data)
 }
 
 type GetStickersRequest struct {
@@ -18574,6 +18771,8 @@ func (client *Client) GetUserGifts(req *GetUserGiftsRequest) (*UserGifts, error)
 }
 
 type CreateInvoiceLinkRequest struct {
+	// Unique identifier of business connection on behalf of which to send the request
+	BusinessConnectionId string `json:"business_connection_id"`
 	// Information about the invoice of the type inputMessageInvoice
 	Invoice InputMessageContent `json:"invoice"`
 }
@@ -18585,7 +18784,8 @@ func (client *Client) CreateInvoiceLink(req *CreateInvoiceLinkRequest) (*HttpUrl
 			Type: "createInvoiceLink",
 		},
 		Data: map[string]interface{}{
-			"invoice": req.Invoice,
+			"business_connection_id": req.BusinessConnectionId,
+			"invoice":                req.Invoice,
 		},
 	})
 	if err != nil {
@@ -21941,7 +22141,7 @@ type EditStarSubscriptionRequest struct {
 	IsCanceled bool `json:"is_canceled"`
 }
 
-// Cancels or reenables Telegram Star subscription to a channel
+// Cancels or re-enables Telegram Star subscription
 func (client *Client) EditStarSubscription(req *EditStarSubscriptionRequest) (*Ok, error) {
 	result, err := client.Send(Request{
 		meta: meta{
@@ -21963,12 +22163,44 @@ func (client *Client) EditStarSubscription(req *EditStarSubscriptionRequest) (*O
 	return UnmarshalOk(result.Data)
 }
 
+type EditUserStarSubscriptionRequest struct {
+	// User identifier
+	UserId int64 `json:"user_id"`
+	// Telegram payment identifier of the subscription
+	TelegramPaymentChargeId string `json:"telegram_payment_charge_id"`
+	// Pass true to cancel the subscription; pass false to allow the user to enable it
+	IsCanceled bool `json:"is_canceled"`
+}
+
+// Cancels or re-enables Telegram Star subscription for a user; for bots only
+func (client *Client) EditUserStarSubscription(req *EditUserStarSubscriptionRequest) (*Ok, error) {
+	result, err := client.Send(Request{
+		meta: meta{
+			Type: "editUserStarSubscription",
+		},
+		Data: map[string]interface{}{
+			"user_id":                    req.UserId,
+			"telegram_payment_charge_id": req.TelegramPaymentChargeId,
+			"is_canceled":                req.IsCanceled,
+		},
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	if result.Type == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
 type ReuseStarSubscriptionRequest struct {
 	// Identifier of the subscription
 	SubscriptionId string `json:"subscription_id"`
 }
 
-// Reuses an active subscription and joins the subscribed chat again
+// Reuses an active Telegram Star subscription to a channel chat and joins the chat again
 func (client *Client) ReuseStarSubscription(req *ReuseStarSubscriptionRequest) (*Ok, error) {
 	result, err := client.Send(Request{
 		meta: meta{
