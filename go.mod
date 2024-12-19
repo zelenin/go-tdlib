@@ -1,1 +1,1 @@
-module github.com/akurilov/go-tdlib
+module github.com/zelenin/go-tdlib
