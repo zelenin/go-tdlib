@@ -165,6 +165,27 @@ func CliInteractor(clientAuthorizer *clientAuthorizer) {
 	}
 }
 
+func NonInteractiveCredentialsProvider(clientAuthorizer *clientAuthorizer, phoneNum string, password string, chCode chan string) {
+	for {
+		select {
+		case state, ok := <-clientAuthorizer.State:
+			if !ok {
+				return
+			}
+			switch state.AuthorizationStateType() {
+			case TypeAuthorizationStateWaitPhoneNumber:
+				clientAuthorizer.PhoneNumber <- phoneNum
+			case TypeAuthorizationStateWaitCode:
+				clientAuthorizer.Code <- <-chCode
+			case TypeAuthorizationStateWaitPassword:
+				clientAuthorizer.Password <- password
+			case TypeAuthorizationStateReady:
+				return
+			}
+		}
+	}
+}
+
 type botAuthorizer struct {
 	TdlibParameters chan *SetTdlibParametersRequest
 	Token           chan string
