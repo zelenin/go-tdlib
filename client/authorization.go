@@ -2,6 +2,7 @@ package client
 
 import (
 	"errors"
+	"fmt"
 	"time"
 )
 
@@ -124,6 +125,44 @@ func (stateHandler *clientAuthorizer) Close() {
 	close(stateHandler.Code)
 	close(stateHandler.State)
 	close(stateHandler.Password)
+}
+
+func CliInteractor(clientAuthorizer *clientAuthorizer) {
+	for {
+		select {
+		case state, ok := <-clientAuthorizer.State:
+			if !ok {
+				return
+			}
+
+			switch state.AuthorizationStateType() {
+			case TypeAuthorizationStateWaitPhoneNumber:
+				fmt.Println("Enter phone number: ")
+				var phoneNumber string
+				fmt.Scanln(&phoneNumber)
+
+				clientAuthorizer.PhoneNumber <- phoneNumber
+
+			case TypeAuthorizationStateWaitCode:
+				var code string
+
+				fmt.Println("Enter code: ")
+				fmt.Scanln(&code)
+
+				clientAuthorizer.Code <- code
+
+			case TypeAuthorizationStateWaitPassword:
+				fmt.Println("Enter password: ")
+				var password string
+				fmt.Scanln(&password)
+
+				clientAuthorizer.Password <- password
+
+			case TypeAuthorizationStateReady:
+				return
+			}
+		}
+	}
 }
 
 func NonInteractiveCredentialsProvider(clientAuthorizer *clientAuthorizer, phoneNum string, password string, chCode chan string) {
