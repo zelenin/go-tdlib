@@ -1,17 +1,19 @@
 # go-tdlib
 
 Go wrapper for [TDLib (Telegram Database Library)](https://github.com/tdlib/td) with full support of the TDLib.
-Current supported version of TDLib corresponds to the commit hash [1a50ec4](https://github.com/tdlib/td/commit/1a50ec474ce2c2c09017aa3ab9cc9e0c68f483fc), updated on 2023-12-17
+Current supported version of TDLib corresponds to the commit hash [22d49d5](https://github.com/tdlib/td/commit/22d49d5b87a4d5fc60a194dab02dd1d71529687f), updated on 2024-11-27
 
 ## TDLib installation
 
-Use [TDLib build instructions](https://tdlib.github.io/td/build.html) with checkmarked `Install built TDLib to /usr/local instead of placing the files to td/tdlib`.
+Use [TDLib build instructions](https://tdlib.github.io/td/build.html) with checkmarked `Install built TDLib to /usr/local instead of placing the files to td/tdlib`. Don't forget to checkout a supported commit (see above).
+
 
 ### Windows
 
-Build with environment variables:
+Build with environment variables (use full paths):
 
 ```
+CGO_ENABLED=1
 CGO_CFLAGS=-IC:/path/to/tdlib/build/tdlib/include
 CGO_LDFLAGS=-LC:/path/to/tdlib/build/tdlib/bin -ltdjson
 ```
@@ -19,8 +21,9 @@ CGO_LDFLAGS=-LC:/path/to/tdlib/build/tdlib/bin -ltdjson
 Example for PowerShell:
 
 ```powershell
-$env:CGO_CFLAGS="-IC:/td/tdlib/include"; $env:CGO_LDFLAGS="-LC:/td/tdlib/bin -ltdjson"; go build -trimpath -ldflags="-s -w" -o demo.exe .\cmd\demo.go
+$env:CGO_ENABLED=1; $env:CGO_CFLAGS="-IC:/td/tdlib/include"; $env:CGO_LDFLAGS="-LC:/td/tdlib/bin -ltdjson"; go build -trimpath -ldflags="-s -w" -o demo.exe .\cmd\demo.go
 ```
+To run, put the .dll from C:/td/tdlib/bin to the directory with the compiled .exe.
 
 ## Usage
 
@@ -66,8 +69,6 @@ func main() {
         DeviceModel:            "Server",
         SystemVersion:          "1.0.0",
         ApplicationVersion:     "1.0.0",
-        EnableStorageOptimizer: true,
-        IgnoreFileNames:        false,
     }
 
 	_, err := client.SetLogVerbosityLevel(&client.SetLogVerbosityLevelRequest{
@@ -96,7 +97,7 @@ func main() {
         log.Fatalf("GetMe error: %s", err)
     }
 
-    log.Printf("Me: %s %s [%s]", me.FirstName, me.LastName, me.Username)
+    log.Printf("Me: %s %s", me.FirstName, me.LastName)
 }
 
 ```
@@ -142,7 +143,7 @@ tdlibClient, err := client.NewClient(authorizer, proxy)
 
 ```
 cd example
-docker build --network host --build-arg TD_COMMIT=daf4801 --tag tdlib-test .
+docker build --network host --progress plain --tag tdlib-test .
 docker run --rm -it -e "API_ID=00000" -e "API_HASH=abcdef0123456789" tdlib-test ash
 ./app
 ```

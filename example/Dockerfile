@@ -1,46 +1,9 @@
-FROM alpine:3.18.3 as tdlib-builder
+FROM ghcr.io/zelenin/tdlib-docker:22d49d5-alpine AS tdlib
 
-ENV LANG en_US.UTF-8
-ENV TZ UTC
+FROM golang:1.23.3-alpine3.20 AS go-builder
 
-ARG TD_COMMIT
-
-RUN apk update && \
-    apk upgrade && \
-    apk add --update \
-        build-base \
-        ca-certificates \
-        ccache \
-        cmake \
-        git \
-        gperf \
-        linux-headers \
-        openssl-dev \
-        php \
-        php-ctype \
-        readline-dev \
-        zlib-dev && \
-    git clone "https://github.com/tdlib/td.git" /src && \
-    cd /src && \
-    git checkout ${TD_COMMIT} && \
-    mkdir ./build && \
-    cd ./build && \
-    cmake \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX:PATH=/usr/local \
-        .. && \
-    cmake --build . --target prepare_cross_compiling && \
-    cd .. && \
-    php SplitSource.php && \
-    cd build && \
-    cmake --build . --target install && \
-    ls -lah /usr/local
-
-
-FROM golang:1.21.1-alpine3.18 as go-builder
-
-ENV LANG en_US.UTF-8
-ENV TZ UTC
+ENV LANG=en_US.UTF-8
+ENV TZ=UTC
 
 RUN set -eux && \
     apk update && \
@@ -57,8 +20,8 @@ RUN set -eux && \
 
 WORKDIR /src
 
-COPY --from=tdlib-builder /usr/local/include/td /usr/local/include/td/
-COPY --from=tdlib-builder /usr/local/lib/libtd* /usr/local/lib/
+COPY --from=tdlib /usr/local/include/td /usr/local/include/td/
+COPY --from=tdlib /usr/local/lib/libtd* /usr/local/lib/
 COPY . /src
 
 RUN go build \
@@ -70,10 +33,10 @@ RUN go build \
     ls -lah
 
 
-FROM alpine:3.18.3
+FROM alpine:3.20.3
 
-ENV LANG en_US.UTF-8
-ENV TZ UTC
+ENV LANG=en_US.UTF-8
+ENV TZ=UTC
 
 RUN apk upgrade --no-cache && \
     apk add --no-cache \

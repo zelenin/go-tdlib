@@ -28,25 +28,23 @@ func main() {
 	apiId := int32(apiId64)
 
 	authorizer.TdlibParameters <- &client.SetTdlibParametersRequest{
-		UseTestDc:              false,
-		DatabaseDirectory:      filepath.Join(".tdlib", "database"),
-		FilesDirectory:         filepath.Join(".tdlib", "files"),
-		UseFileDatabase:        true,
-		UseChatInfoDatabase:    true,
-		UseMessageDatabase:     true,
-		UseSecretChats:         false,
-		ApiId:                  apiId,
-		ApiHash:                apiHash,
-		SystemLanguageCode:     "en",
-		DeviceModel:            "Server",
-		SystemVersion:          "1.0.0",
-		ApplicationVersion:     "1.0.0",
-		EnableStorageOptimizer: true,
-		IgnoreFileNames:        false,
+		UseTestDc:           false,
+		DatabaseDirectory:   filepath.Join(".tdlib", "database"),
+		FilesDirectory:      filepath.Join(".tdlib", "files"),
+		UseFileDatabase:     true,
+		UseChatInfoDatabase: true,
+		UseMessageDatabase:  true,
+		UseSecretChats:      false,
+		ApiId:               apiId,
+		ApiHash:             apiHash,
+		SystemLanguageCode:  "en",
+		DeviceModel:         "Server",
+		SystemVersion:       "1.0.0",
+		ApplicationVersion:  "1.0.0",
 	}
 
 	_, err = client.SetLogVerbosityLevel(&client.SetLogVerbosityLevelRequest{
-		NewVerbosityLevel: 1,
+		NewVerbosityLevel: 0,
 	})
 	if err != nil {
 		log.Fatalf("SetLogVerbosityLevel error: %s", err)
@@ -71,7 +69,7 @@ func main() {
 		log.Fatalf("GetMe error: %s", err)
 	}
 
-	log.Printf("Me: %s %s [%v]", me.FirstName, me.LastName, me.Usernames)
+	log.Printf("Me: %s %s", me.FirstName, me.LastName)
 
 	ch := make(chan os.Signal, 2)
 	signal.Notify(ch, os.Interrupt, syscall.SIGTERM)
