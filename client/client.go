@@ -136,7 +136,3 @@ func (client *Client) GetListener() *Listener {
 
 	return listener
 }
-
-func (client *Client) Stop() {
-	client.Destroy()
-}
