@@ -83,14 +83,21 @@ func main() {
         log.Fatalf("NewClient error: %s", err)
     }
 
-    optionValue, err := client.GetOption(&client.GetOptionRequest{
-        Name: "version",
-    })
-    if err != nil {
-        log.Fatalf("GetOption error: %s", err)
-    }
+	versionOption, err := client.GetOption(&client.GetOptionRequest{
+		Name: "version",
+	})
+	if err != nil {
+		log.Fatalf("GetOption error: %s", err)
+	}
 
-    log.Printf("TDLib version: %s", optionValue.(*client.OptionValueString).Value)
+	commitOption, err := client.GetOption(&client.GetOptionRequest{
+		Name: "commit_hash",
+	})
+	if err != nil {
+		log.Fatalf("GetOption error: %s", err)
+	}
+
+	log.Printf("TDLib version: %s (commit: %s)", versionOption.(*client.OptionValueString).Value, commitOption.(*client.OptionValueString).Value)
 
     me, err := tdlibClient.GetMe()
     if err != nil {
