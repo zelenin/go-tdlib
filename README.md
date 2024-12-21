@@ -41,35 +41,34 @@ import (
     "github.com/zelenin/go-tdlib/client"
 )
 
+const (
+	apiId   = 00000
+	apiHash = "8pu9yg32qkuukj83ozaqo5zzjwhkxhnk"
+)
+
 func main() {
+	tdlibParameters := &client.SetTdlibParametersRequest{
+		UseTestDc:              false,
+		DatabaseDirectory:      filepath.Join(".tdlib", "database"),
+		FilesDirectory:         filepath.Join(".tdlib", "files"),
+		UseFileDatabase:        true,
+		UseChatInfoDatabase:    true,
+		UseMessageDatabase:     true,
+		UseSecretChats:         false,
+		ApiId:                  apiId,
+		ApiHash:                apiHash,
+		SystemLanguageCode:     "en",
+		DeviceModel:            "Server",
+		SystemVersion:          "1.0.0",
+		ApplicationVersion:     "1.0.0",
+	}
     // client authorizer
-    authorizer := client.ClientAuthorizer()
+    authorizer := client.ClientAuthorizer(tdlibParameters)
     go client.CliInteractor(authorizer)
 
     // or bot authorizer
     // botToken := "000000000:gsVCGG5YbikxYHC7bP5vRvmBqJ7Xz6vG6td"
-    // authorizer := client.BotAuthorizer(botToken)
-
-    const (
-        apiId   = 00000
-        apiHash = "8pu9yg32qkuukj83ozaqo5zzjwhkxhnk"
-    )
-
-    authorizer.TdlibParameters <- &client.SetTdlibParametersRequest{
-        UseTestDc:              false,
-        DatabaseDirectory:      filepath.Join(".tdlib", "database"),
-        FilesDirectory:         filepath.Join(".tdlib", "files"),
-        UseFileDatabase:        true,
-        UseChatInfoDatabase:    true,
-        UseMessageDatabase:     true,
-        UseSecretChats:         false,
-        ApiId:                  apiId,
-        ApiHash:                apiHash,
-        SystemLanguageCode:     "en",
-        DeviceModel:            "Server",
-        SystemVersion:          "1.0.0",
-        ApplicationVersion:     "1.0.0",
-    }
+    // authorizer := client.BotAuthorizer(tdlibParameters, botToken)
 
 	_, err := client.SetLogVerbosityLevel(&client.SetLogVerbosityLevelRequest{
 		NewVerbosityLevel: 1,
@@ -108,6 +107,53 @@ func main() {
 }
 
 ```
+
+### QR Code login
+
+```go
+package main
+
+import (
+	"github.com/skip2/go-qrcode"
+	"log"
+	"path/filepath"
+
+	"github.com/zelenin/go-tdlib/client"
+)
+
+const (
+	apiId   = 00000
+	apiHash = "8pu9yg32qkuukj83ozaqo5zzjwhkxhnk"
+)
+
+func main() {
+	tdlibParameters := &client.SetTdlibParametersRequest{
+		UseTestDc:              false,
+		DatabaseDirectory:      filepath.Join(".tdlib", "database"),
+		FilesDirectory:         filepath.Join(".tdlib", "files"),
+		UseFileDatabase:        true,
+		UseChatInfoDatabase:    true,
+		UseMessageDatabase:     true,
+		UseSecretChats:         false,
+		ApiId:                  apiId,
+		ApiHash:                apiHash,
+		SystemLanguageCode:     "en",
+		DeviceModel:            "Server",
+		SystemVersion:          "1.0.0",
+		ApplicationVersion:     "1.0.0",
+	}
+	// client authorizer
+	authorizer := client.QrAuthorizer(tdlibParameters, func(link string) error {
+		return qrcode.WriteFile(link, qrcode.Medium, 256, "qr.png")
+	})
+
+	tdlibClient, err := client.NewClient(authorizer)
+	if err != nil {
+		log.Fatalf("NewClient error: %s", err)
+	}
+}
+
+````
 
 ### Receive updates
 

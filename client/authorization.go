@@ -1,12 +1,23 @@
 package client
 
 import (
-	"errors"
 	"fmt"
 	"time"
 )
 
-var ErrNotSupportedAuthorizationState = errors.New("not supported state")
+type notSupportedAuthorizationState struct {
+	state AuthorizationState
+}
+
+func (err *notSupportedAuthorizationState) Error() string {
+	return fmt.Sprintf("not supported authorization state: %s", err.state.AuthorizationStateType())
+}
+
+func NotSupportedAuthorizationState(state AuthorizationState) error {
+	return &notSupportedAuthorizationState{
+		state: state,
+	}
+}
 
 type AuthorizationStateHandler interface {
 	Handle(client *Client, state AuthorizationState) error
@@ -43,16 +54,16 @@ func Authorize(client *Client, authorizationStateHandler AuthorizationStateHandl
 }
 
 type clientAuthorizer struct {
-	TdlibParameters chan *SetTdlibParametersRequest
+	TdlibParameters *SetTdlibParametersRequest
 	PhoneNumber     chan string
 	Code            chan string
 	State           chan AuthorizationState
 	Password        chan string
 }
 
-func ClientAuthorizer() *clientAuthorizer {
+func ClientAuthorizer(tdlibParameters *SetTdlibParametersRequest) *clientAuthorizer {
 	return &clientAuthorizer{
-		TdlibParameters: make(chan *SetTdlibParametersRequest, 1),
+		TdlibParameters: tdlibParameters,
 		PhoneNumber:     make(chan string, 1),
 		Code:            make(chan string, 1),
 		State:           make(chan AuthorizationState, 10),
@@ -65,17 +76,8 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 
 	switch state.AuthorizationStateType() {
 	case TypeAuthorizationStateWaitTdlibParameters:
-		_, err := client.SetTdlibParameters(<-stateHandler.TdlibParameters)
+		_, err := client.SetTdlibParameters(stateHandler.TdlibParameters)
 		return err
-
-	case TypeAuthorizationStateWaitEmailAddress:
-		return ErrNotSupportedAuthorizationState
-
-	case TypeAuthorizationStateWaitEmailCode:
-		return ErrNotSupportedAuthorizationState
-
-	case TypeAuthorizationStateWaitOtherDeviceConfirmation:
-		return ErrNotSupportedAuthorizationState
 
 	case TypeAuthorizationStateWaitPhoneNumber:
 		_, err := client.SetAuthenticationPhoneNumber(&SetAuthenticationPhoneNumberRequest{
@@ -88,14 +90,23 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 		})
 		return err
 
+	case TypeAuthorizationStateWaitEmailAddress:
+		return NotSupportedAuthorizationState(state)
+
+	case TypeAuthorizationStateWaitEmailCode:
+		return NotSupportedAuthorizationState(state)
+
 	case TypeAuthorizationStateWaitCode:
 		_, err := client.CheckAuthenticationCode(&CheckAuthenticationCodeRequest{
 			Code: <-stateHandler.Code,
 		})
 		return err
 
+	case TypeAuthorizationStateWaitOtherDeviceConfirmation:
+		return NotSupportedAuthorizationState(state)
+
 	case TypeAuthorizationStateWaitRegistration:
-		return ErrNotSupportedAuthorizationState
+		return NotSupportedAuthorizationState(state)
 
 	case TypeAuthorizationStateWaitPassword:
 		_, err := client.CheckAuthenticationPassword(&CheckAuthenticationPasswordRequest{
@@ -107,7 +118,7 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 		return nil
 
 	case TypeAuthorizationStateLoggingOut:
-		return ErrNotSupportedAuthorizationState
+		return NotSupportedAuthorizationState(state)
 
 	case TypeAuthorizationStateClosing:
 		return nil
@@ -116,11 +127,10 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 		return nil
 	}
 
-	return ErrNotSupportedAuthorizationState
+	return NotSupportedAuthorizationState(state)
 }
 
 func (stateHandler *clientAuthorizer) Close() {
-	close(stateHandler.TdlibParameters)
 	close(stateHandler.PhoneNumber)
 	close(stateHandler.Code)
 	close(stateHandler.State)
@@ -166,61 +176,133 @@ func CliInteractor(clientAuthorizer *clientAuthorizer) {
 }
 
 type botAuthorizer struct {
-	TdlibParameters chan *SetTdlibParametersRequest
-	Token           chan string
-	State           chan AuthorizationState
+	tdlibParameters *SetTdlibParametersRequest
+	token           string
 }
 
-func BotAuthorizer(token string) *botAuthorizer {
-	botAuthorizer := &botAuthorizer{
-		TdlibParameters: make(chan *SetTdlibParametersRequest, 1),
-		Token:           make(chan string, 1),
-		State:           make(chan AuthorizationState, 10),
+func BotAuthorizer(tdlibParameters *SetTdlibParametersRequest, token string) *botAuthorizer {
+	return &botAuthorizer{
+		tdlibParameters: tdlibParameters,
+		token:           token,
 	}
-
-	botAuthorizer.Token <- token
-
-	return botAuthorizer
 }
 
 func (stateHandler *botAuthorizer) Handle(client *Client, state AuthorizationState) error {
-	stateHandler.State <- state
-
 	switch state.AuthorizationStateType() {
 	case TypeAuthorizationStateWaitTdlibParameters:
-		_, err := client.SetTdlibParameters(<-stateHandler.TdlibParameters)
+		_, err := client.SetTdlibParameters(stateHandler.tdlibParameters)
 		return err
 
 	case TypeAuthorizationStateWaitPhoneNumber:
 		_, err := client.CheckAuthenticationBotToken(&CheckAuthenticationBotTokenRequest{
-			Token: <-stateHandler.Token,
+			Token: stateHandler.token,
 		})
 		return err
 
+	case TypeAuthorizationStateWaitEmailAddress:
+		return NotSupportedAuthorizationState(state)
+
+	case TypeAuthorizationStateWaitEmailCode:
+		return NotSupportedAuthorizationState(state)
+
 	case TypeAuthorizationStateWaitCode:
-		return ErrNotSupportedAuthorizationState
+		return NotSupportedAuthorizationState(state)
+
+	case TypeAuthorizationStateWaitOtherDeviceConfirmation:
+		return NotSupportedAuthorizationState(state)
+
+	case TypeAuthorizationStateWaitRegistration:
+		return NotSupportedAuthorizationState(state)
 
 	case TypeAuthorizationStateWaitPassword:
-		return ErrNotSupportedAuthorizationState
+		return NotSupportedAuthorizationState(state)
 
 	case TypeAuthorizationStateReady:
 		return nil
 
 	case TypeAuthorizationStateLoggingOut:
-		return ErrNotSupportedAuthorizationState
+		return NotSupportedAuthorizationState(state)
 
 	case TypeAuthorizationStateClosing:
-		return ErrNotSupportedAuthorizationState
+		return NotSupportedAuthorizationState(state)
 
 	case TypeAuthorizationStateClosed:
-		return ErrNotSupportedAuthorizationState
+		return NotSupportedAuthorizationState(state)
 	}
 
-	return ErrNotSupportedAuthorizationState
+	return NotSupportedAuthorizationState(state)
 }
 
-func (stateHandler *botAuthorizer) Close() {
-	close(stateHandler.TdlibParameters)
-	close(stateHandler.Token)
-	close(stateHandler.State)
+func (stateHandler *botAuthorizer) Close() {}
+
+type qrAuthorizer struct {
+	TdlibParameters *SetTdlibParametersRequest
+	Password        chan string
+	lastLink        string
+	LinkHandler     func(link string) error
+}
+
+func QrAuthorizer(tdlibParameters *SetTdlibParametersRequest, linkHandler func(link string) error) *qrAuthorizer {
+	stateHandler := &qrAuthorizer{
+		TdlibParameters: tdlibParameters,
+		Password:        make(chan string, 1),
+		LinkHandler:     linkHandler,
+	}
+
+	return stateHandler
+}
+
+func (stateHandler *qrAuthorizer) Handle(client *Client, state AuthorizationState) error {
+	switch state.AuthorizationStateType() {
+	case TypeAuthorizationStateWaitTdlibParameters:
+		_, err := client.SetTdlibParameters(stateHandler.TdlibParameters)
+		return err
+
+	case TypeAuthorizationStateWaitPhoneNumber:
+		_, err := client.RequestQrCodeAuthentication(&RequestQrCodeAuthenticationRequest{})
+		return err
+
+	case TypeAuthorizationStateWaitOtherDeviceConfirmation:
+		link := state.(*AuthorizationStateWaitOtherDeviceConfirmation).Link
+
+		if link == stateHandler.lastLink {
+			return nil
+		}
+
+		err := stateHandler.LinkHandler(link)
+		if err != nil {
+			return err
+		}
+
+		stateHandler.lastLink = link
+
+		return nil
+
+	case TypeAuthorizationStateWaitCode:
+		return NotSupportedAuthorizationState(state)
+
+	case TypeAuthorizationStateWaitPassword:
+		_, err := client.CheckAuthenticationPassword(&CheckAuthenticationPasswordRequest{
+			Password: <-stateHandler.Password,
+		})
+		return err
+
+	case TypeAuthorizationStateReady:
+		return nil
+
+	case TypeAuthorizationStateLoggingOut:
+		return NotSupportedAuthorizationState(state)
+
+	case TypeAuthorizationStateClosing:
+		return NotSupportedAuthorizationState(state)
+
+	case TypeAuthorizationStateClosed:
+		return NotSupportedAuthorizationState(state)
+	}
+
+	return NotSupportedAuthorizationState(state)
+}
+
+func (stateHandler *qrAuthorizer) Close() {
+	close(stateHandler.Password)
 }
