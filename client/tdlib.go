@@ -216,6 +216,6 @@ func (jsonInt64 *JsonInt64) UnmarshalJSON(data []byte) error {
 }
 
 type Type interface {
+	GetConstructor() string
 	GetType() string
-	GetClass() string
 }

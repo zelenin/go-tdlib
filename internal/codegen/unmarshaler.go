@@ -3,7 +3,7 @@ package codegen
 import (
 	"bytes"
 	"fmt"
-	"github.com/zelenin/go-tdlib/tlparser"
+	"github.com/zelenin/go-tdlib/internal/tlparser"
 )
 
 func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
@@ -18,8 +18,8 @@ func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
 
 `)
 
-	for _, class := range schema.Classes {
-		tdlibClass := TdlibClass(class.Name, schema)
+	for _, typ := range schema.Types {
+		tdlibtype := TdlibType(typ.Name, schema)
 
 		buf.WriteString(fmt.Sprintf(`func Unmarshal%s(data json.RawMessage) (%s, error) {
     var meta meta
@@ -30,13 +30,13 @@ func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
     }
 
     switch meta.Type {
-`, tdlibClass.ToGoType(), tdlibClass.ToGoType()))
+`, tdlibtype.ToGoType(), tdlibtype.ToGoType()))
 
-		for _, subType := range tdlibClass.GetSubTypes() {
+		for _, constructor := range tdlibtype.GetConstructors() {
 			buf.WriteString(fmt.Sprintf(`    case %s:
         return Unmarshal%s(data)
 
-`, subType.ToTypeConst(), subType.ToGoType()))
+`, constructor.ToConstructorConst(), constructor.ToGoType()))
 
 		}
 
@@ -61,14 +61,14 @@ func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
     return list, nil
 }
 
-`, tdlibClass.ToGoType(), tdlibClass.ToGoType(), tdlibClass.ToGoType(), tdlibClass.ToGoType()))
+`, tdlibtype.ToGoType(), tdlibtype.ToGoType(), tdlibtype.ToGoType(), tdlibtype.ToGoType()))
 
 	}
 
-	for _, typ := range schema.Types {
-		tdlibType := TdlibType(typ.Name, schema)
+	for _, constructor := range schema.Constructors {
+		tdlibConstructor := TdlibConstructor(constructor.Name, schema)
 
-		if tdlibType.IsList() || tdlibType.IsInternal() {
+		if tdlibConstructor.IsList() || tdlibConstructor.IsInternal() {
 			continue
 		}
 
@@ -80,7 +80,7 @@ func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
     return &resp, err
 }
 
-`, tdlibType.ToGoType(), tdlibType.ToGoType(), tdlibType.ToGoType()))
+`, tdlibConstructor.ToGoType(), tdlibConstructor.ToGoType(), tdlibConstructor.ToGoType()))
 
 	}
 
@@ -95,17 +95,17 @@ func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
     switch meta.Type {
 `)
 
-	for _, typ := range schema.Types {
-		tdlibType := TdlibType(typ.Name, schema)
+	for _, constructor := range schema.Constructors {
+		tdlibConstructor := TdlibConstructor(constructor.Name, schema)
 
-		if tdlibType.IsList() || tdlibType.IsInternal() {
+		if tdlibConstructor.IsList() || tdlibConstructor.IsInternal() {
 			continue
 		}
 
 		buf.WriteString(fmt.Sprintf(`    case %s:
         return Unmarshal%s(data)
 
-`, tdlibType.ToTypeConst(), tdlibType.ToGoType()))
+`, tdlibConstructor.ToConstructorConst(), tdlibConstructor.ToGoType()))
 
 	}
 

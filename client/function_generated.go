@@ -23,40 +23,40 @@ func (client *Client) GetAuthorizationState() (AuthorizationState, error) {
 	}
 
 	switch result.Type {
-	case TypeAuthorizationStateWaitTdlibParameters:
+	case ConstructorAuthorizationStateWaitTdlibParameters:
 		return UnmarshalAuthorizationStateWaitTdlibParameters(result.Data)
 
-	case TypeAuthorizationStateWaitPhoneNumber:
+	case ConstructorAuthorizationStateWaitPhoneNumber:
 		return UnmarshalAuthorizationStateWaitPhoneNumber(result.Data)
 
-	case TypeAuthorizationStateWaitEmailAddress:
+	case ConstructorAuthorizationStateWaitEmailAddress:
 		return UnmarshalAuthorizationStateWaitEmailAddress(result.Data)
 
-	case TypeAuthorizationStateWaitEmailCode:
+	case ConstructorAuthorizationStateWaitEmailCode:
 		return UnmarshalAuthorizationStateWaitEmailCode(result.Data)
 
-	case TypeAuthorizationStateWaitCode:
+	case ConstructorAuthorizationStateWaitCode:
 		return UnmarshalAuthorizationStateWaitCode(result.Data)
 
-	case TypeAuthorizationStateWaitOtherDeviceConfirmation:
+	case ConstructorAuthorizationStateWaitOtherDeviceConfirmation:
 		return UnmarshalAuthorizationStateWaitOtherDeviceConfirmation(result.Data)
 
-	case TypeAuthorizationStateWaitRegistration:
+	case ConstructorAuthorizationStateWaitRegistration:
 		return UnmarshalAuthorizationStateWaitRegistration(result.Data)
 
-	case TypeAuthorizationStateWaitPassword:
+	case ConstructorAuthorizationStateWaitPassword:
 		return UnmarshalAuthorizationStateWaitPassword(result.Data)
 
-	case TypeAuthorizationStateReady:
+	case ConstructorAuthorizationStateReady:
 		return UnmarshalAuthorizationStateReady(result.Data)
 
-	case TypeAuthorizationStateLoggingOut:
+	case ConstructorAuthorizationStateLoggingOut:
 		return UnmarshalAuthorizationStateLoggingOut(result.Data)
 
-	case TypeAuthorizationStateClosing:
+	case ConstructorAuthorizationStateClosing:
 		return UnmarshalAuthorizationStateClosing(result.Data)
 
-	case TypeAuthorizationStateClosed:
+	case ConstructorAuthorizationStateClosed:
 		return UnmarshalAuthorizationStateClosed(result.Data)
 
 	default:
@@ -989,13 +989,13 @@ func (client *Client) ResetPassword() (ResetPasswordResult, error) {
 	}
 
 	switch result.Type {
-	case TypeResetPasswordResultOk:
+	case ConstructorResetPasswordResultOk:
 		return UnmarshalResetPasswordResultOk(result.Data)
 
-	case TypeResetPasswordResultPending:
+	case ConstructorResetPasswordResultPending:
 		return UnmarshalResetPasswordResultPending(result.Data)
 
-	case TypeResetPasswordResultDeclined:
+	case ConstructorResetPasswordResultDeclined:
 		return UnmarshalResetPasswordResultDeclined(result.Data)
 
 	default:
@@ -1556,19 +1556,19 @@ func (client *Client) GetMessageReadDate(req *GetMessageReadDateRequest) (Messag
 	}
 
 	switch result.Type {
-	case TypeMessageReadDateRead:
+	case ConstructorMessageReadDateRead:
 		return UnmarshalMessageReadDateRead(result.Data)
 
-	case TypeMessageReadDateUnread:
+	case ConstructorMessageReadDateUnread:
 		return UnmarshalMessageReadDateUnread(result.Data)
 
-	case TypeMessageReadDateTooOld:
+	case ConstructorMessageReadDateTooOld:
 		return UnmarshalMessageReadDateTooOld(result.Data)
 
-	case TypeMessageReadDateUserPrivacyRestricted:
+	case ConstructorMessageReadDateUserPrivacyRestricted:
 		return UnmarshalMessageReadDateUserPrivacyRestricted(result.Data)
 
-	case TypeMessageReadDateMyPrivacyRestricted:
+	case ConstructorMessageReadDateMyPrivacyRestricted:
 		return UnmarshalMessageReadDateMyPrivacyRestricted(result.Data)
 
 	default:
@@ -2142,22 +2142,22 @@ func (client *Client) CheckChatUsername(req *CheckChatUsernameRequest) (CheckCha
 	}
 
 	switch result.Type {
-	case TypeCheckChatUsernameResultOk:
+	case ConstructorCheckChatUsernameResultOk:
 		return UnmarshalCheckChatUsernameResultOk(result.Data)
 
-	case TypeCheckChatUsernameResultUsernameInvalid:
+	case ConstructorCheckChatUsernameResultUsernameInvalid:
 		return UnmarshalCheckChatUsernameResultUsernameInvalid(result.Data)
 
-	case TypeCheckChatUsernameResultUsernameOccupied:
+	case ConstructorCheckChatUsernameResultUsernameOccupied:
 		return UnmarshalCheckChatUsernameResultUsernameOccupied(result.Data)
 
-	case TypeCheckChatUsernameResultUsernamePurchasable:
+	case ConstructorCheckChatUsernameResultUsernamePurchasable:
 		return UnmarshalCheckChatUsernameResultUsernamePurchasable(result.Data)
 
-	case TypeCheckChatUsernameResultPublicChatsTooMany:
+	case ConstructorCheckChatUsernameResultPublicChatsTooMany:
 		return UnmarshalCheckChatUsernameResultPublicChatsTooMany(result.Data)
 
-	case TypeCheckChatUsernameResultPublicGroupsUnavailable:
+	case ConstructorCheckChatUsernameResultPublicGroupsUnavailable:
 		return UnmarshalCheckChatUsernameResultPublicGroupsUnavailable(result.Data)
 
 	default:
@@ -3442,19 +3442,19 @@ func (client *Client) ReportChatSponsoredMessage(req *ReportChatSponsoredMessage
 	}
 
 	switch result.Type {
-	case TypeReportChatSponsoredMessageResultOk:
+	case ConstructorReportChatSponsoredMessageResultOk:
 		return UnmarshalReportChatSponsoredMessageResultOk(result.Data)
 
-	case TypeReportChatSponsoredMessageResultFailed:
+	case ConstructorReportChatSponsoredMessageResultFailed:
 		return UnmarshalReportChatSponsoredMessageResultFailed(result.Data)
 
-	case TypeReportChatSponsoredMessageResultOptionRequired:
+	case ConstructorReportChatSponsoredMessageResultOptionRequired:
 		return UnmarshalReportChatSponsoredMessageResultOptionRequired(result.Data)
 
-	case TypeReportChatSponsoredMessageResultAdsHidden:
+	case ConstructorReportChatSponsoredMessageResultAdsHidden:
 		return UnmarshalReportChatSponsoredMessageResultAdsHidden(result.Data)
 
-	case TypeReportChatSponsoredMessageResultPremiumRequired:
+	case ConstructorReportChatSponsoredMessageResultPremiumRequired:
 		return UnmarshalReportChatSponsoredMessageResultPremiumRequired(result.Data)
 
 	default:
@@ -6492,13 +6492,13 @@ func GetLanguagePackString(req *GetLanguagePackStringRequest) (LanguagePackStrin
 	}
 
 	switch result.Type {
-	case TypeLanguagePackStringValueOrdinary:
+	case ConstructorLanguagePackStringValueOrdinary:
 		return UnmarshalLanguagePackStringValueOrdinary(result.Data)
 
-	case TypeLanguagePackStringValuePluralized:
+	case ConstructorLanguagePackStringValuePluralized:
 		return UnmarshalLanguagePackStringValuePluralized(result.Data)
 
-	case TypeLanguagePackStringValueDeleted:
+	case ConstructorLanguagePackStringValueDeleted:
 		return UnmarshalLanguagePackStringValueDeleted(result.Data)
 
 	default:
@@ -6536,22 +6536,22 @@ func GetJsonValue(req *GetJsonValueRequest) (JsonValue, error) {
 	}
 
 	switch result.Type {
-	case TypeJsonValueNull:
+	case ConstructorJsonValueNull:
 		return UnmarshalJsonValueNull(result.Data)
 
-	case TypeJsonValueBoolean:
+	case ConstructorJsonValueBoolean:
 		return UnmarshalJsonValueBoolean(result.Data)
 
-	case TypeJsonValueNumber:
+	case ConstructorJsonValueNumber:
 		return UnmarshalJsonValueNumber(result.Data)
 
-	case TypeJsonValueString:
+	case ConstructorJsonValueString:
 		return UnmarshalJsonValueString(result.Data)
 
-	case TypeJsonValueArray:
+	case ConstructorJsonValueArray:
 		return UnmarshalJsonValueArray(result.Data)
 
-	case TypeJsonValueObject:
+	case ConstructorJsonValueObject:
 		return UnmarshalJsonValueObject(result.Data)
 
 	default:
@@ -6832,10 +6832,10 @@ func (client *Client) GetLoginUrlInfo(req *GetLoginUrlInfoRequest) (LoginUrlInfo
 	}
 
 	switch result.Type {
-	case TypeLoginUrlInfoOpen:
+	case ConstructorLoginUrlInfoOpen:
 		return UnmarshalLoginUrlInfoOpen(result.Data)
 
-	case TypeLoginUrlInfoRequestConfirmation:
+	case ConstructorLoginUrlInfoRequestConfirmation:
 		return UnmarshalLoginUrlInfoRequestConfirmation(result.Data)
 
 	default:
@@ -7979,139 +7979,139 @@ func (client *Client) GetInternalLinkType(req *GetInternalLinkTypeRequest) (Inte
 	}
 
 	switch result.Type {
-	case TypeInternalLinkTypeActiveSessions:
+	case ConstructorInternalLinkTypeActiveSessions:
 		return UnmarshalInternalLinkTypeActiveSessions(result.Data)
 
-	case TypeInternalLinkTypeAttachmentMenuBot:
+	case ConstructorInternalLinkTypeAttachmentMenuBot:
 		return UnmarshalInternalLinkTypeAttachmentMenuBot(result.Data)
 
-	case TypeInternalLinkTypeAuthenticationCode:
+	case ConstructorInternalLinkTypeAuthenticationCode:
 		return UnmarshalInternalLinkTypeAuthenticationCode(result.Data)
 
-	case TypeInternalLinkTypeBackground:
+	case ConstructorInternalLinkTypeBackground:
 		return UnmarshalInternalLinkTypeBackground(result.Data)
 
-	case TypeInternalLinkTypeBotAddToChannel:
+	case ConstructorInternalLinkTypeBotAddToChannel:
 		return UnmarshalInternalLinkTypeBotAddToChannel(result.Data)
 
-	case TypeInternalLinkTypeBotStart:
+	case ConstructorInternalLinkTypeBotStart:
 		return UnmarshalInternalLinkTypeBotStart(result.Data)
 
-	case TypeInternalLinkTypeBotStartInGroup:
+	case ConstructorInternalLinkTypeBotStartInGroup:
 		return UnmarshalInternalLinkTypeBotStartInGroup(result.Data)
 
-	case TypeInternalLinkTypeBusinessChat:
+	case ConstructorInternalLinkTypeBusinessChat:
 		return UnmarshalInternalLinkTypeBusinessChat(result.Data)
 
-	case TypeInternalLinkTypeBuyStars:
+	case ConstructorInternalLinkTypeBuyStars:
 		return UnmarshalInternalLinkTypeBuyStars(result.Data)
 
-	case TypeInternalLinkTypeChangePhoneNumber:
+	case ConstructorInternalLinkTypeChangePhoneNumber:
 		return UnmarshalInternalLinkTypeChangePhoneNumber(result.Data)
 
-	case TypeInternalLinkTypeChatBoost:
+	case ConstructorInternalLinkTypeChatBoost:
 		return UnmarshalInternalLinkTypeChatBoost(result.Data)
 
-	case TypeInternalLinkTypeChatFolderInvite:
+	case ConstructorInternalLinkTypeChatFolderInvite:
 		return UnmarshalInternalLinkTypeChatFolderInvite(result.Data)
 
-	case TypeInternalLinkTypeChatFolderSettings:
+	case ConstructorInternalLinkTypeChatFolderSettings:
 		return UnmarshalInternalLinkTypeChatFolderSettings(result.Data)
 
-	case TypeInternalLinkTypeChatInvite:
+	case ConstructorInternalLinkTypeChatInvite:
 		return UnmarshalInternalLinkTypeChatInvite(result.Data)
 
-	case TypeInternalLinkTypeDefaultMessageAutoDeleteTimerSettings:
+	case ConstructorInternalLinkTypeDefaultMessageAutoDeleteTimerSettings:
 		return UnmarshalInternalLinkTypeDefaultMessageAutoDeleteTimerSettings(result.Data)
 
-	case TypeInternalLinkTypeEditProfileSettings:
+	case ConstructorInternalLinkTypeEditProfileSettings:
 		return UnmarshalInternalLinkTypeEditProfileSettings(result.Data)
 
-	case TypeInternalLinkTypeGame:
+	case ConstructorInternalLinkTypeGame:
 		return UnmarshalInternalLinkTypeGame(result.Data)
 
-	case TypeInternalLinkTypeInstantView:
+	case ConstructorInternalLinkTypeInstantView:
 		return UnmarshalInternalLinkTypeInstantView(result.Data)
 
-	case TypeInternalLinkTypeInvoice:
+	case ConstructorInternalLinkTypeInvoice:
 		return UnmarshalInternalLinkTypeInvoice(result.Data)
 
-	case TypeInternalLinkTypeLanguagePack:
+	case ConstructorInternalLinkTypeLanguagePack:
 		return UnmarshalInternalLinkTypeLanguagePack(result.Data)
 
-	case TypeInternalLinkTypeLanguageSettings:
+	case ConstructorInternalLinkTypeLanguageSettings:
 		return UnmarshalInternalLinkTypeLanguageSettings(result.Data)
 
-	case TypeInternalLinkTypeMainWebApp:
+	case ConstructorInternalLinkTypeMainWebApp:
 		return UnmarshalInternalLinkTypeMainWebApp(result.Data)
 
-	case TypeInternalLinkTypeMessage:
+	case ConstructorInternalLinkTypeMessage:
 		return UnmarshalInternalLinkTypeMessage(result.Data)
 
-	case TypeInternalLinkTypeMessageDraft:
+	case ConstructorInternalLinkTypeMessageDraft:
 		return UnmarshalInternalLinkTypeMessageDraft(result.Data)
 
-	case TypeInternalLinkTypePassportDataRequest:
+	case ConstructorInternalLinkTypePassportDataRequest:
 		return UnmarshalInternalLinkTypePassportDataRequest(result.Data)
 
-	case TypeInternalLinkTypePhoneNumberConfirmation:
+	case ConstructorInternalLinkTypePhoneNumberConfirmation:
 		return UnmarshalInternalLinkTypePhoneNumberConfirmation(result.Data)
 
-	case TypeInternalLinkTypePremiumFeatures:
+	case ConstructorInternalLinkTypePremiumFeatures:
 		return UnmarshalInternalLinkTypePremiumFeatures(result.Data)
 
-	case TypeInternalLinkTypePremiumGift:
+	case ConstructorInternalLinkTypePremiumGift:
 		return UnmarshalInternalLinkTypePremiumGift(result.Data)
 
-	case TypeInternalLinkTypePremiumGiftCode:
+	case ConstructorInternalLinkTypePremiumGiftCode:
 		return UnmarshalInternalLinkTypePremiumGiftCode(result.Data)
 
-	case TypeInternalLinkTypePrivacyAndSecuritySettings:
+	case ConstructorInternalLinkTypePrivacyAndSecuritySettings:
 		return UnmarshalInternalLinkTypePrivacyAndSecuritySettings(result.Data)
 
-	case TypeInternalLinkTypeProxy:
+	case ConstructorInternalLinkTypeProxy:
 		return UnmarshalInternalLinkTypeProxy(result.Data)
 
-	case TypeInternalLinkTypePublicChat:
+	case ConstructorInternalLinkTypePublicChat:
 		return UnmarshalInternalLinkTypePublicChat(result.Data)
 
-	case TypeInternalLinkTypeQrCodeAuthentication:
+	case ConstructorInternalLinkTypeQrCodeAuthentication:
 		return UnmarshalInternalLinkTypeQrCodeAuthentication(result.Data)
 
-	case TypeInternalLinkTypeRestorePurchases:
+	case ConstructorInternalLinkTypeRestorePurchases:
 		return UnmarshalInternalLinkTypeRestorePurchases(result.Data)
 
-	case TypeInternalLinkTypeSettings:
+	case ConstructorInternalLinkTypeSettings:
 		return UnmarshalInternalLinkTypeSettings(result.Data)
 
-	case TypeInternalLinkTypeStickerSet:
+	case ConstructorInternalLinkTypeStickerSet:
 		return UnmarshalInternalLinkTypeStickerSet(result.Data)
 
-	case TypeInternalLinkTypeStory:
+	case ConstructorInternalLinkTypeStory:
 		return UnmarshalInternalLinkTypeStory(result.Data)
 
-	case TypeInternalLinkTypeTheme:
+	case ConstructorInternalLinkTypeTheme:
 		return UnmarshalInternalLinkTypeTheme(result.Data)
 
-	case TypeInternalLinkTypeThemeSettings:
+	case ConstructorInternalLinkTypeThemeSettings:
 		return UnmarshalInternalLinkTypeThemeSettings(result.Data)
 
-	case TypeInternalLinkTypeUnknownDeepLink:
+	case ConstructorInternalLinkTypeUnknownDeepLink:
 		return UnmarshalInternalLinkTypeUnknownDeepLink(result.Data)
 
-	case TypeInternalLinkTypeUnsupportedProxy:
+	case ConstructorInternalLinkTypeUnsupportedProxy:
 		return UnmarshalInternalLinkTypeUnsupportedProxy(result.Data)
 
-	case TypeInternalLinkTypeUserPhoneNumber:
+	case ConstructorInternalLinkTypeUserPhoneNumber:
 		return UnmarshalInternalLinkTypeUserPhoneNumber(result.Data)
 
-	case TypeInternalLinkTypeUserToken:
+	case ConstructorInternalLinkTypeUserToken:
 		return UnmarshalInternalLinkTypeUserToken(result.Data)
 
-	case TypeInternalLinkTypeVideoChat:
+	case ConstructorInternalLinkTypeVideoChat:
 		return UnmarshalInternalLinkTypeVideoChat(result.Data)
 
-	case TypeInternalLinkTypeWebApp:
+	case ConstructorInternalLinkTypeWebApp:
 		return UnmarshalInternalLinkTypeWebApp(result.Data)
 
 	default:
@@ -8143,10 +8143,10 @@ func (client *Client) GetExternalLinkInfo(req *GetExternalLinkInfoRequest) (Logi
 	}
 
 	switch result.Type {
-	case TypeLoginUrlInfoOpen:
+	case ConstructorLoginUrlInfoOpen:
 		return UnmarshalLoginUrlInfoOpen(result.Data)
 
-	case TypeLoginUrlInfoRequestConfirmation:
+	case ConstructorLoginUrlInfoRequestConfirmation:
 		return UnmarshalLoginUrlInfoRequestConfirmation(result.Data)
 
 	default:
@@ -10161,16 +10161,16 @@ func (client *Client) CanTransferOwnership() (CanTransferOwnershipResult, error)
 	}
 
 	switch result.Type {
-	case TypeCanTransferOwnershipResultOk:
+	case ConstructorCanTransferOwnershipResultOk:
 		return UnmarshalCanTransferOwnershipResultOk(result.Data)
 
-	case TypeCanTransferOwnershipResultPasswordNeeded:
+	case ConstructorCanTransferOwnershipResultPasswordNeeded:
 		return UnmarshalCanTransferOwnershipResultPasswordNeeded(result.Data)
 
-	case TypeCanTransferOwnershipResultPasswordTooFresh:
+	case ConstructorCanTransferOwnershipResultPasswordTooFresh:
 		return UnmarshalCanTransferOwnershipResultPasswordTooFresh(result.Data)
 
-	case TypeCanTransferOwnershipResultSessionTooFresh:
+	case ConstructorCanTransferOwnershipResultSessionTooFresh:
 		return UnmarshalCanTransferOwnershipResultSessionTooFresh(result.Data)
 
 	default:
@@ -10740,22 +10740,22 @@ func (client *Client) CanSendStory(req *CanSendStoryRequest) (CanSendStoryResult
 	}
 
 	switch result.Type {
-	case TypeCanSendStoryResultOk:
+	case ConstructorCanSendStoryResultOk:
 		return UnmarshalCanSendStoryResultOk(result.Data)
 
-	case TypeCanSendStoryResultPremiumNeeded:
+	case ConstructorCanSendStoryResultPremiumNeeded:
 		return UnmarshalCanSendStoryResultPremiumNeeded(result.Data)
 
-	case TypeCanSendStoryResultBoostNeeded:
+	case ConstructorCanSendStoryResultBoostNeeded:
 		return UnmarshalCanSendStoryResultBoostNeeded(result.Data)
 
-	case TypeCanSendStoryResultActiveStoryLimitExceeded:
+	case ConstructorCanSendStoryResultActiveStoryLimitExceeded:
 		return UnmarshalCanSendStoryResultActiveStoryLimitExceeded(result.Data)
 
-	case TypeCanSendStoryResultWeeklyLimitExceeded:
+	case ConstructorCanSendStoryResultWeeklyLimitExceeded:
 		return UnmarshalCanSendStoryResultWeeklyLimitExceeded(result.Data)
 
-	case TypeCanSendStoryResultMonthlyLimitExceeded:
+	case ConstructorCanSendStoryResultMonthlyLimitExceeded:
 		return UnmarshalCanSendStoryResultMonthlyLimitExceeded(result.Data)
 
 	default:
@@ -11403,13 +11403,13 @@ func (client *Client) ReportStory(req *ReportStoryRequest) (ReportStoryResult, e
 	}
 
 	switch result.Type {
-	case TypeReportStoryResultOk:
+	case ConstructorReportStoryResultOk:
 		return UnmarshalReportStoryResultOk(result.Data)
 
-	case TypeReportStoryResultOptionRequired:
+	case ConstructorReportStoryResultOptionRequired:
 		return UnmarshalReportStoryResultOptionRequired(result.Data)
 
-	case TypeReportStoryResultTextRequired:
+	case ConstructorReportStoryResultTextRequired:
 		return UnmarshalReportStoryResultTextRequired(result.Data)
 
 	default:
@@ -12483,13 +12483,13 @@ func (client *Client) GetMessageFileType(req *GetMessageFileTypeRequest) (Messag
 	}
 
 	switch result.Type {
-	case TypeMessageFileTypePrivate:
+	case ConstructorMessageFileTypePrivate:
 		return UnmarshalMessageFileTypePrivate(result.Data)
 
-	case TypeMessageFileTypeGroup:
+	case ConstructorMessageFileTypeGroup:
 		return UnmarshalMessageFileTypeGroup(result.Data)
 
-	case TypeMessageFileTypeUnknown:
+	case ConstructorMessageFileTypeUnknown:
 		return UnmarshalMessageFileTypeUnknown(result.Data)
 
 	default:
@@ -19559,13 +19559,13 @@ func (client *Client) CanSendMessageToUser(req *CanSendMessageToUserRequest) (Ca
 	}
 
 	switch result.Type {
-	case TypeCanSendMessageToUserResultOk:
+	case ConstructorCanSendMessageToUserResultOk:
 		return UnmarshalCanSendMessageToUserResultOk(result.Data)
 
-	case TypeCanSendMessageToUserResultUserIsDeleted:
+	case ConstructorCanSendMessageToUserResultUserIsDeleted:
 		return UnmarshalCanSendMessageToUserResultUserIsDeleted(result.Data)
 
-	case TypeCanSendMessageToUserResultUserRestrictsNewChats:
+	case ConstructorCanSendMessageToUserResultUserRestrictsNewChats:
 		return UnmarshalCanSendMessageToUserResultUserRestrictsNewChats(result.Data)
 
 	default:
@@ -19597,16 +19597,16 @@ func GetOption(req *GetOptionRequest) (OptionValue, error) {
 	}
 
 	switch result.Type {
-	case TypeOptionValueBoolean:
+	case ConstructorOptionValueBoolean:
 		return UnmarshalOptionValueBoolean(result.Data)
 
-	case TypeOptionValueEmpty:
+	case ConstructorOptionValueEmpty:
 		return UnmarshalOptionValueEmpty(result.Data)
 
-	case TypeOptionValueInteger:
+	case ConstructorOptionValueInteger:
 		return UnmarshalOptionValueInteger(result.Data)
 
-	case TypeOptionValueString:
+	case ConstructorOptionValueString:
 		return UnmarshalOptionValueString(result.Data)
 
 	default:
@@ -19827,16 +19827,16 @@ func (client *Client) ReportChat(req *ReportChatRequest) (ReportChatResult, erro
 	}
 
 	switch result.Type {
-	case TypeReportChatResultOk:
+	case ConstructorReportChatResultOk:
 		return UnmarshalReportChatResultOk(result.Data)
 
-	case TypeReportChatResultOptionRequired:
+	case ConstructorReportChatResultOptionRequired:
 		return UnmarshalReportChatResultOptionRequired(result.Data)
 
-	case TypeReportChatResultTextRequired:
+	case ConstructorReportChatResultTextRequired:
 		return UnmarshalReportChatResultTextRequired(result.Data)
 
-	case TypeReportChatResultMessagesRequired:
+	case ConstructorReportChatResultMessagesRequired:
 		return UnmarshalReportChatResultMessagesRequired(result.Data)
 
 	default:
@@ -20115,10 +20115,10 @@ func (client *Client) GetChatStatistics(req *GetChatStatisticsRequest) (ChatStat
 	}
 
 	switch result.Type {
-	case TypeChatStatisticsSupergroup:
+	case ConstructorChatStatisticsSupergroup:
 		return UnmarshalChatStatisticsSupergroup(result.Data)
 
-	case TypeChatStatisticsChannel:
+	case ConstructorChatStatisticsChannel:
 		return UnmarshalChatStatisticsChannel(result.Data)
 
 	default:
@@ -20255,13 +20255,13 @@ func (client *Client) GetStatisticalGraph(req *GetStatisticalGraphRequest) (Stat
 	}
 
 	switch result.Type {
-	case TypeStatisticalGraphData:
+	case ConstructorStatisticalGraphData:
 		return UnmarshalStatisticalGraphData(result.Data)
 
-	case TypeStatisticalGraphAsync:
+	case ConstructorStatisticalGraphAsync:
 		return UnmarshalStatisticalGraphAsync(result.Data)
 
-	case TypeStatisticalGraphError:
+	case ConstructorStatisticalGraphError:
 		return UnmarshalStatisticalGraphError(result.Data)
 
 	default:
@@ -20648,43 +20648,43 @@ func (client *Client) GetPassportElement(req *GetPassportElementRequest) (Passpo
 	}
 
 	switch result.Type {
-	case TypePassportElementPersonalDetails:
+	case ConstructorPassportElementPersonalDetails:
 		return UnmarshalPassportElementPersonalDetails(result.Data)
 
-	case TypePassportElementPassport:
+	case ConstructorPassportElementPassport:
 		return UnmarshalPassportElementPassport(result.Data)
 
-	case TypePassportElementDriverLicense:
+	case ConstructorPassportElementDriverLicense:
 		return UnmarshalPassportElementDriverLicense(result.Data)
 
-	case TypePassportElementIdentityCard:
+	case ConstructorPassportElementIdentityCard:
 		return UnmarshalPassportElementIdentityCard(result.Data)
 
-	case TypePassportElementInternalPassport:
+	case ConstructorPassportElementInternalPassport:
 		return UnmarshalPassportElementInternalPassport(result.Data)
 
-	case TypePassportElementAddress:
+	case ConstructorPassportElementAddress:
 		return UnmarshalPassportElementAddress(result.Data)
 
-	case TypePassportElementUtilityBill:
+	case ConstructorPassportElementUtilityBill:
 		return UnmarshalPassportElementUtilityBill(result.Data)
 
-	case TypePassportElementBankStatement:
+	case ConstructorPassportElementBankStatement:
 		return UnmarshalPassportElementBankStatement(result.Data)
 
-	case TypePassportElementRentalAgreement:
+	case ConstructorPassportElementRentalAgreement:
 		return UnmarshalPassportElementRentalAgreement(result.Data)
 
-	case TypePassportElementPassportRegistration:
+	case ConstructorPassportElementPassportRegistration:
 		return UnmarshalPassportElementPassportRegistration(result.Data)
 
-	case TypePassportElementTemporaryRegistration:
+	case ConstructorPassportElementTemporaryRegistration:
 		return UnmarshalPassportElementTemporaryRegistration(result.Data)
 
-	case TypePassportElementPhoneNumber:
+	case ConstructorPassportElementPhoneNumber:
 		return UnmarshalPassportElementPhoneNumber(result.Data)
 
-	case TypePassportElementEmailAddress:
+	case ConstructorPassportElementEmailAddress:
 		return UnmarshalPassportElementEmailAddress(result.Data)
 
 	default:
@@ -20745,43 +20745,43 @@ func (client *Client) SetPassportElement(req *SetPassportElementRequest) (Passpo
 	}
 
 	switch result.Type {
-	case TypePassportElementPersonalDetails:
+	case ConstructorPassportElementPersonalDetails:
 		return UnmarshalPassportElementPersonalDetails(result.Data)
 
-	case TypePassportElementPassport:
+	case ConstructorPassportElementPassport:
 		return UnmarshalPassportElementPassport(result.Data)
 
-	case TypePassportElementDriverLicense:
+	case ConstructorPassportElementDriverLicense:
 		return UnmarshalPassportElementDriverLicense(result.Data)
 
-	case TypePassportElementIdentityCard:
+	case ConstructorPassportElementIdentityCard:
 		return UnmarshalPassportElementIdentityCard(result.Data)
 
-	case TypePassportElementInternalPassport:
+	case ConstructorPassportElementInternalPassport:
 		return UnmarshalPassportElementInternalPassport(result.Data)
 
-	case TypePassportElementAddress:
+	case ConstructorPassportElementAddress:
 		return UnmarshalPassportElementAddress(result.Data)
 
-	case TypePassportElementUtilityBill:
+	case ConstructorPassportElementUtilityBill:
 		return UnmarshalPassportElementUtilityBill(result.Data)
 
-	case TypePassportElementBankStatement:
+	case ConstructorPassportElementBankStatement:
 		return UnmarshalPassportElementBankStatement(result.Data)
 
-	case TypePassportElementRentalAgreement:
+	case ConstructorPassportElementRentalAgreement:
 		return UnmarshalPassportElementRentalAgreement(result.Data)
 
-	case TypePassportElementPassportRegistration:
+	case ConstructorPassportElementPassportRegistration:
 		return UnmarshalPassportElementPassportRegistration(result.Data)
 
-	case TypePassportElementTemporaryRegistration:
+	case ConstructorPassportElementTemporaryRegistration:
 		return UnmarshalPassportElementTemporaryRegistration(result.Data)
 
-	case TypePassportElementPhoneNumber:
+	case ConstructorPassportElementPhoneNumber:
 		return UnmarshalPassportElementPhoneNumber(result.Data)
 
-	case TypePassportElementEmailAddress:
+	case ConstructorPassportElementEmailAddress:
 		return UnmarshalPassportElementEmailAddress(result.Data)
 
 	default:
@@ -21145,13 +21145,13 @@ func (client *Client) CheckStickerSetName(req *CheckStickerSetNameRequest) (Chec
 	}
 
 	switch result.Type {
-	case TypeCheckStickerSetNameResultOk:
+	case ConstructorCheckStickerSetNameResultOk:
 		return UnmarshalCheckStickerSetNameResultOk(result.Data)
 
-	case TypeCheckStickerSetNameResultNameInvalid:
+	case ConstructorCheckStickerSetNameResultNameInvalid:
 		return UnmarshalCheckStickerSetNameResultNameInvalid(result.Data)
 
-	case TypeCheckStickerSetNameResultNameOccupied:
+	case ConstructorCheckStickerSetNameResultNameOccupied:
 		return UnmarshalCheckStickerSetNameResultNameOccupied(result.Data)
 
 	default:
@@ -21902,10 +21902,10 @@ func (client *Client) GetGiveawayInfo(req *GetGiveawayInfoRequest) (GiveawayInfo
 	}
 
 	switch result.Type {
-	case TypeGiveawayInfoOngoing:
+	case ConstructorGiveawayInfoOngoing:
 		return UnmarshalGiveawayInfoOngoing(result.Data)
 
-	case TypeGiveawayInfoCompleted:
+	case ConstructorGiveawayInfoCompleted:
 		return UnmarshalGiveawayInfoCompleted(result.Data)
 
 	default:
@@ -22566,22 +22566,22 @@ func (client *Client) GetApplicationConfig() (JsonValue, error) {
 	}
 
 	switch result.Type {
-	case TypeJsonValueNull:
+	case ConstructorJsonValueNull:
 		return UnmarshalJsonValueNull(result.Data)
 
-	case TypeJsonValueBoolean:
+	case ConstructorJsonValueBoolean:
 		return UnmarshalJsonValueBoolean(result.Data)
 
-	case TypeJsonValueNumber:
+	case ConstructorJsonValueNumber:
 		return UnmarshalJsonValueNumber(result.Data)
 
-	case TypeJsonValueString:
+	case ConstructorJsonValueString:
 		return UnmarshalJsonValueString(result.Data)
 
-	case TypeJsonValueArray:
+	case ConstructorJsonValueArray:
 		return UnmarshalJsonValueArray(result.Data)
 
-	case TypeJsonValueObject:
+	case ConstructorJsonValueObject:
 		return UnmarshalJsonValueObject(result.Data)
 
 	default:
@@ -22904,13 +22904,13 @@ func GetLogStream() (LogStream, error) {
 	}
 
 	switch result.Type {
-	case TypeLogStreamDefault:
+	case ConstructorLogStreamDefault:
 		return UnmarshalLogStreamDefault(result.Data)
 
-	case TypeLogStreamFile:
+	case ConstructorLogStreamFile:
 		return UnmarshalLogStreamFile(result.Data)
 
-	case TypeLogStreamEmpty:
+	case ConstructorLogStreamEmpty:
 		return UnmarshalLogStreamEmpty(result.Data)
 
 	default:
@@ -23476,457 +23476,457 @@ func (client *Client) TestUseUpdate() (Update, error) {
 	}
 
 	switch result.Type {
-	case TypeUpdateAuthorizationState:
+	case ConstructorUpdateAuthorizationState:
 		return UnmarshalUpdateAuthorizationState(result.Data)
 
-	case TypeUpdateNewMessage:
+	case ConstructorUpdateNewMessage:
 		return UnmarshalUpdateNewMessage(result.Data)
 
-	case TypeUpdateMessageSendAcknowledged:
+	case ConstructorUpdateMessageSendAcknowledged:
 		return UnmarshalUpdateMessageSendAcknowledged(result.Data)
 
-	case TypeUpdateMessageSendSucceeded:
+	case ConstructorUpdateMessageSendSucceeded:
 		return UnmarshalUpdateMessageSendSucceeded(result.Data)
 
-	case TypeUpdateMessageSendFailed:
+	case ConstructorUpdateMessageSendFailed:
 		return UnmarshalUpdateMessageSendFailed(result.Data)
 
-	case TypeUpdateMessageContent:
+	case ConstructorUpdateMessageContent:
 		return UnmarshalUpdateMessageContent(result.Data)
 
-	case TypeUpdateMessageEdited:
+	case ConstructorUpdateMessageEdited:
 		return UnmarshalUpdateMessageEdited(result.Data)
 
-	case TypeUpdateMessageIsPinned:
+	case ConstructorUpdateMessageIsPinned:
 		return UnmarshalUpdateMessageIsPinned(result.Data)
 
-	case TypeUpdateMessageInteractionInfo:
+	case ConstructorUpdateMessageInteractionInfo:
 		return UnmarshalUpdateMessageInteractionInfo(result.Data)
 
-	case TypeUpdateMessageContentOpened:
+	case ConstructorUpdateMessageContentOpened:
 		return UnmarshalUpdateMessageContentOpened(result.Data)
 
-	case TypeUpdateMessageMentionRead:
+	case ConstructorUpdateMessageMentionRead:
 		return UnmarshalUpdateMessageMentionRead(result.Data)
 
-	case TypeUpdateMessageUnreadReactions:
+	case ConstructorUpdateMessageUnreadReactions:
 		return UnmarshalUpdateMessageUnreadReactions(result.Data)
 
-	case TypeUpdateMessageFactCheck:
+	case ConstructorUpdateMessageFactCheck:
 		return UnmarshalUpdateMessageFactCheck(result.Data)
 
-	case TypeUpdateMessageLiveLocationViewed:
+	case ConstructorUpdateMessageLiveLocationViewed:
 		return UnmarshalUpdateMessageLiveLocationViewed(result.Data)
 
-	case TypeUpdateVideoPublished:
+	case ConstructorUpdateVideoPublished:
 		return UnmarshalUpdateVideoPublished(result.Data)
 
-	case TypeUpdateNewChat:
+	case ConstructorUpdateNewChat:
 		return UnmarshalUpdateNewChat(result.Data)
 
-	case TypeUpdateChatTitle:
+	case ConstructorUpdateChatTitle:
 		return UnmarshalUpdateChatTitle(result.Data)
 
-	case TypeUpdateChatPhoto:
+	case ConstructorUpdateChatPhoto:
 		return UnmarshalUpdateChatPhoto(result.Data)
 
-	case TypeUpdateChatAccentColors:
+	case ConstructorUpdateChatAccentColors:
 		return UnmarshalUpdateChatAccentColors(result.Data)
 
-	case TypeUpdateChatPermissions:
+	case ConstructorUpdateChatPermissions:
 		return UnmarshalUpdateChatPermissions(result.Data)
 
-	case TypeUpdateChatLastMessage:
+	case ConstructorUpdateChatLastMessage:
 		return UnmarshalUpdateChatLastMessage(result.Data)
 
-	case TypeUpdateChatPosition:
+	case ConstructorUpdateChatPosition:
 		return UnmarshalUpdateChatPosition(result.Data)
 
-	case TypeUpdateChatAddedToList:
+	case ConstructorUpdateChatAddedToList:
 		return UnmarshalUpdateChatAddedToList(result.Data)
 
-	case TypeUpdateChatRemovedFromList:
+	case ConstructorUpdateChatRemovedFromList:
 		return UnmarshalUpdateChatRemovedFromList(result.Data)
 
-	case TypeUpdateChatReadInbox:
+	case ConstructorUpdateChatReadInbox:
 		return UnmarshalUpdateChatReadInbox(result.Data)
 
-	case TypeUpdateChatReadOutbox:
+	case ConstructorUpdateChatReadOutbox:
 		return UnmarshalUpdateChatReadOutbox(result.Data)
 
-	case TypeUpdateChatActionBar:
+	case ConstructorUpdateChatActionBar:
 		return UnmarshalUpdateChatActionBar(result.Data)
 
-	case TypeUpdateChatBusinessBotManageBar:
+	case ConstructorUpdateChatBusinessBotManageBar:
 		return UnmarshalUpdateChatBusinessBotManageBar(result.Data)
 
-	case TypeUpdateChatAvailableReactions:
+	case ConstructorUpdateChatAvailableReactions:
 		return UnmarshalUpdateChatAvailableReactions(result.Data)
 
-	case TypeUpdateChatDraftMessage:
+	case ConstructorUpdateChatDraftMessage:
 		return UnmarshalUpdateChatDraftMessage(result.Data)
 
-	case TypeUpdateChatEmojiStatus:
+	case ConstructorUpdateChatEmojiStatus:
 		return UnmarshalUpdateChatEmojiStatus(result.Data)
 
-	case TypeUpdateChatMessageSender:
+	case ConstructorUpdateChatMessageSender:
 		return UnmarshalUpdateChatMessageSender(result.Data)
 
-	case TypeUpdateChatMessageAutoDeleteTime:
+	case ConstructorUpdateChatMessageAutoDeleteTime:
 		return UnmarshalUpdateChatMessageAutoDeleteTime(result.Data)
 
-	case TypeUpdateChatNotificationSettings:
+	case ConstructorUpdateChatNotificationSettings:
 		return UnmarshalUpdateChatNotificationSettings(result.Data)
 
-	case TypeUpdateChatPendingJoinRequests:
+	case ConstructorUpdateChatPendingJoinRequests:
 		return UnmarshalUpdateChatPendingJoinRequests(result.Data)
 
-	case TypeUpdateChatReplyMarkup:
+	case ConstructorUpdateChatReplyMarkup:
 		return UnmarshalUpdateChatReplyMarkup(result.Data)
 
-	case TypeUpdateChatBackground:
+	case ConstructorUpdateChatBackground:
 		return UnmarshalUpdateChatBackground(result.Data)
 
-	case TypeUpdateChatTheme:
+	case ConstructorUpdateChatTheme:
 		return UnmarshalUpdateChatTheme(result.Data)
 
-	case TypeUpdateChatUnreadMentionCount:
+	case ConstructorUpdateChatUnreadMentionCount:
 		return UnmarshalUpdateChatUnreadMentionCount(result.Data)
 
-	case TypeUpdateChatUnreadReactionCount:
+	case ConstructorUpdateChatUnreadReactionCount:
 		return UnmarshalUpdateChatUnreadReactionCount(result.Data)
 
-	case TypeUpdateChatVideoChat:
+	case ConstructorUpdateChatVideoChat:
 		return UnmarshalUpdateChatVideoChat(result.Data)
 
-	case TypeUpdateChatDefaultDisableNotification:
+	case ConstructorUpdateChatDefaultDisableNotification:
 		return UnmarshalUpdateChatDefaultDisableNotification(result.Data)
 
-	case TypeUpdateChatHasProtectedContent:
+	case ConstructorUpdateChatHasProtectedContent:
 		return UnmarshalUpdateChatHasProtectedContent(result.Data)
 
-	case TypeUpdateChatIsTranslatable:
+	case ConstructorUpdateChatIsTranslatable:
 		return UnmarshalUpdateChatIsTranslatable(result.Data)
 
-	case TypeUpdateChatIsMarkedAsUnread:
+	case ConstructorUpdateChatIsMarkedAsUnread:
 		return UnmarshalUpdateChatIsMarkedAsUnread(result.Data)
 
-	case TypeUpdateChatViewAsTopics:
+	case ConstructorUpdateChatViewAsTopics:
 		return UnmarshalUpdateChatViewAsTopics(result.Data)
 
-	case TypeUpdateChatBlockList:
+	case ConstructorUpdateChatBlockList:
 		return UnmarshalUpdateChatBlockList(result.Data)
 
-	case TypeUpdateChatHasScheduledMessages:
+	case ConstructorUpdateChatHasScheduledMessages:
 		return UnmarshalUpdateChatHasScheduledMessages(result.Data)
 
-	case TypeUpdateChatFolders:
+	case ConstructorUpdateChatFolders:
 		return UnmarshalUpdateChatFolders(result.Data)
 
-	case TypeUpdateChatOnlineMemberCount:
+	case ConstructorUpdateChatOnlineMemberCount:
 		return UnmarshalUpdateChatOnlineMemberCount(result.Data)
 
-	case TypeUpdateSavedMessagesTopic:
+	case ConstructorUpdateSavedMessagesTopic:
 		return UnmarshalUpdateSavedMessagesTopic(result.Data)
 
-	case TypeUpdateSavedMessagesTopicCount:
+	case ConstructorUpdateSavedMessagesTopicCount:
 		return UnmarshalUpdateSavedMessagesTopicCount(result.Data)
 
-	case TypeUpdateQuickReplyShortcut:
+	case ConstructorUpdateQuickReplyShortcut:
 		return UnmarshalUpdateQuickReplyShortcut(result.Data)
 
-	case TypeUpdateQuickReplyShortcutDeleted:
+	case ConstructorUpdateQuickReplyShortcutDeleted:
 		return UnmarshalUpdateQuickReplyShortcutDeleted(result.Data)
 
-	case TypeUpdateQuickReplyShortcuts:
+	case ConstructorUpdateQuickReplyShortcuts:
 		return UnmarshalUpdateQuickReplyShortcuts(result.Data)
 
-	case TypeUpdateQuickReplyShortcutMessages:
+	case ConstructorUpdateQuickReplyShortcutMessages:
 		return UnmarshalUpdateQuickReplyShortcutMessages(result.Data)
 
-	case TypeUpdateForumTopicInfo:
+	case ConstructorUpdateForumTopicInfo:
 		return UnmarshalUpdateForumTopicInfo(result.Data)
 
-	case TypeUpdateScopeNotificationSettings:
+	case ConstructorUpdateScopeNotificationSettings:
 		return UnmarshalUpdateScopeNotificationSettings(result.Data)
 
-	case TypeUpdateReactionNotificationSettings:
+	case ConstructorUpdateReactionNotificationSettings:
 		return UnmarshalUpdateReactionNotificationSettings(result.Data)
 
-	case TypeUpdateNotification:
+	case ConstructorUpdateNotification:
 		return UnmarshalUpdateNotification(result.Data)
 
-	case TypeUpdateNotificationGroup:
+	case ConstructorUpdateNotificationGroup:
 		return UnmarshalUpdateNotificationGroup(result.Data)
 
-	case TypeUpdateActiveNotifications:
+	case ConstructorUpdateActiveNotifications:
 		return UnmarshalUpdateActiveNotifications(result.Data)
 
-	case TypeUpdateHavePendingNotifications:
+	case ConstructorUpdateHavePendingNotifications:
 		return UnmarshalUpdateHavePendingNotifications(result.Data)
 
-	case TypeUpdateDeleteMessages:
+	case ConstructorUpdateDeleteMessages:
 		return UnmarshalUpdateDeleteMessages(result.Data)
 
-	case TypeUpdateChatAction:
+	case ConstructorUpdateChatAction:
 		return UnmarshalUpdateChatAction(result.Data)
 
-	case TypeUpdateUserStatus:
+	case ConstructorUpdateUserStatus:
 		return UnmarshalUpdateUserStatus(result.Data)
 
-	case TypeUpdateUser:
+	case ConstructorUpdateUser:
 		return UnmarshalUpdateUser(result.Data)
 
-	case TypeUpdateBasicGroup:
+	case ConstructorUpdateBasicGroup:
 		return UnmarshalUpdateBasicGroup(result.Data)
 
-	case TypeUpdateSupergroup:
+	case ConstructorUpdateSupergroup:
 		return UnmarshalUpdateSupergroup(result.Data)
 
-	case TypeUpdateSecretChat:
+	case ConstructorUpdateSecretChat:
 		return UnmarshalUpdateSecretChat(result.Data)
 
-	case TypeUpdateUserFullInfo:
+	case ConstructorUpdateUserFullInfo:
 		return UnmarshalUpdateUserFullInfo(result.Data)
 
-	case TypeUpdateBasicGroupFullInfo:
+	case ConstructorUpdateBasicGroupFullInfo:
 		return UnmarshalUpdateBasicGroupFullInfo(result.Data)
 
-	case TypeUpdateSupergroupFullInfo:
+	case ConstructorUpdateSupergroupFullInfo:
 		return UnmarshalUpdateSupergroupFullInfo(result.Data)
 
-	case TypeUpdateServiceNotification:
+	case ConstructorUpdateServiceNotification:
 		return UnmarshalUpdateServiceNotification(result.Data)
 
-	case TypeUpdateFile:
+	case ConstructorUpdateFile:
 		return UnmarshalUpdateFile(result.Data)
 
-	case TypeUpdateFileGenerationStart:
+	case ConstructorUpdateFileGenerationStart:
 		return UnmarshalUpdateFileGenerationStart(result.Data)
 
-	case TypeUpdateFileGenerationStop:
+	case ConstructorUpdateFileGenerationStop:
 		return UnmarshalUpdateFileGenerationStop(result.Data)
 
-	case TypeUpdateFileDownloads:
+	case ConstructorUpdateFileDownloads:
 		return UnmarshalUpdateFileDownloads(result.Data)
 
-	case TypeUpdateFileAddedToDownloads:
+	case ConstructorUpdateFileAddedToDownloads:
 		return UnmarshalUpdateFileAddedToDownloads(result.Data)
 
-	case TypeUpdateFileDownload:
+	case ConstructorUpdateFileDownload:
 		return UnmarshalUpdateFileDownload(result.Data)
 
-	case TypeUpdateFileRemovedFromDownloads:
+	case ConstructorUpdateFileRemovedFromDownloads:
 		return UnmarshalUpdateFileRemovedFromDownloads(result.Data)
 
-	case TypeUpdateApplicationVerificationRequired:
+	case ConstructorUpdateApplicationVerificationRequired:
 		return UnmarshalUpdateApplicationVerificationRequired(result.Data)
 
-	case TypeUpdateCall:
+	case ConstructorUpdateCall:
 		return UnmarshalUpdateCall(result.Data)
 
-	case TypeUpdateGroupCall:
+	case ConstructorUpdateGroupCall:
 		return UnmarshalUpdateGroupCall(result.Data)
 
-	case TypeUpdateGroupCallParticipant:
+	case ConstructorUpdateGroupCallParticipant:
 		return UnmarshalUpdateGroupCallParticipant(result.Data)
 
-	case TypeUpdateNewCallSignalingData:
+	case ConstructorUpdateNewCallSignalingData:
 		return UnmarshalUpdateNewCallSignalingData(result.Data)
 
-	case TypeUpdateUserPrivacySettingRules:
+	case ConstructorUpdateUserPrivacySettingRules:
 		return UnmarshalUpdateUserPrivacySettingRules(result.Data)
 
-	case TypeUpdateUnreadMessageCount:
+	case ConstructorUpdateUnreadMessageCount:
 		return UnmarshalUpdateUnreadMessageCount(result.Data)
 
-	case TypeUpdateUnreadChatCount:
+	case ConstructorUpdateUnreadChatCount:
 		return UnmarshalUpdateUnreadChatCount(result.Data)
 
-	case TypeUpdateStory:
+	case ConstructorUpdateStory:
 		return UnmarshalUpdateStory(result.Data)
 
-	case TypeUpdateStoryDeleted:
+	case ConstructorUpdateStoryDeleted:
 		return UnmarshalUpdateStoryDeleted(result.Data)
 
-	case TypeUpdateStorySendSucceeded:
+	case ConstructorUpdateStorySendSucceeded:
 		return UnmarshalUpdateStorySendSucceeded(result.Data)
 
-	case TypeUpdateStorySendFailed:
+	case ConstructorUpdateStorySendFailed:
 		return UnmarshalUpdateStorySendFailed(result.Data)
 
-	case TypeUpdateChatActiveStories:
+	case ConstructorUpdateChatActiveStories:
 		return UnmarshalUpdateChatActiveStories(result.Data)
 
-	case TypeUpdateStoryListChatCount:
+	case ConstructorUpdateStoryListChatCount:
 		return UnmarshalUpdateStoryListChatCount(result.Data)
 
-	case TypeUpdateStoryStealthMode:
+	case ConstructorUpdateStoryStealthMode:
 		return UnmarshalUpdateStoryStealthMode(result.Data)
 
-	case TypeUpdateOption:
+	case ConstructorUpdateOption:
 		return UnmarshalUpdateOption(result.Data)
 
-	case TypeUpdateStickerSet:
+	case ConstructorUpdateStickerSet:
 		return UnmarshalUpdateStickerSet(result.Data)
 
-	case TypeUpdateInstalledStickerSets:
+	case ConstructorUpdateInstalledStickerSets:
 		return UnmarshalUpdateInstalledStickerSets(result.Data)
 
-	case TypeUpdateTrendingStickerSets:
+	case ConstructorUpdateTrendingStickerSets:
 		return UnmarshalUpdateTrendingStickerSets(result.Data)
 
-	case TypeUpdateRecentStickers:
+	case ConstructorUpdateRecentStickers:
 		return UnmarshalUpdateRecentStickers(result.Data)
 
-	case TypeUpdateFavoriteStickers:
+	case ConstructorUpdateFavoriteStickers:
 		return UnmarshalUpdateFavoriteStickers(result.Data)
 
-	case TypeUpdateSavedAnimations:
+	case ConstructorUpdateSavedAnimations:
 		return UnmarshalUpdateSavedAnimations(result.Data)
 
-	case TypeUpdateSavedNotificationSounds:
+	case ConstructorUpdateSavedNotificationSounds:
 		return UnmarshalUpdateSavedNotificationSounds(result.Data)
 
-	case TypeUpdateDefaultBackground:
+	case ConstructorUpdateDefaultBackground:
 		return UnmarshalUpdateDefaultBackground(result.Data)
 
-	case TypeUpdateChatThemes:
+	case ConstructorUpdateChatThemes:
 		return UnmarshalUpdateChatThemes(result.Data)
 
-	case TypeUpdateAccentColors:
+	case ConstructorUpdateAccentColors:
 		return UnmarshalUpdateAccentColors(result.Data)
 
-	case TypeUpdateProfileAccentColors:
+	case ConstructorUpdateProfileAccentColors:
 		return UnmarshalUpdateProfileAccentColors(result.Data)
 
-	case TypeUpdateLanguagePackStrings:
+	case ConstructorUpdateLanguagePackStrings:
 		return UnmarshalUpdateLanguagePackStrings(result.Data)
 
-	case TypeUpdateConnectionState:
+	case ConstructorUpdateConnectionState:
 		return UnmarshalUpdateConnectionState(result.Data)
 
-	case TypeUpdateTermsOfService:
+	case ConstructorUpdateTermsOfService:
 		return UnmarshalUpdateTermsOfService(result.Data)
 
-	case TypeUpdateUnconfirmedSession:
+	case ConstructorUpdateUnconfirmedSession:
 		return UnmarshalUpdateUnconfirmedSession(result.Data)
 
-	case TypeUpdateAttachmentMenuBots:
+	case ConstructorUpdateAttachmentMenuBots:
 		return UnmarshalUpdateAttachmentMenuBots(result.Data)
 
-	case TypeUpdateWebAppMessageSent:
+	case ConstructorUpdateWebAppMessageSent:
 		return UnmarshalUpdateWebAppMessageSent(result.Data)
 
-	case TypeUpdateActiveEmojiReactions:
+	case ConstructorUpdateActiveEmojiReactions:
 		return UnmarshalUpdateActiveEmojiReactions(result.Data)
 
-	case TypeUpdateAvailableMessageEffects:
+	case ConstructorUpdateAvailableMessageEffects:
 		return UnmarshalUpdateAvailableMessageEffects(result.Data)
 
-	case TypeUpdateDefaultReactionType:
+	case ConstructorUpdateDefaultReactionType:
 		return UnmarshalUpdateDefaultReactionType(result.Data)
 
-	case TypeUpdateSavedMessagesTags:
+	case ConstructorUpdateSavedMessagesTags:
 		return UnmarshalUpdateSavedMessagesTags(result.Data)
 
-	case TypeUpdateActiveLiveLocationMessages:
+	case ConstructorUpdateActiveLiveLocationMessages:
 		return UnmarshalUpdateActiveLiveLocationMessages(result.Data)
 
-	case TypeUpdateOwnedStarCount:
+	case ConstructorUpdateOwnedStarCount:
 		return UnmarshalUpdateOwnedStarCount(result.Data)
 
-	case TypeUpdateChatRevenueAmount:
+	case ConstructorUpdateChatRevenueAmount:
 		return UnmarshalUpdateChatRevenueAmount(result.Data)
 
-	case TypeUpdateStarRevenueStatus:
+	case ConstructorUpdateStarRevenueStatus:
 		return UnmarshalUpdateStarRevenueStatus(result.Data)
 
-	case TypeUpdateSpeechRecognitionTrial:
+	case ConstructorUpdateSpeechRecognitionTrial:
 		return UnmarshalUpdateSpeechRecognitionTrial(result.Data)
 
-	case TypeUpdateDiceEmojis:
+	case ConstructorUpdateDiceEmojis:
 		return UnmarshalUpdateDiceEmojis(result.Data)
 
-	case TypeUpdateAnimatedEmojiMessageClicked:
+	case ConstructorUpdateAnimatedEmojiMessageClicked:
 		return UnmarshalUpdateAnimatedEmojiMessageClicked(result.Data)
 
-	case TypeUpdateAnimationSearchParameters:
+	case ConstructorUpdateAnimationSearchParameters:
 		return UnmarshalUpdateAnimationSearchParameters(result.Data)
 
-	case TypeUpdateSuggestedActions:
+	case ConstructorUpdateSuggestedActions:
 		return UnmarshalUpdateSuggestedActions(result.Data)
 
-	case TypeUpdateSpeedLimitNotification:
+	case ConstructorUpdateSpeedLimitNotification:
 		return UnmarshalUpdateSpeedLimitNotification(result.Data)
 
-	case TypeUpdateContactCloseBirthdays:
+	case ConstructorUpdateContactCloseBirthdays:
 		return UnmarshalUpdateContactCloseBirthdays(result.Data)
 
-	case TypeUpdateAutosaveSettings:
+	case ConstructorUpdateAutosaveSettings:
 		return UnmarshalUpdateAutosaveSettings(result.Data)
 
-	case TypeUpdateBusinessConnection:
+	case ConstructorUpdateBusinessConnection:
 		return UnmarshalUpdateBusinessConnection(result.Data)
 
-	case TypeUpdateNewBusinessMessage:
+	case ConstructorUpdateNewBusinessMessage:
 		return UnmarshalUpdateNewBusinessMessage(result.Data)
 
-	case TypeUpdateBusinessMessageEdited:
+	case ConstructorUpdateBusinessMessageEdited:
 		return UnmarshalUpdateBusinessMessageEdited(result.Data)
 
-	case TypeUpdateBusinessMessagesDeleted:
+	case ConstructorUpdateBusinessMessagesDeleted:
 		return UnmarshalUpdateBusinessMessagesDeleted(result.Data)
 
-	case TypeUpdateNewInlineQuery:
+	case ConstructorUpdateNewInlineQuery:
 		return UnmarshalUpdateNewInlineQuery(result.Data)
 
-	case TypeUpdateNewChosenInlineResult:
+	case ConstructorUpdateNewChosenInlineResult:
 		return UnmarshalUpdateNewChosenInlineResult(result.Data)
 
-	case TypeUpdateNewCallbackQuery:
+	case ConstructorUpdateNewCallbackQuery:
 		return UnmarshalUpdateNewCallbackQuery(result.Data)
 
-	case TypeUpdateNewInlineCallbackQuery:
+	case ConstructorUpdateNewInlineCallbackQuery:
 		return UnmarshalUpdateNewInlineCallbackQuery(result.Data)
 
-	case TypeUpdateNewBusinessCallbackQuery:
+	case ConstructorUpdateNewBusinessCallbackQuery:
 		return UnmarshalUpdateNewBusinessCallbackQuery(result.Data)
 
-	case TypeUpdateNewShippingQuery:
+	case ConstructorUpdateNewShippingQuery:
 		return UnmarshalUpdateNewShippingQuery(result.Data)
 
-	case TypeUpdateNewPreCheckoutQuery:
+	case ConstructorUpdateNewPreCheckoutQuery:
 		return UnmarshalUpdateNewPreCheckoutQuery(result.Data)
 
-	case TypeUpdateNewCustomEvent:
+	case ConstructorUpdateNewCustomEvent:
 		return UnmarshalUpdateNewCustomEvent(result.Data)
 
-	case TypeUpdateNewCustomQuery:
+	case ConstructorUpdateNewCustomQuery:
 		return UnmarshalUpdateNewCustomQuery(result.Data)
 
-	case TypeUpdatePoll:
+	case ConstructorUpdatePoll:
 		return UnmarshalUpdatePoll(result.Data)
 
-	case TypeUpdatePollAnswer:
+	case ConstructorUpdatePollAnswer:
 		return UnmarshalUpdatePollAnswer(result.Data)
 
-	case TypeUpdateChatMember:
+	case ConstructorUpdateChatMember:
 		return UnmarshalUpdateChatMember(result.Data)
 
-	case TypeUpdateNewChatJoinRequest:
+	case ConstructorUpdateNewChatJoinRequest:
 		return UnmarshalUpdateNewChatJoinRequest(result.Data)
 
-	case TypeUpdateChatBoost:
+	case ConstructorUpdateChatBoost:
 		return UnmarshalUpdateChatBoost(result.Data)
 
-	case TypeUpdateMessageReaction:
+	case ConstructorUpdateMessageReaction:
 		return UnmarshalUpdateMessageReaction(result.Data)
 
-	case TypeUpdateMessageReactions:
+	case ConstructorUpdateMessageReactions:
 		return UnmarshalUpdateMessageReactions(result.Data)
 
-	case TypeUpdatePaidMediaPurchased:
+	case ConstructorUpdatePaidMediaPurchased:
 		return UnmarshalUpdatePaidMediaPurchased(result.Data)
 
 	default:

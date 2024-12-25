@@ -1,19 +1,19 @@
 package tlparser
 
 type Schema struct {
-	Types     []*Type     `json:"types"`
-	Classes   []*Class    `json:"classes"`
-	Functions []*Function `json:"functions"`
+	Constructors []*Constructor `json:"constructors"`
+	Types        []*Type        `json:"types"`
+	Functions    []*Function    `json:"functions"`
+}
+
+type Constructor struct {
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Args        []*Arg `json:"args"`
+	ResultType  string `json:"result_type"`
 }
 
 type Type struct {
-	Name        string      `json:"name"`
-	Description string      `json:"description"`
-	Class       string      `json:"class"`
-	Properties  []*Property `json:"properties"`
-}
-
-type Class struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
 }
@@ -30,14 +30,14 @@ const (
 type Function struct {
 	Name          string       `json:"name"`
 	Description   string       `json:"description"`
-	Class         string       `json:"class"`
-	Properties    []*Property  `json:"properties"`
+	Args          []*Arg       `json:"args"`
+	ResultType    string       `json:"result_type"`
 	IsSynchronous bool         `json:"is_synchronous"`
 	Type          FunctionType `json:"type"`
 }
 
-type Property struct {
+type Arg struct {
 	Name        string `json:"name"`
-	Type        string `json:"type"`
 	Description string `json:"description"`
+	Type        string `json:"type"`
 }

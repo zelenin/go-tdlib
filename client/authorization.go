@@ -10,7 +10,7 @@ type notSupportedAuthorizationState struct {
 }
 
 func (err *notSupportedAuthorizationState) Error() string {
-	return fmt.Sprintf("not supported authorization state: %s", err.state.AuthorizationStateType())
+	return fmt.Sprintf("not supported authorization state: %s", err.state.AuthorizationStateConstructor())
 }
 
 func NotSupportedAuthorizationState(state AuthorizationState) error {
@@ -35,11 +35,11 @@ func Authorize(client *Client, authorizationStateHandler AuthorizationStateHandl
 			return err
 		}
 
-		if state.AuthorizationStateType() == TypeAuthorizationStateClosed {
+		if state.AuthorizationStateConstructor() == ConstructorAuthorizationStateClosed {
 			return authorizationError
 		}
 
-		if state.AuthorizationStateType() == TypeAuthorizationStateReady {
+		if state.AuthorizationStateConstructor() == ConstructorAuthorizationStateReady {
 			// dirty hack for db flush after authorization
 			time.Sleep(1 * time.Second)
 			return nil
@@ -74,12 +74,12 @@ func ClientAuthorizer(tdlibParameters *SetTdlibParametersRequest) *clientAuthori
 func (stateHandler *clientAuthorizer) Handle(client *Client, state AuthorizationState) error {
 	stateHandler.State <- state
 
-	switch state.AuthorizationStateType() {
-	case TypeAuthorizationStateWaitTdlibParameters:
+	switch state.AuthorizationStateConstructor() {
+	case ConstructorAuthorizationStateWaitTdlibParameters:
 		_, err := client.SetTdlibParameters(stateHandler.TdlibParameters)
 		return err
 
-	case TypeAuthorizationStateWaitPhoneNumber:
+	case ConstructorAuthorizationStateWaitPhoneNumber:
 		_, err := client.SetAuthenticationPhoneNumber(&SetAuthenticationPhoneNumberRequest{
 			PhoneNumber: <-stateHandler.PhoneNumber,
 			Settings: &PhoneNumberAuthenticationSettings{
@@ -90,40 +90,40 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 		})
 		return err
 
-	case TypeAuthorizationStateWaitEmailAddress:
+	case ConstructorAuthorizationStateWaitEmailAddress:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateWaitEmailCode:
+	case ConstructorAuthorizationStateWaitEmailCode:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateWaitCode:
+	case ConstructorAuthorizationStateWaitCode:
 		_, err := client.CheckAuthenticationCode(&CheckAuthenticationCodeRequest{
 			Code: <-stateHandler.Code,
 		})
 		return err
 
-	case TypeAuthorizationStateWaitOtherDeviceConfirmation:
+	case ConstructorAuthorizationStateWaitOtherDeviceConfirmation:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateWaitRegistration:
+	case ConstructorAuthorizationStateWaitRegistration:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateWaitPassword:
+	case ConstructorAuthorizationStateWaitPassword:
 		_, err := client.CheckAuthenticationPassword(&CheckAuthenticationPasswordRequest{
 			Password: <-stateHandler.Password,
 		})
 		return err
 
-	case TypeAuthorizationStateReady:
+	case ConstructorAuthorizationStateReady:
 		return nil
 
-	case TypeAuthorizationStateLoggingOut:
+	case ConstructorAuthorizationStateLoggingOut:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateClosing:
+	case ConstructorAuthorizationStateClosing:
 		return nil
 
-	case TypeAuthorizationStateClosed:
+	case ConstructorAuthorizationStateClosed:
 		return nil
 	}
 
@@ -145,15 +145,15 @@ func CliInteractor(clientAuthorizer *clientAuthorizer) {
 				return
 			}
 
-			switch state.AuthorizationStateType() {
-			case TypeAuthorizationStateWaitPhoneNumber:
+			switch state.AuthorizationStateConstructor() {
+			case ConstructorAuthorizationStateWaitPhoneNumber:
 				fmt.Println("Enter phone number: ")
 				var phoneNumber string
 				fmt.Scanln(&phoneNumber)
 
 				clientAuthorizer.PhoneNumber <- phoneNumber
 
-			case TypeAuthorizationStateWaitCode:
+			case ConstructorAuthorizationStateWaitCode:
 				var code string
 
 				fmt.Println("Enter code: ")
@@ -161,14 +161,14 @@ func CliInteractor(clientAuthorizer *clientAuthorizer) {
 
 				clientAuthorizer.Code <- code
 
-			case TypeAuthorizationStateWaitPassword:
+			case ConstructorAuthorizationStateWaitPassword:
 				fmt.Println("Enter password: ")
 				var password string
 				fmt.Scanln(&password)
 
 				clientAuthorizer.Password <- password
 
-			case TypeAuthorizationStateReady:
+			case ConstructorAuthorizationStateReady:
 				return
 			}
 		}
@@ -188,45 +188,45 @@ func BotAuthorizer(tdlibParameters *SetTdlibParametersRequest, token string) *bo
 }
 
 func (stateHandler *botAuthorizer) Handle(client *Client, state AuthorizationState) error {
-	switch state.AuthorizationStateType() {
-	case TypeAuthorizationStateWaitTdlibParameters:
+	switch state.AuthorizationStateConstructor() {
+	case ConstructorAuthorizationStateWaitTdlibParameters:
 		_, err := client.SetTdlibParameters(stateHandler.tdlibParameters)
 		return err
 
-	case TypeAuthorizationStateWaitPhoneNumber:
+	case ConstructorAuthorizationStateWaitPhoneNumber:
 		_, err := client.CheckAuthenticationBotToken(&CheckAuthenticationBotTokenRequest{
 			Token: stateHandler.token,
 		})
 		return err
 
-	case TypeAuthorizationStateWaitEmailAddress:
+	case ConstructorAuthorizationStateWaitEmailAddress:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateWaitEmailCode:
+	case ConstructorAuthorizationStateWaitEmailCode:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateWaitCode:
+	case ConstructorAuthorizationStateWaitCode:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateWaitOtherDeviceConfirmation:
+	case ConstructorAuthorizationStateWaitOtherDeviceConfirmation:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateWaitRegistration:
+	case ConstructorAuthorizationStateWaitRegistration:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateWaitPassword:
+	case ConstructorAuthorizationStateWaitPassword:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateReady:
+	case ConstructorAuthorizationStateReady:
 		return nil
 
-	case TypeAuthorizationStateLoggingOut:
+	case ConstructorAuthorizationStateLoggingOut:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateClosing:
+	case ConstructorAuthorizationStateClosing:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateClosed:
+	case ConstructorAuthorizationStateClosed:
 		return NotSupportedAuthorizationState(state)
 	}
 
@@ -253,16 +253,16 @@ func QrAuthorizer(tdlibParameters *SetTdlibParametersRequest, linkHandler func(l
 }
 
 func (stateHandler *qrAuthorizer) Handle(client *Client, state AuthorizationState) error {
-	switch state.AuthorizationStateType() {
-	case TypeAuthorizationStateWaitTdlibParameters:
+	switch state.AuthorizationStateConstructor() {
+	case ConstructorAuthorizationStateWaitTdlibParameters:
 		_, err := client.SetTdlibParameters(stateHandler.TdlibParameters)
 		return err
 
-	case TypeAuthorizationStateWaitPhoneNumber:
+	case ConstructorAuthorizationStateWaitPhoneNumber:
 		_, err := client.RequestQrCodeAuthentication(&RequestQrCodeAuthenticationRequest{})
 		return err
 
-	case TypeAuthorizationStateWaitOtherDeviceConfirmation:
+	case ConstructorAuthorizationStateWaitOtherDeviceConfirmation:
 		link := state.(*AuthorizationStateWaitOtherDeviceConfirmation).Link
 
 		if link == stateHandler.lastLink {
@@ -278,25 +278,25 @@ func (stateHandler *qrAuthorizer) Handle(client *Client, state AuthorizationStat
 
 		return nil
 
-	case TypeAuthorizationStateWaitCode:
+	case ConstructorAuthorizationStateWaitCode:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateWaitPassword:
+	case ConstructorAuthorizationStateWaitPassword:
 		_, err := client.CheckAuthenticationPassword(&CheckAuthenticationPasswordRequest{
 			Password: <-stateHandler.Password,
 		})
 		return err
 
-	case TypeAuthorizationStateReady:
+	case ConstructorAuthorizationStateReady:
 		return nil
 
-	case TypeAuthorizationStateLoggingOut:
+	case ConstructorAuthorizationStateLoggingOut:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateClosing:
+	case ConstructorAuthorizationStateClosing:
 		return NotSupportedAuthorizationState(state)
 
-	case TypeAuthorizationStateClosed:
+	case ConstructorAuthorizationStateClosed:
 		return NotSupportedAuthorizationState(state)
 	}
 

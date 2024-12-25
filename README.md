@@ -167,7 +167,7 @@ listener := tdlibClient.GetListener()
 defer listener.Close()
  
 for update := range listener.Updates {
-    if update.GetClass() == client.ClassUpdate {
+    if update.GetType() == client.TypeUpdate {
         log.Printf("%#v", update)
     }
 }

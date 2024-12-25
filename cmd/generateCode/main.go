@@ -3,13 +3,12 @@ package main
 import (
 	"bufio"
 	"flag"
+	"github.com/zelenin/go-tdlib/internal/codegen"
+	"github.com/zelenin/go-tdlib/internal/tlparser"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
-
-	"github.com/zelenin/go-tdlib/codegen"
-	"github.com/zelenin/go-tdlib/tlparser"
 )
 
 type config struct {
