@@ -1,8 +1,8 @@
 package client
 
 import (
+	"crypto/rand"
 	"fmt"
-	"math/rand"
 )
 
 type ExtraGenerator func() string

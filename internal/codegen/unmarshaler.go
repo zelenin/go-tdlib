@@ -9,7 +9,7 @@ import (
 func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
 	buf := bytes.NewBufferString("")
 
-	buf.WriteString(fmt.Sprintf("%s\n\npackage %s\n\n", header, packageName))
+	buf.WriteString(fmt.Sprintf("%s\npackage %s\n\n", header, packageName))
 
 	buf.WriteString(`import (
     "encoding/json"
@@ -23,13 +23,12 @@ func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
 
 		buf.WriteString(fmt.Sprintf(`func Unmarshal%s(data json.RawMessage) (%s, error) {
     var meta meta
-
     err := json.Unmarshal(data, &meta)
     if err != nil {
         return nil, err
     }
 
-    switch meta.Type {
+    switch meta.MetaType {
 `, tdlibtype.ToGoType(), tdlibtype.ToGoType()))
 
 		for _, constructor := range tdlibtype.GetConstructors() {
@@ -41,15 +40,14 @@ func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
 		}
 
 		buf.WriteString(`    default:
-        return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.Type)
+        return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.MetaType)
     }
 }
 
 `)
 
 		buf.WriteString(fmt.Sprintf(`func UnmarshalListOf%s(dataList []json.RawMessage) ([]%s, error) {
-    list := []%s{}
-
+    list := make([]%s, 0, len(dataList))
     for _, data := range dataList {
         entity, err := Unmarshal%s(data)
         if err != nil {
@@ -74,9 +72,7 @@ func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
 
 		buf.WriteString(fmt.Sprintf(`func Unmarshal%s(data json.RawMessage) (*%s, error) {
     var resp %s
-
     err := json.Unmarshal(data, &resp)
-
     return &resp, err
 }
 
@@ -86,13 +82,12 @@ func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
 
 	buf.WriteString(`func UnmarshalType(data json.RawMessage) (Type, error) {
     var meta meta
-
     err := json.Unmarshal(data, &meta)
     if err != nil {
         return nil, err
     }
 
-    switch meta.Type {
+    switch meta.MetaType {
 `)
 
 	for _, constructor := range schema.Constructors {
@@ -110,7 +105,7 @@ func GenerateUnmarshalers(schema *tlparser.Schema, packageName string) []byte {
 	}
 
 	buf.WriteString(`    default:
-        return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.Type)
+        return nil, fmt.Errorf("Error unmarshaling. Unknown type: " +  meta.MetaType)
     }
 }
 `)

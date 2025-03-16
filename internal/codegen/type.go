@@ -9,7 +9,7 @@ import (
 func GenerateTypes(schema *tlparser.Schema, packageName string) []byte {
 	buf := bytes.NewBufferString("")
 
-	buf.WriteString(fmt.Sprintf("%s\n\npackage %s\n\n", header, packageName))
+	buf.WriteString(fmt.Sprintf("%s\npackage %s\n\n", header, packageName))
 
 	buf.WriteString(`import (
     "encoding/json"
@@ -84,16 +84,6 @@ type %s interface {
 `)
 		}
 
-		buf.WriteString(fmt.Sprintf(`func (entity *%s) MarshalJSON() ([]byte, error) {
-    entity.meta.Type = entity.GetConstructor()
-
-    type stub %s
-
-    return json.Marshal((*stub)(entity))
-}
-
-`, tdlibConstructor.ToGoType(), tdlibConstructor.ToGoType()))
-
 		buf.WriteString(fmt.Sprintf(`func (*%s) GetType() string {
     return %s
 }
@@ -113,6 +103,16 @@ func (*%s) GetConstructor() string {
 
 `, tdlibConstructor.ToGoType(), tdlibType.ToGoType(), tdlibConstructor.ToConstructorConst()))
 		}
+
+		buf.WriteString(fmt.Sprintf(`func (entity *%s) MarshalJSON() ([]byte, error) {
+    entity.meta.MetaType = entity.GetConstructor()
+
+    type stub %s
+
+    return json.Marshal((*stub)(entity))
+}
+
+`, tdlibConstructor.ToGoType(), tdlibConstructor.ToGoType()))
 
 		if tdlibConstructor.HasTypeArgs() {
 			buf.WriteString(fmt.Sprintf(`func (%s *%s) UnmarshalJSON(data []byte) error {

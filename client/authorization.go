@@ -1,6 +1,7 @@
 package client
 
 import (
+	"context"
 	"fmt"
 	"time"
 )
@@ -30,7 +31,7 @@ func Authorize(client *Client, authorizationStateHandler AuthorizationStateHandl
 	var authorizationError error
 
 	for {
-		state, err := client.GetAuthorizationState()
+		state, err := client.GetAuthorizationState(context.Background())
 		if err != nil {
 			return err
 		}
@@ -48,7 +49,7 @@ func Authorize(client *Client, authorizationStateHandler AuthorizationStateHandl
 		err = authorizationStateHandler.Handle(client, state)
 		if err != nil {
 			authorizationError = err
-			client.Close()
+			client.Close(context.Background())
 		}
 	}
 }
@@ -76,11 +77,11 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 
 	switch state.AuthorizationStateConstructor() {
 	case ConstructorAuthorizationStateWaitTdlibParameters:
-		_, err := client.SetTdlibParameters(stateHandler.TdlibParameters)
+		_, err := client.SetTdlibParameters(context.Background(), stateHandler.TdlibParameters)
 		return err
 
 	case ConstructorAuthorizationStateWaitPhoneNumber:
-		_, err := client.SetAuthenticationPhoneNumber(&SetAuthenticationPhoneNumberRequest{
+		_, err := client.SetAuthenticationPhoneNumber(context.Background(), &SetAuthenticationPhoneNumberRequest{
 			PhoneNumber: <-stateHandler.PhoneNumber,
 			Settings: &PhoneNumberAuthenticationSettings{
 				AllowFlashCall:       false,
@@ -97,7 +98,7 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 		return NotSupportedAuthorizationState(state)
 
 	case ConstructorAuthorizationStateWaitCode:
-		_, err := client.CheckAuthenticationCode(&CheckAuthenticationCodeRequest{
+		_, err := client.CheckAuthenticationCode(context.Background(), &CheckAuthenticationCodeRequest{
 			Code: <-stateHandler.Code,
 		})
 		return err
@@ -109,7 +110,7 @@ func (stateHandler *clientAuthorizer) Handle(client *Client, state Authorization
 		return NotSupportedAuthorizationState(state)
 
 	case ConstructorAuthorizationStateWaitPassword:
-		_, err := client.CheckAuthenticationPassword(&CheckAuthenticationPasswordRequest{
+		_, err := client.CheckAuthenticationPassword(context.Background(), &CheckAuthenticationPasswordRequest{
 			Password: <-stateHandler.Password,
 		})
 		return err
@@ -190,11 +191,11 @@ func BotAuthorizer(tdlibParameters *SetTdlibParametersRequest, token string) *bo
 func (stateHandler *botAuthorizer) Handle(client *Client, state AuthorizationState) error {
 	switch state.AuthorizationStateConstructor() {
 	case ConstructorAuthorizationStateWaitTdlibParameters:
-		_, err := client.SetTdlibParameters(stateHandler.tdlibParameters)
+		_, err := client.SetTdlibParameters(context.Background(), stateHandler.tdlibParameters)
 		return err
 
 	case ConstructorAuthorizationStateWaitPhoneNumber:
-		_, err := client.CheckAuthenticationBotToken(&CheckAuthenticationBotTokenRequest{
+		_, err := client.CheckAuthenticationBotToken(context.Background(), &CheckAuthenticationBotTokenRequest{
 			Token: stateHandler.token,
 		})
 		return err
@@ -255,11 +256,11 @@ func QrAuthorizer(tdlibParameters *SetTdlibParametersRequest, linkHandler func(l
 func (stateHandler *qrAuthorizer) Handle(client *Client, state AuthorizationState) error {
 	switch state.AuthorizationStateConstructor() {
 	case ConstructorAuthorizationStateWaitTdlibParameters:
-		_, err := client.SetTdlibParameters(stateHandler.TdlibParameters)
+		_, err := client.SetTdlibParameters(context.Background(), stateHandler.TdlibParameters)
 		return err
 
 	case ConstructorAuthorizationStateWaitPhoneNumber:
-		_, err := client.RequestQrCodeAuthentication(&RequestQrCodeAuthenticationRequest{})
+		_, err := client.RequestQrCodeAuthentication(context.Background(), &RequestQrCodeAuthenticationRequest{})
 		return err
 
 	case ConstructorAuthorizationStateWaitOtherDeviceConfirmation:
@@ -282,7 +283,7 @@ func (stateHandler *qrAuthorizer) Handle(client *Client, state AuthorizationStat
 		return NotSupportedAuthorizationState(state)
 
 	case ConstructorAuthorizationStateWaitPassword:
-		_, err := client.CheckAuthenticationPassword(&CheckAuthenticationPasswordRequest{
+		_, err := client.CheckAuthenticationPassword(context.Background(), &CheckAuthenticationPasswordRequest{
 			Password: <-stateHandler.Password,
 		})
 		return err

@@ -15,5 +15,6 @@ generate-code:
 		-package client \
 		-functionFile function_generated.go \
 		-typeFile type_generated.go \
-		-unmarshalerFile unmarshaler_generated.go
+		-unmarshalerFile unmarshaler_generated.go \
+		-versionFile version_generated.go
 	go fmt ./...

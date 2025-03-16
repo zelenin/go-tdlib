@@ -3,6 +3,14 @@ package client
 /*
 #include <stdlib.h>
 #include <td/telegram/td_json_client.h>
+
+typedef void (*td_log_message_callback_ptr)(int, const char*);
+
+extern void goLogMessageCallback(int verbosityLevel,  char* message);
+
+static inline void setLogMessageCallback(int maxVerbosityLevel, td_log_message_callback_ptr callback) {
+    td_set_log_message_callback(maxVerbosityLevel, callback);
+}
 */
 import "C"
 
@@ -13,7 +21,6 @@ import (
 	"log"
 	"strconv"
 	"sync"
-	"time"
 	"unsafe"
 )
 
@@ -21,14 +28,14 @@ var tdlibInstance *tdlib
 
 func init() {
 	tdlibInstance = &tdlib{
-		timeout: 60 * time.Second,
+		timeout: 30,
 		clients: map[int]*Client{},
 	}
 }
 
 type tdlib struct {
 	once    sync.Once
-	timeout time.Duration
+	timeout float64 // seconds
 	mu      sync.Mutex
 	clients map[int]*Client
 }
@@ -63,7 +70,7 @@ func (instance *tdlib) receiver() {
 			continue
 		}
 
-		client, err := instance.getClient(resp.ClientId)
+		client, err := instance.getClient(resp.MetaClientId)
 		if err != nil {
 			log.Print(err)
 			continue
@@ -77,8 +84,8 @@ func (instance *tdlib) receiver() {
 // shouldn't be called simultaneously from two different threads.
 // Returned pointer will be deallocated by TDLib during next call to td_json_client_receive or td_json_client_execute
 // in the same thread, so it can't be used after that.
-func (instance *tdlib) receive(timeout time.Duration) (*Response, error) {
-	result := C.td_receive(C.double(float64(timeout) / float64(time.Second)))
+func (instance *tdlib) receive(timeout float64) (*Response, error) {
+	result := C.td_receive(C.double(timeout))
 	if result == nil {
 		return nil, errors.New("update receiving timeout")
 	}
@@ -86,7 +93,6 @@ func (instance *tdlib) receive(timeout time.Duration) (*Response, error) {
 	data := []byte(C.GoString(result))
 
 	var resp Response
-
 	err := json.Unmarshal(data, &resp)
 	if err != nil {
 		return nil, err
@@ -98,7 +104,12 @@ func (instance *tdlib) receive(timeout time.Duration) (*Response, error) {
 }
 
 func Execute(req Request) (*Response, error) {
-	data, _ := json.Marshal(req)
+	req.SetType(req.GetFunctionName())
+
+	data, err := json.Marshal(req)
+	if err != nil {
+		return nil, err
+	}
 
 	query := C.CString(string(data))
 	defer C.free(unsafe.Pointer(query))
@@ -110,8 +121,7 @@ func Execute(req Request) (*Response, error) {
 	data = []byte(C.GoString(result))
 
 	var resp Response
-
-	err := json.Unmarshal(data, &resp)
+	err = json.Unmarshal(data, &resp)
 	if err != nil {
 		return nil, err
 	}
@@ -132,13 +142,18 @@ func NewJsonClient() *JsonClient {
 }
 
 // Sends request to the TDLib client. May be called from any thread.
-func (jsonClient *JsonClient) Send(req Request) {
-	data, _ := json.Marshal(req)
+func (jsonClient *JsonClient) Send(req Request) error {
+	data, err := json.Marshal(req)
+	if err != nil {
+		return err
+	}
 
 	query := C.CString(string(data))
 	defer C.free(unsafe.Pointer(query))
 
 	C.td_send(C.int(jsonClient.id), query)
+
+	return nil
 }
 
 // Synchronously executes TDLib request. May be called from any thread.
@@ -150,21 +165,42 @@ func (jsonClient *JsonClient) Execute(req Request) (*Response, error) {
 }
 
 type meta struct {
-	Type     string `json:"@type"`
-	Extra    string `json:"@extra"`
-	ClientId int    `json:"@client_id"`
+	MetaType     string `json:"@type"`
+	MetaExtra    string `json:"@extra"`
+	MetaClientId int    `json:"@client_id"`
 }
 
-type Request struct {
-	meta
-	Data map[string]interface{}
+type reqMeta struct {
+	MetaType  string `json:"@type"`
+	MetaExtra string `json:"@extra"`
 }
 
-func (req Request) MarshalJSON() ([]byte, error) {
-	req.Data["@type"] = req.Type
-	req.Data["@extra"] = req.Extra
+type Request interface {
+	GetFunctionName() string
+	SetExtra(extra string)
+	GetExtra() string
+	SetType(typ string)
+	GetType() string
+}
 
-	return json.Marshal(req.Data)
+type request struct {
+	reqMeta
+}
+
+func (req *request) SetExtra(extra string) {
+	req.MetaExtra = extra
+}
+
+func (req *request) GetExtra() string {
+	return req.MetaExtra
+}
+
+func (req *request) SetType(typ string) {
+	req.MetaType = typ
+}
+
+func (req *request) GetType() string {
+	return req.MetaType
 }
 
 type Response struct {
@@ -218,4 +254,28 @@ func (jsonInt64 *JsonInt64) UnmarshalJSON(data []byte) error {
 type Type interface {
 	GetConstructor() string
 	GetType() string
+}
+
+var (
+	logCallback func(int, string)
+)
+
+//export goLogMessageCallback
+func goLogMessageCallback(verbosityLevel C.int, message *C.char) {
+	if logCallback != nil {
+		logCallback(int(verbosityLevel), C.GoString(message))
+	}
+}
+
+// Sets the callback that will be called when a message is added to the internal TDLib log.
+// None of the TDLib methods can be called from the callback.
+// By default the callback is not set.
+func SetLogMessageCallback(maxVerbosityLevel int, callback func(verbosityLevel int, message string)) {
+	if callback == nil {
+		logCallback = nil
+		C.setLogMessageCallback(C.int(maxVerbosityLevel), nil)
+	} else {
+		logCallback = callback
+		C.setLogMessageCallback(C.int(maxVerbosityLevel), (C.td_log_message_callback_ptr)(C.goLogMessageCallback))
+	}
 }
