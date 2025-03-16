@@ -14,7 +14,7 @@ func (req GetAuthorizationStateRequest) GetFunctionName() string {
 	return "getAuthorizationState"
 }
 
-// Returns the current authorization state; this is an offline request. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
+// Returns the current authorization state. This is an offline method. For informational purposes only. Use updateAuthorizationState instead to maintain the current authorization state. Can be called before initialization
 func (client *Client) GetAuthorizationState(ctx context.Context) (AuthorizationState, error) {
 	req := &GetAuthorizationStateRequest{}
 	result, err := client.Send(ctx, req)
@@ -1087,7 +1087,7 @@ func (req GetUserRequest) GetFunctionName() string {
 	return "getUser"
 }
 
-// Returns information about a user by their identifier. This is an offline request if the current user is not a bot
+// Returns information about a user by their identifier. This is an offline method if the current user is not a bot
 func (client *Client) GetUser(ctx context.Context, req *GetUserRequest) (*User, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -1135,7 +1135,7 @@ func (req GetBasicGroupRequest) GetFunctionName() string {
 	return "getBasicGroup"
 }
 
-// Returns information about a basic group by its identifier. This is an offline request if the current user is not a bot
+// Returns information about a basic group by its identifier. This is an offline method if the current user is not a bot
 func (client *Client) GetBasicGroup(ctx context.Context, req *GetBasicGroupRequest) (*BasicGroup, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -1183,7 +1183,7 @@ func (req GetSupergroupRequest) GetFunctionName() string {
 	return "getSupergroup"
 }
 
-// Returns information about a supergroup or a channel by its identifier. This is an offline request if the current user is not a bot
+// Returns information about a supergroup or a channel by its identifier. This is an offline method if the current user is not a bot
 func (client *Client) GetSupergroup(ctx context.Context, req *GetSupergroupRequest) (*Supergroup, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -1231,7 +1231,7 @@ func (req GetSecretChatRequest) GetFunctionName() string {
 	return "getSecretChat"
 }
 
-// Returns information about a secret chat by its identifier. This is an offline request
+// Returns information about a secret chat by its identifier. This is an offline method
 func (client *Client) GetSecretChat(ctx context.Context, req *GetSecretChatRequest) (*SecretChat, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -1255,7 +1255,7 @@ func (req GetChatRequest) GetFunctionName() string {
 	return "getChat"
 }
 
-// Returns information about a chat by its identifier; this is an offline request if the current user is not a bot
+// Returns information about a chat by its identifier. This is an offline method if the current user is not a bot
 func (client *Client) GetChat(ctx context.Context, req *GetChatRequest) (*Chat, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -1307,7 +1307,7 @@ func (req GetMessageLocallyRequest) GetFunctionName() string {
 	return "getMessageLocally"
 }
 
-// Returns information about a message, if it is available without sending network request. Returns a 404 error if message isn't available locally. This is an offline request
+// Returns information about a message, if it is available without sending network request. Returns a 404 error if message isn't available locally. This is an offline method
 func (client *Client) GetMessageLocally(ctx context.Context, req *GetMessageLocallyRequest) (*Message, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -1437,7 +1437,7 @@ func (req GetMessagePropertiesRequest) GetFunctionName() string {
 	return "getMessageProperties"
 }
 
-// Returns properties of a message; this is an offline request
+// Returns properties of a message. This is an offline method
 func (client *Client) GetMessageProperties(ctx context.Context, req *GetMessagePropertiesRequest) (*MessageProperties, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -1557,7 +1557,7 @@ func (req GetFileRequest) GetFunctionName() string {
 	return "getFile"
 }
 
-// Returns information about a file; this is an offline request
+// Returns information about a file. This is an offline method
 func (client *Client) GetFile(ctx context.Context, req *GetFileRequest) (*File, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -1583,7 +1583,7 @@ func (req GetRemoteFileRequest) GetFunctionName() string {
 	return "getRemoteFile"
 }
 
-// Returns information about a file by its remote identifier; this is an offline request. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
+// Returns information about a file by its remote identifier. This is an offline method. Can be used to register a URL as a file for further uploading, or sending as a message. Even the request succeeds, the file can be used only if it is still accessible to the user. For example, if the file is from a message, then the message must be not deleted and accessible to the user. If the file database is disabled, then the corresponding object with the file must be preloaded by the application
 func (client *Client) GetRemoteFile(ctx context.Context, req *GetRemoteFileRequest) (*File, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -1709,7 +1709,7 @@ func (req SearchChatsRequest) GetFunctionName() string {
 	return "searchChats"
 }
 
-// Searches for the specified query in the title and username of already known chats; this is an offline request. Returns chats in the order seen in the main chat list
+// Searches for the specified query in the title and username of already known chats. This is an offline method. Returns chats in the order seen in the main chat list
 func (client *Client) SearchChats(ctx context.Context, req *SearchChatsRequest) (*Chats, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -1848,6 +1848,82 @@ func (client *Client) OpenChatSimilarChat(ctx context.Context, req *OpenChatSimi
 	return UnmarshalOk(result.Data)
 }
 
+type GetBotSimilarBotsRequest struct {
+	request
+	// User identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (req GetBotSimilarBotsRequest) GetFunctionName() string {
+	return "getBotSimilarBots"
+}
+
+// Returns a list of bots similar to the given bot
+func (client *Client) GetBotSimilarBots(ctx context.Context, req *GetBotSimilarBotsRequest) (*Users, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalUsers(result.Data)
+}
+
+type GetBotSimilarBotCountRequest struct {
+	request
+	// User identifier of the target bot
+	BotUserId int64 `json:"bot_user_id"`
+	// Pass true to get the number of bots without sending network requests, or -1 if the number of bots is unknown locally
+	ReturnLocal bool `json:"return_local"`
+}
+
+func (req GetBotSimilarBotCountRequest) GetFunctionName() string {
+	return "getBotSimilarBotCount"
+}
+
+// Returns approximate number of bots similar to the given bot
+func (client *Client) GetBotSimilarBotCount(ctx context.Context, req *GetBotSimilarBotCountRequest) (*Count, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalCount(result.Data)
+}
+
+type OpenBotSimilarBotRequest struct {
+	request
+	// Identifier of the original bot, which similar bots were requested
+	BotUserId int64 `json:"bot_user_id"`
+	// Identifier of the opened bot
+	OpenedBotUserId int64 `json:"opened_bot_user_id"`
+}
+
+func (req OpenBotSimilarBotRequest) GetFunctionName() string {
+	return "openBotSimilarBot"
+}
+
+// Informs TDLib that a bot was opened from the list of similar bots
+func (client *Client) OpenBotSimilarBot(ctx context.Context, req *OpenBotSimilarBotRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
 type GetTopChatsRequest struct {
 	request
 	// Category of chats to be returned
@@ -1912,7 +1988,7 @@ func (req SearchRecentlyFoundChatsRequest) GetFunctionName() string {
 	return "searchRecentlyFoundChats"
 }
 
-// Searches for the specified query in the title and username of up to 50 recently found chats; this is an offline request
+// Searches for the specified query in the title and username of up to 50 recently found chats. This is an offline method
 func (client *Client) SearchRecentlyFoundChats(ctx context.Context, req *SearchRecentlyFoundChatsRequest) (*Chats, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -2007,7 +2083,7 @@ func (req GetRecentlyOpenedChatsRequest) GetFunctionName() string {
 	return "getRecentlyOpenedChats"
 }
 
-// Returns recently opened chats; this is an offline request. Returns chats in the order of last opening
+// Returns recently opened chats. This is an offline method. Returns chats in the order of last opening
 func (client *Client) GetRecentlyOpenedChats(ctx context.Context, req *GetRecentlyOpenedChatsRequest) (*Chats, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -2413,7 +2489,7 @@ func (req GetChatHistoryRequest) GetFunctionName() string {
 	return "getChatHistory"
 }
 
-// Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline request if only_local is true
+// Returns messages in a chat. The messages are returned in reverse chronological order (i.e., in order of decreasing message_id). For optimal performance, the number of returned messages is chosen by TDLib. This is an offline method if only_local is true
 func (client *Client) GetChatHistory(ctx context.Context, req *GetChatHistoryRequest) (*Messages, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -2555,8 +2631,6 @@ type SearchMessagesRequest struct {
 	request
 	// Chat list in which to search messages; pass null to search in all chats regardless of their chat list. Only Main and Archive chat lists are supported
 	ChatList ChatList `json:"chat_list"`
-	// Pass true to search only for messages in channels
-	OnlyInChannels bool `json:"only_in_channels"`
 	// Query to search for
 	Query string `json:"query"`
 	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
@@ -2565,6 +2639,8 @@ type SearchMessagesRequest struct {
 	Limit int32 `json:"limit"`
 	// Additional filter for messages to search; pass null to search for all messages. Filters searchMessagesFilterMention, searchMessagesFilterUnreadMention, searchMessagesFilterUnreadReaction, searchMessagesFilterFailedToSend, and searchMessagesFilterPinned are unsupported in this function
 	Filter SearchMessagesFilter `json:"filter"`
+	// Additional filter for type of the chat of the searched messages; pass null to search for messages in all chats
+	ChatTypeFilter SearchMessagesChatTypeFilter `json:"chat_type_filter"`
 	// If not 0, the minimum date of the messages to return
 	MinDate int32 `json:"min_date"`
 	// If not 0, the maximum date of the messages to return
@@ -3293,7 +3369,7 @@ func (req GetMessageLinkRequest) GetFunctionName() string {
 	return "getMessageLink"
 }
 
-// Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline request
+// Returns an HTTPS link to a message in a chat. Available only if messageProperties.can_get_link, or if messageProperties.can_get_media_timestamp_links and a media timestamp link is generated. This is an offline method
 func (client *Client) GetMessageLink(ctx context.Context, req *GetMessageLinkRequest) (*MessageLink, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -3697,7 +3773,7 @@ func (req SendQuickReplyShortcutMessagesRequest) GetFunctionName() string {
 	return "sendQuickReplyShortcutMessages"
 }
 
-// Sends messages from a quick reply shortcut. Requires Telegram Business subscription
+// Sends messages from a quick reply shortcut. Requires Telegram Business subscription. Can't be used to send paid messages
 func (client *Client) SendQuickReplyShortcutMessages(ctx context.Context, req *SendQuickReplyShortcutMessagesRequest) (*Messages, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -3719,6 +3795,8 @@ type ResendMessagesRequest struct {
 	MessageIds []int64 `json:"message_ids"`
 	// New manually chosen quote from the message to be replied; pass null if none. Ignored if more than one message is re-sent, or if messageSendingStateFailed.need_another_reply_quote == false
 	Quote *InputTextQuote `json:"quote"`
+	// The number of Telegram Stars the user agreed to pay to send the messages. Ignored if messageSendingStateFailed.required_paid_message_star_count == 0
+	PaidMessageStarCount int64 `json:"paid_message_star_count"`
 }
 
 func (req ResendMessagesRequest) GetFunctionName() string {
@@ -3811,7 +3889,7 @@ func (req DeleteChatMessagesBySenderRequest) GetFunctionName() string {
 	return "deleteChatMessagesBySender"
 }
 
-// Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator privileges
+// Deletes all messages sent by the specified message sender in a chat. Supported only for supergroups; requires can_delete_messages administrator right
 func (client *Client) DeleteChatMessagesBySender(ctx context.Context, req *DeleteChatMessagesBySenderRequest) (*Ok, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -4953,7 +5031,7 @@ func (req GetForumTopicLinkRequest) GetFunctionName() string {
 	return "getForumTopicLink"
 }
 
-// Returns an HTTPS link to a topic in a forum chat. This is an offline request
+// Returns an HTTPS link to a topic in a forum chat. This is an offline method
 func (client *Client) GetForumTopicLink(ctx context.Context, req *GetForumTopicLinkRequest) (*MessageLink, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -5321,6 +5399,30 @@ func (client *Client) RemoveMessageReaction(ctx context.Context, req *RemoveMess
 	return UnmarshalOk(result.Data)
 }
 
+type GetChatAvailablePaidMessageReactionSendersRequest struct {
+	request
+	// Chat identifier
+	ChatId int64 `json:"chat_id"`
+}
+
+func (req GetChatAvailablePaidMessageReactionSendersRequest) GetFunctionName() string {
+	return "getChatAvailablePaidMessageReactionSenders"
+}
+
+// Returns the list of message sender identifiers, which can be used to send a paid reaction in a chat
+func (client *Client) GetChatAvailablePaidMessageReactionSenders(ctx context.Context, req *GetChatAvailablePaidMessageReactionSendersRequest) (*MessageSenders, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalMessageSenders(result.Data)
+}
+
 type AddPendingPaidMessageReactionRequest struct {
 	request
 	// Identifier of the chat to which the message belongs
@@ -5329,10 +5431,8 @@ type AddPendingPaidMessageReactionRequest struct {
 	MessageId int64 `json:"message_id"`
 	// Number of Telegram Stars to be used for the reaction. The total number of pending paid reactions must not exceed getOption("paid_reaction_star_count_max")
 	StarCount int64 `json:"star_count"`
-	// Pass true if the user didn't choose anonymity explicitly, for example, the reaction is set from the message bubble
-	UseDefaultIsAnonymous bool `json:"use_default_is_anonymous"`
-	// Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors. Ignored if use_default_is_anonymous == true
-	IsAnonymous bool `json:"is_anonymous"`
+	// Type of the paid reaction; pass null if the user didn't choose reaction type explicitly, for example, the reaction is set from the message bubble
+	Type PaidReactionType `json:"type"`
 }
 
 func (req AddPendingPaidMessageReactionRequest) GetFunctionName() string {
@@ -5405,22 +5505,22 @@ func (client *Client) RemovePendingPaidMessageReactions(ctx context.Context, req
 	return UnmarshalOk(result.Data)
 }
 
-type TogglePaidMessageReactionIsAnonymousRequest struct {
+type SetPaidMessageReactionTypeRequest struct {
 	request
 	// Identifier of the chat to which the message belongs
 	ChatId int64 `json:"chat_id"`
 	// Identifier of the message
 	MessageId int64 `json:"message_id"`
-	// Pass true to make paid reaction of the user on the message anonymous; pass false to make the user's profile visible among top reactors
-	IsAnonymous bool `json:"is_anonymous"`
+	// New type of the paid reaction
+	Type PaidReactionType `json:"type"`
 }
 
-func (req TogglePaidMessageReactionIsAnonymousRequest) GetFunctionName() string {
-	return "togglePaidMessageReactionIsAnonymous"
+func (req SetPaidMessageReactionTypeRequest) GetFunctionName() string {
+	return "setPaidMessageReactionType"
 }
 
-// Changes whether the paid message reaction of the user to a message is anonymous. The message must have paid reaction added by the user
-func (client *Client) TogglePaidMessageReactionIsAnonymous(ctx context.Context, req *TogglePaidMessageReactionIsAnonymousRequest) (*Ok, error) {
+// Changes type of paid message reaction of the current user on a message. The message must have paid reaction added by the current user
+func (client *Client) SetPaidMessageReactionType(ctx context.Context, req *SetPaidMessageReactionTypeRequest) (*Ok, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
 		return nil, err
@@ -6424,7 +6524,7 @@ func (req GetPreparedInlineMessageRequest) GetFunctionName() string {
 	return "getPreparedInlineMessage"
 }
 
-// Saves an inline message to be sent by the given user; for bots only
+// Saves an inline message to be sent by the given user
 func (client *Client) GetPreparedInlineMessage(ctx context.Context, req *GetPreparedInlineMessageRequest) (*PreparedInlineMessage, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -6500,7 +6600,7 @@ func (req GetWebAppPlaceholderRequest) GetFunctionName() string {
 	return "getWebAppPlaceholder"
 }
 
-// Returns a default placeholder for Web Apps of a bot; this is an offline request. Returns a 404 error if the placeholder isn't known
+// Returns a default placeholder for Web Apps of a bot. This is an offline method. Returns a 404 error if the placeholder isn't known
 func (client *Client) GetWebAppPlaceholder(ctx context.Context, req *GetWebAppPlaceholderRequest) (*Outline, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -6552,7 +6652,7 @@ type GetMainWebAppRequest struct {
 	request
 	// Identifier of the chat in which the Web App is opened; pass 0 if none
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the target bot
+	// Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
 	BotUserId int64 `json:"bot_user_id"`
 	// Start parameter from internalLinkTypeMainWebApp
 	StartParameter string `json:"start_parameter"`
@@ -6580,7 +6680,7 @@ func (client *Client) GetMainWebApp(ctx context.Context, req *GetMainWebAppReque
 
 type GetWebAppUrlRequest struct {
 	request
-	// Identifier of the target bot
+	// Identifier of the target bot. If the bot is restricted for the current user, then show an error instead of calling the method
 	BotUserId int64 `json:"bot_user_id"`
 	// The URL from a keyboardButtonTypeWebApp button, inlineQueryResultsButtonTypeWebApp button, or an empty string when the bot is opened from the side menu
 	Url string `json:"url"`
@@ -6638,7 +6738,7 @@ type OpenWebAppRequest struct {
 	request
 	// Identifier of the chat in which the Web App is opened. The Web App can't be opened in secret chats
 	ChatId int64 `json:"chat_id"`
-	// Identifier of the bot, providing the Web App
+	// Identifier of the bot, providing the Web App. If the bot is restricted for the current user, then show an error instead of calling the method
 	BotUserId int64 `json:"bot_user_id"`
 	// The URL from an inlineKeyboardButtonTypeWebApp button, a botMenuButton button, an internalLinkTypeAttachmentMenuBot link, or an empty string otherwise
 	Url string `json:"url"`
@@ -7244,6 +7344,9 @@ func (client *Client) GetInternalLinkType(ctx context.Context, req *GetInternalL
 	case ConstructorInternalLinkTypeChangePhoneNumber:
 		return UnmarshalInternalLinkTypeChangePhoneNumber(result.Data)
 
+	case ConstructorInternalLinkTypeChatAffiliateProgram:
+		return UnmarshalInternalLinkTypeChatAffiliateProgram(result.Data)
+
 	case ConstructorInternalLinkTypeChatBoost:
 		return UnmarshalInternalLinkTypeChatBoost(result.Data)
 
@@ -7336,6 +7439,9 @@ func (client *Client) GetInternalLinkType(ctx context.Context, req *GetInternalL
 
 	case ConstructorInternalLinkTypeUnsupportedProxy:
 		return UnmarshalInternalLinkTypeUnsupportedProxy(result.Data)
+
+	case ConstructorInternalLinkTypeUpgradedGift:
+		return UnmarshalInternalLinkTypeUpgradedGift(result.Data)
 
 	case ConstructorInternalLinkTypeUserPhoneNumber:
 		return UnmarshalInternalLinkTypeUserPhoneNumber(result.Data)
@@ -7737,7 +7843,7 @@ func (req GetChatListsToAddChatRequest) GetFunctionName() string {
 	return "getChatListsToAddChat"
 }
 
-// Returns chat lists to which the chat can be added. This is an offline request
+// Returns chat lists to which the chat can be added. This is an offline method
 func (client *Client) GetChatListsToAddChat(ctx context.Context, req *GetChatListsToAddChatRequest) (*ChatLists, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -9873,7 +9979,7 @@ type SetStoryPrivacySettingsRequest struct {
 	request
 	// Identifier of the story
 	StoryId int32 `json:"story_id"`
-	// The new privacy settigs for the story
+	// The new privacy settings for the story
 	PrivacySettings StoryPrivacySettings `json:"privacy_settings"`
 }
 
@@ -10411,7 +10517,7 @@ func (req GetChatBoostLevelFeaturesRequest) GetFunctionName() string {
 	return "getChatBoostLevelFeatures"
 }
 
-// Returns the list of features available on the specific chat boost level; this is an offline request
+// Returns the list of features available on the specific chat boost level. This is an offline method
 func (client *Client) GetChatBoostLevelFeatures(ctx context.Context, req *GetChatBoostLevelFeaturesRequest) (*ChatBoostLevelFeatures, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -10435,7 +10541,7 @@ func (req GetChatBoostFeaturesRequest) GetFunctionName() string {
 	return "getChatBoostFeatures"
 }
 
-// Returns the list of features available for different chat boost levels; this is an offline request
+// Returns the list of features available for different chat boost levels. This is an offline method
 func (client *Client) GetChatBoostFeatures(ctx context.Context, req *GetChatBoostFeaturesRequest) (*ChatBoostFeatures, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -10687,7 +10793,7 @@ func (req GetThemedEmojiStatusesRequest) GetFunctionName() string {
 }
 
 // Returns up to 8 emoji statuses, which must be shown right after the default Premium Badge in the emoji status list for self status
-func (client *Client) GetThemedEmojiStatuses(ctx context.Context) (*EmojiStatuses, error) {
+func (client *Client) GetThemedEmojiStatuses(ctx context.Context) (*EmojiStatusCustomEmojis, error) {
 	req := &GetThemedEmojiStatusesRequest{}
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -10698,7 +10804,7 @@ func (client *Client) GetThemedEmojiStatuses(ctx context.Context) (*EmojiStatuse
 		return nil, buildResponseError(result.Data)
 	}
 
-	return UnmarshalEmojiStatuses(result.Data)
+	return UnmarshalEmojiStatusCustomEmojis(result.Data)
 }
 
 type GetRecentEmojiStatusesRequest struct {
@@ -10724,17 +10830,17 @@ func (client *Client) GetRecentEmojiStatuses(ctx context.Context) (*EmojiStatuse
 	return UnmarshalEmojiStatuses(result.Data)
 }
 
-type GetDefaultEmojiStatusesRequest struct {
+type GetUpgradedGiftEmojiStatusesRequest struct {
 	request
 }
 
-func (req GetDefaultEmojiStatusesRequest) GetFunctionName() string {
-	return "getDefaultEmojiStatuses"
+func (req GetUpgradedGiftEmojiStatusesRequest) GetFunctionName() string {
+	return "getUpgradedGiftEmojiStatuses"
 }
 
-// Returns default emoji statuses for self status
-func (client *Client) GetDefaultEmojiStatuses(ctx context.Context) (*EmojiStatuses, error) {
-	req := &GetDefaultEmojiStatusesRequest{}
+// Returns available upgraded gift emoji statuses for self status
+func (client *Client) GetUpgradedGiftEmojiStatuses(ctx context.Context) (*EmojiStatuses, error) {
+	req := &GetUpgradedGiftEmojiStatusesRequest{}
 	result, err := client.Send(ctx, req)
 	if err != nil {
 		return nil, err
@@ -10745,6 +10851,29 @@ func (client *Client) GetDefaultEmojiStatuses(ctx context.Context) (*EmojiStatus
 	}
 
 	return UnmarshalEmojiStatuses(result.Data)
+}
+
+type GetDefaultEmojiStatusesRequest struct {
+	request
+}
+
+func (req GetDefaultEmojiStatusesRequest) GetFunctionName() string {
+	return "getDefaultEmojiStatuses"
+}
+
+// Returns default emoji statuses for self status
+func (client *Client) GetDefaultEmojiStatuses(ctx context.Context) (*EmojiStatusCustomEmojis, error) {
+	req := &GetDefaultEmojiStatusesRequest{}
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalEmojiStatusCustomEmojis(result.Data)
 }
 
 type ClearRecentEmojiStatusesRequest struct {
@@ -10779,7 +10908,7 @@ func (req GetThemedChatEmojiStatusesRequest) GetFunctionName() string {
 }
 
 // Returns up to 8 emoji statuses, which must be shown in the emoji status list for chats
-func (client *Client) GetThemedChatEmojiStatuses(ctx context.Context) (*EmojiStatuses, error) {
+func (client *Client) GetThemedChatEmojiStatuses(ctx context.Context) (*EmojiStatusCustomEmojis, error) {
 	req := &GetThemedChatEmojiStatusesRequest{}
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -10790,7 +10919,7 @@ func (client *Client) GetThemedChatEmojiStatuses(ctx context.Context) (*EmojiSta
 		return nil, buildResponseError(result.Data)
 	}
 
-	return UnmarshalEmojiStatuses(result.Data)
+	return UnmarshalEmojiStatusCustomEmojis(result.Data)
 }
 
 type GetDefaultChatEmojiStatusesRequest struct {
@@ -10802,7 +10931,7 @@ func (req GetDefaultChatEmojiStatusesRequest) GetFunctionName() string {
 }
 
 // Returns default emoji statuses for chats
-func (client *Client) GetDefaultChatEmojiStatuses(ctx context.Context) (*EmojiStatuses, error) {
+func (client *Client) GetDefaultChatEmojiStatuses(ctx context.Context) (*EmojiStatusCustomEmojis, error) {
 	req := &GetDefaultChatEmojiStatusesRequest{}
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -10813,7 +10942,7 @@ func (client *Client) GetDefaultChatEmojiStatuses(ctx context.Context) (*EmojiSt
 		return nil, buildResponseError(result.Data)
 	}
 
-	return UnmarshalEmojiStatuses(result.Data)
+	return UnmarshalEmojiStatusCustomEmojis(result.Data)
 }
 
 type GetDisallowedChatEmojiStatusesRequest struct {
@@ -10825,7 +10954,7 @@ func (req GetDisallowedChatEmojiStatusesRequest) GetFunctionName() string {
 }
 
 // Returns the list of emoji statuses, which can't be used as chat emoji status, even they are from a sticker set with is_allowed_as_chat_emoji_status == true
-func (client *Client) GetDisallowedChatEmojiStatuses(ctx context.Context) (*EmojiStatuses, error) {
+func (client *Client) GetDisallowedChatEmojiStatuses(ctx context.Context) (*EmojiStatusCustomEmojis, error) {
 	req := &GetDisallowedChatEmojiStatusesRequest{}
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -10836,7 +10965,7 @@ func (client *Client) GetDisallowedChatEmojiStatuses(ctx context.Context) (*Emoj
 		return nil, buildResponseError(result.Data)
 	}
 
-	return UnmarshalEmojiStatuses(result.Data)
+	return UnmarshalEmojiStatusCustomEmojis(result.Data)
 }
 
 type DownloadFileRequest struct {
@@ -11303,9 +11432,9 @@ func (client *Client) SearchFileDownloads(ctx context.Context, req *SearchFileDo
 
 type SetApplicationVerificationTokenRequest struct {
 	request
-	// Unique identifier for the verification process as received from updateApplicationVerificationRequired
+	// Unique identifier for the verification process as received from updateApplicationVerificationRequired or updateApplicationRecaptchaVerificationRequired
 	VerificationId int64 `json:"verification_id"`
-	// Play Integrity API token for the Android application, or secret from push notification for the iOS application; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
+	// Play Integrity API token for the Android application, or secret from push notification for the iOS application for application verification, or reCAPTCHA token for reCAPTCHA verifications; pass an empty string to abort verification and receive error VERIFICATION_FAILED for the request
 	Token string `json:"token"`
 }
 
@@ -11313,7 +11442,7 @@ func (req SetApplicationVerificationTokenRequest) GetFunctionName() string {
 	return "setApplicationVerificationToken"
 }
 
-// Application verification has been completed. Can be called before authorization
+// Application or reCAPTCHA verification has been completed. Can be called before authorization
 func (client *Client) SetApplicationVerificationToken(ctx context.Context, req *SetApplicationVerificationTokenRequest) (*Ok, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -11899,6 +12028,8 @@ type CreateCallRequest struct {
 	Protocol *CallProtocol `json:"protocol"`
 	// Pass true to create a video call
 	IsVideo bool `json:"is_video"`
+	// Identifier of the group call to which the user will be added after exchanging private key via the call; pass 0 if none
+	GroupCallId int32 `json:"group_call_id"`
 }
 
 func (req CreateCallRequest) GetFunctionName() string {
@@ -12143,7 +12274,7 @@ type CreateVideoChatRequest struct {
 	Title string `json:"title"`
 	// Point in time (Unix timestamp) when the group call is expected to be started by an administrator; 0 to start the video chat immediately. The date must be at least 10 seconds and at most 8 days in the future
 	StartDate int32 `json:"start_date"`
-	// Pass true to create an RTMP stream instead of an ordinary video chat; requires owner privileges
+	// Pass true to create an RTMP stream instead of an ordinary video chat
 	IsRtmpStream bool `json:"is_rtmp_stream"`
 }
 
@@ -12163,6 +12294,30 @@ func (client *Client) CreateVideoChat(ctx context.Context, req *CreateVideoChatR
 	}
 
 	return UnmarshalGroupCallId(result.Data)
+}
+
+type CreateGroupCallRequest struct {
+	request
+	// Call identifier
+	CallId int32 `json:"call_id"`
+}
+
+func (req CreateGroupCallRequest) GetFunctionName() string {
+	return "createGroupCall"
+}
+
+// Creates a group call from a one-to-one call
+func (client *Client) CreateGroupCall(ctx context.Context, req *CreateGroupCallRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
 }
 
 type GetVideoChatRtmpUrlRequest struct {
@@ -12303,6 +12458,8 @@ type JoinGroupCallRequest struct {
 	IsMyVideoEnabled bool `json:"is_my_video_enabled"`
 	// If non-empty, invite hash to be used to join the group call without being muted by administrators
 	InviteHash string `json:"invite_hash"`
+	// Fingerprint of the encryption key for E2E group calls not bound to a chat; pass 0 for voice chats
+	KeyFingerprint JsonInt64 `json:"key_fingerprint"`
 }
 
 func (req JoinGroupCallRequest) GetFunctionName() string {
@@ -13239,7 +13396,7 @@ func (req SuggestUserProfilePhotoRequest) GetFunctionName() string {
 	return "suggestUserProfilePhoto"
 }
 
-// Suggests a profile photo to another regular user with common messages
+// Suggests a profile photo to another regular user with common messages and allowing non-paid messages
 func (client *Client) SuggestUserProfilePhoto(ctx context.Context, req *SuggestUserProfilePhotoRequest) (*Ok, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -13397,7 +13554,7 @@ func (req GetStickerOutlineRequest) GetFunctionName() string {
 	return "getStickerOutline"
 }
 
-// Returns outline of a sticker; this is an offline request. Returns a 404 error if the outline isn't known
+// Returns outline of a sticker. This is an offline method. Returns a 404 error if the outline isn't known
 func (client *Client) GetStickerOutline(ctx context.Context, req *GetStickerOutlineRequest) (*Outline, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -13475,8 +13632,14 @@ type SearchStickersRequest struct {
 	request
 	// Type of the stickers to return
 	StickerType StickerType `json:"sticker_type"`
-	// Space-separated list of emojis to search for; must be non-empty
+	// Space-separated list of emojis to search for
 	Emojis string `json:"emojis"`
+	// Query to search for; may be empty to search for emoji only
+	Query string `json:"query"`
+	// List of possible IETF language tags of the user's input language; may be empty if unknown
+	InputLanguageCodes []string `json:"input_language_codes"`
+	// The offset from which to return the stickers; must be non-negative
+	Offset int32 `json:"offset"`
 	// The maximum number of stickers to be returned; 0-100
 	Limit int32 `json:"limit"`
 }
@@ -14362,6 +14525,29 @@ func (client *Client) GetRecentInlineBots(ctx context.Context) (*Users, error) {
 	return UnmarshalUsers(result.Data)
 }
 
+type GetOwnedBotsRequest struct {
+	request
+}
+
+func (req GetOwnedBotsRequest) GetFunctionName() string {
+	return "getOwnedBots"
+}
+
+// Returns the list of bots owned by the current user
+func (client *Client) GetOwnedBots(ctx context.Context) (*Users, error) {
+	req := &GetOwnedBotsRequest{}
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalUsers(result.Data)
+}
+
 type SearchHashtagsRequest struct {
 	request
 	// Hashtag prefix to search for
@@ -14442,15 +14628,15 @@ type GetWebPageInstantViewRequest struct {
 	request
 	// The web page URL
 	Url string `json:"url"`
-	// Pass true to get full instant view for the web page
-	ForceFull bool `json:"force_full"`
+	// Pass true to get only locally available information without sending network requests
+	OnlyLocal bool `json:"only_local"`
 }
 
 func (req GetWebPageInstantViewRequest) GetFunctionName() string {
 	return "getWebPageInstantView"
 }
 
-// Returns an instant view version of a web page if available. Returns a 404 error if the web page has no instant view page
+// Returns an instant view version of a web page if available. This is an offline method if only_local is true. Returns a 404 error if the web page has no instant view page
 func (client *Client) GetWebPageInstantView(ctx context.Context, req *GetWebPageInstantViewRequest) (*WebPageInstantView, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -15979,6 +16165,60 @@ func (client *Client) GetBotInfoShortDescription(ctx context.Context, req *GetBo
 	return UnmarshalText(result.Data)
 }
 
+type SetMessageSenderBotVerificationRequest struct {
+	request
+	// Identifier of the owned bot, which will verify the user or the chat
+	BotUserId int64 `json:"bot_user_id"`
+	// Identifier of the user or the supergroup or channel chat, which will be verified by the bot
+	VerifiedId MessageSender `json:"verified_id"`
+	// Custom description of verification reason; 0-getOption("bot_verification_custom_description_length_max"). If empty, then "was verified by organization "organization_name"" will be used as description. Can be specified only if the bot is allowed to provide custom description
+	CustomDescription string `json:"custom_description"`
+}
+
+func (req SetMessageSenderBotVerificationRequest) GetFunctionName() string {
+	return "setMessageSenderBotVerification"
+}
+
+// Changes the verification status of a user or a chat by an owned bot
+func (client *Client) SetMessageSenderBotVerification(ctx context.Context, req *SetMessageSenderBotVerificationRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type RemoveMessageSenderBotVerificationRequest struct {
+	request
+	// Identifier of the owned bot, which verified the user or the chat
+	BotUserId int64 `json:"bot_user_id"`
+	// Identifier of the user or the supergroup or channel chat, which verification is removed
+	VerifiedId MessageSender `json:"verified_id"`
+}
+
+func (req RemoveMessageSenderBotVerificationRequest) GetFunctionName() string {
+	return "removeMessageSenderBotVerification"
+}
+
+// Removes the verification status of a user or a chat by an owned bot
+func (client *Client) RemoveMessageSenderBotVerification(ctx context.Context, req *RemoveMessageSenderBotVerificationRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
 type GetActiveSessionsRequest struct {
 	request
 }
@@ -16989,7 +17229,7 @@ func (req GetAvailableGiftsRequest) GetFunctionName() string {
 	return "getAvailableGifts"
 }
 
-// Returns gifts that can be sent to other users
+// Returns gifts that can be sent to other users and channel chats
 func (client *Client) GetAvailableGifts(ctx context.Context) (*Gifts, error) {
 	req := &GetAvailableGiftsRequest{}
 	result, err := client.Send(ctx, req)
@@ -17008,19 +17248,21 @@ type SendGiftRequest struct {
 	request
 	// Identifier of the gift to send
 	GiftId JsonInt64 `json:"gift_id"`
-	// Identifier of the user that will receive the gift
-	UserId int64 `json:"user_id"`
-	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+	// Identifier of the user or the channel chat that will receive the gift
+	OwnerId MessageSender `json:"owner_id"`
+	// Text to show along with the gift; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed. Must be empty if the receiver enabled paid messages
 	Text *FormattedText `json:"text"`
-	// Pass true to show the current user as sender and gift text only to the gift receiver; otherwise, everyone will be able to see them
+	// Pass true to show gift text and sender only to the gift receiver; otherwise, everyone will be able to see them
 	IsPrivate bool `json:"is_private"`
+	// Pass true to additionally pay for the gift upgrade and allow the receiver to upgrade it for free
+	PayForUpgrade bool `json:"pay_for_upgrade"`
 }
 
 func (req SendGiftRequest) GetFunctionName() string {
 	return "sendGift"
 }
 
-// Sends a gift to another user. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
+// Sends a gift to another user or channel chat. May return an error with a message "STARGIFT_USAGE_LIMITED" if the gift was sold out
 func (client *Client) SendGift(ctx context.Context, req *SendGiftRequest) (*Ok, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -17036,17 +17278,15 @@ func (client *Client) SendGift(ctx context.Context, req *SendGiftRequest) (*Ok, 
 
 type SellGiftRequest struct {
 	request
-	// Identifier of the user that sent the gift
-	SenderUserId int64 `json:"sender_user_id"`
-	// Identifier of the message with the gift in the chat with the user
-	MessageId int64 `json:"message_id"`
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
 }
 
 func (req SellGiftRequest) GetFunctionName() string {
 	return "sellGift"
 }
 
-// Sells a gift received by the current user for Telegram Stars
+// Sells a gift for Telegram Stars
 func (client *Client) SellGift(ctx context.Context, req *SellGiftRequest) (*Ok, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -17062,11 +17302,9 @@ func (client *Client) SellGift(ctx context.Context, req *SellGiftRequest) (*Ok, 
 
 type ToggleGiftIsSavedRequest struct {
 	request
-	// Identifier of the user that sent the gift
-	SenderUserId int64 `json:"sender_user_id"`
-	// Identifier of the message with the gift in the chat with the user
-	MessageId int64 `json:"message_id"`
-	// Pass true to display the gift on the user's profile page; pass false to remove it from the profile page
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
+	// Pass true to display the gift on the user's or the channel's profile page; pass false to remove it from the profile page
 	IsSaved bool `json:"is_saved"`
 }
 
@@ -17074,7 +17312,7 @@ func (req ToggleGiftIsSavedRequest) GetFunctionName() string {
 	return "toggleGiftIsSaved"
 }
 
-// Toggles whether a gift is shown on the current user's profile page
+// Toggles whether a gift is shown on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
 func (client *Client) ToggleGiftIsSaved(ctx context.Context, req *ToggleGiftIsSavedRequest) (*Ok, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -17088,22 +17326,20 @@ func (client *Client) ToggleGiftIsSaved(ctx context.Context, req *ToggleGiftIsSa
 	return UnmarshalOk(result.Data)
 }
 
-type GetUserGiftsRequest struct {
+type SetPinnedGiftsRequest struct {
 	request
-	// Identifier of the user
-	UserId int64 `json:"user_id"`
-	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
-	Offset string `json:"offset"`
-	// The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
-	Limit int32 `json:"limit"`
+	// Identifier of the user or the channel chat that received the gifts
+	OwnerId MessageSender `json:"owner_id"`
+	// New list of pinned gifts. All gifts must be upgraded and saved on the profile page first. There can be up to getOption("pinned_gift_count_max") pinned gifts
+	ReceivedGiftIds []string `json:"received_gift_ids"`
 }
 
-func (req GetUserGiftsRequest) GetFunctionName() string {
-	return "getUserGifts"
+func (req SetPinnedGiftsRequest) GetFunctionName() string {
+	return "setPinnedGifts"
 }
 
-// Returns gifts saved to profile by the given user
-func (client *Client) GetUserGifts(ctx context.Context, req *GetUserGiftsRequest) (*UserGifts, error) {
+// Changes the list of pinned gifts on the current user's or the channel's profile page; requires can_post_messages administrator right in the channel chat
+func (client *Client) SetPinnedGifts(ctx context.Context, req *SetPinnedGiftsRequest) (*Ok, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
 		return nil, err
@@ -17113,7 +17349,227 @@ func (client *Client) GetUserGifts(ctx context.Context, req *GetUserGiftsRequest
 		return nil, buildResponseError(result.Data)
 	}
 
-	return UnmarshalUserGifts(result.Data)
+	return UnmarshalOk(result.Data)
+}
+
+type ToggleChatGiftNotificationsRequest struct {
+	request
+	// Identifier of the channel chat
+	ChatId int64 `json:"chat_id"`
+	// Pass true to enable notifications about new gifts owned by the channel chat; pass false to disable the notifications
+	AreEnabled bool `json:"are_enabled"`
+}
+
+func (req ToggleChatGiftNotificationsRequest) GetFunctionName() string {
+	return "toggleChatGiftNotifications"
+}
+
+// Toggles whether notifications for new gifts received by a channel chat are sent to the current user; requires can_post_messages administrator right in the chat
+func (client *Client) ToggleChatGiftNotifications(ctx context.Context, req *ToggleChatGiftNotificationsRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type GetGiftUpgradePreviewRequest struct {
+	request
+	// Identifier of the gift
+	GiftId JsonInt64 `json:"gift_id"`
+}
+
+func (req GetGiftUpgradePreviewRequest) GetFunctionName() string {
+	return "getGiftUpgradePreview"
+}
+
+// Returns examples of possible upgraded gifts for a regular gift
+func (client *Client) GetGiftUpgradePreview(ctx context.Context, req *GetGiftUpgradePreviewRequest) (*GiftUpgradePreview, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalGiftUpgradePreview(result.Data)
+}
+
+type UpgradeGiftRequest struct {
+	request
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
+	// Pass true to keep the original gift text, sender and receiver in the upgraded gift
+	KeepOriginalDetails bool `json:"keep_original_details"`
+	// The amount of Telegram Stars required to pay for the upgrade. It the gift has prepaid_upgrade_star_count > 0, then pass 0, otherwise, pass gift.upgrade_star_count
+	StarCount int64 `json:"star_count"`
+}
+
+func (req UpgradeGiftRequest) GetFunctionName() string {
+	return "upgradeGift"
+}
+
+// Upgrades a regular gift
+func (client *Client) UpgradeGift(ctx context.Context, req *UpgradeGiftRequest) (*UpgradeGiftResult, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalUpgradeGiftResult(result.Data)
+}
+
+type TransferGiftRequest struct {
+	request
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
+	// Identifier of the user or the channel chat that will receive the gift
+	NewOwnerId MessageSender `json:"new_owner_id"`
+	// The amount of Telegram Stars required to pay for the transfer
+	StarCount int64 `json:"star_count"`
+}
+
+func (req TransferGiftRequest) GetFunctionName() string {
+	return "transferGift"
+}
+
+// Sends an upgraded gift to another user or a channel chat
+func (client *Client) TransferGift(ctx context.Context, req *TransferGiftRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type GetReceivedGiftsRequest struct {
+	request
+	// Identifier of the gift receiver
+	OwnerId MessageSender `json:"owner_id"`
+	// Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right
+	ExcludeUnsaved bool `json:"exclude_unsaved"`
+	// Pass true to exclude gifts that are saved to the chat's profile page. Always false for gifts received by other users and channel chats without can_post_messages administrator right
+	ExcludeSaved bool `json:"exclude_saved"`
+	// Pass true to exclude gifts that can be purchased unlimited number of times
+	ExcludeUnlimited bool `json:"exclude_unlimited"`
+	// Pass true to exclude gifts that can be purchased limited number of times
+	ExcludeLimited bool `json:"exclude_limited"`
+	// Pass true to exclude upgraded gifts
+	ExcludeUpgraded bool `json:"exclude_upgraded"`
+	// Pass true to sort results by gift price instead of send date
+	SortByPrice bool `json:"sort_by_price"`
+	// Offset of the first entry to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of gifts to be returned; must be positive and can't be greater than 100. For optimal performance, the number of returned objects is chosen by TDLib and can be smaller than the specified limit
+	Limit int32 `json:"limit"`
+}
+
+func (req GetReceivedGiftsRequest) GetFunctionName() string {
+	return "getReceivedGifts"
+}
+
+// Returns gifts received by the given user or chat
+func (client *Client) GetReceivedGifts(ctx context.Context, req *GetReceivedGiftsRequest) (*ReceivedGifts, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalReceivedGifts(result.Data)
+}
+
+type GetReceivedGiftRequest struct {
+	request
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
+}
+
+func (req GetReceivedGiftRequest) GetFunctionName() string {
+	return "getReceivedGift"
+}
+
+// Returns information about a received gift
+func (client *Client) GetReceivedGift(ctx context.Context, req *GetReceivedGiftRequest) (*ReceivedGift, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalReceivedGift(result.Data)
+}
+
+type GetUpgradedGiftRequest struct {
+	request
+	// Unique name of the upgraded gift
+	Name string `json:"name"`
+}
+
+func (req GetUpgradedGiftRequest) GetFunctionName() string {
+	return "getUpgradedGift"
+}
+
+// Returns information about an upgraded gift by its name
+func (client *Client) GetUpgradedGift(ctx context.Context, req *GetUpgradedGiftRequest) (*UpgradedGift, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalUpgradedGift(result.Data)
+}
+
+type GetUpgradedGiftWithdrawalUrlRequest struct {
+	request
+	// Identifier of the gift
+	ReceivedGiftId string `json:"received_gift_id"`
+	// The 2-step verification password of the current user
+	Password string `json:"password"`
+}
+
+func (req GetUpgradedGiftWithdrawalUrlRequest) GetFunctionName() string {
+	return "getUpgradedGiftWithdrawalUrl"
+}
+
+// Returns a URL for upgraded gift withdrawal in the TON blockchain as an NFT; requires owner privileges for gifts owned by a chat
+func (client *Client) GetUpgradedGiftWithdrawalUrl(ctx context.Context, req *GetUpgradedGiftWithdrawalUrlRequest) (*HttpUrl, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalHttpUrl(result.Data)
 }
 
 type CreateInvoiceLinkRequest struct {
@@ -17374,7 +17830,7 @@ func (req GetLocalizationTargetInfoRequest) GetFunctionName() string {
 	return "getLocalizationTargetInfo"
 }
 
-// Returns information about the current localization target. This is an offline request if only_local is true. Can be called before authorization
+// Returns information about the current localization target. This is an offline method if only_local is true. Can be called before authorization
 func (client *Client) GetLocalizationTargetInfo(ctx context.Context, req *GetLocalizationTargetInfoRequest) (*LocalizationTargetInfo, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -17834,6 +18290,82 @@ func (client *Client) GetNewChatPrivacySettings(ctx context.Context) (*NewChatPr
 	return UnmarshalNewChatPrivacySettings(result.Data)
 }
 
+type GetPaidMessageRevenueRequest struct {
+	request
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
+}
+
+func (req GetPaidMessageRevenueRequest) GetFunctionName() string {
+	return "getPaidMessageRevenue"
+}
+
+// Returns the total number of Telegram Stars received by the current user for paid messages from the given user
+func (client *Client) GetPaidMessageRevenue(ctx context.Context, req *GetPaidMessageRevenueRequest) (*StarCount, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalStarCount(result.Data)
+}
+
+type AllowUnpaidMessagesFromUserRequest struct {
+	request
+	// Identifier of the user
+	UserId int64 `json:"user_id"`
+	// Pass true to refund the user previously paid messages
+	RefundPayments bool `json:"refund_payments"`
+}
+
+func (req AllowUnpaidMessagesFromUserRequest) GetFunctionName() string {
+	return "allowUnpaidMessagesFromUser"
+}
+
+// Allows the specified user to send unpaid private messages to the current user by adding a rule to userPrivacySettingAllowUnpaidMessages
+func (client *Client) AllowUnpaidMessagesFromUser(ctx context.Context, req *AllowUnpaidMessagesFromUserRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type SetChatPaidMessageStarCountRequest struct {
+	request
+	// Identifier of the supergroup chat
+	ChatId int64 `json:"chat_id"`
+	// The new number of Telegram Stars that must be paid for each message that is sent to the supergroup chat unless the sender is an administrator of the chat; 0-getOption("paid_message_star_count_max"). The supergroup will receive getOption("paid_message_earnings_per_mille") Telegram Stars for each 1000 Telegram Stars paid for message sending
+	PaidMessageStarCount int64 `json:"paid_message_star_count"`
+}
+
+func (req SetChatPaidMessageStarCountRequest) GetFunctionName() string {
+	return "setChatPaidMessageStarCount"
+}
+
+// Changes the amount of Telegram Stars that must be paid to send a message to a supergroup chat; requires can_restrict_members administrator right and supergroupFullInfo.can_enable_paid_messages
+func (client *Client) SetChatPaidMessageStarCount(ctx context.Context, req *SetChatPaidMessageStarCountRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
 type CanSendMessageToUserRequest struct {
 	request
 	// Identifier of the other user
@@ -17860,6 +18392,9 @@ func (client *Client) CanSendMessageToUser(ctx context.Context, req *CanSendMess
 	switch result.MetaType {
 	case ConstructorCanSendMessageToUserResultOk:
 		return UnmarshalCanSendMessageToUserResultOk(result.Data)
+
+	case ConstructorCanSendMessageToUserResultUserHasPaidMessages:
+		return UnmarshalCanSendMessageToUserResultUserHasPaidMessages(result.Data)
 
 	case ConstructorCanSendMessageToUserResultUserIsDeleted:
 		return UnmarshalCanSendMessageToUserResultUserIsDeleted(result.Data)
@@ -18272,7 +18807,7 @@ func (client *Client) GetChatRevenueTransactions(ctx context.Context, req *GetCh
 
 type GetStarRevenueStatisticsRequest struct {
 	request
-	// Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+	// Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
 	OwnerId MessageSender `json:"owner_id"`
 	// Pass true if a dark theme is used by the application
 	IsDark bool `json:"is_dark"`
@@ -18298,7 +18833,7 @@ func (client *Client) GetStarRevenueStatistics(ctx context.Context, req *GetStar
 
 type GetStarWithdrawalUrlRequest struct {
 	request
-	// Identifier of the owner of the Telegram Stars; can be identifier of an owned bot, or identifier of an owned channel chat
+	// Identifier of the owner of the Telegram Stars; can be identifier of the current user, an owned bot, or an owned supergroup or channel chat
 	OwnerId MessageSender `json:"owner_id"`
 	// The number of Telegram Stars to withdraw. Must be at least getOption("star_withdrawal_count_min")
 	StarCount int64 `json:"star_count"`
@@ -19913,18 +20448,17 @@ func (client *Client) GetPremiumState(ctx context.Context) (*PremiumState, error
 	return UnmarshalPremiumState(result.Data)
 }
 
-type GetPremiumGiftCodePaymentOptionsRequest struct {
+type GetPremiumGiftPaymentOptionsRequest struct {
 	request
-	// Identifier of the supergroup or channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user; 0 if none
-	BoostedChatId int64 `json:"boosted_chat_id"`
 }
 
-func (req GetPremiumGiftCodePaymentOptionsRequest) GetFunctionName() string {
-	return "getPremiumGiftCodePaymentOptions"
+func (req GetPremiumGiftPaymentOptionsRequest) GetFunctionName() string {
+	return "getPremiumGiftPaymentOptions"
 }
 
-// Returns available options for Telegram Premium gift code or Telegram Premium giveaway creation
-func (client *Client) GetPremiumGiftCodePaymentOptions(ctx context.Context, req *GetPremiumGiftCodePaymentOptionsRequest) (*PremiumGiftCodePaymentOptions, error) {
+// Returns available options for gifting Telegram Premium to a user
+func (client *Client) GetPremiumGiftPaymentOptions(ctx context.Context) (*PremiumGiftPaymentOptions, error) {
+	req := &GetPremiumGiftPaymentOptionsRequest{}
 	result, err := client.Send(ctx, req)
 	if err != nil {
 		return nil, err
@@ -19934,7 +20468,31 @@ func (client *Client) GetPremiumGiftCodePaymentOptions(ctx context.Context, req 
 		return nil, buildResponseError(result.Data)
 	}
 
-	return UnmarshalPremiumGiftCodePaymentOptions(result.Data)
+	return UnmarshalPremiumGiftPaymentOptions(result.Data)
+}
+
+type GetPremiumGiveawayPaymentOptionsRequest struct {
+	request
+	// Identifier of the supergroup or channel chat, which will be automatically boosted by receivers of the gift codes and which is administered by the user
+	BoostedChatId int64 `json:"boosted_chat_id"`
+}
+
+func (req GetPremiumGiveawayPaymentOptionsRequest) GetFunctionName() string {
+	return "getPremiumGiveawayPaymentOptions"
+}
+
+// Returns available options for creating of Telegram Premium giveaway or manual distribution of Telegram Premium among chat members
+func (client *Client) GetPremiumGiveawayPaymentOptions(ctx context.Context, req *GetPremiumGiveawayPaymentOptionsRequest) (*PremiumGiveawayPaymentOptions, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalPremiumGiveawayPaymentOptions(result.Data)
 }
 
 type CheckPremiumGiftCodeRequest struct {
@@ -20122,7 +20680,7 @@ func (client *Client) GetStarGiveawayPaymentOptions(ctx context.Context) (*StarG
 
 type GetStarTransactionsRequest struct {
 	request
-	// Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
+	// Identifier of the owner of the Telegram Stars; can be the identifier of the current user, identifier of an owned bot, or identifier of a supergroup or a channel chat with supergroupFullInfo.can_get_star_revenue_statistics == true
 	OwnerId MessageSender `json:"owner_id"`
 	// If non-empty, only transactions related to the Star Subscription will be returned
 	SubscriptionId string `json:"subscription_id"`
@@ -20334,6 +20892,194 @@ func (client *Client) ReuseStarSubscription(ctx context.Context, req *ReuseStarS
 	}
 
 	return UnmarshalOk(result.Data)
+}
+
+type SetChatAffiliateProgramRequest struct {
+	request
+	// Identifier of the chat with an owned bot for which affiliate program is changed
+	ChatId int64 `json:"chat_id"`
+	// Parameters of the affiliate program; pass null to close the currently active program. If there is an active program, then commission and program duration can only be increased. If the active program is scheduled to be closed, then it can't be changed anymore
+	Parameters *AffiliateProgramParameters `json:"parameters"`
+}
+
+func (req SetChatAffiliateProgramRequest) GetFunctionName() string {
+	return "setChatAffiliateProgram"
+}
+
+// Changes affiliate program for a bot
+func (client *Client) SetChatAffiliateProgram(ctx context.Context, req *SetChatAffiliateProgramRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type SearchChatAffiliateProgramRequest struct {
+	request
+	// Username of the chat
+	Username string `json:"username"`
+	// The referrer from an internalLinkTypeChatAffiliateProgram link
+	Referrer string `json:"referrer"`
+}
+
+func (req SearchChatAffiliateProgramRequest) GetFunctionName() string {
+	return "searchChatAffiliateProgram"
+}
+
+// Searches a chat with an affiliate program. Returns the chat if found and the program is active
+func (client *Client) SearchChatAffiliateProgram(ctx context.Context, req *SearchChatAffiliateProgramRequest) (*Chat, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalChat(result.Data)
+}
+
+type SearchAffiliateProgramsRequest struct {
+	request
+	// The affiliate for which affiliate programs are searched for
+	Affiliate AffiliateType `json:"affiliate"`
+	// Sort order for the results
+	SortOrder AffiliateProgramSortOrder `json:"sort_order"`
+	// Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of affiliate programs to return
+	Limit int32 `json:"limit"`
+}
+
+func (req SearchAffiliateProgramsRequest) GetFunctionName() string {
+	return "searchAffiliatePrograms"
+}
+
+// Searches affiliate programs that can be connected to the given affiliate
+func (client *Client) SearchAffiliatePrograms(ctx context.Context, req *SearchAffiliateProgramsRequest) (*FoundAffiliatePrograms, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalFoundAffiliatePrograms(result.Data)
+}
+
+type ConnectAffiliateProgramRequest struct {
+	request
+	// The affiliate to which the affiliate program will be connected
+	Affiliate AffiliateType `json:"affiliate"`
+	// Identifier of the bot, which affiliate program is connected
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (req ConnectAffiliateProgramRequest) GetFunctionName() string {
+	return "connectAffiliateProgram"
+}
+
+// Connects an affiliate program to the given affiliate. Returns information about the connected affiliate program
+func (client *Client) ConnectAffiliateProgram(ctx context.Context, req *ConnectAffiliateProgramRequest) (*ConnectedAffiliateProgram, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalConnectedAffiliateProgram(result.Data)
+}
+
+type DisconnectAffiliateProgramRequest struct {
+	request
+	// The affiliate to which the affiliate program is connected
+	Affiliate AffiliateType `json:"affiliate"`
+	// The referral link of the affiliate program
+	Url string `json:"url"`
+}
+
+func (req DisconnectAffiliateProgramRequest) GetFunctionName() string {
+	return "disconnectAffiliateProgram"
+}
+
+// Disconnects an affiliate program from the given affiliate and immediately deactivates its referral link. Returns updated information about the disconnected affiliate program
+func (client *Client) DisconnectAffiliateProgram(ctx context.Context, req *DisconnectAffiliateProgramRequest) (*ConnectedAffiliateProgram, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalConnectedAffiliateProgram(result.Data)
+}
+
+type GetConnectedAffiliateProgramRequest struct {
+	request
+	// The affiliate to which the affiliate program will be connected
+	Affiliate AffiliateType `json:"affiliate"`
+	// Identifier of the bot that created the program
+	BotUserId int64 `json:"bot_user_id"`
+}
+
+func (req GetConnectedAffiliateProgramRequest) GetFunctionName() string {
+	return "getConnectedAffiliateProgram"
+}
+
+// Returns an affiliate program that were connected to the given affiliate by identifier of the bot that created the program
+func (client *Client) GetConnectedAffiliateProgram(ctx context.Context, req *GetConnectedAffiliateProgramRequest) (*ConnectedAffiliateProgram, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalConnectedAffiliateProgram(result.Data)
+}
+
+type GetConnectedAffiliateProgramsRequest struct {
+	request
+	// The affiliate to which the affiliate program were connected
+	Affiliate AffiliateType `json:"affiliate"`
+	// Offset of the first affiliate program to return as received from the previous request; use empty string to get the first chunk of results
+	Offset string `json:"offset"`
+	// The maximum number of affiliate programs to return
+	Limit int32 `json:"limit"`
+}
+
+func (req GetConnectedAffiliateProgramsRequest) GetFunctionName() string {
+	return "getConnectedAffiliatePrograms"
+}
+
+// Returns affiliate programs that were connected to the given affiliate
+func (client *Client) GetConnectedAffiliatePrograms(ctx context.Context, req *GetConnectedAffiliateProgramsRequest) (*ConnectedAffiliatePrograms, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalConnectedAffiliatePrograms(result.Data)
 }
 
 type GetBusinessFeaturesRequest struct {
@@ -21807,6 +22553,9 @@ func (client *Client) TestUseUpdate(ctx context.Context) (Update, error) {
 	case ConstructorUpdateApplicationVerificationRequired:
 		return UnmarshalUpdateApplicationVerificationRequired(result.Data)
 
+	case ConstructorUpdateApplicationRecaptchaVerificationRequired:
+		return UnmarshalUpdateApplicationRecaptchaVerificationRequired(result.Data)
+
 	case ConstructorUpdateCall:
 		return UnmarshalUpdateCall(result.Data)
 
@@ -21911,6 +22660,9 @@ func (client *Client) TestUseUpdate(ctx context.Context) (Update, error) {
 
 	case ConstructorUpdateDefaultReactionType:
 		return UnmarshalUpdateDefaultReactionType(result.Data)
+
+	case ConstructorUpdateDefaultPaidReactionType:
+		return UnmarshalUpdateDefaultPaidReactionType(result.Data)
 
 	case ConstructorUpdateSavedMessagesTags:
 		return UnmarshalUpdateSavedMessagesTags(result.Data)

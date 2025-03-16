@@ -12,7 +12,6 @@ type Client struct {
 	responses       chan *Response
 	resultHandler   ResultHandler
 	catchersStore   *sync.Map
-	updatesTimeout  time.Duration
 	fallbackTimeout time.Duration
 }
 
@@ -113,7 +112,7 @@ func (client *Client) Send(ctx context.Context, req Request) (*Response, error) 
 	req.SetExtra(client.extraGenerator())
 	req.SetType(req.GetFunctionName())
 
-	catcher := make(chan *Response, 1)
+	catcher := make(chan *Response)
 
 	client.catchersStore.Store(req.GetExtra(), catcher)
 

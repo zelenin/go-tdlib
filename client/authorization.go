@@ -65,10 +65,10 @@ type clientAuthorizer struct {
 func ClientAuthorizer(tdlibParameters *SetTdlibParametersRequest) *clientAuthorizer {
 	return &clientAuthorizer{
 		TdlibParameters: tdlibParameters,
-		PhoneNumber:     make(chan string, 1),
-		Code:            make(chan string, 1),
-		State:           make(chan AuthorizationState, 10),
-		Password:        make(chan string, 1),
+		PhoneNumber:     make(chan string),
+		Code:            make(chan string),
+		State:           make(chan AuthorizationState),
+		Password:        make(chan string),
 	}
 }
 
@@ -246,7 +246,7 @@ type qrAuthorizer struct {
 func QrAuthorizer(tdlibParameters *SetTdlibParametersRequest, linkHandler func(link string) error) *qrAuthorizer {
 	stateHandler := &qrAuthorizer{
 		TdlibParameters: tdlibParameters,
-		Password:        make(chan string, 1),
+		Password:        make(chan string),
 		LinkHandler:     linkHandler,
 	}
 
