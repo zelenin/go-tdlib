@@ -1,6 +1,6 @@
-FROM ghcr.io/zelenin/tdlib-docker:22d49d5-alpine AS tdlib
+FROM ghcr.io/zelenin/tdlib-docker:b498497-alpine AS tdlib
 
-FROM golang:1.23.3-alpine3.20 AS go-builder
+FROM golang:1.24.1-alpine3.21 AS go-builder
 
 ENV LANG=en_US.UTF-8
 ENV TZ=UTC
@@ -33,7 +33,7 @@ RUN go build \
     ls -lah
 
 
-FROM alpine:3.20.3
+FROM alpine:3.21.3
 
 ENV LANG=en_US.UTF-8
 ENV TZ=UTC

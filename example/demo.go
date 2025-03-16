@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"log"
 	"os"
 	"os/signal"
@@ -12,9 +13,6 @@ import (
 )
 
 func main() {
-	authorizer := client.ClientAuthorizer()
-	go client.CliInteractor(authorizer)
-
 	var (
 		apiIdRaw = os.Getenv("API_ID")
 		apiHash  = os.Getenv("API_HASH")
@@ -27,7 +25,7 @@ func main() {
 
 	apiId := int32(apiId64)
 
-	authorizer.TdlibParameters <- &client.SetTdlibParametersRequest{
+	tdlibParameters := &client.SetTdlibParametersRequest{
 		UseTestDc:           false,
 		DatabaseDirectory:   filepath.Join(".tdlib", "database"),
 		FilesDirectory:      filepath.Join(".tdlib", "files"),
@@ -42,6 +40,8 @@ func main() {
 		SystemVersion:       "1.0.0",
 		ApplicationVersion:  "1.0.0",
 	}
+	authorizer := client.ClientAuthorizer(tdlibParameters)
+	go client.CliInteractor(authorizer)
 
 	_, err = client.SetLogVerbosityLevel(&client.SetLogVerbosityLevelRequest{
 		NewVerbosityLevel: 0,
@@ -55,16 +55,27 @@ func main() {
 		log.Fatalf("NewClient error: %s", err)
 	}
 
-	optionValue, err := client.GetOption(&client.GetOptionRequest{
+	versionOption, err := client.GetOption(&client.GetOptionRequest{
 		Name: "version",
 	})
 	if err != nil {
 		log.Fatalf("GetOption error: %s", err)
 	}
 
-	log.Printf("TDLib version: %s", optionValue.(*client.OptionValueString).Value)
+	commitOption, err := client.GetOption(&client.GetOptionRequest{
+		Name: "commit_hash",
+	})
+	if err != nil {
+		log.Fatalf("GetOption error: %s", err)
+	}
 
-	me, err := tdlibClient.GetMe()
+	log.Printf("TDLib version: %s (commit: %s)", versionOption.(*client.OptionValueString).Value, commitOption.(*client.OptionValueString).Value)
+
+	if commitOption.(*client.OptionValueString).Value != client.TDLIB_VERSION {
+		log.Printf("TDLib version supported by the library (%s) is not the same as TDLib version (%s)", client.TDLIB_VERSION, commitOption.(*client.OptionValueString).Value)
+	}
+
+	me, err := tdlibClient.GetMe(context.Background())
 	if err != nil {
 		log.Fatalf("GetMe error: %s", err)
 	}
@@ -72,10 +83,8 @@ func main() {
 	log.Printf("Me: %s %s", me.FirstName, me.LastName)
 
 	ch := make(chan os.Signal, 2)
-	signal.Notify(ch, os.Interrupt, syscall.SIGTERM)
-	go func() {
-		<-ch
-		tdlibClient.Stop()
-		os.Exit(1)
-	}()
+	signal.Notify(ch, syscall.SIGINT, syscall.SIGTERM)
+	<-ch
+	tdlibClient.Close(context.Background())
+	os.Exit(1)
 }
