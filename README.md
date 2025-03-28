@@ -7,6 +7,15 @@ Current supported version of TDLib corresponds to the commit hash [b498497](http
 
 Use [TDLib build instructions](https://tdlib.github.io/td/build.html) with checkmarked `Install built TDLib to /usr/local instead of placing the files to td/tdlib`. Don't forget to checkout a supported commit (see above).
 
+## Custom TDLib Path
+
+If you have TDLib installed in a custom location, use environment variables to specify the include and library paths:
+
+```shell
+CGO_CFLAGS=-I/path/to/tdlib/include \
+CGO_LDFLAGS="-Wl,-rpath,/path/to/tdlib/lib -L/path/to/tdlib/lib -ltdjson" \
+go build ...
+```
 
 ### Windows
 
