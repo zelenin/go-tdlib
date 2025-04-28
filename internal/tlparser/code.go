@@ -2,7 +2,6 @@ package tlparser
 
 import (
 	"bufio"
-	"fmt"
 	"io"
 	"regexp"
 	"strings"
@@ -13,21 +12,15 @@ func getMethodName(line string, re *regexp.Regexp) string {
 }
 
 func ParseCode(reader io.Reader, schema *Schema) error {
-
-	reExtractMethodName, err := regexp.Compile(`td_api::(.*?) `)
-	if err != nil {
-		return fmt.Errorf("invalid regexp to extract method name: %w", err)
-	}
+	var reExtractMethodName = regexp.MustCompile(`td_api::(.*?) `)
 
 	userMethods := map[string]bool{}
 	botMethods := map[string]bool{}
 
 	scanner := bufio.NewScanner(reader)
 
-	methodName := ""
-
+	var methodName string
 	for scanner.Scan() {
-
 		line := scanner.Text()
 
 		switch {
@@ -40,16 +33,14 @@ func ParseCode(reader io.Reader, schema *Schema) error {
 		case line == "}":
 			methodName = ""
 		}
-
 	}
 
-	err = scanner.Err()
+	err := scanner.Err()
 	if err != nil {
 		return err
 	}
 
 	for _, fn := range schema.Functions {
-
 		fn.Type = FUNCTION_TYPE_COMMON
 
 		switch {
@@ -58,9 +49,7 @@ func ParseCode(reader io.Reader, schema *Schema) error {
 		case botMethods[fn.Name]:
 			fn.Type = FUNCTION_TYPE_BOT
 		}
-
 	}
 
 	return nil
-
 }

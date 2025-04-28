@@ -47,7 +47,7 @@ func Parse(reader io.Reader) (*Schema, error) {
 					Args:          []*Arg{},
 					ResultType:    resultType,
 					IsSynchronous: false,
-					Type:          FUNCTION_TYPE_UNKNOWN,
+					Type:          FUNCTION_TYPE_COMMON,
 				})
 			} else {
 				if name == "vector" {
@@ -86,7 +86,7 @@ func parseFunction(firstLine string, scanner *bufio.Scanner) *Function {
 		Args:          args,
 		ResultType:    resultType,
 		IsSynchronous: isSynchronous,
-		Type:          FUNCTION_TYPE_UNKNOWN,
+		Type:          FUNCTION_TYPE_COMMON,
 	}
 }
 

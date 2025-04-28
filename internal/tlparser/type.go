@@ -18,13 +18,12 @@ type Type struct {
 	Description string `json:"description"`
 }
 
-type FunctionType int
+type FunctionType string
 
 const (
-	FUNCTION_TYPE_UNKNOWN FunctionType = iota
-	FUNCTION_TYPE_COMMON
-	FUNCTION_TYPE_USER
-	FUNCTION_TYPE_BOT
+	FUNCTION_TYPE_COMMON FunctionType = "common"
+	FUNCTION_TYPE_USER   FunctionType = "user"
+	FUNCTION_TYPE_BOT    FunctionType = "bot"
 )
 
 type Function struct {
