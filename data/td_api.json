@@ -31777,7 +31777,7 @@
             "args": [],
             "result_type": "PasswordState",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setPassword",
@@ -31811,7 +31811,7 @@
             ],
             "result_type": "PasswordState",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setLoginEmailAddress",
@@ -31825,7 +31825,7 @@
             ],
             "result_type": "EmailAddressAuthenticationCodeInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "resendLoginEmailAddressCode",
@@ -31833,7 +31833,7 @@
             "args": [],
             "result_type": "EmailAddressAuthenticationCodeInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "checkLoginEmailAddressCode",
@@ -31847,7 +31847,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getRecoveryEmailAddress",
@@ -31861,7 +31861,7 @@
             ],
             "result_type": "RecoveryEmailAddress",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setRecoveryEmailAddress",
@@ -31880,7 +31880,7 @@
             ],
             "result_type": "PasswordState",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "checkRecoveryEmailAddressCode",
@@ -31894,7 +31894,7 @@
             ],
             "result_type": "PasswordState",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "resendRecoveryEmailAddressCode",
@@ -31902,7 +31902,7 @@
             "args": [],
             "result_type": "PasswordState",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "cancelRecoveryEmailAddressVerification",
@@ -31910,7 +31910,7 @@
             "args": [],
             "result_type": "PasswordState",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "requestPasswordRecovery",
@@ -31918,7 +31918,7 @@
             "args": [],
             "result_type": "EmailAddressAuthenticationCodeInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "checkPasswordRecoveryCode",
@@ -31932,7 +31932,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "recoverPassword",
@@ -31956,7 +31956,7 @@
             ],
             "result_type": "PasswordState",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "resetPassword",
@@ -31964,7 +31964,7 @@
             "args": [],
             "result_type": "ResetPasswordResult",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "cancelPasswordReset",
@@ -31972,7 +31972,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "createTemporaryPassword",
@@ -31991,7 +31991,7 @@
             ],
             "result_type": "TemporaryPasswordState",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getTemporaryPasswordState",
@@ -31999,7 +31999,7 @@
             "args": [],
             "result_type": "TemporaryPasswordState",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getMe",
@@ -32214,7 +32214,7 @@
             ],
             "result_type": "Message",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "getMessages",
@@ -32271,7 +32271,7 @@
             ],
             "result_type": "MessageThreadInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getMessageReadDate",
@@ -32290,7 +32290,7 @@
             ],
             "result_type": "MessageReadDate",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getMessageViewers",
@@ -32309,7 +32309,7 @@
             ],
             "result_type": "MessageViewers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getFile",
@@ -32361,7 +32361,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChats",
@@ -32380,7 +32380,7 @@
             ],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchPublicChat",
@@ -32408,7 +32408,7 @@
             ],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchChats",
@@ -32427,7 +32427,7 @@
             ],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchChatsOnServer",
@@ -32446,7 +32446,7 @@
             ],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getRecommendedChats",
@@ -32454,7 +32454,7 @@
             "args": [],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatSimilarChats",
@@ -32468,7 +32468,7 @@
             ],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatSimilarChatCount",
@@ -32487,7 +32487,7 @@
             ],
             "result_type": "Count",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "openChatSimilarChat",
@@ -32506,7 +32506,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getBotSimilarBots",
@@ -32520,7 +32520,7 @@
             ],
             "result_type": "Users",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getBotSimilarBotCount",
@@ -32539,7 +32539,7 @@
             ],
             "result_type": "Count",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "openBotSimilarBot",
@@ -32558,7 +32558,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getTopChats",
@@ -32577,7 +32577,7 @@
             ],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeTopChat",
@@ -32596,7 +32596,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchRecentlyFoundChats",
@@ -32615,7 +32615,7 @@
             ],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addRecentlyFoundChat",
@@ -32629,7 +32629,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeRecentlyFoundChat",
@@ -32643,7 +32643,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "clearRecentlyFoundChats",
@@ -32651,7 +32651,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getRecentlyOpenedChats",
@@ -32665,7 +32665,7 @@
             ],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "checkChatUsername",
@@ -32684,7 +32684,7 @@
             ],
             "result_type": "CheckChatUsernameResult",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getCreatedPublicChats",
@@ -32698,7 +32698,7 @@
             ],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "checkCreatedPublicChatsLimit",
@@ -32712,7 +32712,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getSuitableDiscussionChats",
@@ -32720,7 +32720,7 @@
             "args": [],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getInactiveSupergroupChats",
@@ -32728,7 +32728,7 @@
             "args": [],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getSuitablePersonalChats",
@@ -32736,7 +32736,7 @@
             "args": [],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "loadSavedMessagesTopics",
@@ -32750,7 +32750,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getSavedMessagesTopicHistory",
@@ -32779,7 +32779,7 @@
             ],
             "result_type": "Messages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getSavedMessagesTopicMessageByDate",
@@ -32798,7 +32798,7 @@
             ],
             "result_type": "Message",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteSavedMessagesTopicHistory",
@@ -32812,7 +32812,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteSavedMessagesTopicMessagesByDate",
@@ -32836,7 +32836,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleSavedMessagesTopicIsPinned",
@@ -32855,7 +32855,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setPinnedSavedMessagesTopics",
@@ -32869,7 +32869,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getGroupsInCommon",
@@ -32893,7 +32893,7 @@
             ],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatHistory",
@@ -32927,7 +32927,7 @@
             ],
             "result_type": "Messages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getMessageThreadHistory",
@@ -32961,7 +32961,7 @@
             ],
             "result_type": "Messages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteChatHistory",
@@ -32985,7 +32985,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteChat",
@@ -32999,7 +32999,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchChatMessages",
@@ -33053,7 +33053,7 @@
             ],
             "result_type": "FoundChatMessages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchMessages",
@@ -33102,7 +33102,7 @@
             ],
             "result_type": "FoundMessages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchSecretMessages",
@@ -33136,7 +33136,7 @@
             ],
             "result_type": "FoundMessages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchSavedMessages",
@@ -33175,7 +33175,7 @@
             ],
             "result_type": "FoundChatMessages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchCallMessages",
@@ -33199,7 +33199,7 @@
             ],
             "result_type": "FoundMessages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchOutgoingDocumentMessages",
@@ -33218,7 +33218,7 @@
             ],
             "result_type": "FoundMessages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchPublicMessagesByTag",
@@ -33242,7 +33242,7 @@
             ],
             "result_type": "FoundMessages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchPublicStoriesByTag",
@@ -33271,7 +33271,7 @@
             ],
             "result_type": "FoundStories",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchPublicStoriesByLocation",
@@ -33295,7 +33295,7 @@
             ],
             "result_type": "FoundStories",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchPublicStoriesByVenue",
@@ -33324,7 +33324,7 @@
             ],
             "result_type": "FoundStories",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getSearchedForTags",
@@ -33343,7 +33343,7 @@
             ],
             "result_type": "Hashtags",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeSearchedForTag",
@@ -33357,7 +33357,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "clearSearchedForTags",
@@ -33371,7 +33371,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteAllCallMessages",
@@ -33385,7 +33385,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchChatRecentLocationMessages",
@@ -33404,7 +33404,7 @@
             ],
             "result_type": "Messages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatMessageByDate",
@@ -33423,7 +33423,7 @@
             ],
             "result_type": "Message",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatSparseMessagePositions",
@@ -33457,7 +33457,7 @@
             ],
             "result_type": "MessagePositions",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatMessageCalendar",
@@ -33486,7 +33486,7 @@
             ],
             "result_type": "MessageCalendar",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatMessageCount",
@@ -33515,7 +33515,7 @@
             ],
             "result_type": "Count",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatMessagePosition",
@@ -33549,7 +33549,7 @@
             ],
             "result_type": "Count",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatScheduledMessages",
@@ -33563,7 +33563,7 @@
             ],
             "result_type": "Messages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatSponsoredMessages",
@@ -33577,7 +33577,7 @@
             ],
             "result_type": "SponsoredMessages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "clickChatSponsoredMessage",
@@ -33606,7 +33606,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reportChatSponsoredMessage",
@@ -33630,7 +33630,7 @@
             ],
             "result_type": "ReportChatSponsoredMessageResult",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeNotification",
@@ -33649,7 +33649,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeNotificationGroup",
@@ -33668,7 +33668,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getMessageLink",
@@ -33726,7 +33726,7 @@
             ],
             "result_type": "Text",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getMessageLinkInfo",
@@ -33759,7 +33759,7 @@
             ],
             "result_type": "FormattedText",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "translateMessageText",
@@ -33783,7 +33783,7 @@
             ],
             "result_type": "FormattedText",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "recognizeSpeech",
@@ -33802,7 +33802,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "rateSpeechRecognition",
@@ -33826,7 +33826,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatAvailableMessageSenders",
@@ -33840,7 +33840,7 @@
             ],
             "result_type": "ChatMessageSenders",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatMessageSender",
@@ -33859,7 +33859,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendMessage",
@@ -33956,7 +33956,7 @@
             ],
             "result_type": "Message",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendInlineQueryResultMessage",
@@ -34000,7 +34000,7 @@
             ],
             "result_type": "Message",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "forwardMessages",
@@ -34131,7 +34131,7 @@
             ],
             "result_type": "Message",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteMessages",
@@ -34174,7 +34174,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteChatMessagesByDate",
@@ -34203,7 +34203,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "editMessageText",
@@ -34363,7 +34363,7 @@
             ],
             "result_type": "Message",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "editInlineMessageText",
@@ -34387,7 +34387,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "editInlineMessageLiveLocation",
@@ -34426,7 +34426,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "editInlineMessageMedia",
@@ -34450,7 +34450,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "editInlineMessageCaption",
@@ -34479,7 +34479,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "editInlineMessageReplyMarkup",
@@ -34498,7 +34498,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "editMessageSchedulingState",
@@ -34522,7 +34522,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setMessageFactCheck",
@@ -34546,7 +34546,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendBusinessMessage",
@@ -34595,7 +34595,7 @@
             ],
             "result_type": "BusinessMessage",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "sendBusinessMessageAlbum",
@@ -34639,7 +34639,7 @@
             ],
             "result_type": "BusinessMessages",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "editBusinessMessageText",
@@ -34673,7 +34673,7 @@
             ],
             "result_type": "BusinessMessage",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "editBusinessMessageLiveLocation",
@@ -34722,7 +34722,7 @@
             ],
             "result_type": "BusinessMessage",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "editBusinessMessageMedia",
@@ -34756,7 +34756,7 @@
             ],
             "result_type": "BusinessMessage",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "editBusinessMessageCaption",
@@ -34795,7 +34795,7 @@
             ],
             "result_type": "BusinessMessage",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "editBusinessMessageReplyMarkup",
@@ -34824,7 +34824,7 @@
             ],
             "result_type": "BusinessMessage",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "stopBusinessPoll",
@@ -34853,7 +34853,7 @@
             ],
             "result_type": "BusinessMessage",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "setBusinessMessageIsPinned",
@@ -34882,7 +34882,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "checkQuickReplyShortcutName",
@@ -34904,7 +34904,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setQuickReplyShortcutName",
@@ -34923,7 +34923,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteQuickReplyShortcut",
@@ -34937,7 +34937,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reorderQuickReplyShortcuts",
@@ -34951,7 +34951,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "loadQuickReplyShortcutMessages",
@@ -34965,7 +34965,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteQuickReplyShortcutMessages",
@@ -34984,7 +34984,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addQuickReplyShortcutMessage",
@@ -35008,7 +35008,7 @@
             ],
             "result_type": "QuickReplyMessage",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addQuickReplyShortcutInlineQueryResultMessage",
@@ -35042,7 +35042,7 @@
             ],
             "result_type": "QuickReplyMessage",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addQuickReplyShortcutMessageAlbum",
@@ -35066,7 +35066,7 @@
             ],
             "result_type": "QuickReplyMessages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "readdQuickReplyShortcutMessages",
@@ -35085,7 +35085,7 @@
             ],
             "result_type": "QuickReplyMessages",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "editQuickReplyMessage",
@@ -35109,7 +35109,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getForumTopicDefaultIcons",
@@ -35252,7 +35252,7 @@
             ],
             "result_type": "ForumTopics",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setForumTopicNotificationSettings",
@@ -35276,7 +35276,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleForumTopicIsClosed",
@@ -35343,7 +35343,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setPinnedForumTopics",
@@ -35362,7 +35362,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteForumTopic",
@@ -35395,7 +35395,7 @@
             ],
             "result_type": "EmojiReaction",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getCustomEmojiReactionAnimations",
@@ -35403,7 +35403,7 @@
             "args": [],
             "result_type": "Stickers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getMessageAvailableReactions",
@@ -35427,7 +35427,7 @@
             ],
             "result_type": "AvailableReactions",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "clearRecentReactions",
@@ -35435,7 +35435,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addMessageReaction",
@@ -35469,7 +35469,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeMessageReaction",
@@ -35493,7 +35493,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatAvailablePaidMessageReactionSenders",
@@ -35507,7 +35507,7 @@
             ],
             "result_type": "MessageSenders",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addPendingPaidMessageReaction",
@@ -35536,7 +35536,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "commitPendingPaidMessageReactions",
@@ -35555,7 +35555,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removePendingPaidMessageReactions",
@@ -35574,7 +35574,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setPaidMessageReactionType",
@@ -35598,7 +35598,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setMessageReactions",
@@ -35627,7 +35627,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "getMessageAddedReactions",
@@ -35661,7 +35661,7 @@
             ],
             "result_type": "AddedReactions",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setDefaultReactionType",
@@ -35675,7 +35675,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getSavedMessagesTags",
@@ -35689,7 +35689,7 @@
             ],
             "result_type": "SavedMessagesTags",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setSavedMessagesTagLabel",
@@ -35708,7 +35708,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getMessageEffect",
@@ -35722,7 +35722,7 @@
             ],
             "result_type": "MessageEffect",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchQuote",
@@ -35958,7 +35958,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getPollVoters",
@@ -35992,7 +35992,7 @@
             ],
             "result_type": "MessageSenders",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "stopPoll",
@@ -36030,7 +36030,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "hideContactCloseBirthdays",
@@ -36038,7 +36038,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getBusinessConnection",
@@ -36052,7 +36052,7 @@
             ],
             "result_type": "BusinessConnection",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "getLoginUrlInfo",
@@ -36076,7 +36076,7 @@
             ],
             "result_type": "LoginUrlInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getLoginUrl",
@@ -36105,7 +36105,7 @@
             ],
             "result_type": "HttpUrl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "shareUsersWithBot",
@@ -36139,7 +36139,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "shareChatWithBot",
@@ -36173,7 +36173,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getInlineQueryResults",
@@ -36207,7 +36207,7 @@
             ],
             "result_type": "InlineQueryResults",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "answerInlineQuery",
@@ -36246,7 +36246,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "savePreparedInlineMessage",
@@ -36270,7 +36270,7 @@
             ],
             "result_type": "PreparedInlineMessageId",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "getPreparedInlineMessage",
@@ -36289,7 +36289,7 @@
             ],
             "result_type": "PreparedInlineMessage",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getGrossingWebAppBots",
@@ -36308,7 +36308,7 @@
             ],
             "result_type": "FoundUsers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchWebApp",
@@ -36327,7 +36327,7 @@
             ],
             "result_type": "FoundWebApp",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getWebAppPlaceholder",
@@ -36341,7 +36341,7 @@
             ],
             "result_type": "Outline",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getWebAppLinkUrl",
@@ -36380,7 +36380,7 @@
             ],
             "result_type": "HttpUrl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getMainWebApp",
@@ -36409,7 +36409,7 @@
             ],
             "result_type": "MainWebApp",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getWebAppUrl",
@@ -36433,7 +36433,7 @@
             ],
             "result_type": "HttpUrl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendWebAppData",
@@ -36457,7 +36457,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "openWebApp",
@@ -36496,7 +36496,7 @@
             ],
             "result_type": "WebAppInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "closeWebApp",
@@ -36510,7 +36510,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "answerWebAppQuery",
@@ -36529,7 +36529,7 @@
             ],
             "result_type": "SentWebAppMessage",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "checkWebAppFileDownload",
@@ -36553,7 +36553,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getCallbackQueryAnswer",
@@ -36577,7 +36577,7 @@
             ],
             "result_type": "CallbackQueryAnswer",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "answerCallbackQuery",
@@ -36611,7 +36611,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "answerShippingQuery",
@@ -36635,7 +36635,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "answerPreCheckoutQuery",
@@ -36654,7 +36654,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "setGameScore",
@@ -36693,7 +36693,7 @@
             ],
             "result_type": "Message",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "setInlineGameScore",
@@ -36727,7 +36727,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "getGameHighScores",
@@ -36751,7 +36751,7 @@
             ],
             "result_type": "GameHighScores",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "getInlineGameHighScores",
@@ -36770,7 +36770,7 @@
             ],
             "result_type": "GameHighScores",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "deleteChatReplyMarkup",
@@ -36789,7 +36789,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendChatAction",
@@ -36832,7 +36832,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "closeChat",
@@ -36846,7 +36846,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "viewMessages",
@@ -36875,7 +36875,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "openMessageContent",
@@ -36894,7 +36894,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "clickAnimatedEmojiMessage",
@@ -36913,7 +36913,7 @@
             ],
             "result_type": "Sticker",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getInternalLink",
@@ -36960,7 +36960,7 @@
             ],
             "result_type": "LoginUrlInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getExternalLink",
@@ -36979,7 +36979,7 @@
             ],
             "result_type": "HttpUrl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "readAllChatMentions",
@@ -36993,7 +36993,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "readAllMessageThreadMentions",
@@ -37012,7 +37012,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "readAllChatReactions",
@@ -37026,7 +37026,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "readAllMessageThreadReactions",
@@ -37045,7 +37045,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "createPrivateChat",
@@ -37140,7 +37140,7 @@
             ],
             "result_type": "CreatedBasicGroupChat",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "createNewSupergroupChat",
@@ -37184,7 +37184,7 @@
             ],
             "result_type": "Chat",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "createNewSecretChat",
@@ -37198,7 +37198,7 @@
             ],
             "result_type": "Chat",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "upgradeBasicGroupChatToSupergroupChat",
@@ -37212,7 +37212,7 @@
             ],
             "result_type": "Chat",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatListsToAddChat",
@@ -37226,7 +37226,7 @@
             ],
             "result_type": "ChatLists",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addChatToList",
@@ -37245,7 +37245,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatFolder",
@@ -37259,7 +37259,7 @@
             ],
             "result_type": "ChatFolder",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "createChatFolder",
@@ -37273,7 +37273,7 @@
             ],
             "result_type": "ChatFolderInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "editChatFolder",
@@ -37292,7 +37292,7 @@
             ],
             "result_type": "ChatFolderInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteChatFolder",
@@ -37311,7 +37311,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatFolderChatsToLeave",
@@ -37325,7 +37325,7 @@
             ],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatFolderChatCount",
@@ -37339,7 +37339,7 @@
             ],
             "result_type": "Count",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reorderChatFolders",
@@ -37358,7 +37358,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleChatFolderTags",
@@ -37372,7 +37372,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getRecommendedChatFolders",
@@ -37380,7 +37380,7 @@
             "args": [],
             "result_type": "RecommendedChatFolders",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatFolderDefaultIconName",
@@ -37408,7 +37408,7 @@
             ],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "createChatFolderInviteLink",
@@ -37432,7 +37432,7 @@
             ],
             "result_type": "ChatFolderInviteLink",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatFolderInviteLinks",
@@ -37446,7 +37446,7 @@
             ],
             "result_type": "ChatFolderInviteLinks",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "editChatFolderInviteLink",
@@ -37475,7 +37475,7 @@
             ],
             "result_type": "ChatFolderInviteLink",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteChatFolderInviteLink",
@@ -37494,7 +37494,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "checkChatFolderInviteLink",
@@ -37508,7 +37508,7 @@
             ],
             "result_type": "ChatFolderInviteLinkInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addChatFolderByInviteLink",
@@ -37527,7 +37527,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatFolderNewChats",
@@ -37541,7 +37541,7 @@
             ],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "processChatFolderNewChats",
@@ -37560,7 +37560,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getArchiveChatListSettings",
@@ -37568,7 +37568,7 @@
             "args": [],
             "result_type": "ArchiveChatListSettings",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setArchiveChatListSettings",
@@ -37582,7 +37582,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatTitle",
@@ -37644,7 +37644,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatProfileAccentColor",
@@ -37668,7 +37668,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatMessageAutoDeleteTime",
@@ -37687,7 +37687,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatEmojiStatus",
@@ -37706,7 +37706,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatPermissions",
@@ -37759,7 +37759,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteChatBackground",
@@ -37778,7 +37778,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatTheme",
@@ -37797,7 +37797,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatDraftMessage",
@@ -37821,7 +37821,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatNotificationSettings",
@@ -37840,7 +37840,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleChatHasProtectedContent",
@@ -37859,7 +37859,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleChatViewAsTopics",
@@ -37878,7 +37878,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleChatIsTranslatable",
@@ -37897,7 +37897,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleChatIsMarkedAsUnread",
@@ -37916,7 +37916,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleChatDefaultDisableNotification",
@@ -37935,7 +37935,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatAvailableReactions",
@@ -38011,7 +38011,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatLocation",
@@ -38030,7 +38030,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatSlowModeDelay",
@@ -38049,7 +38049,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "pinChatMessage",
@@ -38144,7 +38144,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "leaveChat",
@@ -38182,7 +38182,7 @@
             ],
             "result_type": "FailedToAddMembers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addChatMembers",
@@ -38201,7 +38201,7 @@
             ],
             "result_type": "FailedToAddMembers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatMemberStatus",
@@ -38262,7 +38262,7 @@
             "args": [],
             "result_type": "CanTransferOwnershipResult",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "transferChatOwnership",
@@ -38286,7 +38286,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatMember",
@@ -38362,7 +38362,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getSavedNotificationSound",
@@ -38376,7 +38376,7 @@
             ],
             "result_type": "NotificationSounds",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getSavedNotificationSounds",
@@ -38384,7 +38384,7 @@
             "args": [],
             "result_type": "NotificationSounds",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addSavedNotificationSound",
@@ -38398,7 +38398,7 @@
             ],
             "result_type": "NotificationSound",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeSavedNotificationSound",
@@ -38412,7 +38412,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatNotificationSettingsExceptions",
@@ -38431,7 +38431,7 @@
             ],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getScopeNotificationSettings",
@@ -38445,7 +38445,7 @@
             ],
             "result_type": "ScopeNotificationSettings",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setScopeNotificationSettings",
@@ -38464,7 +38464,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setReactionNotificationSettings",
@@ -38478,7 +38478,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "resetAllNotificationSettings",
@@ -38486,7 +38486,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleChatIsPinned",
@@ -38510,7 +38510,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setPinnedChats",
@@ -38529,7 +38529,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "readChatList",
@@ -38543,7 +38543,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getCurrentWeather",
@@ -38557,7 +38557,7 @@
             ],
             "result_type": "CurrentWeather",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStory",
@@ -38581,7 +38581,7 @@
             ],
             "result_type": "Story",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatsToSendStories",
@@ -38589,7 +38589,7 @@
             "args": [],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "canSendStory",
@@ -38603,7 +38603,7 @@
             ],
             "result_type": "CanSendStoryResult",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendStory",
@@ -38657,7 +38657,7 @@
             ],
             "result_type": "Story",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "editStory",
@@ -38691,7 +38691,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "editStoryCover",
@@ -38715,7 +38715,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setStoryPrivacySettings",
@@ -38734,7 +38734,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleStoryIsPostedToChatPage",
@@ -38758,7 +38758,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteStory",
@@ -38777,7 +38777,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStoryNotificationSettingsExceptions",
@@ -38785,7 +38785,7 @@
             "args": [],
             "result_type": "Chats",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "loadActiveStories",
@@ -38799,7 +38799,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatActiveStoriesList",
@@ -38818,7 +38818,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatActiveStories",
@@ -38832,7 +38832,7 @@
             ],
             "result_type": "ChatActiveStories",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatPostedToChatPageStories",
@@ -38856,7 +38856,7 @@
             ],
             "result_type": "Stories",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatArchivedStories",
@@ -38880,7 +38880,7 @@
             ],
             "result_type": "Stories",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatPinnedStories",
@@ -38899,7 +38899,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "openStory",
@@ -38918,7 +38918,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "closeStory",
@@ -38937,7 +38937,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStoryAvailableReactions",
@@ -38951,7 +38951,7 @@
             ],
             "result_type": "AvailableReactions",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setStoryReaction",
@@ -38980,7 +38980,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStoryInteractions",
@@ -39024,7 +39024,7 @@
             ],
             "result_type": "StoryInteractions",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatStoryInteractions",
@@ -39063,7 +39063,7 @@
             ],
             "result_type": "StoryInteractions",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reportStory",
@@ -39092,7 +39092,7 @@
             ],
             "result_type": "ReportStoryResult",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "activateStoryStealthMode",
@@ -39129,7 +39129,7 @@
             ],
             "result_type": "PublicForwards",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatBoostLevelFeatures",
@@ -39148,7 +39148,7 @@
             ],
             "result_type": "ChatBoostLevelFeatures",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatBoostFeatures",
@@ -39162,7 +39162,7 @@
             ],
             "result_type": "ChatBoostFeatures",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getAvailableChatBoostSlots",
@@ -39170,7 +39170,7 @@
             "args": [],
             "result_type": "ChatBoostSlots",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatBoostStatus",
@@ -39184,7 +39184,7 @@
             ],
             "result_type": "ChatBoostStatus",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "boostChat",
@@ -39203,7 +39203,7 @@
             ],
             "result_type": "ChatBoostSlots",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatBoostLink",
@@ -39260,7 +39260,7 @@
             ],
             "result_type": "FoundChatBoosts",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getUserChatBoosts",
@@ -39279,7 +39279,7 @@
             ],
             "result_type": "FoundChatBoosts",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "getAttachmentMenuBot",
@@ -39293,7 +39293,7 @@
             ],
             "result_type": "AttachmentMenuBot",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleBotIsAddedToAttachmentMenu",
@@ -39317,7 +39317,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getThemedEmojiStatuses",
@@ -39325,7 +39325,7 @@
             "args": [],
             "result_type": "EmojiStatusCustomEmojis",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getRecentEmojiStatuses",
@@ -39333,7 +39333,7 @@
             "args": [],
             "result_type": "EmojiStatuses",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getUpgradedGiftEmojiStatuses",
@@ -39341,7 +39341,7 @@
             "args": [],
             "result_type": "EmojiStatuses",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getDefaultEmojiStatuses",
@@ -39349,7 +39349,7 @@
             "args": [],
             "result_type": "EmojiStatusCustomEmojis",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "clearRecentEmojiStatuses",
@@ -39357,7 +39357,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getThemedChatEmojiStatuses",
@@ -39365,7 +39365,7 @@
             "args": [],
             "result_type": "EmojiStatusCustomEmojis",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getDefaultChatEmojiStatuses",
@@ -39373,7 +39373,7 @@
             "args": [],
             "result_type": "EmojiStatusCustomEmojis",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getDisallowedChatEmojiStatuses",
@@ -39381,7 +39381,7 @@
             "args": [],
             "result_type": "EmojiStatusCustomEmojis",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "downloadFile",
@@ -39773,7 +39773,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getMessageFileType",
@@ -39787,7 +39787,7 @@
             ],
             "result_type": "MessageFileType",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getMessageImportConfirmationText",
@@ -39801,7 +39801,7 @@
             ],
             "result_type": "Text",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "importMessages",
@@ -39825,7 +39825,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "replacePrimaryChatInviteLink",
@@ -39979,7 +39979,7 @@
             ],
             "result_type": "ChatInviteLink",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatInviteLinkCounts",
@@ -39993,7 +39993,7 @@
             ],
             "result_type": "ChatInviteLinkCounts",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatInviteLinks",
@@ -40032,7 +40032,7 @@
             ],
             "result_type": "ChatInviteLinks",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatInviteLinkMembers",
@@ -40066,7 +40066,7 @@
             ],
             "result_type": "ChatInviteLinkMembers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "revokeChatInviteLink",
@@ -40104,7 +40104,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteAllRevokedChatInviteLinks",
@@ -40123,7 +40123,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "checkChatInviteLink",
@@ -40137,7 +40137,7 @@
             ],
             "result_type": "ChatInviteLinkInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "joinChatByInviteLink",
@@ -40151,7 +40151,7 @@
             ],
             "result_type": "Chat",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatJoinRequests",
@@ -40185,7 +40185,7 @@
             ],
             "result_type": "ChatJoinRequests",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "processChatJoinRequest",
@@ -40233,7 +40233,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "createCall",
@@ -40262,7 +40262,7 @@
             ],
             "result_type": "CallId",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "acceptCall",
@@ -40281,7 +40281,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendCallSignalingData",
@@ -40300,7 +40300,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "discardCall",
@@ -40334,7 +40334,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendCallRating",
@@ -40363,7 +40363,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendCallDebugInformation",
@@ -40382,7 +40382,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendCallLog",
@@ -40401,7 +40401,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getVideoChatAvailableParticipants",
@@ -40415,7 +40415,7 @@
             ],
             "result_type": "MessageSenders",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setVideoChatDefaultParticipant",
@@ -40434,7 +40434,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "createVideoChat",
@@ -40463,7 +40463,7 @@
             ],
             "result_type": "GroupCallId",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "createGroupCall",
@@ -40477,7 +40477,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getVideoChatRtmpUrl",
@@ -40491,7 +40491,7 @@
             ],
             "result_type": "RtmpUrl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "replaceVideoChatRtmpUrl",
@@ -40505,7 +40505,7 @@
             ],
             "result_type": "RtmpUrl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getGroupCall",
@@ -40519,7 +40519,7 @@
             ],
             "result_type": "GroupCall",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "startScheduledGroupCall",
@@ -40533,7 +40533,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleGroupCallEnabledStartNotification",
@@ -40552,7 +40552,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "joinGroupCall",
@@ -40601,7 +40601,7 @@
             ],
             "result_type": "Text",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "startGroupCallScreenSharing",
@@ -40625,7 +40625,7 @@
             ],
             "result_type": "Text",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleGroupCallScreenSharingIsPaused",
@@ -40644,7 +40644,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "endGroupCallScreenSharing",
@@ -40658,7 +40658,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setGroupCallTitle",
@@ -40677,7 +40677,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleGroupCallMuteNewParticipants",
@@ -40696,7 +40696,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "inviteGroupCallParticipants",
@@ -40715,7 +40715,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getGroupCallInviteLink",
@@ -40734,7 +40734,7 @@
             ],
             "result_type": "HttpUrl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "revokeGroupCallInviteLink",
@@ -40748,7 +40748,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "startGroupCallRecording",
@@ -40777,7 +40777,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "endGroupCallRecording",
@@ -40791,7 +40791,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleGroupCallIsMyVideoPaused",
@@ -40810,7 +40810,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleGroupCallIsMyVideoEnabled",
@@ -40829,7 +40829,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setGroupCallParticipantIsSpeaking",
@@ -40853,7 +40853,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleGroupCallParticipantIsMuted",
@@ -40877,7 +40877,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setGroupCallParticipantVolumeLevel",
@@ -40901,7 +40901,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleGroupCallParticipantIsHandRaised",
@@ -40925,7 +40925,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "loadGroupCallParticipants",
@@ -40944,7 +40944,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "leaveGroupCall",
@@ -40958,7 +40958,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "endGroupCall",
@@ -40972,7 +40972,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getGroupCallStreams",
@@ -40986,7 +40986,7 @@
             ],
             "result_type": "GroupCallStreams",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getGroupCallStreamSegment",
@@ -41020,7 +41020,7 @@
             ],
             "result_type": "FilePart",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setMessageSenderBlockList",
@@ -41039,7 +41039,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "blockMessageSenderFromReplies",
@@ -41068,7 +41068,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getBlockedMessageSenders",
@@ -41092,7 +41092,7 @@
             ],
             "result_type": "MessageSenders",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addContact",
@@ -41111,7 +41111,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "importContacts",
@@ -41125,7 +41125,7 @@
             ],
             "result_type": "ImportedContacts",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getContacts",
@@ -41133,7 +41133,7 @@
             "args": [],
             "result_type": "Users",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchContacts",
@@ -41152,7 +41152,7 @@
             ],
             "result_type": "Users",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeContacts",
@@ -41166,7 +41166,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getImportedContactCount",
@@ -41174,7 +41174,7 @@
             "args": [],
             "result_type": "Count",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "changeImportedContacts",
@@ -41188,7 +41188,7 @@
             ],
             "result_type": "ImportedContacts",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "clearImportedContacts",
@@ -41196,7 +41196,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setCloseFriends",
@@ -41210,7 +41210,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getCloseFriends",
@@ -41218,7 +41218,7 @@
             "args": [],
             "result_type": "Users",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setUserPersonalProfilePhoto",
@@ -41237,7 +41237,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "suggestUserProfilePhoto",
@@ -41256,7 +41256,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleBotCanManageEmojiStatus",
@@ -41275,7 +41275,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setUserEmojiStatus",
@@ -41294,7 +41294,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "searchUserByPhoneNumber",
@@ -41313,7 +41313,7 @@
             ],
             "result_type": "User",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sharePhoneNumber",
@@ -41327,7 +41327,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getUserProfilePhotos",
@@ -41375,7 +41375,7 @@
             ],
             "result_type": "Outline",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStickers",
@@ -41404,7 +41404,7 @@
             ],
             "result_type": "Stickers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getAllStickerEmojis",
@@ -41433,7 +41433,7 @@
             ],
             "result_type": "Emojis",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchStickers",
@@ -41472,7 +41472,7 @@
             ],
             "result_type": "Stickers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getGreetingStickers",
@@ -41480,7 +41480,7 @@
             "args": [],
             "result_type": "Stickers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getPremiumStickers",
@@ -41494,7 +41494,7 @@
             ],
             "result_type": "Stickers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getInstalledStickerSets",
@@ -41508,7 +41508,7 @@
             ],
             "result_type": "StickerSets",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getArchivedStickerSets",
@@ -41532,7 +41532,7 @@
             ],
             "result_type": "StickerSets",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getTrendingStickerSets",
@@ -41556,7 +41556,7 @@
             ],
             "result_type": "TrendingStickerSets",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getAttachedStickerSets",
@@ -41570,7 +41570,7 @@
             ],
             "result_type": "StickerSets",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStickerSet",
@@ -41684,7 +41684,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "viewTrendingStickerSets",
@@ -41698,7 +41698,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reorderInstalledStickerSets",
@@ -41717,7 +41717,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getRecentStickers",
@@ -41731,7 +41731,7 @@
             ],
             "result_type": "Stickers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addRecentSticker",
@@ -41750,7 +41750,7 @@
             ],
             "result_type": "Stickers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeRecentSticker",
@@ -41769,7 +41769,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "clearRecentStickers",
@@ -41783,7 +41783,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getFavoriteStickers",
@@ -41791,7 +41791,7 @@
             "args": [],
             "result_type": "Stickers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addFavoriteSticker",
@@ -41805,7 +41805,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeFavoriteSticker",
@@ -41819,7 +41819,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStickerEmojis",
@@ -41833,7 +41833,7 @@
             ],
             "result_type": "Emojis",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchEmojis",
@@ -41852,7 +41852,7 @@
             ],
             "result_type": "EmojiKeywords",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getKeywordEmojis",
@@ -41871,7 +41871,7 @@
             ],
             "result_type": "Emojis",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getEmojiCategories",
@@ -41885,7 +41885,7 @@
             ],
             "result_type": "EmojiCategories",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getAnimatedEmoji",
@@ -41899,7 +41899,7 @@
             ],
             "result_type": "AnimatedEmoji",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getEmojiSuggestionsUrl",
@@ -41913,7 +41913,7 @@
             ],
             "result_type": "HttpUrl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getCustomEmojiStickers",
@@ -41935,7 +41935,7 @@
             "args": [],
             "result_type": "Stickers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getDefaultProfilePhotoCustomEmojiStickers",
@@ -41943,7 +41943,7 @@
             "args": [],
             "result_type": "Stickers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getDefaultBackgroundCustomEmojiStickers",
@@ -41951,7 +41951,7 @@
             "args": [],
             "result_type": "Stickers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getSavedAnimations",
@@ -41959,7 +41959,7 @@
             "args": [],
             "result_type": "Animations",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addSavedAnimation",
@@ -41973,7 +41973,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeSavedAnimation",
@@ -41987,7 +41987,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getRecentInlineBots",
@@ -41995,7 +41995,7 @@
             "args": [],
             "result_type": "Users",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getOwnedBots",
@@ -42003,7 +42003,7 @@
             "args": [],
             "result_type": "Users",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchHashtags",
@@ -42022,7 +42022,7 @@
             ],
             "result_type": "Hashtags",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeRecentHashtag",
@@ -42036,7 +42036,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getLinkPreview",
@@ -42055,7 +42055,7 @@
             ],
             "result_type": "LinkPreview",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getWebPageInstantView",
@@ -42074,7 +42074,7 @@
             ],
             "result_type": "WebPageInstantView",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setProfilePhoto",
@@ -42093,7 +42093,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteProfilePhoto",
@@ -42107,7 +42107,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setAccentColor",
@@ -42126,7 +42126,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setProfileAccentColor",
@@ -42145,7 +42145,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setName",
@@ -42164,7 +42164,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setBio",
@@ -42178,7 +42178,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setUsername",
@@ -42192,7 +42192,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleUsernameIsActive",
@@ -42211,7 +42211,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reorderActiveUsernames",
@@ -42225,7 +42225,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setBirthdate",
@@ -42239,7 +42239,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setPersonalChat",
@@ -42253,7 +42253,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setEmojiStatus",
@@ -42267,7 +42267,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleHasSponsoredMessagesEnabled",
@@ -42281,7 +42281,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setBusinessLocation",
@@ -42295,7 +42295,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setBusinessOpeningHours",
@@ -42309,7 +42309,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setBusinessGreetingMessageSettings",
@@ -42323,7 +42323,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setBusinessAwayMessageSettings",
@@ -42337,7 +42337,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setBusinessStartPage",
@@ -42351,7 +42351,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendPhoneNumberCode",
@@ -42375,7 +42375,7 @@
             ],
             "result_type": "AuthenticationCodeInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendPhoneNumberFirebaseSms",
@@ -42389,7 +42389,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reportPhoneNumberCodeMissing",
@@ -42403,7 +42403,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "resendPhoneNumberCode",
@@ -42417,7 +42417,7 @@
             ],
             "result_type": "AuthenticationCodeInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "checkPhoneNumberCode",
@@ -42431,7 +42431,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getBusinessConnectedBot",
@@ -42439,7 +42439,7 @@
             "args": [],
             "result_type": "BusinessConnectedBot",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setBusinessConnectedBot",
@@ -42453,7 +42453,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteBusinessConnectedBot",
@@ -42467,7 +42467,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleBusinessConnectedBotChatIsPaused",
@@ -42486,7 +42486,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeBusinessConnectedBotFromChat",
@@ -42500,7 +42500,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getBusinessChatLinks",
@@ -42508,7 +42508,7 @@
             "args": [],
             "result_type": "BusinessChatLinks",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "createBusinessChatLink",
@@ -42522,7 +42522,7 @@
             ],
             "result_type": "BusinessChatLink",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "editBusinessChatLink",
@@ -42541,7 +42541,7 @@
             ],
             "result_type": "BusinessChatLink",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteBusinessChatLink",
@@ -42555,7 +42555,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getBusinessChatLinkInfo",
@@ -42569,7 +42569,7 @@
             ],
             "result_type": "BusinessChatLinkInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getUserLink",
@@ -42577,7 +42577,7 @@
             "args": [],
             "result_type": "UserLink",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchUserByToken",
@@ -42591,7 +42591,7 @@
             ],
             "result_type": "User",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setCommands",
@@ -42615,7 +42615,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "deleteCommands",
@@ -42634,7 +42634,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "getCommands",
@@ -42653,7 +42653,7 @@
             ],
             "result_type": "BotCommands",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "setMenuButton",
@@ -42672,7 +42672,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "getMenuButton",
@@ -42686,7 +42686,7 @@
             ],
             "result_type": "BotMenuButton",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "setDefaultGroupAdministratorRights",
@@ -42700,7 +42700,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "setDefaultChannelAdministratorRights",
@@ -42714,7 +42714,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "canBotSendMessages",
@@ -42728,7 +42728,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "allowBotToSendMessages",
@@ -42742,7 +42742,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendWebAppCustomRequest",
@@ -42766,7 +42766,7 @@
             ],
             "result_type": "CustomRequestResult",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getBotMediaPreviews",
@@ -42780,7 +42780,7 @@
             ],
             "result_type": "BotMediaPreviews",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getBotMediaPreviewInfo",
@@ -42799,7 +42799,7 @@
             ],
             "result_type": "BotMediaPreviewInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addBotMediaPreview",
@@ -42823,7 +42823,7 @@
             ],
             "result_type": "BotMediaPreview",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "editBotMediaPreview",
@@ -42852,7 +42852,7 @@
             ],
             "result_type": "BotMediaPreview",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reorderBotMediaPreviews",
@@ -42876,7 +42876,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteBotMediaPreviews",
@@ -42900,7 +42900,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setBotName",
@@ -42986,7 +42986,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reorderBotActiveUsernames",
@@ -43005,7 +43005,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setBotInfoDescription",
@@ -43142,7 +43142,7 @@
             "args": [],
             "result_type": "Sessions",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "terminateSession",
@@ -43156,7 +43156,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "terminateAllOtherSessions",
@@ -43164,7 +43164,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "confirmSession",
@@ -43178,7 +43178,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleSessionCanAcceptCalls",
@@ -43197,7 +43197,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleSessionCanAcceptSecretChats",
@@ -43216,7 +43216,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setInactiveSessionTtl",
@@ -43230,7 +43230,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getConnectedWebsites",
@@ -43238,7 +43238,7 @@
             "args": [],
             "result_type": "ConnectedWebsites",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "disconnectWebsite",
@@ -43252,7 +43252,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "disconnectAllWebsites",
@@ -43260,7 +43260,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setSupergroupUsername",
@@ -43279,7 +43279,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleSupergroupUsernameIsActive",
@@ -43303,7 +43303,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "disableAllSupergroupUsernames",
@@ -43317,7 +43317,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reorderSupergroupActiveUsernames",
@@ -43336,7 +43336,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setSupergroupStickerSet",
@@ -43417,7 +43417,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleSupergroupJoinToSendMessages",
@@ -43436,7 +43436,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleSupergroupJoinByRequest",
@@ -43455,7 +43455,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleSupergroupIsAllHistoryAvailable",
@@ -43474,7 +43474,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleSupergroupCanHaveSponsoredMessages",
@@ -43493,7 +43493,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleSupergroupHasHiddenMembers",
@@ -43512,7 +43512,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleSupergroupHasAggressiveAntiSpamEnabled",
@@ -43531,7 +43531,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleSupergroupIsForum",
@@ -43550,7 +43550,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleSupergroupIsBroadcastGroup",
@@ -43564,7 +43564,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reportSupergroupSpam",
@@ -43583,7 +43583,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reportSupergroupAntiSpamFalsePositive",
@@ -43602,7 +43602,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getSupergroupMembers",
@@ -43684,7 +43684,7 @@
             ],
             "result_type": "ChatEvents",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getTimeZones",
@@ -43711,7 +43711,7 @@
             ],
             "result_type": "PaymentForm",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "validateOrderInfo",
@@ -43735,7 +43735,7 @@
             ],
             "result_type": "ValidatedOrderInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendPaymentForm",
@@ -43774,7 +43774,7 @@
             ],
             "result_type": "PaymentResult",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getPaymentReceipt",
@@ -43793,7 +43793,7 @@
             ],
             "result_type": "PaymentReceipt",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getSavedOrderInfo",
@@ -43801,7 +43801,7 @@
             "args": [],
             "result_type": "OrderInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteSavedOrderInfo",
@@ -43809,7 +43809,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteSavedCredentials",
@@ -43817,7 +43817,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getAvailableGifts",
@@ -43873,7 +43873,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleGiftIsSaved",
@@ -43892,7 +43892,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setPinnedGifts",
@@ -43911,7 +43911,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "toggleChatGiftNotifications",
@@ -43930,7 +43930,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getGiftUpgradePreview",
@@ -43944,7 +43944,7 @@
             ],
             "result_type": "GiftUpgradePreview",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "upgradeGift",
@@ -43968,7 +43968,7 @@
             ],
             "result_type": "UpgradeGiftResult",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "transferGift",
@@ -43992,7 +43992,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getReceivedGifts",
@@ -44046,7 +44046,7 @@
             ],
             "result_type": "ReceivedGifts",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getReceivedGift",
@@ -44060,7 +44060,7 @@
             ],
             "result_type": "ReceivedGift",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getUpgradedGift",
@@ -44074,7 +44074,7 @@
             ],
             "result_type": "UpgradedGift",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getUpgradedGiftWithdrawalUrl",
@@ -44093,7 +44093,7 @@
             ],
             "result_type": "HttpUrl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "createInvoiceLink",
@@ -44131,7 +44131,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "getSupportUser",
@@ -44139,7 +44139,7 @@
             "args": [],
             "result_type": "User",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getBackgroundUrl",
@@ -44158,7 +44158,7 @@
             ],
             "result_type": "HttpUrl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchBackground",
@@ -44172,7 +44172,7 @@
             ],
             "result_type": "Background",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setDefaultBackground",
@@ -44196,7 +44196,7 @@
             ],
             "result_type": "Background",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteDefaultBackground",
@@ -44210,7 +44210,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getInstalledBackgrounds",
@@ -44224,7 +44224,7 @@
             ],
             "result_type": "Backgrounds",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeInstalledBackground",
@@ -44238,7 +44238,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "resetInstalledBackgrounds",
@@ -44246,7 +44246,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getLocalizationTargetInfo",
@@ -44260,7 +44260,7 @@
             ],
             "result_type": "LocalizationTargetInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getLanguagePackInfo",
@@ -44274,7 +44274,7 @@
             ],
             "result_type": "LanguagePackInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getLanguagePackStrings",
@@ -44293,7 +44293,7 @@
             ],
             "result_type": "LanguagePackStrings",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "synchronizeLanguagePack",
@@ -44307,7 +44307,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addCustomServerLanguagePack",
@@ -44321,7 +44321,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setCustomLanguagePack",
@@ -44340,7 +44340,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "editCustomLanguagePackInfo",
@@ -44354,7 +44354,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setCustomLanguagePackString",
@@ -44373,7 +44373,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteLanguagePack",
@@ -44387,7 +44387,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "registerDevice",
@@ -44406,7 +44406,7 @@
             ],
             "result_type": "PushReceiverId",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "processPushNotification",
@@ -44420,7 +44420,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getPushReceiverId",
@@ -44448,7 +44448,7 @@
             ],
             "result_type": "TMeUrls",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setUserPrivacySettingRules",
@@ -44467,7 +44467,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getUserPrivacySettingRules",
@@ -44481,7 +44481,7 @@
             ],
             "result_type": "UserPrivacySettingRules",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setReadDatePrivacySettings",
@@ -44495,7 +44495,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getReadDatePrivacySettings",
@@ -44503,7 +44503,7 @@
             "args": [],
             "result_type": "ReadDatePrivacySettings",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setNewChatPrivacySettings",
@@ -44517,7 +44517,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getNewChatPrivacySettings",
@@ -44525,7 +44525,7 @@
             "args": [],
             "result_type": "NewChatPrivacySettings",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getPaidMessageRevenue",
@@ -44539,7 +44539,7 @@
             ],
             "result_type": "StarCount",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "allowUnpaidMessagesFromUser",
@@ -44558,7 +44558,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatPaidMessageStarCount",
@@ -44577,7 +44577,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "canSendMessageToUser",
@@ -44596,7 +44596,7 @@
             ],
             "result_type": "CanSendMessageToUserResult",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getOption",
@@ -44643,7 +44643,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getAccountTtl",
@@ -44651,7 +44651,7 @@
             "args": [],
             "result_type": "AccountTtl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deleteAccount",
@@ -44670,7 +44670,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setDefaultMessageAutoDeleteTime",
@@ -44684,7 +44684,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getDefaultMessageAutoDeleteTime",
@@ -44692,7 +44692,7 @@
             "args": [],
             "result_type": "MessageAutoDeleteTime",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "removeChatActionBar",
@@ -44706,7 +44706,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reportChat",
@@ -44735,7 +44735,7 @@
             ],
             "result_type": "ReportChatResult",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reportChatPhoto",
@@ -44764,7 +44764,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "reportMessageReactions",
@@ -44788,7 +44788,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatRevenueStatistics",
@@ -44807,7 +44807,7 @@
             ],
             "result_type": "ChatRevenueStatistics",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatRevenueWithdrawalUrl",
@@ -44826,7 +44826,7 @@
             ],
             "result_type": "HttpUrl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatRevenueTransactions",
@@ -44850,7 +44850,7 @@
             ],
             "result_type": "ChatRevenueTransactions",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStarRevenueStatistics",
@@ -44869,7 +44869,7 @@
             ],
             "result_type": "StarRevenueStatistics",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStarWithdrawalUrl",
@@ -44893,7 +44893,7 @@
             ],
             "result_type": "HttpUrl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStarAdAccountUrl",
@@ -44907,7 +44907,7 @@
             ],
             "result_type": "HttpUrl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getChatStatistics",
@@ -44926,7 +44926,7 @@
             ],
             "result_type": "ChatStatistics",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getMessageStatistics",
@@ -44950,7 +44950,7 @@
             ],
             "result_type": "MessageStatistics",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getMessagePublicForwards",
@@ -44979,7 +44979,7 @@
             ],
             "result_type": "PublicForwards",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStoryStatistics",
@@ -45003,7 +45003,7 @@
             ],
             "result_type": "StoryStatistics",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStatisticalGraph",
@@ -45027,7 +45027,7 @@
             ],
             "result_type": "StatisticalGraph",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStorageStatistics",
@@ -45049,7 +45049,7 @@
             "args": [],
             "result_type": "StorageStatisticsFast",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getDatabaseStatistics",
@@ -45169,7 +45169,7 @@
             "args": [],
             "result_type": "AutoDownloadSettingsPresets",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setAutoDownloadSettings",
@@ -45188,7 +45188,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getAutosaveSettings",
@@ -45196,7 +45196,7 @@
             "args": [],
             "result_type": "AutosaveSettings",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setAutosaveSettings",
@@ -45215,7 +45215,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "clearAutosaveSettingsExceptions",
@@ -45223,7 +45223,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getBankCardInfo",
@@ -45237,7 +45237,7 @@
             ],
             "result_type": "BankCardInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getPassportElement",
@@ -45256,7 +45256,7 @@
             ],
             "result_type": "PassportElement",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getAllPassportElements",
@@ -45270,7 +45270,7 @@
             ],
             "result_type": "PassportElements",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setPassportElement",
@@ -45289,7 +45289,7 @@
             ],
             "result_type": "PassportElement",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "deletePassportElement",
@@ -45303,7 +45303,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setPassportElementErrors",
@@ -45322,7 +45322,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "getPreferredCountryLanguage",
@@ -45336,7 +45336,7 @@
             ],
             "result_type": "Text",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendEmailAddressVerificationCode",
@@ -45350,7 +45350,7 @@
             ],
             "result_type": "EmailAddressAuthenticationCodeInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "resendEmailAddressVerificationCode",
@@ -45358,7 +45358,7 @@
             "args": [],
             "result_type": "EmailAddressAuthenticationCodeInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "checkEmailAddressVerificationCode",
@@ -45372,7 +45372,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getPassportAuthorizationForm",
@@ -45401,7 +45401,7 @@
             ],
             "result_type": "PassportAuthorizationForm",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getPassportAuthorizationFormAvailableElements",
@@ -45420,7 +45420,7 @@
             ],
             "result_type": "PassportElementsWithErrors",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "sendPassportAuthorizationForm",
@@ -45439,7 +45439,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setBotUpdatesStatus",
@@ -45458,7 +45458,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "uploadStickerFile",
@@ -45797,7 +45797,7 @@
             ],
             "result_type": "StickerSets",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getMapThumbnailFile",
@@ -45850,7 +45850,7 @@
             ],
             "result_type": "PremiumLimit",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getPremiumFeatures",
@@ -45864,7 +45864,7 @@
             ],
             "result_type": "PremiumFeatures",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getPremiumStickerExamples",
@@ -45872,7 +45872,7 @@
             "args": [],
             "result_type": "Stickers",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getPremiumInfoSticker",
@@ -45886,7 +45886,7 @@
             ],
             "result_type": "Sticker",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "viewPremiumFeature",
@@ -45900,7 +45900,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "clickPremiumSubscriptionButton",
@@ -45908,7 +45908,7 @@
             "args": [],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getPremiumState",
@@ -45916,7 +45916,7 @@
             "args": [],
             "result_type": "PremiumState",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getPremiumGiftPaymentOptions",
@@ -45924,7 +45924,7 @@
             "args": [],
             "result_type": "PremiumGiftPaymentOptions",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getPremiumGiveawayPaymentOptions",
@@ -45938,7 +45938,7 @@
             ],
             "result_type": "PremiumGiveawayPaymentOptions",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "checkPremiumGiftCode",
@@ -45952,7 +45952,7 @@
             ],
             "result_type": "PremiumGiftCodeInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "applyPremiumGiftCode",
@@ -45966,7 +45966,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "launchPrepaidGiveaway",
@@ -45995,7 +45995,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getGiveawayInfo",
@@ -46014,7 +46014,7 @@
             ],
             "result_type": "GiveawayInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStarPaymentOptions",
@@ -46022,7 +46022,7 @@
             "args": [],
             "result_type": "StarPaymentOptions",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStarGiftPaymentOptions",
@@ -46036,7 +46036,7 @@
             ],
             "result_type": "StarPaymentOptions",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStarGiveawayPaymentOptions",
@@ -46044,7 +46044,7 @@
             "args": [],
             "result_type": "StarGiveawayPaymentOptions",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getStarTransactions",
@@ -46097,7 +46097,7 @@
             ],
             "result_type": "StarSubscriptions",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "canPurchaseFromStore",
@@ -46111,7 +46111,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "assignAppStoreTransaction",
@@ -46130,7 +46130,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "assignGooglePlayTransaction",
@@ -46159,7 +46159,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "editStarSubscription",
@@ -46178,7 +46178,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "editUserStarSubscription",
@@ -46202,7 +46202,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "reuseStarSubscription",
@@ -46216,7 +46216,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setChatAffiliateProgram",
@@ -46235,7 +46235,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchChatAffiliateProgram",
@@ -46254,7 +46254,7 @@
             ],
             "result_type": "Chat",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchAffiliatePrograms",
@@ -46283,7 +46283,7 @@
             ],
             "result_type": "FoundAffiliatePrograms",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "connectAffiliateProgram",
@@ -46302,7 +46302,7 @@
             ],
             "result_type": "ConnectedAffiliateProgram",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "disconnectAffiliateProgram",
@@ -46321,7 +46321,7 @@
             ],
             "result_type": "ConnectedAffiliateProgram",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getConnectedAffiliateProgram",
@@ -46340,7 +46340,7 @@
             ],
             "result_type": "ConnectedAffiliateProgram",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getConnectedAffiliatePrograms",
@@ -46364,7 +46364,7 @@
             ],
             "result_type": "ConnectedAffiliatePrograms",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getBusinessFeatures",
@@ -46378,7 +46378,7 @@
             ],
             "result_type": "BusinessFeatures",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "acceptTermsOfService",
@@ -46392,7 +46392,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "searchStringsByPrefix",
@@ -46440,7 +46440,7 @@
             ],
             "result_type": "CustomRequestResult",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "answerCustomQuery",
@@ -46459,7 +46459,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 3
         },
         {
             "name": "setAlarm",
@@ -46558,7 +46558,7 @@
             "args": [],
             "result_type": "JsonValue",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "saveApplicationLogEvent",
@@ -46582,7 +46582,7 @@
             ],
             "result_type": "Ok",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getApplicationDownloadLink",
@@ -46590,7 +46590,7 @@
             "args": [],
             "result_type": "HttpUrl",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "addProxy",
@@ -46843,7 +46843,7 @@
             ],
             "result_type": "UserSupportInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "setUserSupportInfo",
@@ -46862,7 +46862,7 @@
             ],
             "result_type": "UserSupportInfo",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "getSupportName",
@@ -46870,7 +46870,7 @@
             "args": [],
             "result_type": "Text",
             "is_synchronous": false,
-            "type": 1
+            "type": 2
         },
         {
             "name": "testCallEmpty",

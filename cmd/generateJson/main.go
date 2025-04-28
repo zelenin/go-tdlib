@@ -30,7 +30,7 @@ func main() {
 		log.Fatalf("schema parse error: %s", err)
 	}
 
-	res, err = http.Get("https://raw.githubusercontent.com/tdlib/td/" + version + "/td/telegram/Td.cpp")
+	res, err = http.Get("https://raw.githubusercontent.com/tdlib/td/" + version + "/td/telegram/Requests.cpp")
 	if err != nil {
 		log.Fatalf("http.Get error: %s", err)
 	}
