@@ -4,71 +4,63 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"regexp"
 	"strings"
 )
 
+func getMethodName(line string, re *regexp.Regexp) string {
+	return strings.TrimSpace(strings.TrimPrefix(re.FindString(line), "td_api::"))
+}
+
 func ParseCode(reader io.Reader, schema *Schema) error {
-	var prevLine string
-	var curLine string
+
+	reExtractMethodName, err := regexp.Compile(`td_api::(.*?) `)
+	if err != nil {
+		return fmt.Errorf("invalid regexp to extract method name: %w", err)
+	}
 
 	userMethods := map[string]bool{}
 	botMethods := map[string]bool{}
 
 	scanner := bufio.NewScanner(reader)
+
+	methodName := ""
+
 	for scanner.Scan() {
-		prevLine = curLine
-		curLine = scanner.Text()
 
-		if strings.Contains(curLine, "CHECK_IS_USER();") {
-			fields := strings.Fields(prevLine)
-			for _, field := range fields {
-				var methodName string
-				n, err := fmt.Sscanf(field, "td_api::%s", &methodName)
-				if err == nil && n > 0 {
-					userMethods[methodName] = true
-				}
-			}
+		line := scanner.Text()
+
+		switch {
+		case strings.HasPrefix(line, "void Requests::on_request("):
+			methodName = getMethodName(line, reExtractMethodName)
+		case strings.Contains(line, "CHECK_IS_USER();"):
+			userMethods[methodName] = true
+		case strings.Contains(line, "CHECK_IS_BOT();"):
+			botMethods[methodName] = true
+		case line == "}":
+			methodName = ""
 		}
 
-		if strings.Contains(curLine, "CHECK_IS_BOT();") {
-			fields := strings.Fields(prevLine)
-			for _, field := range fields {
-				var methodName string
-				n, err := fmt.Sscanf(field, "td_api::%s", &methodName)
-				if err == nil && n > 0 {
-					botMethods[methodName] = true
-				}
-			}
-		}
 	}
 
-	err := scanner.Err()
+	err = scanner.Err()
 	if err != nil {
 		return err
 	}
 
-	var ok bool
+	for _, fn := range schema.Functions {
 
-	for index, _ := range schema.Functions {
-		hasType := false
-		_, ok = userMethods[schema.Functions[index].Name]
-		if ok {
-			schema.Functions[index].Type = FUNCTION_TYPE_USER
-			hasType = true
+		fn.Type = FUNCTION_TYPE_COMMON
+
+		switch {
+		case userMethods[fn.Name]:
+			fn.Type = FUNCTION_TYPE_USER
+		case botMethods[fn.Name]:
+			fn.Type = FUNCTION_TYPE_BOT
 		}
 
-		_, ok = botMethods[schema.Functions[index].Name]
-		if ok {
-			schema.Functions[index].Type = FUNCTION_TYPE_BOT
-			hasType = true
-		}
-
-		if !hasType {
-			schema.Functions[index].Type = FUNCTION_TYPE_COMMON
-		}
-
-		ok = false
 	}
 
 	return nil
+
 }
