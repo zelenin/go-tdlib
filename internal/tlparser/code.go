@@ -47,27 +47,17 @@ func ParseCode(reader io.Reader, schema *Schema) error {
 		return err
 	}
 
-	var ok bool
+	for _, fn := range schema.Functions {
 
-	for index, _ := range schema.Functions {
-		hasType := false
-		_, ok = userMethods[schema.Functions[index].Name]
-		if ok {
-			schema.Functions[index].Type = FUNCTION_TYPE_USER
-			hasType = true
+		fn.Type = FUNCTION_TYPE_COMMON
+
+		switch {
+		case userMethods[fn.Name]:
+			fn.Type = FUNCTION_TYPE_USER
+		case botMethods[fn.Name]:
+			fn.Type = FUNCTION_TYPE_BOT
 		}
 
-		_, ok = botMethods[schema.Functions[index].Name]
-		if ok {
-			schema.Functions[index].Type = FUNCTION_TYPE_BOT
-			hasType = true
-		}
-
-		if !hasType {
-			schema.Functions[index].Type = FUNCTION_TYPE_COMMON
-		}
-
-		ok = false
 	}
 
 	return nil
