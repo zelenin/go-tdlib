@@ -33,6 +33,9 @@ func (client *Client) GetAuthorizationState(ctx context.Context) (AuthorizationS
 	case ConstructorAuthorizationStateWaitPhoneNumber:
 		return UnmarshalAuthorizationStateWaitPhoneNumber(result.Data)
 
+	case ConstructorAuthorizationStateWaitPremiumPurchase:
+		return UnmarshalAuthorizationStateWaitPremiumPurchase(result.Data)
+
 	case ConstructorAuthorizationStateWaitEmailAddress:
 		return UnmarshalAuthorizationStateWaitEmailAddress(result.Data)
 
@@ -130,8 +133,64 @@ func (req SetAuthenticationPhoneNumberRequest) GetFunctionName() string {
 	return "setAuthenticationPhoneNumber"
 }
 
-// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+// Sets the phone number of the user and sends an authentication code to the user. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitPremiumPurchase, authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
 func (client *Client) SetAuthenticationPhoneNumber(ctx context.Context, req *SetAuthenticationPhoneNumberRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type CheckAuthenticationPremiumPurchaseRequest struct {
+	request
+	// ISO 4217 currency code of the payment currency
+	Currency string `json:"currency"`
+	// Paid amount, in the smallest units of the currency
+	Amount int64 `json:"amount"`
+}
+
+func (req CheckAuthenticationPremiumPurchaseRequest) GetFunctionName() string {
+	return "checkAuthenticationPremiumPurchase"
+}
+
+// Checks whether an in-store purchase of Telegram Premium is possible before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
+func (client *Client) CheckAuthenticationPremiumPurchase(ctx context.Context, req *CheckAuthenticationPremiumPurchaseRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type SetAuthenticationPremiumPurchaseTransactionRequest struct {
+	request
+	// Information about the transaction
+	Transaction StoreTransaction `json:"transaction"`
+	// Pass true if this is a restore of a Telegram Premium purchase; only for App Store
+	IsRestore bool `json:"is_restore"`
+	// ISO 4217 currency code of the payment currency
+	Currency string `json:"currency"`
+	// Paid amount, in the smallest units of the currency
+	Amount int64 `json:"amount"`
+}
+
+func (req SetAuthenticationPremiumPurchaseTransactionRequest) GetFunctionName() string {
+	return "setAuthenticationPremiumPurchaseTransaction"
+}
+
+// Informs server about an in-store purchase of Telegram Premium before authorization. Works only when the current authorization state is authorizationStateWaitPremiumPurchase
+func (client *Client) SetAuthenticationPremiumPurchaseTransaction(ctx context.Context, req *SetAuthenticationPremiumPurchaseTransactionRequest) (*Ok, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
 		return nil, err
@@ -250,7 +309,7 @@ func (req RequestQrCodeAuthenticationRequest) GetFunctionName() string {
 	return "requestQrCodeAuthentication"
 }
 
-// Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
+// Requests QR code authentication by scanning a QR code on another logged in device. Works only when the current authorization state is authorizationStateWaitPhoneNumber, or if there is no pending authentication query and the current authorization state is authorizationStateWaitPremiumPurchase, authorizationStateWaitEmailAddress, authorizationStateWaitEmailCode, authorizationStateWaitCode, authorizationStateWaitRegistration, or authorizationStateWaitPassword
 func (client *Client) RequestQrCodeAuthentication(ctx context.Context, req *RequestQrCodeAuthenticationRequest) (*Ok, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -3268,7 +3327,7 @@ func (req ReportChatSponsoredMessageRequest) GetFunctionName() string {
 }
 
 // Reports a sponsored message to Telegram moderators
-func (client *Client) ReportChatSponsoredMessage(ctx context.Context, req *ReportChatSponsoredMessageRequest) (ReportChatSponsoredMessageResult, error) {
+func (client *Client) ReportChatSponsoredMessage(ctx context.Context, req *ReportChatSponsoredMessageRequest) (ReportSponsoredResult, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
 		return nil, err
@@ -3279,20 +3338,136 @@ func (client *Client) ReportChatSponsoredMessage(ctx context.Context, req *Repor
 	}
 
 	switch result.MetaType {
-	case ConstructorReportChatSponsoredMessageResultOk:
-		return UnmarshalReportChatSponsoredMessageResultOk(result.Data)
+	case ConstructorReportSponsoredResultOk:
+		return UnmarshalReportSponsoredResultOk(result.Data)
 
-	case ConstructorReportChatSponsoredMessageResultFailed:
-		return UnmarshalReportChatSponsoredMessageResultFailed(result.Data)
+	case ConstructorReportSponsoredResultFailed:
+		return UnmarshalReportSponsoredResultFailed(result.Data)
 
-	case ConstructorReportChatSponsoredMessageResultOptionRequired:
-		return UnmarshalReportChatSponsoredMessageResultOptionRequired(result.Data)
+	case ConstructorReportSponsoredResultOptionRequired:
+		return UnmarshalReportSponsoredResultOptionRequired(result.Data)
 
-	case ConstructorReportChatSponsoredMessageResultAdsHidden:
-		return UnmarshalReportChatSponsoredMessageResultAdsHidden(result.Data)
+	case ConstructorReportSponsoredResultAdsHidden:
+		return UnmarshalReportSponsoredResultAdsHidden(result.Data)
 
-	case ConstructorReportChatSponsoredMessageResultPremiumRequired:
-		return UnmarshalReportChatSponsoredMessageResultPremiumRequired(result.Data)
+	case ConstructorReportSponsoredResultPremiumRequired:
+		return UnmarshalReportSponsoredResultPremiumRequired(result.Data)
+
+	default:
+		return nil, errors.New("invalid type")
+	}
+}
+
+type GetSearchSponsoredChatsRequest struct {
+	request
+	// Query the user searches for
+	Query string `json:"query"`
+}
+
+func (req GetSearchSponsoredChatsRequest) GetFunctionName() string {
+	return "getSearchSponsoredChats"
+}
+
+// Returns sponsored chats to be shown in the search results
+func (client *Client) GetSearchSponsoredChats(ctx context.Context, req *GetSearchSponsoredChatsRequest) (*SponsoredChats, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalSponsoredChats(result.Data)
+}
+
+type ViewSponsoredChatRequest struct {
+	request
+	// Unique identifier of the sponsored chat
+	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
+}
+
+func (req ViewSponsoredChatRequest) GetFunctionName() string {
+	return "viewSponsoredChat"
+}
+
+// Informs TDLib that the user fully viewed a sponsored chat
+func (client *Client) ViewSponsoredChat(ctx context.Context, req *ViewSponsoredChatRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type OpenSponsoredChatRequest struct {
+	request
+	// Unique identifier of the sponsored chat
+	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
+}
+
+func (req OpenSponsoredChatRequest) GetFunctionName() string {
+	return "openSponsoredChat"
+}
+
+// Informs TDLib that the user opened a sponsored chat
+func (client *Client) OpenSponsoredChat(ctx context.Context, req *OpenSponsoredChatRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type ReportSponsoredChatRequest struct {
+	request
+	// Unique identifier of the sponsored chat
+	SponsoredChatUniqueId int64 `json:"sponsored_chat_unique_id"`
+	// Option identifier chosen by the user; leave empty for the initial request
+	OptionId []byte `json:"option_id"`
+}
+
+func (req ReportSponsoredChatRequest) GetFunctionName() string {
+	return "reportSponsoredChat"
+}
+
+// Reports a sponsored chat to Telegram moderators
+func (client *Client) ReportSponsoredChat(ctx context.Context, req *ReportSponsoredChatRequest) (ReportSponsoredResult, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	switch result.MetaType {
+	case ConstructorReportSponsoredResultOk:
+		return UnmarshalReportSponsoredResultOk(result.Data)
+
+	case ConstructorReportSponsoredResultFailed:
+		return UnmarshalReportSponsoredResultFailed(result.Data)
+
+	case ConstructorReportSponsoredResultOptionRequired:
+		return UnmarshalReportSponsoredResultOptionRequired(result.Data)
+
+	case ConstructorReportSponsoredResultAdsHidden:
+		return UnmarshalReportSponsoredResultAdsHidden(result.Data)
+
+	case ConstructorReportSponsoredResultPremiumRequired:
+		return UnmarshalReportSponsoredResultPremiumRequired(result.Data)
 
 	default:
 		return nil, errors.New("invalid type")
@@ -4579,6 +4754,304 @@ func (req SetBusinessMessageIsPinnedRequest) GetFunctionName() string {
 
 // Pins or unpins a message sent on behalf of a business account; for bots only
 func (client *Client) SetBusinessMessageIsPinned(ctx context.Context, req *SetBusinessMessageIsPinnedRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type ReadBusinessMessageRequest struct {
+	request
+	// Unique identifier of business connection through which the message was received
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The chat the message belongs to
+	ChatId int64 `json:"chat_id"`
+	// Identifier of the message
+	MessageId int64 `json:"message_id"`
+}
+
+func (req ReadBusinessMessageRequest) GetFunctionName() string {
+	return "readBusinessMessage"
+}
+
+// Reads a message on behalf of a business account; for bots only
+func (client *Client) ReadBusinessMessage(ctx context.Context, req *ReadBusinessMessageRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type DeleteBusinessMessagesRequest struct {
+	request
+	// Unique identifier of business connection through which the messages were received
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Identifier of the messages
+	MessageIds []int64 `json:"message_ids"`
+}
+
+func (req DeleteBusinessMessagesRequest) GetFunctionName() string {
+	return "deleteBusinessMessages"
+}
+
+// Deletes messages on behalf of a business account; for bots only
+func (client *Client) DeleteBusinessMessages(ctx context.Context, req *DeleteBusinessMessagesRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type EditBusinessStoryRequest struct {
+	request
+	// Identifier of the chat that posted the story
+	StorySenderChatId int64 `json:"story_sender_chat_id"`
+	// Identifier of the story to edit
+	StoryId int32 `json:"story_id"`
+	// New content of the story
+	Content InputStoryContent `json:"content"`
+	// New clickable rectangle areas to be shown on the story media
+	Areas *InputStoryAreas `json:"areas"`
+	// New story caption
+	Caption *FormattedText `json:"caption"`
+	// The new privacy settings for the story
+	PrivacySettings StoryPrivacySettings `json:"privacy_settings"`
+}
+
+func (req EditBusinessStoryRequest) GetFunctionName() string {
+	return "editBusinessStory"
+}
+
+// Changes a story sent by the bot on behalf of a business account; for bots only
+func (client *Client) EditBusinessStory(ctx context.Context, req *EditBusinessStoryRequest) (*Story, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalStory(result.Data)
+}
+
+type DeleteBusinessStoryRequest struct {
+	request
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Identifier of the story to delete
+	StoryId int32 `json:"story_id"`
+}
+
+func (req DeleteBusinessStoryRequest) GetFunctionName() string {
+	return "deleteBusinessStory"
+}
+
+// Deletes a story sent by the bot on behalf of a business account; for bots only
+func (client *Client) DeleteBusinessStory(ctx context.Context, req *DeleteBusinessStoryRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type SetBusinessAccountNameRequest struct {
+	request
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The new value of the first name for the business account; 1-64 characters
+	FirstName string `json:"first_name"`
+	// The new value of the optional last name for the business account; 0-64 characters
+	LastName string `json:"last_name"`
+}
+
+func (req SetBusinessAccountNameRequest) GetFunctionName() string {
+	return "setBusinessAccountName"
+}
+
+// Changes the first and last name of a business account; for bots only
+func (client *Client) SetBusinessAccountName(ctx context.Context, req *SetBusinessAccountNameRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type SetBusinessAccountBioRequest struct {
+	request
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The new value of the bio; 0-getOption("bio_length_max") characters without line feeds
+	Bio string `json:"bio"`
+}
+
+func (req SetBusinessAccountBioRequest) GetFunctionName() string {
+	return "setBusinessAccountBio"
+}
+
+// Changes the bio of a business account; for bots only
+func (client *Client) SetBusinessAccountBio(ctx context.Context, req *SetBusinessAccountBioRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type SetBusinessAccountProfilePhotoRequest struct {
+	request
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Profile photo to set; pass null to remove the photo
+	Photo InputChatPhoto `json:"photo"`
+	// Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings
+	IsPublic bool `json:"is_public"`
+}
+
+func (req SetBusinessAccountProfilePhotoRequest) GetFunctionName() string {
+	return "setBusinessAccountProfilePhoto"
+}
+
+// Changes a profile photo of a business account; for bots only
+func (client *Client) SetBusinessAccountProfilePhoto(ctx context.Context, req *SetBusinessAccountProfilePhotoRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type SetBusinessAccountUsernameRequest struct {
+	request
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The new value of the username
+	Username string `json:"username"`
+}
+
+func (req SetBusinessAccountUsernameRequest) GetFunctionName() string {
+	return "setBusinessAccountUsername"
+}
+
+// Changes the editable username of a business account; for bots only
+func (client *Client) SetBusinessAccountUsername(ctx context.Context, req *SetBusinessAccountUsernameRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type SetBusinessAccountGiftSettingsRequest struct {
+	request
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+	// The new settings
+	Settings *GiftSettings `json:"settings"`
+}
+
+func (req SetBusinessAccountGiftSettingsRequest) GetFunctionName() string {
+	return "setBusinessAccountGiftSettings"
+}
+
+// Changes settings for gift receiving of a business account; for bots only
+func (client *Client) SetBusinessAccountGiftSettings(ctx context.Context, req *SetBusinessAccountGiftSettingsRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
+type GetBusinessAccountStarAmountRequest struct {
+	request
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+}
+
+func (req GetBusinessAccountStarAmountRequest) GetFunctionName() string {
+	return "getBusinessAccountStarAmount"
+}
+
+// Returns the amount of Telegram Stars owned by a business account; for bots only
+func (client *Client) GetBusinessAccountStarAmount(ctx context.Context, req *GetBusinessAccountStarAmountRequest) (*StarAmount, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalStarAmount(result.Data)
+}
+
+type TransferBusinessAccountStarsRequest struct {
+	request
+	// Unique identifier of business connection
+	BusinessConnectionId string `json:"business_connection_id"`
+	// Number of Telegram Stars to transfer
+	StarCount int64 `json:"star_count"`
+}
+
+func (req TransferBusinessAccountStarsRequest) GetFunctionName() string {
+	return "transferBusinessAccountStars"
+}
+
+// Transfer Telegram Stars from the business account to the business bot; for bots only
+func (client *Client) TransferBusinessAccountStars(ctx context.Context, req *TransferBusinessAccountStarsRequest) (*Ok, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
 		return nil, err
@@ -14654,7 +15127,7 @@ type SetProfilePhotoRequest struct {
 	request
 	// Profile photo to set
 	Photo InputChatPhoto `json:"photo"`
-	// Pass true to set a public photo, which will be visible even the main photo is hidden by privacy settings
+	// Pass true to set the public photo, which will be visible even the main photo is hidden by privacy settings
 	IsPublic bool `json:"is_public"`
 }
 
@@ -17221,6 +17694,30 @@ func (client *Client) DeleteSavedCredentials(ctx context.Context) (*Ok, error) {
 	return UnmarshalOk(result.Data)
 }
 
+type SetGiftSettingsRequest struct {
+	request
+	// The new settings
+	Settings *GiftSettings `json:"settings"`
+}
+
+func (req SetGiftSettingsRequest) GetFunctionName() string {
+	return "setGiftSettings"
+}
+
+// Changes settings for gift receiving for the current user
+func (client *Client) SetGiftSettings(ctx context.Context, req *SetGiftSettingsRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
 type GetAvailableGiftsRequest struct {
 	request
 }
@@ -17278,6 +17775,8 @@ func (client *Client) SendGift(ctx context.Context, req *SendGiftRequest) (*Ok, 
 
 type SellGiftRequest struct {
 	request
+	// Unique identifier of business connection on behalf of which to send the request; for bots only
+	BusinessConnectionId string `json:"business_connection_id"`
 	// Identifier of the gift
 	ReceivedGiftId string `json:"received_gift_id"`
 }
@@ -17404,6 +17903,8 @@ func (client *Client) GetGiftUpgradePreview(ctx context.Context, req *GetGiftUpg
 
 type UpgradeGiftRequest struct {
 	request
+	// Unique identifier of business connection on behalf of which to send the request; for bots only
+	BusinessConnectionId string `json:"business_connection_id"`
 	// Identifier of the gift
 	ReceivedGiftId string `json:"received_gift_id"`
 	// Pass true to keep the original gift text, sender and receiver in the upgraded gift
@@ -17432,6 +17933,8 @@ func (client *Client) UpgradeGift(ctx context.Context, req *UpgradeGiftRequest) 
 
 type TransferGiftRequest struct {
 	request
+	// Unique identifier of business connection on behalf of which to send the request; for bots only
+	BusinessConnectionId string `json:"business_connection_id"`
 	// Identifier of the gift
 	ReceivedGiftId string `json:"received_gift_id"`
 	// Identifier of the user or the channel chat that will receive the gift
@@ -17460,6 +17963,8 @@ func (client *Client) TransferGift(ctx context.Context, req *TransferGiftRequest
 
 type GetReceivedGiftsRequest struct {
 	request
+	// Unique identifier of business connection on behalf of which to send the request; for bots only
+	BusinessConnectionId string `json:"business_connection_id"`
 	// Identifier of the gift receiver
 	OwnerId MessageSender `json:"owner_id"`
 	// Pass true to exclude gifts that aren't saved to the chat's profile page. Always true for gifts received by other users and channel chats without can_post_messages administrator right
@@ -20543,6 +21048,36 @@ func (client *Client) ApplyPremiumGiftCode(ctx context.Context, req *ApplyPremiu
 	return UnmarshalOk(result.Data)
 }
 
+type GiftPremiumWithStarsRequest struct {
+	request
+	// Identifier of the user which will receive Telegram Premium
+	UserId int64 `json:"user_id"`
+	// The number of Telegram Stars to pay for subscription
+	StarCount int64 `json:"star_count"`
+	// Number of months the Telegram Premium subscription will be active for the user
+	MonthCount int32 `json:"month_count"`
+	// Text to show to the user receiving Telegram Premium; 0-getOption("gift_text_length_max") characters. Only Bold, Italic, Underline, Strikethrough, Spoiler, and CustomEmoji entities are allowed
+	Text *FormattedText `json:"text"`
+}
+
+func (req GiftPremiumWithStarsRequest) GetFunctionName() string {
+	return "giftPremiumWithStars"
+}
+
+// Allows to buy a Telegram Premium subscription for another user with payment in Telegram Stars; for bots only
+func (client *Client) GiftPremiumWithStars(ctx context.Context, req *GiftPremiumWithStarsRequest) (*Ok, error) {
+	result, err := client.Send(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	if result.MetaType == "error" {
+		return nil, buildResponseError(result.Data)
+	}
+
+	return UnmarshalOk(result.Data)
+}
+
 type LaunchPrepaidGiveawayRequest struct {
 	request
 	// Unique identifier of the prepaid giveaway
@@ -20746,7 +21281,7 @@ func (req CanPurchaseFromStoreRequest) GetFunctionName() string {
 	return "canPurchaseFromStore"
 }
 
-// Checks whether an in-store purchase is possible. Must be called before any in-store purchase
+// Checks whether an in-store purchase is possible. Must be called before any in-store purchase. For official applications only
 func (client *Client) CanPurchaseFromStore(ctx context.Context, req *CanPurchaseFromStoreRequest) (*Ok, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
@@ -20760,50 +21295,20 @@ func (client *Client) CanPurchaseFromStore(ctx context.Context, req *CanPurchase
 	return UnmarshalOk(result.Data)
 }
 
-type AssignAppStoreTransactionRequest struct {
+type AssignStoreTransactionRequest struct {
 	request
-	// App Store receipt
-	Receipt []byte `json:"receipt"`
+	// Information about the transaction
+	Transaction StoreTransaction `json:"transaction"`
 	// Transaction purpose
 	Purpose StorePaymentPurpose `json:"purpose"`
 }
 
-func (req AssignAppStoreTransactionRequest) GetFunctionName() string {
-	return "assignAppStoreTransaction"
+func (req AssignStoreTransactionRequest) GetFunctionName() string {
+	return "assignStoreTransaction"
 }
 
-// Informs server about a purchase through App Store. For official applications only
-func (client *Client) AssignAppStoreTransaction(ctx context.Context, req *AssignAppStoreTransactionRequest) (*Ok, error) {
-	result, err := client.Send(ctx, req)
-	if err != nil {
-		return nil, err
-	}
-
-	if result.MetaType == "error" {
-		return nil, buildResponseError(result.Data)
-	}
-
-	return UnmarshalOk(result.Data)
-}
-
-type AssignGooglePlayTransactionRequest struct {
-	request
-	// Application package name
-	PackageName string `json:"package_name"`
-	// Identifier of the purchased store product
-	StoreProductId string `json:"store_product_id"`
-	// Google Play purchase token
-	PurchaseToken string `json:"purchase_token"`
-	// Transaction purpose
-	Purpose StorePaymentPurpose `json:"purpose"`
-}
-
-func (req AssignGooglePlayTransactionRequest) GetFunctionName() string {
-	return "assignGooglePlayTransaction"
-}
-
-// Informs server about a purchase through Google Play. For official applications only
-func (client *Client) AssignGooglePlayTransaction(ctx context.Context, req *AssignGooglePlayTransactionRequest) (*Ok, error) {
+// Informs server about an in-store purchase. For official applications only
+func (client *Client) AssignStoreTransaction(ctx context.Context, req *AssignStoreTransactionRequest) (*Ok, error) {
 	result, err := client.Send(ctx, req)
 	if err != nil {
 		return nil, err
@@ -22478,6 +22983,9 @@ func (client *Client) TestUseUpdate(ctx context.Context) (Update, error) {
 	case ConstructorUpdateForumTopicInfo:
 		return UnmarshalUpdateForumTopicInfo(result.Data)
 
+	case ConstructorUpdateForumTopic:
+		return UnmarshalUpdateForumTopic(result.Data)
+
 	case ConstructorUpdateScopeNotificationSettings:
 		return UnmarshalUpdateScopeNotificationSettings(result.Data)
 
@@ -22639,6 +23147,9 @@ func (client *Client) TestUseUpdate(ctx context.Context) (Update, error) {
 
 	case ConstructorUpdateConnectionState:
 		return UnmarshalUpdateConnectionState(result.Data)
+
+	case ConstructorUpdateFreezeState:
+		return UnmarshalUpdateFreezeState(result.Data)
 
 	case ConstructorUpdateTermsOfService:
 		return UnmarshalUpdateTermsOfService(result.Data)

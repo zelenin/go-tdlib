@@ -143,6 +143,9 @@ func UnmarshalAuthorizationState(data json.RawMessage) (AuthorizationState, erro
 	case ConstructorAuthorizationStateWaitPhoneNumber:
 		return UnmarshalAuthorizationStateWaitPhoneNumber(data)
 
+	case ConstructorAuthorizationStateWaitPremiumPurchase:
+		return UnmarshalAuthorizationStateWaitPremiumPurchase(data)
+
 	case ConstructorAuthorizationStateWaitEmailAddress:
 		return UnmarshalAuthorizationStateWaitEmailAddress(data)
 
@@ -887,6 +890,12 @@ func UnmarshalStarTransactionType(data json.RawMessage) (StarTransactionType, er
 	case ConstructorStarTransactionTypePremiumPurchase:
 		return UnmarshalStarTransactionTypePremiumPurchase(data)
 
+	case ConstructorStarTransactionTypeBusinessBotTransferSend:
+		return UnmarshalStarTransactionTypeBusinessBotTransferSend(data)
+
+	case ConstructorStarTransactionTypeBusinessBotTransferReceive:
+		return UnmarshalStarTransactionTypeBusinessBotTransferReceive(data)
+
 	case ConstructorStarTransactionTypeUnsupported:
 		return UnmarshalStarTransactionTypeUnsupported(data)
 
@@ -1624,7 +1633,7 @@ func UnmarshalListOfMessageSource(dataList []json.RawMessage) ([]MessageSource, 
 	return list, nil
 }
 
-func UnmarshalReportChatSponsoredMessageResult(data json.RawMessage) (ReportChatSponsoredMessageResult, error) {
+func UnmarshalReportSponsoredResult(data json.RawMessage) (ReportSponsoredResult, error) {
 	var meta meta
 	err := json.Unmarshal(data, &meta)
 	if err != nil {
@@ -1632,30 +1641,30 @@ func UnmarshalReportChatSponsoredMessageResult(data json.RawMessage) (ReportChat
 	}
 
 	switch meta.MetaType {
-	case ConstructorReportChatSponsoredMessageResultOk:
-		return UnmarshalReportChatSponsoredMessageResultOk(data)
+	case ConstructorReportSponsoredResultOk:
+		return UnmarshalReportSponsoredResultOk(data)
 
-	case ConstructorReportChatSponsoredMessageResultFailed:
-		return UnmarshalReportChatSponsoredMessageResultFailed(data)
+	case ConstructorReportSponsoredResultFailed:
+		return UnmarshalReportSponsoredResultFailed(data)
 
-	case ConstructorReportChatSponsoredMessageResultOptionRequired:
-		return UnmarshalReportChatSponsoredMessageResultOptionRequired(data)
+	case ConstructorReportSponsoredResultOptionRequired:
+		return UnmarshalReportSponsoredResultOptionRequired(data)
 
-	case ConstructorReportChatSponsoredMessageResultAdsHidden:
-		return UnmarshalReportChatSponsoredMessageResultAdsHidden(data)
+	case ConstructorReportSponsoredResultAdsHidden:
+		return UnmarshalReportSponsoredResultAdsHidden(data)
 
-	case ConstructorReportChatSponsoredMessageResultPremiumRequired:
-		return UnmarshalReportChatSponsoredMessageResultPremiumRequired(data)
+	case ConstructorReportSponsoredResultPremiumRequired:
+		return UnmarshalReportSponsoredResultPremiumRequired(data)
 
 	default:
 		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.MetaType)
 	}
 }
 
-func UnmarshalListOfReportChatSponsoredMessageResult(dataList []json.RawMessage) ([]ReportChatSponsoredMessageResult, error) {
-	list := make([]ReportChatSponsoredMessageResult, 0, len(dataList))
+func UnmarshalListOfReportSponsoredResult(dataList []json.RawMessage) ([]ReportSponsoredResult, error) {
+	list := make([]ReportSponsoredResult, 0, len(dataList))
 	for _, data := range dataList {
-		entity, err := UnmarshalReportChatSponsoredMessageResult(data)
+		entity, err := UnmarshalReportSponsoredResult(data)
 		if err != nil {
 			return nil, err
 		}
@@ -3356,6 +3365,12 @@ func UnmarshalMessageContent(data json.RawMessage) (MessageContent, error) {
 
 	case ConstructorMessageRefundedUpgradedGift:
 		return UnmarshalMessageRefundedUpgradedGift(data)
+
+	case ConstructorMessagePaidMessagesRefunded:
+		return UnmarshalMessagePaidMessagesRefunded(data)
+
+	case ConstructorMessagePaidMessagePriceChanged:
+		return UnmarshalMessagePaidMessagePriceChanged(data)
 
 	case ConstructorMessageContactRegistered:
 		return UnmarshalMessageContactRegistered(data)
@@ -5524,6 +5539,38 @@ func UnmarshalListOfStorePaymentPurpose(dataList []json.RawMessage) ([]StorePaym
 	list := make([]StorePaymentPurpose, 0, len(dataList))
 	for _, data := range dataList {
 		entity, err := UnmarshalStorePaymentPurpose(data)
+		if err != nil {
+			return nil, err
+		}
+		list = append(list, entity)
+	}
+
+	return list, nil
+}
+
+func UnmarshalStoreTransaction(data json.RawMessage) (StoreTransaction, error) {
+	var meta meta
+	err := json.Unmarshal(data, &meta)
+	if err != nil {
+		return nil, err
+	}
+
+	switch meta.MetaType {
+	case ConstructorStoreTransactionAppStore:
+		return UnmarshalStoreTransactionAppStore(data)
+
+	case ConstructorStoreTransactionGooglePlay:
+		return UnmarshalStoreTransactionGooglePlay(data)
+
+	default:
+		return nil, fmt.Errorf("Error unmarshaling. Unknown type: " + meta.MetaType)
+	}
+}
+
+func UnmarshalListOfStoreTransaction(dataList []json.RawMessage) ([]StoreTransaction, error) {
+	list := make([]StoreTransaction, 0, len(dataList))
+	for _, data := range dataList {
+		entity, err := UnmarshalStoreTransaction(data)
 		if err != nil {
 			return nil, err
 		}
@@ -7825,6 +7872,9 @@ func UnmarshalUpdate(data json.RawMessage) (Update, error) {
 	case ConstructorUpdateForumTopicInfo:
 		return UnmarshalUpdateForumTopicInfo(data)
 
+	case ConstructorUpdateForumTopic:
+		return UnmarshalUpdateForumTopic(data)
+
 	case ConstructorUpdateScopeNotificationSettings:
 		return UnmarshalUpdateScopeNotificationSettings(data)
 
@@ -7986,6 +8036,9 @@ func UnmarshalUpdate(data json.RawMessage) (Update, error) {
 
 	case ConstructorUpdateConnectionState:
 		return UnmarshalUpdateConnectionState(data)
+
+	case ConstructorUpdateFreezeState:
+		return UnmarshalUpdateFreezeState(data)
 
 	case ConstructorUpdateTermsOfService:
 		return UnmarshalUpdateTermsOfService(data)
@@ -8312,6 +8365,12 @@ func UnmarshalAuthorizationStateWaitTdlibParameters(data json.RawMessage) (*Auth
 
 func UnmarshalAuthorizationStateWaitPhoneNumber(data json.RawMessage) (*AuthorizationStateWaitPhoneNumber, error) {
 	var resp AuthorizationStateWaitPhoneNumber
+	err := json.Unmarshal(data, &resp)
+	return &resp, err
+}
+
+func UnmarshalAuthorizationStateWaitPremiumPurchase(data json.RawMessage) (*AuthorizationStateWaitPremiumPurchase, error) {
+	var resp AuthorizationStateWaitPremiumPurchase
 	err := json.Unmarshal(data, &resp)
 	return &resp, err
 }
@@ -8868,6 +8927,12 @@ func UnmarshalBusinessGreetingMessageSettings(data json.RawMessage) (*BusinessGr
 	return &resp, err
 }
 
+func UnmarshalBusinessBotRights(data json.RawMessage) (*BusinessBotRights, error) {
+	var resp BusinessBotRights
+	err := json.Unmarshal(data, &resp)
+	return &resp, err
+}
+
 func UnmarshalBusinessConnectedBot(data json.RawMessage) (*BusinessConnectedBot, error) {
 	var resp BusinessConnectedBot
 	err := json.Unmarshal(data, &resp)
@@ -9192,6 +9257,18 @@ func UnmarshalStarGiveawayPaymentOptions(data json.RawMessage) (*StarGiveawayPay
 	return &resp, err
 }
 
+func UnmarshalAcceptedGiftTypes(data json.RawMessage) (*AcceptedGiftTypes, error) {
+	var resp AcceptedGiftTypes
+	err := json.Unmarshal(data, &resp)
+	return &resp, err
+}
+
+func UnmarshalGiftSettings(data json.RawMessage) (*GiftSettings, error) {
+	var resp GiftSettings
+	err := json.Unmarshal(data, &resp)
+	return &resp, err
+}
+
 func UnmarshalUpgradedGiftModel(data json.RawMessage) (*UpgradedGiftModel, error) {
 	var resp UpgradedGiftModel
 	err := json.Unmarshal(data, &resp)
@@ -9458,6 +9535,18 @@ func UnmarshalStarTransactionTypePaidMessageReceive(data json.RawMessage) (*Star
 
 func UnmarshalStarTransactionTypePremiumPurchase(data json.RawMessage) (*StarTransactionTypePremiumPurchase, error) {
 	var resp StarTransactionTypePremiumPurchase
+	err := json.Unmarshal(data, &resp)
+	return &resp, err
+}
+
+func UnmarshalStarTransactionTypeBusinessBotTransferSend(data json.RawMessage) (*StarTransactionTypeBusinessBotTransferSend, error) {
+	var resp StarTransactionTypeBusinessBotTransferSend
+	err := json.Unmarshal(data, &resp)
+	return &resp, err
+}
+
+func UnmarshalStarTransactionTypeBusinessBotTransferReceive(data json.RawMessage) (*StarTransactionTypeBusinessBotTransferReceive, error) {
+	var resp StarTransactionTypeBusinessBotTransferReceive
 	err := json.Unmarshal(data, &resp)
 	return &resp, err
 }
@@ -10302,38 +10391,50 @@ func UnmarshalSponsoredMessages(data json.RawMessage) (*SponsoredMessages, error
 	return &resp, err
 }
 
+func UnmarshalSponsoredChat(data json.RawMessage) (*SponsoredChat, error) {
+	var resp SponsoredChat
+	err := json.Unmarshal(data, &resp)
+	return &resp, err
+}
+
+func UnmarshalSponsoredChats(data json.RawMessage) (*SponsoredChats, error) {
+	var resp SponsoredChats
+	err := json.Unmarshal(data, &resp)
+	return &resp, err
+}
+
 func UnmarshalReportOption(data json.RawMessage) (*ReportOption, error) {
 	var resp ReportOption
 	err := json.Unmarshal(data, &resp)
 	return &resp, err
 }
 
-func UnmarshalReportChatSponsoredMessageResultOk(data json.RawMessage) (*ReportChatSponsoredMessageResultOk, error) {
-	var resp ReportChatSponsoredMessageResultOk
+func UnmarshalReportSponsoredResultOk(data json.RawMessage) (*ReportSponsoredResultOk, error) {
+	var resp ReportSponsoredResultOk
 	err := json.Unmarshal(data, &resp)
 	return &resp, err
 }
 
-func UnmarshalReportChatSponsoredMessageResultFailed(data json.RawMessage) (*ReportChatSponsoredMessageResultFailed, error) {
-	var resp ReportChatSponsoredMessageResultFailed
+func UnmarshalReportSponsoredResultFailed(data json.RawMessage) (*ReportSponsoredResultFailed, error) {
+	var resp ReportSponsoredResultFailed
 	err := json.Unmarshal(data, &resp)
 	return &resp, err
 }
 
-func UnmarshalReportChatSponsoredMessageResultOptionRequired(data json.RawMessage) (*ReportChatSponsoredMessageResultOptionRequired, error) {
-	var resp ReportChatSponsoredMessageResultOptionRequired
+func UnmarshalReportSponsoredResultOptionRequired(data json.RawMessage) (*ReportSponsoredResultOptionRequired, error) {
+	var resp ReportSponsoredResultOptionRequired
 	err := json.Unmarshal(data, &resp)
 	return &resp, err
 }
 
-func UnmarshalReportChatSponsoredMessageResultAdsHidden(data json.RawMessage) (*ReportChatSponsoredMessageResultAdsHidden, error) {
-	var resp ReportChatSponsoredMessageResultAdsHidden
+func UnmarshalReportSponsoredResultAdsHidden(data json.RawMessage) (*ReportSponsoredResultAdsHidden, error) {
+	var resp ReportSponsoredResultAdsHidden
 	err := json.Unmarshal(data, &resp)
 	return &resp, err
 }
 
-func UnmarshalReportChatSponsoredMessageResultPremiumRequired(data json.RawMessage) (*ReportChatSponsoredMessageResultPremiumRequired, error) {
-	var resp ReportChatSponsoredMessageResultPremiumRequired
+func UnmarshalReportSponsoredResultPremiumRequired(data json.RawMessage) (*ReportSponsoredResultPremiumRequired, error) {
+	var resp ReportSponsoredResultPremiumRequired
 	err := json.Unmarshal(data, &resp)
 	return &resp, err
 }
@@ -12560,6 +12661,18 @@ func UnmarshalMessageUpgradedGift(data json.RawMessage) (*MessageUpgradedGift, e
 
 func UnmarshalMessageRefundedUpgradedGift(data json.RawMessage) (*MessageRefundedUpgradedGift, error) {
 	var resp MessageRefundedUpgradedGift
+	err := json.Unmarshal(data, &resp)
+	return &resp, err
+}
+
+func UnmarshalMessagePaidMessagesRefunded(data json.RawMessage) (*MessagePaidMessagesRefunded, error) {
+	var resp MessagePaidMessagesRefunded
+	err := json.Unmarshal(data, &resp)
+	return &resp, err
+}
+
+func UnmarshalMessagePaidMessagePriceChanged(data json.RawMessage) (*MessagePaidMessagePriceChanged, error) {
+	var resp MessagePaidMessagePriceChanged
 	err := json.Unmarshal(data, &resp)
 	return &resp, err
 }
@@ -15158,6 +15271,18 @@ func UnmarshalStorePaymentPurposeStars(data json.RawMessage) (*StorePaymentPurpo
 
 func UnmarshalStorePaymentPurposeGiftedStars(data json.RawMessage) (*StorePaymentPurposeGiftedStars, error) {
 	var resp StorePaymentPurposeGiftedStars
+	err := json.Unmarshal(data, &resp)
+	return &resp, err
+}
+
+func UnmarshalStoreTransactionAppStore(data json.RawMessage) (*StoreTransactionAppStore, error) {
+	var resp StoreTransactionAppStore
+	err := json.Unmarshal(data, &resp)
+	return &resp, err
+}
+
+func UnmarshalStoreTransactionGooglePlay(data json.RawMessage) (*StoreTransactionGooglePlay, error) {
+	var resp StoreTransactionGooglePlay
 	err := json.Unmarshal(data, &resp)
 	return &resp, err
 }
@@ -17826,6 +17951,12 @@ func UnmarshalUpdateForumTopicInfo(data json.RawMessage) (*UpdateForumTopicInfo,
 	return &resp, err
 }
 
+func UnmarshalUpdateForumTopic(data json.RawMessage) (*UpdateForumTopic, error) {
+	var resp UpdateForumTopic
+	err := json.Unmarshal(data, &resp)
+	return &resp, err
+}
+
 func UnmarshalUpdateScopeNotificationSettings(data json.RawMessage) (*UpdateScopeNotificationSettings, error) {
 	var resp UpdateScopeNotificationSettings
 	err := json.Unmarshal(data, &resp)
@@ -18146,6 +18277,12 @@ func UnmarshalUpdateLanguagePackStrings(data json.RawMessage) (*UpdateLanguagePa
 
 func UnmarshalUpdateConnectionState(data json.RawMessage) (*UpdateConnectionState, error) {
 	var resp UpdateConnectionState
+	err := json.Unmarshal(data, &resp)
+	return &resp, err
+}
+
+func UnmarshalUpdateFreezeState(data json.RawMessage) (*UpdateFreezeState, error) {
+	var resp UpdateFreezeState
 	err := json.Unmarshal(data, &resp)
 	return &resp, err
 }
@@ -18569,6 +18706,9 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 	case ConstructorAuthorizationStateWaitPhoneNumber:
 		return UnmarshalAuthorizationStateWaitPhoneNumber(data)
 
+	case ConstructorAuthorizationStateWaitPremiumPurchase:
+		return UnmarshalAuthorizationStateWaitPremiumPurchase(data)
+
 	case ConstructorAuthorizationStateWaitEmailAddress:
 		return UnmarshalAuthorizationStateWaitEmailAddress(data)
 
@@ -18845,6 +18985,9 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 	case ConstructorBusinessGreetingMessageSettings:
 		return UnmarshalBusinessGreetingMessageSettings(data)
 
+	case ConstructorBusinessBotRights:
+		return UnmarshalBusinessBotRights(data)
+
 	case ConstructorBusinessConnectedBot:
 		return UnmarshalBusinessConnectedBot(data)
 
@@ -19007,6 +19150,12 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 	case ConstructorStarGiveawayPaymentOptions:
 		return UnmarshalStarGiveawayPaymentOptions(data)
 
+	case ConstructorAcceptedGiftTypes:
+		return UnmarshalAcceptedGiftTypes(data)
+
+	case ConstructorGiftSettings:
+		return UnmarshalGiftSettings(data)
+
 	case ConstructorUpgradedGiftModel:
 		return UnmarshalUpgradedGiftModel(data)
 
@@ -19141,6 +19290,12 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 
 	case ConstructorStarTransactionTypePremiumPurchase:
 		return UnmarshalStarTransactionTypePremiumPurchase(data)
+
+	case ConstructorStarTransactionTypeBusinessBotTransferSend:
+		return UnmarshalStarTransactionTypeBusinessBotTransferSend(data)
+
+	case ConstructorStarTransactionTypeBusinessBotTransferReceive:
+		return UnmarshalStarTransactionTypeBusinessBotTransferReceive(data)
 
 	case ConstructorStarTransactionTypeUnsupported:
 		return UnmarshalStarTransactionTypeUnsupported(data)
@@ -19562,23 +19717,29 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 	case ConstructorSponsoredMessages:
 		return UnmarshalSponsoredMessages(data)
 
+	case ConstructorSponsoredChat:
+		return UnmarshalSponsoredChat(data)
+
+	case ConstructorSponsoredChats:
+		return UnmarshalSponsoredChats(data)
+
 	case ConstructorReportOption:
 		return UnmarshalReportOption(data)
 
-	case ConstructorReportChatSponsoredMessageResultOk:
-		return UnmarshalReportChatSponsoredMessageResultOk(data)
+	case ConstructorReportSponsoredResultOk:
+		return UnmarshalReportSponsoredResultOk(data)
 
-	case ConstructorReportChatSponsoredMessageResultFailed:
-		return UnmarshalReportChatSponsoredMessageResultFailed(data)
+	case ConstructorReportSponsoredResultFailed:
+		return UnmarshalReportSponsoredResultFailed(data)
 
-	case ConstructorReportChatSponsoredMessageResultOptionRequired:
-		return UnmarshalReportChatSponsoredMessageResultOptionRequired(data)
+	case ConstructorReportSponsoredResultOptionRequired:
+		return UnmarshalReportSponsoredResultOptionRequired(data)
 
-	case ConstructorReportChatSponsoredMessageResultAdsHidden:
-		return UnmarshalReportChatSponsoredMessageResultAdsHidden(data)
+	case ConstructorReportSponsoredResultAdsHidden:
+		return UnmarshalReportSponsoredResultAdsHidden(data)
 
-	case ConstructorReportChatSponsoredMessageResultPremiumRequired:
-		return UnmarshalReportChatSponsoredMessageResultPremiumRequired(data)
+	case ConstructorReportSponsoredResultPremiumRequired:
+		return UnmarshalReportSponsoredResultPremiumRequired(data)
 
 	case ConstructorFileDownload:
 		return UnmarshalFileDownload(data)
@@ -20692,6 +20853,12 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 
 	case ConstructorMessageRefundedUpgradedGift:
 		return UnmarshalMessageRefundedUpgradedGift(data)
+
+	case ConstructorMessagePaidMessagesRefunded:
+		return UnmarshalMessagePaidMessagesRefunded(data)
+
+	case ConstructorMessagePaidMessagePriceChanged:
+		return UnmarshalMessagePaidMessagePriceChanged(data)
 
 	case ConstructorMessageContactRegistered:
 		return UnmarshalMessageContactRegistered(data)
@@ -21991,6 +22158,12 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 
 	case ConstructorStorePaymentPurposeGiftedStars:
 		return UnmarshalStorePaymentPurposeGiftedStars(data)
+
+	case ConstructorStoreTransactionAppStore:
+		return UnmarshalStoreTransactionAppStore(data)
+
+	case ConstructorStoreTransactionGooglePlay:
+		return UnmarshalStoreTransactionGooglePlay(data)
 
 	case ConstructorTelegramPaymentPurposePremiumGift:
 		return UnmarshalTelegramPaymentPurposePremiumGift(data)
@@ -23324,6 +23497,9 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 	case ConstructorUpdateForumTopicInfo:
 		return UnmarshalUpdateForumTopicInfo(data)
 
+	case ConstructorUpdateForumTopic:
+		return UnmarshalUpdateForumTopic(data)
+
 	case ConstructorUpdateScopeNotificationSettings:
 		return UnmarshalUpdateScopeNotificationSettings(data)
 
@@ -23485,6 +23661,9 @@ func UnmarshalType(data json.RawMessage) (Type, error) {
 
 	case ConstructorUpdateConnectionState:
 		return UnmarshalUpdateConnectionState(data)
+
+	case ConstructorUpdateFreezeState:
+		return UnmarshalUpdateFreezeState(data)
 
 	case ConstructorUpdateTermsOfService:
 		return UnmarshalUpdateTermsOfService(data)
