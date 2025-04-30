@@ -13,6 +13,7 @@ type Client struct {
 	resultHandler   ResultHandler
 	catchersStore   *sync.Map
 	fallbackTimeout time.Duration
+	isClosed        bool
 }
 
 type Option func(*Client)
@@ -64,6 +65,7 @@ func NewClient(authorizationStateHandler AuthorizationStateHandler, options ...O
 		jsonClient:    NewJsonClient(),
 		responses:     make(chan *Response, 1000),
 		catchersStore: &sync.Map{},
+		isClosed:      false,
 	}
 
 	client.extraGenerator = UuidV4Generator()
@@ -103,6 +105,7 @@ func (client *Client) receiver() {
 
 		if typ.GetConstructor() == ConstructorUpdateAuthorizationState &&
 			typ.(*UpdateAuthorizationState).AuthorizationState.AuthorizationStateConstructor() == ConstructorAuthorizationStateClosed {
+			client.isClosed = true
 			close(client.responses)
 		}
 	}

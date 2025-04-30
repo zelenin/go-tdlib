@@ -76,6 +76,10 @@ func (instance *tdlib) receiver() {
 			continue
 		}
 
+		if client.isClosed {
+			continue
+		}
+
 		client.responses <- resp
 	}
 }
