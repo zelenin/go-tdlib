@@ -77,6 +77,16 @@ func (instance *tdlib) receiver() {
 		}
 
 		client.responses <- resp
+
+		typ, err := UnmarshalType(resp.Data)
+		if err != nil {
+			continue
+		}
+		if typ.GetConstructor() == ConstructorUpdateAuthorizationState &&
+			typ.(*UpdateAuthorizationState).AuthorizationState.AuthorizationStateConstructor() == ConstructorAuthorizationStateClosed {
+			close(client.responses)
+			break
+		}
 	}
 }
 

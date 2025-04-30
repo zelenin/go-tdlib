@@ -100,11 +100,6 @@ func (client *Client) receiver() {
 		}
 
 		client.resultHandler.OnResult(typ)
-
-		if typ.GetConstructor() == ConstructorUpdateAuthorizationState &&
-			typ.(*UpdateAuthorizationState).AuthorizationState.AuthorizationStateConstructor() == ConstructorAuthorizationStateClosed {
-			close(client.responses)
-		}
 	}
 }
 
