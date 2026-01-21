@@ -2,6 +2,7 @@ package client
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"time"
 )
@@ -23,6 +24,10 @@ func NotSupportedAuthorizationState(state AuthorizationState) error {
 type AuthorizationStateHandler interface {
 	Handle(client *Client, state AuthorizationState) error
 	Close()
+	SetPhone(phone string) error
+	SetPassword(password string) error
+	SetCode(code string) error
+	GetState() chan AuthorizationState
 }
 
 func Authorize(client *Client, authorizationStateHandler AuthorizationStateHandler) error {
@@ -136,6 +141,64 @@ func (stateHandler *clientAuthorizer) Close() {
 	close(stateHandler.Code)
 	close(stateHandler.State)
 	close(stateHandler.Password)
+}
+
+func handleRecoverResult(res any) error {
+	switch res {
+	case nil:
+		return nil
+	default:
+		switch v := res.(type) {
+		case Error:
+			return errors.New(v.Message)
+		case error:
+			return v
+		case string:
+			return errors.New(v)
+		default:
+			return nil
+		}
+	}
+}
+
+func (stateHandler *clientAuthorizer) SetPhone(phone string) error {
+	var err error
+	defer func() {
+		if r := handleRecoverResult(recover()); r != nil {
+			err = fmt.Errorf("phone channel is closed: %v", r)
+		}
+	}()
+	stateHandler.PhoneNumber <- phone
+
+	return err
+}
+
+func (stateHandler *clientAuthorizer) SetPassword(password string) error {
+	var err error
+	defer func() {
+		if r := handleRecoverResult(recover()); r != nil {
+			err = fmt.Errorf("password channel is closed: %v", r)
+		}
+	}()
+	stateHandler.Password <- password
+
+	return err
+}
+
+func (stateHandler *clientAuthorizer) SetCode(code string) error {
+	var err error
+	defer func() {
+		if r := handleRecoverResult(recover()); r != nil {
+			err = fmt.Errorf("password channel is closed: %v", r)
+		}
+	}()
+	stateHandler.Code <- code
+
+	return err
+}
+
+func (stateHandler *clientAuthorizer) GetState() chan AuthorizationState {
+	return stateHandler.State
 }
 
 func CliInteractor(clientAuthorizer *clientAuthorizer) {
