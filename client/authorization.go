@@ -51,6 +51,8 @@ func Authorize(client *Client, authorizationStateHandler AuthorizationStateHandl
 			authorizationError = err
 			client.Close(context.Background())
 		}
+
+		time.Sleep(1 * time.Second)
 	}
 }
 
